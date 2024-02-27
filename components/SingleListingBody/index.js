@@ -16,6 +16,7 @@ import LeftArrow from "../../public/_svgs/LeftArrow";
 import Heart from "../../public/_svgs/Heart";
 import { Context } from "../../pages/_app";
 import useWishlist from "../../hooks/useWishlist";
+import { addDays } from 'date-fns';
 
 const SingleListingBody = ({ listing }) => {
   const router = useRouter();
@@ -26,15 +27,14 @@ const SingleListingBody = ({ listing }) => {
     ...guestsData,
     adults: { ...guestsData.adults, value: 1 },
   });
+
   const result = useLabeling(guests);
-  const [selectedDay, setSelectedDay] = useState(
-    new Date(new Date().toLocaleDateString() + ", 00:00:00")
-  );
-  const [selectEnd, setSelectEnd] = useState(
-    add(new Date(new Date().toLocaleDateString() + ", 00:00:00"), {
-      days: 6,
-    })
-  );
+
+  const [selectedDay, setSelectedDay] = useState(new Date());
+const [selectEnd, setSelectEnd] = useState(addDays(new Date(), 6));
+
+console.log("selectedDay, selectEnd", selectedDay, selectEnd);
+
 
   const ImagesRef = useRef(null);
   const AmenitiesRef = useRef(null);
@@ -115,6 +115,8 @@ const SingleListingBody = ({ listing }) => {
   }, [ImagesRef.current]);
 
   console.count("Index");
+
+
 
   return (
     <>
@@ -199,7 +201,7 @@ const SingleListingBody = ({ listing }) => {
                   }&checkout=${selectEnd && format(selectEnd, "yyyy-MM-dd")}`
                 )
               }
-            >
+>
               Reserve
             </BtnPrimary>
           </div>

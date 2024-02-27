@@ -10,7 +10,11 @@ const Dates = ({
   selectEnd,
   setSelectEnd,
 }) => {
+
+  console.log("selectedDay , selectEnd", selectedDay , selectEnd)
+
   return (
+    
     <>
       <CheckinCheckOut
         setSelection={setSelection}
