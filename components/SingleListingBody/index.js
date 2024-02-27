@@ -33,9 +33,6 @@ const SingleListingBody = ({ listing }) => {
   const [selectedDay, setSelectedDay] = useState(new Date());
 const [selectEnd, setSelectEnd] = useState(addDays(new Date(), 6));
 
-console.log("selectedDay, selectEnd", selectedDay, selectEnd);
-
-
   const ImagesRef = useRef(null);
   const AmenitiesRef = useRef(null);
   const ReviewsRef = useRef(null);
@@ -114,7 +111,6 @@ console.log("selectedDay, selectEnd", selectedDay, selectEnd);
     }
   }, [ImagesRef.current]);
 
-  console.count("Index");
 
 
 

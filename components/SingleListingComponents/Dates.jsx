@@ -11,8 +11,6 @@ const Dates = ({
   setSelectEnd,
 }) => {
 
-  console.log("selectedDay , selectEnd", selectedDay , selectEnd)
-
   return (
     
     <>

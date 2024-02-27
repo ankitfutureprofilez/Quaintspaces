@@ -23,9 +23,6 @@ const Date_GuestsPickerCard = React.forwardRef(
     ref
   ) => {
 
-    console.log("selectedDay , selectEnd", selectedDay , selectEnd)
-
-
     const router = useRouter();
     console.count("Card");
 
