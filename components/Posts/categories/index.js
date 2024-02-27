@@ -59,19 +59,16 @@ const Categories = ({ data }) => {
           <ul className="w-full overflow-hidden flex gap-7">
             {data.loading ? (
               <>
-                {Array(20)
-                  .fill("_")
-                  .map(() => (
-                    <CategoriesLoading key={uuidv4()} />
-                  ))}
-              </>
+                {Array(20).fill("_").map(() => (
+                  <CategoriesLoading key={uuidv4()} />
+                ))}
+            </>
             ) : (
               data.data.slice(0, 18).map((item, i) => (
                 <li
                   key={i}
                   ref={(el) => (child.current[i] = el)}
-                  className="category-list opacity-0"
-                >
+                  className="category-list opacity-0">
                   <Card category={item} index={i} />
                 </li>
               ))
