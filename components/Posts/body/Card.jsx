@@ -21,7 +21,7 @@ const Card = ({ post }) => {
           }`}
         />
       </div>
-      <a className="block" href={`/listings/${post._id}`} target="_blank">
+      <a className="block" href={`/listings/${post._id}`} >
         <div className="min-h-[250px] h-[calc(50vw/5+20px)] relative">
           <img
             src={post.images[0].url}

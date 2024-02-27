@@ -20,11 +20,11 @@
     "gsap": "^3.11.1",
     "leaflet": "^1.9.2",
     "leaflet-defaulticon-compatibility": "^0.1.1",
-    "next": "12.3.1",
+    "next": "^14.1.0",
     "puppeteer": "^18.0.5",
     "puppeteer-autoscroll-down": "^1.1.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-google-maps": "^9.4.5",
     "react-leaflet": "^4.1.0",
     "recompose": "^0.30.0",
@@ -34,7 +34,7 @@
     "@svgr/webpack": "^6.3.1",
     "autoprefixer": "^10.4.8",
     "eslint": "8.22.0",
-    "eslint-config-next": "12.2.5",
+    "eslint-config-next": "^14.1.0",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8"
   }
