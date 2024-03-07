@@ -1,0 +1,53 @@
+/* @font-face {
+    font-family: 'GilroyRegular';
+    src: url('./GilroyRegular.eot');
+    src: url('./GilroyRegular.eot') format('embedded-opentype'),
+         url('./GilroyRegular.woff2') format('woff2'),
+         url('./GilroyRegular.woff') format('woff'),
+         url('./GilroyRegular.ttf') format('truetype'),
+         url('./GilroyRegular.svg#GilroyRegular') format('svg');
+  }
+   */
+
+  /* styles/fonts.css */
+
+@font-face {
+    font-family: 'GilroyRegular-Regular';
+    src: url('../font/GilroyRegular.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'GilroyRegular';
+    src: url('../font/GilroyRegular.woff') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'GilroyRegular';
+    src: url('/fonts/GilroyRegular_1.woff2') format('woff2'),
+        url('/fonts/GilroyRegular_1.woff') format('woff'),
+        url('/fonts/GilroyRegular_1.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'NewYork';
+    src: url('/fonts/NewYork.woff2') format('woff2'),
+        url('/fonts/NewYork.woff') format('woff'),
+        url('/fonts/NewYork.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+  
+
+

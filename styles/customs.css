@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+  
+
+
+.logo img { max-width: 127px; }
+h1 { font-family: 'NewYork'; font-size: 70px; font-weight: 400; line-height: 85px; letter-spacing: 0em; text-align: left; }
+.login-signup-btn { border-left: 1px solid #fff; padding-left: 40px; margin-left: 20px; display: flex; align-items: center; } 
+.login-signup-btn a { padding: 8px 20px; margin: 0 7px; border-radius: 30px; color: #fff; width: 130px; text-align: center; height: 46px; }
+.login-signup-btn a.login { border: 2px solid #fff; color: #fff; } 
+.login-signup-btn a.signup { background: #DCAC81; border: 2px solid #DCAC81; }
+.navbar { padding: 20px 0; }
+.nav-bar a { padding: 8px 20px; font-family: Inter; font-size: 16px; font-weight: 600; line-height: 25px; letter-spacing: 0em; text-align: center; color: #ffff; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 1399px) {
+    .container{
+        max-width: 1320px;
+        margin: auto;
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .container{
+        max-width: 1140px;
+        margin: auto;
+        padding: 0 15px;
+    }
+}
+@media (max-width: 991px) {
+    .container{
+        max-width: 960px;
+        margin: auto;
+        padding: 0 15px;
+    }
+}
+@media (max-width: 767px) {
+    .container{
+        max-width: 720px;
+        margin: auto;
+        padding: 0 15px;
+    }
+}
+@media (max-width: 575px) {
+    .container{
+        max-width: 100%;
+        margin: auto;
+        padding: 0 15px;
+    }
+}

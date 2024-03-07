@@ -4,6 +4,7 @@ import { Context } from "../../../pages/_app";
 import Heart from "../../../public/_svgs/Heart";
 import Star from "../../../public/_svgs/star";
 import { textResizer } from "../../../utils/handlers";
+import Link from 'next/link'
 
 const Card = ({ post }) => {
   const { wishlist } = useContext(Context);
@@ -12,8 +13,7 @@ const Card = ({ post }) => {
   return (
     <div
       className="w-full cursor-pointer relative"
-      title={post.lt.slice(0, 1).toUpperCase() + post.lt.slice(1, -1)}
-    >
+      title={post.lt.slice(0, 1).toUpperCase() + post.lt.slice(1, -1)} >
       <div className="absolute top-6 right-6 z-10" onClick={changeWishlist}>
         <Heart
           css={`h-[23px] w-[23px] stroke-white stroke-[3] ${
@@ -21,7 +21,7 @@ const Card = ({ post }) => {
           }`}
         />
       </div>
-      <a className="block" href={`/listings/${post._id}`} >
+      <Link className="block" href={`/listings/${post._id}`} >
         <div className="min-h-[250px] h-[calc(50vw/5+20px)] relative">
           <img
             src={post.images[0].url}
@@ -45,7 +45,7 @@ const Card = ({ post }) => {
             <span className="font-semibold">{post.price}</span> night
           </span>
         </div>
-      </a>
+      </Link>
     </div>
   );
 };

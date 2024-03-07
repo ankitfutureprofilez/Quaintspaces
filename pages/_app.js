@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../styles/globals.css";
+import '../styles/customs.css';
+import "../styles/fonts.css"
 
 export const Context = React.createContext();
 

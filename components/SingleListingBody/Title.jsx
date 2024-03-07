@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Heart from "../../public/_svgs/Heart";
 import Star from "../../public/_svgs/star";
 import Upload from "../../public/_svgs/upload";
+import Back from "../common/Back";
 
 const Title = ({ isSaved, listing, addWishlist }) => {
   return (
@@ -13,8 +14,10 @@ const Title = ({ isSaved, listing, addWishlist }) => {
         </>
       ) : (
         <>
-          <div className="text-2xl lg:text-3xl font-medium mb-2">
-            {listing.data?.title.slice(0, 1).toUpperCase() +
+          <div className="text-2xl lg:text-3xl flex-wrap flex font-medium mb-2">
+            <div className={"backtag"} ></div>
+              <Back />
+              {listing.data?.title.slice(0, 1).toUpperCase() +
               listing.data?.title.slice(1, listing.data?.title.length)}
           </div>
           <div className="flex items-center justify-between my-8 md:my-0">

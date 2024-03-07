@@ -13,9 +13,9 @@ const Home = () => {
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>Airbnb Clone</title>
-      </Head>
+      </Head> */}
       <Header
         width="container"
         setOverlay={setOverlay}
