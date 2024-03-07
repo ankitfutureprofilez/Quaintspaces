@@ -5,8 +5,7 @@ import LuxuryStay from "./LuxuryStay.js";
 import Places from "./Places.js";
 import PremiumLocation from "./PremiumLocation.js";
 import ReasonToVisit from "./ReasonToVisit.js";
-import Footer from "./Footer.js"
-
+import Footer from "./Footer.js";
 
 export default function index() {
   return (
