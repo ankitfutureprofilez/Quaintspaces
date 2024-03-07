@@ -15,10 +15,13 @@ export default function PremiumLocation() {
     setCurrentSlide(currentSlide === images.length - 1 ? 0 : currentSlide + 1);
   };
 
+
+  
+
   const prevSlide = () => {
     setCurrentSlide(currentSlide === 0 ? images.length - 1 : currentSlide - 1);
   };
-  
+
 
   return (
     <div className='container mx-auto'>
