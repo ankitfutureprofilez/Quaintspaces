@@ -18,6 +18,7 @@ export default function PremiumLocation() {
   const prevSlide = () => {
     setCurrentSlide(currentSlide === 0 ? images.length - 1 : currentSlide - 1);
   };
+  
 
   return (
     <div className='container mx-auto'>
