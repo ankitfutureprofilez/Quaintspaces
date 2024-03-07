@@ -30,30 +30,30 @@ export default function Navbar() {
         </Link> */}
 
         <Link href="/apartments">
-          <p className="border-b-2 border-transparent hover:text-gray-800 hover:border-blue-500 mx-1.5 sm:mx-6">
+          <p>
             Our Apartments
           </p>
         </Link>
 
         <Link href="/places">
-          <p className="border-b-2 border-transparent hover:text-gray-800 hover:border-blue-500 mx-1.5 sm:mx-6">
+          <p>
             Place in Jaipur
           </p>
         </Link>
 
         <Link href="/contact">
-          <p className="border-b-2 border-transparent hover:text-gray-800 hover:border-blue-500 mx-1.5 sm:mx-6">
+          <p>
             Contact
           </p>
         </Link>
         
         {/* Buttons are present in seperate div */}
         <div className="login-signup-btn">
-          <Link href="/login">
-            <button className="bg-transparent mx-3">Login</button>
+          <Link className="login" href="/login">
+            <p >Login</p>
           </Link>
-          <Link href="/signup">
-            <button className="bg-orange-500 text-white">Sign Up</button>
+          <Link className="signup" href="/signup">
+            <p >Sign Up</p>
           </Link>
         </div>
         </div>
