@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/globals.css";
 import '../styles/customs.css';
 import "../styles/fonts.css"
+import '../styles/RangeSlider.css';
 
 export const Context = React.createContext();
 
