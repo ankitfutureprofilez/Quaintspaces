@@ -6,14 +6,21 @@ import Luxury3 from "../../public/images/Luxury3.png";
 
 export default function LuxuryStay() {
   return (
-    <div className="container mx-auto">
+    <div className="luxury-stay">
+    <div className="container mx-auto  ">
       <h1>Luxury Stay</h1>
-      <div className="flex">
-        <Image src={Luxury1} />
-        <Image src={Luxury2} />
-        <Image src={Luxury3} />
+      <div className="luxury-stay-img">
+        <div className="img-box">
+            <Image src={Luxury1} />
+        </div>
+        <div className="img-box">
+            <Image src={Luxury2} />
+        </div>
+        <div className="img-box">
+            <Image src={Luxury3} />
+        </div>
       </div>
-      <h1>In Jaipur</h1>
+      <h1 className="in-jaipur">In Jaipur</h1>
       <p>
         Our place offers luxe amenities from a smart television set to a fully
         equipped kitchen. It is sure to bring in vacation vibes with its muted
@@ -22,6 +29,7 @@ export default function LuxuryStay() {
         internet, speakers, to in-house laundry and ironing facilities, Our
         Place has everything you need for a perfect stay in Jaipur.
       </p>
+    </div>
     </div>
   );
 }
