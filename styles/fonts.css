@@ -46,6 +46,15 @@
     font-style: normal;
     font-display: swap;
 }
+@font-face {
+    font-family: 'GilroyMedium';
+    src: url('/fonts/GilroyMedium.woff2') format('woff2'),
+        url('/fonts/GilroyMedium.woff') format('woff'),
+        url('/fonts/GilroyMedium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
 
 
   
