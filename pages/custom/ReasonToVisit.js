@@ -1,6 +1,15 @@
 import React from 'react'
 
 export default function ReasonToVisit() {
+  const reasons = [
+    "Smart Telivision",
+    "Laundry",
+    "Complimentary internet",
+    "Speakers",
+    "Ironing",
+    "Microwave",
+    "Geyser"
+  ];
   return (
     <div className="visit-us-sec" style={{ backgroundImage: `url(/images/visitbg.jpg)` }}>
       <div className='container mx-auto'>

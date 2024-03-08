@@ -37,18 +37,18 @@ export default function PremiumLocation() {
 
   return (
     <div className="premium-location-slider">
-    <div className='container mx-auto '>
-      <h1>Premium Location in Jaipur</h1>
-      <div className="relative flex items-center ">
-        {images.slice(currentSlide, currentSlide + 3).map((image, index) => (
-          <div key={index} className="iteam flex-shrink-0 mx-2 relative transition-transform duration-500 ease-in-out transform">
-            <Image src={image.src} alt={image.alt} className="" />
-            <div className=" w-full  py-4">
-              <h2 className=" loction-name">{image.text}</h2>
+      <div className='container mx-auto '>
+        <h1>Premium Location in Jaipur</h1>
+        <div className="relative flex items-center ">
+          {[currentSlide, (currentSlide + 1) % images.length, (currentSlide + 2) % images.length].map(index => (
+            <div key={index} className="iteam flex-shrink-0 mx-2 relative transition-transform duration-500 ease-in-out transform">
+              <Image src={images[index].src} alt={images[index].alt} className="" />
+              <div className="w-full py-4">
+                <h2 className="loction-name">{images[index].text}</h2>
+              </div>
             </div>
-          </div>
-        ))}
-        <button onClick={prevSlide} className="absolute -left-5 transform -translate-y-1/2 bg-gray-900 bg-opacity-50 text-white px-2 py-1 rounded-l">
+          ))}
+          <button onClick={prevSlide} className="absolute -left-5 transform -translate-y-1/2 bg-gray-900 bg-opacity-50 text-white px-2 py-1 rounded-l">
         <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M5.90589 13.5428H24.685V10.4572L5.90589 10.4572L14.1815 2.18154L12 0L0 12L12 24L14.1815 21.8185L5.90589 13.5428Z" fill="white"/>
         </svg>
@@ -60,8 +60,9 @@ export default function PremiumLocation() {
         </svg>
 
         </button>
-      </div>
+        </div>
       </div>
     </div>
+  
   );
 }
