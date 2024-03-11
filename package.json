@@ -10,7 +10,7 @@
     "scrape": "cd bot && node index.js"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.1",
+    "@headlessui/react": "^1.7.18",
     "@heroicons/react": "v1",
     "@react-google-maps/api": "^2.13.1",
     "axios": "^0.27.2",
@@ -28,6 +28,7 @@
     "react-google-maps": "^9.4.5",
     "react-leaflet": "^4.1.0",
     "recompose": "^0.30.0",
+    "swiper": "^11.0.7",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

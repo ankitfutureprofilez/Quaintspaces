@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/images/logo.png";
+import LoginPop from "../login/LoginPop";
+import Signuppop from "../signup/Signuppop";
+import Popup from "../elements/Popup";
 // import Logo from "";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const [isOpens, setIsOpens] = useState(false);
+
+  const togglePopups = () => {
+    setIsOpens(!isOpens);
+  };
   return (
     <nav className="bg-transparent navbar">
       <div className="container flex items-center justify-between">
@@ -17,30 +31,16 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="nav-bar flex items-center">
-        {/* <Link href="/">
-          <p className="mx-1.5 sm:mx-6">
-            QSJaipur
-          </p>
-        </Link> */}
-
-        {/* <Link href="/">
-          <p className="text-gray-800 border-b-2 border-blue-500 mx-1.5 sm:mx-6">
-            home
-          </p>
-        </Link> */}
-
         <Link href="/apartments">
           <p>
             Our Apartments
           </p>
         </Link>
-
         <Link href="/places">
           <p>
             Place in Jaipur
           </p>
         </Link>
-
         <Link href="/contact">
           <p>
             Contact
@@ -49,13 +49,20 @@ export default function Navbar() {
         
         {/* Buttons are present in seperate div */}
         <div className="login-signup-btn">
-          <Link className="login" href="/login">
-            <p >Login</p>
-          </Link>
-          <Link className="signup" href="/signup">
-            <p >Sign Up</p>
-          </Link>
+            <Link  className="login" href={"/login"} >
+              <p>
+              Login
+                </p></Link>
+            <Link  className="signup" href={"/signup"} >
+              <p>
+              Sign Up
+                </p> </Link>
+
+           
         </div>
+        
+        <Popup/>
+    
         </div>
       </div>
     </nav>

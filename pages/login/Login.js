@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 
-export default function Login() {
-  // State variables to hold form data
+export default function Login( ) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  // Handle change function to update form data
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -16,12 +14,9 @@ export default function Login() {
     }));
   };
 
-  // Handle submit function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can perform any action with the form data here, like sending it to the server
     console.log("Form submitted:", formData);
-    // Reset form fields
     setFormData({
       email: "",
       password: "",

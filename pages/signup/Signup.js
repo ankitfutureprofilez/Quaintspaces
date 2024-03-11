@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 export default function Signup() {
-  // State variables to hold form data
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -9,7 +8,6 @@ export default function Signup() {
     confirmPassword: "",
   });
 
-  // Handle change function to update form data
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -18,12 +16,9 @@ export default function Signup() {
     }));
   };
 
-  // Handle submit function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can perform any action with the form data here, like sending it to the server
     console.log("Form submitted:", formData);
-    // Reset form fields
     setFormData({
       fullName: "",
       email: "",
@@ -33,14 +28,19 @@ export default function Signup() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg ">
       <div className="flex justify-center border-b-2 border-black-500">
         <h1 className="text-xl font-semibold mb-4">Sign Up</h1>
       </div>
-      <h1 className="text-xl font-semibold my-4">Welcome To Quaint Stay Jaipur</h1>
+      <h1 className="text-xl font-semibold my-4">
+        Welcome To Quaint Stay Jaipur
+      </h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="fullName"
+            className="block text-sm font-medium text-gray-700"
+          >
             Full Name
           </label>
           <input
@@ -54,7 +54,10 @@ export default function Signup() {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700"
+          >
             Email
           </label>
           <input
@@ -68,7 +71,10 @@ export default function Signup() {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-gray-700"
+          >
             Password
           </label>
           <input
@@ -82,7 +88,10 @@ export default function Signup() {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="confirmPassword"
+            className="block text-sm font-medium text-gray-700"
+          >
             Confirm Password
           </label>
           <input

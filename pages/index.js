@@ -3,6 +3,7 @@ import { Header, Posts } from "../components";
 import Head from "next/head";
 import { Context } from "./_app";
 import Wishlist from "../components/Wishlist";
+import MainPage from "./custom/Page";
 
 const Home = () => {
   const [overlay, setOverlay] = useState(false);
@@ -16,7 +17,7 @@ const Home = () => {
       {/* <Head>
         <title>Airbnb Clone</title>
       </Head> */}
-      <Header
+      {/* <Header
         width="container"
         setOverlay={setOverlay}
         selection={selection}
@@ -39,7 +40,9 @@ const Home = () => {
           ></div>
         )}
         {wishlist && <Wishlist setWishlist={setWishlist} />}
-      </div>
+      </div> */}
+
+      <MainPage />
     </>
   );
 };
