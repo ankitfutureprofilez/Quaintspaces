@@ -3,6 +3,7 @@ import RangeSlider from "./RangeSlider.js";
 
 export default function Filter() {
   return (
+    
     <div className="flex flex-col mx-auto max-w-md max-h-md rounded-lg p-6 shadow-md">
       <h2 className="text-xl font-semibold mb-4 text-center">Filter</h2>
       <div className='flex flex-col my-4'>
