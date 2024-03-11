@@ -2,9 +2,9 @@
   "version": 2,
   "name": "next-tailwind-graphql-express-repo",
   "builds": [
-    { "src": "/", "use": "@vercel/next" }
+    { "src": "index.js", "use": "@vercel/next" }
   ],
   "routes": [
-    { "src": "/", "dest": "/" }
+    { "src": "index.js", "dest": "index.js" }
   ]
 }
