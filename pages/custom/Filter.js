@@ -3,7 +3,7 @@ import RangeSlider from "./RangeSlider.js";
 
 export default function Filter() {
   return (
-    
+
     <div className="flex flex-col mx-auto max-w-md max-h-md rounded-lg p-6 shadow-md">
       <h2 className="text-xl font-semibold mb-4 text-center">Filter</h2>
       <div className='flex flex-col my-4'>
@@ -19,6 +19,7 @@ export default function Filter() {
             placeholder="30 March"
           />
         </div>
+        
         <div className="mb-6 mt-4">
           <label className="block text-sm font-medium text-gray-600">Check Out</label>
           <input
