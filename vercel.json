@@ -5,6 +5,6 @@
        { "src": "./index.js", "use": "vercel" }
     ],
     "routes": [
-       { "src": "/", "dest": "/" }
+       { "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
     ]
 }
