@@ -5,13 +5,16 @@ import Heart from "../../../public/_svgs/Heart";
 import Star from "../../../public/_svgs/star";
 import { textResizer } from "../../../utils/handlers";
 import Link from 'next/link'
+import Image from "next/image";
 
 const Card = ({ post }) => {
   const { wishlist } = useContext(Context);
   const [isSaved, changeWishlist] = useWishlist(post, wishlist);
 
   return (
-    <div
+
+    <>
+    {/* <div
       className="w-full cursor-pointer relative"
       title={post.lt.slice(0, 1).toUpperCase() + post.lt.slice(1, -1)} >
       <div className="absolute top-6 right-6 z-10" onClick={changeWishlist}>
@@ -46,7 +49,41 @@ const Card = ({ post }) => {
           </span>
         </div>
       </Link>
-    </div>
+    </div> */}
+
+
+    <div className="banipark-box">
+              <Image width={20} height={20} layout="responsive" src={post.images[0].url}  />
+              <div className="flat-info">
+                <h5>Golden Oak, Banipark, Jaipur </h5>
+                <h3> {textResizer(
+                post.lt.slice(0, 1).toUpperCase() + post.lt.slice(1, -1),
+                30
+              )}</h3>
+                <p>2 bedrooms · 2 bathrooms</p>
+                <h4>
+                  From <span>{post.price}</span> /night
+                </h4>
+              </div>
+              <div className="explor-btn">
+              <Link className="block" href={`/listings/${post._id}`} >
+                  Explore{" "}
+                  <svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 13 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8.6069 1.9997L0 10.6066L1.41421 12.0208L10.0211 3.41391V10.9998H12.0208V0H1.02106L1.02106 1.9997H8.6069Z"
+                      fill="#DCAC81"
+                    />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+    </>
   );
 };
 

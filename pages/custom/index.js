@@ -5,7 +5,7 @@ import LuxuryStay from "./LuxuryStay.js";
 import PremiumLocation from "./PremiumLocation.js";
 import ReasonToVisit from "./ReasonToVisit.js";
 import Footer from "./Footer.js";
-import Card from './Card.js';
+import HomeRoomsLists from './HomeRoomsLists.js';
 
 export default function index() {
   return (
@@ -15,7 +15,7 @@ export default function index() {
         <Header/>
       </div>
       <LuxuryStay/>
-    <Card/>
+      <HomeRoomsLists/>
       <PremiumLocation/>
       <ReasonToVisit/>
       <Footer/>
