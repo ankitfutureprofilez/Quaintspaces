@@ -1,16 +1,10 @@
 {
-    "crons": [
-      {
-        "path": "/api/every-minute",
-        "schedule": "* * * * *"
-      },
-      {
-        "path": "/api/every-hour",
-        "schedule": "0 * * * *"
-      },
-      {
-        "path": "/api/every-day",
-        "schedule": "0 0 * * *"
-      }
+    "version": 2,
+    "name": "next-tailwind-graphql-express-repo",
+    "builds": [
+       { "src": "./index.js", "use": "vercel" }
+    ],
+    "routes": [
+       { "src": "/(.*)", "dest": "/" }
     ]
-  }
+ }
