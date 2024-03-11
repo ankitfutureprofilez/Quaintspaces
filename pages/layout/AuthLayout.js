@@ -1,7 +1,15 @@
-import React from 'react'
+import React from 'react';
+import Header from '../custom/Header';
+import Footer from '../custom/Footer';
+import Navbar from '../custom/Navbar';
 
-export default function AuthLayout() {
+export default function AuthLayout({ children }) {
   return (
-    <div>AuthLayout</div>
-  )
+    <>
+    <Navbar/>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </>
+  );
 }

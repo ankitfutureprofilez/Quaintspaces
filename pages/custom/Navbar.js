@@ -46,8 +46,6 @@ export default function Navbar() {
             Contact
           </p>
         </Link>
-        
-        {/* Buttons are present in seperate div */}
         <div className="login-signup-btn">
             <Link  className="login" href={"/login"} >
               <p>
@@ -57,12 +55,7 @@ export default function Navbar() {
               <p>
               Sign Up
                 </p> </Link>
-
-           
         </div>
-        
-        <Popup/>
-    
         </div>
       </div>
     </nav>

@@ -1,5 +1,4 @@
-import Footer from "../custom/Footer";
-import Header from "../custom/Header";
+import Popup from "../elements/Popup";
 import Login from "./Login";
 
 export default function LoginPop() {
