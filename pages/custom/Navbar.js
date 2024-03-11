@@ -47,7 +47,8 @@ export default function Navbar() {
               Sign Up
                 </p> </Link>
         </div>
-      <Popup isOpen={isOpen} togglePopup={togglePopup}  space={2}  text={"Hello  data"} />
+        
+      <Popup isOpen={isOpen} togglePopup={togglePopup}  space={2}  text={"Hello  World"} />
 
         </div>
       </div>
