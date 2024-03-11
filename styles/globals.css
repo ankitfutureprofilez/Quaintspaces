@@ -21,6 +21,7 @@
     @apply border border-darkBorderColor rounded-xl px-6 py-3 text-sm md:text-base font-medium hover:bg-gray-100 outline-offset-[2.8px];
   }
 }
+
 * {
   font-family: "Inter", sans-serif;
   transition: top 250ms ease, scale 250ms ease, visibility 250ms ease, opacity 250ms ease, padding 250ms ease !important;

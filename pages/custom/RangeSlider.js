@@ -75,6 +75,7 @@ const RangeSlider = ({ min, max, onChange }) => {
           <p className="mx-4">Min Value</p>
           <p className="mx-4">{minVal}</p>
         </div>
+        
         <div className="slider__right-value">
           <p className="mx-4">Max Value </p>
           <p className="mx-4">{maxVal} </p>
