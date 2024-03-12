@@ -1,6 +1,9 @@
-function Button({ text, design }) {
+function Button({ text, design ,onClick,className }) {
+  const combinedClassName = `${design}? ${design}${className} :${design}`;
+
   return (
-    <button className={design}>
+    <button className={combinedClassName} 
+    onClick={onClick}>
       {text}
     </button>
   );
