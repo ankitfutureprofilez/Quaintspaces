@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Tiptop1 from "../../public/images/tip-top-1.jpg";
-import Image from "next/image";
-import axios from "axios";
-import { PostBody } from "../../components";
+import RoomListings from "./RoomListings";
 
 export default function Card() {
   const [categories, setCategories] = useState({
@@ -11,26 +9,10 @@ export default function Card() {
     data: [],
   });
 
-  const [listings, setListings] = useState({
-    loading: true,
-    data: [],
-  });
-
-  useEffect(() => {
-    (async () => {
-      setListings({ loading: true, data: [] });
-      setCategories({ loading: true, data: [] });
-      const { data } = await axios("/api/listings");
-      setListings({ loading: false, data: data.data });
-      const { data: categoryData } = await axios("/api/categories");
-      setCategories({ loading: false, data: categoryData.data });
-    })();
-  }, []);
-
   return (
     <div className="tip-top-sec">
       <div className="container">
-        <h2>Explore Top-tier Places</h2>
+        <h2 className="listing-heading text-center">Explore Top-tier Places</h2>
         {/* <div className="row">
           <div className="col-4">
             <div className="banipark-box">
@@ -124,7 +106,7 @@ export default function Card() {
           </div>
         </div> */}
 
-        <PostBody data={listings} />
+        <RoomListings />
         <div className="load-more-btn">
           <Link href=" ">Load More</Link>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '../elements/Button'
 
-export default function Header() {
+export default function HeroBanner() {
   return (
     <div className='justify-center items-center flex flex-col hero-sec'>
       <h1>Live the luxury in jaipur</h1>

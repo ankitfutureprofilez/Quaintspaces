@@ -60,7 +60,7 @@ const Card = ({ post }) => {
                 post.lt.slice(0, 1).toUpperCase() + post.lt.slice(1, -1),
                 30
               )}</h3>
-                <p>2 bedrooms · 2 bathrooms</p>
+                <p>{post.bedrooms} Bedrooms · {post.bed} Bed</p>
                 <h4>
                   From <span>{post.price}</span> /night
                 </h4>

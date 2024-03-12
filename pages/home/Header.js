@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../public/images/logo.png";
+import logo from "../../public/images/QsJaipur.png";
 import Popup from "../elements/Popup";
-export default function Navbar() {
+export default function Header() {
   
   const [isOpen, setIsOpen] = useState(false);
   const togglePopup = () => {
@@ -11,7 +11,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-transparent navbar">
+    <nav className="navbar">
       <div className="container flex items-center justify-between">
         <div className="logo">
           <Link href="/">
