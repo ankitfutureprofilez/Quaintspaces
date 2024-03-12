@@ -6,9 +6,6 @@
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ],
-  "redirects": [
-    { "source": "/(.*)", "destination": "/login", "statusCode": 308 }
-  ],
   "cleanUrls": true,
   "trailingSlash": false
 }
