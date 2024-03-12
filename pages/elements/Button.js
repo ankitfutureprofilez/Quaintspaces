@@ -1,15 +1,14 @@
-import React from 'react'
-import { Link } from 'next/link';
-
-export default function Button({text, desgin}) {
+function Button({ text, design }) {
   return (
-    <div>
-       <button className={desgin}> {text}</button>
-    </div>
-
-
-  )
+    <button className={design}>
+      {text}
+    </button>
+  );
 }
+
+export default Button;
+
+
 
 
 

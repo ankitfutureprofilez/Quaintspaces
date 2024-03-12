@@ -14,7 +14,7 @@ body{background-color: #F8F1EB;}
 .hero-sec { padding: 220px 0 270px; } 
 .hero-sec h1 { font-family: 'NewYork'; font-size: 70px; font-weight: 400; line-height: 85px; letter-spacing: 0em; text-align: left; color: #FFFFFF; margin-bottom: 20px; } 
 .hero-sec p {  font-size: 22px; font-weight: 400; line-height: 27px; letter-spacing: 0em; text-align: left; margin-bottom: 40px; color: #fff; } 
-.hero-sec button { font-family: "Inter", sans-serif; font-size: 16px; font-weight: 500; line-height: 19px; letter-spacing: 0em; text-align: center; color: #fff; width: 405px; border: 2px solid #fff; padding: 18px; border-radius: 30px; }
+/* .hero-sec button { font-family: "Inter", sans-serif; font-size: 16px; font-weight: 500; line-height: 19px; letter-spacing: 0em; text-align: center; color: #fff; width: 405px; border: 2px solid #fff; padding: 18px; border-radius: 30px; } */
 .luxury-stay h1 { font-family: 'NewYork'; font-size: 150px; font-weight: 400; line-height: 183px; letter-spacing: 0em; text-align: center; color: #B29584; } 
 .luxury-stay { padding: 60px 0 85px; }
 .luxury-stay-img { display: flex; align-items: center; width: 100%;margin-top: -70px; } 
