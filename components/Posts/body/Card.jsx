@@ -49,9 +49,11 @@ const Card = ({ post }) => {
       </Link>
     </div> */}
 
+{/* .banipark-box img { height: 250px !IMPORTANT; object-fit: cover; } */}
 
     <div className="banipark-box">
-              <Image width={20} height={20} layout="responsive" src={post.images[0].url}  />
+              <Image width={100} height={300}
+              layout="responsive" src={post.images[0].url}  />
               <div className="flat-info">
                 <h5>Golden Oak, Banipark, Jaipur </h5>
                 <h3> {textResizer(
