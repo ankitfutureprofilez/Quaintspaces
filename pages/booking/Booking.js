@@ -12,31 +12,29 @@ function Booking() {
         <>
             <div className="flex align-items-center my-4 mx-4 py-4 space-x-4">
                 <Button
-                    className={`font-inter text-base font-medium leading-tight text-center w-52 border-2 p-4 rounded-full ${
-                        selectedButton === "upcoming"
-                    }`}
+                    className={`font-inter text-base font-medium leading-tight text-center w-52 border-2 p-4 rounded-full ${selectedButton === "upcoming" ? "bg-orange-300 text-white" : "text-black"
+
+                        }`}
                     onClick={() => handleGroupChange("upcoming")}
-                text={"Upcoming"}
-               />
-                 
+                    text={"Upcoming"}
+                />
+
                 <Button
-                text={"Completed"}
-                    className={`font-inter text-base font-medium leading-tight text-center w-52 border-2 p-4 rounded-full  ${
-                        selectedButton === "completed"
-                    } `}
+                    text="Completed"
+                    className={`font-inter text-base font-medium leading-tight text-center w-52 border-2 p-4 rounded-full ${selectedButton === "completed" ? "bg-orange-300 text-white" : "text-black"
+                        } `}
                     onClick={() => handleGroupChange("completed")}
-               />
-                    
+                />
+
+
                 <Button
-                    className={`font-inter text-base font-medium leading-tight text-center w-52 border-2 p-4 rounded-full ${
-                        selectedButton === "canceled"
-                           
-                    } `}
+                    className={`font-inter text-base font-medium leading-tight text-center w-52 border-2 p-4 rounded-full ${selectedButton === "canceled" ? "bg-orange-300 text-white" : "text-black"
+                        } `}
                     onClick={() => handleGroupChange("canceled")}
                     text={"Canceled"}
                 />
-                    
-              
+
+
             </div>
 
             {selectedButton === "upcoming" && <div>1yaah</div>}
