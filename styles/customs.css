@@ -7,7 +7,16 @@ body{background-color: #F8F1EB;}
 .login-signup-btn a.login { border: 2px solid #fff; color: #fff; } 
 .login-signup-btn a.signup { background: #DCAC81; border: 2px solid #DCAC81; }
 .navbar { padding: 20px 0; }
-.nav-bar a { padding: 8px 20px; font-family: "Inter", sans-serif; font-size: 16px; font-weight: 600; line-height: 25px; letter-spacing: 0em; text-align: center; color: #ffff; }
+.nav-bar a {
+  padding: 8px 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: black;
+}
 .nav-header-sec { background-color: #0000004d; background-blend-mode: color; }
 .hero-sec { padding: 220px 0 270px; } 
 .hero-sec h1 { font-family: 'NewYork'; font-size: 70px; font-weight: 400; line-height: 85px; letter-spacing: 0em; text-align: left; color: #FFFFFF; margin-bottom: 20px; } 
