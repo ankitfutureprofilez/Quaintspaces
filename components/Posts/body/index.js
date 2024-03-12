@@ -28,7 +28,7 @@ const PostBody = ({ data }) => {
     <div>
 
       <ul className="flex gap-6 flex-wrap px-4">
-        {data.loading ? Array(50).fill("_").map(() => <ListingsLoading key={uuidv4()} />)
+        {data.loading ? Array(3).fill("_").map(() => <ListingsLoading key={uuidv4()} />)
         : 
           data.data.map((post, i) => (
             <li

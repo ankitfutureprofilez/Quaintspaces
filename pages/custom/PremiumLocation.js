@@ -3,6 +3,10 @@ import Image from "next/image";
 import Vaishali from "../../public/images/jhotwara-1.jpg";
 import Mansarovar from "../../public/images/jhotwara-2.jpg";
 import Jhotwara from "../../public/images/jhotwara-3.jpg";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination, Navigation } from 'swiper';
 
 export default function PremiumLocation() {
   const images = [
@@ -40,6 +44,28 @@ export default function PremiumLocation() {
       <div className='container mx-auto '>
         <h1>Premium Location in Jaipur</h1>
         <div className="relative flex items-center ">
+        {/* <Swiper
+              slidesPerView={3}
+              spaceBetween={2}
+            centeredSlides={false}
+              autoplay={{
+                delay: 1000, 
+                disableOnInteraction: false,
+              }}
+              navigation={true}
+            >
+              {images.map((reason, index) => (
+                <SwiperSlide key={index} >
+                  <div  className="iteam flex-shrink-0 mx-2 relative transition-transform duration-500 ease-in-out transform" key={index}>
+              <Image src={reason.src} alt={reason.alt} className="" />
+ <div className="w-full py-4">
+                <h2 className="loction-name">{reasons.text}</h2>
+              </div>
+                   
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper> */}
           {[currentSlide, (currentSlide + 1) % images.length, (currentSlide + 2) % images.length].map(index => (
             <div key={index} className="iteam flex-shrink-0 mx-2 relative transition-transform duration-500 ease-in-out transform">
               <Image src={images[index].src} alt={images[index].alt} className="" />

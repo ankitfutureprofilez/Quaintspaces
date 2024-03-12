@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import useWishlist from "../../../hooks/useWishlist";
 import { Context } from "../../../pages/_app";
-import Heart from "../../../public/_svgs/Heart";
-import Star from "../../../public/_svgs/star";
 import { textResizer } from "../../../utils/handlers";
 import Link from 'next/link'
 import Image from "next/image";
