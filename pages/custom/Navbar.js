@@ -41,7 +41,7 @@ export default function Navbar() {
             isOpen={isOpen}
             togglePopup={togglePopup}
             space={2}
-            text={"Hello  World"}
+            text={"Hello  World ankit"}
           />
           {isOpen && (
             <button

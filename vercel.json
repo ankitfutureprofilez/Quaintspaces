@@ -1,14 +1,9 @@
 {
   "version": 2,
   "name": "next-tailwind-graphql-express-repo",
-  "builds": [
-    { "src": "index.js", "use": "@vercel/next" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/" }
-  ],
-    "redirects": [
-      { "source": "/", "destination": "/", "permanent": false }
-    ]
-  
+  "builds": [{ "src": "index.js", "use": "@vercel/next" }],
+  "routes": [{ "src": "/(.*)", "dest": "/" }],
+  "redirects": [{ "source": "/(.*)", "destination": "/" }],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
