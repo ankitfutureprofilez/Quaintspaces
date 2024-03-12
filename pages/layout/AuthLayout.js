@@ -1,13 +1,12 @@
 import React from 'react';
-import Header from '../custom/Header';
-import Footer from '../custom/Footer';
-import Navbar from '../custom/Navbar';
+import HeroBanner from '../home/HeroBanner';
+import Footer from '../home/Footer';
+import Header from '../home/Header';
 
 export default function AuthLayout({ children }) {
   return (
     <>
-    <Navbar/>
-      <Header />
+    <Header/>
       <main>{children}</main>
       <Footer />
     </>

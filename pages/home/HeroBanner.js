@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Header() {
+export default function HeroBanner() {
   return (
     <div className='justify-center items-center flex flex-col hero-sec'>
       <h1>Live the luxury in jaipur</h1>
