@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     if (router.pathname === '/') {
-      router.push('/'); 
+      router.push('/login'); 
     }
   }, [router.pathname]);
 
