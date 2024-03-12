@@ -3,8 +3,11 @@
   "builds": [
     { "src": "next.config.js", "use": "@vercel/next" }
   ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/" }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ],
+  "redirects": [
+    { "source": "/(.*)", "destination": "/", "statusCode": 308 }
   ],
   "cleanUrls": true,
   "trailingSlash": false
