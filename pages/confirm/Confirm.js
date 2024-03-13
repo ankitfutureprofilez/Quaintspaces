@@ -184,6 +184,7 @@ export default function Confirm() {
               /> */}
               <div>
                 <h4 className="text-md mb-1">Luxurious Boutique 2BHK Flat in Bani Park, Jaipur</h4>
+               <p>Entire</p>
                 <span className="flex text-sm items-center gap-1">
                   <span>
                     <Star />
