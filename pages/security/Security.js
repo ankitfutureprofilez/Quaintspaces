@@ -6,6 +6,7 @@ export default function Security() {
     const [formData, setFormData] = useState({
         new_password: "",
         confirm_password: "",
+        
         cuurent_Password:'',
       });
     
