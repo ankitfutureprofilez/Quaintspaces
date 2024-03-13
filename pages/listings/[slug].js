@@ -60,7 +60,7 @@ const Listing = () => {
       {/* <Footer /> */}
       {overlay && (
         <div
-          className="fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-40"
+          className="overlayFixed fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-40"
           onClick={() => {
             setSelection(null);
             setOverlay(false);

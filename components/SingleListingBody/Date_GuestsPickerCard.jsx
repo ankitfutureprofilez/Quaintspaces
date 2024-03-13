@@ -65,15 +65,26 @@ const Date_GuestsPickerCard = React.forwardRef(
           </div>
 
           <div ref={ref}>
-            <BtnPrimary
+            <button
+            className="filter btn w-full "
               onClick={() => {
                 router.push(
                   `/book/${listing?._id}?numberOfAdults=${guests.adults.value}&numberOfChildren=${guests.children.value}&numberOfInfants=${guests.infants.value}&numberOfPets=${guests.pets.value}&checkin=${format(selectedDay,"yyyy-MM-dd")}&checkout=${format(selectEnd, "yyyy-MM-dd")}`
                 );
               }}
             >
-              Reserve
-            </BtnPrimary>
+              Check Availability
+            </button>
+            <button
+            className="sort btn w-full mt-2 items-center "
+              // onClick={() => {
+              //   router.push(
+              //     `/book/${listing?._id}?numberOfAdults=${guests.adults.value}&numberOfChildren=${guests.children.value}&numberOfInfants=${guests.infants.value}&numberOfPets=${guests.pets.value}&checkin=${format(selectedDay,"yyyy-MM-dd")}&checkout=${format(selectEnd, "yyyy-MM-dd")}`
+              //   );
+              // }}
+            >
+              Contact
+            </button>
           </div>
         </div>
       </div>

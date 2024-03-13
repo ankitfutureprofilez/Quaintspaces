@@ -364,6 +364,12 @@ footer {
   background-repeat: no-repeat;
 }
 
+.hideHeader {
+  z-index: -1;
+  opacity: 0;
+  display: none;
+}
+
 @media (min-width: 1399px) {
   .container {
     max-width: 1320px;
@@ -409,21 +415,22 @@ footer {
   display: flex;
   align-items: end;
 }
-.button-group .btn {
+ .btn {
   padding: 8px 20px;
-  margin: 0 7px;
+  margin-left: 7px;
+  margin-right: 7px;
   border-radius: 30px;
-  display: flex;
+  /* display: flex; */
   /* color: #fff; */
   /* width: 130px; */
   text-align: center;
   /* height: 46px; */
 }
-.button-group .sort {
+ .sort {
   border: 2px solid #dcac81;
   color: #dcac81;
 }
-.button-group .filter {
+ .filter {
   background: #dcac81;
   border: 2px solid #dcac81;
   color: #fff;

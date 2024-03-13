@@ -102,7 +102,7 @@ const [selectEnd, setSelectEnd] = useState(addDays(new Date(), 6));
     if (ImagesRef.current) {
       const { bottom } = ImagesRef.current?.getBoundingClientRect();
       window.addEventListener("scroll", () => {
-        if (window.scrollY > bottom) {
+        if (window.scrollY > bottom+300) {
           setShowHeader(true);
         } else {
           setShowHeader(false);
@@ -125,8 +125,10 @@ const [selectEnd, setSelectEnd] = useState(addDays(new Date(), 6));
         />
       )}
       <header
-        className={`w-full bg-white fixed bottom-0 lg:top-0 lg:bottom-auto left-0 z-30 border-t lg:border-b border-borderColor shadow-top ${
-          showHeader ? "opacity-1 z-30" : "lg:opacity-0 lg:z-0"
+        className={`w-full bg-white fixed bottom-0 lg:top-0 lg:bottom-auto left-0 z-30 border-t 
+        lg:border-b border-borderColor shadow-top 
+        ${
+          showHeader ? "showHeader" : "hideHeader"
         }`}
       >
         <div className="max-w-[1120px] px-4 mx-auto flex items-center justify-between">
