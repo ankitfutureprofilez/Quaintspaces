@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Times from "../../public/_svgs/Times";
+import Star from "../../public/_svgs/star";
 
 const Info = React.forwardRef(({ listing }, ref) => {
   const [amenitiesModal, setAmenitiesModal] = useState(false);
@@ -21,12 +22,14 @@ const Info = React.forwardRef(({ listing }, ref) => {
             <div className="h-7 mb-2 rounded-md bg-lightBorderColor w-7/12"></div>
           ) : (
             <h1 className="text-lg md:text-2xl mb-2 font-semibold">
-              Hosted by {listing.data?.user?.name}
+              {/* Hosted by {listing.data?.user?.name} */}
+              Banipark Apartment
             </h1>
           )}
           {listing.loading ? (
             <div className="h-7 mb-2 rounded-md bg-lightBorderColor w-4/12"></div>
           ) : (
+            <>
             <div className="flex items-center gap-1 text-md">
               {listing.data?.person_capacity} guests{" · "}
               {listing.data?.pets_capacity > 0 &&
@@ -35,17 +38,21 @@ const Info = React.forwardRef(({ listing }, ref) => {
               {listing.data?.bedrooms} bedrooms {" · "} {listing.data?.beds}{" "}
               beds
             </div>
-          )}
-        </div>
-        <div className="rounded-full w-[70px] h-[70px] overflow-hidden">
-          {listing.loading ? (
-            <div className="rounded-full w-full h-full bg-lightBorderColor"></div>
-          ) : (
-            <img
-              src={listing.data?.user?.profile?.url}
-              className="rounded-full w-full h-full object-cover"
-              alt=""
-            />
+            <div className="flex items-center gap-2 text-md">
+              <span className="flex gap-1 items-center text-md font-medium">
+                <span>
+                  <Star />
+                </span>
+                {/* {listing.data?.rating} */}
+                5.0
+              </span>
+              <div className="hidden">·</div>
+              <span className="underline text-md font-medium">
+                {listing.data?.reviews?.length || 0} review
+              </span>
+              
+            </div> 
+          </>
           )}
         </div>
       </div>

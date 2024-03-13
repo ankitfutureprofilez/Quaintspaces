@@ -7,6 +7,7 @@ import axios from "axios";
 import { Context } from "../_app";
 import Wishlist from "../../components/Wishlist";
 import Layout from "../layout/Layout";
+import ThingsToKnow from "./ThingsToKnow";
 
 const Listing = () => {
   const router = useRouter();
@@ -57,6 +58,7 @@ const Listing = () => {
         setHeaderSearch={setHeaderSearch}
       /> */}
       <SingleListingBody listing={listing} />
+      <ThingsToKnow/>
       {/* <Footer /> */}
       {overlay && (
         <div
