@@ -49,7 +49,7 @@ export default function Signup() {
             name="fullName"
             value={formData.fullName}
             onChange={handleChange}
-            className="mt-1 p-2 border rounded-md w-full"
+            className="mt-1 p-2 border rounded-md w-full rounded-full"
             required
           />
         </div>
