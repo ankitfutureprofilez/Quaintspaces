@@ -1,12 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
-body{background-color: #F8F1EB;}
-.logo img { max-width: 127px; }
-.login-signup-btn { border-left: 1px solid #fff; padding-left: 40px; margin-left: 20px; display: flex; align-items: center; } 
-.login-signup-btn a { padding: 8px 20px; margin: 0 7px; border-radius: 30px; color: #fff; width: 130px; text-align: center; height: 46px; }
-.login-signup-btn a.login { border: 2px solid #fff; color: #fff; } 
-.login-signup-btn a.signup { background: #DCAC81; border: 2px solid #DCAC81; }
-.navbar { padding: 20px 0; }
+body {
+  background-color: #f8f1eb;
+}
+.logo img {
+  max-width: 127px;
+}
+.login-signup-btn {
+  border-left: 1px solid #000000;
+  padding-left: 40px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+.login-signup-btn a {
+  padding: 8px 20px;
+  margin: 0 7px;
+  border-radius: 30px;
+  color: #fff;
+  width: 130px;
+  text-align: center;
+  height: 46px;
+}
+.login-signup-btn a.login {
+  border: 2px solid #000000
+  ;
+  color: #000000;
+}
+.login-signup-btn a.signup {
+  background: #dcac81;
+  border: 2px solid #dcac81;
+}
+.navbar {
+  padding: 20px 0;
+}
 .nav-bar a {
   padding: 8px 20px;
   font-family: "Inter", sans-serif;
@@ -17,63 +44,339 @@ body{background-color: #F8F1EB;}
   text-align: center;
   color: black;
 }
-.nav-header-sec { background-color: #0000004d; background-blend-mode: color; }
-.hero-sec { padding: 220px 0 270px; } 
-.hero-sec h1 { font-family: 'NewYork'; font-size: 70px; font-weight: 400; line-height: 85px; letter-spacing: 0em; text-align: left; color: #FFFFFF; margin-bottom: 20px; } 
-.hero-sec p {  font-size: 22px; font-weight: 400; line-height: 27px; letter-spacing: 0em; text-align: left; margin-bottom: 40px; color: #fff; } 
-.hero-sec button { font-family: "Inter", sans-serif; font-size: 16px; font-weight: 500; line-height: 19px; letter-spacing: 0em; text-align: center; color: #fff; width: 405px; border: 2px solid #fff; padding: 18px; border-radius: 30px; }
-.luxury-stay h1 { font-family: 'NewYork'; font-size: 150px; font-weight: 400; line-height: 183px; letter-spacing: 0em; text-align: center; color: #B29584; } 
-.luxury-stay { padding: 60px 0 85px; }
-.luxury-stay-img { display: flex; align-items: center; width: 100%;margin-top: -70px; } 
-.luxury-stay-img .img-box { width: 33.33%; padding: 0 15px; } 
-.luxury-stay-img .img-box img { width: 100%; }
-h1.in-jaipur { margin-top: -115px; }
-.luxury-stay p { font-size: 18px; font-weight: 400; line-height: 27px; letter-spacing: 0em; text-align: center; max-width: 888px; margin: auto; margin-top: 15px; /* font-family: Gilroy-Regular; */color: #61554E; }
-.premium-location-slider { padding: 100px 0; } 
-.premium-location-slider h1 { font-family: 'NewYork'; font-size: 40px; font-weight: 400; line-height: 49px; letter-spacing: 0em; text-align: center; margin-bottom: 30px; color: #3F2A17; }
-.premium-location-slider img { width: 100%; } 
-.premium-location-slider .iteam { width: 33.33%; margin: 0; padding: 0px 15px; } 
-.premium-location-slider .iteam img { width: 100%; }
-.premium-location-slider button { background: #DCAC81; padding: 20px; border-radius: 50px; }
-h2.loction-name { font-family: NewYork; font-size: 24px; font-weight: 400; line-height: 29px; letter-spacing: 0em; text-align: left; color: #3F2A17; }
-.premium-location-slider { padding: 100px 0; }
-.footer-menu { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 40px 0; border-top: 1px solid #DCAC81; border-bottom: 1px solid #DCAC81; } 
-.footer-menu img { width: 127px; }
-p.menu-footer { font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #3F2A17; margin-left: 20px;}
-.copy-right { padding: 25px 0; } 
-.copy-right span { /* font-family: Gilroy-Medium; */ font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #A38B77; }
-footer { padding-top: 165px; }
-.tip-top-sec { padding: 80px 0; background: #F2EADF; }
-.tip-top-sec .row { display: flex; align-items: center; } 
-.tip-top-sec .row .col-4 { width: 33.33%; padding: 0 15px; } 
-.tip-top-sec .row .col-4 img { width: 100%; } 
-.flat-info { padding: 0 20px; } 
-.flat-info h5 { /* font-family: Gilroy-Regular; */ font-size: 13px; font-weight: 400; line-height: 16px; letter-spacing: 0em; color: #95908D; padding: 20px 10px 15px 10px; border-bottom: 1px solid #dcdcdc; } 
-.flat-info h3 { font-family: NewYork; font-size: 24px; font-weight: 400; line-height: 29px; letter-spacing: 0em; text-align: left; color: #3F2A17; padding: 10px; } 
-.flat-info p { /* font-family: Gilroy-Regular; */ font-size: 13px; font-weight: 400; line-height: 16px; letter-spacing: 0em; color: #95908D; padding: 0 10px; } 
-.explor-btn { padding: 18px; display: flex; text-align: center; justify-content: center; border-top: 1px solid #DCAC81; margin-top: 25px; } 
-.explor-btn a { display: flex; align-items: center; /* font-family: 'NewYork'; */ font-size: 16px; font-weight: 500; line-height: 19px; letter-spacing: 0em; text-align: center; color: #DCAC81; text-transform: uppercase; } 
-.explor-btn a svg { margin-left: 10px; }
-.banipark-box { background: #fff; margin-bottom: 20px; }
-.banipark-box { background: #fff; } 
-.flat-info h4 { /* font-family: Gilroy-Regular; */ font-size: 13px; font-weight: 400; line-height: 16px; letter-spacing: 0em; padding: 10px; border-top: 1px solid #dedede; margin-top: 10px; color: #95908D; } 
-.flat-info span { /* font-family: Gilroy-SemiBold; */ font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: center; color: #DCAC81; }
-.load-more-btn { text-align: center; margin-top: 40px; } 
-.load-more-btn a { font-family: Inter; font-size: 16px; font-weight: 500; line-height: 19px; letter-spacing: 0em; text-align: center; color: #DCAC81; text-transform: uppercase; padding: 15px 50px; border: 1px solid; border-radius: 30px; }
-.tip-top-sec h2 { font-family: 'NewYork'; font-size: 40px; font-weight: 400; line-height: 49px; letter-spacing: 0em; text-align: center; margin-bottom: 40px; color: #3F2A17; }
-.tip-top-sec h2 { font-family: NewYork; font-size: 40px; font-weight: 400; line-height: 49px; letter-spacing: 0em; text-align: center; margin-bottom: 40px; color: #3F2A17; } 
-.visit-us-sec { padding: 100px 0 130px; text-align: center; } 
-.visit-us-sec h2 { font-family: 'NewYork'; font-size: 40px; font-weight: 400; line-height: 49px; letter-spacing: 0em;     color: #fff;} 
-.smart-box { display: flex; align-items: center; justify-content: center; margin-top: 40px;     margin-bottom: -190px; } 
-.smart-box .iteam { width: 25%; padding: 0 15px; } 
-.smart-box .iteam h3 { background: #fff; padding: 60px 0; font-family: 'NewYork'; font-size: 24px; font-weight: 400; line-height: 29px; letter-spacing: 0em; text-align: center; color: #3F2A17; box-shadow: 0px 50px 40px -30px #B2958433; }
-.visit-us-sec { background-blend-mode: color; background-color: #00000033; background-size: cover; background-repeat: no-repeat; }
+.nav-header-sec {
+  background-color: #0000004d;
+  background-blend-mode: color;
+}
+.hero-sec {
+  padding: 220px 0 270px;
+}
+.hero-sec h1 {
+  font-family: "NewYork";
+  font-size: 70px;
+  font-weight: 400;
+  line-height: 85px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+.hero-sec p {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 40px;
+  color: #fff;
+}
+.hero-sec button {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #fff;
+  width: 405px;
+  border: 2px solid #fff;
+  padding: 18px;
+  border-radius: 30px;
+}
+.luxury-stay h1 {
+  font-family: "NewYork";
+  font-size: 150px;
+  font-weight: 400;
+  line-height: 183px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #b29584;
+}
+.luxury-stay {
+  padding: 60px 0 85px;
+}
+.luxury-stay-img {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: -70px;
+}
+.luxury-stay-img .img-box {
+  width: 33.33%;
+  padding: 0 15px;
+}
+.luxury-stay-img .img-box img {
+  width: 100%;
+}
+h1.in-jaipur {
+  margin-top: -115px;
+}
+.luxury-stay p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: center;
+  max-width: 888px;
+  margin: auto;
+  margin-top: 15px; /* font-family: Gilroy-Regular; */
+  color: #61554e;
+}
+.premium-location-slider {
+  padding: 100px 0;
+}
+.premium-location-slider h1 {
+  font-family: "NewYork";
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 49px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #3f2a17;
+}
+.premium-location-slider img {
+  width: 100%;
+}
+.premium-location-slider .iteam {
+  width: 33.33%;
+  margin: 0;
+  padding: 0px 15px;
+}
+.premium-location-slider .iteam img {
+  width: 100%;
+}
+.premium-location-slider button {
+  background: #dcac81;
+  padding: 20px;
+  border-radius: 50px;
+}
+h2.loction-name {
+  font-family: NewYork;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #3f2a17;
+}
+.premium-location-slider {
+  padding: 100px 0;
+}
+.footer-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 40px 0;
+  border-top: 1px solid #dcac81;
+  border-bottom: 1px solid #dcac81;
+}
+.footer-menu img {
+  width: 127px;
+}
+p.menu-footer {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #3f2a17;
+  margin-left: 20px;
+}
+.copy-right {
+  padding: 25px 0;
+}
+.copy-right span {
+  /* font-family: Gilroy-Medium; */
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #a38b77;
+}
+footer {
+  padding-top: 165px;
+}
+.tip-top-sec {
+  padding: 80px 0;
+  background: #f2eadf;
+}
+.tip-top-sec .row {
+  display: flex;
+  align-items: center;
+}
+.tip-top-sec .row .col-4 {
+  width: 33.33%;
+  padding: 0 15px;
+}
+.tip-top-sec .row .col-4 img {
+  width: 100%;
+}
+.flat-info {
+  padding: 0 20px;
+}
+.flat-info h5 {
+  /* font-family: Gilroy-Regular; */
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  color: #95908d;
+  padding: 20px 10px 15px 10px;
+  border-bottom: 1px solid #dcdcdc;
+}
+.flat-info h3 {
+  font-family: NewYork;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #3f2a17;
+  padding: 10px;
+}
+.flat-info p {
+  /* font-family: Gilroy-Regular; */
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  color: #95908d;
+  padding: 0 10px;
+}
+.explor-btn {
+  padding: 18px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  border-top: 1px solid #dcac81;
+  margin-top: 25px;
+}
+.explor-btn a {
+  display: flex;
+  align-items: center; /* font-family: 'NewYork'; */
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #dcac81;
+  text-transform: uppercase;
+}
+.explor-btn a svg {
+  margin-left: 10px;
+}
+.banipark-box {
+  background: #fff;
+  margin-bottom: 20px;
+}
+.banipark-box {
+  background: #fff;
+}
+.flat-info h4 {
+  /* font-family: Gilroy-Regular; */
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  padding: 10px;
+  border-top: 1px solid #dedede;
+  margin-top: 10px;
+  color: #95908d;
+}
+.flat-info span {
+  /* font-family: Gilroy-SemiBold; */
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #dcac81;
+}
+.load-more-btn {
+  text-align: center;
+  margin-top: 40px;
+}
+.load-more-btn a {
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #dcac81;
+  text-transform: uppercase;
+  padding: 15px 50px;
+  border: 1px solid;
+  border-radius: 30px;
+}
+.tip-top-sec h2 {
+  font-family: "NewYork";
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 49px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #3f2a17;
+}
+.tip-top-sec h2 {
+  font-family: NewYork;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 49px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #3f2a17;
+}
+.visit-us-sec {
+  padding: 100px 0 130px;
+  text-align: center;
+}
+.visit-us-sec h2 {
+  font-family: "NewYork";
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 49px;
+  letter-spacing: 0em;
+  color: #fff;
+}
+.smart-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: -190px;
+}
+.smart-box .iteam {
+  height: 136px;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 15px;
+  box-shadow: 0px 50px 40px -30px #b2958433;
+}
 
-
-
-
-
-
+.smart-box .iteam h3 {
+  font-family: "NewYork";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #3f2a17;
+}
+.visit-us-sec {
+  background-blend-mode: color;
+  background-color: #00000033;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
 @media (min-width: 1399px) {
   .container {
@@ -112,7 +415,6 @@ footer { padding-top: 165px; }
   }
 }
 
-
 /* Button Group in Apartment Page */
 .button-group {
   border-left: 1px solid #fff;
@@ -139,3 +441,4 @@ footer { padding-top: 165px; }
   border: 2px solid #dcac81;
   color: #fff;
 }
+
