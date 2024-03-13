@@ -1,8 +1,10 @@
 import React from 'react'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Star from "../../public/_svgs/star"
 import Heading from '../elements/Heading';
 import Button from '../elements/Button';
+import { formatMultiPrice } from "../elements/FormatMiddleware.js";
+import apartment  from "../../pubilc/images/apartment.jpg";
 export default function Confirm() {
   const [dateModel, setDateModel] = useState(false);
 
@@ -162,6 +164,10 @@ export default function Confirm() {
               </div>
             </div>
           </div>
+         <div className="mt-5">
+          <Button text={"Confirm & Pay"} 
+                    className={"font-inter font-lg leading-tight text-center text-black-400 w-96 bg-orange-300  border-2 p-4 rounded-full"} />
+          </div>
           </div>
           <div className="w-5/12 border border-borderColor rounded-xl shadow p-8">
             <div className="flex gap-3 pb-4 border-b border-borderColor">
@@ -204,7 +210,7 @@ export default function Confirm() {
                     nights
                   </span>
                   <span className="block text-blackColor font-medium">
-                    $
+                   {formatMultiPrice(50000)}
                     {/* {infos.checkout &&
                       infos.checkin &&
                       +listing?.price?.split("$")[1] *
@@ -217,9 +223,9 @@ export default function Confirm() {
               </div>
             </div>
             <div className="pt-4 flex items-center justify-between">
-              <span className="text-md font-semibold">Total(USD)</span>
+              <span className="text-md font-semibold">Total(INR)</span>
               <span className="text-md font-medium">
-                $
+              {formatMultiPrice(50000)}
                 {/* {infos.checkout &&
                   infos.checkin &&
                   +listing?.price?.split("$")[1] *

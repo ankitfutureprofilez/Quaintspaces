@@ -94,7 +94,9 @@ export default function Security() {
                             required
                         />
                     </div>
-                    <Button text={"Update Password"} className={"font-inter font-lg leading-tight text-center text-black-400 w-96 bg-orange-300  border-2 p-4 rounded-full"} />
+                    <Button text={"Update Password"} 
+                    className={"font-inter font-lg leading-tight text-center text-black-400 w-96 bg-orange-300  border-2 p-4 rounded-full"} 
+                    />
                 </form>
                 <div className='border-b-2 border-solid border-zinc-300'></div>
                 <div className="ml-3 mt-4">
