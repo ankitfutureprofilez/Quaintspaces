@@ -27,20 +27,20 @@ const PostBody = ({ data }) => {
   return (
     <div>
 
-      <ul className="flex gap-6 flex-wrap px-4">
+      <ul className="flex flex-wrap px-4">
         {data.loading ? Array(3).fill("_").map(() => <ListingsLoading key={uuidv4()} />)
         : 
           data.data.map((post, i) => (
             <li
               key={post._id}
-              className="w-full sm:w-[calc(100%/2-15px)] lg:w-[calc(100%/3-25px)] xl:w-[calc(100%/4-1.2rem)] 2xl:w-[calc(100%/5-1.2rem)] opacity-0"
+              className=" w-full sm:w-3/6 md:w-2/6 px-3"
               ref={(el) => (child.current[i] = el)} >
               <Card post={post} />
             </li>
           ))
         }
       </ul>
-    </div>
+    </div> 
   );
 };
 
