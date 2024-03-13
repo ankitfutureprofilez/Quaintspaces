@@ -3,16 +3,18 @@
 body {
   background-color: #f8f1eb;
 }
+[data-aos^=fade][data-aos^=fade].aos-animate { transition: 0.5s !important; }
 .logo img {
   max-width: 127px;
 }
 .login-signup-btn {
-  border-left: 1px solid #000000;
+  border-left: 1px solid #404040  ;
   padding-left: 40px;
   margin-left: 20px;
   display: flex;
   align-items: center;
 }
+.banipark-box img { height: 250px !important; width: 100%; object-fit: cover; }
 .login-signup-btn a {
   padding: 8px 20px;
   margin: 0 7px;
@@ -23,9 +25,8 @@ body {
   height: 46px;
 }
 .login-signup-btn a.login {
-  border: 2px solid #000000
-  ;
-  color: #000000;
+  border: 2px solid #404040;
+  color: #404040;
 }
 .login-signup-btn a.signup {
   background: #dcac81;
@@ -42,7 +43,7 @@ body {
   line-height: 25px;
   letter-spacing: 0em;
   text-align: center;
-  color: black;
+  color: #404040;
 }
 .nav-header-sec {
   background-color: #0000004d;
@@ -108,9 +109,7 @@ body {
 .luxury-stay-img .img-box img {
   width: 100%;
 }
-h1.in-jaipur {
-  margin-top: -115px;
-}
+h1.in-jaipur { margin-top: -115px; z-index: 1; position: relative; }
 .luxury-stay p {
   font-size: 18px;
   font-weight: 400;

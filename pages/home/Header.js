@@ -36,7 +36,7 @@ export default function Header() {
               <p>Sign Up</p>{" "}
             </Link>
           </div>
-
+{/* 
            <Popup
             isOpen={isOpen}
             togglePopup={togglePopup}
@@ -51,7 +51,7 @@ export default function Header() {
             >
               Close modal
             </button>
-          )} 
+          )}  */}
         </div>
       </div>
     </nav>
