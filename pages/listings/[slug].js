@@ -7,6 +7,7 @@ import axios from "axios";
 import { Context } from "../_app";
 import Wishlist from "../../components/Wishlist";
 import Layout from "../layout/Layout";
+import ThingsToKnow from "./ThingsToKnow";
 
 const Listing = () => {
   const router = useRouter();
@@ -57,10 +58,11 @@ const Listing = () => {
         setHeaderSearch={setHeaderSearch}
       /> */}
       <SingleListingBody listing={listing} />
+      <ThingsToKnow/>
       {/* <Footer /> */}
       {overlay && (
         <div
-          className="fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-40"
+          className="overlayFixed fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-40"
           onClick={() => {
             setSelection(null);
             setOverlay(false);

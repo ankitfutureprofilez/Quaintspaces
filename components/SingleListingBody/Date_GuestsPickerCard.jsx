@@ -29,10 +29,10 @@ const Date_GuestsPickerCard = React.forwardRef(
 
     return (
       <div className="sticky top-28 left-0 min-w-[25rem]">
-        <div className="rounded-xl shadow border border-lightBorderColor p-5">
+        <div className="rounded-xl shadow border border-orange-300 p-5">
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-md font-normal">
-              <span className="font-medium text-2xl">{listing?.price}</span> /night
+              <span className="font-medium text-orange-300 text-2xl">{listing?.price}</span> /night
             </h1>
             {/* <span className="flex items-center gap-2">
               <span className="flex items-center gap-1">
@@ -46,7 +46,7 @@ const Date_GuestsPickerCard = React.forwardRef(
             </span> */}
           </div>
 
-          <div className="rounded-lg border border-darkBorderColor mb-6 relative">
+          <div className="rounded-lg border border-orange-300 mb-6 relative">
             <Dates
               selection={selection}
               setSelection={setSelection}
@@ -65,15 +65,26 @@ const Date_GuestsPickerCard = React.forwardRef(
           </div>
 
           <div ref={ref}>
-            <BtnPrimary
+            <button
+            className="filter btn w-full "
               onClick={() => {
                 router.push(
                   `/book/${listing?._id}?numberOfAdults=${guests.adults.value}&numberOfChildren=${guests.children.value}&numberOfInfants=${guests.infants.value}&numberOfPets=${guests.pets.value}&checkin=${format(selectedDay,"yyyy-MM-dd")}&checkout=${format(selectEnd, "yyyy-MM-dd")}`
                 );
               }}
             >
-              Reserve
-            </BtnPrimary>
+              Check Availability
+            </button>
+            <button
+            className="sort btn w-full mt-2 items-center "
+              // onClick={() => {
+              //   router.push(
+              //     `/book/${listing?._id}?numberOfAdults=${guests.adults.value}&numberOfChildren=${guests.children.value}&numberOfInfants=${guests.infants.value}&numberOfPets=${guests.pets.value}&checkin=${format(selectedDay,"yyyy-MM-dd")}&checkout=${format(selectEnd, "yyyy-MM-dd")}`
+              //   );
+              // }}
+            >
+              Contact
+            </button>
           </div>
         </div>
       </div>

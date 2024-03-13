@@ -20,12 +20,12 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
 
   return (
     <div
-      className={`flex border-b border-darkBorderColor w-full ${
+      className={`flex border-b border-orange-300 w-full ${
         rounded ? "rounded-lg" : ""
       }`}
     >
       <div
-        className={`w-1/2 p-3 relative z-10 select-none cursor-pointer border-r border-darkBorderColor`}
+        className={`w-1/2 p-3 relative z-10 select-none cursor-pointer border-r border-orange-300`}
         onClick={() =>
           setSelection((prev) => (prev === "date" ? null : "date"))
         }

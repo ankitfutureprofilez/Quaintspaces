@@ -20,7 +20,7 @@ export default function index() {
           <span className="rounded-md shadow-sm">
             <button
               type="button"
-              className="sort btn"
+              className="sort btn flex"
               id="options-menu"
               aria-haspopup="true"
               aria-expanded="true"

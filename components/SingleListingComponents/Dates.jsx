@@ -22,8 +22,8 @@ const Dates = ({
       />
 
       {selection === "date" && (
-        <div className="absolute z-20 -top-8 -right-8 w-[48rem] bg-white p-6 rounded-xl shadow-custom border border-borderColor pt-32">
-          <div className="absolute top-8 right-8 rounded-lg border border-b-0 border-darkBorderColor flex w-[22.1rem]">
+        <div className="absolute z-20 -top-8 -right-8 w-[48rem] bg-white p-6 rounded-xl shadow-custom border-main pt-32">
+          <div className="absolute top-8 right-8 rounded-lg border border-b-0 border-orange-300 flex w-[22.1rem]">
             <CheckinCheckOut
               setSelection={setSelection}
               rounded={true}

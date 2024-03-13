@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/globals.css";
 import '../styles/customs.css';
+import '../styles/apartment.css';
 import "../styles/fonts.css"
 import '../styles/RangeSlider.css';
 import { useRouter } from 'next/router';
