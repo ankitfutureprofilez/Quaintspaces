@@ -8,27 +8,27 @@ export default function Profile() {
     const [formData, setFormData] = useState({
         email: "",
         phone: "",
-        first:'',
-        last:""
-      });
-    
-      const handleChange = (e) => {
+        first: '',
+        last: ""
+    });
+
+    const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevFormData) => ({
-          ...prevFormData,
-          [name]: value,
+            ...prevFormData,
+            [name]: value,
         }));
-      };
-    
-      const handleSubmit = (e) => {
+    };
+
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Form submitted:", formData);
         setFormData({
             email: "",
-            phone: "",  first: "",
+            phone: "", first: "",
             last: "",
         });
-      };
+    };
     return (
         <>
             <div className='container mx-auto'>
@@ -54,85 +54,81 @@ export default function Profile() {
                     <h1 className="text-lg ">Personal Information</h1>
                     <p>Update your personal information here </p>
                 </div>
-<div className=''>
-<form onSubmit={handleSubmit} className='grid grid-cols-2 gap-4'>
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-lg font-medium text-gray-700 "
-          >
-            First Name
-          </label>
-          <input
-            type="text"
-            id="email"
-            name="first"
-            value={formData.first}
-            onChange={handleChange}
-            className="mt-1 p-4 border rounded-full w-full"
-            required
-          />
-        </div>
+                <div className=''>
+                    <form onSubmit={handleSubmit} className='grid grid-cols-2 gap-4'>
+                        <div className="mb-4">
+                            <label
+                                htmlFor="email"
+                                className="block text-lg font-medium text-gray-700 "
+                            >
+                                First Name
+                            </label>
+                            <input
+                                type="text"
+                                id="email"
+                                name="first"
+                                value={formData.first}
+                                onChange={handleChange}
+                                className="mt-1 p-4 border rounded-full w-full"
+                                required
+                            />
+                        </div>
 
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-lg font-medium text-gray-700"
-          >
-            Last Name
-          </label>
-          <input
-            type="text"
-            id="email"
-            name="last"
-            value={formData.last}
-            onChange={handleChange}
-            className="mt-1 p-4 border rounded-full w-full"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-lg font-medium text-gray-700"
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="mt-1 p-4 border rounded-full w-full"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="phone"
-            className="mt-1 p-4 border rounded-full w-full"
-          >
-            Phone
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            maxlength = "10"
-            value={formData.phone}
-            onChange={handleChange}
-            className="mt-1 p-4 border rounded-full w-full"
-            required
-          />
-        </div>
-      
-        
-
-      <Button text={"Update Details"} className={"font-inter font-lg leading-tight text-center text-black-400 w-96 bg-orange-300  border-2 p-4 rounded-full"}/>
-        
-      </form>
-</div>
+                        <div className="mb-4">
+                            <label
+                                htmlFor="email"
+                                className="block text-lg font-medium text-gray-700"
+                            >
+                                Last Name
+                            </label>
+                            <input
+                                type="text"
+                                id="email"
+                                name="last"
+                                value={formData.last}
+                                onChange={handleChange}
+                                className="mt-1 p-4 border rounded-full w-full"
+                                required
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label
+                                htmlFor="email"
+                                className="block text-lg font-medium text-gray-700"
+                            >
+                                Email
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                className="mt-1 p-4 border rounded-full w-full"
+                                required
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label
+                                htmlFor="phone"
+                                className="mt-1 p-4 border rounded-full w-full"
+                            >
+                                Phone
+                            </label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                maxlength="10"
+                                value={formData.phone}
+                                onChange={handleChange}
+                                className="mt-1 p-4 border rounded-full w-full"
+                                required
+                            />
+                        </div>
+                        <Button text={"Update Details"} className={"font-inter font-lg leading-tight text-center text-black-400 w-96 bg-orange-300  border-2 p-4 rounded-full"} />
+                    </form>
+                </div>
             </div>
         </>
     )
