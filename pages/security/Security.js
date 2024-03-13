@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Heading from '../elements/Heading'
 import Button from '../elements/Button'
 export default function Security() {
+    
     const [formData, setFormData] = useState({
         new_password: "",
         confirm_password: "",
