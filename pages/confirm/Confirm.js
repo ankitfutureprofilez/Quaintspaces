@@ -1,10 +1,12 @@
 import React from 'react'
 import { useState } from "react";
+import Image from 'next/image'
 import Star from "../../public/_svgs/star"
 import Heading from '../elements/Heading';
 import Button from '../elements/Button';
-import { formatMultiPrice } from "../elements/FormatMiddleware.js";
-import apartment  from "../../pubilc/images/apartment.jpg";
+import apartment  from "../../public/images/Malviya Nagar.png";
+import { formatMultiPrice } from '../elements/formatMiddleware';
+
 export default function Confirm() {
   const [dateModel, setDateModel] = useState(false);
 
@@ -170,8 +172,8 @@ export default function Confirm() {
           </div>
           </div>
           <div className="w-5/12 border border-borderColor rounded-xl shadow p-8">
-            <div className="flex gap-3 pb-4 border-b border-borderColor">
-              <img src="https://a0.muscache.com/im/pictures/ed3c3933-428a-435b-9161-196722bcf63d.jpg?aki_policy=large" alt="aa" />
+            <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
+            <Image src={apartment} alt="Apartment" />
               {/* <img
                 src={
                   listing?.images?.length > 0
