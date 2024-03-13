@@ -7,7 +7,7 @@ export default function HeroBanner() {
       <h1>Live the luxury in jaipur</h1>
       <p>Book the most luxuries and aesthetically pleasing place, Jaipur city has to offer</p>
 <Button text={"EXPLORE APARTMENTS"} design={"font-inter text-base font-medium leading-tight text-center text-white w-[405px] border-2 border-white p-[18px] rounded-[30px]"}/>
-      {/* <button> EXPLORE APARTMENTS</button> */}
+ 
     </div>
   )
 }

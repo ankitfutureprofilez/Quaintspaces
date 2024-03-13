@@ -3,16 +3,18 @@
 body {
   background-color: #f8f1eb;
 }
+[data-aos^=fade][data-aos^=fade].aos-animate { transition: 0.5s !important; }
 .logo img {
   max-width: 127px;
 }
 .login-signup-btn {
-  border-left: 1px solid #fff;
+  border-left: 1px solid #404040  ;
   padding-left: 40px;
   margin-left: 20px;
   display: flex;
   align-items: center;
 }
+.banipark-box img { height: 250px !important; width: 100%; object-fit: cover; }
 .login-signup-btn a {
   padding: 8px 20px;
   margin: 0 7px;
@@ -23,8 +25,8 @@ body {
   height: 46px;
 }
 .login-signup-btn a.login {
-  border: 2px solid #fff;
-  color: #fff;
+  border: 2px solid #404040;
+  color: #404040;
 }
 .login-signup-btn a.signup {
   background: #dcac81;
@@ -32,6 +34,7 @@ body {
 }
 .navbar {
   padding: 20px 0;
+  border-bottom: 1px solid #e1e1e1;
 }
 .nav-bar a {
   padding: 8px 20px;
@@ -41,7 +44,7 @@ body {
   line-height: 25px;
   letter-spacing: 0em;
   text-align: center;
-  color: black;
+  color: #404040;
 }
 .nav-header-sec {
   background-color: #0000004d;
@@ -107,9 +110,7 @@ body {
 .luxury-stay-img .img-box img {
   width: 100%;
 }
-h1.in-jaipur {
-  margin-top: -115px;
-}
+h1.in-jaipur { margin-top: -115px; z-index: 1; position: relative; }
 .luxury-stay p {
   font-size: 18px;
   font-weight: 400;
@@ -311,16 +312,26 @@ footer {
   border: 1px solid;
   border-radius: 30px;
 }
-.listing-heading {
+.tip-top-sec h2 {
   font-family: "NewYork";
   font-size: 40px;
   font-weight: 400;
   line-height: 49px;
   letter-spacing: 0em;
   text-align: center;
+  margin-bottom: 40px;
   color: #3f2a17;
 }
-/* .listing-heading { font-family: NewYork; font-size: 40px; font-weight: 400; line-height: 49px; letter-spacing: 0em; text-align: center; margin-bottom: 40px; color: #3F2A17; }  */
+.tip-top-sec h2 {
+  font-family: NewYork;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 49px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #3f2a17;
+}
 .visit-us-sec {
   padding: 100px 0 130px;
   text-align: center;
@@ -341,13 +352,17 @@ footer {
   margin-bottom: -190px;
 }
 .smart-box .iteam {
-  width: 100%;
-  padding: 0 15px;
   height: 136px;
-}
-.smart-box .iteam h3 {
+  width: 100%;
   background: #fff;
-  padding: 60px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 15px;
+  box-shadow: 0px 50px 40px -30px #b2958433;
+}
+
+.smart-box .iteam h3 {
   font-family: "NewYork";
   font-size: 24px;
   font-weight: 400;
@@ -355,7 +370,6 @@ footer {
   letter-spacing: 0em;
   text-align: center;
   color: #3f2a17;
-  box-shadow: 0px 50px 40px -30px #b2958433;
 }
 .visit-us-sec {
   background-blend-mode: color;
@@ -363,12 +377,24 @@ footer {
   background-size: cover;
   background-repeat: no-repeat;
 }
+.account-btn .border.border-gray-400 { border: 1px solid #3F2A17; }
+.account-btn button { border: 2px solid #404040 !IMPORTANT; padding: 15px; width: 160px; }
 
-.hideHeader {
-  z-index: -1;
-  opacity: 0;
-  display: none;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (min-width: 1399px) {
   .container {
@@ -415,22 +441,20 @@ footer {
   display: flex;
   align-items: end;
 }
- .btn {
+.button-group .btn {
   padding: 8px 20px;
-  margin-left: 7px;
-  margin-right: 7px;
+  margin: 0 7px;
   border-radius: 30px;
-  /* display: flex; */
   /* color: #fff; */
   /* width: 130px; */
   text-align: center;
   /* height: 46px; */
 }
- .sort {
+.button-group .sort {
   border: 2px solid #dcac81;
   color: #dcac81;
 }
- .filter {
+.button-group .filter {
   background: #dcac81;
   border: 2px solid #dcac81;
   color: #fff;

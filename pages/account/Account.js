@@ -6,15 +6,15 @@ export default function Account() {
   return (
     <>
 
-      <div className='container mx-auto'>
-        <div className='flex justify-between items-center'>
+      <div className='container mx-auto  account-btn'>
+        <div className='flex justify-between items-center pt-12'>
           <Heading text={"Account"} />
-          <Button text={"Logout"} design={"font-inter text-base font-medium leading-tight text-center text-black w-52 border-2 border-black p-4 rounded-full"} />
+          <Button text={"Logout"} design={"font-inter text-base font-medium leading-tight text-center text-black w-52 border border-gray-400 p-4 rounded-full"} />
         </div>
       </div>
 
       <div className='container mx-auto'>
-        <div className='border-b-2 border-gray-400 mb-4 px-5 py-5'>
+        <div className='border-b border-gray-200 mb-4 px-5 py-5'>
           <div className='flex justify-between items-center p-4'>
             <div className='flex items-center'>
               <svg width="34px" height="34px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-[#DCAC81] stroke-current">
@@ -28,17 +28,15 @@ export default function Account() {
             <div className="px-1">
               <Link href="/" className="flex items-center border-b-2 border-orange-300 pb-2">
                 <p className="text-sm mr-2" style={{ color: '#fdba74' }}>Learn More</p>
-                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" className="h-5 w-5 stroke-current">
-                  <g fill="none">
-                    <path d="m20 28-11.29289322-11.2928932c-.39052429-.3905243-.39052429-1.0236893 0-1.4142136L20 4"></path>
-                  </g>
+                <svg width="32px" height="32px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 7L15 12L10 17" stroke="#fdba74" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </Link>
+              </Link> 
             </div>
 
           </div>
         </div>
-        <div className='border-b-2 border-gray-400 mb-4  px-5 py-5'>
+        <div className='border-b border-gray-200 mb-4 px-5 py-5'>
           <div className='flex justify-between items-center p-4'>
             <div className='flex items-center'>
               <svg width="34px" height="34px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-[#DCAC81] stroke-current">
@@ -52,16 +50,14 @@ export default function Account() {
             <div className="px-1">
               <Link href="/" className="flex items-center border-b-2 border-orange-300 pb-2">
                 <p className="text-sm mr-2" style={{ color: '#fdba74' }}>Learn More</p>
-                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" className="h-5 w-5 stroke-current">
-                  <g fill="none">
-                    <path d="m20 28-11.29289322-11.2928932c-.39052429-.3905243-.39052429-1.0236893 0-1.4142136L20 4"></path>
-                  </g>
+                <svg width="32px" height="32px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 7L15 12L10 17" stroke="#fdba74" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
             </div>
           </div>
         </div>
-        <div className='border-b-2 border-gray-400 mb-4  px-5 py-5'>
+        <div className='border-b border-gray-200 mb-4 px-5 py-5'>
           <div className='flex justify-between items-center p-4'>
             <div className='flex items-center'>
               <svg width="34px" height="34px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-[#DCAC81] stroke-current">

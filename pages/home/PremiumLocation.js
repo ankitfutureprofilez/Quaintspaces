@@ -10,6 +10,7 @@ import { Pagination, Navigation } from 'swiper';
 
 export default function PremiumLocation() {
   const images = [
+    
     { src: Vaishali, alt: 'Image 1', text: 'Vaishali Nagar' },
     { src: Mansarovar, alt: 'Image 2', text: 'Mansarovar ' },
     { src: Jhotwara, alt: 'Image 1', text: 'Malviya Nagar' },
