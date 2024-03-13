@@ -184,20 +184,20 @@ export default function Confirm() {
               /> */}
               <div>
                 <h4 className="text-md mb-1">Luxurious Boutique 2BHK Flat in Bani Park, Jaipur</h4>
-               <p>Entire</p>
+               <p>Entire Apartment </p>
                 <span className="flex text-sm items-center gap-1">
                   <span>
                     <Star />
                   </span>
                   <span>
-                    4.5 (141 reviews)
+                    4.5 . 141 reviews
                     {/* {listing?.rating || "4.5"} ({listing?.reviews_length || 141} reviews) */}
                   </span>
                 </span>
               </div>
             </div>
-            <div className="py-4 border-b border-borderColor">
-              <h1 className="text-xl font-semibold">Price Details</h1>{" "}
+            <div className="py-4 border-b border-borderColor confirm-details">
+              <h1 className="">Price Details</h1>{" "}
               <div className="flex gap-3 mt-2">
                 <div className="flex items-center justify-between w-full">
                   <span className="block text-blackColor">
@@ -223,6 +223,35 @@ export default function Confirm() {
                         )} */}
                   </span>
                 </div>
+              </div>
+              <div className="flex gap-3 mt-2">
+                <div className="flex items-center justify-between w-full">
+                  <span className="block text-blackColor">
+                    {/* {listing?.price} x
+                    {` ${
+                      infos.checkout &&
+                      infos.checkin &&
+                      differenceInDays(
+                        new Date(infos.checkout),
+                        new Date(infos.checkin)
+                      )
+                    } `} */}
+                    Weekly stay discount
+                  </span>
+                  <span className="block text-blackColor font-medium confirm-price">
+                   -{formatMultiPrice(50000)}
+                    {/* {infos.checkout &&
+                      infos.checkin &&
+                      +listing?.price?.split("$")[1] *
+                        differenceInDays(
+                          new Date(infos.checkout),
+                          new Date(infos.checkin)
+                        )} */}
+                  </span>
+                </div>
+
+                
+
               </div>
             </div>
             <div className="pt-4 flex items-center justify-between">
