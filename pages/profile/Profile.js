@@ -31,7 +31,7 @@ export default function Profile() {
     };
     return (
         <>
-            <div className='container mx-auto'>
+            <div className='container mx-auto pt-12'>
                 <Heading text={"My Profile"} />
             </div>
             <div className="container mx-auto mt-5">

@@ -519,5 +519,22 @@ color:#61554E
 }
 
 .confirm-details .confirm-price{
-  color:#00860D
+  color:#00860D;
+  font-family: Gilroy-Regular;
+font-size: 18px;
+font-weight: 400;
+line-height: 27px;
+letter-spacing: 0em;
+text-align: right;
+
+}
+
+.confirm-total span{
+  font-family: Gilroy-Bold;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+color:#61554E  
 }

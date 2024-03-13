@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "../elements/Button";
+import Heading from "../elements/Heading";
 
 function Booking() {
     const [selectedButton, setSelectedButton] = useState("upcoming");
@@ -56,6 +57,10 @@ function Booking() {
 
     return (
         <>
+        <div className="container mx-auto account-btn pt-12">
+            <Heading text={"My Booking"}/>
+        </div>
+
             <div className=" container mx-auto flex align-items-center my-4 mx-4 py-2 space-x-4">
                 <Button
                     className={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${selectedButton === "upcoming" ? "bg-orange-300 text-white" : "text-black"
