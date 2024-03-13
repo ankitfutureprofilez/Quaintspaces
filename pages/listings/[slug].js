@@ -6,6 +6,7 @@ import Footer from "../../components/Footer";
 import axios from "axios";
 import { Context } from "../_app";
 import Wishlist from "../../components/Wishlist";
+import Layout from "../layout/Layout";
 
 const Listing = () => {
   const router = useRouter();
@@ -31,6 +32,7 @@ const Listing = () => {
             loading: false,
             data: data.data[0],
           });
+          console.log("listing",listing.data);
         }
       })();
     }
@@ -38,13 +40,14 @@ const Listing = () => {
 
   return (
     <>
+    <Layout>
       <Head>
         <title>
           House rent in {listing.loading ? "..." : listing.data?.title} - Aribnb
           Clone
         </title>
       </Head>
-      <Header
+      {/* <Header
         header="relative"
         width="max-w-[1120px] hidden lg:flex"
         setOverlay={setOverlay}
@@ -52,9 +55,9 @@ const Listing = () => {
         setSelection={setSelection}
         headerSearch={headerSearch}
         setHeaderSearch={setHeaderSearch}
-      />
+      /> */}
       <SingleListingBody listing={listing} />
-      <Footer />
+      {/* <Footer /> */}
       {overlay && (
         <div
           className="fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-40"
@@ -65,7 +68,8 @@ const Listing = () => {
           }}
         ></div>
       )}
-      {wishlist && <Wishlist setWishlist={setWishlist} />}
+      {/* {wishlist && <Wishlist setWishlist={setWishlist} />} */}
+      </Layout>
     </>
   );
 };

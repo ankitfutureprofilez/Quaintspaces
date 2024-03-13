@@ -12,7 +12,7 @@ export default function Card() {
   return (
     <div className="tip-top-sec">
       <div className="container">
-        <h2 className="listing-heading text-center">Explore Top-tier Places</h2>
+        <h2 className="listing-heading text-center mb-14">Explore Top-tier Places</h2>
         {/* <div className="row">
           <div className="col-4">
             <div className="banipark-box">
