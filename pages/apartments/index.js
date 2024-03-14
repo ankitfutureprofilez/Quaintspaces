@@ -20,7 +20,7 @@ export default function index() {
           <span className="rounded-md shadow-sm">
             <button
               type="button"
-              className="sort btn flex"
+              className="sort btn flex mx-2"
               id="options-menu"
               aria-haspopup="true"
               aria-expanded="true"
@@ -49,7 +49,7 @@ export default function index() {
         {/* Dropdown menu */}
         {isOpen && (
           <div
-            className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+            className="sortlist"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="options-menu"
@@ -58,7 +58,7 @@ export default function index() {
               {sortingOptions.map((option) => (
                 <button
                   key={option.key}
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  className="block w-full text-left px-4 py-2 text-sm text-orange-350 hover:bg-gray-100"
                   role="menuitem"
                   onClick={() => handleSortChange(option.key)}
                 >
@@ -95,14 +95,14 @@ export default function index() {
       <div className="container mx-auto mt-10">
         <div className="flex justify-between mb-10">
           <h2 className="listing-heading text-left">Explore our Apartments</h2>
-          <div className="button-group items-end">
+          <div className="button-group">
             <SortByButton
               sortBy={sortBy}
               setSortBy={setSortBy}
               sortingOptions={sortingOptions}
             />
             {/* Filter button to open the modal */}
-            <button className="filter btn" onClick={openModal}>
+            <button className="filter btn mx-2" onClick={openModal}>
               Filter
             </button>
           </div>
@@ -114,7 +114,7 @@ export default function index() {
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <div className="relative">
-              <h2 className="listing-heading">Filter</h2>
+              <h2 className="listing-heading text-center">Filter</h2>
               <div className="absolute top-0 right-0">
                 <button
                   className="text-gray-600 hover:text-gray-800 focus:outline-none"
