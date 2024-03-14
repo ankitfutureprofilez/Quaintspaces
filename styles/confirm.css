@@ -45,25 +45,19 @@ p.item-pargraph {
   color: #d9d9d9;
 }
 
-div#hero {
-    position: relative;
-    overflow: hidden;
+.luxury-stay {
+  position: relative;
 }
 
-div#hero img {
-    top: 11%;
-     bottom: 10%; 
-    animation: slide-up 1s ease-in forwards;
-}
+#hero {
+  transition: transform 0.3s ease-in; }
 
-@keyframes slide-up {
-    0% {
-        transform: translateY(100%);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
+#hero:hover {
+  transform: translateY(-20px); }
+
+
+
+
 
 
 .profile-image img{
