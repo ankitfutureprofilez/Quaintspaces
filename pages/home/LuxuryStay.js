@@ -8,13 +8,13 @@ import Luxury3 from "../../public/images/Luxury3.png";
 export default function LuxuryStay() {
   return (
     <div className="luxury-stay">
-      <Head>
+      {/* <Head>
         <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script>
         AOS.init();
       </script>
-      </Head>
+      </Head> */}
 
       <div className="container mx-auto">
         <h1>Luxury Stay</h1>
@@ -23,7 +23,7 @@ export default function LuxuryStay() {
             <Image src={Luxury1} />
           </div>
           <div className="img-box" id="hero" >
-            <Image data-aos="fade-up" src={Luxury2} />
+            <Image  src={Luxury2} />
           </div>
           <div className="img-box">
             <Image src={Luxury3} />
