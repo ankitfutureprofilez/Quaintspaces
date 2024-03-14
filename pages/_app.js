@@ -4,7 +4,8 @@ import '../styles/customs.css';
 import '../styles/apartment.css';
 import "../styles/fonts.css"
 import '../styles/RangeSlider.css';
-import { useRouter } from 'next/router';
+import "../styles/confirm.css"
+
 export const Context = React.createContext();
 
 function MyApp({ Component, pageProps }) {

@@ -27,7 +27,6 @@ export default function ReasonToVisit() {
                 delay: 1000, 
                 disableOnInteraction: false,
               }}
-              navigation={true}
             >
               {reasons.map((reason, index) => (
                 <SwiperSlide key={index} >

@@ -22,7 +22,7 @@ export default function LuxuryStay() {
           <div className="img-box">
             <Image src={Luxury1} />
           </div>
-          <div className="img-box" >
+          <div className="img-box" id="hero" >
             <Image data-aos="fade-up" src={Luxury2} />
           </div>
           <div className="img-box">

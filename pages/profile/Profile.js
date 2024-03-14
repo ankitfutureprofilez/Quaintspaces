@@ -126,7 +126,7 @@ export default function Profile() {
                                 required
                             />
                         </div>
-                        <Button text={"Update Details"} className={"font-inter font-lg leading-tight text-center text-black-400 w-96 bg-orange-300  border-2 p-4 rounded-full"} />
+                        <Button text={"Update Details"} design={"font-inter font-lg leading-tight text-center text-black-400 w-96 bg-orange-300  border-2 p-4 rounded-full"} />
                     </form>
                 </div>
             </div>

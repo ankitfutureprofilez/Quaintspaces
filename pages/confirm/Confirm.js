@@ -53,7 +53,7 @@ export default function Confirm() {
               </div>
               <button
                 onClick={() => setDateModel(true)}
-                className="underline text-md font-medium"
+                className="underline text-md font-medium edit-color"
               >
                 EDIT
               </button>
@@ -78,7 +78,7 @@ export default function Confirm() {
               </div>
               <button
                 onClick={() => setGuestsModel(true)}
-                className="underline text-md font-medium"
+                className="underline text-md font-medium  edit-color"
               >
                 EDIT
               </button>
@@ -133,7 +133,7 @@ export default function Confirm() {
                 <div className="flex flex-wrap justify-between">
                   <p>Share why you're travelling, who's coming with you and what you love about the space.
                   </p>
-                  <p style={{ color: "#DCAC81", borderColor: "#DCAC81" }} className="border-solid border-b-2">
+                  <p  className="edit-color underline">
                     ADD
                   </p>
                 </div>
@@ -145,7 +145,7 @@ export default function Confirm() {
                   <p>
                     Add and confirm your phone number to get trip updates.
                   </p>
-                  <p style={{ color: "#DCAC81", borderColor: "#DCAC81" }} className="border-solid border-b-2">
+                  <p  className="edit-color underline">
                     ADD
                   </p>
                 </div>
@@ -160,7 +160,7 @@ export default function Confirm() {
               <div className="flex flex-wrap ">
                 <p>Share whThis reservation is non-refundable.
                 </p>
-                <p style={{ color: "#DCAC81", borderColor: "#DCAC81" }} className="border-solid border-b-2">
+                <p  className="underline edit-color">
                 Learn More
                 </p>
               </div>
@@ -168,7 +168,7 @@ export default function Confirm() {
           </div>
          <div className="mt-5">
           <Button text={"Confirm & Pay"} 
-                    className={"font-inter font-lg leading-tight text-center text-black-400 w-96 bg-orange-300  border-2 p-4 rounded-full"} />
+                    design={"font-inter font-lg leading-tight text-center text-black-400 w-96 bg-orange-300  border-2 p-4 rounded-full"} />
           </div>
           </div>
           <div className="w-5/12 border border-borderColor rounded-xl shadow p-8">

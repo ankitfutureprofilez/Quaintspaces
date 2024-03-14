@@ -107,7 +107,7 @@ export default function Security() {
                         <p>
                             Deactivate your account here
                         </p>
-                        <p style={{ color: "#DCAC81", borderColor: "#DCAC81" }} className="border-solid border-b-2">
+                        <p  className="edit-color underline " >
                             Deactivate
                         </p>
                     </div>
