@@ -19,11 +19,13 @@
     "aos": "^2.3.4",
     "axios": "^0.27.2",
     "date-fns": "^2.29.3",
-    "framer-motion": "^7.3.5",
+    "framer-motion": "^7.10.3",
     "geolib": "^3.3.3",
     "gsap": "^3.11.1",
+    "iconsax-react": "^0.0.8",
     "leaflet": "^1.9.2",
     "leaflet-defaulticon-compatibility": "^0.1.1",
+    "mxcn": "^2.0.0",
     "next": "^14.1.0",
     "puppeteer": "^18.0.5",
     "puppeteer-autoscroll-down": "^1.1.1",
@@ -34,7 +36,8 @@
     "react-leaflet": "^4.1.0",
     "recompose": "^0.30.0",
     "swiper": "^11.0.7",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.3.1",
