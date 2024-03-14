@@ -98,12 +98,23 @@ export default function index() {
     data: [],
   });
 
+
+
+  
+  async function fetchLists (signal) {
+    setListings({ loading: true, data: [] });
+    await axios("/api/listings", {signal}).then((res)=>{
+      setListings({ loading: false, data: res.data.data });
+    }).catch((err)=>{
+      console.log("err", err)
+    });
+  }
+  
   useEffect(() => {
-    (async () => {
-      setListings({ loading: true, data: [] });
-      const { data } = await axios("/api/listings");
-      setListings({ loading: false, data: data.data });
-    })();
+    const controller = new AbortController();
+    const { signal } = controller;
+      fetchLists(signal);
+      return () => controller.abort();
   }, []);
 
   return (
