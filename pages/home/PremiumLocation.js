@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from "next/image";
 import Vaishali from "../../public/images/jhotwara-1.jpg";
 import Mansarovar from "../../public/images/jhotwara-2.jpg";
@@ -8,12 +8,13 @@ import 'swiper/css';
 import 'swiper/css/navigation'; 
 import 'swiper/css/pagination'; 
 import 'swiper/css/scrollbar'; 
-import { useSwiper } from 'swiper/react';
 import SwiperCore, { Keyboard, Scrollbar, Navigation } from 'swiper';
 // Install Swiper modules
 SwiperCore.use([Keyboard, Scrollbar, Navigation]);
 
 export default function PremiumLocation() {
+  const [swiper, setSwiper] = useState(null);
+
   const images = [
     { src: Vaishali, alt: 'Image 1', text: 'Vaishali Nagar' },
     { src: Mansarovar, alt: 'Image 2', text: 'Mansarovar ' },
@@ -27,11 +28,22 @@ export default function PremiumLocation() {
     { src: Vaishali, alt: 'Image 1', text: 'Vaishali Nagar' },
     { src: Mansarovar, alt: 'Image 2', text: 'Mansarovar ' },
     { src: Jhotwara, alt: 'Image 1', text: 'Malviya Nagar' },
-     { src: Vaishali, alt: 'Image 1', text: 'Vaishali Nagar' },
+    { src: Vaishali, alt: 'Image 1', text: 'Vaishali Nagar' },
     { src: Mansarovar, alt: 'Image 2', text: 'Mansarovar ' },
     { src: Jhotwara, alt: 'Image 1', text: 'Malviya Nagar' },
   ];
-  const swiper = useSwiper();
+
+  const handleSwiper = (swiper) => {
+    setSwiper(swiper);
+  };
+
+  const slideNext = () => {
+    if (swiper) swiper.slideNext();
+  };
+
+  const slidePrev = () => {
+    if (swiper) swiper.slidePrev();
+  };
 
   return (
     <div className="premium-location-slider">
@@ -52,8 +64,12 @@ export default function PremiumLocation() {
                 slidesPerGroup: 1,
               },
             }}
-            navigation={true}
+            navigation={{
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            }}
             className="mySwiper"
+            onSwiper={handleSwiper}
           >
             {images.map((reason, index) => (
               <SwiperSlide key={index}>
@@ -66,8 +82,16 @@ export default function PremiumLocation() {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="swiper-button-next" onClick={() => swiper.slideNext()}></div>
-          <div className="swiper-button-prev" onClick={() => swiper.slidePrev()}></div>
+          <button  onClick={slideNext} className="absolute -right-5 transform -translate-y-1/2 bg-gray-900 bg-opacity-50 text-white px-2 py-1 rounded-r">
+          <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.0941 13.5428H0.314991V10.4572L19.0941 10.4572L10.8185 2.18154L13 0L25 12L13 24L10.8185 21.8185L19.0941 13.5428Z" fill="white"/>
+        </svg>
+          </button>
+          <button className="absolute -right-5 transform -translate-y-1/2 bg-gray-900 bg-opacity-50 text-white px-2 py-1 rounded-r" onClick={slidePrev}>
+          <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.0941 13.5428H0.314991V10.4572L19.0941 10.4572L10.8185 2.18154L13 0L25 12L13 24L10.8185 21.8185L19.0941 13.5428Z" fill="white"/>
+        </svg>
+          </button>
         </div>
       </div>
     </div>
