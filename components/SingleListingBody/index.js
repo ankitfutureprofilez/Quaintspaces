@@ -184,8 +184,9 @@ const [selectEnd, setSelectEnd] = useState(addDays(new Date(), 6));
                 </span>
               </div>
             </div>
-            <BtnPrimary
-              style={{ fontSize: "1rem", width: "fit-content" }}
+            <button
+            className="filter mx-2 btn w-full"
+              // style={{ fontSize: "1rem", width: "fit-content" }}
               onClick={() =>
                 router.push(
                   `/book/${listing?.data._id}?numberOfAdults=${
@@ -200,8 +201,8 @@ const [selectEnd, setSelectEnd] = useState(addDays(new Date(), 6));
                 )
               }
 >
-              Reserve
-            </BtnPrimary>
+              Book
+            </button>
           </div>
         </div>
       </header>
