@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import Image from "next/image";
+import logologin from "../../public/images/loginlogoimg.png";
+import Link from "next/link";
 
-export default function Login( ) {
+export default function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -24,56 +27,87 @@ export default function Login( ) {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <div className="flex justify-center border-b-2 border-black-500">
-        <h1 className="text-xl font-semibold mb-4">Login</h1>
+    <div
+      className="h-screen"
+      style={{ backgroundImage: `url(/images/login-bg.jpg)` }}
+    >
+      <div className="container h-full">
+        <div className="flex items-center  h-full relative">
+          <div className="left-logo-login w-6/12 px-3">
+            <div className="backtohome">
+              <Link href="/">
+                <svg
+                  width="44"
+                  height="44"
+                  viewBox="0 0 44 44"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="0.5"
+                    y="43.5"
+                    width="43"
+                    height="43"
+                    rx="21.5"
+                    transform="rotate(-90 0.5 43.5)"
+                    stroke="white"
+                  />
+                  <path
+                    d="M20.828 22.636L25.778 27.586L24.364 29L18 22.636L24.364 16.272L25.778 17.686L20.828 22.636Z"
+                    fill="white"
+                  />
+                </svg>
+                Back to home
+              </Link>
+            </div>
+            <Image src={logologin} alt="logo" />
+            <p>
+              Book the most luxuries and aesthetically pleasing place, Jaipur
+              city has to offer
+            </p>
+          </div>
+          <div className="w-6/12 px-3 flex justify-end">
+            <div className="signup-form w-full max-h-screen overflow-y-auto">
+              <div className="formbgcolor"></div>
+              <div className="quainttay">
+                <h2>Welcome to Quaint Stay Jaipur </h2>
+                <h3>
+                  Don't have an account? <Link href="/signup">Sign up</Link>
+                </h3>
+              </div>
+              <form onSubmit={handleSubmit}>
+                <div className="mb-6">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="rounded-md w-full "
+                    required
+                  />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="rounded-md w-full "
+                    required
+                  />
+                </div>
+                <button type="submit" className="submint-btn">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-      <h1 className="text-xl font-semibold my-4">
-        Welcome To Quaint Stay Jaipur
-      </h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="mt-1 p-2 border rounded-md w-full"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="mt-1 p-2 border rounded-md w-full"
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600"
-        >
-          Submit
-        </button>
-        
-      </form>
     </div>
   );
 }

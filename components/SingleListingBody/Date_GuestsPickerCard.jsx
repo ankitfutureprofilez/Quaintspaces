@@ -76,7 +76,7 @@ const Date_GuestsPickerCard = React.forwardRef(
               Check Availability
             </button>
             <button
-            className="sort mx-2 btn w-full mt-4 items-center "
+            className="sort mx-2 btn w-full mt-4"
               // onClick={() => {
               //   router.push(
               //     `/book/${listing?._id}?numberOfAdults=${guests.adults.value}&numberOfChildren=${guests.children.value}&numberOfInfants=${guests.infants.value}&numberOfPets=${guests.pets.value}&checkin=${format(selectedDay,"yyyy-MM-dd")}&checkout=${format(selectEnd, "yyyy-MM-dd")}`
