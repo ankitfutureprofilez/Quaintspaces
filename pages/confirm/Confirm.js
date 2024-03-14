@@ -127,7 +127,7 @@ export default function Confirm() {
             <div className='flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor'>
 
               <div className="ml-3 mt-4">
-                <h1 className="text-lg ">
+                <h1 className="text-lg  item-heading">
                   Message the host
                 </h1>
                 <div className="flex flex-wrap justify-between">
