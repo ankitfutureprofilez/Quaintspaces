@@ -24,7 +24,7 @@ export default function Header() {
           <Link href="/apartments">
             <p>Our Apartments</p>
           </Link>
-          <Link href="/places">
+          <Link href="/">
             <p>Place in Jaipur</p>
           </Link>
           <Link href="/contact">

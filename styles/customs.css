@@ -313,17 +313,7 @@ footer {
   border: 1px solid;
   border-radius: 30px;
 }
-.tip-top-sec h2 {
-  font-family: "NewYork";
-  font-size: 40px;
-  font-weight: 400;
-  line-height: 49px;
-  letter-spacing: 0em;
-  text-align: center;
-  margin-bottom: 40px;
-  color: #3f2a17;
-}
-.tip-top-sec h2 {
+.listing-heading {
   font-family: "NewYork";
   font-size: 40px;
   font-weight: 400;

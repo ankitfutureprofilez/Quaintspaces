@@ -4,6 +4,7 @@ import Head from "next/head";
 import { Context } from "./_app";
 import Wishlist from "../components/Wishlist";
 import MainPage from "./home/Page";
+import NextNProgress from 'nextjs-progressbar';
 
 const Home = () => {
   const [overlay, setOverlay] = useState(false);
@@ -14,6 +15,7 @@ const Home = () => {
 
   return (
     <>
+    <NextNProgress color="#dcac81" />
       {/* <Head>
         <title>Airbnb Clone</title>
       </Head> */}

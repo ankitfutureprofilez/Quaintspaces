@@ -5,11 +5,12 @@ import '../styles/apartment.css';
 import "../styles/fonts.css"
 import '../styles/RangeSlider.css';
 import "../styles/confirm.css"
+import { useRouter } from 'next/router';
 
 export const Context = React.createContext();
 
 function MyApp({ Component, pageProps }) {
-  // const router = useRouter();
+  const router = useRouter();
 
   const [wishlist, setWishlist] = useState(false);
   const [wishlistData, setWishlistData] = useState(null);
@@ -24,7 +25,9 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Context.Provider value={values}>
-      <Component {...pageProps} />
+       <div className="page-transition-container">
+      <Component {...pageProps} key={router.route}/>
+       </div>
     </Context.Provider>
   );
 }
