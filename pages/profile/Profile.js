@@ -54,7 +54,7 @@ export default function Profile() {
                     <h1 className="text-lg ">Personal Information</h1>
                     <p>Update your personal information here </p>
                 </div>
-                <div className=''>
+                <div className='grid grid-cols-2 '>
                     <form onSubmit={handleSubmit} className='grid grid-cols-2 gap-4'>
                         <div className="mb-4">
                             <label

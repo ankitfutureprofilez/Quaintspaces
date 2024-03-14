@@ -41,14 +41,14 @@ export default function Confirm() {
         <Heading text={"Confirm and pay"} />
         <div className="flex mt-14 px-3 gap-10">
           <div className="w-8/12">
-            <h1 className="text-xl mb-4 font-medium">Your trip</h1>
+            <h1 className="text-xl mb-4 font-medium heading-data">Your trip</h1>
             <div className="flex items-center justify-between w-full py-2">
               <div>
-                <h5 className="text-lg text-blackColor font-medium">Dates</h5>
+                <h5 className="text-lg  font-medium item-heading ">Dates</h5>
                 {/* <h5 className="text-md text-blackColor">{infos.checkin && infos.checkout ?
   `${format(new Date(infos.checkin), "MMM dd")} - ${format(new Date(infos.checkout), "MMM dd")}`
   : "Dates not specified"}</h5> */}
-                <h5 className="text-md text-blackColor"> 9 Apr - 15 may</h5>
+                <h5 className="text-md item-paragraph"> 9 Apr - 15 may</h5>
 
               </div>
               <button
@@ -60,7 +60,7 @@ export default function Confirm() {
             </div>
             <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
               <div>
-                <h5 className="text-lg text-blackColor font-medium">Guests</h5>
+                <h5 className="text-lg font-medium item-heading">Guests</h5>
                 {/* <h5 className="text-md text-blackColor">
                   {`${+infos.numberOfAdults + +infos.numberOfChildren} guests ${
                     +infos.numberOfInfants
@@ -72,7 +72,7 @@ export default function Confirm() {
                       : ""
                   }`}
                 </h5> */}
-                <h5 className="text-md text-blackColor">
+                <h5 className="text-md item-paragrapg">
                   1 Guest
                 </h5>
               </div>
@@ -83,14 +83,10 @@ export default function Confirm() {
                 EDIT
               </button>
             </div>
-            <h1 className="text-xl mb-4 font-medium mt-5">Upload ID</h1>
-            <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
-              <div className="grid grid-cols-2">
+            <h1 className="text-xl mb-4 font-medium mt-5 heading-data">Upload ID</h1>
+            <div className=" border-b border-borderColor">
                 <form onSubmit={handleSubmit}>
                   <div className="mb-4">
-                    <label htmlFor="selectOption" className="block text-lg font-medium text-gray-700">
-                      Select Option
-                    </label>
                     <select
                       id="selectOption"
                       name="selectOption"
@@ -107,9 +103,6 @@ export default function Confirm() {
                   </div>
 
                   <div className="mb-4">
-                    <label htmlFor="fileUpload" className="block text-lg font-medium text-gray-700">
-                      Upload File
-                    </label>
                     <input
                       type="file"
                       id="fileUpload"
@@ -121,28 +114,27 @@ export default function Confirm() {
                     />
                   </div>
                 </form>
-              </div>
             </div>
-            <h1 className="text-xl mb-4 font-medium mt-5">Required for your trip</h1>
+            <h1 className="text-xl mb-4 font-medium mt-5 heading-data">Required for your trip</h1>
             <div className='flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor'>
 
               <div className="ml-3 mt-4">
-                <h1 className="text-lg  item-heading">
+                <h1 className="text-lg  item-heading mb-2" >
                   Message the host
                 </h1>
-                <div className="flex flex-wrap justify-between">
-                  <p>Share why you're travelling, who's coming with you and what you love about the space.
+                <div className="flex flex-wrap justify-between mb-5">
+                  <p className="item-pargraph"> Share why you're travelling, who's coming with you and what you love about the space.
                   </p>
                   <p  className="edit-color underline">
                     ADD
                   </p>
                 </div>
 
-                <h1 className="text-lg ">
+                <h1 className="text-lg item-heading mb-2">
                   Phone number
                 </h1>
                 <div className="flex flex-wrap justify-between">
-                  <p>
+                  <p className="item-pargraph">
                     Add and confirm your phone number to get trip updates.
                   </p>
                   <p  className="edit-color underline">
@@ -154,11 +146,12 @@ export default function Confirm() {
             </div>
           <div className='flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor'>
             <div className="ml-3 mt-4">
-              <h1 className="text-lg ">
+              <h1 className="text-lg heading-data mb-4">
               Cancellation policy
               </h1>
               <div className="flex flex-wrap ">
-                <p>Share whThis reservation is non-refundable.
+                <p className="item-pargraph">
+                  This reservation is non-refundable.
                 </p>
                 <p  className="underline edit-color">
                 Learn More
@@ -168,7 +161,7 @@ export default function Confirm() {
           </div>
          <div className="mt-5">
           <Button text={"Confirm & Pay"} 
-                    design={"font-inter font-lg leading-tight text-center text-black-400 w-96 bg-orange-300  border-2 p-4 rounded-full"} />
+                    design={"font-inter font-lg leading-tight text-center text-white w-96 bg-orange-300  border-2 p-4 rounded-full"} />
           </div>
           </div>
           <div className="w-5/12 border border-borderColor rounded-xl shadow p-8">
