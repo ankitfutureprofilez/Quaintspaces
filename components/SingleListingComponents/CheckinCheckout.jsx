@@ -30,7 +30,7 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
           setSelection((prev) => (prev === "date" ? null : "date"))
         }
       >
-        <span className="block text-xs font-semibold">CHECKIN</span>
+        <span className="block text-xs font-semibold">CHECK IN</span>
         <span className="block font-medium mt-1">
           {dates.selectedDay || "Add dates"}
         </span>
@@ -41,7 +41,7 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
           setSelection((prev) => (prev === "date" ? null : "date"))
         }
       >
-        <span className="block text-xs font-semibold">CHECKOUT</span>
+        <span className="block text-xs font-semibold">CHECK OUT</span>
         <span className="block font-medium mt-1">
           {dates.selectEnd || "Add dates"}
         </span>

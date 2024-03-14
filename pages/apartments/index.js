@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../layout/Layout";
 import Link from "next/link";
 import RoomListings from "../home/RoomListings";
 import Filter from "../home/Filter";
+import { PostBody } from "../../components";
+import axios from "axios";
 
 export default function index() {
   // Sort By Button Logic
@@ -90,6 +92,20 @@ export default function index() {
     setIsModalOpen(false);
   };
 
+  // API data fetching
+  const [listings, setListings] = useState({
+    loading: true,
+    data: [],
+  });
+
+  useEffect(() => {
+    (async () => {
+      setListings({ loading: true, data: [] });
+      const { data } = await axios("/api/listings");
+      setListings({ loading: false, data: data.data });
+    })();
+  }, []);
+
   return (
     <Layout>
       <div className="container mx-auto mt-10">
@@ -107,7 +123,7 @@ export default function index() {
             </button>
           </div>
         </div>
-        <RoomListings />
+        <PostBody data={listings} />
       </div>
       {/* Render the modal component conditionally */}
       {isModalOpen && (
