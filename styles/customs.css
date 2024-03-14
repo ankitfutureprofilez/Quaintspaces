@@ -475,4 +475,66 @@ color: #3F2A17;
 
 }
 
+.image-data p{
+  font-family: Gilroy-Regular;
+font-size: 18px;
+font-weight: 400;
+line-height: 22px;
+letter-spacing: 0em;
+text-align: left;
+color: #666360;
 
+}
+
+.image-data span{
+  font-family: Gilroy-Regular;
+font-size: 18px;
+font-weight: 400;
+line-height: 22px;
+letter-spacing: 0em;
+text-align: left;
+color: #666360;
+
+}
+
+
+.confirm-details h1{
+  font-family: Gilroy-Medium;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #3F2A17;
+}
+
+.confirm-details span{
+  font-family: Gilroy-Regular;
+font-size: 18px;
+font-weight: 400;
+line-height: 27px;
+letter-spacing: 0em;
+text-align: left;
+color:#61554E
+}
+
+.confirm-details .confirm-price{
+  color:#00860D;
+  font-family: Gilroy-Regular;
+font-size: 18px;
+font-weight: 400;
+line-height: 27px;
+letter-spacing: 0em;
+text-align: right;
+
+}
+
+.confirm-total span{
+  font-family: Gilroy-Bold;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+color:#61554E  
+}

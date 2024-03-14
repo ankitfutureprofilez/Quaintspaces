@@ -26,7 +26,7 @@ export default function Account() {
               </div>
             </div>
             <div className="px-1">
-              <Link href="/" className="flex items-center border-b-2 border-orange-300 pb-2">
+              <Link href="/booking" className="flex items-center border-b-2 border-orange-300 pb-2">
                 <p className="text-sm mr-2" style={{ color: '#fdba74' }}>Learn More</p>
                 <svg width="32px" height="32px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10 7L15 12L10 17" stroke="#fdba74" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -48,7 +48,7 @@ export default function Account() {
               </div>
             </div>
             <div className="px-1">
-              <Link href="/" className="flex items-center border-b-2 border-orange-300 pb-2">
+              <Link href="/profile" className="flex items-center border-b-2 border-orange-300 pb-2">
                 <p className="text-sm mr-2" style={{ color: '#fdba74' }}>Learn More</p>
                 <svg width="32px" height="32px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10 7L15 12L10 17" stroke="#fdba74" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -69,7 +69,7 @@ export default function Account() {
               </div>
             </div>
             <div className="px-1">
-              <Link href="/" className="flex items-center border-b-2 border-orange-300 pb-2 ">
+              <Link href="/security" className="flex items-center border-b-2 border-orange-300 pb-2 ">
                 <p className="text-sm mr-2" style={{ color: '#fdba74' }}>Learn More</p>
                 <svg width="32px" height="32px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10 7L15 12L10 17" stroke="#fdba74" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

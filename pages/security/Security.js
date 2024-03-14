@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Heading from '../elements/Heading'
 import Button from '../elements/Button'
 export default function Security() {
+    
     const [formData, setFormData] = useState({
         new_password: "",
         confirm_password: "",
@@ -27,7 +28,7 @@ export default function Security() {
 
     return (
         <div>
-            <div className="container mx-auto">
+            <div className="container mx-auto pt-12">
                 <Heading text={"Security "} />
             </div>
             <div className="container mx-auto">
@@ -40,7 +41,7 @@ export default function Security() {
                     </p>
                 </div>
             </div>
-            <div className="grid grid-cols-2">
+            <div className=" container mx-auto grid grid-cols-2">
                 <form onSubmit={handleSubmit} className="mr-3"  >
                     <div className="mb-4">
                         <label

@@ -37,7 +37,7 @@ export default function Confirm() {
   };
   return (
     <div>
-      <main className="max-w-[1150px] min-h-screen py-[3.6rem] mx-auto">
+      <main className="max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12">
         <Heading text={"Confirm and pay"} />
         <div className="flex mt-14 px-3 gap-10">
           <div className="w-8/12">
@@ -55,7 +55,7 @@ export default function Confirm() {
                 onClick={() => setDateModel(true)}
                 className="underline text-md font-medium"
               >
-                Edit
+                EDIT
               </button>
             </div>
             <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
@@ -80,7 +80,7 @@ export default function Confirm() {
                 onClick={() => setGuestsModel(true)}
                 className="underline text-md font-medium"
               >
-                Edit
+                EDIT
               </button>
             </div>
             <h1 className="text-xl mb-4 font-medium mt-5">Upload ID</h1>
@@ -184,20 +184,20 @@ export default function Confirm() {
               /> */}
               <div>
                 <h4 className="text-md mb-1">Luxurious Boutique 2BHK Flat in Bani Park, Jaipur</h4>
-               <p>Entire</p>
+               <p>Entire Apartment </p>
                 <span className="flex text-sm items-center gap-1">
                   <span>
                     <Star />
                   </span>
                   <span>
-                    4.5 (141 reviews)
+                    4.5 . 141 reviews
                     {/* {listing?.rating || "4.5"} ({listing?.reviews_length || 141} reviews) */}
                   </span>
                 </span>
               </div>
             </div>
-            <div className="py-4 border-b border-borderColor">
-              <h1 className="text-xl font-semibold">Price Details</h1>{" "}
+            <div className="py-4 border-b border-borderColor confirm-details">
+              <h1 className="">Price Details</h1>{" "}
               <div className="flex gap-3 mt-2">
                 <div className="flex items-center justify-between w-full">
                   <span className="block text-blackColor">
@@ -224,9 +224,98 @@ export default function Confirm() {
                   </span>
                 </div>
               </div>
+              <div className="flex gap-3 mt-2">
+                <div className="flex items-center justify-between w-full">
+                  <span className="block text-blackColor">
+                    {/* {listing?.price} x
+                    {` ${
+                      infos.checkout &&
+                      infos.checkin &&
+                      differenceInDays(
+                        new Date(infos.checkout),
+                        new Date(infos.checkin)
+                      )
+                    } `} */}
+                    Weekly stay discount
+                  </span>
+                  <span className="block text-blackColor font-medium confirm-price">
+                   -{formatMultiPrice(50000)}
+                    {/* {infos.checkout &&
+                      infos.checkin &&
+                      +listing?.price?.split("$")[1] *
+                        differenceInDays(
+                          new Date(infos.checkout),
+                          new Date(infos.checkin)
+                        )} */}
+                  </span>
+                </div>
+
+                
+
+              </div>
+
+              <div className="flex gap-3 mt-2">
+                <div className="flex items-center justify-between w-full">
+                  <span className="block text-blackColor">
+                    {/* {listing?.price} x
+                    {` ${
+                      infos.checkout &&
+                      infos.checkin &&
+                      differenceInDays(
+                        new Date(infos.checkout),
+                        new Date(infos.checkin)
+                      )
+                    } `} */}
+                   Cleaning fee
+                  </span>
+                  <span className="block text-blackColor font-medium">
+                   {formatMultiPrice(1200)}
+                    {/* {infos.checkout &&
+                      infos.checkin &&
+                      +listing?.price?.split("$")[1] *
+                        differenceInDays(
+                          new Date(infos.checkout),
+                          new Date(infos.checkin)
+                        )} */}
+                  </span>
+                </div>
+
+                
+
+              </div>
+
+              <div className="flex gap-3 mt-2">
+                <div className="flex items-center justify-between w-full">
+                  <span className="block text-blackColor">
+                    {/* {listing?.price} x
+                    {` ${
+                      infos.checkout &&
+                      infos.checkin &&
+                      differenceInDays(
+                        new Date(infos.checkout),
+                        new Date(infos.checkin)
+                      )
+                    } `} */}
+               Taxes
+                  </span>
+                  <span className="block text-blackColor font-medium">
+                   {formatMultiPrice(5686.8)}
+                    {/* {infos.checkout &&
+                      infos.checkin &&
+                      +listing?.price?.split("$")[1] *
+                        differenceInDays(
+                          new Date(infos.checkout),
+                          new Date(infos.checkin)
+                        )} */}
+                  </span>
+                </div>
+
+                
+
+              </div>
             </div>
-            <div className="pt-4 flex items-center justify-between">
-              <span className="text-md font-semibold">Total(INR)</span>
+            <div className="pt-4 flex items-center justify-between confirm-total">
+              <span className="">Total(INR)</span>
               <span className="text-md font-medium">
               {formatMultiPrice(50000)}
                 {/* {infos.checkout &&
