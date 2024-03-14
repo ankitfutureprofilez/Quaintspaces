@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Image from "next/image";
+import logologin from "../../public/images/loginlogoimg.png";
+import Link from "next/link";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -28,18 +31,29 @@ export default function Signup() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg ">
-      <div className="flex justify-center border-b-2 border-black-500">
-        <h1 className="text-xl font-semibold mb-4">Sign Up</h1>
+    <div className="h-screen" style={{ backgroundImage: `url(/images/login-bg.jpg)` }}>
+    <div className="container h-full">
+    <div className="flex items-center  h-full">
+    <div className="left-logo-login w-6/12 px-3">
+        <Image src={logologin} alt="logo" />
+        <p>Book the most luxuries and aesthetically pleasing place, Jaipur city has to offer</p>
+    </div>
+    <div className="w-6/12 px-3 flex justify-end" >
+    <div className="signup-form w-full max-h-screen overflow-y-auto">
+    <div className="formbgcolor">
+      
+    </div>
+      <div className="quainttay">
+        <h2 >Welcome to Quaint Stay Jaipur </h2>
+        <h3 >
+          Already have an account? <Link href="/">Login</Link>
+        </h3>
       </div>
-      <h1 className="text-xl font-semibold my-4">
-        Welcome To Quaint Stay Jaipur
-      </h1>
+      
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">
+        <div className="mb-6">
           <label
             htmlFor="fullName"
-            className="block text-sm font-medium text-gray-700"
           >
             Full Name
           </label>
@@ -49,14 +63,14 @@ export default function Signup() {
             name="fullName"
             value={formData.fullName}
             onChange={handleChange}
-            className="mt-1 p-2 border rounded-md w-full rounded-full"
+            className="rounded-md w-full "
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-6">
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
+        
           >
             Email
           </label>
@@ -66,14 +80,14 @@ export default function Signup() {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="mt-1 p-2 border rounded-md w-full"
+            className="rounded-md w-full "
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-6">
           <label
             htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
+           
           >
             Password
           </label>
@@ -83,14 +97,14 @@ export default function Signup() {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            className="mt-1 p-2 border rounded-md w-full"
+            className="rounded-md w-full "
             required
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-8">
           <label
             htmlFor="confirmPassword"
-            className="block text-sm font-medium text-gray-700"
+          
           >
             Confirm Password
           </label>
@@ -100,17 +114,21 @@ export default function Signup() {
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
-            className="mt-1 p-2 border rounded-md w-full"
+            className="rounded-md w-full "
             required
           />
         </div>
         <button
           type="submit"
-          className="w-full bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600"
+          className="submint-btn"
         >
           Submit
         </button>
       </form>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
   );
 }
