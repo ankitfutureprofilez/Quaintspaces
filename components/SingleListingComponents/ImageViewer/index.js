@@ -25,7 +25,7 @@ const ImageViewer = ({ selectedImage, isSaved, images, setImageViewer }) => {
         <p className="text-md text-white font-medium">
           {counter + 1} / {images.length}
         </p>
-        <button
+        {/* <button
           type="button"
           className="bg-black text-white hover:bg-gray-600 flex items-center justify-center gap-2 font-semibold px-4 py-2 rounded-md"
         >
@@ -35,7 +35,7 @@ const ImageViewer = ({ selectedImage, isSaved, images, setImageViewer }) => {
             }`}
           />{" "}
           <span className="tracking-2">Save</span>
-        </button>
+        </button> */}
       </header>
 
       <main className="pb-20 w-full h-full flex items-center justity-center">
