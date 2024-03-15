@@ -56,7 +56,7 @@ const Card = ({ post }) => {
               layout="responsive" src={post.images[0].url}  />
               <div className="flat-info">
                 <h5>Golden Oak, Banipark, Jaipur </h5>
-                <h3> {textResizer(
+                <h3 className="line-limit"> {textResizer(
                 post.lt.slice(0, 1).toUpperCase() + post.lt.slice(1, -1),
                 30
               )}</h3>

@@ -1,16 +1,22 @@
-import { Component } from 'react'
-import Api from './Api';
+import { Component } from "react";
+import Api from "./Api";
 class Listings extends Component {
     
-    
-    
-    render() {
-        return (
-            <div >
-                <></>
-            </div>
-        )
-    }
+    // Signup api
+  async Signup(data) {
+    return Api.post("/register", data);
+  }
+  async Login(data) {
+    return Api.post("/login", data);
+  }
+
+  render() {
+    return (
+      <div>
+        <></>
+      </div>
+    );
+  }
 }
 
 export default Listings;

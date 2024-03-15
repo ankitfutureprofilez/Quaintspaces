@@ -1,13 +1,22 @@
+
 import axios from 'axios';
-const APP_URL = process.env.NEXT_PUBLIC_APP_BASE_URL
-console.log("App_url",APP_URL)
+// const URL_APP = process.env.REACT_APP_BASE_URL;
+// console.log("url ",URL_APP) 
+
+const API_URL = process.env.NEXT_PUBLIC_APP_BASE_URL
+
+// console.log("API_URL",API_URL)
+
 function getToken() {
-  const token = typeof window !== 'undefined' && localStorage.getItem("token");
-  return token; 
+  if (typeof window !== 'undefined') { // Check if window is defined (i.e., if running on the client side)
+    const data = localStorage.getItem('token');
+    return data;
+  }
+  return null; // Handle the case when running on the server side
 }
 
 let Api = axios.create({
-  baseURL: APP_URL,
+  baseURL: API_URL,
   headers: {
     'Accept': 'application/json',
     'Authorization': `Bearer ${getToken()}`,

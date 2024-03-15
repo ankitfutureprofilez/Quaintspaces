@@ -36,3 +36,11 @@
 .page-exit {
   animation: fade-out 0.3s ease-out forwards;
 }
+/* Limiting lines in card title */
+.line-limit{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  padding-bottom: 5px !important;
+}
