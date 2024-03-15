@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 
-body {
+/* body {
   background-color: #f8f1eb;
-}
+} */
 [data-aos^=fade][data-aos^=fade].aos-animate { transition: 0.5s !important; }
 .logo img {
   max-width: 127px;
@@ -189,7 +189,7 @@ p.menu-footer {
   padding: 25px 0;
 }
 .copy-right span {
-  /* font-family: Gilroy-Medium; */
+  /* font-family: "Inter", sans-serif; */
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -198,7 +198,7 @@ p.menu-footer {
   color: #a38b77;
 }
 footer {
-  padding-top: 165px;
+  padding-top: 100px;
 }
 .tip-top-sec {
   padding: 80px 0;
@@ -384,10 +384,24 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
 .backtohome { position: absolute; top: 45px; left: 20px; } 
 .backtohome a { display: flex; align-items: center; font-family: "NewYork"; font-size: 40px; font-weight: 400; line-height: 49px; letter-spacing: 0em; text-align: left; color: #fff; } 
 .backtohome a svg { margin-right: 15px; }
-
-
-
-
+.booking-manage-box h1 { font-family: "Inter", sans-serif; font-size: 22px; font-weight: 400; line-height: 27px; letter-spacing: 0em; text-align: left; color: #3F2A17; margin-bottom: 8px; } 
+.booking-manage-box p { font-family: "Inter", sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: center; color: #666360; }
+.upcomming-box button.text-white { background: #dcac81; border: 1px solid #dcac81; } 
+.upcomming-box button { border: 1px solid #ECECEC; background: #ECECEC; }
+.upcomming-box { margin-bottom: 40px !important; }
+.booking-table tr,.booking-table { border: 1px solid #e7e7e7; }
+.booking-table th { padding: 18px; } 
+.booking-table td { padding: 30px; text-align: center; }
+.booking-table thead tr th:first-child, .booking-table tbody tr td:first-child { text-align: left; }
+.booking-table td { padding: 30px; text-align: center; font-family: "Inter", sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; color: #3F2A17; }
+.booking-table thead tr th { font-family: "Inter", sans-serif; font-size: 18px; font-weight: 500; line-height: 22px; letter-spacing: 0em; color: #47311d8f; }
+.booking-table td button { font-family: "Inter", sans-serif; font-size: 15px; font-weight: 400; line-height: 19px; letter-spacing: 0em; border: none; padding: 8px;}
+.booking-table td button.text-blue-700 { color: #2722EA; background: #efefff; }
+.booking-table td button.text-red-700 { border: 1px solid; color: #DB4632; background: none; }
+.edit-profile { background: #dcac81; height: 32px; width: 32px; display: flex; align-items: center; justify-content: center; border-radius: 30px; right: -10px; top: -8px; }
+.update-btn { background: #dcac81; font-family: "Inter", sans-serif; font-size: 16px; font-weight: 600; line-height: 19px; letter-spacing: 0em; text-align: center; }
+.profile-text h1 {font-family: "Inter", sans-serif; font-size: 22px; font-weight: 400; line-height: 27px; letter-spacing: 0em; color: #3F2A17; text-align: left; margin-bottom: 10px; } 
+.profile-text p {font-family: "Inter", sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #666360; }
 
 
 
@@ -470,7 +484,7 @@ color: #3F2A17;
 }
 
 .image-data p{
-  font-family: Gilroy-Regular;
+  font-family: "Inter", sans-serif;
 font-size: 18px;
 font-weight: 400;
 line-height: 22px;
@@ -481,7 +495,7 @@ color: #666360;
 }
 
 .image-data span{
-  font-family: Gilroy-Regular;
+  font-family: "Inter", sans-serif;
 font-size: 18px;
 font-weight: 400;
 line-height: 22px;
@@ -493,7 +507,7 @@ color: #666360;
 
 
 .confirm-details h1{
-  font-family: Gilroy-Medium;
+  font-family: "Inter", sans-serif;
   font-size: 22px;
   font-weight: 400;
   line-height: 27px;
@@ -503,7 +517,7 @@ color: #666360;
 }
 
 .confirm-details span{
-  font-family: Gilroy-Regular;
+  font-family: "Inter", sans-serif;
 font-size: 18px;
 font-weight: 400;
 line-height: 27px;
@@ -514,7 +528,7 @@ color:#61554E
 
 .confirm-details .confirm-price{
   color:#00860D;
-  font-family: Gilroy-Regular;
+  font-family: "Inter", sans-serif;
 font-size: 18px;
 font-weight: 400;
 line-height: 27px;

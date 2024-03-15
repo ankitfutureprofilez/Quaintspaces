@@ -11,15 +11,15 @@ function Booking() {
 
     const BookingTable = () => {
         return (
-            <table className="table-fixed w-full ">
+            <table className="table-fixed w-full booking-table">
                 <thead>
                     <tr>
-                        <th className="px-4 py-2 text-orange-300 ">Title</th>
-                        <th className="px-4 py-2">Check In</th>
-                        <th className="px-4 py-2">Check Out </th>
-                        <th className="px-4 py-2">Status </th>
-                        <th className="px-4 py-2">Price  </th>
-                        <th className="px-4 py-2">Action  </th>
+                        <th>Title</th>
+                        <th>Check In</th>
+                        <th>Check Out </th>
+                        <th>Status </th>
+                        <th>Price  </th>
+                        <th>Action  </th>
 
 
 
@@ -27,18 +27,20 @@ function Booking() {
                 </thead>
                 <tbody>
                     <tr className="">
-                        <td>
+                        <td className="flex items-center">
                             <img src="image_source" alt="alt" />
-                            <div class="title">title_text</div>
-                            <div class="description">2bhk_description</div>
+                            <div className="text ml-2">
+                                <div class="title">title_text</div>
+                                <div class="description">2bhk_description</div>
+                            </div>
                         </td>
                         <td className="px-4 py-2">16-02-2024</td>
                         <td className="px-4 py-2">18-02-2024</td>
                         <td className="px-4 py-2">
-                            <Button text={"Upcoming"} className={"font-inter text-blue-700 font-medium leading-tight text-center w-32 border-2 p-3 rounded-full "} />
+                            <Button text={"Upcoming"} design={"font-inter text-blue-700 font-medium leading-tight text-center w-32 p-3 rounded-full "} />
                         </td>
                         <td className="px-4 py-2">530000</td>
-                        <td className="px-4 py-2">                        <Button text={"Cancel"} className={"font-inter text-red-700 font-medium leading-tight text-center w-32 border-2  border-red-500 p-3 rounded-full "} />
+                        <td className="px-4 py-2">                        <Button text={"Cancel"} design={"font-inter text-red-700 font-medium leading-tight text-center w-32  border-red-500 p-3 rounded-full "} />
                         </td>
 
 
@@ -52,11 +54,13 @@ function Booking() {
 
     return (
         <>
-            <div className="container mx-auto account-btn pt-12">
+            <div className="container mx-auto account-btn ">
+                <div className="pt-12 pb-10">
                 <Heading text={"My Booking"} value={"/account"} />
+                </div>
             </div>
 
-            <div className=" container mx-auto flex align-items-center my-4 mx-4 py-2 space-x-4">
+            <div className=" container mx-auto flex align-items-center my-4 mx-4 py-2 space-x-4 upcomming-box">
                 <Button
                     design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${selectedButton === "upcoming" ? "bg-orange-300 text-white" : "text-black"
                         }`}
