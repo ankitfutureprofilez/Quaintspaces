@@ -1,8 +1,9 @@
 import axios from 'axios';
-const APP_URL = process.env.REACT_APP_BASE_URL
+const APP_URL = process.env.NEXT_PUBLIC_APP_BASE_URL
+console.log("App_url",APP_URL)
 function getToken() {
-  const data = localStorage && localStorage.getItem('token');
-  return data; 
+  const token = typeof window !== 'undefined' && localStorage.getItem("token");
+  return token; 
 }
 
 let Api = axios.create({

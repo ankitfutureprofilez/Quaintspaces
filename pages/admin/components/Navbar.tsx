@@ -44,7 +44,7 @@ function Navbar({ isOpen, sidebarChange }: { isOpen: boolean, sidebarChange: (va
 
                     <button className='h-8 gap-1 bg-primary hidden py-1 px-2 duration-200 text-white rounded-lg text-xs md:flex items-center justify-center'>
                         <Add size={16} />
-                        <span className='hidden md:inline'>Create request</span>
+                        <span className='hidden md:inline'>Add Property</span>
                     </button>
                 </div>
 
