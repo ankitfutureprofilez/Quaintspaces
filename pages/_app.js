@@ -6,6 +6,7 @@ import "../styles/fonts.css"
 import '../styles/RangeSlider.css';
 import "../styles/confirm.css"
 import { useRouter } from 'next/router';
+import { Toaster } from "react-hot-toast";
 
 export const Context = React.createContext();
 
@@ -28,6 +29,15 @@ function MyApp({ Component, pageProps }) {
        <div className="page-transition-container">
       <Component {...pageProps} key={router.route}/>
        </div>
+       <Toaster
+        toastOptions={{
+          position: 'top-right',
+          className: '',
+          style: {
+            'font-size': '14px',
+          },
+        }}
+      />
     </Context.Provider>
   );
 }
