@@ -2,8 +2,8 @@
 
 import React, { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import Sidebar from "@/components/Sidebar"
-import { useCentralStore } from "@/Store"
+import Sidebar from "../../components/Sidebar"
+import { useCentralStore } from "../../Store"
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
 

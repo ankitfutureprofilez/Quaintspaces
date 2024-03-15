@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../layout"
+import Layout from "../Layout"
 import Page from "./page"
 
 export default function Index() {
