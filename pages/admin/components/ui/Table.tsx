@@ -22,15 +22,13 @@ TableRow.displayName = 'TableRow'
 
 const TableHeader = React.forwardRef<HTMLTableRowElement, React.ComponentPropsWithoutRef<'tr'>>(({ className, ...props }, ref) =>
     <tr
-    >
-        <div
-            ref={ref}
-            className={cn('bg-gray-100 rounded-lg flex items-center justify-between text-gray-500', className)}
-            {...props}
-        />
-    </tr>
+        ref={ref}
+        className={cn('bg-gray-100 rounded-lg flex items-center justify-between text-gray-500', className)}
+        {...props}
+    />
 )
 TableHeader.displayName = 'TableHeader'
+
 
 const TableBody = React.forwardRef<HTMLTableSectionElement, React.ComponentPropsWithoutRef<'tbody'>>(({ className, ...props }, ref) =>
     <tbody

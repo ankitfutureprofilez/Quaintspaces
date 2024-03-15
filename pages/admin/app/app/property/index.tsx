@@ -1,12 +1,12 @@
 import React from "react";
 import Layout from "../layout"
-import Page from "./page"
+import Property from "./Property"
 
 export default function Index() {
   return (
     <div>
       <Layout>
-      <Page/>
+      <Property/>
       </Layout>
     </div>
   );
