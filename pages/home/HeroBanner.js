@@ -10,4 +10,6 @@ export default function HeroBanner() {
       <Button text={"EXPLORE APARTMENTS"} design={"font-inter text-base font-medium leading-tight text-center text-white w-[405px] border-2 border-white p-[18px] rounded-[30px]"}  />
     </div>
   );
+
+  
 }
