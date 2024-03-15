@@ -46,7 +46,7 @@ export default function PremiumLocation() {
   };
 
   return (
-    <div className="premium-location-slider">
+    <div className="premium-location-slider" id="premium">
       <div className='container mx-auto '>
         <h1>Premium Location in Jaipur</h1>
         <div className="relative flex items-center ">
