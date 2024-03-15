@@ -22,8 +22,7 @@ const Info = React.forwardRef(({ listing }, ref) => {
             <div className="h-7 mb-2 rounded-md bg-lightBorderColor w-7/12"></div>
           ) : (
             <h1 className="text-lg md:text-2xl mb-2 font-semibold">
-              {/* Hosted by {listing.data?.user?.name} */}
-              Banipark Apartment
+              {listing.data?.lt}
             </h1>
           )}
           {listing.loading ? (

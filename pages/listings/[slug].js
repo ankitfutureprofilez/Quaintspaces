@@ -48,7 +48,7 @@ const Listing = () => {
           Clone
         </title>
       </Head>
-      <Header
+      {/* <Header
         header="relative"
         width="max-w-[1120px] hidden lg:flex"
         setOverlay={setOverlay}
@@ -56,7 +56,7 @@ const Listing = () => {
         setSelection={setSelection}
         headerSearch={headerSearch}
         setHeaderSearch={setHeaderSearch}
-      />
+      /> */}
       <SingleListingBody listing={listing} />
       <ThingsToKnow/>
       {/* <Footer /> */}
