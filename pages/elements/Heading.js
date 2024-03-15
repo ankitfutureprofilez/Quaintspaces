@@ -9,7 +9,7 @@ function Heading({ text ,value}) {
   };
 
   return (
-    <div className="container mx-auto px-4 flex flex-wrap items-center">
+    <div className="flex flex-wrap items-center">
       <div className="flex items-center">
         <div
           className="flex justify-center items-center h-10 w-10 rounded-full border border-gray-400"

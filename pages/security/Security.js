@@ -28,12 +28,14 @@ export default function Security() {
 
     return (
         <div>
-            <div className="container mx-auto pt-12">
+            <div className="container mx-auto">
+            <div className="pt-12">
                 <Heading text={"Security "} />
+                </div>
             </div>
             <div className="container mx-auto">
-                <div className="ml-3">
-                    <h1 className="text-lg ">
+                <div className="my-12 profile-text">
+                    <h1 >
                         Update Password
                     </h1>
                     <p>
@@ -41,7 +43,8 @@ export default function Security() {
                     </p>
                 </div>
             </div>
-            <div className=" container mx-auto grid grid-cols-2">
+            <div className=" container mx-auto">
+            <div className="w-3/5">
                 <form onSubmit={handleSubmit} className="mr-3"  >
                     <div className="mb-4">
                         <label
@@ -95,11 +98,11 @@ export default function Security() {
                         />
                     </div>
                     <Button text={"Update Password"} 
-                    className={"font-inter font-lg leading-tight text-center text-black-400 w-96 bg-orange-300  border-2 p-4 rounded-full"} 
+                    design={"font-inter font-lg leading-tight update-btn text-center text-black-400 w-96 bg-orange-300  border-0 p-4 rounded-full mt-10 mb-12"} 
                     />
                 </form>
                 <div className='border-b-2 border-solid border-zinc-300'></div>
-                <div className="ml-3 mt-4">
+                <div className="mt-12 profile-text">
                     <h1 className="text-lg ">
                         Deactivate Account
                     </h1>
@@ -112,6 +115,7 @@ export default function Security() {
                         </p>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     )
