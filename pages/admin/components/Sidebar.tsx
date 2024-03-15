@@ -57,12 +57,12 @@ function Sidebar() {
                             Projects
                         </button>
 
-                        <Link href={'/admin/components/teams'} className={`flex ${pathname === '/admin/components/teams' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        <Link href={'/admin/app/app/teams'} className={`flex ${pathname === '/admin/app/app/teams' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Profile2User size={16} />
                             Teams
                         </Link>
 
-                        <Link href={'/admin/components/integrations'} className={`flex ${pathname === '/admin/components/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        <Link href={'/admin/app/app/integrations'} className={`flex ${pathname === '/admin/app/app/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Setting4 size={16} />
                             Integrations
                         </Link>
