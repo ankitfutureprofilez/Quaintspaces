@@ -42,7 +42,7 @@ function Navbar({ isOpen, sidebarChange }: { isOpen: boolean, sidebarChange: (va
                         <span className='hidden md:inline'>Schedule</span>
                     </button>
 
-                    <button className='h-8 gap-1 bg-primary hidden py-1 px-2 duration-200 text-black rounded-lg text-xs md:flex items-center justify-center'>
+                    <button className='h-8 gap-1 bg-primary hidden py-1 px-2 duration-200 text-black rounded-lg border-2 h-8 gap-1 bg-primary hidden py-1 px-2 duration-200 text-black rounded-lg text-xs border-2 md:flex items-center justify-centertext-xs md:flex items-center justify-center'>
                         <Add size={16} />
                         <span className='hidden md:inline'>Add Property</span>
                     </button>
