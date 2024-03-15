@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Listing from './../AdminApi/Listing';
+import Listing from '../../../AdminApi/Listing';
 import { useRouter } from 'next/router';
 function Login() {
   const [record, setRecord] = useState({
@@ -18,7 +18,6 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log("Form submitted:", record);
     const main = new Listing();
     const formData = new FormData();
     formData.append("email", record.email);
