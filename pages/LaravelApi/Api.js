@@ -1,18 +1,14 @@
 
 import axios from 'axios';
-// const URL_APP = process.env.REACT_APP_BASE_URL;
-// console.log("url ",URL_APP) 
 
 const API_URL = process.env.NEXT_PUBLIC_APP_BASE_URL
 
-// console.log("API_URL",API_URL)
-
 function getToken() {
-  if (typeof window !== 'undefined') { // Check if window is defined (i.e., if running on the client side)
+  if (typeof window !== 'undefined') {
     const data = localStorage.getItem('token');
     return data;
   }
-  return null; // Handle the case when running on the server side
+  return null; 
 }
 
 let Api = axios.create({
