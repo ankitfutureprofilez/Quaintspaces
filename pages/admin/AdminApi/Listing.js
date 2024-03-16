@@ -5,6 +5,9 @@ class Listing extends Component {
         return Api.post("/admin/login",data);
     }
     
+    async addproperty(data) {
+        return Api.post("/admin/add-property",data);
+    }
     render() {
         return (
             <div >
