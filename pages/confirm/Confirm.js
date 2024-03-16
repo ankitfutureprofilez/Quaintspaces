@@ -48,7 +48,11 @@ export default function Confirm() {
                 {/* <h5 className="text-md text-blackColor">{infos.checkin && infos.checkout ?
   `${format(new Date(infos.checkin), "MMM dd")} - ${format(new Date(infos.checkout), "MMM dd")}`
   : "Dates not specified"}</h5> */}
-                <h5 className="text-md item-paragraph"> 9 Apr - 15 may</h5>
+                <h5 className="text-md item-paragraph">{`${
+                  infos?.checkin && format(new Date(infos.checkin), "MMM dd")
+                } - ${
+                  infos?.checkout && format(new Date(infos.checkout), "MMM dd")
+                }`}</h5>
 
               </div>
               <button
@@ -73,7 +77,15 @@ export default function Confirm() {
                   }`}
                 </h5> */}
                 <h5 className="text-md item-paragrapg">
-                  1 Guest
+                {`${+infos.numberOfAdults + +infos.numberOfChildren} guests ${
+                    +infos.numberOfInfants
+                      ? ", " + infos.numberOfInfants + " infants"
+                      : ""
+                  } ${
+                    +infos.numberOfPets
+                      ? ", " + infos.numberOfPets + " pets"
+                      : ""
+                  }`}
                 </h5>
               </div>
               <button
@@ -166,7 +178,11 @@ export default function Confirm() {
           </div>
           <div className="w-5/12 border border-borderColor rounded-xl shadow p-8">
             <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
-            <Image src={apartment} alt="Apartment" />
+            <Image src={
+                  listing?.images?.length > 0
+                    ? listing.images[0].url
+                    : "https://a0.muscache.com/im/pictures/ed3c3933-428a-435b-9161-196722bcf63d.jpg?aki_policy=large"
+                } alt="Apartment" />
               {/* <img
                 src={
                   listing?.images?.length > 0
@@ -176,15 +192,14 @@ export default function Confirm() {
                 className="w-32 h-28 rounded-lg object-cover"
               /> */}
               <div>
-                <h4 className="text-md mb-1">Luxurious Boutique 2BHK Flat in Bani Park, Jaipur</h4>
+                <h4 className="text-md mb-1">{listing?.title}</h4>
                <p>Entire Apartment </p>
                 <span className="flex text-sm items-center gap-1">
                   <span>
                     <Star />
                   </span>
                   <span>
-                    4.5 . 141 reviews
-                    {/* {listing?.rating || "4.5"} ({listing?.reviews_length || 141} reviews) */}
+                    {listing?.rating || "4.5"} ({listing?.reviews_length || 141} reviews)
                   </span>
                 </span>
               </div>
@@ -203,17 +218,17 @@ export default function Confirm() {
                         new Date(infos.checkin)
                       )
                     } `} */}
-                    nights
+                    Nights
                   </span>
                   <span className="block text-blackColor font-medium">
-                   {formatMultiPrice(50000)}
-                    {/* {infos.checkout &&
+                  ${
+                      infos.checkout &&
                       infos.checkin &&
-                      +listing?.price?.split("$")[1] *
-                        differenceInDays(
-                          new Date(infos.checkout),
-                          new Date(infos.checkin)
-                        )} */}
+                      differenceInDays(
+                        new Date(infos.checkout),
+                        new Date(infos.checkin)
+                      )
+                    }
                   </span>
                 </div>
               </div>
@@ -229,17 +244,10 @@ export default function Confirm() {
                         new Date(infos.checkin)
                       )
                     } `} */}
-                    Weekly stay discount
+                    Charges Per Day
                   </span>
                   <span className="block text-blackColor font-medium confirm-price">
-                   -{formatMultiPrice(50000)}
-                    {/* {infos.checkout &&
-                      infos.checkin &&
-                      +listing?.price?.split("$")[1] *
-                        differenceInDays(
-                          new Date(infos.checkout),
-                          new Date(infos.checkin)
-                        )} */}
+                   -{listing?.price}
                   </span>
                 </div>
 
@@ -310,14 +318,14 @@ export default function Confirm() {
             <div className="pt-4 flex items-center justify-between confirm-total">
               <span className="">Total(INR)</span>
               <span className="text-md font-medium">
-              {formatMultiPrice(50000)}
-                {/* {infos.checkout &&
-                  infos.checkin &&
-                  +listing?.price?.split("$")[1] *
-                    differenceInDays(
-                      new Date(infos.checkout),
-                      new Date(infos.checkin)
-                    )} */}
+              $
+                    {infos.checkout &&
+                      infos.checkin &&
+                      +listing?.price?.split("$")[1] *
+                        differenceInDays(
+                          new Date(infos.checkout),
+                          new Date(infos.checkin)
+                        )}
               </span>
             </div>
           </div>
