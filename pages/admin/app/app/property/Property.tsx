@@ -1,23 +1,30 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Listing from '../../../AdminApi/Listing';
-
+import PageNavbar, { PageNavbarIconButton, PageNavbarLeftContent, PageNavbarPrimaryButton, PageNavbarRightContent } from '../../../components/layout/PageNavbar'
+import { Add, Notification, SearchNormal1, Setting4 } from 'iconsax-react'
+import PageContent from '../../../components/layout/PageContent'
 
 export default function Property() {
     const [step, setStep] = useState(1);
+
     const [Poperty, setPoperty] = useState({
+        propertyName: '',
+        about: "",
+        price: "",
+        propertytype: "",
+        children: "",
+        adults: "",
         guests: '',
         bedrooms: '',
-        propertytype: "",
+        area_id: "",
         beds: '',
         bathrooms: '',
-        price: "",
+        city_id:"",
         pets: "",
         location: "",
-        propertyName: '',
         address: '',
         selectedAmenities: [],
-        about: '',
         images: []
     });
 
@@ -78,7 +85,44 @@ export default function Property() {
         }
     };
 
+    const id = 33;
 
+    const[city,setCity] =useState([])
+    useEffect(() => {
+        const main = new Listing();
+        const fetchCityList = async () => {
+            const response = main.city_list(id);
+            console.log("rs",response)
+            response.then((res) => {
+                console.log("res", res)
+                setCity(res?.data?.data)
+            }).catch((error) => {
+                console.log("error", error);
+            })
+
+        };
+
+        fetchCityList();
+    }, []);
+
+    const [area, setArea] = useState([])
+    useEffect(() => {
+        const main = new Listing();
+        const fetchAreaList = async () => {
+            const response = main.area_list();
+            response.then((res) => {
+                console.log("ara", res)
+                setArea(res?.data?.data)
+            }).catch((error) => {
+                console.log("error", error);
+            })
+
+        };
+
+        fetchAreaList();
+    }, []);
+
+    console.log("area", area)
     const fetchLocationData = async () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(async (position) => {
@@ -88,6 +132,7 @@ export default function Property() {
                         `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
                     );
                     const locationData = response.data;
+                    console.log(locationData)
                     setPoperty((prevPoperty) => ({
                         ...prevPoperty,
                         location: locationData.display_name,
@@ -142,23 +187,19 @@ export default function Property() {
         formData.append("check_out", "12:12");
         formData.append("country_id", "101");
         formData.append("state_id", "101");
-        formData.append("city_id", "44");
-        formData.append("area_id", "11");
+        formData.append("city_id", Poperty.city_id);
+        formData.append("area_id",  Poperty.area_id);
         formData.append("adults", "1");
         formData.append("children", "2");
         formData.append("infants", "1");
         formData.append("free_cancel_time", "11:55");
         formData.append("amenities", Poperty.selectedAmenities.join(','));
         formData.append("property_image", Poperty.images.join(','));
-
-
-
         const response = main.addproperty(formData);
         response
             .then((res) => {
                 if (res?.data?.status) {
-                    // router.push("/admin")
-                    // localStorage && localStorage.setItem("token",res?.data?.token)
+
                 }
             })
             .catch((error) => {
@@ -169,7 +210,30 @@ export default function Property() {
     return (
 
         <>
+            <PageNavbar>
+                <PageNavbarLeftContent>
+                    <div className='border rounded-full w-10 h-10 all-center'>
+                        <Setting4 size={18} />
+                    </div>
+                    <div>
+                        <h1 className='text-sm font-semibold text-gray-800'>Property</h1>
+                        <p className='text-xs font-medium text-gray-500'>Add your property to here</p>
+                    </div>
+                </PageNavbarLeftContent>
 
+                <PageNavbarRightContent>
+                    <PageNavbarIconButton>
+                        <SearchNormal1 size={16} />
+                    </PageNavbarIconButton>
+                    <PageNavbarIconButton>
+                        <Notification size={16} />
+                    </PageNavbarIconButton>
+                    <PageNavbarPrimaryButton>
+                        <Add size={16} />
+                        <span className='hidden md:inline'>Add integration</span>
+                    </PageNavbarPrimaryButton>
+                </PageNavbarRightContent>
+            </PageNavbar>
             <div className="min-h-screen bg-gray-100 flex items-center justify-center px-6 py-8">
                 <div className="max-w-4xl w-full space-y-8">
                     <div className="bg-white shadow rounded-lg p-8 sm:p-12">
@@ -223,25 +287,52 @@ export default function Property() {
                                         className="mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
                                         value={Poperty.propertyName} onChange={handleInputChange} />
                                 </div>
-                                <div>
-                                    <label htmlFor="property-type" className="block text-sm font-medium text-gray-700">Property Type</label>
-                                    <select
-                                        id="property-type"
-                                        name="propertytype"
-                                        value={Poperty.propertytype}
-                                        onChange={handleInputChange}
-                                        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
-                                    >
-                                        <option value="">Select a property type</option>
-                                        <option value="flat">Flat</option>
-                                        <option value="house">House</option>
-                                        <option value="secondary unit">Secondary Unit</option>
-                                        <option value="unique space">Unique Space</option>
-                                        <option value="bed and breakfast">Bed and Breakfast</option>
-                                        <option value="boutique hotel">Boutique Hotel</option>
-                                    </select>
+                                <div className='mt-4'>
+                                    <div className="flex justify-between px-4 py-2">
+                                        <div className="max-w-sm mx-auto">
+                                            <label htmlFor="countries1" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Property Type</label>
+                                            <select id="countries1" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                value={Poperty.propertytype}
+                                                onChange={handleInputChange}>
+                                                <option value="">Select a property type</option>
+                                                <option value="flat">Flat</option>
+                                                <option value="house">House</option>
+                                                <option value="secondary unit">Secondary Unit</option>
+                                                <option value="unique space">Unique Space</option>
+                                                <option value="bed and breakfast">Bed and Breakfast</option>
+                                                <option value="boutique hotel">Boutique Hotel</option>
+                                            </select>
+                                        </div>
+                                        <div className="max-w-sm mx-auto">
+                                            <label htmlFor="countries1" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Area</label>
+                                            <select id="countries1" 
+                                            name='city_id'
+                                            onChange={handleInputChange}
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                <option>Choose a City</option>
+                                                {city && city.map((item, index) => (
+                                                    <option key={index} value={item.id}>{item.name}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                        <div className="max-w-sm mx-auto">
+                                            <label htmlFor="countries1" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Area</label>
+                                            <select id="countries1" 
+                                            name='area_id'
+                                            onChange={handleInputChange}
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                <option>Choose a Area</option>
+                                                {area && area.map((item, index) => (
+                                                    <option key={index} value={item.id}>{item.name}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <div className="relative text-sm font-medium text-gray-700">
+
+
+                                <div className="relative mt-4 text-sm font-medium text-gray-700">
                                     <label htmlFor="location" className="flex-1">Location</label>
                                     <input
                                         type="text"
@@ -258,9 +349,6 @@ export default function Property() {
                                         </svg>
                                     </div>
                                 </div>
-
-
-
                             </>
 
                         )}

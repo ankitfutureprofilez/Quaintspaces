@@ -26,8 +26,7 @@ function Login() {
     const response = main.adminlogin(formData);
     response
       .then((res) => {
-        console.log("res", res)
-        if (res?.data?.status) {
+        if (res && res?.data && res?.data?.status) {
           router.push("/admin")
           toast.success(res.data.message)
           localStorage && localStorage.setItem("token", res?.data?.token)
