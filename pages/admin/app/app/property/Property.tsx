@@ -11,7 +11,7 @@ export default function Property() {
         propertytype: "",
         beds: '',
         bathrooms: '',
-        price:"",
+        price: "",
         pets: "",
         location: "",
         propertyName: '',
@@ -32,7 +32,7 @@ export default function Property() {
     const handleFileChange = (e) => {
         let filesToAdd = Array.from(e.target.files);
         let newImages = Poperty.images.concat(filesToAdd).slice(0, 6);
-        console.log("newImages",newImages)
+        console.log("newImages", newImages)
         setPoperty(prevPoperty => ({
             ...prevPoperty,
             images: newImages,
@@ -134,38 +134,38 @@ export default function Property() {
         formData.append("bedrooms", Poperty.bedrooms);
         formData.append("beds", Poperty.beds);
         formData.append("bathrooms", Poperty.bathrooms);
-        // formData.append("latitude", Poperty.latitude);
-        // formData.append("longitude", Poperty.longitude); // Corrected to 'longitude'
-        // formData.append("discount_offer", Poperty.discount_offer);
+        formData.append("latitude", "2222.22588");
+        formData.append("longitudes", "2222.22588");
+        formData.append("discount_offer", "555");
         formData.append("guests", Poperty.guests);
-        // formData.append("check_in", Poperty.check_in);
-        // formData.append("check_out", Poperty.check_out);
-        // formData.append("country_id", Poperty.country_id);
-        // formData.append("state_id", Poperty.state_id);
-        // formData.append("city_id", Poperty.city_id);
-        // formData.append("area_id", Poperty.area_id);
-        // formData.append("adults", Poperty.adults);
-        // formData.append("children", Poperty.children);
-        // formData.append("infants", Poperty.infants);
-        // formData.append("free_cancel_time", Poperty.free_cancel_time);
+        formData.append("check_in", " 11:55");
+        formData.append("check_out", "12:12");
+        formData.append("country_id", "101");
+        formData.append("state_id", "101");
+        formData.append("city_id", "44");
+        formData.append("area_id", "11");
+        formData.append("adults", "1");
+        formData.append("children", "2");
+        formData.append("infants", "1");
+        formData.append("free_cancel_time", "11:55");
         formData.append("amenities", Poperty.selectedAmenities.join(','));
         formData.append("property_image", Poperty.images.join(','));
 
-        
+
 
         const response = main.addproperty(formData);
         response
-          .then((res) => {
-            if(res?.data?.status){
-                // router.push("/admin")
-                // localStorage && localStorage.setItem("token",res?.data?.token)
-            }
-          })
-          .catch((error) => {
-            console.log("error", error);
-          });
-       
-      };
+            .then((res) => {
+                if (res?.data?.status) {
+                    // router.push("/admin")
+                    // localStorage && localStorage.setItem("token",res?.data?.token)
+                }
+            })
+            .catch((error) => {
+                console.log("error", error);
+            });
+
+    };
     return (
 
         <>
@@ -311,7 +311,7 @@ export default function Property() {
 
                                 <div>
                                     <label htmlFor="pet" className="block text-sm font-medium text-gray-700">Pets</label>
-                                    <select id="pet" name="pet" autoComplete="pet"
+                                    <select id="pet" name="pets" autoComplete="pet"
                                         className="mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
                                         value={Poperty.pets} onChange={handleInputChange}>
                                         <option>1</option>
@@ -353,19 +353,14 @@ export default function Property() {
                                     <textarea
                                         id="about"
                                         name="about"
-                                        value={Poperty.pets} onChange={handleInputChange}
+                                        value={Poperty.about} onChange={handleInputChange}
                                         className="mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
                                         placeholder="Tell more about your property..."
                                     />
                                 </div>
                             </>
                         )}
-{step ===7 &&(
-     <button type="button" onClick={handleSubmit}
-     className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1">
-     submit
- </button>
-)}
+
 
                         {step === 6 && (
                             <>
@@ -399,7 +394,21 @@ export default function Property() {
                                 </div>
                             </>
                         )}
+                        {step === 7 && (
+                            <>
 
+                                <div className="mt-4">
+                                    <label htmlFor="propertyName" className="block text-sm font-medium text-gray-700">Price</label>
+                                    <input type="text" name="price" id="propertyName"
+                                        className="mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
+                                        value={Poperty.price} onChange={handleInputChange} />
+                                </div>
+                                <button type="button" onClick={handleSubmit}
+                                    className=" bg-red-500 text-white rounded-full p-1 m-1">
+                                    submit
+                                </button>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

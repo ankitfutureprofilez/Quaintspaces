@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Listing from '../../../AdminApi/Listing';
 import { useRouter } from 'next/router';
+import toast, { Toaster } from 'react-hot-toast';
 function Login() {
   const [record, setRecord] = useState({
     email: "",
@@ -18,16 +19,21 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const main = new Listing();
+    const main =new Listing();
     const formData = new FormData();
     formData.append("email", record.email);
     formData.append("password", record.password);
     const response = main.adminlogin(formData);
     response
       .then((res) => {
-        if(res?.data?.status){
-            router.push("/admin")
-            localStorage && localStorage.setItem("token",res?.data?.token)
+        console.log("res", res)
+        if (res?.data?.status) {
+          router.push("/admin")
+          toast.success(res.data.message)
+          localStorage && localStorage.setItem("token", res?.data?.token)
+        } else {
+          toast.error(res.data.message)
+
         }
         setRecord({
           email: "",
@@ -37,11 +43,12 @@ function Login() {
       .catch((error) => {
         console.log("error", error);
       });
-   
+
   };
 
   return (
     <>
+
       <div className="  h-dvh flex items-center justify-center w-full dark:bg-gray-950">
         <div className="  rounded-lg px-8 py-6 max-w-md">
           <h1 className="text-3xl font-medium ml-4 text-bold mb-4">
@@ -74,8 +81,8 @@ function Login() {
                 value={record.password}
                 onChange={handleInputs}
                 id="password"
-                       className="mt-1 p-4 border rounded-full w-full "
-             
+                className="mt-1 p-4 border rounded-full w-full "
+
                 placeholder="Enter your password"
                 required
               />
