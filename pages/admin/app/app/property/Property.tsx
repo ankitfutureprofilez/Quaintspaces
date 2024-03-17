@@ -20,7 +20,7 @@ export default function Property() {
         area_id: "",
         beds: '',
         bathrooms: '',
-        city_id:"",
+        city_id: "",
         pets: "",
         location: "",
         address: '',
@@ -87,12 +87,12 @@ export default function Property() {
 
     const id = 33;
 
-    const[city,setCity] =useState([])
+    const [city, setCity] = useState([])
     useEffect(() => {
         const main = new Listing();
         const fetchCityList = async () => {
             const response = main.city_list(id);
-            console.log("rs",response)
+            console.log("rs", response)
             response.then((res) => {
                 console.log("res", res)
                 setCity(res?.data?.data)
@@ -188,7 +188,7 @@ export default function Property() {
         formData.append("country_id", "101");
         formData.append("state_id", "101");
         formData.append("city_id", Poperty.city_id);
-        formData.append("area_id",  Poperty.area_id);
+        formData.append("area_id", Poperty.area_id);
         formData.append("adults", "1");
         formData.append("children", "2");
         formData.append("infants", "1");
@@ -282,18 +282,21 @@ export default function Property() {
                             <>
 
                                 <div className="mt-4">
-                                    <label htmlFor="propertyName" className="block text-sm font-medium text-gray-700">Property Name</label>
+                                    <label htmlFor="propertyName" className="block text-lg font-medium text-gray-700">Property Name</label>
                                     <input type="text" name="propertyName" id="propertyName"
-                                        className="mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
+                                        className="mt-1 p-4 border rounded-full w-full"
                                         value={Poperty.propertyName} onChange={handleInputChange} />
                                 </div>
                                 <div className='mt-4'>
-                                    <div className="flex justify-between px-4 py-2">
+                                    <div className="flex justify-evenly item-center px-4 py-2">
                                         <div className="max-w-sm mx-auto">
-                                            <label htmlFor="countries1" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Property Type</label>
-                                            <select id="countries1" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            <label htmlFor="propertyType" className="block text-lg font-medium text-gray-700">Property Type</label>
+                                            <select
+                                                id="propertyType"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 value={Poperty.propertytype}
-                                                onChange={handleInputChange}>
+                                                onChange={handleInputChange}
+                                                name="propertytype">
                                                 <option value="">Select a property type</option>
                                                 <option value="flat">Flat</option>
                                                 <option value="house">House</option>
@@ -304,11 +307,12 @@ export default function Property() {
                                             </select>
                                         </div>
                                         <div className="max-w-sm mx-auto">
-                                            <label htmlFor="countries1" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Area</label>
-                                            <select id="countries1" 
-                                            name='city_id'
-                                            onChange={handleInputChange}
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            <label htmlFor="citySelect" className="block text-lg font-medium text-gray-700">City</label>
+                                            <select
+                                                id="citySelect"
+                                                name="city_id"
+                                                onChange={handleInputChange}
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 <option>Choose a City</option>
                                                 {city && city.map((item, index) => (
                                                     <option key={index} value={item.id}>{item.name}</option>
@@ -316,39 +320,43 @@ export default function Property() {
                                             </select>
                                         </div>
                                         <div className="max-w-sm mx-auto">
-                                            <label htmlFor="countries1" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Area</label>
-                                            <select id="countries1" 
-                                            name='area_id'
-                                            onChange={handleInputChange}
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                <option>Choose a Area</option>
+                                            <label htmlFor="areaSelect" className="block text-lg font-medium text-gray-700">Area</label>
+                                            <select
+                                                id="areaSelect"
+                                                name="area_id"
+                                                onChange={handleInputChange}
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                <option>Choose an Area</option>
                                                 {area && area.map((item, index) => (
                                                     <option key={index} value={item.id}>{item.name}</option>
                                                 ))}
                                             </select>
                                         </div>
-
                                     </div>
                                 </div>
+
 
 
                                 <div className="relative mt-4 text-sm font-medium text-gray-700">
-                                    <label htmlFor="location" className="flex-1">Location</label>
-                                    <input
-                                        type="text"
-                                        id="location"
-                                        name="location"
-                                        value={Poperty.location}
-                                        onChange={handleLocationInputChange}
-                                        className="pl-3 pr-10 py-2 w-full flex-1 border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                        placeholder="Enter Location or Click to Select"
-                                    />
-                                    <div className="absolute inset-y-0 right-0 flex items-center pr-3" onClick={handleLocationClick}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-gray-400 cursor-pointer">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4c-2.761 0-5 2.239-5 5 0 3.86 5 11 5 11s5-7.14 5-11c0-2.761-2.239-5-5-5zm0 7a2 2 0 100-4 2 2 0 000 4z" />
-                                        </svg>
+                                    <label htmlFor="location" className="block text-lg font-medium text-gray-700">Location</label>
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            id="location"
+                                            name="location"
+                                            value={Poperty.location}
+                                            onChange={handleLocationInputChange}
+                                            className="mt-1 p-4 border rounded-full w-full pl-4 pr-12" // Adjust padding accordingly
+                                            placeholder="Enter Location or Click to Select"
+                                        />
+                                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-gray-400">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4c-2.761 0-5 2.239-5 5 0 3.86 5 11 5 11s5-7.14 5-11c0-2.761-2.239-5-5-5zm0 7a2 2 0 100-4 2 2 0 000 4z" />
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
+
                             </>
 
                         )}
@@ -356,9 +364,9 @@ export default function Property() {
 
                             <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                                 <div>
-                                    <label htmlFor="guests" className="block text-sm font-medium text-gray-700">Guests</label>
+                                    <label htmlFor="guests" className="block text-lg  font-medium text-gray-700">Guests</label>
                                     <select id="guests" name="guests" autoComplete="guests"
-                                        className="mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         value={Poperty.guests} onChange={handleInputChange}>
                                         <option>1</option>
                                         <option>2</option>
@@ -367,9 +375,20 @@ export default function Property() {
                                     </select>
                                 </div>
                                 <div>
-                                    <label htmlFor="bedrooms" className="block text-sm font-medium text-gray-700">Bedrooms</label>
+                                    <label htmlFor="guests" className="block text-lg font-medium text-gray-700">Guests</label>
+                                    <select id="guests" name="guests" autoComplete="guests"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        value={Poperty.guests} onChange={handleInputChange}>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label htmlFor="bedrooms" className="block text-lg font-medium text-gray-700">Bedrooms</label>
                                     <select id="bedrooms" name="bedrooms"
-                                        className="mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         value={Poperty.bedrooms} onChange={handleInputChange}>
                                         <option>1</option>
                                         <option>2</option>
@@ -377,9 +396,9 @@ export default function Property() {
                                     </select>
                                 </div>
                                 <div>
-                                    <label htmlFor="beds" className="block text-sm font-medium text-gray-700">Beds</label>
+                                    <label htmlFor="beds" className="block text-lg font-medium text-gray-700">Beds</label>
                                     <select id="beds" name="beds" autoComplete="beds"
-                                        className="mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         value={Poperty.beds} onChange={handleInputChange}>
                                         <option>1</option>
                                         <option>2</option>
@@ -387,9 +406,9 @@ export default function Property() {
                                     </select>
                                 </div>
                                 <div>
-                                    <label htmlFor="bathrooms" className="block text-sm font-medium text-gray-700">Bathrooms</label>
+                                    <label htmlFor="bathrooms" className="block text-lg font-medium text-gray-700">Bathrooms</label>
                                     <select id="bathrooms" name="bathrooms" autoComplete="bathrooms"
-                                        className="mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         value={Poperty.bathrooms} onChange={handleInputChange}>
                                         <option>1</option>
                                         <option>2</option>
@@ -398,9 +417,9 @@ export default function Property() {
                                 </div>
 
                                 <div>
-                                    <label htmlFor="pet" className="block text-sm font-medium text-gray-700">Pets</label>
+                                    <label htmlFor="pet" className="block text-lg font-medium text-gray-700">Pets</label>
                                     <select id="pet" name="pets" autoComplete="pet"
-                                        className="mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         value={Poperty.pets} onChange={handleInputChange}>
                                         <option>1</option>
                                         <option>2</option>
@@ -415,7 +434,7 @@ export default function Property() {
 
                         {step === 4 && (
                             <div className="max-w-lg mx-auto mt-8">
-                                <h2 className="text-2xl font-semibold mb-4">Amenities</h2>
+                                <h2 className="block text-lg font-medium text-gray-700">Amenities</h2>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                     {amenitiesList.map(amenity => (
                                         <div key={amenity} className="flex items-center">
@@ -437,7 +456,7 @@ export default function Property() {
                         {step === 5 && (
                             <>
                                 <div className="mt-4">
-                                    <label htmlFor="about" className="block text-sm font-medium text-gray-700">Describe Your Property to Guests</label>
+                                    <label htmlFor="about" className="block text-lg font-medium text-gray-700">Describe Your Property to Guests</label>
                                     <textarea
                                         id="about"
                                         name="about"
@@ -486,15 +505,21 @@ export default function Property() {
                             <>
 
                                 <div className="mt-4">
-                                    <label htmlFor="propertyName" className="block text-sm font-medium text-gray-700">Price</label>
+                                    <label htmlFor="propertyName" className="block text-lg font-medium text-gray-700">Price</label>
                                     <input type="text" name="price" id="propertyName"
-                                        className="mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
+                                        className="mt-1 p-4 border rounded-full w-full"
                                         value={Poperty.price} onChange={handleInputChange} />
                                 </div>
-                                <button type="button" onClick={handleSubmit}
-                                    className=" bg-red-500 text-white rounded-full p-1 m-1">
-                                    submit
+
+                                <button
+                                    type="submit"
+                                    onClick={handleSubmit}
+                                    className="mx-auto flex justify-center mt-5 text-lg leading-tight text-center text-black bg-orange-300 border-2 p-4 rounded-full w-96"
+                                >
+                                    Submit
                                 </button>
+
+
                             </>
                         )}
                     </div>
