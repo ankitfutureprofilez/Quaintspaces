@@ -1,4 +1,4 @@
-import { Table, TableHeader, TableBody, TableRow, TableItem } from "@nextui-org/react"; // Imported missing components
+import { Table, TableHeader, TableBody, TableRow, TableColumn } from "@nextui-org/react"; // Imported missing components
 import Image from 'next/image'
 import LoomLogo from "../assets/logos/loom.svg"
 import SlackLogo from '../assets/logos/slack.svg'
@@ -17,33 +17,33 @@ function MembersTable() {
             <Table>
                 <TableHeader>
                     <TableRow>
-                        <TableItem  className="gv">
+                        <TableColumn  className="gv">
                             Member name
-                        </TableItem>
-                        <TableItem  className="gv">
+                        </TableColumn>
+                        <TableColumn  className="gv">
                             Title
-                        </TableItem>
-                        <TableItem  className="gv">
+                        </TableColumn>
+                        <TableColumn  className="gv">
                             Project
-                        </TableItem>
-                        <TableItem  className="gv">
+                        </TableColumn>
+                        <TableColumn  className="gv">
                             Member Document
-                        </TableItem>
-                        <TableItem className='w-[180px]'>
+                        </TableColumn>
+                        <TableColumn className='w-[180px]'>
                             Status
-                        </TableItem>
+                        </TableColumn>
                     </TableRow>
                 </TableHeader>
 
                 <TableBody>
                     <TableRow>
-                        <TableItem className="gv" >
+                        <TableColumn className="gv" >
                             <Image src={Avatar2} alt='James Brown' className='w-8 rounded-full' />
                             <div>
                                 <p className='text-gray-800 font-medium'>James Brown</p>
                                 <p className='text-xs'>james@example.com</p>
                             </div>
-                        </TableItem>
+                        </TableColumn>
                     </TableRow>
                 </TableBody>
             </Table>
