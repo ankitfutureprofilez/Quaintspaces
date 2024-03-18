@@ -6,6 +6,7 @@ const nextConfig = {
     domains: ["a0.muscache.com"],
   },
   webpack5: false,
+  pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
   
   eslint: {
     ignoreDuringBuilds: true,
