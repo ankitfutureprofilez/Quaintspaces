@@ -19,7 +19,7 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const main =new Listing();
+    const main = new Listing();
     const formData = new FormData();
     formData.append("email", record.email);
     formData.append("password", record.password);

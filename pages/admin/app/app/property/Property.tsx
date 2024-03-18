@@ -92,9 +92,9 @@ export default function Property() {
         const main = new Listing();
         const fetchCityList = async () => {
             const response = main.city_list(id);
-            console.log("rs", response)
+            // console.log("rs", response)
             response.then((res) => {
-                console.log("res", res)
+                // console.log("res", res)children
                 setCity(res?.data?.data)
             }).catch((error) => {
                 console.log("error", error);
@@ -109,9 +109,9 @@ export default function Property() {
     useEffect(() => {
         const main = new Listing();
         const fetchAreaList = async () => {
-            const response = main.area_list();
+            const response = main.area_list(3378);
             response.then((res) => {
-                console.log("ara", res)
+                // console.log("ara", res)
                 setArea(res?.data?.data)
             }).catch((error) => {
                 console.log("error", error);
@@ -122,7 +122,7 @@ export default function Property() {
         fetchAreaList();
     }, []);
 
-    console.log("area", area)
+    // console.log("area", area)
     const fetchLocationData = async () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(async (position) => {
@@ -132,7 +132,7 @@ export default function Property() {
                         `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
                     );
                     const locationData = response.data;
-                    console.log(locationData)
+                    // console.log(locationData)
                     setPoperty((prevPoperty) => ({
                         ...prevPoperty,
                         location: locationData.display_name,
@@ -144,14 +144,10 @@ export default function Property() {
             }, handleGeolocationError);
         }
     };
-
-
     const handleGeolocationError = () => {
         // setError('Geolocation failed');
         console.error('Geolocation failed');
     };
-
-
     const handleLocationClick = () => {
         fetchLocationData();
     };
@@ -163,8 +159,6 @@ export default function Property() {
             [name]: value,
         }));
     };
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const main = new Listing();
@@ -186,15 +180,17 @@ export default function Property() {
         formData.append("check_in", " 11:55");
         formData.append("check_out", "12:12");
         formData.append("country_id", "101");
-        formData.append("state_id", "101");
+        formData.append("state_id", "33");
         formData.append("city_id", Poperty.city_id);
         formData.append("area_id", Poperty.area_id);
         formData.append("adults", "1");
         formData.append("children", "2");
         formData.append("infants", "1");
-        formData.append("free_cancel_time", "11:55");
+        formData.append("free_cancel_time", "11");
         formData.append("amenities", Poperty.selectedAmenities.join(','));
-        formData.append("property_image", Poperty.images.join(','));
+        Poperty.images.forEach((image, index) => {
+            formData.append('property_image[]', image);
+        });
         const response = main.addproperty(formData);
         response
             .then((res) => {
@@ -241,13 +237,17 @@ export default function Property() {
                             {step > 1 && (
                                 <button type="button" onClick={prevStep}
                                     className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Back
+                                   
+<svg width="32px" height="32px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="#000000" d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"/><path fill="#000000" d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"/></svg>
                                 </button>
                             )}
                             {step < 10 && (
                                 <button type="button" onClick={nextStep}
-                                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Next
+                                    className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <svg width="32px" height="32px" viewBox="0 0 24 24" id="_24x24_On_Light_Next" data-name="24x24/On Light/Next" xmlns="http://www.w3.org/2000/svg">
+  <rect id="view-box" width="24" height="24" fill="#141124" opacity="0"/>
+  <path id="Shape" d="M10.22,9.28a.75.75,0,0,1,0-1.06l2.72-2.72H.75A.75.75,0,0,1,.75,4H12.938L10.22,1.281A.75.75,0,1,1,11.281.22l4,4a.749.749,0,0,1,0,1.06l-4,4a.75.75,0,0,1-1.061,0Z" transform="translate(4.25 7.25)" fill="#141124"/>
+</svg>
                                 </button>
                             )}
                         </div>
@@ -288,31 +288,32 @@ export default function Property() {
                                         value={Poperty.propertyName} onChange={handleInputChange} />
                                 </div>
                                 <div className='mt-4'>
-                                    <div className="flex justify-evenly item-center px-4 py-2">
-                                        <div className="max-w-sm mx-auto">
-                                            <label htmlFor="propertyType" className="block text-lg font-medium text-gray-700">Property Type</label>
+                                    <div className="flex justify-center item-center ">
+                                        <div className=" ">
+                                            <label htmlFor="propertyType" className="block text-lg font-medium text-gray-700 mb-1">Property Type</label>
                                             <select
                                                 id="propertyType"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 value={Poperty.propertytype}
                                                 onChange={handleInputChange}
                                                 name="propertytype">
                                                 <option value="">Select a property type</option>
-                                                <option value="flat">Flat</option>
+                                                <option value="flat">Flat/</option>
                                                 <option value="house">House</option>
-                                                <option value="secondary unit">Secondary Unit</option>
-                                                <option value="unique space">Unique Space</option>
-                                                <option value="bed and breakfast">Bed and Breakfast</option>
-                                                <option value="boutique hotel">Boutique Hotel</option>
+                                                <option value="unique_space">Unique Space</option>
+                                                <option value="gust_house">Guest House</option>
+                                                <option value="hotel">Hotel</option>
+                                                <option value="single_room">single Room</option>
+                                                <option value="boutique_hotel">Boutique Hotel</option>
                                             </select>
                                         </div>
                                         <div className="max-w-sm mx-auto">
-                                            <label htmlFor="citySelect" className="block text-lg font-medium text-gray-700">City</label>
+                                            <label htmlFor="citySelect" className="block text-lg font-medium text-gray-700 mb-1">City</label>
                                             <select
                                                 id="citySelect"
                                                 name="city_id"
                                                 onChange={handleInputChange}
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 <option>Choose a City</option>
                                                 {city && city.map((item, index) => (
                                                     <option key={index} value={item.id}>{item.name}</option>
@@ -320,12 +321,12 @@ export default function Property() {
                                             </select>
                                         </div>
                                         <div className="max-w-sm mx-auto">
-                                            <label htmlFor="areaSelect" className="block text-lg font-medium text-gray-700">Area</label>
+                                            <label htmlFor="areaSelect" className="block text-lg font-medium text-gray-700 mb-1">Area</label>
                                             <select
                                                 id="areaSelect"
                                                 name="area_id"
                                                 onChange={handleInputChange}
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 <option>Choose an Area</option>
                                                 {area && area.map((item, index) => (
                                                     <option key={index} value={item.id}>{item.name}</option>
@@ -349,7 +350,7 @@ export default function Property() {
                                             className="mt-1 p-4 border rounded-full w-full pl-4 pr-12" // Adjust padding accordingly
                                             placeholder="Enter Location or Click to Select"
                                         />
-                                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none" onclick= {handleLocationClick}>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-gray-400">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4c-2.761 0-5 2.239-5 5 0 3.86 5 11 5 11s5-7.14 5-11c0-2.761-2.239-5-5-5zm0 7a2 2 0 100-4 2 2 0 000 4z" />
                                             </svg>
@@ -364,10 +365,10 @@ export default function Property() {
 
                             <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                                 <div>
-                                    <label htmlFor="guests" className="block text-lg  font-medium text-gray-700">Guests</label>
-                                    <select id="guests" name="guests" autoComplete="guests"
+                                    <label htmlFor="guests" className="block text-lg  font-medium text-gray-700">Adult</label>
+                                    <select id="guests" name="adults" autoComplete="guests"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        value={Poperty.guests} onChange={handleInputChange}>
+                                        value={Poperty.adults} onChange={handleInputChange}>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -375,10 +376,10 @@ export default function Property() {
                                     </select>
                                 </div>
                                 <div>
-                                    <label htmlFor="guests" className="block text-lg font-medium text-gray-700">Guests</label>
-                                    <select id="guests" name="guests" autoComplete="guests"
+                                    <label htmlFor="guests" className="block text-lg font-medium text-gray-700">children</label>
+                                    <select id="guests" name="children" autoComplete="guests"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        value={Poperty.guests} onChange={handleInputChange}>
+                                        value={Poperty.children} onChange={handleInputChange}>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -458,12 +459,14 @@ export default function Property() {
                                 <div className="mt-4">
                                     <label htmlFor="about" className="block text-lg font-medium text-gray-700">Describe Your Property to Guests</label>
                                     <textarea
-                                        id="about"
-                                        name="about"
-                                        value={Poperty.about} onChange={handleInputChange}
-                                        className="mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
-                                        placeholder="Tell more about your property..."
-                                    />
+    id="about"
+    name="about"
+    value={Poperty.about}
+    onChange={handleInputChange} 
+    className="mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
+    placeholder="Tell more about your property..."
+/>
+
                                 </div>
                             </>
                         )}
@@ -481,7 +484,8 @@ export default function Property() {
                                             <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                                             <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                                         </div>
-                                        <input id="dropzone-file" type="file" className="hidden" onChange={handleFileChange} name="images" multiple />
+                                        <input id="dropzone-file" type="file" className="hidden"
+                                        onChange={handleFileChange} name="images" multiple />
 
                                     </label>
                                 </div>
