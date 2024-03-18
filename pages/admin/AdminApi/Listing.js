@@ -5,6 +5,18 @@ class Listing extends Component {
         return Api.post("/admin/login",data);
     }
     
+    async addproperty(data) {
+        return Api.post("/admin/add-property",data);
+    }
+    
+
+    async city_list(id){
+        return Api.get(`/admin/city-list/${id}`)
+    }
+
+    async area_list(){
+        return Api.get("/admin/area-list")
+    }
     render() {
         return (
             <div >
