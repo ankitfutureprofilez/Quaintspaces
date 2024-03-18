@@ -5,12 +5,12 @@ import { ArrowRight2, Calendar, Document, Element3, Folder2, Headphone, Profile2
 import ProfileImage from '../components/assets/profile.png'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useCentralStore } from '../Store'
+// import { useCentralStore } from '../Store';
 
 function Sidebar() {
 
     const pathname = usePathname()
-    const { setIsSidebarOpen, isSidebarOpen } = useCentralStore()
+    // const { setIsSidebarOpen, isSidebarOpen } = useCentralStore();
 
     // useEffect(() => {
     //     if (!isSidebarOpen) setIsSidebarOpen(!isSidebarOpen)
