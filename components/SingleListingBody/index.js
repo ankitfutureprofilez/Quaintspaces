@@ -119,7 +119,7 @@ const [selectEnd, setSelectEnd] = useState(addDays(new Date(), 6));
       {imageViewer && (
         <ImageViewer
           selectedImage={selectedImage}
-          images={listing.data?.images}
+          images={listing.data?.property_image}
           isSaved={isSaved}
           setImageViewer={setImageViewer}
         />
@@ -176,7 +176,8 @@ const [selectEnd, setSelectEnd] = useState(addDays(new Date(), 6));
                   <Star />
                 </span>
                 <span className="text-xs font-medium">
-                  {listing?.data.rating}
+                  {/* {listing?.data.rating} */}
+                  5 
                 </span>
                 <span> ·</span>
                 <span className="text-xs underline text-lightTextColor">

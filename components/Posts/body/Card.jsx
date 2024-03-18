@@ -53,20 +53,27 @@ const Card = ({ post }) => {
 
     <div className="banipark-box">
               <Image width={100} height={300}
-              layout="responsive" src={post.images[0].url}  />
+              layout="responsive" 
+              src=
+              // {post.property_image[0].image_url}  
+              "https://a0.muscache.com/im/pictures/6d32edc4-d842-4927-9375-504b4b1801da.jpg?im_w=720"
+              />
               <div className="flat-info">
-                <h5>Golden Oak, Banipark, Jaipur </h5>
-                <h3 className="line-limit"> {textResizer(
+                <h5>{post.location}</h5>
+                <h3 className="line-limit"> 
+                {post.name}
+                {/* {textResizer(
                 post.lt.slice(0, 1).toUpperCase() + post.lt.slice(1, -1),
                 30
-              )}</h3>
-                <p>{post.bedrooms} Bedrooms · {post.bed} Bed</p>
+              )} */}
+              </h3>
+                <p>{post.bedrooms} Bedrooms · {post.beds} Bed</p>
                 <h4>
-                  From <span>{post.price}</span> /night
+                  From <span> ₹{post.price}</span> /night
                 </h4>
               </div>
               <div className="explor-btn">
-              <Link className="block" href={`/listings/${post._id}`} >
+              <Link className="block" href={`/listings/${post.uuid}`} >
                   Explore{" "}
                   <svg
                     width="13"

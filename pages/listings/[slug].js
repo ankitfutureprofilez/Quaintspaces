@@ -8,6 +8,7 @@ import { Context } from "../_app";
 import Wishlist from "../../components/Wishlist";
 import Layout from "../layout/Layout";
 import ThingsToKnow from "./ThingsToKnow";
+import Listings from "../LaravelApi/Listings";
 
 const Listing = () => {
   const router = useRouter();
@@ -15,10 +16,24 @@ const Listing = () => {
   const [overlay, setOverlay] = useState(false);
   const [selection, setSelection] = useState(null);
   const [headerSearch, setHeaderSearch] = useState(false);
-  const [listing, setListing] = useState({
+  const[loading,setLoading]=useState(true);
+  const [listing, setListing
+  ] = useState({
     loading: true,
     data: {},
   });
+  
+  // useEffect(() => {
+  //   setloading(true);
+  //     const main = new Listings();
+  //     main.PropertyListing().then((r)=>{
+  //       setloading(false)
+  //       setListings(r.data.data);
+  //     }).catch((err)=>{
+  //       setloading(false);
+  //       console.error(err);
+  //     });
+  // }, [router.query]);
 
   useEffect(() => {
     if (router.query.slug) {
@@ -27,14 +42,27 @@ const Listing = () => {
         data: {},
       });
       (async () => {
-        const { data } = await axios(`/api/listings/${router.query.slug}`);
-        if (data.success) {
-          setListing({
+        const main = new Listings();
+      main.PropertyDetail(router.query.slug).then((r)=>{
+        console.log("Data",r.data.data);
+           setListing({
             loading: false,
-            data: data.data[2],
+            data: r.data.data,
           });
-          console.log("listing",listing.data);
-        }
+      }).catch((err)=>{
+        setListing({
+          loading: true,
+        });
+        console.error(err);
+      });
+        // const { data } = await axios(`/api/listings/${router.query.slug}`);
+        // if (data.success) {
+        //   setListing({
+        //     loading: false,
+        //     data: data.data[2],
+        //   });
+        //   console.log("listing",listing.data);
+        // }
       })();
     }
   }, [router.query]);

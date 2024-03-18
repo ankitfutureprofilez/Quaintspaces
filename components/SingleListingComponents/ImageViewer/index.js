@@ -41,7 +41,7 @@ const ImageViewer = ({ selectedImage, isSaved, images, setImageViewer }) => {
       <main className="pb-20 w-full h-full flex items-center justity-center">
         <div className="w-8/12 rounded-md mx-auto h-full max-h-[calc(100vh-200px)]">
           <img
-            src={currrentImage?.url}
+            src={currrentImage?.image_url}
             className="rounded-md w-full h-full object-cover "
             alt=""
           />
