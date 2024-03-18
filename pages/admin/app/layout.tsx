@@ -1,17 +1,29 @@
-import { Inter } from 'next/font/google'
-import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
-
+import React from 'react';
+import { useFonts } from '@next/react-font-loader';
+import '../styles/globals.css'; // Import global styles here
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
+  // Load the Inter font with Latin subset
+  const [fontsLoaded] = useFonts({
+    Inter: {
+      subsets: ['latin'],
+    },
+  });
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <style jsx global>{`
+          body {
+            font-family: 'Inter', sans-serif;
+          }
+        `}</style>
+      </head>
+      <body>{fontsLoaded && children}</body>
     </html>
-  )
+  );
 }
