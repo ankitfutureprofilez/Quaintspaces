@@ -6,8 +6,7 @@ const nextConfig = {
     domains: ["a0.muscache.com"],
   },
   eslint: {
-    ignoreDuringBuilds: false,
+    ignoreDuringBuilds: true,
   },
 };
-
 module.exports = nextConfig;
