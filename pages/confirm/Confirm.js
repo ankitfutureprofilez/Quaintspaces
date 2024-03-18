@@ -4,8 +4,6 @@ import Image from 'next/image'
 import Star from "../../public/_svgs/star"
 import Heading from '../elements/Heading';
 import Button from '../elements/Button';
-
-
 export default function Confirm() {
   const [dateModel, setDateModel] = useState(false);
 
