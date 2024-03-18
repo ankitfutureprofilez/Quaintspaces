@@ -4,8 +4,7 @@ import Image from 'next/image'
 import Star from "../../public/_svgs/star"
 import Heading from '../elements/Heading';
 import Button from '../elements/Button';
-import apartment  from "../../public/images/Malviya Nagar.png";
-import { formatMultiPrice } from '../elements/formatMiddleware';
+import { formatMultiPrice } from '../elements/FormatMiddleware';
 
 export default function Confirm() {
   const [dateModel, setDateModel] = useState(false);

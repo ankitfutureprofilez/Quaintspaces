@@ -4,11 +4,11 @@ import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: "Githr - Dashboard",
-  description: "Githr - Dashboard",
-  keywords: "Githr - Dashboard, dashboard ui",
-}
+// export const metadata: Metadata = {
+//   title: "Githr - Dashboard",
+//   description: "Githr - Dashboard",
+//   keywords: "Githr - Dashboard, dashboard ui",
+// }
 
 export default function RootLayout({
   children,
