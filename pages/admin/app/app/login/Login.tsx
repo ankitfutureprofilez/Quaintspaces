@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Listing from '../../../AdminApi/Listing';
 import { useRouter } from 'next/router';
 import toast, { Toaster } from 'react-hot-toast';
-function Login() {
+export default function  Login() {
   const [record, setRecord] = useState({
     email: "",
     password: "",
@@ -111,4 +111,4 @@ function Login() {
   );
 }
 
-export default Login;
+
