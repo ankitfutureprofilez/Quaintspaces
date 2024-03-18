@@ -3,5 +3,6 @@ import Page from "./app/page";
 
 export default function Index() {
   return (
-      <Page />
-  );}
+    <Page /> 
+  );
+}
