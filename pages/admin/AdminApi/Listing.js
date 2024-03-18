@@ -14,8 +14,8 @@ class Listing extends Component {
         return Api.get(`/admin/city-list/${id}`)
     }
 
-    async area_list(){
-        return Api.get("/admin/area-list")
+    async area_list(id){
+        return Api.get(`/admin/area-list/${id}`)
     }
     render() {
         return (
