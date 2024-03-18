@@ -1,5 +1,6 @@
 "use client"
-import CourseProgress from "../components/Cards/CourseProgress"
+
+import CourseProgress from '../components/Cards/CourseProgress'
 import CurrentProject from '../components/Cards/CurrentProject'
 import EmployeeSpotlight from '../components/Cards/EmployeeSpotlight'
 import Notes from '../components/Cards/Notes'
@@ -66,7 +67,7 @@ function Home() {
             </div>
 
             <div className='break-inside-avoid-column space-y-4'>
-              <CourseProgress />
+          <CourseProgress/>
             </div>
 
             <div className='break-inside-avoid-column space-y-4'>
