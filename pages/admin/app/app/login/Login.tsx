@@ -8,6 +8,8 @@ export default function  Login() {
     password: "",
   });
 
+  
+
   const router = useRouter();
 
 
@@ -24,6 +26,7 @@ export default function  Login() {
     formData.append("email", record.email);
     formData.append("password", record.password);
     const response = main.adminlogin(formData);
+
     response
       .then((res) => {
         if (res && res?.data && res?.data?.status) {
