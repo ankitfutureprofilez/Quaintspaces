@@ -1,11 +1,10 @@
 import React, { forwardRef } from "react";
-import cn from "classnames";
 
 function TableItem({ className, ...props }, ref) {
     return (
         <td
             ref={ref}
-            className={cn('flex gap-2 items-center w-[220px] text-sm py-1.5 px-2', className)}
+            className={('flex gap-2 items-center w-[220px] text-sm py-1.5 px-2', className)}
             {...props}
         />
     );
@@ -16,7 +15,7 @@ function TableRow({ className, ...props }, ref) {
     return (
         <tr
             ref={ref}
-            className={cn('hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700', className)}
+            className={('hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700', className)}
             {...props}
         />
     );
@@ -27,7 +26,7 @@ function TableHeader({ className, ...props }, ref) {
     return (
         <tr
             ref={ref}
-            className={cn('bg-gray-100 rounded-lg flex items-center justify-between text-gray-500', className)}
+            className={('bg-gray-100 rounded-lg flex items-center justify-between text-gray-500', className)}
             {...props}
         />
     );
@@ -38,7 +37,7 @@ function TableBody({ className, ...props }, ref) {
     return (
         <tbody
             ref={ref}
-            className={cn('space-y-2 divide-y', className)}
+            className={('space-y-2 divide-y', className)}
             {...props}
         />
     );
@@ -49,7 +48,7 @@ function Table({ className, ...props }, ref) {
     return (
         <table
             ref={ref}
-            className={cn('w-full overflow-x-auto text-sm rounded-md', className)}
+            className={('w-full overflow-x-auto text-sm rounded-md', className)}
             {...props}
         />
     );
