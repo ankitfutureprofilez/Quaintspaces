@@ -21,7 +21,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/admin/app/app/login/Login.jsx", "pages/admin/app/app/login/index.jsx"  ],
   "exclude": [
     "node_modules"
   ]
