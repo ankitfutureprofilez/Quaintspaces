@@ -14,6 +14,7 @@ import postsData from "../../bot/data.json";
 import Heading from "../elements/Heading";
 import Image from 'next/image'
 import Button from "../elements/Button";
+import Listings from "../LaravelApi/Listings";
 
 const Book = () => {
   const router = useRouter();
@@ -47,28 +48,35 @@ const Book = () => {
   });
 
   useEffect(() => {
-    setListing(postsData.filter((e) => e._id === listingID)[0]);
-    const params = getParams();
-    setInfos(params);
+    const url = router.query;
+    setInfos(url);
+    console.log("id",url.listingID)
+    const main = new Listings();
+    main.PropertyDetail(url.listingID).then((r)=>{
+      console.log("Data",r.data.data);
+         setListing(r.data.data);
+    }).catch((err)=>{
+      console.error(err);
+    });
 
     setGuests({
       adults: {
-        value: +params.numberOfAdults || 0,
+        value: +url.numberOfAdults || 0,
         max: 16,
         min: 0,
       },
       children: {
-        value: +params.numberOfChildren || 0,
+        value: +url.numberOfChildren || 0,
         max: 15,
         min: 0,
       },
       infants: {
-        value: +params.numberOfInfants || 0,
+        value: +url.numberOfInfants || 0,
         max: 5,
         min: 0,
       },
       pets: {
-        value: +params.numberOfPets || 0,
+        value: +url.numberOfPets || 0,
         max: 5,
         min: 0,
       },
@@ -391,10 +399,8 @@ const Book = () => {
           <div className="w-5/12 border border-borderColor rounded-xl shadow p-8">
             <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
             <Image 
-    src={
-        listing?.images?.length > 0
-            ? listing.images[0].url
-            : "https://a0.muscache.com/im/pictures/ed3c3933-428a-435b-9161-196722bcf63d.jpg?aki_policy=large"
+    src={"https://a0.muscache.com/im/pictures/6d32edc4-d842-4927-9375-504b4b1801da.jpg?im_w=720"
+      // listing.property_image[0].image_url
     } 
     alt="Apartment"
     width={200}
@@ -439,7 +445,7 @@ const Book = () => {
                     Nights
                   </span>
                   <span className="block text-blackColor font-medium">
-                  ${
+                  {
                       infos.checkout &&
                       infos.checkin &&
                       differenceInDays(
@@ -465,7 +471,7 @@ const Book = () => {
                     Charges Per Day
                   </span>
                   <span className="block text-blackColor font-medium confirm-price">
-                   -{listing?.price}
+                  ₹{listing?.price}
                   </span>
                 </div>
 
@@ -480,10 +486,10 @@ const Book = () => {
             <div className="pt-4 flex items-center justify-between confirm-total">
               <span className="">Total(INR)</span>
               <span className="text-md font-medium">
-              $
+              ₹
                     {infos.checkout &&
                       infos.checkin &&
-                      +listing?.price?.split("$")[1] *
+                      +listing?.price*
                         differenceInDays(
                           new Date(infos.checkout),
                           new Date(infos.checkin)

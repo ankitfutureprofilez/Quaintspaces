@@ -88,14 +88,14 @@ const Info = React.forwardRef(({ listing }, ref) => {
             ))}
         </ul>
         <button
-          className="btn-normal mt-8"
-          onClick={() => setAmenitiesModal(true)}
-        >
-          See all {listing.data?.amenities?.length} amenities
-        </button>
+  className="btn-normal mt-8"
+  onClick={() => setAmenitiesModal(true)}
+>
+  See all {stringToArray(listing.data?.amenities || '').length} amenities
+</button>
         {amenitiesModal && (
           <AmenitiesModal
-            amenities={listing.data?.amenities}
+            amenities={stringToArray(listing.data?.amenities)}
             setAmenitiesModal={setAmenitiesModal}
           />
         )}
@@ -139,7 +139,7 @@ const AmenitiesModal = ({ amenities, setAmenitiesModal }) => {
                 {e}
               </li>
             ))}
-            {amenities?.map((e) => (
+            {/* {amenities?.map((e) => (
               <li
                 className="w-full py-6 border-b border-borderColor flex gap-2 items-center my-2"
                 key={uuidv4()}
@@ -154,7 +154,7 @@ const AmenitiesModal = ({ amenities, setAmenitiesModal }) => {
                 />
                 {e}
               </li>
-            ))}
+            ))} */}
           </div>
         </main>
       </div>
