@@ -1,5 +1,4 @@
 "use client"
-import
 import CourseProgress from "../components/Cards/CourseProgress"
 import CurrentProject from '../components/Cards/CurrentProject'
 import EmployeeSpotlight from '../components/Cards/EmployeeSpotlight'
