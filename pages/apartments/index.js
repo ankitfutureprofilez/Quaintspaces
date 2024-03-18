@@ -5,6 +5,7 @@ import RoomListings from "../home/RoomListings";
 import Filter from "../home/Filter";
 import { PostBody } from "../../components";
 import axios from "axios";
+import Listings from "../LaravelApi/Listings";
 
 export default function index() {
   // Sort By Button Logic
@@ -92,29 +93,28 @@ export default function index() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
-  // API data fetching
-  const [listings, setListings] = useState({
-    loading: true,
-    data: [],
-  });
-
-
-
+ 
   
+  const [loading, setloading] = useState(false);
+  const [listings, setListings] = useState([]);
+
+
   async function fetchLists (signal) {
-    setListings({ loading: true, data: [] });
-    await axios("/api/listings", {signal}).then((res)=>{
-      setListings({ loading: false, data: res.data.data });
-    }).catch((err)=>{
-      console.log("err", err)
-    });
+      setloading(true);
+      const main = new Listings(signal);
+      main.PropertyListing().then((r)=>{
+        setloading(false)
+        setListings(r.data.data);
+      }).catch((err)=>{
+        setloading(false);
+        console.error(err);
+      });
   }
   
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
-      fetchLists(signal);
+    fetchLists(signal);
       return () => controller.abort();
   }, []);
 
@@ -135,7 +135,7 @@ export default function index() {
             </button>
           </div>
         </div>
-        <PostBody data={listings} />
+        <PostBody loading={loading} listings={listings} />
       </div>
       {/* Render the modal component conditionally */}
       {isModalOpen && (

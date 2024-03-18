@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { PostBody } from "../../components";
 import axios from "axios";
+import Listings from "../LaravelApi/Listings";
 
 export default function RoomListings() {
-  const [listings, setListings] = useState({
-    loading: true,
-    data: [],
-  });
-
+  
+  const [loading, setloading] = useState(false);
+  const [listings, setListings] = useState([]);
   useEffect(() => {
-    (async () => {
-      setListings({ loading: true, data: [] });
-      const { data } = await axios("/api/listings");
-      setListings({ loading: false, data: data.data });
-    })();
+    setloading(true);
+      const main = new Listings();
+      main.PropertyListing().then((r)=>{
+        setloading(false)
+        setListings(r.data.data);
+      }).catch((err)=>{
+        setloading(false);
+        console.error(err);
+      });
   }, []);
   return (
-      <PostBody data={listings} />
+      <PostBody loading={loading} listings={listings} />
   );
 }

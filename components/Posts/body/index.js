@@ -4,11 +4,12 @@ import ListingsLoading from "../../Loading/ListingsLoading";
 import Card from "./Card";
 import { v4 as uuidv4 } from "uuid";
 
-const PostBody = ({ data }) => {
+const PostBody = ({ listings, loading }) => {
   const child = useRef([]);
 
   useEffect(() => {
-    if (!data.loading && data.data.length > 0) {
+    console.log("V listings.data", listings)
+    if (!listings && listings.length > 0) {
       if (child && child.current) {
         let tl = gsap.timeline();
 
@@ -21,18 +22,17 @@ const PostBody = ({ data }) => {
         );
       }
     }
-  }, [data.data]);
+  }, [listings]);
 
-
+  
   return (
     <div>
 
       <ul className="flex flex-wrap px-4">
-        {data.loading ? Array(3).fill("_").map(() => <ListingsLoading key={uuidv4()} />)
-        : 
-          data.data.map((post, i) => (
+        {loading ? Array(3).fill("_").map(() => <ListingsLoading key={uuidv4()} />)
+        :  listings && listings.map((post, i) => (
             <li
-              key={post._id}
+              key={post.id}
               className=" w-full sm:w-3/6 md:w-2/6 px-3"
               ref={(el) => (child.current[i] = el)} >
               <Card post={post} />
