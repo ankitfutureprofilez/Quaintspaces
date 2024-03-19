@@ -8,15 +8,15 @@ export default function RoomListings() {
   const [loading, setloading] = useState(false);
   const [listings, setListings] = useState([]);
   useEffect(() => {
-    setloading(true);
-      const main = new Listings();
-      main.PropertyListing().then((r)=>{
-        setloading(false)
-        setListings(r.data.data);
-      }).catch((err)=>{
-        setloading(false);
-        console.error(err);
-      });
+    // setloading(true);
+    //   const main = new Listings();
+    //   main.PropertyListing().then((r)=>{
+    //     setloading(false)
+    //     setListings(r.data.data);
+    //   }).catch((err)=>{
+    //     setloading(false);
+    //     console.error(err);
+    //   });
   }, []);
   return (
       <PostBody loading={loading} listings={listings} />
