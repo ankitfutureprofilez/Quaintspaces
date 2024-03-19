@@ -14,39 +14,32 @@ import MoreIcon from '../assets/icons/more.svg';
 function MembersTable() {
     return (
         <div className='w-full overflow-x-auto'>
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableColumn className="w-[180px]">
-                            Member name
-                        </TableColumn>
-                        <TableColumn className="w-[180px]">
-                            Title
-                        </TableColumn>
-                        <TableColumn className="w-[180px]">
-                            Project
-                        </TableColumn>
-                        <TableColumn className="w-[180px]">
-                            Member Document
-                        </TableColumn>
-                        <TableColumn className='w-[180px]'>
-                            Status
-                        </TableColumn>
-                    </TableRow>
-                </TableHeader>
-
-                <TableBody>
-                    <TableRow>
-                        <TableColumn className="w-[180px]">
-                            <Image src={Avatar2} alt='James Brown' className='w-8 rounded-full' />
-                            <div>
-                                <p className='text-gray-800 font-medium'>James Brown</p>
-                                <p className='text-xs'>james@example.com</p>
-                            </div>
-                        </TableColumn>
-                    </TableRow>
-                </TableBody>
-            </Table>
+       <table class="table-auto">
+  <thead>
+    <tr>
+      <th>Song</th>
+      <th>Artist</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+      <td>Malcolm Lockyer</td>
+      <td>1961</td>
+    </tr>
+    <tr>
+      <td>Witchy Woman</td>
+      <td>The Eagles</td>
+      <td>1972</td>
+    </tr>
+    <tr>
+      <td>Shining Star</td>
+      <td>Earth, Wind, and Fire</td>
+      <td>1975</td>
+    </tr>
+  </tbody>
+</table>
         </div>
     );
 }
