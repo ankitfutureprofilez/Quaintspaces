@@ -100,15 +100,15 @@ export default function index() {
 
 
   async function fetchLists (signal) {
-      // setloading(true);
-      // const main = new Listings(signal);
-      // main.PropertyListing().then((r)=>{
-      //   setloading(false)
-      //   setListings(r.data.data);
-      // }).catch((err)=>{
-      //   setloading(false);
-      //   console.log(err);
-      // });
+      setloading(true);
+      const main = new Listings(signal);
+      main.PropertyListing().then((r)=>{
+        setloading(false)
+        setListings(r.data.data);
+      }).catch((err)=>{
+        setloading(false);
+        console.log(err);
+      });
   }
   
   useEffect(() => {
