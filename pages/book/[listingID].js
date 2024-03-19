@@ -24,7 +24,6 @@ const Book = () => {
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
   const [guestsModel, setGuestsModel] = useState(false);
-
   console.log("infos",infos)
   const [guests, setGuests] = useState({
     adults: {
