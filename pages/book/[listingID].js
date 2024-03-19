@@ -262,20 +262,20 @@ console.log("router query",url)
     <div>
       <main className="max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12">
         <Heading text={"Confirm and pay"} handleClick={() => router.push("-1")} />
-        <div className="flex mt-14 px-3 gap-10">
+        <div className="flex mt-14 px-3 gap-10 your-trip-sec">
           <div className="w-8/12">
-            <h1 className="text-xl mb-4 font-medium heading-data">Your trip</h1>
+            <h2 className="text-xl mb-4 font-medium heading-data">Your trip</h2>
             <div className="flex items-center justify-between w-full py-2">
               <div>
-                <h5 className="text-lg  font-medium item-heading ">Dates</h5>
+                <h3 className="text-lg  font-medium item-heading ">Dates</h3>
                 {/* <h5 className="text-md text-blackColor">{infos.checkin && infos.checkout ?
   `${format(new Date(infos.checkin), "MMM dd")} - ${format(new Date(infos.checkout), "MMM dd")}`
   : "Dates not specified"}</h5> */}
-                <h5 className="text-md item-paragraph">{`${
+                <p className="text-md item-paragraph">{`${
                   infos?.checkin && format(new Date(infos.checkin), "MMM dd")
                 } - ${
                   infos?.checkout && format(new Date(infos.checkout), "MMM dd")
-                }`}</h5>
+                }`}</p>
 
               </div>
               <button
@@ -299,7 +299,7 @@ console.log("router query",url)
                       : ""
                   }`}
                 </h5> */}
-                <h5 className="text-md item-paragrapg">
+                <p className="text-md item-paragrapg">
                 {`${+infos.numberOfAdults + +infos.numberOfChildren} guests ${
                     +infos.numberOfInfants
                       ? ", " + infos.numberOfInfants + " infants"
@@ -309,7 +309,7 @@ console.log("router query",url)
                       ? ", " + infos.numberOfPets + " pets"
                       : ""
                   }`}
-                </h5>
+                </p>
               </div>
               <button
                 onClick={() => setGuestsModel(true)}
@@ -318,8 +318,8 @@ console.log("router query",url)
                 EDIT
               </button>
             </div>
-            <h1 className="text-xl mb-4 font-medium mt-5 heading-data">Upload ID</h1>
-            <div className=" border-b border-borderColor">
+            <h3 className="text-xl mb-4 font-medium mt-10 heading-data">Upload ID</h3>
+            <div className=" border-b border-borderColor pb-11">
                 <form onSubmit={handleSubmit}>
                   <div className="mb-4">
                     <select
@@ -350,7 +350,7 @@ console.log("router query",url)
                   </div>
                 </form>
             </div>
-            <h1 className="text-xl mb-4 font-medium mt-5 heading-data">Required for your trip</h1>
+            <h3 className="text-xl mb-4 font-medium mt-11 heading-data">Required for your trip</h3>
             <div className='flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor'>
 
               <div className="ml-3 mt-4">
@@ -360,7 +360,7 @@ console.log("router query",url)
                 <div className="flex flex-wrap justify-between mb-5">
                   <p className="item-pargraph"> Share why you're travelling, who's coming with you and what you love about the space.
                   </p>
-                  <p  className="edit-color underline">
+                  <p  className="edit-color underline font-bold">
                     ADD
                   </p>
                 </div>
@@ -372,7 +372,7 @@ console.log("router query",url)
                   <p className="item-pargraph">
                     Add and confirm your phone number to get trip updates.
                   </p>
-                  <p  className="edit-color underline">
+                  <p  className="edit-color underline font-bold">
                     ADD
                   </p>
                 </div>
@@ -388,15 +388,15 @@ console.log("router query",url)
                 <p className="item-pargraph">
                   This reservation is non-refundable.
                 </p>
-                <p  className="underline edit-color">
+                <p  className="underline edit-color font-bold">
                 Learn More
                 </p>
               </div>
             </div>
           </div>
-         <div className="mt-5">
+         <div className="mt-11">
           <Button text={"Confirm & Pay"} 
-                    design={"font-inter font-lg leading-tight text-center text-white w-96 bg-orange-300  border-2 p-4 rounded-full"} />
+                    design={"font-inter  font-lg leading-tight text-center text-white w-96 bg-orange-300 p-4 rounded-full"} />
           </div>
           </div>
           <div className="w-5/12  rounded-xl shadow py-8 px-5 h-fit golden-border">
@@ -486,7 +486,7 @@ console.log("router query",url)
              
             </div>
             <div className="pt-4 flex items-center justify-between confirm-total">
-              <span className="">Total(INR)</span>
+              <span className="font-bold">Total(INR)</span>
               <span className="text-md font-medium">
               ₹
                     {infos.checkout &&

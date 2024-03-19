@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap')
 
 /* body {
   background-color: #f8f1eb;
@@ -403,16 +403,18 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
 .profile-text h1 {font-family: "Inter", sans-serif; font-size: 22px; font-weight: 400; line-height: 27px; letter-spacing: 0em; color: #3F2A17; text-align: left; margin-bottom: 10px; } 
 .profile-text p {font-family: "Inter", sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #666360; }
 .golden-border { border: 1px solid #DCAC81; }
-
-
-
-
-
-
-
-
-
-
+.confirm-total span {font-family: "Inter", sans-serif !important; font-size: 18px; font-weight: 600 !important; line-height: 27px; letter-spacing: 0em; text-align: left; color: #61554E; } 
+.heading-data { font-family: "Roboto", sans-serif !important; }
+.your-trip-sec h2 {  font-family: "Roboto", sans-serif; font-size: 22px; font-weight: 400; line-height: 26.69px; text-align: left; color: #3F2A17; }
+.bg-orange-300 { background: #DCAC81; }
+.edit-here h2 {margin-bottom: 6px; font-family: "Roboto", sans-serif; font-size: 22px; font-weight: 400; line-height: 26.69px; text-align: left; color: #3F2A17; } 
+.edit-here p { font-family: "Roboto", sans-serif; font-size: 18px; font-weight: 400; line-height: 21.6px; text-align: left; color: #666360; }
+.profile-border { padding-bottom: 50px; border-bottom: 1px solid #ebebeb; margin-bottom: 50px; }
+.pers-info { padding-bottom: 40px; } 
+.pers-info  h3 { font-family: "Inter", sans-serif; font-size: 22px; font-weight: 400; line-height: 26.69px; text-align: left; color: #3F2A17; margin-bottom: 6px; } 
+.pers-info p {font-family: "Inter", sans-serif; font-size: 18px; font-weight: 400; line-height: 21.6px; text-align: left; color: #666360; }
+.border-bottom-form { border-bottom: 1px solid #eaeaea; margin-top: -95px; margin-bottom: 100px; }
+.perso-form label { color: #666666 !important; }
 
 
 
@@ -445,6 +447,34 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
     margin: auto;
     padding: 0 15px;
   }
+  .hero-sec { padding: 150px 0 180px; }
+  .hero-sec h1 {font-size: 52px; line-height: 58px; margin-bottom: 18px; }
+  .hero-sec p { font-size: 20px; line-height: 24px; margin-bottom: 30px;     text-align: center;}
+  .hero-sec button {width: 330px;padding: 15px; }
+  .luxury-stay h1 {font-size: 95px; line-height: 160px;}
+  h1.in-jaipur { margin-top: -92px; }
+  .luxury-stay { padding: 20px 0 50px; }
+  .tip-top-sec { padding: 50px 0; }
+  .listing-heading { font-size: 30px; line-height: 38px;  margin-bottom: 29px; }
+  .flat-info { padding: 0 0px; }
+  .flat-info h5 { padding: 12px 10px 12px 10px;}
+  .flat-info h3 { font-size: 22px;  }
+  .explor-btn {  margin-top: 10px; }
+  .flat-info span {font-size: 16px;  }
+  .premium-location-slider { padding: 50px 0; }
+  .premium-location-slider h1 { font-size: 30px; line-height: 36px; margin-bottom: 18px;  }
+  .premium-location-slider button {padding: 12px; }
+  .nav-bar a { padding: 8px 10px;  font-size: 15px; line-height: 22px;  }
+  .login-signup-btn a { width: 102px; height: 43px; margin: 0 4px;}
+  .login-signup-btn { padding-left: 10px; margin-left: 5px; }
+  .logo img { max-width: 110px; }
+  .luxury-stay-img .img-box { padding: 0 5px; }
+  .smart-box .iteam h3 {font-size: 18px; line-height: 26px; }
+  .visit-us-sec { padding: 45px 0 120px;  }
+  .visit-us-sec h2 {font-size: 34px;  line-height: 36px;  }
+  .footer-menu nav a { width: 40%; margin: 0 !important; padding: 5px 0; } 
+  .footer-menu nav { flex-flow: wrap; justify-content: end; }
+
 }
 @media (max-width: 767px) {
   .container {
@@ -452,6 +482,8 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
     margin: auto;
     padding: 0 15px;
   }
+  .footer-menu nav a { width: 47%; }
+
 }
 @media (max-width: 575px) {
   .container {
@@ -459,6 +491,11 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
     margin: auto;
     padding: 0 15px;
   }
+  .footer-menu nav { flex-flow: column; margin: 0; margin-top: 20px; width: 100%; } 
+  .footer-menu { flex-flow: column; } 
+  .footer-menu nav p.menu-footer { text-align: left; margin: 0; } 
+  .footer-menu nav a { margin: 0 !IMPORTANT; padding: 4px; } 
+  .footer-menu .flex.items-left.space-x-4 { width: 100%; }
 }
 
 /* Button Group in Apartment Page */
