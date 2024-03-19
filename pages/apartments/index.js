@@ -107,7 +107,7 @@ export default function index() {
       //   setListings(r.data.data);
       // }).catch((err)=>{
       //   setloading(false);
-      //   console.error(err);
+      //   console.log(err);
       // });
   }
   

@@ -139,14 +139,14 @@ export default function Property() {
     //                     address: locationData.display_name
     //                 }));
     //             } catch (error) {
-    //                 console.error('Error fetching data:', error);
+    //                 console.log('Error fetching data:', error);
     //             }
     //         }, handleGeolocationError);
     //     }
     // };
     const handleGeolocationError = () => {
         // setError('Geolocation failed');
-        console.error('Geolocation failed');
+        console.log('Geolocation failed');
     };
     const handleLocationClick = () => {
         // fetchLocationData();

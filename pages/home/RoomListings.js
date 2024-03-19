@@ -15,7 +15,7 @@ export default function RoomListings() {
     //     setListings(r.data.data);
     //   }).catch((err)=>{
     //     setloading(false);
-    //     console.error(err);
+    //     console.log(err);
     //   });
   }, []);
   return (
