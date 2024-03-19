@@ -399,10 +399,10 @@ console.log("router query",url)
                     design={"font-inter font-lg leading-tight text-center text-white w-96 bg-orange-300  border-2 p-4 rounded-full"} />
           </div>
           </div>
-          <div className="w-5/12 border border-borderColor rounded-xl shadow p-8">
+          <div className="w-5/12  rounded-xl shadow py-8 px-5 h-fit golden-border">
             <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
             <Image 
-    src={listing?.property_image[0]?.image_url} 
+    src="http://quaintstays.laraveldevelopmentcompany.com//public//storage//property//images//1710834595_houseimg%202.jpg"
     alt="Apartment"
     width={200}
     height={200}
@@ -418,8 +418,8 @@ console.log("router query",url)
                 className="w-32 h-28 rounded-lg object-cover"
               /> */}
               <div>
-                <h4 className="text-md mb-1">{listing?.title}</h4>
-               <p>Entire Apartment </p>
+                <h4 className="text-xl mb-1">{listing?.title}</h4>
+               <h3 className=" text-lg">Entire Apartment </h3>
                 <span className="flex text-sm items-center gap-1">
                   <span>
                     <Star />
