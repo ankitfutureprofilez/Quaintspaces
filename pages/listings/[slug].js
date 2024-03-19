@@ -17,24 +17,11 @@ const Listing = () => {
   const [selection, setSelection] = useState(null);
   const [headerSearch, setHeaderSearch] = useState(false);
   const[loading,setLoading]=useState(true);
-  const [listing, setListing
-  ] = useState({
+  const [listing, setListing] = useState({
     loading: true,
     data: {},
   });
   
-  // useEffect(() => {
-  //   setloading(true);
-  //     const main = new Listings();
-  //     main.PropertyListing().then((r)=>{
-  //       setloading(false)
-  //       setListings(r.data.data);
-  //     }).catch((err)=>{
-  //       setloading(false);
-  //       console.log(err);
-  //     });
-  // }, [router.query]);
-
   useEffect(() => {
     if (router.query.slug) {
       setListing({
@@ -44,7 +31,7 @@ const Listing = () => {
       (async () => {
         const main = new Listings();
       main.PropertyDetail(router.query.slug).then((r)=>{
-        // console.log("Data",r.data.data);
+      console.log("Data",r.data.data);
            setListing({
             loading: false,
             data: r.data.data,

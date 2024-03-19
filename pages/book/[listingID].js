@@ -19,6 +19,7 @@ import Listings from "../LaravelApi/Listings";
 const Book = () => {
   const router = useRouter();
   const { listingID } = router.query;
+  console.log("listingID",listingID)
   const [listing, setListing] = useState({});
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
