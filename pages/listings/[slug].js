@@ -11,9 +11,8 @@ import ThingsToKnow from "./ThingsToKnow";
 import Listings from "../LaravelApi/Listings";
 
 const Listing = () => {
-
-  const {slug}= router.query;
   const router = useRouter();
+  const {slug}= router.query;
   const { wishlist, setWishlist } = useContext(Context);
   const [overlay, setOverlay] = useState(false);
   const [selection, setSelection] = useState(null);
