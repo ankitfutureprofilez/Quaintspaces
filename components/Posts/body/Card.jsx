@@ -58,11 +58,17 @@ const Card = ({ post }) => {
                {post?.property_image[0]?.image_url}  
               />
               <div className="flat-info">
-                <h5>{post.location}</h5>
+                <h5>
+                  {/* {post.location} */}
+                  {textResizer(
+                post.location.slice(0, 1).toUpperCase() + post.location.slice(1, -1),
+                30
+              )}
+                  </h5>
                 <h3 className="line-limit"> 
                 {post.name}
                 {/* {textResizer(
-                post.lt.slice(0, 1).toUpperCase() + post.lt.slice(1, -1),
+                post.name.slice(0, 1).toUpperCase() + post.name.slice(1, -1),
                 30
               )} */}
               </h3>
