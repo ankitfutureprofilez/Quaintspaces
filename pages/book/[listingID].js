@@ -14,17 +14,15 @@ import postsData from "../../bot/data.json";
 import Heading from "../elements/Heading";
 import Image from 'next/image'
 import Button from "../elements/Button";
-// import Listings from "../LaravelApi/Listings";
 
 const Book = () => {
   const router = useRouter();
   const { listingID } = router.query;
-  console.log("listingID",listingID)
-  const [listing, setListing] = useState([]);
+  const [listing, setListing] = useState({});
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
   const [guestsModel, setGuestsModel] = useState(false);
-  console.log("infos",infos)
+
   const [guests, setGuests] = useState({
     adults: {
       value: +infos.adults || 0,
@@ -48,42 +46,34 @@ const Book = () => {
     },
   });
 
-  // useEffect(() => {
-  //   if(listingID  && url){
-  //     const url = router.query;
-  //     setInfos(url);
-  //     console.log("router query",url)
-  //     const main = new Listings();
-  //     main.PropertyDetail(url.listingID || '').then((r)=>{
-  //          setListing(r?.data?.data);
-  //     }).catch((err)=>{
-  //       console.error(err);
-  //     });
-  
-  //     setGuests({
-  //       adults: {
-  //         value: +url.numberOfAdults || 0,
-  //         max: 16,
-  //         min: 0,
-  //       },
-  //       children: {
-  //         value: +url.numberOfChildren || 0,
-  //         max: 15,
-  //         min: 0,
-  //       },
-  //       infants: {
-  //         value: +url.numberOfInfants || 0,
-  //         max: 5,
-  //         min: 0,
-  //       },
-  //       pets: {
-  //         value: +url.numberOfPets || 0,
-  //         max: 5,
-  //         min: 0,
-  //       },
-  //     });
-  //   }
-  // }, [router.asPath]);
+  useEffect(() => {
+    setListing(postsData.filter((e) => e._id === listingID)[0]);
+    const params = getParams();
+    setInfos(params);
+
+    setGuests({
+      adults: {
+        value: +params.numberOfAdults || 0,
+        max: 16,
+        min: 0,
+      },
+      children: {
+        value: +params.numberOfChildren || 0,
+        max: 15,
+        min: 0,
+      },
+      infants: {
+        value: +params.numberOfInfants || 0,
+        max: 5,
+        min: 0,
+      },
+      pets: {
+        value: +params.numberOfPets || 0,
+        max: 5,
+        min: 0,
+      },
+    });
+  }, [router.asPath]);
 
   const [formData, setFormData] = useState({
     selectOption: '',
@@ -258,24 +248,23 @@ const Book = () => {
     //   {dateModel && <DatesModel infos={infos} setDateModel={setDateModel} />}
     // </>
 
-    
     <div>
       <main className="max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12">
         <Heading text={"Confirm and pay"} handleClick={() => router.push("-1")} />
-        <div className="flex mt-14 px-3 gap-10 your-trip-sec">
+        <div className="flex mt-14 px-3 gap-10">
           <div className="w-8/12">
-            <h2 className="text-xl mb-4 font-medium heading-data">Your trip</h2>
+            <h1 className="text-xl mb-4 font-medium heading-data">Your trip</h1>
             <div className="flex items-center justify-between w-full py-2">
               <div>
-                <h3 className="text-lg  font-medium item-heading ">Dates</h3>
+                <h5 className="text-lg  font-medium item-heading ">Dates</h5>
                 {/* <h5 className="text-md text-blackColor">{infos.checkin && infos.checkout ?
   `${format(new Date(infos.checkin), "MMM dd")} - ${format(new Date(infos.checkout), "MMM dd")}`
   : "Dates not specified"}</h5> */}
-                <p className="text-md item-paragraph">{`${
+                <h5 className="text-md item-paragraph">{`${
                   infos?.checkin && format(new Date(infos.checkin), "MMM dd")
                 } - ${
                   infos?.checkout && format(new Date(infos.checkout), "MMM dd")
-                }`}</p>
+                }`}</h5>
 
               </div>
               <button
@@ -299,7 +288,7 @@ const Book = () => {
                       : ""
                   }`}
                 </h5> */}
-                <p className="text-md item-paragrapg">
+                <h5 className="text-md item-paragrapg">
                 {`${+infos.numberOfAdults + +infos.numberOfChildren} guests ${
                     +infos.numberOfInfants
                       ? ", " + infos.numberOfInfants + " infants"
@@ -309,7 +298,7 @@ const Book = () => {
                       ? ", " + infos.numberOfPets + " pets"
                       : ""
                   }`}
-                </p>
+                </h5>
               </div>
               <button
                 onClick={() => setGuestsModel(true)}
@@ -318,8 +307,8 @@ const Book = () => {
                 EDIT
               </button>
             </div>
-            <h3 className="text-xl mb-4 font-medium mt-10 heading-data">Upload ID</h3>
-            <div className=" border-b border-borderColor pb-11">
+            <h1 className="text-xl mb-4 font-medium mt-5 heading-data">Upload ID</h1>
+            <div className=" border-b border-borderColor">
                 <form onSubmit={handleSubmit}>
                   <div className="mb-4">
                     <select
@@ -350,7 +339,7 @@ const Book = () => {
                   </div>
                 </form>
             </div>
-            <h3 className="text-xl mb-4 font-medium mt-11 heading-data">Required for your trip</h3>
+            <h1 className="text-xl mb-4 font-medium mt-5 heading-data">Required for your trip</h1>
             <div className='flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor'>
 
               <div className="ml-3 mt-4">
@@ -360,7 +349,7 @@ const Book = () => {
                 <div className="flex flex-wrap justify-between mb-5">
                   <p className="item-pargraph"> Share why you're travelling, who's coming with you and what you love about the space.
                   </p>
-                  <p  className="edit-color underline font-bold">
+                  <p  className="edit-color underline">
                     ADD
                   </p>
                 </div>
@@ -372,7 +361,7 @@ const Book = () => {
                   <p className="item-pargraph">
                     Add and confirm your phone number to get trip updates.
                   </p>
-                  <p  className="edit-color underline font-bold">
+                  <p  className="edit-color underline">
                     ADD
                   </p>
                 </div>
@@ -388,26 +377,29 @@ const Book = () => {
                 <p className="item-pargraph">
                   This reservation is non-refundable.
                 </p>
-                <p  className="underline edit-color font-bold">
+                <p  className="underline edit-color">
                 Learn More
                 </p>
               </div>
             </div>
           </div>
-         <div className="mt-11">
+         <div className="mt-5">
           <Button text={"Confirm & Pay"} 
-                    design={"font-inter  font-lg leading-tight text-center text-white w-96 bg-orange-300 p-4 rounded-full"} />
+                    design={"font-inter font-lg leading-tight text-center text-white w-96 bg-orange-300  border-2 p-4 rounded-full"} />
           </div>
           </div>
-          <div className="w-5/12  rounded-xl shadow py-8 px-5 h-fit golden-border">
+          <div className="w-5/12 border border-borderColor rounded-xl shadow p-8">
             <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
             <Image 
-    src="http://quaintstays.laraveldevelopmentcompany.com//public//storage//property//images//1710834595_houseimg%202.jpg"
+    src={
+        listing?.images?.length > 0
+            ? listing.images[0].url
+            : "https://a0.muscache.com/im/pictures/ed3c3933-428a-435b-9161-196722bcf63d.jpg?aki_policy=large"
+    } 
     alt="Apartment"
     width={200}
     height={200}
 />
-
 
               {/* <img
                 src={
@@ -418,8 +410,8 @@ const Book = () => {
                 className="w-32 h-28 rounded-lg object-cover"
               /> */}
               <div>
-                <h4 className="text-xl mb-1">{listing?.title}</h4>
-               <h3 className=" text-lg">Entire Apartment </h3>
+                <h4 className="text-md mb-1">{listing?.title}</h4>
+               <p>Entire Apartment </p>
                 <span className="flex text-sm items-center gap-1">
                   <span>
                     <Star />
@@ -447,7 +439,7 @@ const Book = () => {
                     Nights
                   </span>
                   <span className="block text-blackColor font-medium">
-                  {
+                  ${
                       infos.checkout &&
                       infos.checkin &&
                       differenceInDays(
@@ -473,7 +465,7 @@ const Book = () => {
                     Charges Per Day
                   </span>
                   <span className="block text-blackColor font-medium confirm-price">
-                  ₹{listing?.price}
+                   -{listing?.price}
                   </span>
                 </div>
 
@@ -486,12 +478,12 @@ const Book = () => {
              
             </div>
             <div className="pt-4 flex items-center justify-between confirm-total">
-              <span className="font-bold">Total(INR)</span>
+              <span className="">Total(INR)</span>
               <span className="text-md font-medium">
-              ₹
+              $
                     {infos.checkout &&
                       infos.checkin &&
-                      +listing?.price*
+                      +listing?.price?.split("$")[1] *
                         differenceInDays(
                           new Date(infos.checkout),
                           new Date(infos.checkin)
