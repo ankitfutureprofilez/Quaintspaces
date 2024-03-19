@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = process.env.NEXT_PUBLIC_APP_BASE_URL;
+const API_URL =  process.env.NEXT_PUBLIC_APP_BASE_URL;
 
 function getToken() {
   if (typeof window !== 'undefined') {

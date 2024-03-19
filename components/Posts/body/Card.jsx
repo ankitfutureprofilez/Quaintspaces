@@ -55,8 +55,7 @@ const Card = ({ post }) => {
               <Image width={100} height={300}
               layout="responsive" 
               src=
-              // {post.property_image[0].image_url}  
-              "https://a0.muscache.com/im/pictures/6d32edc4-d842-4927-9375-504b4b1801da.jpg?im_w=720"
+               {post?.property_image[0]?.image_url}  
               />
               <div className="flat-info">
                 <h5>{post.location}</h5>

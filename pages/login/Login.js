@@ -33,7 +33,8 @@ export default function Login() {
       console.log("response",res.data.message)
       if (res && res.data && res.data.status) {
         toast.success(res.data.message);
-        localStorage && localStorage.setItem("token", response.token);
+        console.log("res",res)
+        localStorage && localStorage.setItem("token", res?.data?.token);
         router.push('/');
         console.log(res.data.message)
         setFormData({
