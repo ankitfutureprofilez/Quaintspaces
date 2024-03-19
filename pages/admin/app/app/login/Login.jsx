@@ -19,34 +19,34 @@ export default function  Login() {
     setRecord((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const main = new Listing();
-  //   const formData = new FormData();
-  //   formData.append("email", record.email);
-  //   formData.append("password", record.password);
-  //   const response = main.adminlogin(formData);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const main = new Listing();
+    const formData = new FormData();
+    formData.append("email", record.email);
+    formData.append("password", record.password);
+    const response = main.adminlogin(formData);
 
-  //   response
-  //     .then((res) => {
-  //       if (res && res?.data && res?.data?.status) {
-  //         router.push("/admin")
-  //         toast.success(res.data.message)
-  //         localStorage && localStorage.setItem("token", res?.data?.token)
-  //       } else {
-  //         toast.error(res.data.message)
+    response
+      .then((res) => {
+        if (res && res?.data && res?.data?.status) {
+          router.push("/admin")
+          toast.success(res.data.message)
+          localStorage && localStorage.setItem("token", res?.data?.token)
+        } else {
+          toast.error(res.data.message)
 
-  //       }
-  //       setRecord({
-  //         email: "",
-  //         password: "",
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log("error", error);
-  //     });
+        }
+        setRecord({
+          email: "",
+          password: "",
+        });
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
 
-  // };
+  };
 
   return (
     <>
