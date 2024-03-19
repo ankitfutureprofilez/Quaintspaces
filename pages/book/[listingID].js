@@ -498,6 +498,15 @@ const Book = () => {
             </div>
           </div>
         </div>
+        {guestsModel && (
+        <GuestsModel
+          infos={infos}
+          setGuestsModel={setGuestsModel}
+          guests={guests}
+          setGuests={setGuests}
+        />
+      )}
+      {dateModel && <DatesModel infos={infos} setDateModel={setDateModel} />}
       </main>
     </div>
   );

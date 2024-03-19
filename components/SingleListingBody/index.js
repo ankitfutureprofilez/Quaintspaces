@@ -30,8 +30,8 @@ const SingleListingBody = ({ listing }) => {
 
   const result = useLabeling(guests);
 
-  const [selectedDay, setSelectedDay] = useState(new Date());
-const [selectEnd, setSelectEnd] = useState(addDays(new Date(), 6));
+  const [selectedDay, setSelectedDay] = useState(null);
+const [selectEnd, setSelectEnd] = useState(null);
 
   const ImagesRef = useRef(null);
   const AmenitiesRef = useRef(null);

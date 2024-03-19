@@ -9,8 +9,13 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
 
   useEffect(() => {
     if (selectedDay && selectEnd) {
-      // setDates({ selectedDay, selectEnd });
-      console.log("selectedDay, selectEnd", selectedDay, selectEnd)
+      setDates({
+        selectedDay: selectedDay,
+        selectEnd: selectEnd,
+      });
+      // setDates({ ...dates, selectedDay: selectedDay });
+      // setDates({ ...dates, selectEnd: selectEnd });
+      console.log("selectedDay, selectEnd", selectedDay, selectEnd);
       // setDates({
       //   selectedDay: format(selectedDay, "MM/dd/yyyy"),
       //   selectEnd: format(selectEnd, "MM/dd/yyyy"),
@@ -32,7 +37,22 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
       >
         <span className="block text-xs font-semibold">CHECK IN</span>
         <span className="block font-medium mt-1">
-          {dates.selectedDay || "Add dates"}
+          {dates.selectedDay ? (
+            <>
+              <span>
+                {dates.selectedDay.toLocaleString("en-US", { weekday: "long" })}
+              </span>
+              <div>
+                <span>{dates.selectedDay.getDate()}{" "}</span>
+                <span>
+                  {dates.selectedDay.toLocaleString("en-US", { month: "long" })}
+                </span>
+                <span>{","}{dates.selectedDay.getFullYear()}</span>
+              </div>
+            </>
+          ) : (
+            "Add dates"
+          )}
         </span>
       </div>
       <div
@@ -43,7 +63,22 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
       >
         <span className="block text-xs font-semibold">CHECK OUT</span>
         <span className="block font-medium mt-1">
-          {dates.selectEnd || "Add dates"}
+          {dates.selectEnd ? (
+            <>
+              <span>
+                {dates.selectEnd.toLocaleString("en-US", { weekday: "long" })}
+              </span>
+              <div>
+                <span>{dates.selectEnd.getDate()}{" "}</span>
+                <span>
+                  {dates.selectEnd.toLocaleString("en-US", { month: "long" })}
+                </span>
+                <span>{","}{dates.selectEnd.getFullYear()}</span>
+              </div>
+            </>
+          ) : (
+            "Add dates"
+          )}
         </span>
       </div>
     </div>
