@@ -50,10 +50,10 @@ const Book = () => {
   useEffect(() => {
     const url = router.query;
     setInfos(url);
-    console.log("id",url.listingID)
+    // console.log("router query",url)
     const main = new Listings();
     main.PropertyDetail(url.listingID).then((r)=>{
-      console.log("Data",r.data.data);
+      // console.log("Data",r.data.data);
          setListing(r.data.data);
     }).catch((err)=>{
       console.error(err);

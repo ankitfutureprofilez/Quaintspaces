@@ -44,7 +44,7 @@ const Listing = () => {
       (async () => {
         const main = new Listings();
       main.PropertyDetail(router.query.slug).then((r)=>{
-        console.log("Data",r.data.data);
+        // console.log("Data",r.data.data);
            setListing({
             loading: false,
             data: r.data.data,
