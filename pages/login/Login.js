@@ -103,7 +103,9 @@ export default function Login() {
                   Don't have an account? <Link href="/signup">Sign up</Link>
                 </h3>
               </div>
-              <form onSubmit={handleSubmit}>
+              <form 
+              // onSubmit={handleSubmit}
+              >
                 <div className="mb-6">
                   <label htmlFor="email">Email</label>
                   <input
