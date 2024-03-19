@@ -38,7 +38,7 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
         <span className="block text-xs font-semibold">CHECK IN</span>
         <span className="block font-medium mt-1">
           {dates.selectedDay ? (
-            <>
+            <div className="text-sm font-semibold mt-2">
               <span>
                 {dates.selectedDay.toLocaleString("en-US", { weekday: "long" })}
               </span>
@@ -49,7 +49,7 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
                 </span>
                 <span>{","}{dates.selectedDay.getFullYear()}</span>
               </div>
-            </>
+            </div>
           ) : (
             "Add dates"
           )}
@@ -64,7 +64,7 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
         <span className="block text-xs font-semibold">CHECK OUT</span>
         <span className="block font-medium mt-1">
           {dates.selectEnd ? (
-            <>
+             <div className="text-sm font-semibold mt-2">
               <span>
                 {dates.selectEnd.toLocaleString("en-US", { weekday: "long" })}
               </span>
@@ -75,7 +75,7 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
                 </span>
                 <span>{","}{dates.selectEnd.getFullYear()}</span>
               </div>
-            </>
+            </div>
           ) : (
             "Add dates"
           )}
