@@ -1,14 +1,14 @@
 "use client"
-// import PageNavbar, { PageNavbarIconButton, PageNavbarLeftContent, PageNavbarPrimaryButton, PageNavbarRightContent } from '../compontents'
+ import PageNavbar, { PageNavbarIconButton, PageNavbarLeftContent, PageNavbarPrimaryButton, PageNavbarRightContent } from '../components/layout/PageNavbar'
 import { Add, Notification, SearchNormal1, Setting4 } from 'iconsax-react'
-// import PageContent from '../components/layout/PageContent'
+import PageContent from '../components/layout/PageContent'
 import Tabs from '../components/Cards/ui/tabs'
 import IntegrationsList from '../components/integrations/IntegrationsList'
 function Integrations() {
 
     return (
         <div>
-            {/* <PageNavbar>
+           <PageNavbar>
                 <PageNavbarLeftContent>
                     <div className='border rounded-full w-10 h-10 all-center'>
                         <Setting4 size={18} />
@@ -31,9 +31,9 @@ function Integrations() {
                         <span className='hidden md:inline'>Add integration</span>
                     </PageNavbarPrimaryButton>
                 </PageNavbarRightContent>
-            </PageNavbar> */}
+            </PageNavbar>
 
-            {/* <PageContent> */}
+           <PageContent> 
                 <div className='flex items-center justify-between'>
                     <Tabs minWidth={300} option1='All apps' option2='Connected' option3='Disconnected' />
                     <div>
@@ -50,7 +50,7 @@ function Integrations() {
                 {/* apps/integration options */}
                 <IntegrationsList />
 
-            {/* </PageContent> */}
+           </PageContent>
 
         </div>
     )
