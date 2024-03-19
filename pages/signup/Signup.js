@@ -23,39 +23,39 @@ export default function Signup() {
     }));
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log("Form submitted:", formData);
-  //   const main = new Listings();
-  //   const response = main.Signup({
-  //     name: formData.fullName.trim(),
-  //     email: formData.email.trim(),
-  //     password: formData.password.trim(),
-  //     confirm_password: formData.confirmPassword.trim(),
-  //   });
-  //   response
-  //     .then((res) => {
-  //       console.log("response", res);
-  //       if (res && res.data && res.data.status) {
-  //         toast.success(res.data.message);
-  //         console.log(res.data.message);
-  //         setFormData({
-  //           fullName: "",
-  //           email: "",
-  //           password: "",
-  //           confirmPassword: "",
-  //         });
-  //         router.push("/login");
-  //       } else {
-  //         toast.error(res?.data.message);
-  //         console.log(res?.data.message);
-  //       }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    const main = new Listings();
+    const response = main.Signup({
+      name: formData.fullName.trim(),
+      email: formData.email.trim(),
+      password: formData.password.trim(),
+      confirm_password: formData.confirmPassword.trim(),
+    });
+    response
+      .then((res) => {
+        console.log("response", res);
+        if (res && res.data && res.data.status) {
+          toast.success(res.data.message);
+          console.log(res.data.message);
+          setFormData({
+            fullName: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+          });
+          router.push("/login");
+        } else {
+          toast.error(res?.data.message);
+          console.log(res?.data.message);
+        }
        
-  //     })
-  //     .catch((error) => {
-  //       toast.error(error?.response.data);
-  //     });
-  // };
+      })
+      .catch((error) => {
+        toast.error(error?.response.data);
+      });
+  };
   return (
     <div
       className="h-screen"
