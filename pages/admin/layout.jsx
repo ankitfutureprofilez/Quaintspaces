@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Sidebar from "../../components/Sidebar";
+import Sidebar from "../compontnents/Sidebar";
 // import { useCentralStore } from "../../Store";
 
 const AppLayout = ({ children }) => {
