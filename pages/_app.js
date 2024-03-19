@@ -7,7 +7,6 @@ import '../styles/apartment.css';
 import "../styles/fonts.css"
 import '../styles/RangeSlider.css';
 import "../styles/confirm.css"
-import "./admin/app/globals.css"
 
 export const Context = React.createContext();
 

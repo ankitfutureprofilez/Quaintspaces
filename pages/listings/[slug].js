@@ -31,7 +31,7 @@ const Listing = () => {
   //       setListings(r.data.data);
   //     }).catch((err)=>{
   //       setloading(false);
-  //       console.error(err);
+  //       console.log(err);
   //     });
   // }, [router.query]);
 
@@ -53,7 +53,7 @@ const Listing = () => {
         setListing({
           loading: true,
         });
-        console.error(err);
+        console.log(err);
       });
         // const { data } = await axios(`/api/listings/${router.query.slug}`);
         // if (data.success) {

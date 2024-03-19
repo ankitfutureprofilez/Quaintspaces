@@ -88,68 +88,68 @@ export default function Property() {
     const id = 33;
 
     const [city, setCity] = useState([])
-    useEffect(() => {
-        const main = new Listing();
-        const fetchCityList = async () => {
-            const response = main.city_list(id);
-            // console.log("rs", response)
-            response.then((res) => {
-                // console.log("res", res)children
-                setCity(res?.data?.data)
-            }).catch((error) => {
-                console.log("error", error);
-            })
+    // useEffect(() => {
+    //     const main = new Listing();
+    //     const fetchCityList = async () => {
+    //         const response = main.city_list(id);
+    //         // console.log("rs", response)
+    //         response.then((res) => {
+    //             // console.log("res", res)children
+    //             setCity(res?.data?.data)
+    //         }).catch((error) => {
+    //             console.log("error", error);
+    //         })
 
-        };
+    //     };
 
-        fetchCityList();
-    }, []);
+    //     fetchCityList();
+    // }, []);
 
     const [area, setArea] = useState([])
-    useEffect(() => {
-        const main = new Listing();
-        const fetchAreaList = async () => {
-            const response = main.area_list(3378);
-            response.then((res) => {
-                // console.log("ara", res)
-                setArea(res?.data?.data)
-            }).catch((error) => {
-                console.log("error", error);
-            })
+    // useEffect(() => {
+    //     const main = new Listing();
+    //     const fetchAreaList = async () => {
+    //         const response = main.area_list(3378);
+    //         response.then((res) => {
+    //             // console.log("ara", res)
+    //             setArea(res?.data?.data)
+    //         }).catch((error) => {
+    //             console.log("error", error);
+    //         })
 
-        };
+    //     };
 
-        fetchAreaList();
-    }, []);
+    //     fetchAreaList();
+    // }, []);
 
     // console.log("area", area)
-    const fetchLocationData = async () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(async (position) => {
-                const { latitude, longitude } = position.coords;
-                try {
-                    const response = await axios.get(
-                        `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-                    );
-                    const locationData = response.data;
-                    // console.log(locationData)
-                    setPoperty((prevPoperty) => ({
-                        ...prevPoperty,
-                        location: locationData.display_name,
-                        address: locationData.display_name
-                    }));
-                } catch (error) {
-                    console.error('Error fetching data:', error);
-                }
-            }, handleGeolocationError);
-        }
-    };
+    // const fetchLocationData = async () => {
+    //     if (navigator.geolocation) {
+    //         navigator.geolocation.getCurrentPosition(async (position) => {
+    //             const { latitude, longitude } = position.coords;
+    //             try {
+    //                 const response = await axios.get(
+    //                     `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+    //                 );
+    //                 const locationData = response.data;
+    //                 // console.log(locationData)
+    //                 setPoperty((prevPoperty) => ({
+    //                     ...prevPoperty,
+    //                     location: locationData.display_name,
+    //                     address: locationData.display_name
+    //                 }));
+    //             } catch (error) {
+    //                 console.log('Error fetching data:', error);
+    //             }
+    //         }, handleGeolocationError);
+    //     }
+    // };
     const handleGeolocationError = () => {
         // setError('Geolocation failed');
-        console.error('Geolocation failed');
+        console.log('Geolocation failed');
     };
     const handleLocationClick = () => {
-        fetchLocationData();
+        // fetchLocationData();
     };
 
     const handleLocationInputChange = (event) => {

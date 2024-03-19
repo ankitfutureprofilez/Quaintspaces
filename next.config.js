@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["a0.muscache.com"],
+    domains: ["quaintstays.laraveldevelopmentcompany.com"],
   },
   webpack5: false,
   eslint: {
