@@ -9,6 +9,12 @@ class Listings extends Component {
   async Login(data) {
     return Api.post("/login", data);
   }
+  async GetUserProfile() {
+    return Api.get("/get-user-profile");
+  }
+  async UpdateUserProfile(data) {
+    return Api.post("/update-profile",data);
+  }
   // async GetUser(data) {
   //   return Api.post("/get-user-profile", data);
   // }
