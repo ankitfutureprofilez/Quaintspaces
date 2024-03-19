@@ -3,7 +3,7 @@
 import PageNavbar, { PageNavbarIconButton, PageNavbarLeftContent, PageNavbarRightContent } from '../../../components/layout/PageNavbar'
 import { Add, ExportCurve, Notification, Profile, SearchNormal1 } from 'iconsax-react'
 import PageContent from '../../../components/layout/PageContent'
-import { PrimaryButton, OutlineButton } from '../../../components/ui/Button'
+// import { PrimaryButton, OutlineButton } from '../../../components/ui/Button'
 import MembersTable from "../../../components/teams/MembersTable"
 function Teams() {
 
@@ -38,7 +38,7 @@ function Teams() {
                         <p className='text-xs'>Display all the team members and essential details</p>
                     </div>
 
-                    <div className='flex gap-2'>
+                    {/* <div className='flex gap-2'>
                         <OutlineButton>
                             <ExportCurve size={16} />
                             <span className='hidden md:block'>
@@ -49,7 +49,7 @@ function Teams() {
                             <Add size={16} />
                             Invite member
                         </PrimaryButton>
-                    </div>
+                    </div> */}
                 </div>
 
                 <hr className='-mx-4' />

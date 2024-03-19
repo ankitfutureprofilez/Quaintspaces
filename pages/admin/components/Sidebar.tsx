@@ -37,7 +37,7 @@ function Sidebar() {
                 <div className='flex flex-col h-full justify-between'>
                     {/* top */}
                     <div className='pt-6 text-gray-500 font-medium space-y-2 md:px-2 text-xs'>
-                        <Link href={'/'} className={`flex ${pathname === '/' ? 'text-primary' : ''} hover:px-8 duration-200 rounded-md w-full py-2 px-6 items-center gap-2`}>
+                        <Link href={'/admin'} className={`flex ${pathname === '/admin' ? 'text-primary' : ''} hover:px-8 duration-200 rounded-md w-full py-2 px-6 items-center gap-2`}>
                             <Element3 variant='Outline' size={16} />
                             Dashboard
                         </Link>
