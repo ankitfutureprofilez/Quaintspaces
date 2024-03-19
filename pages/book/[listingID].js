@@ -20,7 +20,7 @@ const Book = () => {
   const router = useRouter();
   const { listingID } = router.query;
   console.log("listingID",listingID)
-  const [listing, setListing] = useState({});
+  const [listing, setListing] = useState([]);
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
   const [guestsModel, setGuestsModel] = useState(false);
@@ -54,12 +54,13 @@ const Book = () => {
     // console.log("router query",url)
     const main = new Listings();
     main.PropertyDetail(url.listingID).then((r)=>{
-      // console.log("Data",r.data.data);
-         setListing(r.data.data);
+      console.log("Data",r.data.data);
+         setListing(r?.data?.data);
     }).catch((err)=>{
       console.error(err);
     });
 
+    console.log("liiitn",listing)
     setGuests({
       adults: {
         value: +url.numberOfAdults || 0,
@@ -400,13 +401,12 @@ const Book = () => {
           <div className="w-5/12 border border-borderColor rounded-xl shadow p-8">
             <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
             <Image 
-    src={"https://a0.muscache.com/im/pictures/6d32edc4-d842-4927-9375-504b4b1801da.jpg?im_w=720"
-      // listing.property_image[0].image_url
-    } 
+    src={listing?.property_image[0]?.image_url} 
     alt="Apartment"
     width={200}
     height={200}
 />
+
 
               {/* <img
                 src={
