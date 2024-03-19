@@ -33,7 +33,6 @@ export default function Property() {
     images: [],
   });
 
-  console.log("formdaa", Poperty);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setPoperty({
@@ -95,21 +94,17 @@ export default function Property() {
 
   const [city, setCity] = useState([]);
   useEffect(() => {
-    const main = new Listing();
-    const fetchCityList = async () => {
-      const response = main.city_list(id);
-      // console.log("rs", response)
-      response
-        .then((res) => {
-          // console.log("res", res)children
-          setCity(res?.data?.data);
-        })
-        .catch((error) => {
-          console.log("error", error);
-        });
-    };
-
-    fetchCityList();
+    const main = new Listing;
+    const response = main.city_list(id);
+    // console.log("rs", response)
+    response
+      .then((res) => {
+        // console.log("res", res)children
+        setCity(res?.data?.data);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   }, []);
 
   const [area, setArea] = useState([]);
