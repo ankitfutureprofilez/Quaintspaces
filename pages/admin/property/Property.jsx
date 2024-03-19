@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Listing from '../../../AdminApi/Listing';
-import PageNavbar, { PageNavbarIconButton, PageNavbarLeftContent, PageNavbarPrimaryButton, PageNavbarRightContent } from '../../../components/layout/PageNavbar'
+import Listing from '../AdminApi/Listing';
+import PageNavbar, { PageNavbarIconButton, PageNavbarLeftContent, PageNavbarPrimaryButton, PageNavbarRightContent } from '../components/layout/PageNavbar'
 import { Add, Notification, SearchNormal1, Setting4 } from 'iconsax-react'
-import PageContent from '../../../components/layout/PageContent'
+import PageContent from '../components/layout/PageContent'
 
 export default function Property() {
     const [step, setStep] = useState(1);
