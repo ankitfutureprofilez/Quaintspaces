@@ -9,8 +9,10 @@ import PageNavbar, {
 } from "../components/layout/PageNavbar";
 import { Add, Notification, SearchNormal1, Setting4 } from "iconsax-react";
 import PageContent from "../components/layout/PageContent";
+import amenitiesList from "../../../aminites.json"
 
 export default function Property() {
+  console.log("amenitiesList", amenitiesList)
   const [step, setStep] = useState(1);
 
   const [Poperty, setPoperty] = useState({
@@ -61,18 +63,7 @@ export default function Property() {
   const prevStep = () => setStep((prev) => prev - 1);
 
 
-  const amenitiesList = [
-    "Washer", "Waterfront", "Crib", "Indoor fireplace","Pool" , "Breakfast", "Air conditioning", 
-     "Dedicated workspace", "Heating", "Iron", "Dryer", "Crib", "Wifi", "TV", "EV charger", 
-    "Smoke alarm", "Air conditioning", "Kitchen", "Dryer", "Heating", "Indoor fireplace", "Smoking allowed", 
-    "Hot tub", "Carbon monoxide alarm", "Dryer", "Smoke alarm", "Iron", "Gym", "TV", "Air conditioning", 
-    "Free parking", "Dedicated workspace", "Crib", "Smoking allowed", "Indoor fireplace", "Kitchen", 
-    "Heating", , "Air conditioning", "Breakfast", "Smoking allowed", "EV charger", "Smoking allowed", 
-    "Carbon monoxide alarm", "Breakfast", "Wifi", "Dedicated workspace", "TV", "Gym", "EV charger", 
-    "Indoor fireplace", "Hot tub", "Iron", "Air conditioning", "Kitchen", "EV charger", "Iron", 
-    "Hair dryer", "Hot tub", "Indoor fireplace", "EV charger", "Crib", "TV", "Breakfast", "Kitchen", 
-    "Carbon monoxide alarm", "Smoke alarm"
-  ];
+
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -603,15 +594,15 @@ export default function Property() {
                   Amenities
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {amenitiesList.map((amenity) => (
-                    <div key={amenity} className="flex items-center">
+                  {amenitiesList.map((amenity, index) => (
+                    <div key={index} className="flex items-center">
                       <input
                         id={amenity}
                         name={amenity}
                         type="checkbox"
                         value={amenity}
                         className="mr-2 rounded text-indigo-600 focus:ring-indigo-500"
-                        checked={Poperty.selectedAmenities.includes(amenity)}
+                        checked={Property?.selectedAmenities?.includes(amenity)}
                         onChange={handleCheckboxChange}
                       />
                       <label htmlFor={amenity} className="text-lg">
