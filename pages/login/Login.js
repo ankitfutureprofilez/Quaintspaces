@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import logologin from "../../public/images/loginlogoimg.png";
 import Link from "next/link";
-import Listings from "../LaravelApi/Listings";
+// import Listings from "../LaravelApi/Listings";
 import { useRouter } from "next/router";
 import  toast from "react-hot-toast";
 
@@ -21,38 +21,39 @@ export default function Login() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    const main = new Listings();
-    const response = main.Login({
-      email: formData.email.trim(),
-      password: formData.password.trim(),
-    });
-    response.then((res) => {
-      console.log("response",res.data.message)
-      if (res && res.data && res.data.status) {
-        toast.success(res.data.message);
-        console.log("res",res)
-        localStorage && localStorage.setItem("token", res?.data?.token);
-        router.push('/');
-        console.log(res.data.message)
-        setFormData({
-          email: "",
-          password: "",
-        });
-      } else {
-        toast.error(res?.data.message)
-        console.log(res?.data.message)
-      }
-      // setLoading(false);
-    }).catch((error) => {
-      console.log("error", error);
-      toast.error(error.message);
-      toast.error(error?.response.data);
-      // setLoading(false);
-    })
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Form submitted:", formData);
+  //   const main = new Listings();
+  //   const response = main.Login({
+  //     email: formData.email,
+  //     password: formData.password,
+  //   });
+  //   response.then((res) => {
+  //     console.log("response",res.data.message)
+  //     if (res && res.data && res.data.status) {
+  //       toast.success(res.data.message);
+  //       console.log("res",res)
+  //       localStorage && localStorage.setItem("token", res?.data?.token);
+  //       router.push('/');
+  //       console.log(res.data.message)
+  //       setFormData({
+  //         email: "",
+  //         password: "",
+  //       });
+  //     } else {
+  //       toast.error(res?.data.message)
+  //       console.log(res?.data.message)
+  //     }
+  //     // setLoading(false);
+  //   }).catch((error) => {
+  //     console.log("error", error);
+  //     toast.error(error.message);
+  //     toast.error(error?.response.data);
+  //     // setLoading(false);
+  //   })
+  // };
+  
 
   return (
     <div
@@ -103,7 +104,9 @@ export default function Login() {
                   Don't have an account? <Link href="/signup">Sign up</Link>
                 </h3>
               </div>
-              <form onSubmit={handleSubmit}>
+              <form 
+             //onSubmit={handleSubmit}
+              >
                 <div className="mb-6">
                   <label htmlFor="email">Email</label>
                   <input

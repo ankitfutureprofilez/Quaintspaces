@@ -14,7 +14,7 @@ import postsData from "../../bot/data.json";
 import Heading from "../elements/Heading";
 import Image from 'next/image'
 import Button from "../elements/Button";
-import Listings from "../LaravelApi/Listings";
+// import Listings from "../LaravelApi/Listings";
 
 const Book = () => {
   const router = useRouter();
@@ -24,7 +24,7 @@ const Book = () => {
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
   const [guestsModel, setGuestsModel] = useState(false);
-
+  console.log("infos",infos)
   const [guests, setGuests] = useState({
     adults: {
       value: +infos.adults || 0,
@@ -48,42 +48,42 @@ const Book = () => {
     },
   });
 
-  useEffect(() => {
-    const url = router.query;
-    setInfos(url);
-    // console.log("router query",url)
-    const main = new Listings();
-    main.PropertyDetail(url.listingID).then((r)=>{
-      console.log("Data",r.data.data);
-         setListing(r?.data?.data);
-    }).catch((err)=>{
-      console.error(err);
-    });
-
-    console.log("liiitn",listing)
-    setGuests({
-      adults: {
-        value: +url.numberOfAdults || 0,
-        max: 16,
-        min: 0,
-      },
-      children: {
-        value: +url.numberOfChildren || 0,
-        max: 15,
-        min: 0,
-      },
-      infants: {
-        value: +url.numberOfInfants || 0,
-        max: 5,
-        min: 0,
-      },
-      pets: {
-        value: +url.numberOfPets || 0,
-        max: 5,
-        min: 0,
-      },
-    });
-  }, [router.asPath]);
+  // useEffect(() => {
+  //   if(listingID  && url){
+  //     const url = router.query;
+  //     setInfos(url);
+  //     console.log("router query",url)
+  //     const main = new Listings();
+  //     main.PropertyDetail(url.listingID || '').then((r)=>{
+  //          setListing(r?.data?.data);
+  //     }).catch((err)=>{
+  //       console.error(err);
+  //     });
+  
+  //     setGuests({
+  //       adults: {
+  //         value: +url.numberOfAdults || 0,
+  //         max: 16,
+  //         min: 0,
+  //       },
+  //       children: {
+  //         value: +url.numberOfChildren || 0,
+  //         max: 15,
+  //         min: 0,
+  //       },
+  //       infants: {
+  //         value: +url.numberOfInfants || 0,
+  //         max: 5,
+  //         min: 0,
+  //       },
+  //       pets: {
+  //         value: +url.numberOfPets || 0,
+  //         max: 5,
+  //         min: 0,
+  //       },
+  //     });
+  //   }
+  // }, [router.asPath]);
 
   const [formData, setFormData] = useState({
     selectOption: '',
@@ -398,10 +398,10 @@ const Book = () => {
                     design={"font-inter font-lg leading-tight text-center text-white w-96 bg-orange-300  border-2 p-4 rounded-full"} />
           </div>
           </div>
-          <div className="w-5/12 border border-borderColor rounded-xl shadow p-8">
+          <div className="w-5/12  rounded-xl shadow py-8 px-5 h-fit golden-border">
             <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
             <Image 
-    src={listing?.property_image[0]?.image_url} 
+    src="http://quaintstays.laraveldevelopmentcompany.com//public//storage//property//images//1710834595_houseimg%202.jpg"
     alt="Apartment"
     width={200}
     height={200}
@@ -417,8 +417,8 @@ const Book = () => {
                 className="w-32 h-28 rounded-lg object-cover"
               /> */}
               <div>
-                <h4 className="text-md mb-1">{listing?.title}</h4>
-               <p>Entire Apartment </p>
+                <h4 className="text-xl mb-1">{listing?.title}</h4>
+               <h3 className=" text-lg">Entire Apartment </h3>
                 <span className="flex text-sm items-center gap-1">
                   <span>
                     <Star />
@@ -499,15 +499,6 @@ const Book = () => {
             </div>
           </div>
         </div>
-        {guestsModel && (
-        <GuestsModel
-          infos={infos}
-          setGuestsModel={setGuestsModel}
-          guests={guests}
-          setGuests={setGuests}
-        />
-      )}
-      {dateModel && <DatesModel infos={infos} setDateModel={setDateModel} />}
       </main>
     </div>
   );

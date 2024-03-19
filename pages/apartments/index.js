@@ -99,9 +99,9 @@ export default function index() {
   const [listings, setListings] = useState([]);
 
 
-  async function fetchLists (signal) {
+  async function fetchLists () {
       setloading(true);
-      const main = new Listings(signal);
+      const main = new Listings;
       main.PropertyListing().then((r)=>{
         setloading(false)
         setListings(r.data.data);
@@ -114,7 +114,7 @@ export default function index() {
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
-    fetchLists(signal);
+    fetchLists();
       return () => controller.abort();
   }, []);
 
