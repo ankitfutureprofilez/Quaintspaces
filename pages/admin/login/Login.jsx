@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Listing from '../../../AdminApi/Listing';
 import { useRouter } from 'next/router';
 import toast, { Toaster } from 'react-hot-toast';
+import  Listing from "../AdminApi/Listing"
 export default function  Login() {
   const [record, setRecord] = useState({
     email: "",
