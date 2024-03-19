@@ -5,6 +5,7 @@ import Guests from "../SingleListingComponents/Guests";
 import { format } from "date-fns";
 import BtnPrimary from "../Button/BtnPrimary";
 import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 
 const Date_GuestsPickerCard = React.forwardRef(
   (
@@ -68,6 +69,13 @@ const Date_GuestsPickerCard = React.forwardRef(
             <button
             className="filter mx-2 btn w-full "
               onClick={() => {
+                if(selectedDay==null ||selectEnd==null)
+                {
+                  toast.error("Date not selected");
+                  return;
+                }
+                // console.log("selectedDay",selectedDay)
+                // console.log("selectEnd",selectEnd)
                 router.push(
                   `/book/${encodeURIComponent(listing?.uuid)}?numberOfAdults=${guests.adults.value}&numberOfChildren=${guests.children.value}&numberOfInfants=${guests.infants.value}&numberOfPets=${guests.pets.value}&checkin=${format(selectedDay,"yyyy-MM-dd")}&checkout=${format(selectEnd, "yyyy-MM-dd")}`
                 );
