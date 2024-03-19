@@ -2,13 +2,13 @@ import axios from 'axios';
 
 const API_URL = process.env.NEXT_PUBLIC_APP_BASE_URL;
 
-// function getToken() {
-//   if (typeof window !== 'undefined') {
-//     const data = localStorage.getItem('token');
-//     return data;
-//   }
-//   return null;
-// }
+function getToken() {
+  if (typeof window !== 'undefined') {
+    const data = localStorage.getItem('token');
+    return data;
+  }
+  return null;
+}
 
 let Api = axios.create({
   baseURL: API_URL,
@@ -18,17 +18,17 @@ let Api = axios.create({
   }
 });
 
-// Api.interceptors.request.use(
-//   async (config) => {
-//     const token = getToken();
-//     if (token !== null) {
-//       config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-//   },
-//   (error) => {
-//     return Promise.reject(error);
-//   }
-// );
+Api.interceptors.request.use(
+  async (config) => {
+    const token = getToken();
+    if (token !== null) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export default Api;
