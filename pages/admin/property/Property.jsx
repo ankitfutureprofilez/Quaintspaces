@@ -60,17 +60,18 @@ export default function Property() {
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
 
+
   const amenitiesList = [
-    "Pool",
-    "Wifi",
-    "Kitchen",
-    "Free Parking",
-    "Hot Tub",
-    "Air Conditioning or Heating",
-    "Washing Machine or Dryer",
-    "Self Check-in",
-    "TV or Cable",
-    "Fireplace",
+    "Washer", "Waterfront", "Crib", "Indoor fireplace","Pool" , "Breakfast", "Air conditioning", 
+     "Dedicated workspace", "Heating", "Iron", "Dryer", "Crib", "Wifi", "TV", "EV charger", 
+    "Smoke alarm", "Air conditioning", "Kitchen", "Dryer", "Heating", "Indoor fireplace", "Smoking allowed", 
+    "Hot tub", "Carbon monoxide alarm", "Dryer", "Smoke alarm", "Iron", "Gym", "TV", "Air conditioning", 
+    "Free parking", "Dedicated workspace", "Crib", "Smoking allowed", "Indoor fireplace", "Kitchen", 
+    "Heating", , "Air conditioning", "Breakfast", "Smoking allowed", "EV charger", "Smoking allowed", 
+    "Carbon monoxide alarm", "Breakfast", "Wifi", "Dedicated workspace", "TV", "Gym", "EV charger", 
+    "Indoor fireplace", "Hot tub", "Iron", "Air conditioning", "Kitchen", "EV charger", "Iron", 
+    "Hair dryer", "Hot tub", "Indoor fireplace", "EV charger", "Crib", "TV", "Breakfast", "Kitchen", 
+    "Carbon monoxide alarm", "Smoke alarm"
   ];
 
   const handleCheckboxChange = (e) => {
@@ -179,15 +180,14 @@ export default function Property() {
     formData.append("latitude", "2222.22588");
     formData.append("longitudes", "2222.22588");
     formData.append("discount_offer", "555");
-    formData.append("guests", Poperty.guests);
     formData.append("check_in", " 11:55");
     formData.append("check_out", "12:12");
     formData.append("country_id", "101");
     formData.append("state_id", "33");
     formData.append("city_id", Poperty.city_id);
     formData.append("area_id", Poperty.area_id);
-    formData.append("adults", "1");
-    formData.append("children", "2");
+    formData.append("adults", Property.adults);
+    formData.append("children", Property.children);
     formData.append("infants", "1");
     formData.append("free_cancel_time", "11");
     formData.append("amenities", Poperty.selectedAmenities.join(","));
@@ -634,6 +634,8 @@ export default function Property() {
                   <textarea
                     id="about"
                     name="about"
+                    minCol={"5"}
+                    minRow={"5"}
                     value={Poperty.about}
                     onChange={handleInputChange}
                     className="mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
