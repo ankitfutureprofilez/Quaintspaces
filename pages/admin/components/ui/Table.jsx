@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 
 function TableItem({ className, ...props }, ref) {
     return (

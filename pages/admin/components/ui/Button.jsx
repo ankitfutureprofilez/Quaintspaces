@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 
 function PrimaryButton({ className, ...props }, ref) {
   return (

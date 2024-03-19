@@ -17,7 +17,7 @@ function Home() {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
-  const handleSidebarChange = (value: boolean) => {
+  const handleSidebarChange = (value) => {
     setIsSidebarOpen(value)
   }
 
