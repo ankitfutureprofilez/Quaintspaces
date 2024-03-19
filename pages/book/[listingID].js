@@ -50,40 +50,40 @@ const Book = () => {
   });
 
   useEffect(() => {
-    const url = router.query;
-    setInfos(url);
-console.log("router query",url)
-    const main = new Listings();
-    main.PropertyDetail(url.listingID).then((r)=>{
-      console.log("Data",r.data.data);
-         setListing(r?.data?.data);
-    }).catch((err)=>{
-      console.error(err);
-    });
-
-    console.log("liiitn",listing)
-    setGuests({
-      adults: {
-        value: +url.numberOfAdults || 0,
-        max: 16,
-        min: 0,
-      },
-      children: {
-        value: +url.numberOfChildren || 0,
-        max: 15,
-        min: 0,
-      },
-      infants: {
-        value: +url.numberOfInfants || 0,
-        max: 5,
-        min: 0,
-      },
-      pets: {
-        value: +url.numberOfPets || 0,
-        max: 5,
-        min: 0,
-      },
-    });
+    if(listingID  && url){
+      const url = router.query;
+      setInfos(url);
+      console.log("router query",url)
+      const main = new Listings();
+      main.PropertyDetail(url.listingID || '').then((r)=>{
+           setListing(r?.data?.data);
+      }).catch((err)=>{
+        console.error(err);
+      });
+  
+      setGuests({
+        adults: {
+          value: +url.numberOfAdults || 0,
+          max: 16,
+          min: 0,
+        },
+        children: {
+          value: +url.numberOfChildren || 0,
+          max: 15,
+          min: 0,
+        },
+        infants: {
+          value: +url.numberOfInfants || 0,
+          max: 5,
+          min: 0,
+        },
+        pets: {
+          value: +url.numberOfPets || 0,
+          max: 5,
+          min: 0,
+        },
+      });
+    }
   }, [router.asPath]);
 
   const [formData, setFormData] = useState({

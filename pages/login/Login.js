@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import logologin from "../../public/images/loginlogoimg.png";
 import Link from "next/link";
-import Listings from "../LaravelApi/Listings";
+// import Listings from "../LaravelApi/Listings";
 import { useRouter } from "next/router";
 import { toast, Toaster } from "react-hot-toast";
 
