@@ -28,7 +28,7 @@ export default function Property() {
         images: []
     });
 
-    console.log("formdaa", Poperty)
+    // console.log("formdaa", Poperty)
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setPoperty({
@@ -39,7 +39,7 @@ export default function Property() {
     const handleFileChange = (e) => {
         let filesToAdd = Array.from(e.target.files);
         let newImages = Poperty.images.concat(filesToAdd).slice(0, 6);
-        console.log("newImages", newImages)
+        // console.log("newImages", newImages)
         setPoperty(prevPoperty => ({
             ...prevPoperty,
             images: newImages,
@@ -159,50 +159,7 @@ export default function Property() {
             [name]: value,
         }));
     };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const main = new Listing();
-        const formData = new FormData();
-        formData.append("name", Poperty.propertyName);
-        formData.append("pet_allowed", "1");
-        formData.append("no_of_pet_allowed", Poperty.pets);
-        formData.append("description", Poperty.about);
-        formData.append("price", Poperty.price);
-        formData.append("properties_type", Poperty.propertytype);
-        formData.append("location", Poperty.location);
-        formData.append("bedrooms", Poperty.bedrooms);
-        formData.append("beds", Poperty.beds);
-        formData.append("bathrooms", Poperty.bathrooms);
-        formData.append("latitude", "2222.22588");
-        formData.append("longitudes", "2222.22588");
-        formData.append("discount_offer", "555");
-        formData.append("guests", Poperty.guests);
-        formData.append("check_in", " 11:55");
-        formData.append("check_out", "12:12");
-        formData.append("country_id", "101");
-        formData.append("state_id", "33");
-        formData.append("city_id", Poperty.city_id);
-        formData.append("area_id", Poperty.area_id);
-        formData.append("adults", "1");
-        formData.append("children", "2");
-        formData.append("infants", "1");
-        formData.append("free_cancel_time", "11");
-        formData.append("amenities", Poperty.selectedAmenities.join(','));
-        Poperty.images.forEach((image, index) => {
-            formData.append('property_image[]', image);
-        });
-        const response = main.addproperty(formData);
-        response
-            .then((res) => {
-                if (res?.data?.status) {
 
-                }
-            })
-            .catch((error) => {
-                console.log("error", error);
-            });
-
-    };
     return (
 
         <>

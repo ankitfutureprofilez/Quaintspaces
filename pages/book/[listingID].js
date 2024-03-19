@@ -25,6 +25,7 @@ const Book = () => {
   const [dateModel, setDateModel] = useState(false);
   const [guestsModel, setGuestsModel] = useState(false);
 
+  console.log("infos",infos)
   const [guests, setGuests] = useState({
     adults: {
       value: +infos.adults || 0,
@@ -51,7 +52,7 @@ const Book = () => {
   useEffect(() => {
     const url = router.query;
     setInfos(url);
-    // console.log("router query",url)
+console.log("router query",url)
     const main = new Listings();
     main.PropertyDetail(url.listingID).then((r)=>{
       console.log("Data",r.data.data);
@@ -499,15 +500,6 @@ const Book = () => {
             </div>
           </div>
         </div>
-        {guestsModel && (
-        <GuestsModel
-          infos={infos}
-          setGuestsModel={setGuestsModel}
-          guests={guests}
-          setGuests={setGuests}
-        />
-      )}
-      {dateModel && <DatesModel infos={infos} setDateModel={setDateModel} />}
       </main>
     </div>
   );
