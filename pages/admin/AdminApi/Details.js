@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import 
+
 class Details extends Component {
 
     render() {

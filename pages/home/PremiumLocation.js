@@ -8,9 +8,9 @@ import 'swiper/css';
 import 'swiper/css/navigation'; 
 import 'swiper/css/pagination'; 
 import 'swiper/css/scrollbar'; 
-import SwiperCore, { Keyboard, Scrollbar, Navigation } from 'swiper';
+// import SwiperCore, { Keyboard, Scrollbar, Navigation } from 'swiper';
 // Install Swiper modules
-SwiperCore.use([Keyboard, Scrollbar, Navigation]);
+// SwiperCore.use([Keyboard, Scrollbar, Navigation]);
 
 export default function PremiumLocation() {
   const [swiper, setSwiper] = useState(null);

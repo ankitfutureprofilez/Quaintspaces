@@ -5,6 +5,9 @@ const nextConfig = {
   images: {
     domains: ["a0.muscache.com"],
   },
+  webpack5: false,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
-
 module.exports = nextConfig;

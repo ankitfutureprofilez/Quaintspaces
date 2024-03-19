@@ -1,6 +1,6 @@
 import React from 'react'
 import { SidebarLeft } from 'iconsax-react'
-import { useCentralStore } from '../../Store'
+// import { useCentralStore } from '../../Store'
 
 
 
@@ -58,7 +58,7 @@ PageNavbarPrimaryButton.displayName = 'PageNavbarPrimaryButton'
 
 function PageNavbar({ children }: { children: React.ReactNode }) {
 
-    const { setIsSidebarOpen } = useCentralStore()
+    // const { setIsSidebarOpen } = useCentralStore()
 
     return (
         <div>
@@ -67,9 +67,9 @@ function PageNavbar({ children }: { children: React.ReactNode }) {
 
                 {children}
 
-                <button onClick={() => setIsSidebarOpen(true)} className='all-center text-gray-500 h-8 w-8 md:hidden'>
-                    <SidebarLeft size={16} />
-                </button>
+                <SidebarLeft size={16} />
+                {/* <button onClick={() => setIsSidebarOpen(true)} className='all-center text-gray-500 h-8 w-8 md:hidden'>
+                </button> */}
 
             </div>
 

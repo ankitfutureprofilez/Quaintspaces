@@ -4,9 +4,6 @@ import Image from 'next/image'
 import Star from "../../public/_svgs/star"
 import Heading from '../elements/Heading';
 import Button from '../elements/Button';
-import apartment  from "../../public/images/Malviya Nagar.png";
-import { formatMultiPrice } from '../elements/formatMiddleware';
-
 export default function Confirm() {
   const [dateModel, setDateModel] = useState(false);
 
@@ -270,7 +267,7 @@ export default function Confirm() {
                    Cleaning fee
                   </span>
                   <span className="block text-blackColor font-medium">
-                   {formatMultiPrice(1200)}
+                   {(1200)}
                     {/* {infos.checkout &&
                       infos.checkin &&
                       +listing?.price?.split("$")[1] *
@@ -300,7 +297,7 @@ export default function Confirm() {
                Taxes
                   </span>
                   <span className="block text-blackColor font-medium">
-                   {formatMultiPrice(5686.8)}
+                   {(5686.8)}
                     {/* {infos.checkout &&
                       infos.checkin &&
                       +listing?.price?.split("$")[1] *

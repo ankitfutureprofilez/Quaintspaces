@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Listing from '../../../AdminApi/Listing';
 import { useRouter } from 'next/router';
 import toast, { Toaster } from 'react-hot-toast';
-function Login() {
+export default function  Login() {
   const [record, setRecord] = useState({
     email: "",
     password: "",
   });
+
+  
 
   const router = useRouter();
 
@@ -24,6 +26,7 @@ function Login() {
     formData.append("email", record.email);
     formData.append("password", record.password);
     const response = main.adminlogin(formData);
+
     response
       .then((res) => {
         if (res && res?.data && res?.data?.status) {
@@ -111,4 +114,4 @@ function Login() {
   );
 }
 
-export default Login;
+

@@ -5,12 +5,12 @@ import { ArrowRight2, Calendar, Document, Element3, Folder2, Headphone, Profile2
 import ProfileImage from '../components/assets/profile.png'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useCentralStore } from '../Store'
+// import { useCentralStore } from '../Store';
 
 function Sidebar() {
 
     const pathname = usePathname()
-    const { setIsSidebarOpen, isSidebarOpen } = useCentralStore()
+    // const { setIsSidebarOpen, isSidebarOpen } = useCentralStore();
 
     // useEffect(() => {
     //     if (!isSidebarOpen) setIsSidebarOpen(!isSidebarOpen)
@@ -37,7 +37,7 @@ function Sidebar() {
                 <div className='flex flex-col h-full justify-between'>
                     {/* top */}
                     <div className='pt-6 text-gray-500 font-medium space-y-2 md:px-2 text-xs'>
-                        <Link href={'/'} className={`flex ${pathname === '/' ? 'text-primary' : ''} hover:px-8 duration-200 rounded-md w-full py-2 px-6 items-center gap-2`}>
+                        <Link href={'/admin'} className={`flex ${pathname === '/admin' ? 'text-primary' : ''} hover:px-8 duration-200 rounded-md w-full py-2 px-6 items-center gap-2`}>
                             <Element3 variant='Outline' size={16} />
                             Dashboard
                         </Link>
@@ -57,10 +57,10 @@ function Sidebar() {
                             Projects
                         </button>
 
-                        <Link href={'/admin/app/app/teams'} className={`flex ${pathname === '/admin/app/app/teams' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        {/* <Link href={'/admin/app/app/teams'} className={`flex ${pathname === '/admin/app/app/teams' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Profile2User size={16} />
                             Teams
-                        </Link>
+                        </Link> */}
 
                         <Link href={'/admin/app/app/integrations'} className={`flex ${pathname === '/admin/app/app/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Setting4 size={16} />

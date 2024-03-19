@@ -3,9 +3,8 @@
 import PageNavbar, { PageNavbarIconButton, PageNavbarLeftContent, PageNavbarRightContent } from '../../../components/layout/PageNavbar'
 import { Add, ExportCurve, Notification, Profile, SearchNormal1 } from 'iconsax-react'
 import PageContent from '../../../components/layout/PageContent'
-import { PrimaryButton, OutlineButton } from '../../../components/ui/Button'
-import MembersTable from '../../../components/teams/MembersTable'
-
+// import { PrimaryButton, OutlineButton } from '../../../components/ui/Button'
+import MembersTable from "../../../components/teams/MembersTable"
 function Teams() {
 
     return (
@@ -13,7 +12,6 @@ function Teams() {
             <PageNavbar>
                 <PageNavbarLeftContent>
                     <div className='border rounded-full w-10 h-10 all-center'>
-                        {/* <Setting4 size={18} /> */}
                         <Profile size={18} />
                     </div>
                     <div>
@@ -40,7 +38,7 @@ function Teams() {
                         <p className='text-xs'>Display all the team members and essential details</p>
                     </div>
 
-                    <div className='flex gap-2'>
+                    {/* <div className='flex gap-2'>
                         <OutlineButton>
                             <ExportCurve size={16} />
                             <span className='hidden md:block'>
@@ -51,12 +49,12 @@ function Teams() {
                             <Add size={16} />
                             Invite member
                         </PrimaryButton>
-                    </div>
+                    </div> */}
                 </div>
 
                 <hr className='-mx-4' />
 
-                <MembersTable />
+              <MembersTable/>
 
             </PageContent>
 
