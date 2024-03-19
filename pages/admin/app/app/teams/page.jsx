@@ -4,8 +4,7 @@ import PageNavbar, { PageNavbarIconButton, PageNavbarLeftContent, PageNavbarRigh
 import { Add, ExportCurve, Notification, Profile, SearchNormal1 } from 'iconsax-react'
 import PageContent from '../../../components/layout/PageContent'
 import { PrimaryButton, OutlineButton } from '../../../components/ui/Button'
-import MembersTable from '../../../components/teams/MembersTable'
-
+import MembersTable from "../../../components/teams/MembersTable"
 function Teams() {
 
     return (
@@ -13,7 +12,6 @@ function Teams() {
             <PageNavbar>
                 <PageNavbarLeftContent>
                     <div className='border rounded-full w-10 h-10 all-center'>
-                        {/* <Setting4 size={18} /> */}
                         <Profile size={18} />
                     </div>
                     <div>
@@ -56,7 +54,7 @@ function Teams() {
 
                 <hr className='-mx-4' />
 
-                <MembersTable /> 
+              <MembersTable/>
 
             </PageContent>
 
