@@ -33,7 +33,7 @@ const Listing = () => {
       main.PropertyDetail(slug || "").then((r)=>{
           setListing({
             loading: false,
-            data: r.data.data,
+            data: r.data.data,    
           });
       }).catch((err)=>{
         setListing({
