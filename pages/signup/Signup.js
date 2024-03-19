@@ -35,7 +35,7 @@ export default function Signup() {
     });
     response
       .then((res) => {
-        console.log("response", res.data.message);
+        console.log("response", res);
         if (res && res.data && res.data.status) {
           toast.success(res.data.message);
           console.log(res.data.message);
@@ -50,12 +50,10 @@ export default function Signup() {
           toast.error(res?.data.message);
           console.log(res?.data.message);
         }
-        // setLoading(false);
+       
       })
       .catch((error) => {
-        // ApiError(error);
         toast.error(error?.response.data);
-        setLoading(false);
       });
   };
   return (
