@@ -14,7 +14,7 @@ import postsData from "../../bot/data.json";
 import Heading from "../elements/Heading";
 import Image from 'next/image'
 import Button from "../elements/Button";
-import Listings from "../LaravelApi/Listings";
+// import Listings from "../LaravelApi/Listings";
 
 const Book = () => {
   const router = useRouter();
@@ -49,42 +49,42 @@ const Book = () => {
     },
   });
 
-  useEffect(() => {
-    if(listingID  && url){
-      const url = router.query;
-      setInfos(url);
-      console.log("router query",url)
-      const main = new Listings();
-      main.PropertyDetail(url.listingID || '').then((r)=>{
-           setListing(r?.data?.data);
-      }).catch((err)=>{
-        console.error(err);
-      });
+  // useEffect(() => {
+  //   if(listingID  && url){
+  //     const url = router.query;
+  //     setInfos(url);
+  //     console.log("router query",url)
+  //     const main = new Listings();
+  //     main.PropertyDetail(url.listingID || '').then((r)=>{
+  //          setListing(r?.data?.data);
+  //     }).catch((err)=>{
+  //       console.error(err);
+  //     });
   
-      setGuests({
-        adults: {
-          value: +url.numberOfAdults || 0,
-          max: 16,
-          min: 0,
-        },
-        children: {
-          value: +url.numberOfChildren || 0,
-          max: 15,
-          min: 0,
-        },
-        infants: {
-          value: +url.numberOfInfants || 0,
-          max: 5,
-          min: 0,
-        },
-        pets: {
-          value: +url.numberOfPets || 0,
-          max: 5,
-          min: 0,
-        },
-      });
-    }
-  }, [router.asPath]);
+  //     setGuests({
+  //       adults: {
+  //         value: +url.numberOfAdults || 0,
+  //         max: 16,
+  //         min: 0,
+  //       },
+  //       children: {
+  //         value: +url.numberOfChildren || 0,
+  //         max: 15,
+  //         min: 0,
+  //       },
+  //       infants: {
+  //         value: +url.numberOfInfants || 0,
+  //         max: 5,
+  //         min: 0,
+  //       },
+  //       pets: {
+  //         value: +url.numberOfPets || 0,
+  //         max: 5,
+  //         min: 0,
+  //       },
+  //     });
+  //   }
+  // }, [router.asPath]);
 
   const [formData, setFormData] = useState({
     selectOption: '',
