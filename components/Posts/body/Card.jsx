@@ -93,6 +93,7 @@ const Card = ({ post }) => {
                     />
                   </svg>
                 </Link>
+                
               </div>
             </div>
     </>
