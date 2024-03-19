@@ -5,7 +5,6 @@ const nextConfig = {
   images: {
     domains: ["quaintstays.laraveldevelopmentcompany.com"],
   },
-  webpack5: false,
   eslint: {
     ignoreDuringBuilds: true,
   },
