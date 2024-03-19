@@ -11,6 +11,8 @@ import ThingsToKnow from "./ThingsToKnow";
 import Listings from "../LaravelApi/Listings";
 
 const Listing = () => {
+
+  const {slug}= router.query;
   const router = useRouter();
   const { wishlist, setWishlist } = useContext(Context);
   const [overlay, setOverlay] = useState(false);
@@ -23,16 +25,14 @@ const Listing = () => {
   });
   
   useEffect(() => {
-    if (router.query.slug) {
+    if (slug) {
       setListing({
         loading: true,
         data: {},
       });
-      (async () => {
-        const main = new Listings();
-      main.PropertyDetail(router.query.slug).then((r)=>{
-      console.log("Data",r.data.data);
-           setListing({
+      const main = new Listings();
+      main.PropertyDetail(slug || "").then((r)=>{
+          setListing({
             loading: false,
             data: r.data.data,
           });
@@ -42,17 +42,8 @@ const Listing = () => {
         });
         console.log(err);
       });
-        // const { data } = await axios(`/api/listings/${router.query.slug}`);
-        // if (data.success) {
-        //   setListing({
-        //     loading: false,
-        //     data: data.data[2],
-        //   });
-        //   console.log("listing",listing.data);
-        // }
-      })();
     }
-  }, [router.query]);
+  }, [slug]);
 
   return (
     <>
