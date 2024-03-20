@@ -7,7 +7,7 @@ import Back from "../common/Back";
 const Title = ({ isSaved, listing, addWishlist }) => {
   return (
     <>
-      {listing.loading ? (
+      {listing?.loading ? (
         <>
           <div className="w-7/12 h-7 mb-2 rounded-md bg-lightBorderColor"></div>
           <div className="w-4/12 h-5 mb-2 rounded-md bg-lightBorderColor"></div>
