@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Heading from "../elements/Heading";
 import Button from "../elements/Button";
-import Listings from "../LaravelApi/Listings";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { Reorder } from "framer-motion";
+import Listings from './../api/Listings';
 export default function Profile() {
   const [data, setData] = useState({
     email: "",
