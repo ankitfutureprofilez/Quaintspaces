@@ -52,7 +52,7 @@ const WishlistListing = ({ data, setPlaces }) => {
               data.name.slice(1, data.name.length)}
         </h1>
         <ul className="flex flex-wrap w-full gap-6">
-          {listings.length > 0 ? (
+          {listing && listings.length > 0 ? (
             listings.map((e) => (
               <div
                 className="w-full sm:w-[calc(100%/3-16px)] lg:w-[calc(100%/2-16px)]"

@@ -170,9 +170,9 @@ const NewWishlist = ({ value, setValue, setWishlist }) => {
             }
             setWishlist(false);
           }}
-          disabled={value.length < 50 && value.length > 0 ? false : true}
+          disabled={ value && value.length < 50 && value.length > 0 ? false : true}
           className={`btn-secondary w-full text-base ${
-            value.length < 50 && value.length > 0
+          value &&   value.length < 50 && value.length > 0
               ? ""
               : "cursor-not-allowed opacity-80"
           }`}

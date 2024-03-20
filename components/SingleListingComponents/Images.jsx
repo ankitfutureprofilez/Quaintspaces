@@ -10,7 +10,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer }) => {
       ) : (
         <div
           className={`${
-            listing.data?.property_image.length >= 4 ? "w-6/12" : "w-8/12"
+            listing?.data?.property_image?.length >= 4 ? "w-6/12" : "w-8/12"
           } `}
         >
           <div
@@ -20,9 +20,9 @@ const Images = ({ setSelectedImage, listing, setImageViewer }) => {
               setSelectedImage(0);
             }}
           >
-            {listing.data?.property_image?.length > 0 && (
+            {listing?.data?.property_image?.length > 0 && (
               <img
-                src={listing.data?.property_image[0]?.image_url}
+                src={listing?.data?.property_image[0]?.image_url}
                 className="h-full w-full object-cover"
                 alt=""
               />
@@ -30,9 +30,9 @@ const Images = ({ setSelectedImage, listing, setImageViewer }) => {
           </div>
         </div>
       )}
-      {listing.data?.property_image?.length >= 3 ? (
+      {listing?.data?.property_image?.length >= 3 ? (
         <div className="flex-1 flex flex-col gap-2">
-          {[...listing.data?.property_image]?.splice(1, 2).map((e, i) => (
+          {[...listing?.data?.property_image]?.splice(1, 2).map((e, i) => (
             <div
               className="image-cover h-[calc(100%/2-4px)] w-full"
               key={uuidv4()}
@@ -41,7 +41,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer }) => {
                 setSelectedImage(i++);
               }}
             >
-              {listing.data?.property_image?.length > 0 && (
+              {listing?.data?.property_image?.length > 0 && (
                 <img
                   src={e.image_url}
                   className="h-full w-full object-cover"
@@ -52,8 +52,8 @@ const Images = ({ setSelectedImage, listing, setImageViewer }) => {
           ))}
         </div>
       ) : (
-        !listing.loading &&
-        listing.data?.property_image?.length >= 2 && (
+        !listing?.loading &&
+        listing?.data?.property_image?.length >= 2 && (
           <div
             className="image-cover h-full w-5/12"
             key={uuidv4()}
@@ -70,9 +70,9 @@ const Images = ({ setSelectedImage, listing, setImageViewer }) => {
           </div>
         )
       )}
-      {listing.data?.property_image?.length >= 4 && (
+      {listing?.data?.property_image?.length >= 4 && (
         <div className="flex-1 flex flex-col gap-2">
-          {[...listing.data?.property_image]?.splice(3, 4).map((e, i) => (
+          {[...listing?.data?.property_image]?.splice(3, 4).map((e, i) => (
             <div
               className="image-cover h-[calc(100%/2-4px)] w-full"
               key={uuidv4()}
@@ -81,7 +81,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer }) => {
                 setSelectedImage(i++);
               }}
             >
-              {listing.data?.property_image?.length > 0 && (
+              {listing?.data?.property_image?.length > 0 && (
                 <img
                   src={e.image_url}
                   className="h-full w-full object-cover"
