@@ -8,6 +8,7 @@ import Listings from './../api/laravel/Listings';
 
 export default function Signup() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -25,6 +26,8 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(loading==true){return;}
+    setLoading(true);
     console.log("Form submitted:", formData);
     const main = new Listings();
     const response = main.Signup({
@@ -49,11 +52,13 @@ export default function Signup() {
         } else {
           toast.error(res?.data.message);
           console.log(res?.data.message);
+          setLoading(false);
         }
        
       })
       .catch((error) => {
         toast.error(error?.response.data);
+        setLoading(false);
       });
   };
   return (
@@ -156,7 +161,7 @@ export default function Signup() {
                   />
                 </div>
                 <button type="submit" className="submint-btn">
-                  Submit
+                {loading?"Submitting...":"Submit"}
                 </button>
               </form>
             </div>
