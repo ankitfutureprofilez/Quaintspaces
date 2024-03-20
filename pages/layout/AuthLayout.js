@@ -3,9 +3,9 @@ import { useLocation, navigate } from 'react-router-dom';
 import Header from '../home/Header';
 import Footer from '../home/Footer';
 import { useRouter } from "next/router";
-import Listings from "./"
+import Listings from "../api/laravel/Listings"
 export default function AuthLayout({ children }) {
-  const router =Router();
+  const router =useRouter();
   const [content, setContent] = useState([]);
   useEffect(() => {
     const auth = localStorage.getItem('token');
@@ -22,7 +22,7 @@ export default function AuthLayout({ children }) {
       setTimeout(() => {
         toast.error("Please log in first.");
       }, 1000);
-      navigate('/'); 
+      router.push('/login'); 
     });
   }, []);
 
