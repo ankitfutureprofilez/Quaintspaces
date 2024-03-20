@@ -207,7 +207,7 @@ const [selectEnd, setSelectEnd] = useState(null);
           </div>
         </div>
       </header>
-      <div className="w-full relative block lg:hidden">
+      <div className="hidden">
         <nav className="absolute top-0 left-0 w-full p-2 z-20 flex items-center justify-between">
           <button
             onClick={() => {
@@ -240,7 +240,7 @@ const [selectEnd, setSelectEnd] = useState(null);
           />  
           <div
             ref={ImagesRef}
-            className="hidden lg:block h-screen rounded-2xl overflow-hidden my-8 relative min-h-[20vh] max-h-[40vh]"
+            className="block h-screen rounded-2xl overflow-hidden my-8 relative min-h-[20vh] max-h-[40vh]"
           >
             <Images
               setSelectedImage={setSelectedImage}
