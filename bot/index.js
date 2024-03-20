@@ -21,7 +21,7 @@ const { scrollPageToBottom } = require("puppeteer-autoscroll-down");
         (e) => e.href
       );
     });
-    for (let i = 0; i < links.length; i++) {
+    for (let i = 0; i < links?.length; i++) {
       const newPage = await browser.newPage();
       await newPage.goto(links[i], { waitUntil: "domcontentloaded" });
       await newPage.waitForSelector(".ll4r2nl");

@@ -10,7 +10,7 @@ const Categories = ({ data }) => {
   const [scroll, setScroll] = useState(false);
 
   useEffect(() => {
-    if (!data.loading && data.data.length > 0) {
+    if (!data.loading && data && data.data &&  data.data.length > 0) {
       if (child && child.current) {
         let tl = gsap.timeline();
 
