@@ -58,11 +58,11 @@ export default function Signup() {
   };
   return (
     <div
-      className="h-screen"
+      className="h-screen tab-mob-height"
       style={{ backgroundImage: `url(/images/login-bg.jpg)` }}
     >
       <div className="container h-full">
-        <div className="flex items-center  h-full relative">
+        <div className="flex items-center  h-full relative signup-tab-sec">
           <div className="left-logo-login w-6/12 px-3">
             <div className="backtohome">
               <Link href="/">
@@ -96,7 +96,7 @@ export default function Signup() {
               city has to offer
             </p>
           </div>
-          <div className="w-6/12 px-3 flex justify-end">
+          <div className="right-signup-form w-6/12 px-3 flex justify-end">
             <div className="signup-form w-full max-h-screen overflow-y-auto">
               <div className="formbgcolor"></div>
               <div className="quainttay">

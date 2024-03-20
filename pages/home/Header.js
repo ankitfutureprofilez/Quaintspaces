@@ -5,7 +5,7 @@ import logo from "../../public/images/QsJaipur.png";
 import userprofile from "../../public/images/profile.png";
 
 export default function Header() {
-   const token ="111"
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -47,7 +47,15 @@ export default function Header() {
             <Link href="/contact">
               <p>Contact</p>
             </Link>
-            {token ? (
+            <div className="login-signup-btn">
+                <Link className="login" href={"/login"}>
+                  <p>Login</p>
+                </Link>
+                <Link className="signup" href={"/signup"}>
+                  <p>Sign Up</p>{" "}
+                </Link>
+              </div>
+            {/* {token ? (
               <div className="profile-image">
                 <Image src={userprofile} alt="profile" />
               </div>
@@ -60,7 +68,7 @@ export default function Header() {
                   <p>Sign Up</p>{" "}
                 </Link>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>

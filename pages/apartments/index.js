@@ -119,10 +119,11 @@ export default function index() {
 
   return (
     <Layout>
-      <div className="container mx-auto mt-10">
-        <div className="flex justify-between mb-10">
+      <div className="container mx-auto ">
+        <div className="mt-6 sm:mt-10">
+        <div className="flex justify-between mb-10 filter-box">
           <h2 className="listing-heading text-left">Explore our Apartments</h2>
-          <div className="button-group">
+          <div className="button-group filter-btn-select">
             <SortByButton
               sortBy={sortBy}
               setSortBy={setSortBy}
@@ -135,13 +136,14 @@ export default function index() {
           </div>
         </div>
         <PostBody loading={loading} listings={listings} />
+        </div>
       </div>
       {/* Render the modal component conditionally */}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg">
-            <div className="relative">
-              <h2 className="listing-heading text-center">Filter</h2>
+            <div className="relative ">
+              <h2 className="listing-heading  text-center">Filter</h2>
               <div className="absolute top-0 right-0">
                 <button
                   className="text-gray-600 hover:text-gray-800 focus:outline-none"

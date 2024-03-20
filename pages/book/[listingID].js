@@ -394,7 +394,7 @@ const Book = () => {
     src={
         listing?.images?.length > 0
             ? listing.images[0].url
-            : "https://a0.muscache.com/im/pictures/ed3c3933-428a-435b-9161-196722bcf63d.jpg?aki_policy=large"
+            : ""
     } 
     alt="Apartment"
     width={200}
