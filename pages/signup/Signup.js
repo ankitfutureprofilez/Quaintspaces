@@ -28,7 +28,7 @@ export default function Signup() {
     e.preventDefault();
     if(loading==true){return;}
     setLoading(true);
-    console.log("Form submitted:", formData);
+    // console.log("Form submitted:", formData);
     const main = new Listings();
     const response = main.Signup({
       name: formData.fullName.trim(),
@@ -38,10 +38,10 @@ export default function Signup() {
     });
     response
       .then((res) => {
-        console.log("response", res);
+        // console.log("response", res);
         if (res && res.data && res.data.status) {
           toast.success(res.data.message);
-          console.log(res.data.message);
+          // console.log(res.data.message);
           setFormData({
             fullName: "",
             email: "",

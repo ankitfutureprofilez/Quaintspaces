@@ -19,7 +19,7 @@ import Listings from "../api/laravel/Listings";
 const Book = () => {
   const router = useRouter();
   const { listingID } = router.query;
-  console.log("listingID", listingID);
+  // console.log("listingID", listingID);
   const [listing, setListing] = useState([]);
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
@@ -52,7 +52,7 @@ const Book = () => {
   useEffect(() => {
     const url = router.query;
     setInfos(url);
-    console.log("router query", url);
+    // console.log("router query", url);
     const main = new Listings();
     main
       .PropertyDetail(url.listingID)
@@ -112,7 +112,7 @@ const Book = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
   };
 
   return (
