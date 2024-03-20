@@ -46,7 +46,7 @@ const SearchPage = () => {
   }, [data]);
 
   useEffect(() => {
-    if (places.length > 0) {
+    if ( places &&  places.length > 0) {
       const newData = places.map((e) => {
         return e._id === hoveredPlace
           ? { ...e, hovered: true }
@@ -69,7 +69,7 @@ const SearchPage = () => {
         const url = `https://nominatim.openstreetmap.org/?addressdetails=1&q=${destination.trim()}&format=json&limit=1`;
         const { data } = await axios(url);
 
-        if (data.length === 1) {
+        if (data &&  data.length === 1) {
           if (data[0].lat && data[0].lon) {
             setLocation([+data[0].lat, +data[0].lon]);
           }
