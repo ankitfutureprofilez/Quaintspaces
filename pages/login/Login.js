@@ -37,7 +37,8 @@ export default function Login() {
       if (res && res.data && res.data.status) {
         toast.success(res.data.message);
         // console.log("res",res)
-        setAuth(res?.data);
+   const record =      setAuth(res?.data);
+   console.log("record",record)
         localStorage && localStorage.setItem("token", res?.data?.token);
         router.push('/');
         // console.log(res.data.message)
