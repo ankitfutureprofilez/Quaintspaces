@@ -5,7 +5,7 @@ import Button from "../elements/Button";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { Reorder } from "framer-motion";
-import Listings from './../api/Listings';
+import Listings from './../api/laravel/Listings';
 export default function Profile() {
   const [data, setData] = useState({
     email: "",

@@ -4,8 +4,7 @@ import Link from "next/link";
 import RoomListings from "../home/RoomListings";
 import Filter from "../home/Filter";
 import { PostBody } from "../../components";
-import axios from "axios";
-import Listings from "../LaravelApi/Listings";
+import Listings from "../api/laravel/Listings";
 
 export default function index() {
   // Sort By Button Logic
