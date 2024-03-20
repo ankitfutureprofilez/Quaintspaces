@@ -14,7 +14,6 @@ import postsData from "../../bot/data.json";
 import Heading from "../elements/Heading";
 import Image from 'next/image'
 import Button from "../elements/Button";
-
 const Book = () => {
   const router = useRouter();
   const { listingID } = router.query;
