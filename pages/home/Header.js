@@ -3,14 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/images/QsJaipur.png";
 import userprofile from "../../public/images/profile.png";
-import Popup from "../elements/Popup";
+
 export default function Header() {
-  const token= "11111"
-  
-  
-  const [isOpen, setIsOpen] = useState(false);
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
+  const token =localStorage.getItem("token")
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -22,55 +21,47 @@ export default function Header() {
           </Link>
         </div>
         <div className="nav-bar flex items-center">
-          <Link href="/apartments">
-            <p>Our Apartments</p>
-          </Link>
-          <Link href="#premium">
-            <p>Place in Jaipur</p>
-          </Link>
-          <Link href="/contact">
-            <p>Contact</p>
-          </Link>
-          {/* {token ? (
-            <div className="profile-image">
-              <Image src={userprofile} alt="profile"/>
-            </div>
-          ) : (
-             <div className="login-signup-btn">
-             <Link className="login" href={"/login"}>
-               <p>Login</p>
-             </Link>
-             <Link className="signup" href={"/signup"}>
-               <p>Sign Up</p>{" "}
-             </Link>
-           </div>
-          )} */}
-
-<div className="login-signup-btn">
-             <Link className="login" href={"/login"}>
-               <p>Login</p>
-             </Link>
-             <Link className="signup" href={"/signup"}>
-               <p>Sign Up</p>{" "}
-             </Link>
-           </div>
-         
-{/* 
-           <Popup
-            isOpen={isOpen}
-            togglePopup={togglePopup}
-            space={2}
-            text={"Hello  World ankit"}
-          /> 
-         {isOpen && (
-            <button
-              type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              onClick={() => togglePopup(isOpen)}
+          <div className="menu-icon" onClick={toggleMenu}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 cursor-pointer block md:hidden"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              Close modal
-            </button>
-          )}  */}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+          </div>
+          <div className={`menu-items md:flex ${isMenuOpen ? 'block' : 'hidden'}`}>
+            <Link href="/apartments">
+              <p>Our Apartments</p>
+            </Link>
+            <Link href="#premium">
+              <p>Place in Jaipur</p>
+            </Link>
+            <Link href="/contact">
+              <p>Contact</p>
+            </Link>
+            {token ? (
+              <div className="profile-image">
+                <Image src={userprofile} alt="profile" />
+              </div>
+            ) : (
+              <div className="login-signup-btn">
+                <Link className="login" href={"/login"}>
+                  <p>Login</p>
+                </Link>
+                <Link className="signup" href={"/signup"}>
+                  <p>Sign Up</p>{" "}
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </nav>

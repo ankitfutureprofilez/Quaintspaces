@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Listing from "../adminapi/Listing";
 import PageNavbar, {
   PageNavbarIconButton,
   PageNavbarLeftContent,
@@ -10,6 +9,7 @@ import PageNavbar, {
 import { Add, Notification, SearchNormal1, Setting4 } from "iconsax-react";
 import PageContent from "../components/layout/PageContent";
 import amenitiesList from "../../../aminites.json";
+import Listing from "../api/Listing";
 
 export default function Property() {
   console.log("amenitiesList", amenitiesList);
