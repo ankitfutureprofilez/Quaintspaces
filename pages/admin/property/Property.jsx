@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Listing from "../AdminApi/Listing";
+import Listing from "../adminapi/Listing";
 import PageNavbar, {
   PageNavbarIconButton,
   PageNavbarLeftContent,
@@ -9,10 +9,10 @@ import PageNavbar, {
 } from "../components/layout/PageNavbar";
 import { Add, Notification, SearchNormal1, Setting4 } from "iconsax-react";
 import PageContent from "../components/layout/PageContent";
-import amenitiesList from "../../../aminites.json"
+import amenitiesList from "../../../aminites.json";
 
 export default function Property() {
-  console.log("amenitiesList", amenitiesList)
+  console.log("amenitiesList", amenitiesList);
   const [step, setStep] = useState(1);
 
   const [Poperty, setPoperty] = useState({
@@ -62,9 +62,6 @@ export default function Property() {
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
 
-
-
-
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
@@ -86,7 +83,7 @@ export default function Property() {
 
   const [city, setCity] = useState([]);
   useEffect(() => {
-    const main = new Listing;
+    const main = new Listing();
     const response = main.city_list(id);
     // console.log("rs", response)
     response
