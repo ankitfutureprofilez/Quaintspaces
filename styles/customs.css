@@ -415,7 +415,8 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
 .pers-info p {font-family: "Inter", sans-serif; font-size: 18px; font-weight: 400; line-height: 21.6px; text-align: left; color: #666360; }
 .border-bottom-form { border-bottom: 1px solid #eaeaea; margin-top: -95px; margin-bottom: 100px; }
 .perso-form label { color: #666666 !important; }
-
+.booking-table { min-width: 990px; } 
+.table-responisve { overflow: auto; }
 
 
 
@@ -511,7 +512,7 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
   p.menu-footer { font-size: 16px;  }
   .copy-right { padding: 20px 0; }
   .copy-right span { font-size: 16px; }
-  .menu-items { position: absolute; top: 65px; right: 14px; background: #fff; padding: 16px; box-shadow: 0 0 26px -12px #000; border-radius: 5px; }
+  .menu-items { position: absolute; top: 65px; right: 14px; background: #fff; padding: 16px; box-shadow: 0 0 26px -12px #000; border-radius: 5px; z-index: 3;}
   .login-signup-btn { padding-left: 0; border: none; }
   .signup-tab-sec { flex-flow: column; padding-top: 80px; }
   .backtohome {  top: 15px; }
@@ -525,6 +526,12 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
   .tab-mob-height { height: 100%; }
   .filter-box .listing-heading { margin-bottom: 15px; }
   .filter-box { flex-flow: column; margin-bottom: 24px; }
+  .peora-title { font-size: 20px; }
+  .your-trip-sec .w-8\/12 { width: 100%; } 
+  .golden-border { width: 100%; } 
+  .your-trip-sec { flex-flow: column; }
+  .perso-form .p-4 { padding: 12px; }
+
 
  
 
@@ -557,7 +564,36 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
   .backtohome { left: 0; }
   .filter-btn-select button { padding: 5px 12px; font-size: 15px; }
   footer { padding-top: 20px; }
+  .peora-title { font-size: 18px; }
+  .peora-title svg { margin: 0; }
+  .house-rule-text { flex-flow: column; }
+  footer { padding-top: 30px; }
+  .account-btn button {  padding: 11px; width: 130px; }
+  .booking-manage-box h1 {font-size: 18px; line-height: 22px;  margin-bottom: 5px; }
+  .booking-manage-box p { font-size: 16px;}
+  .booking-manage-box { margin-left: 10px; }
+  .booking-more { flex-flow: column; align-items: baseline; } 
+  .booking-more .px-1 { margin-top: 20px; }
+  .upcomming-box button { font-size: 14px; margin-left: 6px !important; }
+  .upcomming-box { margin-bottom: 20px !important; }
+  .profile-border { padding-bottom: 25px; margin-bottom: 25px; }
+  .footer-menu nav a { width: 100%; }
+  .security-box-form .p-4 { padding: 13px; }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Button Group in Apartment Page */
 .button-group {

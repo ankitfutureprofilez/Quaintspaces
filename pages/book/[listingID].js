@@ -268,7 +268,7 @@ const Book = () => {
           text={"Confirm and pay"}
           handleClick={() => router.back()}
         />
-        <div className="flex mt-14 px-3 gap-10 your-trip-sec">
+        <div className="flex mt-3 sm:mt-8 md:mt-14 px-3 gap-10 your-trip-sec">
           <div className="w-8/12">
             <h2 className="text-xl mb-4 font-medium heading-data">Your trip</h2>
             <div className="flex items-center justify-between w-full py-2">
@@ -398,32 +398,19 @@ const Book = () => {
               <Button
                 text={"Confirm & Pay"}
                 design={
-                  "font-inter  font-lg leading-tight text-center text-white w-96 bg-orange-300 p-4 rounded-full"
+                  "font-inter  font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 p-4 rounded-full"
                 }
               />
             </div>
           </div>
           <div className="w-5/12  rounded-xl shadow py-8 px-5 h-fit golden-border">
             <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
-<<<<<<< HEAD
               <Image
                 src="http://quaintstays.laraveldevelopmentcompany.com//public//storage//property//images//1710834595_houseimg%202.jpg"
                 alt="Apartment"
                 width={200}
                 height={200}
               />
-=======
-            <Image 
-    src={
-        listing?.images?.length > 0
-            ? listing.images[0].url
-            : ""
-    } 
-    alt="Apartment"
-    width={200}
-    height={200}
-/>
->>>>>>> 0bdee81b71c83ea7bd974136d9da6d9823b22b44
 
               {/* <img
                 src={

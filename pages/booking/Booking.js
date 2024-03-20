@@ -11,7 +11,8 @@ function Booking() {
 
     const BookingTable = () => {
         return (
-            <table className="table-fixed w-full booking-table">
+            <div className="table-responisve">
+                <table className="table-fixed w-full booking-table">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -47,6 +48,7 @@ function Booking() {
                     </tr>
                 </tbody>
             </table>
+            </div>
         );
     }
 
@@ -55,7 +57,7 @@ function Booking() {
     return (
         <>
             <div className="container mx-auto account-btn ">
-                <div className="pt-12 pb-10">
+                <div className=" pt-4 sm:pt-8 md:pt-12 pb-3 sm:pb-6 md:pb-10">
                 <Heading text={"My Booking"} value={"/account"} />
                 </div>
             </div>
