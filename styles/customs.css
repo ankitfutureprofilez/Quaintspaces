@@ -480,7 +480,7 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
   .logo img { max-width: 110px; }
   .luxury-stay-img .img-box { padding: 0 5px; }
   .smart-box .iteam h3 {font-size: 18px; line-height: 26px; }
-  .visit-us-sec { padding: 45px 0 120px;  }
+  .visit-us-sec { padding: 45px 0 120px;margin-bottom: 50px;  }
   .visit-us-sec h2 {font-size: 34px;  line-height: 36px;  }
   .footer-menu nav a { width: 40%; margin: 0 !important; padding: 5px 0; } 
   .footer-menu nav { flex-flow: wrap; justify-content: end; }
