@@ -4,7 +4,7 @@ import logologin from "../../public/images/loginlogoimg.png";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast, Toaster } from "react-hot-toast";
-import Listings from "../LaravelApi/Listings";
+import Listings from "../api/Listings";
 
 export default function Login() {
   const router = useRouter();

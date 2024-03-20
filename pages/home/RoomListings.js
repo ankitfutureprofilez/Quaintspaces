@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PostBody } from "../../components";
 import axios from "axios";
-import Listings from "../LaravelApi/Listings";
+import Listings from "../api/Listings";
 
 export default function RoomListings() {
   
@@ -9,7 +9,7 @@ export default function RoomListings() {
   const [listings, setListings] = useState([]);
   useEffect(() => {
     setloading(true);
-      const main = new Listings;
+      const main = new Listings();
       main.PropertyListing().then((r)=>{
         setloading(false)
         setListings(r.data.data);

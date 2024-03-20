@@ -1,17 +1,14 @@
 import React, { useState } from "react";
-import { useRouter } from 'next/router';
-import toast, { Toaster } from 'react-hot-toast';
-import  Listing from "../AdminApi/Listing"
-export default function  Login() {
+import { useRouter } from "next/router";
+import toast, { Toaster } from "react-hot-toast";
+import Listing from "../api/Listing";
+export default function Login() {
   const [record, setRecord] = useState({
     email: "",
     password: "",
   });
 
-  
-
   const router = useRouter();
-
 
   const handleInputs = (e) => {
     const value = e.target.value;
@@ -29,12 +26,11 @@ export default function  Login() {
     response
       .then((res) => {
         if (res && res?.data && res?.data?.status) {
-          router.push("/admin")
-          toast.success(res.data.message)
-          localStorage && localStorage.setItem("token", res?.data?.token)
+          router.push("/admin");
+          toast.success(res.data.message);
+          localStorage && localStorage.setItem("token", res?.data?.token);
         } else {
-          toast.error(res.data.message)
-
+          toast.error(res.data.message);
         }
         setRecord({
           email: "",
@@ -44,12 +40,10 @@ export default function  Login() {
       .catch((error) => {
         console.log("error", error);
       });
-
   };
 
   return (
     <>
-
       <div className="  h-dvh flex items-center justify-center w-full dark:bg-gray-950">
         <div className="  rounded-lg px-8 py-6 max-w-md">
           <h1 className="text-3xl font-medium ml-4 text-bold mb-4">
@@ -83,7 +77,6 @@ export default function  Login() {
                 onChange={handleInputs}
                 id="password"
                 className="mt-1 p-4 border rounded-full w-full "
-
                 placeholder="Enter your password"
                 required
               />
@@ -112,5 +105,3 @@ export default function  Login() {
     </>
   );
 }
-
-

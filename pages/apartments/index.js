@@ -101,7 +101,7 @@ export default function index() {
 
   async function fetchLists () {
       setloading(true);
-      const main = new Listings;
+      const main = new Listings();
       main.PropertyListing().then((r)=>{
         setloading(false)
         setListings(r.data.data);

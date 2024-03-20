@@ -4,7 +4,8 @@ import logologin from "../../public/images/loginlogoimg.png";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast, Toaster } from "react-hot-toast";
-import Listings from "../LaravelApi/Listings";
+import Listing from "../admin/api/Listing";
+import Listings from "../api/Listings";
 
 export default function Signup() {
   const router = useRouter();
@@ -26,7 +27,7 @@ export default function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    const main = new Listings;
+    const main = new Listings();
     const response = main.Signup({
       name: formData.fullName.trim(),
       email: formData.email.trim(),
