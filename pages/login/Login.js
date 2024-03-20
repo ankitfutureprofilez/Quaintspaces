@@ -10,6 +10,7 @@ import { Context } from "../_app";
 export default function Login() {
   const { setAuth } = useContext(Context);
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -27,6 +28,8 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(loading==true){return;}
+    setLoading(true);
     console.log("Form submitted:", formData);
     const main = new Listings();
     const response = main.Login({
@@ -49,13 +52,13 @@ export default function Login() {
       } else {
         toast.error(res?.data.message)
         console.log(res?.data.message)
+        setLoading(false);
       }
-      // setLoading(false);
     }).catch((error) => {
       console.log("error", error);
       toast.error(error.message);
       toast.error(error?.response.data);
-      // setLoading(false);
+      setLoading(false);
     })
   };
 
@@ -136,7 +139,7 @@ export default function Login() {
                   />
                 </div>
                 <button type="submit" className="submint-btn">
-                  Submit
+                 {loading?"Submitting...":"Submit"}
                 </button>
               </form>
             </div>

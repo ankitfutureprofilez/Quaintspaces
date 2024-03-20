@@ -51,7 +51,7 @@ export default function PremiumLocation() {
         <h1>Premium Location in Jaipur</h1>
         <div className="relative flex items-center ">
           <Swiper
-            slidesPerView={3}
+            slidesPerView={1}
             centeredSlides={false}
             slidesPerGroupSkip={1}
             grabCursor={true}
