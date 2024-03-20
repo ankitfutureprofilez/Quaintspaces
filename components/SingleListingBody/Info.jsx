@@ -52,7 +52,7 @@ const Info = React.forwardRef(({ listing }, ref) => {
                 </span>
                 <div className="hidden">·</div>
                 <span className="underline text-md font-medium">
-                  {listing.data?.reviews?.length || 0} review
+                  { listing && listing.data && listing.data.reviews &&  listing.data?.reviews?.length || 0} review
                 </span>
               </div>
             </>

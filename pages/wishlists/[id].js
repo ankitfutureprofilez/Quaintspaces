@@ -45,7 +45,7 @@ const WishlistListings = () => {
       />
       <div className="w-full min-h-[calc(100vh-104px)] h-full flex flex-col-reverse lg:flex-row relative">
         <WishlistListing data={data} setPlaces={setPlaces} />
-        {renderMap && places.length > 0 && (
+        {renderMap && places && places.length > 0 && (
           <div className="relative w-full z-[0]">
             <WishlistMap places={places} />
           </div>

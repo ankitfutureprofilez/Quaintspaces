@@ -5,7 +5,6 @@ import logo from "../../public/images/QsJaipur.png";
 import userprofile from "../../public/images/profile.png";
 
 export default function Header() {
-  const [token, setToken] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   useEffect(() => {
     // Check if localStorage is available (in a browser environment)
@@ -54,7 +53,7 @@ export default function Header() {
             <Link href="/contact">
               <p>Contact</p>
             </Link>
-            {token ? (
+            {/* {token ? (
               <div className="profile-image">
                 <Image src={userprofile} alt="profile" />
               </div>
@@ -67,7 +66,15 @@ export default function Header() {
                   <p>Sign Up</p>{" "}
                 </Link>
               </div>
-            )}
+            )} */}
+            <div className="login-signup-btn">
+                <Link className="login" href={"/login"}>
+                  <p>Login</p>
+                </Link>
+                <Link className="signup" href={"/signup"}>
+                  <p>Sign Up</p>{" "}
+                </Link>
+              </div>
           </div>
         </div>
       </div>
