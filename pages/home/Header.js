@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/images/QsJaipur.png";
-import userprofile from "../../public/images/profile.png";
+import LocalToken from "../../hooks/LocalToken";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const token = LocalToken("token")
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
