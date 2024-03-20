@@ -139,7 +139,7 @@ export default function Login() {
                   />
                 </div>
                 <button type="submit" className="submint-btn">
-                 {loading?"Submitting...":"Submit"}
+                 {loading?"Processing..":"Submit"}
                 </button>
               </form>
             </div>
