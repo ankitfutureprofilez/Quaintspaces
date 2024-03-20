@@ -1,5 +1,4 @@
 import React, { useState, useEffect, createContext } from 'react';
-import { useLocation, navigate } from 'react-router-dom';
 import Header from '../home/Header';
 import Footer from '../home/Footer';
 import { useRouter } from "next/router";
@@ -12,10 +11,10 @@ export default function AuthLayout({ children }) {
     const main = new Listings();
     const response = main.GetUserProfile();
     response.then((res) => {
+      console.log("res",res)
       if (res.data.status) {
         setContent(res.data.data);
       } else {
-        
       }
     }).catch((error) => {
       console.log("error", error);
