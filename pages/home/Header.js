@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/images/QsJaipur.png";
 import userprofile from "../../public/images/profile.png";
 
 export default function Header() {
-  // const token =localStorage.getItem("token")
+  const [token, setToken] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  useEffect(() => {
+    // Check if localStorage is available (in a browser environment)
+    if (typeof window !== 'undefined') {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+    }
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
