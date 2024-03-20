@@ -594,16 +594,16 @@ export default function Property() {
                   {amenitiesList.map((amenity, index) => (
                     <div key={index} className="flex items-center">
                       <input
-                        id={amenity}
-                        name={amenity}
+                        id={amenity.value}
+                        name={amenity.value}
                         type="checkbox"
-                        value={amenity}
+                        value={amenity.value}
                         className="mr-2 rounded text-indigo-600 focus:ring-indigo-500"
-                        checked={Property?.selectedAmenities?.includes(amenity)}
+                        checked={Property?.selectedAmenities?.includes(amenity.value)}
                         onChange={handleCheckboxChange}
                       />
-                      <label htmlFor={amenity} className="text-lg">
-                        {amenity}
+                      <label htmlFor={amenity.value} className="text-lg">
+                        {amenity.title}
                       </label>
                     </div>
                   ))}
