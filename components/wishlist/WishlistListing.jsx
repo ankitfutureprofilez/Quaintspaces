@@ -49,10 +49,10 @@ const WishlistListing = ({ data, setPlaces }) => {
         <h1 className="text-3xl font-semibold mb-5">
           {data?.name &&
             data.name.slice(0, 1).toUpperCase() +
-              data.name.slice(1, data.name.length)}
+              data.name.slice(1, data && data.name &&  data.name.length)}
         </h1>
         <ul className="flex flex-wrap w-full gap-6">
-          {listing && listings.length > 0 ? (
+          {listings && listings.length > 0 ? (
             listings.map((e) => (
               <div
                 className="w-full sm:w-[calc(100%/3-16px)] lg:w-[calc(100%/2-16px)]"

@@ -392,8 +392,10 @@ const Book = () => {
             <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
             <Image 
     src={
+      listing && 
+      listing?.images && 
         listing?.images?.length > 0
-            ? listing.images[0].url
+            ? listing?.images[0]?.url
             : "http://quaintstays.laraveldevelopmentcompany.com/public/storage/property/images/1710849343_5.jpg"
     } 
     alt="Apartment"
@@ -417,7 +419,7 @@ const Book = () => {
                     <Star />
                   </span>
                   <span>
-                    {listing?.rating || "4.5"} ({listing?.reviews_length || 141} reviews)
+                    {listing?.rating || "4.5"} ({listing && listing?.reviews_length || 141} reviews)
                   </span>
                 </span>
               </div>
