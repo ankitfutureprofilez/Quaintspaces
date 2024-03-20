@@ -490,11 +490,11 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
 }
 @media (max-width: 767px) {
   .container {
-    max-width: 720px;
+    max-width: 720px !important ;
     margin: auto;
-    padding: 0 15px;
+    padding: 0 15px !important ;
   }
-  .footer-menu nav a { width: 47%; }
+  .footer-menu nav a { width: 47% ; }
   .hero-sec p { font-size: 18px; margin-bottom: 25px; padding: 0 15px; }
   .hero-sec { padding: 100px 0; }
   .hero-sec h1 { font-size: 44px; line-height: 50px; margin-bottom: 10px; }
@@ -577,6 +577,15 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
   .profile-border { padding-bottom: 25px !important; margin-bottom: 25px !important; }
   .footer-menu nav a { width: 100%  !important;  }
   .security-box-form .p-4 { padding: 13px !important; }
+  .right-signup-form { width: 100% !important;  }
+  .left-logo-login { width: 100% !important; }
+  .tab-mob-height {
+    height: 100% !important;
+}
+.signup-form {
+
+  max-height: 100% !important;
+}
 }
 
 
