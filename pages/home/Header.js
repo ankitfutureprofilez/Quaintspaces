@@ -82,7 +82,7 @@ export default function Header() {
                   />
                 </div>
                 {isDropdownOpen && (
-                  <ul className="dropdown-menu">
+                  <ul className="dropdown-menu  text-black border-3 ">
                     <li onClick={handleSecurityClick}>Security</li>
                     <li onClick={handleProfileClick}>Profile</li>
                     <li onClick={handleLogoutClick}>Logout</li>
