@@ -536,15 +536,15 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
 }
 @media (max-width: 575px) {
   .container {
-    max-width: 100%;
+    max-width: 100% !important;
     margin: auto;
-    padding: 0 15px;
+    padding: 0 15px !important;
   }
-  .footer-menu nav { flex-flow: column; margin: 0; margin-top: 20px; width: 100%; } 
-  .footer-menu { flex-flow: column; } 
+  .footer-menu nav { flex-flow: column !important; margin: 0; margin-top: 20px; width: 100% !important; } 
+  .footer-menu { flex-flow: column !important; } 
   .footer-menu nav p.menu-footer { text-align: left; margin: 0; } 
   .footer-menu nav a { margin: 0 !IMPORTANT; padding: 4px; } 
-  .footer-menu .flex.items-left.space-x-4 { width: 100%; }
+  .footer-menu .flex.items-left.space-x-4 { width: 100% !important; }
   .visit-us-sec h2 { font-size: 26px; line-height: 34px; }
   .hero-sec { padding: 55px 0; }
   .hero-sec h1 { font-size: 36px; line-height: 40px; margin-bottom: 10px; text-align: center; }
@@ -555,7 +555,7 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
   .tip-top-sec { padding: 30px 0; }
   .listing-heading { font-size: 28px; line-height: 38px; margin-bottom: 20px; }
   .tip-top-sec ul.flex.flex-wrap.px-4 { padding: 0; }
-  .left-logo-login img { width: 180px; margin-bottom: 18px; }
+  .left-logo-login img { width: 180px !important; margin-bottom: 18px; }
   .signup-form form input { padding: 11px 22px;  }
   .left-logo-login { padding: 0; }
   .right-signup-form { padding: 0; }
@@ -566,17 +566,17 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
   .peora-title svg { margin: 0; }
   .house-rule-text { flex-flow: column; }
   footer { padding-top: 30px; }
-  .account-btn button {  padding: 11px; width: 130px; }
+  .account-btn button {  padding: 11px !important; width: 130px !important; }
   .booking-manage-box h1 {font-size: 18px; line-height: 22px;  margin-bottom: 5px; }
   .booking-manage-box p { font-size: 16px;}
   .booking-manage-box { margin-left: 10px; }
-  .booking-more { flex-flow: column; align-items: baseline; } 
-  .booking-more .px-1 { margin-top: 20px; }
-  .upcomming-box button { font-size: 14px; margin-left: 6px !important; }
+  .booking-more { flex-flow: column !important; align-items: baseline; } 
+  .booking-more .px-1 { margin-top: 20px!important ; }
+  .upcomming-box button { font-size: 14px!important ; margin-left: 6px !important; }
   .upcomming-box { margin-bottom: 20px !important; }
-  .profile-border { padding-bottom: 25px; margin-bottom: 25px; }
-  .footer-menu nav a { width: 100%; }
-  .security-box-form .p-4 { padding: 13px; }
+  .profile-border { padding-bottom: 25px !important; margin-bottom: 25px !important; }
+  .footer-menu nav a { width: 100%  !important;  }
+  .security-box-form .p-4 { padding: 13px !important; }
 }
 
 
