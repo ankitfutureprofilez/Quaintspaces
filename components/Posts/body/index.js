@@ -34,7 +34,7 @@ const PostBody = ({ listings, loading }) => {
             <li
               key={post.id}
               className=" w-full sm:w-3/6 md:w-2/6 px-3"
-              ref={(el) => (child?.current[i] = el)} >
+              ref={(el) => (child.current[i] = el)} >
               <Card post={post} />
             </li>
           ))
