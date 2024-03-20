@@ -15,11 +15,12 @@ import Heading from "../elements/Heading";
 import Image from "next/image";
 import Button from "../elements/Button";
 import Listings from "../api/laravel/Listings";
+import AuthLayout from "../layout/AuthLayout";
 
 const Book = () => {
   const router = useRouter();
   const { listingID } = router.query;
-  console.log("listingID", listingID);
+  // console.log("listingID", listingID);
   const [listing, setListing] = useState([]);
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
@@ -52,7 +53,7 @@ const Book = () => {
   useEffect(() => {
     const url = router.query;
     setInfos(url);
-    console.log("router query", url);
+    // console.log("router query", url);
     const main = new Listings();
     main
       .PropertyDetail(url.listingID)
@@ -112,7 +113,7 @@ const Book = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
   };
 
   return (
@@ -148,7 +149,7 @@ const Book = () => {
     //           <div>
     //             <h5 className="text-lg text-blackColor font-medium">Dates</h5>
     //             <h5 className="text-md text-blackColor">{`${
-    //               infos?.checkin && format(new Date(infos.checkin), "MMM dd")
+      //               infos?.checkin && format(new Date(infos.checkin), "MMM dd")
     //             } - ${
     //               infos?.checkout && format(new Date(infos.checkout), "MMM dd")
     //             }`}</h5>
@@ -165,11 +166,11 @@ const Book = () => {
     //             <h5 className="text-lg text-blackColor font-medium">Guests</h5>
     //             <h5 className="text-md text-blackColor">
     //               {`${+infos.numberOfAdults + +infos.numberOfChildren} guests ${
-    //                 +infos.numberOfInfants
+      //                 +infos.numberOfInfants
     //                   ? ", " + infos.numberOfInfants + " infants"
     //                   : ""
     //               } ${
-    //                 +infos.numberOfPets
+      //                 +infos.numberOfPets
     //                   ? ", " + infos.numberOfPets + " pets"
     //                   : ""
     //               }`}
@@ -212,10 +213,10 @@ const Book = () => {
     //               <span className="block text-blackColor">
     //                 {listing?.price} x
     //                 {` ${
-    //                   infos.checkout &&
+      //                   infos.checkout &&
     //                   infos.checkin &&
     //                   differenceInDays(
-    //                     new Date(infos.checkout),
+      //                     new Date(infos.checkout),
     //                     new Date(infos.checkin)
     //                   )
     //                 } `}
@@ -227,7 +228,7 @@ const Book = () => {
     //                   infos.checkin &&
     //                   +listing?.price?.split("$")[1] *
     //                     differenceInDays(
-    //                       new Date(infos.checkout),
+      //                       new Date(infos.checkout),
     //                       new Date(infos.checkin)
     //                     )}
     //               </span>
@@ -242,7 +243,7 @@ const Book = () => {
     //               infos.checkin &&
     //               +listing?.price?.split("$")[1] *
     //                 differenceInDays(
-    //                   new Date(infos.checkout),
+      //                   new Date(infos.checkout),
     //                   new Date(infos.checkin)
     //                 )}
     //           </span>
@@ -252,7 +253,7 @@ const Book = () => {
     //   </main>
     //   <Footer />
     //   {guestsModel && (
-    //     <GuestsModel
+      //     <GuestsModel
     //       infos={infos}
     //       setGuestsModel={setGuestsModel}
     //       guests={guests}
@@ -262,6 +263,7 @@ const Book = () => {
     //   {dateModel && <DatesModel infos={infos} setDateModel={setDateModel} />}
     // </>
 
+      <AuthLayout>
     <div>
       <main className="max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12">
         <Heading
@@ -276,7 +278,7 @@ const Book = () => {
                 <h3 className="text-lg  font-medium item-heading ">Dates</h3>
                 {/* <h5 className="text-md text-blackColor">{infos.checkin && infos.checkout ?
   `${format(new Date(infos.checkin), "MMM dd")} - ${format(new Date(infos.checkout), "MMM dd")}`
-  : "Dates not specified"}</h5> */}
+: "Dates not specified"}</h5> */}
                 <p className="text-md item-paragraph">{`${
                   infos?.checkin && format(new Date(infos.checkin), "MMM dd")
                 } - ${
@@ -506,6 +508,7 @@ const Book = () => {
         {dateModel && <DatesModel infos={infos} setDateModel={setDateModel} />}
       </main>
     </div>
+    </AuthLayout>
   );
 };
 
