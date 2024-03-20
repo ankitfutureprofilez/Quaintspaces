@@ -13,6 +13,8 @@ const PostBody = ({ listings, loading }) => {
       if (child && child.current) {
         let tl = gsap.timeline();
 
+
+        
         tl.fromTo(
           child.current,
           {
