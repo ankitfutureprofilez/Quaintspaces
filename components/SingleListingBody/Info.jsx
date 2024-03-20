@@ -91,7 +91,7 @@ const Info = React.forwardRef(({ listing }, ref) => {
   className="btn-normal mt-8"
   onClick={() => setAmenitiesModal(true)}
 >
-  See all {stringToArray(listing.data?.amenities || '').length} amenities
+  See all {stringToArray(listing?.data?.amenities || '')?.length} amenities
 </button>
         {amenitiesModal && (
           <AmenitiesModal
