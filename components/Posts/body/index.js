@@ -30,7 +30,7 @@ const PostBody = ({ listings, loading }) => {
   return (
     <div>
 
-      <ul className="flex flex-wrap px-4">
+      <ul className="flex flex-wrap ">
         {loading ? Array(3).fill("_").map(() => <ListingsLoading key={uuidv4()} />)
         :  listings && listings.map((post, i) => (
             <li

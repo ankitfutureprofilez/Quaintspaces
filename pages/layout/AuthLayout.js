@@ -1,6 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react';
 import { useLocation, navigate } from 'react-router-dom';
-import { toast } from 'react-toastify'; 
 import Header from '../home/Header';
 import Footer from '../home/Footer';
 import { useRouter } from "next/router";

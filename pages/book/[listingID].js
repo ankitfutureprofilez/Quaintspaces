@@ -405,12 +405,25 @@ const Book = () => {
           </div>
           <div className="w-5/12  rounded-xl shadow py-8 px-5 h-fit golden-border">
             <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
+<<<<<<< HEAD
               <Image
                 src="http://quaintstays.laraveldevelopmentcompany.com//public//storage//property//images//1710834595_houseimg%202.jpg"
                 alt="Apartment"
                 width={200}
                 height={200}
               />
+=======
+            <Image 
+    src={
+        listing?.images?.length > 0
+            ? listing.images[0].url
+            : ""
+    } 
+    alt="Apartment"
+    width={200}
+    height={200}
+/>
+>>>>>>> 0bdee81b71c83ea7bd974136d9da6d9823b22b44
 
               {/* <img
                 src={

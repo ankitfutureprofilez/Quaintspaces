@@ -13,15 +13,16 @@ const Title = ({ isSaved, listing, addWishlist }) => {
           <div className="w-4/12 h-5 mb-2 rounded-md bg-lightBorderColor"></div>
         </>
       ) : (
+        
         <>
-          <div className="text-2xl lg:text-3xl flex-wrap flex font-medium mb-2">
+          <div className="text-2xl lg:text-3xl  flex font-medium mb-2">
             <div className={"backtag"} ></div>
               <Back />
               {/* {listing.data?.title.slice(0, 1).toUpperCase() +
               listing.data?.title.slice(1, listing.data?.title.length)} */}
               {listing.data.name}
           </div>
-          <div className="flex items-center justify-between my-8 md:my-0">
+          <div className="flex items-center justify-between  md:my-0">
             {/* <div className="flex flex-col md:flex-row gap-2 items-start md:items-center">
               <span className="flex gap-1 items-center text-md font-medium">
                 <span>

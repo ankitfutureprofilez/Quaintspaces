@@ -432,6 +432,7 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
     margin: auto;
     padding: 0 15px;
   }
+  
 }
 
 @media (max-width: 1199px) {
@@ -440,6 +441,16 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
     margin: auto;
     padding: 0 15px;
   }
+  .signup-form form input { padding: 14px 22px; margin-top: 7px; }
+  .signup-form form .mb-6 { margin-bottom: 12px; }
+  .quainttay { padding: 25px; }
+  .signup-form form { padding: 25px; }
+  button.submint-btn { padding: 17px;  }
+  .backtohome a { font-size: 32px;  }
+  .left-logo-login img { width: 228px; margin-bottom: 20px; }
+  .left-logo-login p {font-size: 18px; }
+  .listing-heading {font-size: 34px; }
+  .filter-box .listing-heading { font-size: 30px; line-height: 38px; margin-bottom: 0; }
 }
 @media (max-width: 991px) {
   .container {
@@ -474,6 +485,8 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
   .visit-us-sec h2 {font-size: 34px;  line-height: 36px;  }
   .footer-menu nav a { width: 40%; margin: 0 !important; padding: 5px 0; } 
   .footer-menu nav { flex-flow: wrap; justify-content: end; }
+  .filter-box .listing-heading { font-size: 26px; line-height: 35px; }
+  .filter-box .button-group { margin: 0; padding: 0; }
 
 }
 @media (max-width: 767px) {
@@ -483,6 +496,37 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
     padding: 0 15px;
   }
   .footer-menu nav a { width: 47%; }
+  .hero-sec p { font-size: 18px; margin-bottom: 25px; padding: 0 15px; }
+  .hero-sec { padding: 100px 0; }
+  .hero-sec h1 { font-size: 44px; line-height: 50px; margin-bottom: 10px; }
+  .hero-sec button { width: 274px; padding: 12px; font-size: 15px; }
+  .luxury-stay h1 { font-size: 62px; line-height: 80px; margin-bottom: 37px; }
+  h1.in-jaipur { margin-top: -48px; margin-bottom: 0; }
+  .luxury-stay p { font-size: 16px; line-height: 26px; }
+  .load-more-btn a {font-size: 15px; line-height: 16px; padding: 12px 38px; }
+  .load-more-btn { margin-top: 22px; }
+  .premium-location-slider { padding: 30px 0; }
+  .premium-location-slider button svg { width: 15px; height: 15px; }
+  .footer-menu { padding: 20px 0;  }
+  p.menu-footer { font-size: 16px;  }
+  .copy-right { padding: 20px 0; }
+  .copy-right span { font-size: 16px; }
+  .menu-items { position: absolute; top: 65px; right: 14px; background: #fff; padding: 16px; box-shadow: 0 0 26px -12px #000; border-radius: 5px; }
+  .login-signup-btn { padding-left: 0; border: none; }
+  .signup-tab-sec { flex-flow: column; padding-top: 80px; }
+  .backtohome {  top: 15px; }
+  .backtohome a svg {  width: 30px; }
+  .backtohome a { font-size: 22px; }
+  .left-logo-login { width: 100%; }
+  .signup-tab-sec { flex-flow: column; padding-top: 80px; } 
+  .right-signup-form { width: 100%; margin-top: 20px;    margin-bottom: 50px;
+  } 
+  .signup-form { max-width: 100%; max-height: 100%; }
+  .tab-mob-height { height: 100%; }
+  .filter-box .listing-heading { margin-bottom: 15px; }
+  .filter-box { flex-flow: column; margin-bottom: 24px; }
+
+ 
 
 }
 @media (max-width: 575px) {
@@ -496,6 +540,23 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
   .footer-menu nav p.menu-footer { text-align: left; margin: 0; } 
   .footer-menu nav a { margin: 0 !IMPORTANT; padding: 4px; } 
   .footer-menu .flex.items-left.space-x-4 { width: 100%; }
+  .visit-us-sec h2 { font-size: 26px; line-height: 34px; }
+  .hero-sec { padding: 55px 0; }
+  .hero-sec h1 { font-size: 36px; line-height: 40px; margin-bottom: 10px; text-align: center; }
+  .hero-sec p { font-size: 16px; margin-bottom: 22px; padding: 0 15px; }
+  .luxury-stay h1 { font-size: 44px; line-height: 70px; margin-bottom: 42px; }
+  h1.in-jaipur { margin-top: -40px; margin-bottom: 0; }
+  .luxury-stay { padding: 20px 0 25px; }
+  .tip-top-sec { padding: 30px 0; }
+  .listing-heading { font-size: 28px; line-height: 38px; margin-bottom: 20px; }
+  .tip-top-sec ul.flex.flex-wrap.px-4 { padding: 0; }
+  .left-logo-login img { width: 180px; margin-bottom: 18px; }
+  .signup-form form input { padding: 11px 22px;  }
+  .left-logo-login { padding: 0; }
+  .right-signup-form { padding: 0; }
+  .backtohome { left: 0; }
+  .filter-btn-select button { padding: 5px 12px; font-size: 15px; }
+  footer { padding-top: 20px; }
 }
 
 /* Button Group in Apartment Page */
