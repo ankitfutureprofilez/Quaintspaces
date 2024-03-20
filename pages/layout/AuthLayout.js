@@ -4,21 +4,17 @@ import { toast } from 'react-toastify';
 import Header from '../home/Header';
 import Footer from '../home/Footer';
 import { useRouter } from "next/router";
+import Listings from "./"
 export default function AuthLayout({ children }) {
-  
   const router =Router();
-  const AuthContext = createContext();
-  
-    const { setAuth } = useContext(Context);
-  const { pathname } = useLocation();
-
+  const [content, setContent] = useState([]);
   useEffect(() => {
     const auth = localStorage.getItem('token');
     const main = new Listings();
     const response = main.GetUserProfile();
     response.then((res) => {
       if (res.data.status) {
-        setAuth(res.data.data);
+        setContent(res.data.data);
       } else {
         
       }
@@ -32,10 +28,11 @@ export default function AuthLayout({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ auth }}>
+    <>
+
       <Header />
       <main>{children}</main>
       <Footer />
-    </AuthContext.Provider>
+      </>
   );
 }
