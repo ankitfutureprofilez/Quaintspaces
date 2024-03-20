@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
 import logologin from "../../public/images/loginlogoimg.png";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast, Toaster } from "react-hot-toast";
 import Listings from './../api/laravel/Listings';
+import { Context } from "../_app";
 
 export default function Login() {
+  const { setAuth } = useContext(Context);
   const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
@@ -34,10 +36,11 @@ export default function Login() {
     response.then((res) => {
       if (res && res.data && res.data.status) {
         toast.success(res.data.message);
-        console.log("res",res)
+        // console.log("res",res)
+        setAuth(res?.data);
         localStorage && localStorage.setItem("token", res?.data?.token);
         router.push('/');
-        console.log(res.data.message)
+        // console.log(res.data.message)
         setFormData({
           email: "",
           password: "",

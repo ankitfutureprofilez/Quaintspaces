@@ -13,10 +13,11 @@ export const Context = React.createContext();
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
+  const[auth,setAuth]=useState(null);
   const [wishlist, setWishlist] = useState(false);
   const [wishlistData, setWishlistData] = useState(null);
 
-  const values = { wishlist, setWishlist, wishlistData, setWishlistData };
+  const values = { wishlist, setWishlist, wishlistData, setWishlistData, auth, setAuth };
 
   // useEffect(() => {
   //   if (router.pathname === '/') {
