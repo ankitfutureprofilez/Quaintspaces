@@ -232,7 +232,7 @@ const [selectEnd, setSelectEnd] = useState(null);
       </div>
 
       <section className="w-full px-4">
-        <div className="max-w-[1120px] mx-auto py-8">
+        <div className="max-w-[1120px] mx-auto py-4 sm:py-8">
           <Title
             isSaved={isSaved}
             listing={listing}
@@ -240,7 +240,7 @@ const [selectEnd, setSelectEnd] = useState(null);
           />  
           <div
             ref={ImagesRef}
-            className="block h-screen rounded-2xl overflow-hidden my-8 relative min-h-[20vh] max-h-[40vh]"
+            className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] max-h-[40vh]"
           >
             <Images
               setSelectedImage={setSelectedImage}

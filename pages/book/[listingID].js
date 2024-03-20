@@ -270,7 +270,7 @@ const Book = () => {
           text={"Confirm and pay"}
           handleClick={() => router.back()}
         />
-        <div className="flex mt-14 px-3 gap-10 your-trip-sec">
+        <div className="flex mt-3 sm:mt-8 md:mt-14 px-3 gap-10 your-trip-sec">
           <div className="w-8/12">
             <h2 className="text-xl mb-4 font-medium heading-data">Your trip</h2>
             <div className="flex items-center justify-between w-full py-2">
@@ -400,7 +400,7 @@ const Book = () => {
               <Button
                 text={"Confirm & Pay"}
                 design={
-                  "font-inter  font-lg leading-tight text-center text-white w-96 bg-orange-300 p-4 rounded-full"
+                  "font-inter  font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 p-4 rounded-full"
                 }
               />
             </div>

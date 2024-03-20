@@ -125,7 +125,7 @@ export default function Profile() {
   return (
     <>
       <div className='container mx-auto  '>
-        <div className="py-12">
+        <div className="py-6 sm:py-12">
           <Heading text={"My Profile"} />
         </div>
       </div>
@@ -164,9 +164,9 @@ export default function Profile() {
           <h3 >Personal Information</h3>
           <p>Update your personal information here </p>
         </div>
-        <div className='w-9/12 '>
-          <form onSubmit={handleSubmit} className='grid grid-cols-2 gap-4'>
-            <div className="mb-4">
+        <div className='w-full md:w-9/12 '>
+          <form onSubmit={handleSubmit} className='grid sm:grid-cols-2 grid-cols-1 gap-4'>
+            <div className="mb-2 sm:mb-4">
               <label
                 htmlFor="email"
                 className="block text-lg font-medium text-gray-700 "
@@ -184,7 +184,7 @@ export default function Profile() {
               />
             </div>
 
-            <div className="mb-4">
+            <div className="mb-2 sm:mb-4">
               <label
                 htmlFor="email"
                 className="block text-lg font-medium text-gray-700"
@@ -201,7 +201,7 @@ export default function Profile() {
                 required
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-2 sm:mb-4">
               <label
                 htmlFor="email"
                 className="block text-lg font-medium text-gray-700"
@@ -218,7 +218,7 @@ export default function Profile() {
                 required
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-2 sm:mb-4">
               <label
                 htmlFor="phone"
                 className="block text-lg font-medium text-gray-700"
@@ -236,7 +236,7 @@ export default function Profile() {
                 required
               />
             </div>
-            <Button text={"Update Details"} design={"font-inter font-lg leading-tight text-center text-black-400 w-96 bg-orange-300   p-4 rounded-full mt-14"} />
+            <Button text={"Update Details"} design={"font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-orange-300   p-4 rounded-full mt-14"} />
           </form>
 
         </div>

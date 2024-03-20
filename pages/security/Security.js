@@ -29,12 +29,12 @@ export default function Security() {
     return (
         <div>
             <div className="container mx-auto">
-            <div className="pt-12">
+            <div className="pt-3 sm:pt-6 md:pt-12">
                 <Heading text={"Security "} />
                 </div>
             </div>
             <div className="container mx-auto">
-                <div className="my-12 profile-text">
+                <div className="my-3 sm:my-6 md:my-12 profile-text">
                     <h1 >
                         Update Password
                     </h1>
@@ -44,8 +44,8 @@ export default function Security() {
                 </div>
             </div>
             <div className=" container mx-auto">
-            <div className="w-3/5">
-                <form onSubmit={handleSubmit} className="mr-3"  >
+            <div className="w-full sm:w-3/5 security-box-form">
+                <form onSubmit={handleSubmit}   >
                     <div className="mb-4">
                         <label
                             htmlFor="email"
@@ -98,7 +98,7 @@ export default function Security() {
                         />
                     </div>
                     <Button text={"Update Password"} 
-                    design={"font-inter font-lg leading-tight update-btn text-center text-black-400 w-96 bg-orange-300  border-0 p-4 rounded-full mt-10 mb-12"} 
+                    design={"font-inter font-lg leading-tight update-btn text-center text-black-400 w-full sm:w-96 bg-orange-300  border-0 p-4 rounded-full mt-10 mb-12"} 
                     />
                 </form>
                 <div className='border-b-2 border-solid border-zinc-300'></div>
