@@ -34,7 +34,7 @@ const WishlistPage = () => {
         <div className="max-w-[1320px] mx-auto w-full py-10 px-4">
           <h1 className="text-3xl font-bold">Wishlist</h1>
           <div className="my-4 md:my-10 flex gap-6 flex-wrap">
-            {data.length > 0 ? (
+            {  data && data.length > 0 ? (
               data.map((data) => <WishlistCard key={uuidv4()} data={data} />)
             ) : (
               <div className="w-full md:w-6/12">
