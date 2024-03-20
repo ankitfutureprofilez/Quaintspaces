@@ -30,7 +30,7 @@ export default function Login() {
     e.preventDefault();
     if(loading==true){return;}
     setLoading(true);
-    // console.log("Form submitted:", formData);
+    console.log("Form submitted:", formData);
     const main = new Listings();
     const response = main.Login({
       email: formData.email,
@@ -40,8 +40,8 @@ export default function Login() {
       if (res && res.data && res.data.status) {
         toast.success(res.data.message);
         // console.log("res",res)
-   const record =      setAuth(res?.data);
-  //  console.log("record",record)
+   const record =      setAuth(res?.data?.data);
+   console.log("record",record)
         localStorage && localStorage.setItem("token", res?.data?.token);
         router.push('/');
         // console.log(res.data.message)
