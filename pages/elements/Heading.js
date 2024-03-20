@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router';
 
-function Heading({ text ,value}) {
+function 
+Heading({ text ,value, handleClick}) {
   const router = useRouter();
 
-  const record = value ? value:"/account"
-  const handleClick = () => {
-    router.push(record);
-  };
+  // const record = value ? value:"/account"
+  // const handleClick = () => {
+  //   router.push(record);
+  // };
 
   return (
     <div className="flex flex-wrap items-center">
