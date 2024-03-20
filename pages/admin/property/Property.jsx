@@ -34,6 +34,7 @@ export default function Property() {
     selectedAmenities: [],
     images: [],
   });
+  console.log("pPopertyrrr",Poperty)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -174,14 +175,15 @@ export default function Property() {
     formData.append("state_id", "33");
     formData.append("city_id", Poperty.city_id);
     formData.append("area_id", Poperty.area_id);
-    formData.append("adults", Property.adults);
-    formData.append("children", Property.children);
+    formData.append("adults", Poperty.adults);
+    formData.append("children", Poperty.children);
     formData.append("infants", "1");
     formData.append("free_cancel_time", "11");
     formData.append("amenities", Poperty.selectedAmenities.join(","));
     Poperty.images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
+    console.log("ddd",formData)
     const response = main.addproperty(formData);
     response
       .then((res) => {
