@@ -7,7 +7,7 @@ export const textHandler = (event, state, setState) => {
 };
 
 export const textResizer = (data, value = 10) => {
-  if (data?.length > value) {
+  if (data && data?.length > value) {
     return data.slice(0, value) + "...";
   } else {
     return data;

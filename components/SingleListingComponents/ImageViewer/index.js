@@ -23,7 +23,7 @@ const ImageViewer = ({ selectedImage, isSaved, images, setImageViewer }) => {
           <span className="tracking-2">Close</span>
         </button>
         <p className="text-md text-white font-medium">
-          {counter + 1} / {images.length}
+          {counter + 1} / { images && images.length}
         </p>
         {/* <button
           type="button"
