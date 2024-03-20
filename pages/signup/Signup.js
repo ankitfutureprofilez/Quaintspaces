@@ -94,6 +94,8 @@ export default function Signup() {
                 </svg>
                 Back to home
               </Link>
+
+              
             </div>
             <Image src={logologin} alt="logo" />
             <p>
