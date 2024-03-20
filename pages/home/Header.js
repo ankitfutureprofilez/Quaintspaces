@@ -3,17 +3,33 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../../public/images/QsJaipur.png";
 import LocalToken from "../../hooks/LocalToken";
-
+import { useContext } from 'react';
+import { useRouter } from "next/router";
+import { Context } from "../_app";
 export default function Header() {
 
+  const router = useRouter();
+  const auth = useContext(Context)
 
-
+  console.log(auth)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const token = LocalToken("token")
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleProfileClick = () => {
+    router.push('/profile');
+  };
+
+  const handleSecurityClick = () => {
+    router.push('/security');
+  };
+
+  const handleLogoutClick = () => {
+    localStorage.removeItem('token');
+    router.push('/login');
   };
 
   return (
@@ -48,12 +64,30 @@ export default function Header() {
             <Link href="#premium">
               <p>Place in Jaipur</p>
             </Link>
-            <Link href="/contact">
+            {/* <Link href="/contact">
               <p>Contact</p>
-            </Link>
-            {/* {token ? (
-              <div className="profile-image">
-                <Image src={userprofile} alt="profile" />
+            </Link> */}
+            {auth?.auth?.email ? (
+              <div className="profile-image" >
+                <div
+                  className="profile-image-container"
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <Image
+                    src={auth?.auth?.image_url ? auth?.auth?.image_url : "https://quaintstays.laraveldevelopmentcompany.com/public/storage/user/profile-images/1710928138.jpg"}
+                    alt="profile"
+                    width={100}
+                    height={100}
+                  />
+                </div>
+                {isDropdownOpen && (
+                  <ul className="dropdown-menu">
+                    <li onClick={handleSecurityClick}>Security</li>
+                    <li onClick={handleProfileClick}>Profile</li>
+                    <li onClick={handleLogoutClick}>Logout</li>
+                  </ul>
+                )}
               </div>
             ) : (
               <div className="login-signup-btn">
@@ -64,15 +98,7 @@ export default function Header() {
                   <p>Sign Up</p>{" "}
                 </Link>
               </div>
-            )} */}
-            <div className="login-signup-btn">
-                <Link className="login" href={"/login"}>
-                  <p>Login</p>
-                </Link>
-                <Link className="signup" href={"/signup"}>
-                  <p>Sign Up</p>{" "}
-                </Link>
-              </div>
+            )}
           </div>
         </div>
       </div>
