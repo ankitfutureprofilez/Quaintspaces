@@ -1,7 +1,7 @@
 "use client"
 
 import Image from 'next/image'
-import { ArrowRight2, Calendar, Document, Element3, Folder2, Headphone,TextalignJustifycenter, Profile2User, Setting2, Setting4, Star, Timer1, Triangle } from 'iconsax-react'
+import { ArrowRight2, Calendar, Document, Element3, Folder2, Headphone,TextalignJustifycenter, Profile2User, Setting2, Setting4, Star, Timer1, Triangle,ShopAdd  } from 'iconsax-react'
 import ProfileImage from '../components/assets/profile.png'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -37,27 +37,40 @@ function Sidebar() {
                             Dashboard
                         </Link>
 
-                        <button className={`flex ${pathname === '/admin/property/list' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        {/* <button className={`flex ${pathname === '/admin/property/list' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
 
                             Property List
-                        </button>
-
+                        </button> */}
+{/* 
                         <button className={`flex ${pathname === '/admin/timeoff' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Timer1 size={16} />
                             Time Off
-                        </button>
+                        </button> */}
 
-                        <button className={`flex ${pathname === '/admin/projects' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        {/* <button className={`flex ${pathname === '/admin/projects' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Folder2 size={16} />
                             Projects
-                        </button>
+                        </button> */}
 
-                        <Link href={'/admin/property'} className={`flex ${pathname === '/admin/property' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
-                        <TextalignJustifycenter size={16}/>
+
+
+                        <Link href={'/admin/property/add'} className={`flex ${pathname === '/admin/property' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                      {/* <  ShopAdd size={16}/> */}
+                      <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.1875L21.4501 10.275L21.0001 11.625H20.25V20.25H3.75005V11.625H3.00005L2.55005 10.275L12 3.1875ZM5.25005 10.125V18.75H18.75V10.125L12 5.0625L5.25005 10.125Z" fill="#080341"/>
+</svg>
                             Property Add
                         </Link>
+                        <Link href={'/admin/property/list'} className={`flex ${pathname === '/admin/admin/admin/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        <TextalignJustifycenter size={16}/>
+                            Property List
+                        </Link>
+                        {/* <Link href={'/admin/integrations'} className={`flex ${pathname === '/admin/admin/admin/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                            <Setting4 size={16} />
+                            Integrations
+                        </Link> */}
 
-                        <Link href={'/admin/admin/admin/integrations'} className={`flex ${pathname === '/admin/admin/admin/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        <Link href={'/admin/integrations'} className={`flex ${pathname === '/admin/admin/admin/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Setting4 size={16} />
                             Integrations
                         </Link>

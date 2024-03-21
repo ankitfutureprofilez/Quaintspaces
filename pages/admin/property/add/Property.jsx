@@ -1,16 +1,9 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import PageNavbar, {
-  PageNavbarIconButton,
-  PageNavbarLeftContent,
-  PageNavbarPrimaryButton,
-  PageNavbarRightContent,
-} from "../components/layout/PageNavbar";
 import { Add, Notification, SearchNormal1, Setting4 } from "iconsax-react";
-import PageContent from "../components/layout/PageContent";
-import amenitiesList from "../../../aminites.json";
-import Listing from "../api/Listing";
-
+import amenitiesList from "../../../../aminites.json";
+import Listing from "../../api/Listing";
+    
+import Element from  "../../element"
 export default function Property() {
   const [step, setStep] = useState(1);
 
@@ -192,33 +185,9 @@ export default function Property() {
       });
   };
   return (
+    
     <>
-      <PageNavbar>
-        <PageNavbarLeftContent>
-          <div className="border rounded-full w-10 h-10 all-center">
-            <Setting4 size={18} />
-          </div>
-          <div>
-            <h1 className="text-sm font-semibold text-gray-800">Property</h1>
-            <p className="text-xs font-medium text-gray-500">
-              Add your property to here
-            </p>
-          </div>
-        </PageNavbarLeftContent>
-
-        <PageNavbarRightContent>
-          <PageNavbarIconButton>
-            <SearchNormal1 size={16} />
-          </PageNavbarIconButton>
-          <PageNavbarIconButton>
-            <Notification size={16} />
-          </PageNavbarIconButton>
-          <PageNavbarPrimaryButton>
-            <Add size={16} />
-            <span className="hidden md:inline">Add integration</span>
-          </PageNavbarPrimaryButton>
-        </PageNavbarRightContent>
-      </PageNavbar>
+    <Element/>
       <div className="min-h-screen bg-gray-100 flex items-center justify-center px-6 py-8">
         <div className="max-w-4xl w-full space-y-8">
           <div className="bg-white shadow rounded-lg p-8 sm:p-12">
