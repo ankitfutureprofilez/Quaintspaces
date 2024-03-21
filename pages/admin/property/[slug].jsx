@@ -41,12 +41,8 @@ export default function Index() {
         <>
             <Layout>
                 <Element />
-                <div className="text-2xl lg:text-3xl  flex font-medium mb-2 peora-title">
-                    <div className={"backtag"} ></div>
-                    {/* <Back /> */}
-                    {record && record.name}
-                </div>
-                <div className="flex gap-2 w-96">
+          
+                <div className="flex gap-2 w-full">
                     {record && record.property_image?.length > 0 && (
                         <div className={`${record.property_image.length >= 4 ? "w-6/12" : "w-8/12"}`}>
                             <div className="image-cover h-full w-full" onClick={() => handleImageClick(0)}>
@@ -72,7 +68,17 @@ export default function Index() {
                             ))}
                         </div>
                     )}
+
                 </div>
+<div className="text-2xl lg:text-3xl  flex font-medium mb-2 peora-title">
+                    <div className={"backtag"} ></div>
+                    {/* <Back /> */}
+                    {record && record.name}
+                </div>
+          <div className="h-full w-full">
+            {record && record.amenities}
+          </div>
+
             </Layout>
             <Toaster />
         </>
