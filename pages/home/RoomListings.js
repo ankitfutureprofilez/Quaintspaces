@@ -9,7 +9,7 @@ export default function RoomListings() {
   useEffect(() => {
     setloading(true);
     const main = new Listings();
-    main.PropertyListing().then((r) => {
+    main.TopPropertyListing().then((r) => {
       setloading(false)
       setListings(r.data.data);
     }).catch((err) => {

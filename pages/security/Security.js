@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import Heading from '../elements/Heading'
 import Button from '../elements/Button'
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
+import Listings from '../api/laravel/Listings';
 export default function Security() {
-
+    
+    const router = useRouter();
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
+        current_password: "",
         new_password: "",
         confirm_password: "",
-        current_password: ""
     });
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -18,12 +23,37 @@ export default function Security() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form submitted:", formData);
-        setFormData({
-            new_password: "",
-            confirm_password: "",
-            cuurent_Password: '',
+        // console.log("Form submitted:", formData);
+        if (loading == true) { return; }
+        setLoading(true);
+        const main = new Listings();
+        const response = main.ResetPassword({
+            old_password: formData.current_password,
+            password: formData.new_password,
+            confirm_password: formData.confirm_password,
         });
+        response.then((res) => {
+          if (res && res.data && res.data.status) {
+            toast.success(res.data.message);
+            // console.log("res",res)
+            router.push('/');
+            // console.log(res.data.message)
+            setFormData({
+                new_password: "",
+                confirm_password: "",
+                current_password: "",
+            });
+          } else {
+            toast.error(res?.data.message)
+            // console.log(res?.data.message)
+            setLoading(false);
+          }
+        }).catch((error) => {
+          console.log("error", error);
+          toast.error(error.message);
+          toast.error(error?.response.data);
+          setLoading(false);
+        })
     };
 
     return (
