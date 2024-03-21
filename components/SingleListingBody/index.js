@@ -268,7 +268,7 @@ const [selectEnd, setSelectEnd] = useState(null);
             </div>
           </div>
           <Reviews data={listing.data} ref={ReviewsRef} />
-          <Location listing={listing.data} ref={LocationRef} />
+          <Location listing={listing} ref={LocationRef} />
         </div>
       </section>
     </>
