@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import Listing from "../api/Listing";
 export default function Login() {
   const [record, setRecord] = useState({

@@ -1,12 +1,13 @@
+import "../styles/fonts.css"
+import '../styles/RangeSlider.css';
+import "../styles/confirm.css"
 import React, { useState } from "react";
 import { useRouter } from 'next/router';
 import { Toaster } from "react-hot-toast";
 import "../styles/globals.css";
 import '../styles/customs.css';
 import '../styles/apartment.css';
-import "../styles/fonts.css"
-import '../styles/RangeSlider.css';
-import "../styles/confirm.css"
+
 
 export const Context = React.createContext();
 

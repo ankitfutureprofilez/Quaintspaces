@@ -3,7 +3,7 @@ import Image from "next/image";
 import logologin from "../../public/images/loginlogoimg.png";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import Listings from './../api/laravel/Listings';
 
 export default function Signup() {
@@ -95,7 +95,7 @@ export default function Signup() {
                 Back to home
               </Link>
 
-              
+
             </div>
             <Image src={logologin} alt="logo" />
             <p>

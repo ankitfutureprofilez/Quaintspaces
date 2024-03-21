@@ -3,7 +3,7 @@ import Image from "next/image";
 import logologin from "../../public/images/loginlogoimg.png";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import Listings from './../api/laravel/Listings';
 import { Context } from "../_app";
 
@@ -17,7 +17,7 @@ export default function Login() {
   });
 
 
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -28,7 +28,7 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(loading==true){return;}
+    if (loading == true) { return; }
     setLoading(true);
     console.log("Form submitted:", formData);
     const main = new Listings();
@@ -40,8 +40,8 @@ export default function Login() {
       if (res && res.data && res.data.status) {
         toast.success(res.data.message);
         // console.log("res",res)
-   const record =      setAuth(res?.data?.data);
-   console.log("record",record)
+        const record = setAuth(res?.data?.data);
+        console.log("record", record)
         localStorage && localStorage.setItem("token", res?.data?.token);
         router.push('/');
         // console.log(res.data.message)
@@ -111,8 +111,8 @@ export default function Login() {
                   Don't have an account? <Link href="/signup">Sign up</Link>
                 </h3>
               </div>
-              <form 
-             onSubmit={handleSubmit}
+              <form
+                onSubmit={handleSubmit}
               >
                 <div className="mb-6">
                   <label htmlFor="email">Email</label>
@@ -139,7 +139,7 @@ export default function Login() {
                   />
                 </div>
                 <button type="submit" className="submint-btn">
-                 {loading?"Processing..":"Submit"}
+                  {loading ? "Processing.." : "Submit"}
                 </button>
               </form>
             </div>
