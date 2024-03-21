@@ -12,21 +12,22 @@ export default function Property() {
     about: "",
     price: "",
     propertytype: "",
-    children: "",
-    adults: "",
+    children: "1",
+    adults: "1",
     guests: "",
-    bedrooms: "",
+    bedrooms: "1",
     area_id: "",
-    beds: "",
-    bathrooms: "",
+    beds: "1",
+    bathrooms: "1",
     city_id: "",
-    pets: "",
+    pets: "1",
     location: "",
     address: "",
     selectedAmenities: [],
     images: [],
   });
 
+  console.log("amiinitess",Poperty)
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setPoperty({
@@ -37,12 +38,15 @@ export default function Property() {
   const handleFileChange = (e) => {
     let filesToAdd = Array.from(e.target.files);
     let newImages = Poperty.images.concat(filesToAdd).slice(0, 6);
-    setPoperty((prevPoperty) => ({
-      ...prevPoperty,
-      images: newImages,
-    }));
-  };
-
+    if (newImages.length >= 5) { 
+        setPoperty((prevPoperty) => ({
+            ...prevPoperty,
+            images: newImages,
+        }));
+    } else {
+        alert("Please upload at least 5 images.");
+    }
+};
   const removeImage = (indexToRemove) => {
     setPoperty((prevPoperty) => ({
       ...prevPoperty,
@@ -56,14 +60,14 @@ export default function Property() {
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
-      setPoperty((prevData) => ({
-        ...prevData,
-        selectedAmenities: [...prevData.selectedAmenities, value],
+      setPoperty((prevState) => ({
+        ...prevState,
+        selectedAmenities: [...prevState.selectedAmenities, value],
       }));
     } else {
-      setPoperty((prevData) => ({
-        ...prevData,
-        selectedAmenities: prevData.selectedAmenities.filter(
+      setPoperty((prevState) => ({
+        ...prevState,
+        selectedAmenities: prevState.selectedAmenities.filter(
           (item) => item !== value
         ),
       }));
@@ -79,7 +83,6 @@ export default function Property() {
     // console.log("rs", response)
     response
       .then((res) => {
-        // console.log("res", res)children
         setCity(res?.data?.data);
       })
       .catch((error) => {
@@ -178,6 +181,26 @@ export default function Property() {
     response
       .then((res) => {
         if (res?.data?.status) {
+          // toast.success(res.data.message);
+          setPoperty({
+            propertyName: "",
+            about: "",
+            price: "",
+            propertytype: "",
+            children: "1",
+            adults: "1",
+            guests: "",
+            bedrooms: "1",
+            area_id: "",
+            beds: "1",
+            bathrooms: "1",
+            city_id: "",
+            pets: "",
+            location: "",
+            address: "",
+            selectedAmenities: [],
+            images: [],
+          })
         }
       })
       .catch((error) => {
@@ -188,64 +211,10 @@ export default function Property() {
     
     <>
     <Element/>
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center px-6 py-8">
+      <div className="min-h-screen flex items-center justify-center px-6 py-8">
         <div className="max-w-4xl w-full space-y-8">
-          <div className="bg-white shadow rounded-lg p-8 sm:p-12">
-            <div className="pt-6 flex justify-between">
-              {step > 1 && (
-                <button
-                  type="button"
-                  onClick={prevStep}
-                  className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  <svg
-                    width="32px"
-                    height="32px"
-                    viewBox="0 0 1024 1024"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill="#000000"
-                      d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
-                    />
-                    <path
-                      fill="#000000"
-                      d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
-                    />
-                  </svg>
-                </button>
-              )}
-              {step < 10 && (
-                <button
-                  type="button"
-                  onClick={nextStep}
-                  className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  <svg
-                    width="32px"
-                    height="32px"
-                    viewBox="0 0 24 24"
-                    id="_24x24_On_Light_Next"
-                    data-name="24x24/On Light/Next"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect
-                      id="view-box"
-                      width="24"
-                      height="24"
-                      fill="#141124"
-                      opacity="0"
-                    />
-                    <path
-                      id="Shape"
-                      d="M10.22,9.28a.75.75,0,0,1,0-1.06l2.72-2.72H.75A.75.75,0,0,1,.75,4H12.938L10.22,1.281A.75.75,0,1,1,11.281.22l4,4a.749.749,0,0,1,0,1.06l-4,4a.75.75,0,0,1-1.061,0Z"
-                      transform="translate(4.25 7.25)"
-                      fill="#141124"
-                    />
-                  </svg>
-                </button>
-              )}
-            </div>
+          <div className=" p-8 sm:p-12">
+           
 
             {step === 1 && (
               <div className="space-y-4">
@@ -330,7 +299,7 @@ export default function Property() {
                         name="propertytype"
                       >
                         <option value="">Select a property type</option>
-                        <option value="flat">Flat/</option>
+                        <option value="flat">Flat/Apartment</option>
                         <option value="house">House</option>
                         <option value="unique_space">Unique Space</option>
                         <option value="gust_house">Guest House</option>
@@ -554,29 +523,29 @@ export default function Property() {
             )}
 
             {step === 4 && (
-              <div className="max-w-lg mx-auto mt-8">
-                <h2 className="block text-lg font-medium text-gray-700">
-                  Amenities
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {amenitiesList.map((amenity, index) => (
-                    <div key={index} className="flex items-center">
-                      <input
-                        id={amenity.value}
-                        name={amenity.value}
-                        type="checkbox"
-                        value={amenity.value}
-                        className="mr-2 rounded text-indigo-600 focus:ring-indigo-500"
-                        checked={Property?.selectedAmenities?.includes(amenity.value)}
-                        onChange={handleCheckboxChange}
-                      />
-                      <label htmlFor={amenity.value} className="text-lg">
-                        {amenity.title}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <>
+             <div className="max-w-lg mx-auto mt-8">
+             <h2 className="block text-lg font-medium text-gray-700">Amenities</h2>
+             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+               {amenitiesList.map((amenity, index) => (
+                 <div key={index} className="flex items-center">
+                   <input
+                     id={amenity.value}
+                     name={amenity.value}
+                     type="checkbox"
+                     value={amenity.value}
+                     className="mr-2 rounded text-indigo-600 focus:ring-indigo-500"
+                     checked={Property?.selectedAmenities?.includes(amenity.value)}
+                     onChange={handleCheckboxChange}
+                   />
+                   <label htmlFor={amenity.value} className="text-lg">
+                     {amenity.title}
+                   </label>
+                 </div>
+               ))}
+             </div>
+             </div>
+              </>
             )}
             {step === 5 && (
               <>
@@ -694,6 +663,61 @@ export default function Property() {
               </>
             )}
           </div>
+          <div className="pt-6 flex justify-between">
+              {step > 1 && (
+                <button
+                  type="button"
+                  onClick={prevStep}
+                  className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  <svg
+                    width="32px"
+                    height="32px"
+                    viewBox="0 0 1024 1024"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill="#000000"
+                      d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
+                    />
+                    <path
+                      fill="#000000"
+                      d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
+                    />
+                  </svg>
+                </button>
+              )}
+              {step < 10 && (
+                <button
+                  type="button"
+                  onClick={nextStep}
+                  className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  <svg
+                    width="32px"
+                    height="32px"
+                    viewBox="0 0 24 24"
+                    id="_24x24_On_Light_Next"
+                    data-name="24x24/On Light/Next"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      id="view-box"
+                      width="24"
+                      height="24"
+                      fill="#141124"
+                      opacity="0"
+                    />
+                    <path
+                      id="Shape"
+                      d="M10.22,9.28a.75.75,0,0,1,0-1.06l2.72-2.72H.75A.75.75,0,0,1,.75,4H12.938L10.22,1.281A.75.75,0,1,1,11.281.22l4,4a.749.749,0,0,1,0,1.06l-4,4a.75.75,0,0,1-1.061,0Z"
+                      transform="translate(4.25 7.25)"
+                      fill="#141124"
+                    />
+                  </svg>
+                </button>
+              )}
+            </div>
         </div>
       </div>
     </>
