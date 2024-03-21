@@ -6,7 +6,10 @@ const Images = ({ setSelectedImage, listing, setImageViewer }) => {
   return (
     <div className="flex gap-2 w-full h-full">
       {listing.loading ? (
+        <>
         <div className="w-1/2 h-[calc(35vh)] min-h-[500px] bg-lightBorderColor rounded-md"></div>
+        <div className="w-1/2 h-[calc(35vh)] min-h-[500px] bg-lightBorderColor rounded-md"></div>
+        </>
       ) : (
         <div
           className={`${

@@ -25,6 +25,7 @@ const Listing = () => {
 
   useEffect(() => {
     if (slug) {
+      setLoading(true);
       setrecord({
         loading: true,
         data: {},
@@ -35,11 +36,15 @@ const Listing = () => {
           loading: false,
           data: r.data.data,
         });
+        setLoading(false);
+
       }).catch((err) => {
         setrecord({
           loading: true,
         });
         console.log(err);
+        setLoading(false);
+
       });
     }
   }, [slug]);
@@ -62,7 +67,7 @@ const Listing = () => {
         headerSearch={headerSearch}
         setHeaderSearch={setHeaderSearch}
       /> */}
-        <SingleListingBody listing={record} />
+        <SingleListingBody loading={loading} listing={record} />
         <ThingsToKnow />
         {/* <Footer /> */}
         {overlay && (
