@@ -30,11 +30,6 @@ export default function Profile() {
     "https://w7.pngwing.com/pngs/812/572/png-transparent-computer-icons-user-name-heroes-monochrome-black-thumbnail.png"
   );
 
-  useEffect(() => {
-    if (data.image_url) {
-      setPreviewImgSrc(data.image_url);
-    }
-  }, [data.image_url]);
 
   const loadFile = (event) => {
     const file = event.target.files[0];
@@ -55,7 +50,7 @@ export default function Profile() {
   useEffect(() => {
     const main = new Listings();
     main.GetUserProfile().then((r) => {
-      console.log("r.data.data", r.data.data);
+      // console.log("r.data.data", r.data.data);
       const profiledata = r.data.data;
       setRecord({
         first: profiledata.first_name,
@@ -64,7 +59,7 @@ export default function Profile() {
         image: profiledata.image_url,
         email: profiledata.email,
       });
-      setData(r.data.data);
+      setPreviewImgSrc(profiledata.image_url);
     })
       .catch((err) => {
         console.log(err);
@@ -78,11 +73,11 @@ export default function Profile() {
       [name]: value,
     }));
   };
-  console.log("record", record);
+  // console.log("record", record);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("record", record);
+    // console.log("record", record);
     const main = new Listings();
     const formdata = new FormData();
     formdata.append("email", record.email);
@@ -90,15 +85,14 @@ export default function Profile() {
     formdata.append("first_name", record.first);
     formdata.append("last_name", record.last);
     formdata.append("phone_no", record.phone);
-    console.log("fotmdatra", formdata);
     const response = main.UpdateUserProfile(formdata);
     response
       .then((res) => {
-        console.log("res", res);
+        // console.log("res", res);
         if (res && res.data && res.data.status) {
           toast.success(res.data.message);
-          console.log("res", res);
-          console.log(res.data.message);
+          // console.log("res", res);
+          // console.log(res.data.message);
           setRecord({
             email: "",
             phone: "",
@@ -108,7 +102,7 @@ export default function Profile() {
           });
         } else {
           toast.error(res?.data.message);
-          console.log(res?.data.message);
+          // console.log(res?.data.message);
         }
         // setLoading(false);
       })
