@@ -42,6 +42,15 @@ export default function Index() {
             <Layout>
                 <Element />
           
+
+                <div
+            className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] max-h-[40vh]"
+          >
+            <Images
+              listing={record.property_image}
+            />
+          </div>
+
                 <div className="flex gap-2 w-full">
                     {record && record.property_image?.length > 0 && (
                         <div className={`${record.property_image.length >= 4 ? "w-6/12" : "w-8/12"}`}>
