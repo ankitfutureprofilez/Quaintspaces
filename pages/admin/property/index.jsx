@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Element from "../../element";
-import Layout from "../../layout";
-import Listing from "../../api/Listing";
+import Element from "../element";
+import Layout from "../layout";
+import Listing from "../api/Listing";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function index() {
@@ -106,8 +106,8 @@ export default function index() {
                           height="300"
                           decoding="async"
                           data-nimg="1"
-                          srcSet={item.property_image[0].image_url}
-                          src={item.property_image[0].image_url}
+                          srcSet={item?.property_image[0]?.image_url}
+                          src={item?.property_image[0]?.image_url}
                           style={{
                             color: "transparent",
                             width: "100% !important",

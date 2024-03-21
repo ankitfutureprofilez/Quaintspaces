@@ -4,10 +4,11 @@ import Star from "../../public/_svgs/star";
 import Upload from "../../public/_svgs/upload";
 import Back from "../common/Back";
 
-const Title = ({ isSaved, listing, addWishlist }) => {
+const Title = ({ isSaved, listing, addWishlist,loading }) => {
+  console.log("titt",listing)
   return (
     <>
-      {listing?.loading ? (
+      {loading ? (
         <>
           <div className="w-7/12 h-7 mb-2 rounded-md bg-lightBorderColor"></div>
           <div className="w-4/12 h-5 mb-2 rounded-md bg-lightBorderColor"></div>
@@ -20,7 +21,7 @@ const Title = ({ isSaved, listing, addWishlist }) => {
               <Back />
               {/* {listing.data?.title.slice(0, 1).toUpperCase() +
               listing.data?.title.slice(1, listing.data?.title.length)} */}
-              {listing.data.name}
+              {listing?.data?.name}
           </div>
           <div className="flex items-center justify-between  md:my-0">
             {/* <div className="flex flex-col md:flex-row gap-2 items-start md:items-center">

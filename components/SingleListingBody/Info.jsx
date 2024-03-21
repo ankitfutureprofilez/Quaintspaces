@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import Times from "../../public/_svgs/Times";
 import Star from "../../public/_svgs/star";
 
-const Info = React.forwardRef(({ listing }, ref) => {
+const Info = React.forwardRef(({ listing ,loading }, ref) => {
   const [amenitiesModal, setAmenitiesModal] = useState(false);
 
   const stringToArray= (str) => {
@@ -23,23 +23,23 @@ const Info = React.forwardRef(({ listing }, ref) => {
     <div className="w-full">
       <div className="flex items-start sm:items-center justify-between flex-col sm:flex-row gap-4 pb-6">
         <div className="flex-1 h-full">
-          {listing.loading ? (
+          {loading ? (
             <div className="h-7 mb-2 rounded-md bg-lightBorderColor w-7/12"></div>
           ) : (
             <h1 className="text-lg md:text-2xl mb-2 font-semibold">
-              {listing.data?.lt}
+              {listing?.data?.lt}
             </h1>
           )}
-          {listing.loading ? (
+          {loading ? (
             <div className="h-7 mb-2 rounded-md bg-lightBorderColor w-4/12"></div>
           ) : (
             <>
               <div className="flex items-center gap-1 text-md">
-                {listing.data?.guests} guests{" · "}
-                {listing.data?.children > 0 &&
-                  `${listing.data?.guests} pets`}
+                {listing?.data?.guests} guests{" · "}
+                {listing?.data?.children > 0 &&
+                  `${listing?.data?.guests} pets`}
                 {" · "}
-                {listing.data?.bedrooms} bedrooms {" · "} {listing.data?.beds}{" "}
+                {listing?.data?.bedrooms} bedrooms {" · "} {listing?.data?.beds}{" "}
                 beds
               </div>
               <div className="flex items-center gap-2 text-md">
@@ -52,7 +52,7 @@ const Info = React.forwardRef(({ listing }, ref) => {
                 </span>
                 <div className="hidden">·</div>
                 <span className="underline text-md font-medium">
-                  { listing && listing.data && listing.data.reviews &&  listing.data?.reviews?.length || 0} review
+                  { listing && listing?.data && listing?.data?.reviews &&  listing?.data?.reviews?.length || 0} review
                 </span>
               </div>
             </>
@@ -60,17 +60,17 @@ const Info = React.forwardRef(({ listing }, ref) => {
         </div>
       </div>
       <div className="py-8 border-y border-darkBorderColor">
-        {listing.loading ? (
+        {loading ? (
           <div className="w-full h-7 bg-lightBorderColor rounded-md"></div>
         ) : (
-          <p className="text-md text-lightTextColor">{listing.data?.description}</p>
+          <p className="text-md text-lightTextColor">{listing?.data?.description}</p>
         )}
       </div>
       <div className="py-8" ref={ref}>
         <h1 className="text-2xl mb-4 font-semibold">What this place offers?</h1>
         <ul className="block md:flex flex-wrap">
-          {listing.data?.amenities &&
-            listing.data.amenities.split(',').map((amenity) => (
+          {listing?.data?.amenities &&
+            listing?.data.amenities.split(',').map((amenity) => (
               <li
                 className="w-[calc(100%/2-10px)] flex gap-2 my-2 py-2 md:py-0"
                 key={amenity.trim()}
@@ -91,11 +91,11 @@ const Info = React.forwardRef(({ listing }, ref) => {
   className="btn-normal mt-8"
   onClick={() => setAmenitiesModal(true)}
 >
-  See all {stringToArray( listing && listing.data && listing?.data?.amenities || '')?.length} amenities
+  See all {stringToArray( listing && listing?.data && listing?.data?.amenities || '')?.length} amenities
 </button>
         {amenitiesModal && (
           <AmenitiesModal
-            amenities={stringToArray(listing.data?.amenities)}
+            amenities={stringToArray(listing?.data?.amenities)}
             setAmenitiesModal={setAmenitiesModal}
           />
         )}

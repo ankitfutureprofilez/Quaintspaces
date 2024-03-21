@@ -2,10 +2,11 @@ import React from "react";
 import Grid from "../../public/_svgs/Grid";
 import { v4 as uuidv4 } from "uuid";
 
-const Images = ({ setSelectedImage, listing, setImageViewer }) => {
+const Images = ({ setSelectedImage, listing, setImageViewer,loading }) => {
+  console.log("lisitng",listing)
   return (
     <div className="flex gap-2 w-full h-full">
-      {listing.loading ? (
+      {loading ? (
         <>
         <div className="w-1/2 h-[calc(35vh)] min-h-[500px] bg-lightBorderColor rounded-md"></div>
         <div className="w-1/2 h-[calc(35vh)] min-h-[500px] bg-lightBorderColor rounded-md"></div>
