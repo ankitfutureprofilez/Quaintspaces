@@ -40,7 +40,7 @@ export default function Login() {
       if (res && res.data && res.data.status) {
         toast.success(res.data.message);
         // console.log("res",res)
-        const record = setAuth(res?.data?.data);
+       ' const record = setAuth(res?.data?.data);'
         console.log("record", record)
         localStorage && localStorage.setItem("token", res?.data?.token);
         router.push('/');
@@ -51,7 +51,7 @@ export default function Login() {
         });
       } else {
         toast.error(res?.data.message)
-        console.log(res?.data.message)
+        // console.log(res?.data.message)
         setLoading(false);
       }
     }).catch((error) => {
