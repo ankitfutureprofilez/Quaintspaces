@@ -22,6 +22,9 @@
   }
 }
 
+.display-none { 
+  display:none !important;
+}
 * {
   font-family: "Inter", sans-serif;
   transition: top 250ms ease, scale 250ms ease, visibility 250ms ease, opacity 250ms ease, padding 250ms ease !important;
