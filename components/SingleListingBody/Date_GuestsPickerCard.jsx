@@ -20,6 +20,7 @@ const Date_GuestsPickerCard = React.forwardRef(
       guests,
       setGuests,
       listing,
+      loading
     },
     ref
   ) => {
@@ -27,8 +28,9 @@ const Date_GuestsPickerCard = React.forwardRef(
     const router = useRouter();
     // console.count("Card");
 
-
-    return (
+    return <>
+        {loading ? <div className="sticky top-28 left-0 min-w-[25rem] min-h-[500px] bg-lightBorderColor rounded-md"></div>
+        :
       <div className="sticky top-28 left-0 min-w-[25rem]">
         <div className="rounded-xl shadow border border-orange-300 p-5">
           <div className="flex items-center justify-between mb-6">
@@ -96,7 +98,8 @@ const Date_GuestsPickerCard = React.forwardRef(
           </div>
         </div>
       </div>
-    );
+    }
+    </>
   }
 );
 

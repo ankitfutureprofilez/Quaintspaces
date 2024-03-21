@@ -18,7 +18,7 @@ import { Context } from "../../pages/_app";
 import useWishlist from "../../hooks/useWishlist";
 import { addDays } from 'date-fns';
 
-const SingleListingBody = ({ listing }) => {
+const SingleListingBody = ({ listing, loading }) => {
   const router = useRouter();
   const [selection, setSelection] = useState(null); // 'guests', 'dates', null
   const [selectedImage, setSelectedImage] = useState(null);
@@ -252,7 +252,7 @@ const [selectEnd, setSelectEnd] = useState(null);
           <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
             <Info listing={listing} ref={AmenitiesRef} />
             <div className="hidden lg:block">
-              <Date_GuestsPickerCard
+              <Date_GuestsPickerCard loading={loading}
                 selection={selection}
                 setSelection={setSelection}
                 selectedDay={selectedDay}
