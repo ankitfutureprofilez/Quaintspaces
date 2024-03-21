@@ -13,6 +13,10 @@ class Listing extends Component {
     async area_list(id){
         return Api.get(`/admin/area-list/${id}`)
     }
+
+    async Adminprofile(){
+        return Api.get("/admin/admin-profile")
+    }
     render() {
         return (
             <div >

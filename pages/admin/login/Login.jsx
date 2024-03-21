@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import Listing from "../api/Listing";
+import { useContext } from 'react';
+import { Context } from "../../_app";
+
 export default function Login() {
+
+  const{setAuth}= useContext(Context);
+
   const [record, setRecord] = useState({
     email: "",
     password: "",
@@ -26,9 +32,10 @@ export default function Login() {
     response
       .then((res) => {
         if (res && res?.data && res?.data?.status) {
-          router.push("/admin");
           toast.success(res.data.message);
           localStorage && localStorage.setItem("token", res?.data?.token);
+          const record = setAuth(res?.data?.data);
+          router.push("/admin");
         } else {
           toast.error(res.data.message);
         }

@@ -1,12 +1,18 @@
 import React from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/router';
 import ProfileImage from '../components/assets/profile.png'
 import { Add, CalendarEdit, DirectNotification, SearchNormal1, SidebarLeft } from 'iconsax-react'
 
 function Navbar({ isOpen, sidebarChange }: { isOpen: boolean, sidebarChange: (value: boolean) => void }) {
+     
+    const router= useRouter();
+    
+    function handleproperty(){
+        router.push("admin/property")
+      }
     return (
         <div>
-
             <div className='flex p-4 md:p-6 justify-between items-center'>
                 {/* profile/left section */}
                 <div className='flex items-center justify-between gap-2'>
@@ -42,7 +48,7 @@ function Navbar({ isOpen, sidebarChange }: { isOpen: boolean, sidebarChange: (va
                         <span className='hidden md:inline'>Schedule</span>
                     </button>
 
-                    <button className='h-8 gap-1 bg-primary hidden py-1 px-2 duration-200 text-black rounded-lg border-2 h-8 gap-1 bg-primary hidden py-1 px-2 duration-200 text-black rounded-lg text-xs border-2 md:flex items-center justify-centertext-xs md:flex items-center justify-center'>
+                    <button className='h-8 gap-1 bg-primary hidden py-1 px-2 duration-200 text-black rounded-lg border-2 h-8 gap-1 bg-primary hidden py-1 px-2 duration-200 text-black rounded-lg text-xs border-2 md:flex items-center justify-centertext-xs md:flex items-center justify-center' onClick={handleproperty}>
                         <Add size={16} />
                         <span className='hidden md:inline'>Add Property</span>
                     </button>

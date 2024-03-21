@@ -12,7 +12,6 @@ import amenitiesList from "../../../aminites.json";
 import Listing from "../api/Listing";
 
 export default function Property() {
-  console.log("amenitiesList", amenitiesList);
   const [step, setStep] = useState(1);
 
   const [Poperty, setPoperty] = useState({
@@ -34,7 +33,6 @@ export default function Property() {
     selectedAmenities: [],
     images: [],
   });
-  console.log("pPopertyrrr",Poperty)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -46,7 +44,6 @@ export default function Property() {
   const handleFileChange = (e) => {
     let filesToAdd = Array.from(e.target.files);
     let newImages = Poperty.images.concat(filesToAdd).slice(0, 6);
-    console.log("newImages", newImages);
     setPoperty((prevPoperty) => ({
       ...prevPoperty,
       images: newImages,
