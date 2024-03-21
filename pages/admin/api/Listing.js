@@ -31,7 +31,7 @@ class Listing extends Component {
     }
 
     async propertyedit(uuid,data){
-        return Api.post("/admin/delete-property/" +uuid ,data)
+        return Api.post("/admin/updateProperty/" +uuid ,data)
     }
 
     

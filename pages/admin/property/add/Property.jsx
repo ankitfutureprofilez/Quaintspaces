@@ -4,9 +4,10 @@ import amenitiesList from "../../../../aminites.json";
 import Listing from "../../api/Listing";
 import Element from "../../element";
 import toast, { Toaster } from 'react-hot-toast';
+import axios from "axios";
 export default function Property() {
   const [step, setStep] = useState(1);
-  const[Loading ,setLoading] =useState(false);
+  const [Loading, setLoading] = useState(false);
 
   const [Poperty, setPoperty] = useState({
     propertyName: "",
@@ -22,7 +23,10 @@ export default function Property() {
     bathrooms: "1",
     city_id: "",
     pets: "1",
-    location: "",
+    location: ""
+    ,
+    latitude: "",
+    latitude: "",
     address: "",
     selectedAmenities: [],
     images: [],
@@ -38,11 +42,11 @@ export default function Property() {
   const handleFileChange = (e) => {
     let filesToAdd = Array.from(e.target.files);
     let newImages = Poperty.images.concat(filesToAdd).slice(0, 6);
-   
-      setPoperty((prevPoperty) => ({
-        ...prevPoperty,
-        images: newImages,
-      }));
+
+    setPoperty((prevPoperty) => ({
+      ...prevPoperty,
+      images: newImages,
+    }));
   };
   const removeImage = (indexToRemove) => {
     setPoperty((prevPoperty) => ({
@@ -104,42 +108,63 @@ export default function Property() {
   }, []);
 
   // console.log("area", area)
-  // const fetchLocationData = async () => {
-  //     if (navigator.geolocation) {
-  //         navigator.geolocation.getCurrentPosition(async (position) => {
-  //             const { latitude, longitude } = position.coords;
-  //             try {
-  //                 const response = await axios.get(
-  //                     `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-  //                 );
-  //                 const locationData = response.data;
-  //                 // console.log(locationData)
-  //                 setPoperty((prevPoperty) => ({
-  //                     ...prevPoperty,
-  //                     location: locationData.display_name,
-  //                     address: locationData.display_name
-  //                 }));
-  //             } catch (error) {
-  //                 console.log('Error fetching data:', error);
-  //             }
-  //         }, handleGeolocationError);
-  //     }
-  // };
-  const handleGeolocationError = () => {
-    // setError('Geolocation failed');
-    console.log("Geolocation failed");
+
+  console.log("loc", Poperty)
+  const fetchLocationData = async (manualLocation) => {
+    if (manualLocation) {
+      try {
+        const response = await axios.get(
+          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(manualLocation)}`
+        );
+        const locationData = response.data[0];
+        console.log("locationData", locationData)
+        if (locationData) {
+          setPoperty((prevProperty) => ({
+            ...prevProperty,
+            location: manualLocation,
+            latitude: locationData.lat.toString(),
+            longitude: locationData.lon.toString(),
+          }));
+        }
+      } catch (error) {
+        console.log('Error fetching data for manual location:', error);
+      }
+    } else if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+        try {
+          const response = await axios.get(
+            `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+          );
+          const locationData = response.data;
+          console.log("location ", locationData)
+          setPoperty((prevProperty) => ({
+            ...prevProperty,
+            location: locationData.display_name,
+            latitude: latitude.toString(),
+            longitude: longitude.toString(),
+          }));
+        } catch (error) {
+          console.log('Error fetching data:', error);
+        }
+      }, () => {
+        console.log("Geolocation failed");
+      });
+    }
   };
-  const handleLocationClick = () => {
-    // fetchLocationData();
-  };
+
+
+
 
   const handleLocationInputChange = (event) => {
     const { name, value } = event.target;
-    setPoperty((prevPoperty) => ({
-      ...prevPoperty,
+    setPoperty((prevProperty) => ({
+      ...prevProperty,
       [name]: value,
     }));
+
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -169,14 +194,12 @@ export default function Property() {
     formData.append("infants", "1");
     formData.append("free_cancel_time", "11");
     formData.append("amenities", Poperty.selectedAmenities.join(","));
-    Poperty.images.forEach((image, index) => {
-      formData.append("property_image[]", image);
-    });
+    formData.append("property_image[]", Property.image);
     const response = main.addproperty(formData);
     response
       .then((res) => {
         if (res?.data?.status) {
-        toast.success(res.data.message);
+          toast.success(res.data.message);
           setPoperty({
             propertyName: "",
             about: "",
@@ -313,19 +336,21 @@ export default function Property() {
                     name="location"
                     value={Poperty.location}
                     onChange={handleLocationInputChange}
-                    className="mt-1 p-4 border rounded-full w-full pl-4 pr-12" // Adjust padding accordingly
+                    className="mt-1 p-4 border rounded-full w-full pl-4 pr-12"
                     placeholder="Enter Location or Click to Select"
+                    onClick={() => fetchLocationData(Poperty.location)}
                   />
-                  <div
-                    className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
-                    onclick={handleLocationClick}
+                 
+                  <button
+                    onClick={() => fetchLocationData()}
+                    className="absolute inset-y-0 right-10 flex items-center pr-3"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
-                      className="w-6 h-6 text-gray-400"
+                      className="w-6 h-6 text-gray-500"
                     >
                       <path
                         strokeLinecap="round"
@@ -334,11 +359,12 @@ export default function Property() {
                         d="M12 4c-2.761 0-5 2.239-5 5 0 3.86 5 11 5 11s5-7.14 5-11c0-2.761-2.239-5-5-5zm0 7a2 2 0 100-4 2 2 0 000 4z"
                       />
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </div>
+
             </div>
-            <div className={`${step === 2? " " : " display-none"}`}>
+            <div className={`${step === 2 ? " " : " display-none"}`}>
               <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 mt-5">
                 <div>
                   <label
