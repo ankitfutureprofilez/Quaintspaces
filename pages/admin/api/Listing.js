@@ -21,6 +21,14 @@ class Listing extends Component {
     async Adminproperty(){
         return Api.get("/admin/property-list")
     }
+
+    async Adminpropertydetails(){
+        return Api.get(`/admin/property-details/${uuid}`)
+    }
+
+    async propertydelete(uuid){
+        return Api.get(`/admin/delete-property/${uuid}`)
+    }
     render() {
         return (
             <div >
