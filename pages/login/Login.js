@@ -138,6 +138,9 @@ export default function Login() {
                     required
                   />
                 </div>
+                <h3 className="text-white text-md  font-medium mb-4">
+                 <Link href="/forgot-password">Forgot Password?</Link>
+                </h3>
                 <button type="submit" className="submint-btn">
                   {loading ? "Processing.." : "Submit"}
                 </button>
