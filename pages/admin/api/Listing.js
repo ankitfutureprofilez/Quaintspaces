@@ -17,6 +17,10 @@ class Listing extends Component {
     async Adminprofile(){
         return Api.get("/admin/admin-profile")
     }
+
+    async Adminproperty(){
+        return Api.get("/admin/property-list")
+    }
     render() {
         return (
             <div >
