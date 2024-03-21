@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Star from "../../public/_svgs/star";
 import Dates from "../SingleListingComponents/Dates";
 import Guests from "../SingleListingComponents/Guests";
 import { format } from "date-fns";
-import BtnPrimary from "../Button/BtnPrimary";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
+import { Context } from "../../pages/_app";
 
 const Date_GuestsPickerCard = React.forwardRef(
   (
@@ -26,7 +26,8 @@ const Date_GuestsPickerCard = React.forwardRef(
   ) => {
 
     const router = useRouter();
-    // console.count("Card");
+    const { auth, setOpenLogin } = useContext(Context);
+  console.log("auth",auth)
 
     return <>
         {loading ? <div className="sticky top-28 left-0 min-w-[25rem] min-h-[500px] bg-lightBorderColor rounded-md"></div>
@@ -68,7 +69,10 @@ const Date_GuestsPickerCard = React.forwardRef(
           </div>
 
           <div ref={ref}>
-            <button
+
+
+           {auth && auth.name ?  
+           <button
             className="filter mx-2 btn w-full "
               onClick={() => {
                 if(selectedDay==null ||selectEnd==null)
@@ -76,15 +80,17 @@ const Date_GuestsPickerCard = React.forwardRef(
                   toast.error("Date not selected");
                   return;
                 }
-                // console.log("selectedDay",selectedDay)
-                // console.log("selectEnd",selectEnd)
                 router.push(
                   `/book/${encodeURIComponent(listing?.uuid)}?numberOfAdults=${guests.adults.value}&numberOfChildren=${guests.children.value}&numberOfInfants=${guests.infants.value}&numberOfPets=${guests.pets.value}&checkin=${format(selectedDay,"yyyy-MM-dd")}&checkout=${format(selectEnd, "yyyy-MM-dd")}`
                 );
               }}
             >
               Check Availability
-            </button>
+            </button> 
+            :
+            <button onClick={()=>setOpenLogin(true)}
+            className="filter mx-2 btn w-full ">  Check Availability</button>}
+            
             <button
             className="sort mx-2 btn w-full mt-4"
               // onClick={() => {

@@ -23,6 +23,7 @@ export default function Popup({
       <button className={btnclass} onClick={() => togglePopup(!isOpen)}>
         {buttontext || "Open"}
       </button>
+
       <Transition.Root show={isOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -52,7 +53,7 @@ export default function Popup({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="relative bg-white rounded-lg p-6 max-w-md mx-auto">
+              <div className="relative bg-transparent bg-opacity-0 rounded-lg p-6 max-w-md mx-auto">
                 <Dialog.Title className="text-lg font-bold">
                   {text}
                 </Dialog.Title>
