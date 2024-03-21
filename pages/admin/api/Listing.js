@@ -29,6 +29,12 @@ class Listing extends Component {
     async propertydelete(uuid){
         return Api.get("/admin/delete-property/" +uuid)
     }
+
+    async propertyedit(uuid,data){
+        return Api.post("/admin/delete-property/" +uuid ,data)
+    }
+
+    
     render() {
         return (
             <div >
