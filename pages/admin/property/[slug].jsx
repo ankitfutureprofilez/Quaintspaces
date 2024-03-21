@@ -8,9 +8,10 @@ import toast, { Toaster } from 'react-hot-toast';
 export default function index() {
     const router = useRouter();
     const { slug } = router.query;
+    console
     useEffect(()=>{
         const main = new Listing();
-        const response =  main.Adminpropertydetails({uuid:slug});
+        const response =  main.Adminpropertydetails(slug || "");
         response.then((res)=>{
             console.log("res",res)
         }).catch((error)=>{
