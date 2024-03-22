@@ -14,6 +14,7 @@ export default function AuthLayout({ children }) {
       .then((res) => {
         console.log("res", res);
         if (res.data.status) {
+          setAuth(res?.data?.data);
           setContent(res.data.data);
         } else {
         }
