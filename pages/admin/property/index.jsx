@@ -24,21 +24,24 @@ export default function index() {
  console.log("re",record)
 
   return (
-    <>
+      <>
       <Layout>
         <Element />
+        <div>
           <div className="flex flex-wrap mt-5 px-4 py-5">
             {record &&
               record.map((item, index) => (
-                    <div className="banipark-box w-full sm:w-1/2 md:w-1/3 px-3">
-                      <div
+                <ul className="w-full sm:w-1/2 md:w-1/3 px-3" key={index}>
+                  <li>
+                    <div className="banipark-box">
+                      <div className="w-full"
                         style={{
                           position: "relative",
                           display: "inline-block",
                         }}
                       >
                        
-                        <Image
+                        <img
                           loading="lazy"
                           width="100"
                           height="300"
@@ -53,12 +56,12 @@ export default function index() {
                           }}
                         />
                       </div>
+
                       <div className="flat-info">
-                      <h5 className="location-text" style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{item.location}</h5>
+                        <h5>{item.location}</h5>
                         <h3 className="line-limit">{item.name}</h3>
                         <p>
                           {item.bedrooms} Bedrooms · {item.beds} Bed
-                          . {item.guests} Guests
                         </p>
                         <h4>
                           From <span> ₹ {item.price}</span> /night
@@ -85,8 +88,11 @@ export default function index() {
                         </Link>
                       </div>
                     </div>
+                  </li>
+                </ul>
               ))}
           </div>
+        </div>
       </Layout>
     </>
   );

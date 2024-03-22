@@ -79,15 +79,18 @@ export default function index() {
   const [isModalOpen, setIsModalOpen] = useState(false); // State variable for modal visibility
 
   const sortingOptions = [
-    { key: "popularity", label: "Popularity" },
-    { key: "priceLow", label: "Price: Low to High" },
-    { key: "priceHigh", label: "Price: High to Low" },
-    { key: "rating", label: "Rating" },
+    { key: "popularity_sort ", label: "Popularity" },
+    { key: "priceLow_asc", label: "Price: Low to High" },
+    { key: "priceHigh_desc", label: "Price: High to Low" },
+    { key: "rating_desc", label: "Rating" },
   ];
 
+  const updatedQuery = { ...query, sorting: `${selectedOption.key}=desc` };
   const openModal = () => {
     setIsModalOpen(true);
   };
+
+  
 
   const closeModal = () => {
     setIsModalOpen(false);
