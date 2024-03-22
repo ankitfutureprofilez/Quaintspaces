@@ -11,6 +11,8 @@ import LoginLogic from "./LoginLogic";
 export default function Login() {
 
   return (
+
+    <>
     <div
       className="h-screen tab-mob-height"
       style={{ backgroundImage: `url(/images/login-bg.jpg)` }}
@@ -56,5 +58,6 @@ export default function Login() {
         </div>
       </div>
     </div>
+    </>
   );
 }

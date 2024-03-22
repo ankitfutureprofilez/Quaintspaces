@@ -13,6 +13,15 @@ function Sidebar() {
     console.log("auth",auth)
 
     const pathname = usePathname()
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const closeDropdown = () => {
+        setIsOpen(false);
+    };
 
     return (
         <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden'>
@@ -102,7 +111,7 @@ function Sidebar() {
 
                         {/* bottom */}
                         { auth ? (
-                           <div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200'>
+                           <div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200' >
                              <div className='flex items-center gap-2'>
                                <Image
                                src={auth?.auth?.admin_profile_url}
@@ -144,6 +153,7 @@ function Sidebar() {
                         ) }
                        
 </div>
+
                 </div>
 
             </div>

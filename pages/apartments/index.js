@@ -30,7 +30,7 @@ export default function index() {
               onClick={() => setIsOpen(!isOpen)}
             >
               Sort by:{" "}
-              {sortingOptions.find((option) => option.key === sortBy).label}
+              {sortingOptions.find((option) => option.key === sortBy)?.label}
               {/* Icon to indicate dropdown */}
               <svg
                 className="-mr-1 ml-2 h-5 w-5"
@@ -77,15 +77,24 @@ export default function index() {
 
   const [sortBy, setSortBy] = useState("popularity");
   const [isModalOpen, setIsModalOpen] = useState(false); // State variable for modal visibility
-
   const sortingOptions = [
-    { key: "popularity_sort ", label: "Popularity" },
+    { key: "popularity_sort", label: "Popularity" },
     { key: "priceLow_asc", label: "Price: Low to High" },
     { key: "priceHigh_desc", label: "Price: High to Low" },
     { key: "rating_desc", label: "Rating" },
   ];
 
-  const updatedQuery = { ...query, sorting: `${selectedOption.key}=desc` };
+  const [query, setQuery] = useState({
+    sorting: sortingOptions[1].key,
+    direction: sortingOptions[1].key.includes("asc") ? "asc" : "asc",
+  });
+
+  const handleSortingChange = (selectedOption) => {
+    const direction = selectedOption.key.includes("desc") ? "desc" : "asc";
+    setQuery({ sorting: selectedOption.key, direction });
+  };
+
+  console.log("query", query); 
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -141,6 +150,18 @@ export default function index() {
               </button>
             </div>
           </div>
+          <select
+        value={query.sorting}
+        onChange={(e) =>
+          handleSortingChange(sortingOptions.find((opt) => opt.key === e.target.value))
+        }
+      >
+        {sortingOptions.map((option) => (
+          <option key={option.key} value={option.key}>
+            {option.label}
+          </option>
+        ))}
+      </select>
           <PostBody loading={loading} listings={listings} />
         </div>
       </div>
