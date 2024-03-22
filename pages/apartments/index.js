@@ -13,7 +13,7 @@ export default function index() {
 
     const handleSortChange = (value) => {
       setSortBy(value);
-      console.log(value);
+      // console.log(value);
       setIsOpen(false); // Close the dropdown after selecting an option
     };
 
@@ -98,9 +98,16 @@ export default function index() {
 
   async function fetchLists() {
     setloading(true);
+    // console.log("sortBy",sortBy);
+    let url;
+    if(sortBy=="popularity"){url="popularity_sort=desc"}
+    else if(sortBy=="rating"){url="rating_sort=desc"}
+    else if(sortBy=="priceLow"){url="price_sort=asc"} 
+    else {url="price_sort=desc"}
+    // console.log("url",url); 
     const main = new Listings();
     main
-      .PropertyListing()
+      .PropertyListing(url)
       .then((r) => {
         setloading(false);
         setListings(r.data.data);

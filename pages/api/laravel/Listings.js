@@ -37,7 +37,7 @@ class Listings extends Component {
     return Api.get("/top-places-Property-list", data);
   }
   async PropertyListing(data) {
-    return Api.get("/property-list", data);
+    return Api.get("/property-list?"+data);
   }
   async PropertyDetail(uuid){
     return Api.get("/property-details/"+uuid)
