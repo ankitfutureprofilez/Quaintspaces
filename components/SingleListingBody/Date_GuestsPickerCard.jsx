@@ -24,7 +24,7 @@ const Date_GuestsPickerCard = React.forwardRef(
     },
     ref
   ) => {
-
+console.log("price",listing)
     const router = useRouter();
     const { auth, setOpenLogin } = useContext(Context);
   console.log("auth",auth)
@@ -38,7 +38,7 @@ const Date_GuestsPickerCard = React.forwardRef(
             <h1 className="text-md font-normal">
               <span className="font-medium text-orange-300 text-2xl">₹{listing?.price}</span> /night
             </h1>
-            {/* <span className="flex items-center gap-2">
+            <span className="flex items-center gap-2">
               <span className="flex items-center gap-1">
                 <Star />
                 {listing?.rating}
@@ -47,7 +47,7 @@ const Date_GuestsPickerCard = React.forwardRef(
               <span className="underline">
                 {listing?.reviews?.length} reviews
               </span>
-            </span> */}
+            </span>
           </div>
 
           <div className="rounded-lg border border-orange-300 mb-6 relative">

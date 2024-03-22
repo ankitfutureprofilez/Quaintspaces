@@ -3,6 +3,7 @@ import Element from "../element";
 import Layout from "../layout";
 import Listing from "../api/Listing";
 import toast, { Toaster } from "react-hot-toast";
+import Link from "next/Link";
 
 export default function index() {
   const [record, setRecord] = useState();
@@ -65,7 +66,7 @@ export default function index() {
                         </h4>
                       </div>
                       <div className="explor-btn">
-                        <a
+                        <Link
                           className="block"
                           href={`/admin/property/${item.uuid}`}
                         >
@@ -82,7 +83,7 @@ export default function index() {
                               fill="#DCAC81"
                             ></path>
                           </svg>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </li>

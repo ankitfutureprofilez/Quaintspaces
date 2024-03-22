@@ -23,10 +23,9 @@ export default function Property() {
     bathrooms: "1",
     city_id: "",
     pets: "1",
-    location: ""
-    ,
+    location: "",
     latitude: "",
-    latitude: "",
+    longitude: "",
     address: "",
     selectedAmenities: [],
     images: [],
@@ -180,8 +179,8 @@ export default function Property() {
     formData.append("bedrooms", Poperty.bedrooms);
     formData.append("beds", Poperty.beds);
     formData.append("bathrooms", Poperty.bathrooms);
-    formData.append("latitude", "2222.22588");
-    formData.append("longitudes", "2222.22588");
+    formData.append("latitude", Poperty.latitude);
+    formData.append("longitudes",Poperty.longitude);
     formData.append("discount_offer", "555");
     formData.append("check_in", " 11:55");
     formData.append("check_out", "12:12");
@@ -194,7 +193,9 @@ export default function Property() {
     formData.append("infants", "1");
     formData.append("free_cancel_time", "11");
     formData.append("amenities", Poperty.selectedAmenities.join(","));
-    formData.append("property_image[]", Property.image);
+    Poperty.images.forEach((image, index) => {
+      formData.append("property_image[]", image);
+    });
     const response = main.addproperty(formData);
     response
       .then((res) => {
@@ -242,6 +243,7 @@ export default function Property() {
                   Property Name
                 </label>
                 <input
+                required
                   type="text"
                   name="propertyName"
                   id="propertyName"
@@ -260,6 +262,7 @@ export default function Property() {
                       Property Type
                     </label>
                     <select
+                      required
                       id="propertyType"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       value={Poperty.propertytype}
@@ -283,7 +286,7 @@ export default function Property() {
                     >
                       City
                     </label>
-                    <select
+                    <select  required
                       id="citySelect"
                       name="city_id"
                       onChange={handleInputChange}
@@ -305,7 +308,7 @@ export default function Property() {
                     >
                       Area
                     </label>
-                    <select
+                    <select required
                       id="areaSelect"
                       name="area_id"
                       onChange={handleInputChange}
@@ -330,7 +333,7 @@ export default function Property() {
                   Location
                 </label>
                 <div className="relative">
-                  <input
+                  <input  required
                     type="text"
                     id="location"
                     name="location"
@@ -373,7 +376,7 @@ export default function Property() {
                   >
                     Adult
                   </label>
-                  <select
+                  <select  required
                     id="guests"
                     name="adults"
                     autoComplete="guests"
@@ -394,7 +397,7 @@ export default function Property() {
                   >
                     children
                   </label>
-                  <select
+                  <select  required
                     id="guests"
                     name="children"
                     autoComplete="guests"
@@ -415,7 +418,7 @@ export default function Property() {
                   >
                     Bedrooms
                   </label>
-                  <select
+                  <select  required 
                     id="bedrooms"
                     name="bedrooms"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -434,7 +437,7 @@ export default function Property() {
                   >
                     Beds
                   </label>
-                  <select
+                  <select required 
                     id="beds"
                     name="beds"
                     autoComplete="beds"
@@ -454,7 +457,7 @@ export default function Property() {
                   >
                     Bathrooms
                   </label>
-                  <select
+                  <select  required 
                     id="bathrooms"
                     name="bathrooms"
                     autoComplete="bathrooms"
@@ -476,7 +479,7 @@ export default function Property() {
                     Pets
                   </label>
                   <select
-                    id="pet"
+                    id="pet" required
                     name="pets"
                     autoComplete="pet"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -498,7 +501,7 @@ export default function Property() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {amenitiesList.map((amenity, index) => (
                     <div key={index} className="flex items-center">
-                      <input
+                      <input required
                         id={amenity.value}
                         name={amenity.value}
                         type="checkbox"
@@ -525,7 +528,7 @@ export default function Property() {
                 >
                   Describe Your Property to Guests
                 </label>
-                <textarea
+                <textarea required
                   id="about"
                   name="about"
                   minCol={"5"}
@@ -568,18 +571,19 @@ export default function Property() {
                     </p>
                   </div>
                   <input
+                  required
                     id="dropzone-file"
                     type="file"
                     className="hidden"
                     onChange={handleFileChange}
-                    name="images"
+                    name="images" required 
                     multiple
                   />
                 </label>
               </div>
               <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                 {Poperty.images.map((file, index) => (
-                  <div key={index} className="relative">
+                  <div key={index} className="relative" >
                     {/* Overlay Remove Button */}
                     <button
                       type="button"
@@ -606,7 +610,7 @@ export default function Property() {
                 >
                   Price
                 </label>
-                <input
+                <input  required 
                   type="text"
                   name="price"
                   id="propertyName"

@@ -8,9 +8,7 @@ import Images from "../../../components/SingleListingComponents/Images";
 import toast, { Toaster } from 'react-hot-toast';
 import ImageViewer from "../../../components/SingleListingComponents/ImageViewer";
 import useWishlist from "../../../hooks/useWishlist";
-
 import { guestsData } from "../../../utils/miniData";
-
 import Title from "../../../components/SingleListingBody/Title";
 import Info from "../../../components/SingleListingBody/Info";
 import Date_GuestsPickerCard from "../../../components/SingleListingBody/Date_GuestsPickerCard";
@@ -27,6 +25,7 @@ export default function Index() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const { slug } = router.query;
+    console.log("slug",slug)
     const [record, setRecord] = useState(null);
     const [selection, setSelection] = useState(null);
     const [guests, setGuests] = useState({
@@ -34,7 +33,7 @@ export default function Index() {
         adults: { ...guestsData.adults, value: 1 },
     });
 
-    const result = useLabeling(guests);
+   const result = useLabeling(guests);
 
     const [selectedDay, setSelectedDay] = useState(null);
     const [selectEnd, setSelectEnd] = useState(null);
@@ -43,8 +42,30 @@ export default function Index() {
     const [selectedImage, setSelectedImage] = useState(0);
     const [showHeader, setShowHeader] = useState(false);
     const [rightSectionHeader, setRightSectionHeader] = useState(false);
-    // const [isSaved, changeWishlist] = useWishlist(record.data, wishlist);
     const [scroll, setScroll] = useState(null);
+
+       
+       const fetchPropertyDetails = () => {
+        setLoading(true);
+        const main = new Listing();
+        const response = main.Adminpropertydetails(slug);
+        response.then((res) => {
+            setLoading(false);
+            console.log("res", res);
+            setRecord(res);
+        }).catch((error) => {
+            setLoading(false);
+            console.log("error", error);
+            toast.error("Failed to fetch property details");
+        });
+    }
+
+
+    useEffect(() => {
+        if (slug !== null ) {
+            fetchPropertyDetails();
+        }
+    }, [slug]);
 
     useEffect(() => {
         if (CardRef.current) {
@@ -99,82 +120,34 @@ export default function Index() {
         }
     }, [imageViewer]);
 
-    const deleteImage = (uuid) => {
+    const deleteImage = () => {
         const main = new Listing();
         main
-            .propertydelete(uuid)
+            .propertydelete(slug)
             .then((response) => {
-                toast.success(response.data.message);
                 router.push("/admin/property")
+                toast.success(response.data.data)
             })
             .catch((error) => {
                 console.log("error", error);
             });
     };
 
-    useEffect(() => {
-        deleteImage();
-    }, []);
-
-    // useEffect(() => {
-    //     if (ImagesRef.current) {
-    //         const { bottom } = ImagesRef.current?.getBoundingClientRect();
-    //         window.addEventListener("scroll", () => {
-    //             if (window.scrollY > bottom + 300) {
-    //                 setShowHeader(true);
-    //             } else {
-    //                 setShowHeader(false);
-    //             }
-    //         });
-    //     }
-    // }, [ImagesRef.current]);
-
-    useEffect(() => {
-        if (slug) {
-            fetchPropertyDetails(slug);
-        }
-    }, [slug]);
-
-    console.log("record?.data?.uuid", record?.data?.data?.uuid)
-    const fetchPropertyDetails = (uuid) => {
-        setLoading(true);
-        const main = new Listing();
-        const response = main.Adminpropertydetails(uuid);
-        response.then((res) => {
-            setLoading(false);
-            console.log("res", res);
-            setRecord(res);
-        }).catch((error) => {
-            setLoading(false);
-            console.log("error", error);
-            toast.error("Failed to fetch property details");
-        });
+    async  function  updateproperty(){
+        const main =  new  Listing();
+        const  response =  main.propertyedit(slug);
+        response.then((res)=>{
+            console.log("res",res)
+        }).catch((erorr)=>{
+            console.log("error",error)
+        })
     }
 
-    const handleImageClick = (index) => {
-        setImageViewer(true);
-        setSelectedImage(index);
-    }
-    console.log("jjsj", record)
     return (
-        <>
-
-            {/* {imageViewer && (
-        <ImageViewer
-          selectedImage={selectedImage}
-          images={record?.property_image}
-        //   isSaved={isSaved}
-          setImageViewer={setImageViewer}
-        />
-      )} */}
-            <Layout>
-                <Element />
-
-                <div className="mt-5 px-5 py-5" >
-
-
-                </div>
-
+    <>
+         
+        <Layout>
+            <Element /> 
                 <section className="w-full px-4">
                     <div className="max-w-[1120px] mx-auto py-4 sm:py-8">
                         <Title
@@ -183,61 +156,10 @@ export default function Index() {
                             listing={record?.data}
                         // addWishlist={changeWishlist}
                         />
-                        <button
-                            className="delete-button bg-red-400 "
-                            onClick={() => deleteImage(record?.data?.data?.uuid)}
-                            style={{ position: "absolute", top: "6", right: "0" }}
-                        >
-                            <svg
-                                width="32px"
-                                height="32px"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M10 12V17"
-                                    stroke="#000000"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M14 12V17"
-                                    stroke="#000000"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M4 7H20"
-                                    stroke="#000000"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M6 10V18C6 19.6569 7.34315 21 9 21H15C16.6569 21 18 19.6569 18 18V10"
-                                    stroke="#000000"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
-                                    stroke="#000000"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                            </svg>
-                        </button>
                         <div
                             ref={ImagesRef}
                             className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] max-h-[40vh]"
                         >
-
-
                             <Images
                                 setSelectedImage={setSelectedImage}
                                 listing={record?.data}
@@ -245,13 +167,27 @@ export default function Index() {
                                 loading={loading}
                             />
                         </div>
-
+                        <div className="flex  items-left  justify-left gap-5">
+                          <button
+                            className=" hover:border hover:border-black  bg-red-600 rounded-full transition-none m-1 p-2"
+                            onClick={() => deleteImage(slug)}
+                            >
+                                Delete
+                            </button>
+                            <button onclick={updateproperty(slug)}
+                            className=" hover:border hover:border-black  bg-green-600 rounded-full transition-none m-1 p-2"
+                             >
+                             update
+                            </button>
+                        </div>
                         <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
                             <Info listing={record?.data} ref={AmenitiesRef}
                                 loading={loading}
                             />
+                           
                             <div className="hidden lg:block">
-                                <Date_GuestsPickerCard loading={loading}
+                                <Date_GuestsPickerCard
+                                    loading={loading}
                                     selection={selection}
                                     setSelection={setSelection}
                                     selectedDay={selectedDay}
@@ -261,18 +197,17 @@ export default function Index() {
                                     result={result}
                                     guests={guests}
                                     setGuests={setGuests}
-                                    listing={record?.data}
+                                    listing={record?.data?.data}
                                     ref={CardRef}
                                 />
                             </div>
                         </div>
-                        <Reviews data={record?.data} ref={ReviewsRef} />
+                        {/* <Reviews data={record?.data} ref={ReviewsRef} />  */}
                         {/* <Location listing={record} ref={LocationRef} /> */}
                     </div>
                 </section>
 
             </Layout>
-            <Toaster />
         </>
     );
 }

@@ -9,7 +9,7 @@ function Navbar({ isOpen, sidebarChange }: { isOpen: boolean, sidebarChange: (va
     const router= useRouter();
     
     function handleproperty(){
-        router.push("admin/property")
+        router.push("/admin/property/add")
       }
     return (
         <div>
