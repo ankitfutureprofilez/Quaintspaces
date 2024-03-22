@@ -29,11 +29,11 @@ export default function index() {
               aria-expanded="true"
               onClick={() => setIsOpen(!isOpen)}
             >
-              Sort by:{" "}
+              {/* Sort by:{" "} */}
               {sortingOptions.find((option) => option.key === sortBy).label}
               {/* Icon to indicate dropdown */}
               <svg
-                className="-mr-1 ml-2 h-5 w-5"
+                className="-mr-1 mt-1.25 sml-2 h-5 w-5"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -116,7 +116,7 @@ export default function index() {
     const { signal } = controller;
     fetchLists();
     return () => controller.abort();
-  }, []);
+  }, [sortBy]);
 
   return (
     <Layout>

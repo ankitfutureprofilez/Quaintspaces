@@ -621,6 +621,7 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
  .sort {
   border: 2px solid #dcac81;
   color: #dcac81;
+  font-size: 14px;
 }
 .filter {
   background: #dcac81;
