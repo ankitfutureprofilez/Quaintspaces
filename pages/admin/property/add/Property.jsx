@@ -265,6 +265,7 @@ export default function Property() {
                   type="text"
                   name="propertyName"
                   id="propertyName"
+                  placeholder="Property Name "
                   className="mt-1 p-4 border rounded-full w-full"
                   value={Poperty.propertyName}
                   onChange={handleInputChange}
@@ -282,7 +283,7 @@ export default function Property() {
                     <select
                       required
                       id="propertyType"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500"
                       value={Poperty.propertytype}
                       onChange={handleInputChange}
                       name="propertytype"
@@ -308,7 +309,7 @@ export default function Property() {
                       id="citySelect"
                       name="city_id"
                       onChange={handleInputChange}
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                      className=" border border-gray-300 text-gray-900 text-md rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500"
                     >
                       <option>Choose a City</option>
                       {city &&
@@ -330,7 +331,7 @@ export default function Property() {
                       id="areaSelect"
                       name="area_id"
                       onChange={handleInputChange}
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                      className=" border border-gray-300 text-gray-900 text-md rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500"
                     >
                       <option>Choose an Area</option>
                       {area &&
@@ -398,7 +399,7 @@ export default function Property() {
                     id="guests"
                     name="adults"
                     autoComplete="guests"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500"
                     value={Poperty.adults}
                     onChange={handleInputChange}
                   >
@@ -419,7 +420,7 @@ export default function Property() {
                     id="guests"
                     name="children"
                     autoComplete="guests"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  border-gray-600 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500"
                     value={Poperty.children}
                     onChange={handleInputChange}
                   >
@@ -439,7 +440,7 @@ export default function Property() {
                   <select  required 
                     id="bedrooms"
                     name="bedrooms"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500"
                     value={Poperty.bedrooms}
                     onChange={handleInputChange}
                   >
@@ -459,7 +460,7 @@ export default function Property() {
                     id="beds"
                     name="beds"
                     autoComplete="beds"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500"
                     value={Poperty.beds}
                     onChange={handleInputChange}
                   >
@@ -479,7 +480,7 @@ export default function Property() {
                     id="bathrooms"
                     name="bathrooms"
                     autoComplete="bathrooms"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500"
                     value={Poperty.bathrooms}
                     onChange={handleInputChange}
                   >
@@ -500,7 +501,7 @@ export default function Property() {
                     id="pet" required
                     name="pets"
                     autoComplete="pet"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400 text-black focus:ring-blue-500 focus:border-blue-500"
                     value={Poperty.pets}
                     onChange={handleInputChange}
                   >
@@ -562,7 +563,7 @@ export default function Property() {
               <div className="flex items-center justify-center w-full mt-5 ">
                 <label
                   htmlFor="dropzone-file"
-                  className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-bray-800 bg-gray-700 hover:bg-gray-100 border-gray-600 hover:border-gray-500 hover:bg-gray-600"
+                  className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-bray-800 "
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
                     <svg
@@ -594,7 +595,7 @@ export default function Property() {
                     type="file"
                     className="hidden"
                     onChange={handleFileChange}
-                    name="images" required 
+                    name="images"  
                     multiple
                   />
                 </label>
@@ -606,7 +607,7 @@ export default function Property() {
                     <button
                       type="button"
                       onClick={() => removeImage(index)}
-                      className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
+                      className="absolute right-0 top-0 bg-red-500 text-black rounded-full p-1 m-1"
                     >
                       &times;
                     </button>
@@ -632,6 +633,7 @@ export default function Property() {
                   type="text"
                   name="price"
                   id="propertyName"
+                  placeholder="Price"
                   className="mt-1 p-4 border rounded-full w-full"
                   value={Poperty.price}
                   onChange={handleInputChange}
