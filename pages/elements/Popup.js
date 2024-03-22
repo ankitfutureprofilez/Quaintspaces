@@ -7,28 +7,41 @@ export default function Popup({
   btnclass,
   buttontext,
   togglePopup,
-  isOpen,
+  isOpen = false,
   text,
   footer,
 }) {
-  const [isClient, setIsClient] = useState(false);
+
+  console.log('isOpen', isOpen)
+
   const cancelButtonRef = useRef(null);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
+  const [openPop,setOpenpop] = useState(isOpen || false);
+  useEffect(() => {
+    setOpenpop(isOpen);
+  }, [isOpen]);
+
+  const closep = () => { 
+    setOpenpop(false)
+    // togglePopup && togglePopup(!isOpen);
+  }
+
   return isClient ? (
     <>
-      <button className={btnclass} onClick={() => togglePopup(!isOpen)}>
+      <button className={btnclass} onClick={closep}>
         {buttontext || "Open"}
       </button>
 
-      <Transition.Root show={isOpen} as={Fragment}>
+      <Transition.Root show={openPop} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={() => togglePopup(!isOpen)}
+          onClose={closep}
           initialFocus={cancelButtonRef}
         >
           <div className="flex items-center justify-center min-h-screen">
@@ -54,18 +67,18 @@ export default function Popup({
               leaveTo="opacity-0 scale-95"
             >
               <div className="relative bg-transparent bg-opacity-0 rounded-lg p-6 max-w-md mx-auto">
+                  <button
+                    className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    onClick={closep}
+                    ref={cancelButtonRef}
+                  >
+                    &times;
+                  </button>
                 <Dialog.Title className="text-lg font-bold">
                   {text}
                 </Dialog.Title>
                 <div className={`mt-${space || 4}`}>{children}</div>
                 <div className="mt-4 flex justify-end">
-                  <button
-                    className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    onClick={() => togglePopup(!isOpen)}
-                    ref={cancelButtonRef}
-                  >
-                    Close
-                  </button>
                 </div>
               </div>
             </Transition.Child>

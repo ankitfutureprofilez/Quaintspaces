@@ -13,6 +13,7 @@ export default function index() {
 
     const handleSortChange = (value) => {
       setSortBy(value);
+      console.log(value);
       setIsOpen(false); // Close the dropdown after selecting an option
     };
 
@@ -59,7 +60,6 @@ export default function index() {
             <div className="py-1" role="none">
               {sortingOptions.map((option) => (
                 <button
-                
                   key={option.key}
                   className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
                   role="menuitem"
@@ -92,50 +92,53 @@ export default function index() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
- 
-  
+
   const [loading, setloading] = useState(false);
   const [listings, setListings] = useState([]);
 
-
-  async function fetchLists () {
-      setloading(true);
-      const main = new Listings();
-      main.PropertyListing().then((r)=>{
-        setloading(false)
+  async function fetchLists() {
+    setloading(true);
+    const main = new Listings();
+    main
+      .PropertyListing()
+      .then((r) => {
+        setloading(false);
         setListings(r.data.data);
-      }).catch((err)=>{
+      })
+      .catch((err) => {
         setloading(false);
         console.log(err);
       });
   }
-  
+
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
     fetchLists();
-      return () => controller.abort();
+    return () => controller.abort();
   }, []);
 
   return (
     <Layout>
       <div className="container mx-auto ">
         <div className="mt-6 sm:mt-10">
-        <div className="flex justify-between mb-10 filter-box">
-          <h2 className="listing-heading text-left">Explore our Apartments</h2>
-          <div className="button-group filter-btn-select">
-            <SortByButton
-              sortBy={sortBy}
-              setSortBy={setSortBy}
-              sortingOptions={sortingOptions}
-            />
-            {/* Filter button to open the modal */}
-            <button className="filter btn mx-2" onClick={openModal}>
-              Filter
-            </button>
+          <div className="flex justify-between mb-10 filter-box">
+            <h2 className="listing-heading text-left">
+              Explore our Apartments
+            </h2>
+            <div className="button-group filter-btn-select">
+              <SortByButton
+                sortBy={sortBy}
+                setSortBy={setSortBy}
+                sortingOptions={sortingOptions}
+              />
+              {/* Filter button to open the modal */}
+              <button className="filter btn mx-2" onClick={openModal}>
+                Filter
+              </button>
+            </div>
           </div>
-        </div>
-        <PostBody loading={loading} listings={listings} />
+          <PostBody loading={loading} listings={listings} />
         </div>
       </div>
       {/* Render the modal component conditionally */}

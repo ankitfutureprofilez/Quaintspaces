@@ -58,6 +58,7 @@ const Date_GuestsPickerCard = React.forwardRef(
               selectEnd={selectEnd}
               setSelectedDay={setSelectedDay}
               setSelectEnd={setSelectEnd}
+              position={`-top-8 -right-8`}
             />
             <Guests
               selection={selection}
