@@ -608,7 +608,7 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
   padding-left: 40px;
   margin-left: 20px;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
 }
 .btn {
   padding: 8px 20px;

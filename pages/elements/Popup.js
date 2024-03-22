@@ -11,8 +11,7 @@ export default function Popup({
   text,
   footer,
 }) {
-
-  console.log('isOpen', isOpen)
+  // console.log("isOpen", isOpen);
 
   const cancelButtonRef = useRef(null);
   const [isClient, setIsClient] = useState(false);
@@ -21,15 +20,15 @@ export default function Popup({
     setIsClient(true);
   }, []);
 
-  const [openPop,setOpenpop] = useState(isOpen || false);
+  const [openPop, setOpenpop] = useState(isOpen || false);
   useEffect(() => {
     setOpenpop(isOpen);
   }, [isOpen]);
 
-  const closep = () => { 
-    setOpenpop(false)
+  const closep = () => {
+    setOpenpop(false);
     // togglePopup && togglePopup(!isOpen);
-  }
+  };
 
   return isClient ? (
     <>
@@ -67,19 +66,31 @@ export default function Popup({
               leaveTo="opacity-0 scale-95"
             >
               <div className="relative bg-transparent bg-opacity-0 rounded-lg p-6 max-w-md mx-auto">
-                  <button
-                    className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    onClick={closep}
-                    ref={cancelButtonRef}
+                <button
+                  className="px-4 py-2 popup-button absolute text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  onClick={closep}
+                  ref={cancelButtonRef}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
                   >
-                    &times;
-                  </button>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 18 18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
                 <Dialog.Title className="text-lg font-bold">
                   {text}
                 </Dialog.Title>
                 <div className={`mt-${space || 4}`}>{children}</div>
-                <div className="mt-4 flex justify-end">
-                </div>
+                <div className="mt-4 flex justify-end"></div>
               </div>
             </Transition.Child>
           </div>
