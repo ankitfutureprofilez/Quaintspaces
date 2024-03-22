@@ -176,7 +176,11 @@ export default function index() {
                 </button>
               </div>
             </div>
-            <Filter />
+            <Filter 
+             min={5000}
+             max={50000}
+             onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+            />
           </div>
         </div>
       )}

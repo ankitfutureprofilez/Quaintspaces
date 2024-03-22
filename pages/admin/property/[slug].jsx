@@ -143,71 +143,67 @@ export default function Index() {
         })
     }
 
-    return (
-    <>
-         
+    return  <>
         <Layout>
             <Element /> 
-                <section className="w-full px-4">
-                    <div className="max-w-[1120px] mx-auto py-4 sm:py-8">
-                        <Title
-                            // isSaved={isSaved}
-                            loading={loading}
+            <section className="w-full px-4">
+                <div className="max-w-[1120px] mx-auto py-4 sm:py-8">
+                    <Title
+                        // isSaved={isSaved}
+                        loading={loading}
+                        listing={record?.data}
+                    // addWishlist={changeWishlist}
+                    />
+                    <div
+                        ref={ImagesRef}
+                        className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] max-h-[40vh]"
+                    >
+                        <Images
+                            setSelectedImage={setSelectedImage}
                             listing={record?.data}
-                        // addWishlist={changeWishlist}
+                            setImageViewer={setImageViewer}
+                            loading={loading}
                         />
-                        <div
-                            ref={ImagesRef}
-                            className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] max-h-[40vh]"
-                        >
-                            <Images
-                                setSelectedImage={setSelectedImage}
-                                listing={record?.data}
-                                setImageViewer={setImageViewer}
-                                loading={loading}
-                            />
-                        </div>
-                        <div className="flex  items-left  justify-left gap-5">
-                          <button
-                            className=" hover:border hover:border-black  bg-red-600 rounded-full transition-none m-1 p-2"
-                            onClick={() => deleteImage(slug)}
-                            >
-                                Delete
-                            </button>
-
-                            <button onclick={updateproperty(slug)}
-                            className=" hover:border hover:border-black  bg-green-600 rounded-full transition-none m-1 p-2"
-                             >
-                                Update
-                            </button>
-                        </div>
-                        <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
-                            {/* <Info listing={record?.data} ref={AmenitiesRef}
-                                loading={loading}
-                            /> */}
-                            <div className="hidden lg:block">
-                                {/* <Date_GuestsPickerCard
-                                    loading={loading}
-                                    selection={selection}
-                                    setSelection={setSelection}
-                                    selectedDay={selectedDay}
-                                    selectEnd={selectEnd}
-                                    setSelectedDay={setSelectedDay}
-                                    setSelectEnd={setSelectEnd}
-                                    result={result}
-                                    guests={guests}
-                                    setGuests={setGuests}
-                                    listing={record?.data?.data}
-                                    ref={CardRef}
-                                /> */}
-                            </div>
-                        </div>
-                        {/* <Reviews data={record?.data} ref={ReviewsRef} />  */}
-                        {/* <Location listing={record} ref={LocationRef} /> */}
                     </div>
-                </section>
+                    <div className="flex  items-left  justify-left gap-5">
+                        <button
+                        className=" hover:border hover:border-black  bg-red-600 rounded-full transition-none m-1 p-2"
+                        onClick={() => deleteImage(slug)}
+                        >
+                            Delete
+                        </button>
 
-            </Layout>
-        </>
-    );
+                        <button onclick={updateproperty(slug)}
+                        className=" hover:border hover:border-black  bg-green-600 rounded-full transition-none m-1 p-2"
+                            >
+                            Update
+                        </button>
+                    </div>
+                    <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
+                        {/* <Info listing={record?.data} ref={AmenitiesRef}
+                            loading={loading}
+                        /> */}
+                        <div className="hidden lg:block">
+                            {/* <Date_GuestsPickerCard
+                                loading={loading}
+                                selection={selection}
+                                setSelection={setSelection}
+                                selectedDay={selectedDay}
+                                selectEnd={selectEnd}
+                                setSelectedDay={setSelectedDay}
+                                setSelectEnd={setSelectEnd}
+                                result={result}
+                                guests={guests}
+                                setGuests={setGuests}
+                                listing={record?.data?.data}
+                                ref={CardRef}
+                            /> */}
+                        </div>
+                    </div>
+                    {/* <Reviews data={record?.data} ref={ReviewsRef} />  */}
+                    {/* <Location listing={record} ref={LocationRef} /> */}
+                </div>
+            </section>
+        </Layout>
+    </>
 }

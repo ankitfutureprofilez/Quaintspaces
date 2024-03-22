@@ -14,7 +14,6 @@ const useCentralStore = create((set, get) => ({
 
 const Store = () => {
     return <div>
-
     </div>;
 }
 

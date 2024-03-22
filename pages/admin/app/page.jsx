@@ -59,7 +59,7 @@ function Home() {
           <Sidebar />
         </div>
 
-        <div className='w-full max-w-[1440px] mx-auto'>
+        <div className='w-full '>
           <Navbar isOpen={isSidebarOpen} sidebarChange={handleSidebarChange} />
 
           <div className='p-4 md:p-6 space-y-4 columns-1 sm:columns-2 lg:columns-3'>

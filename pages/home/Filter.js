@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import RangeSlider from "./RangeSlider.js";
 import { DatePicker, Dates } from "../../components/index.js";
 
-export default function Filter() {
+export default function Filter({ min, max, onChange }) {
   const [selection, setSelection] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectEnd, setSelectEnd] = useState(null);
@@ -46,9 +46,10 @@ export default function Filter() {
         <p>Nightly prices before fees and taxes</p>
       </div>
       <RangeSlider
-        min={5000}
-        max={50000}
-        onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+        min={min}
+        max={max}
+        // onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+        onChange={onChange}
       />
     </div>
   );

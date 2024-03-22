@@ -6,12 +6,12 @@ import LocalToken from "../../hooks/LocalToken";
 import { useContext } from 'react';
 import { useRouter } from "next/router";
 import { Context } from "../_app";
+import { toast } from 'react-hot-toast';
+import Menu from "./Menu";
 export default function Header() {
 
   const router = useRouter();
   const auth = useContext(Context)
-
-  console.log(auth)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   if (typeof window !== 'undefined' && localStorage) {
@@ -21,18 +21,7 @@ export default function Header() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleProfileClick = () => {
-    router.push('/profile');
-  };
-
-  const handleSecurityClick = () => {
-    router.push('/security');
-  };
-
-  const handleLogoutClick = () => {
-    localStorage.removeItem('token');
-    router.push('/login');
-  };
+ 
 
   return (
     <nav className="navbar">
@@ -74,8 +63,7 @@ export default function Header() {
                 <div
                   className="profile-image-container"
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  style={{ cursor: 'pointer' }}
-                >
+                  style={{ cursor: 'pointer' }} >
                   <Image
                     src={auth?.auth?.image_url ? auth?.auth?.image_url : "https://quaintstays.laraveldevelopmentcompany.com/public/storage/user/profile-images/1710928138.jpg"}
                     alt="profile"
@@ -83,13 +71,7 @@ export default function Header() {
                     height={100}
                   />
                 </div>
-                {isDropdownOpen && (
-                  <ul className="dropdown-menu  text-black border-3 ">
-                    <li onClick={handleSecurityClick}>Security</li>
-                    <li onClick={handleProfileClick}>Profile</li>
-                    <li onClick={handleLogoutClick}>Logout</li>
-                  </ul>
-                )}
+                {isDropdownOpen ? <Menu /> : ''}
               </div>
             ) : (
               <div className="login-signup-btn">
