@@ -1,20 +1,19 @@
 "use client"
 
 import Image from 'next/image'
-import { ArrowRight2, Calendar, Document, Element3, Folder2, Headphone, Profile2User, Setting2, Setting4, Star, Timer1, Triangle } from 'iconsax-react'
+import { useState,  useContext } from "react";
+import { ArrowRight2, Calendar, Document, Element3, Folder2, Headphone,TextalignJustifycenter, Profile2User, Setting2, Setting4, Star, Timer1, Triangle,ShopAdd  } from 'iconsax-react'
 import ProfileImage from '../components/assets/profile.png'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-// import { useCentralStore } from '../Store';
+import Context from "../../_app"
 
 function Sidebar() {
+    const auth = useContext(Context)
+
+    console.log(auth)
 
     const pathname = usePathname()
-    // const { setIsSidebarOpen, isSidebarOpen } = useCentralStore();
-
-    // useEffect(() => {
-    //     if (!isSidebarOpen) setIsSidebarOpen(!isSidebarOpen)
-    // }, [pathname])
 
     return (
         <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden'>
@@ -42,70 +41,105 @@ function Sidebar() {
                             Dashboard
                         </Link>
 
-                        <button className={`flex ${pathname === '/app/calendar' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
-                            <Calendar size={16} />
-                            Calendar
-                        </button>
+                        {/* <button className={`flex ${pathname === '/admin/property/list' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
 
-                        <button className={`flex ${pathname === '/app/timeoff' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                            Property List
+                        </button> */}
+{/* 
+                        <button className={`flex ${pathname === '/admin/timeoff' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Timer1 size={16} />
                             Time Off
-                        </button>
+                        </button> */}
 
-                        <button className={`flex ${pathname === '/app/projects' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        {/* <button className={`flex ${pathname === '/admin/projects' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Folder2 size={16} />
                             Projects
-                        </button>
+                        </button> */}
 
-                        {/* <Link href={'/admin/app/app/teams'} className={`flex ${pathname === '/admin/app/app/teams' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
-                            <Profile2User size={16} />
-                            Teams
+
+
+                        <Link href={'/admin/property/add'} className={`flex ${pathname === '/admin/property/add' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                         <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.1875L21.4501 10.275L21.0001 11.625H20.25V20.25H3.75005V11.625H3.00005L2.55005 10.275L12 3.1875ZM5.25005 10.125V18.75H18.75V10.125L12 5.0625L5.25005 10.125Z" fill="#080341"/>
+                         </svg>
+                            Property Add
+                        </Link>
+                        <Link href={'/admin/property'} className={`flex ${pathname === '/admin/property' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        <TextalignJustifycenter size={16}/>
+                            Property List
+                        </Link>
+                        {/* <Link href={'/admin/integrations'} className={`flex ${pathname === '/admin/admin/admin/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                            <Setting4 size={16} />
+                            Integrations
                         </Link> */}
 
-                        <Link href={'/admin/app/app/integrations'} className={`flex ${pathname === '/admin/app/app/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        <Link href={'/admin/integrations'} className={`flex ${pathname === '/admin/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Setting4 size={16} />
                             Integrations
                         </Link>
 
-                        <button className={`flex ${pathname === '/app/benefits' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        {/* <button className={`flex ${pathname === '/admin/benefits' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Star size={16} />
                             Benefits
                         </button>
 
-                        <button className={`flex ${pathname === '/app/documents' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        <button className={`flex ${pathname === '/admin/documents' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Document size={16} />
                             Documents
-                        </button>
+                        </button> */}
                     </div>
 
                     <div>
-                        <div className='text-gray-500 text-xs font-medium md:px-2'>
-                            <button className={`flex ${pathname === '/app/settings' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        {/* <div className='text-gray-500 text-xs font-medium md:px-2'>
+                            <button className={`flex ${pathname === '/admin/settings' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                                 <Setting2 size={16} />
                                 Settings
                             </button>
 
-                            <button className={`flex ${pathname === '/app/support' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                            <button className={`flex ${pathname === '/admin/support' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                                 <Headphone size={16} />
                                 Support
                             </button>
-                        </div>
+                        </div> */}
 
                         <hr className='bg-gray-400 mx-2 my-4' />
 
                         {/* bottom */}
-                        <div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200'>
+                        { !auth ? (
+
+<div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200'>
+<div className='flex items-center gap-2'>
+    <Image
+        src={ProfileImage}
+        alt='User'
+        width={36}
+        height={36}
+        className='rounded-full'
+    />
+    <div className=''>
+        <p className='text-sm font-semibold text-gray-800'>Steve Jobs</p>
+        <p className='text-xs font-medium text-gray-500'>steve@adminle.com</p>
+    </div>
+</div>
+
+<button className='text-gray-500'>
+    <ArrowRight2 size={16} />
+</button>
+</div>
+</div>
+                        ) :(
+                            <div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200'>
                             <div className='flex items-center gap-2'>
                                 <Image
-                                    src={ProfileImage}
+                                    src={auth.image_url}
                                     alt='User'
                                     width={36}
                                     height={36}
                                     className='rounded-full'
                                 />
                                 <div className=''>
-                                    <p className='text-sm font-semibold text-gray-800'>Steve Jobs</p>
-                                    <p className='text-xs font-medium text-gray-500'>steve@apple.com</p>
+                                    <p className='text-sm font-semibold text-gray-800'>{auth.mane}</p>
+                                    <p className='text-xs font-medium text-gray-500'>{auth.email}</p>
                                 </div>
                             </div>
 
@@ -114,6 +148,8 @@ function Sidebar() {
                             </button>
                         </div>
                     </div>
+                        ) }
+                       
 
                 </div>
 

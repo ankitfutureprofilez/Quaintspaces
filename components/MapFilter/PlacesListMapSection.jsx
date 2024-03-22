@@ -18,7 +18,7 @@ const PlacesListMapSection = ({
   return (
     <div className="max-w-full xl:max-w-[720px] w-full h-full py-6 px-4 overflow-hidden">
       <header className="flex items-center justify-between">
-        <span className="font-semibold">{places?.results?.length} homes</span>
+        <span className="font-semibold">{places && places?.results && places?.results?.length} homes</span>
         <button
           onClick={() => {
             setFilterModal(true);
@@ -57,7 +57,7 @@ const PlacesListMapSection = ({
               css="w-full sm:w-[calc(100%/2-16px)] md:w-[calc(100%/3-16px)] xl:w-[calc(100%/2-1.2rem)] h-max"
             />
           </div>
-        ) : places?.results?.length === 0 ? (
+        ) :places?.results?.length === 0 ? (
           <div className="">
             <h1 className="text-2xl font-semibold mb-4">No exact matches</h1>
             <p className="text-md mb-4">

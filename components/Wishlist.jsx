@@ -13,7 +13,7 @@ const Wishlist = () => {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("wishlist"));
-    if (data?.length > 0) {
+      if (  data && data?.length > 0) {
       setExistingWishlist(data);
       setNewWishlist(false);
     } else {
@@ -116,7 +116,7 @@ const ExistingWishlists = ({ existingWishlist, setNewWishlist }) => {
               }}
             >
               <div className="rounded-xl border border-borderColor bg-borderColor w-16 h-16 flex items-center justify-center">
-                {wishlist.listings.length > 0 && (
+                {wishlist && wishlist.listings && wishlist.listings.length > 0 && (
                   <img
                     src={wishlist.listings[0].images[0].url}
                     className="w-full h-full object-cover rounded-md"
@@ -170,9 +170,9 @@ const NewWishlist = ({ value, setValue, setWishlist }) => {
             }
             setWishlist(false);
           }}
-          disabled={value.length < 50 && value.length > 0 ? false : true}
+          disabled={ value && value.length < 50 && value.length > 0 ? false : true}
           className={`btn-secondary w-full text-base ${
-            value.length < 50 && value.length > 0
+          value &&   value.length < 50 && value.length > 0
               ? ""
               : "cursor-not-allowed opacity-80"
           }`}

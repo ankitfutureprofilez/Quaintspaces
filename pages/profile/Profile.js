@@ -30,11 +30,6 @@ export default function Profile() {
     "https://w7.pngwing.com/pngs/812/572/png-transparent-computer-icons-user-name-heroes-monochrome-black-thumbnail.png"
   );
 
-  useEffect(() => {
-    if (data.image_url) {
-      setPreviewImgSrc(data.image_url);
-    }
-  }, [data.image_url]);
 
   const loadFile = (event) => {
     const file = event.target.files[0];
@@ -55,7 +50,7 @@ export default function Profile() {
   useEffect(() => {
     const main = new Listings();
     main.GetUserProfile().then((r) => {
-      console.log("r.data.data", r.data.data);
+      // console.log("r.data.data", r.data.data);
       const profiledata = r.data.data;
       setRecord({
         first: profiledata.first_name,
@@ -64,7 +59,7 @@ export default function Profile() {
         image: profiledata.image_url,
         email: profiledata.email,
       });
-      setData(r.data.data);
+      setPreviewImgSrc(profiledata.image_url);
     })
       .catch((err) => {
         console.log(err);
@@ -78,11 +73,11 @@ export default function Profile() {
       [name]: value,
     }));
   };
-  console.log("record", record);
+  // console.log("record", record);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("record", record);
+    // console.log("record", record);
     const main = new Listings();
     const formdata = new FormData();
     formdata.append("email", record.email);
@@ -90,15 +85,14 @@ export default function Profile() {
     formdata.append("first_name", record.first);
     formdata.append("last_name", record.last);
     formdata.append("phone_no", record.phone);
-    console.log("fotmdatra", formdata);
     const response = main.UpdateUserProfile(formdata);
     response
       .then((res) => {
-        console.log("res", res);
+        // console.log("res", res);
         if (res && res.data && res.data.status) {
           toast.success(res.data.message);
-          console.log("res", res);
-          console.log(res.data.message);
+          // console.log("res", res);
+          // console.log(res.data.message);
           setRecord({
             email: "",
             phone: "",
@@ -108,7 +102,7 @@ export default function Profile() {
           });
         } else {
           toast.error(res?.data.message);
-          console.log(res?.data.message);
+          // console.log(res?.data.message);
         }
         // setLoading(false);
       })
@@ -125,7 +119,7 @@ export default function Profile() {
   return (
     <>
       <div className='container mx-auto  '>
-        <div className="py-12">
+        <div className="py-6 sm:py-12">
           <Heading text={"My Profile"} />
         </div>
       </div>
@@ -164,9 +158,9 @@ export default function Profile() {
           <h3 >Personal Information</h3>
           <p>Update your personal information here </p>
         </div>
-        <div className='w-9/12 '>
-          <form onSubmit={handleSubmit} className='grid grid-cols-2 gap-4'>
-            <div className="mb-4">
+        <div className='w-full md:w-9/12 '>
+          <form onSubmit={handleSubmit} className='grid sm:grid-cols-2 grid-cols-1 gap-4'>
+            <div className="mb-2 sm:mb-4">
               <label
                 htmlFor="email"
                 className="block text-lg font-medium text-gray-700 "
@@ -184,7 +178,7 @@ export default function Profile() {
               />
             </div>
 
-            <div className="mb-4">
+            <div className="mb-2 sm:mb-4">
               <label
                 htmlFor="email"
                 className="block text-lg font-medium text-gray-700"
@@ -201,7 +195,7 @@ export default function Profile() {
                 required
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-2 sm:mb-4">
               <label
                 htmlFor="email"
                 className="block text-lg font-medium text-gray-700"
@@ -218,7 +212,7 @@ export default function Profile() {
                 required
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-2 sm:mb-4">
               <label
                 htmlFor="phone"
                 className="block text-lg font-medium text-gray-700"
@@ -236,7 +230,7 @@ export default function Profile() {
                 required
               />
             </div>
-            <Button text={"Update Details"} design={"font-inter font-lg leading-tight text-center text-black-400 w-96 bg-orange-300   p-4 rounded-full mt-14"} />
+            <Button text={"Update Details"} design={"font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-orange-300   p-4 rounded-full mt-14"} />
           </form>
 
         </div>

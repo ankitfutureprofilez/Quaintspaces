@@ -18,28 +18,33 @@ const Listing = () => {
   const [selection, setSelection] = useState(null);
   const [headerSearch, setHeaderSearch] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [listing, setListing] = useState({
+  const [record, setrecord] = useState({
     loading: true,
     data: {},
   });
 
   useEffect(() => {
     if (slug) {
-      setListing({
+      setLoading(true);
+      setrecord({
         loading: true,
         data: {},
       });
       const main = new Listings();
       main.PropertyDetail(slug || "").then((r) => {
-        setListing({
+        setrecord({
           loading: false,
           data: r.data.data,
         });
+        setLoading(false);
+
       }).catch((err) => {
-        setListing({
+        setrecord({
           loading: true,
         });
         console.log(err);
+        setLoading(false);
+
       });
     }
   }, [slug]);
@@ -49,7 +54,7 @@ const Listing = () => {
       <Layout>
         <Head>
           <title>
-            House rent in {listing.loading ? "..." : listing.data?.title} - Aribnb
+            House rent in {record.loading ? "..." : record.data?.title} - Aribnb
             Clone
           </title>
         </Head>
@@ -62,7 +67,7 @@ const Listing = () => {
         headerSearch={headerSearch}
         setHeaderSearch={setHeaderSearch}
       /> */}
-        <SingleListingBody listing={listing} />
+        <SingleListingBody loading={loading} listing={record} />
         <ThingsToKnow />
         {/* <Footer /> */}
         {overlay && (

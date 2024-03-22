@@ -1,16 +1,17 @@
 import { useRouter } from 'next/router';
 
-function Heading({ text ,value}) {
+function 
+Heading({ text ,value, handleClick}) {
   const router = useRouter();
 
-  const record = value ? value:"/account"
-  const handleClick = () => {
-    router.push(record);
-  };
+  // const record = value ? value:"/account"
+  // const handleClick = () => {
+  //   router.push(record);
+  // };
 
   return (
     <div className="flex flex-wrap items-center">
-      <div className="flex items-center">
+      <div className="flex items-center ">
         <div
           className="flex justify-center items-center h-10 w-10 rounded-full border border-gray-400"
           style={{ color: "#3F2A17" }}
@@ -30,7 +31,7 @@ function Heading({ text ,value}) {
             </g>
           </svg>
         </div>
-        <h2 className="text-3xl font-medium ml-4 text-bold" style={{ color: '#3F2A17' }}>{text}</h2>
+        <h2 className="sm:text-3xl text-lg font-medium ml-4 text-bold" style={{ color: '#3F2A17' }}>{text}</h2>
       </div>
     </div>
   );

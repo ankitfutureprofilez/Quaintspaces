@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
-import Header from "../home/Header";
-import Footer from "../home/Footer";
 import { useRouter } from "next/router";
-import Listings from "../api/laravel/Listings";
 import toast from "react-hot-toast";
+import Listing from "../api/Listing";
 export default function AuthLayout({ children }) {
   const router = useRouter();
   const [content, setContent] = useState([]);
   
   useEffect(() => {
     const auth = localStorage.getItem("token");
-    const main = new Listings();
-    const response =  main.GetUserProfile();
+    const main = new Listing();
+    const response =  main.Adminprofile();
     response
       .then((res) => {
         console.log("res", res);
@@ -22,16 +20,14 @@ export default function AuthLayout({ children }) {
       })
       .catch((error) => {
         console.log("error", error);
-        router.push("/login");
+        router.push("/admin/login");
         toast.error("Please log in first.");
       });
   }, []);
 
   return (
     <>
-      <Header />
       <main>{children}</main>
-    <Footer />
     </>
   );
 }

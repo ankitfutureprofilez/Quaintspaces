@@ -15,24 +15,27 @@ class Listings extends Component {
   async UpdateUserProfile(data) {
     return Api.post("/update-profile",data);
   }
+  async ResetPassword(data) {
+    return Api.post("/update-password", data);
+  }
+  async ForgotPassword(data) {
+    return Api.post("/forgot-password", data);
+  }
+  async ForgotPasswordOTP(data) {
+    return Api.post("/verify-reset-password-otp", data);
+  }
+  async UpdateForgotPassword(data) {
+    return Api.post("/reset-password", data);
+  }
   // async GetUser(data) {
   //   return Api.post("/get-user-profile", data);
   // }
   // async UpdateProfile(data) {
   //   return Api.post("/update-profile", data);
   // }
-  // async ResetPassword(data) {
-  //   return Api.post("/update-password", data);
-  // }
-  // async ForgotPassword(data) {
-  //   return Api.post("/forgot-password", data);
-  // }
-  // async VerifyResetPassword(data) {
-  //   return Api.post("/verify-reset-password-otp", data);
-  // }
-  // async UpdateForgotPassword(data) {
-  //   return Api.post("/reset-password", data);
-  // }
+  async TopPropertyListing(data) {
+    return Api.get("/top-places-Property-list", data);
+  }
   async PropertyListing(data) {
     return Api.get("/property-list", data);
   }

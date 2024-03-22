@@ -9,6 +9,7 @@ import TimeTracker from '../components/Cards/TimeTracker'
 import TraningAnalysis from '../components/Cards/TraningAnalysis'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
+
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
 

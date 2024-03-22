@@ -108,7 +108,7 @@ export default function Card() {
 
         <RoomListings />
         <div className="load-more-btn">
-          <Link href=" ">Load More</Link>
+          <Link href="/apartments">Show All</Link>
         </div>
       </div>
     </div>

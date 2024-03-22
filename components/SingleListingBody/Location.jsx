@@ -8,8 +8,8 @@ const Location = React.forwardRef(({ listing }, ref) => {
   };
 
   const center = listing?.geolocation || {
-    lat: 45.745,
-    lng: 5.65,
+    lat: 26.8534541, //listing.data?.latitude
+    lng: 75.8049509, ////listing.data?.longitudes
   };
 
   const { isLoaded } = useJsApiLoader({

@@ -13,6 +13,28 @@ class Listing extends Component {
     async area_list(id){
         return Api.get(`/admin/area-list/${id}`)
     }
+
+    async Adminprofile(){
+        return Api.get("/admin/admin-profile")
+    }
+
+    async Adminproperty(){
+        return Api.get("/admin/property-list")
+    }
+
+    async Adminpropertydetails(uuid){
+        return Api.get("/admin/property-details/" +uuid)
+    }
+
+    async propertydelete(uuid){
+        return Api.get("/admin/delete-property/" +uuid)
+    }
+
+    async propertyedit(uuid,data){
+        return Api.post("/admin/updateProperty/" +uuid ,data)
+    }
+
+    
     render() {
         return (
             <div >

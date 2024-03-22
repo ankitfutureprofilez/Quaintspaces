@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <>
-    <NextNProgress color="#dcac81" />
+    <NextNProgress color="#e55500" />
       {/* <Head>
         <title>Airbnb Clone</title>
       </Head> */}

@@ -18,7 +18,7 @@ import { Context } from "../../pages/_app";
 import useWishlist from "../../hooks/useWishlist";
 import { addDays } from 'date-fns';
 
-const SingleListingBody = ({ listing }) => {
+const SingleListingBody = ({ listing, loading }) => {
   const router = useRouter();
   const [selection, setSelection] = useState(null); // 'guests', 'dates', null
   const [selectedImage, setSelectedImage] = useState(null);
@@ -207,7 +207,7 @@ const [selectEnd, setSelectEnd] = useState(null);
           </div>
         </div>
       </header>
-      <div className="w-full relative block lg:hidden">
+      <div className="hidden">
         <nav className="absolute top-0 left-0 w-full p-2 z-20 flex items-center justify-between">
           <button
             onClick={() => {
@@ -232,7 +232,7 @@ const [selectEnd, setSelectEnd] = useState(null);
       </div>
 
       <section className="w-full px-4">
-        <div className="max-w-[1120px] mx-auto py-8">
+        <div className="max-w-[1120px] mx-auto py-4 sm:py-8">
           <Title
             isSaved={isSaved}
             listing={listing}
@@ -240,7 +240,7 @@ const [selectEnd, setSelectEnd] = useState(null);
           />  
           <div
             ref={ImagesRef}
-            className="hidden lg:block h-screen rounded-2xl overflow-hidden my-8 relative min-h-[20vh] max-h-[40vh]"
+            className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] max-h-[40vh]"
           >
             <Images
               setSelectedImage={setSelectedImage}
@@ -252,7 +252,7 @@ const [selectEnd, setSelectEnd] = useState(null);
           <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
             <Info listing={listing} ref={AmenitiesRef} />
             <div className="hidden lg:block">
-              <Date_GuestsPickerCard
+              <Date_GuestsPickerCard loading={loading}
                 selection={selection}
                 setSelection={setSelection}
                 selectedDay={selectedDay}
@@ -268,7 +268,7 @@ const [selectEnd, setSelectEnd] = useState(null);
             </div>
           </div>
           <Reviews data={listing.data} ref={ReviewsRef} />
-          <Location listing={listing.data} ref={LocationRef} />
+          <Location listing={listing} ref={LocationRef} />
         </div>
       </section>
     </>

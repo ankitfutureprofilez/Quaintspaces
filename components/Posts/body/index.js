@@ -8,11 +8,13 @@ const PostBody = ({ listings, loading }) => {
   const child = useRef([]);
 
   useEffect(() => {
-    console.log("V listings.data", listings)
-    if (!listings && listings.length > 0) {
+    // console.log("V listings.data", listings)
+    if (!listings &&  listings && listings?.length > 0) {
       if (child && child.current) {
         let tl = gsap.timeline();
 
+
+        
         tl.fromTo(
           child.current,
           {
@@ -28,12 +30,12 @@ const PostBody = ({ listings, loading }) => {
   return (
     <div>
 
-      <ul className="flex flex-wrap px-4">
+      <ul className="flex flex-wrap ">
         {loading ? Array(3).fill("_").map(() => <ListingsLoading key={uuidv4()} />)
         :  listings && listings.map((post, i) => (
             <li
               key={post.id}
-              className=" w-full sm:w-3/6 md:w-2/6 px-3"
+              className=" w-full sm:w-3/6 md:w-2/6 sm:px-3 px-0"
               ref={(el) => (child.current[i] = el)} >
               <Card post={post} />
             </li>

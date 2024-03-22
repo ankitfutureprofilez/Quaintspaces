@@ -1,13 +1,13 @@
 import React from "react";
-import Layout from "../layout/Layout.js";
+import AuthLayout from "../layout/AuthLayout.js";
 import Profile from "./Profile.js";
 
 export default function index() {
   return (
     <div>
-      <Layout>
+      <AuthLayout>
         <Profile />
-      </Layout>
+      </AuthLayout>
     </div>
   );
 }

@@ -20,12 +20,18 @@ export default function ReasonToVisit() {
           <h2>Reason to Visit US</h2>
           <div className="smart-box">
             <Swiper
-              slidesPerView={4}
+              slidesPerView={2}
               spaceBetween={30}
             centeredSlides={false}
               autoplay={{
                 delay: 1000, 
                 disableOnInteraction: false,
+              }}
+              breakpoints={{
+                769: {
+                  slidesPerView: 4,
+                  slidesPerGroup: 1,
+                },
               }}
             >
               {reasons.map((reason, index) => (

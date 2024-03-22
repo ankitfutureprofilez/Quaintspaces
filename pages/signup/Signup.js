@@ -3,11 +3,12 @@ import Image from "next/image";
 import logologin from "../../public/images/loginlogoimg.png";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import Listings from './../api/laravel/Listings';
 
 export default function Signup() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -25,7 +26,9 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    if(loading==true){return;}
+    setLoading(true);
+    // console.log("Form submitted:", formData);
     const main = new Listings();
     const response = main.Signup({
       name: formData.fullName.trim(),
@@ -35,10 +38,10 @@ export default function Signup() {
     });
     response
       .then((res) => {
-        console.log("response", res);
+        // console.log("response", res);
         if (res && res.data && res.data.status) {
           toast.success(res.data.message);
-          console.log(res.data.message);
+          // console.log(res.data.message);
           setFormData({
             fullName: "",
             email: "",
@@ -49,20 +52,22 @@ export default function Signup() {
         } else {
           toast.error(res?.data.message);
           console.log(res?.data.message);
+          setLoading(false);
         }
        
       })
       .catch((error) => {
         toast.error(error?.response.data);
+        setLoading(false);
       });
   };
   return (
     <div
-      className="h-screen"
+      className="h-screen tab-mob-height"
       style={{ backgroundImage: `url(/images/login-bg.jpg)` }}
     >
       <div className="container h-full">
-        <div className="flex items-center  h-full relative">
+        <div className="flex items-center  h-full relative signup-tab-sec">
           <div className="left-logo-login w-6/12 px-3">
             <div className="backtohome">
               <Link href="/">
@@ -89,6 +94,8 @@ export default function Signup() {
                 </svg>
                 Back to home
               </Link>
+
+
             </div>
             <Image src={logologin} alt="logo" />
             <p>
@@ -96,7 +103,7 @@ export default function Signup() {
               city has to offer
             </p>
           </div>
-          <div className="w-6/12 px-3 flex justify-end">
+          <div className="right-signup-form w-6/12 px-3 flex justify-end">
             <div className="signup-form w-full max-h-screen overflow-y-auto">
               <div className="formbgcolor"></div>
               <div className="quainttay">
@@ -156,7 +163,7 @@ export default function Signup() {
                   />
                 </div>
                 <button type="submit" className="submint-btn">
-                  Submit
+                {loading?"Submitting...":"Submit"}
                 </button>
               </form>
             </div>
