@@ -6,12 +6,11 @@ import { ArrowRight2, Calendar, Document, Element3, Folder2, Headphone,Textalign
 import ProfileImage from '../components/assets/profile.png'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import Context from "../../_app"
+import {Context} from "../../_app"
 
 function Sidebar() {
     const auth = useContext(Context)
-
-    console.log(auth)
+    console.log("auth",auth)
 
     const pathname = usePathname()
 
@@ -126,7 +125,7 @@ function Sidebar() {
     <ArrowRight2 size={16} />
 </button>
 </div>
-</div>
+
                         ) :(
                             <div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200'>
                             <div className='flex items-center gap-2'>
@@ -147,10 +146,10 @@ function Sidebar() {
                                 <ArrowRight2 size={16} />
                             </button>
                         </div>
-                    </div>
+                   
                         ) }
                        
-
+</div>
                 </div>
 
             </div>
