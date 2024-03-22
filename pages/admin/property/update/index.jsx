@@ -164,17 +164,6 @@ export default function Property() {
 
   };
 
-  async  function  updateproperty(){
-    const main =  new  Listing();
-    const  response =  main.propertyedit(slug);
-    response.then((res)=>{
-        console.log("res",res)
-    }).catch((erorr)=>{
-        console.log("error",error)
-    })
-}
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const requiredFields = ["propertyName", "propertytype", "city_id", "area_id", "location", "price" ,"about","latitude","longitude","selectedAmenities"];

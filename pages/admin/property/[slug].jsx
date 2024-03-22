@@ -178,7 +178,7 @@ export default function Index() {
                             <button onclick={updateproperty(slug)}
                             className=" hover:border hover:border-black  bg-green-600 rounded-full transition-none m-1 p-2"
                              >
-                             update
+                                Update
                             </button>
                         </div>
                         <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">

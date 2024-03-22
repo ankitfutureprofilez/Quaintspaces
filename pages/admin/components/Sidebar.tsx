@@ -9,10 +9,9 @@ import { usePathname } from 'next/navigation'
 import Context from "../../_app"
 
 function Sidebar() {
-
     const auth = useContext(Context)
 
-    console.log("Auth",auth)
+    console.log(auth)
 
     const pathname = usePathname()
 
@@ -106,18 +105,41 @@ function Sidebar() {
                         <hr className='bg-gray-400 mx-2 my-4' />
 
                         {/* bottom */}
-                        <div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200'>
+                        { !auth ? (
+
+<div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200'>
+<div className='flex items-center gap-2'>
+    <Image
+        src={ProfileImage}
+        alt='User'
+        width={36}
+        height={36}
+        className='rounded-full'
+    />
+    <div className=''>
+        <p className='text-sm font-semibold text-gray-800'>Steve Jobs</p>
+        <p className='text-xs font-medium text-gray-500'>steve@adminle.com</p>
+    </div>
+</div>
+
+<button className='text-gray-500'>
+    <ArrowRight2 size={16} />
+</button>
+</div>
+</div>
+                        ) :(
+                            <div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200'>
                             <div className='flex items-center gap-2'>
                                 <Image
-                                    src={ProfileImage}
+                                    src={auth.image_url}
                                     alt='User'
                                     width={36}
                                     height={36}
                                     className='rounded-full'
                                 />
                                 <div className=''>
-                                    <p className='text-sm font-semibold text-gray-800'>Steve Jobs</p>
-                                    <p className='text-xs font-medium text-gray-500'>steve@adminle.com</p>
+                                    <p className='text-sm font-semibold text-gray-800'>{auth.mane}</p>
+                                    <p className='text-xs font-medium text-gray-500'>{auth.email}</p>
                                 </div>
                             </div>
 
@@ -126,6 +148,8 @@ function Sidebar() {
                             </button>
                         </div>
                     </div>
+                        ) }
+                       
 
                 </div>
 
