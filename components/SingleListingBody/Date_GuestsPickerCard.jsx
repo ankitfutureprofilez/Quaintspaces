@@ -58,6 +58,7 @@ console.log("price",listing)
               selectEnd={selectEnd}
               setSelectedDay={setSelectedDay}
               setSelectEnd={setSelectEnd}
+              position={`-top-8 -right-8`}
             />
             <Guests
               selection={selection}
