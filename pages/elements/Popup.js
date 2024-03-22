@@ -34,7 +34,7 @@ export default function Popup({
   return isClient ? (
     <>
       <button className={btnclass} onClick={closep}>
-        {buttontext || "Open"}
+        {buttontext || ""}
       </button>
 
       <Transition.Root show={openPop} as={Fragment}>

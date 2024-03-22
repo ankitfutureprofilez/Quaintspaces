@@ -4,6 +4,7 @@ import Footer from "../home/Footer";
 import { useRouter } from "next/router";
 import Listings from "../api/laravel/Listings";
 import toast from "react-hot-toast";
+ 
 export default function AuthLayout({ children }) {
   const router = useRouter();
   const [content, setContent] = useState([]);
