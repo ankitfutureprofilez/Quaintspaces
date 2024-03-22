@@ -138,7 +138,7 @@ export default function Index() {
         const  response =  main.propertyedit(slug);
         response.then((res)=>{
             console.log("res",res)
-        }).catch((error)=>{
+        }).catch((erorr)=>{
             console.log("error",error)
         })
     }
@@ -155,40 +155,38 @@ export default function Index() {
                             loading={loading}
                             listing={record?.data}
                         // addWishlist={changeWishlist}
-                        /><div className="relative">
+                        />
                         <div
-                          ref={ImagesRef}
-                          className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] max-h-[40vh]"
+                            ref={ImagesRef}
+                            className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] max-h-[40vh]"
                         >
-                          <Images
-                            setSelectedImage={setSelectedImage}
-                            listing={record?.data}
-                            setImageViewer={setImageViewer}
-                            loading={loading}
-                          />
-                        </div>
-                        
-                        <button
-                          className="absolute top-0 right-0 hover:border text-white text-lg  hover:border-black bg-red-600 rounded-full transition-none m-1 p-2"
-                          onClick={() => deleteImage(slug)}
-                        >
-                          Delete
-                        </button>
-
-                        <button
-                          className="absolute top-16 right-0 hover:border text-black text-lg  hover:border-black bg-green-600 rounded-full transition-none m-1 p-2"
-                          onClick={() => deleteImage(slug)}
-                        >
-                          Update
-                        </button>
-                      </div>
-                      
-                        <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
-                            {/* <Info listing={record?.data} ref={AmenitiesRef}
+                            <Images
+                                setSelectedImage={setSelectedImage}
+                                listing={record?.data}
+                                setImageViewer={setImageViewer}
                                 loading={loading}
-                            /> */}
+                            />
+                        </div>
+                        <div className="flex  items-left  justify-left gap-1">
+                          <button
+                            className=" px-5 text-white  bg-red-600 rounded-full transition-none m-1 p-2"
+                            onClick={() => deleteImage(slug)}
+                            >
+                                Delete
+                            </button>
+                            <button onclick={updateproperty(slug)}
+                            className=" px-5 text-white  bg-green-600 rounded-full transition-none m-1 p-2"
+                             >
+                             update
+                            </button>
+                        </div>
+                        <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
+                            <Info listing={record?.data} ref={AmenitiesRef}
+                                loading={loading}
+                            />
+                           
                             <div className="hidden lg:block">
-                                {/* <Date_GuestsPickerCard
+                                <Date_GuestsPickerCard
                                     loading={loading}
                                     selection={selection}
                                     setSelection={setSelection}
@@ -201,7 +199,7 @@ export default function Index() {
                                     setGuests={setGuests}
                                     listing={record?.data?.data}
                                     ref={CardRef}
-                                /> */}
+                                />
                             </div>
                         </div>
                         {/* <Reviews data={record?.data} ref={ReviewsRef} />  */}

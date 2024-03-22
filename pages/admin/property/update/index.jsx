@@ -583,7 +583,7 @@ export default function Property() {
                     type="file"
                     className="hidden"
                     onChange={handleFileChange}
-                    name="images" required 
+                    name="images"  
                     multiple
                   />
                 </label>
