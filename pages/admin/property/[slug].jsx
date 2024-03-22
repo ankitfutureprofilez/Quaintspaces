@@ -174,6 +174,7 @@ export default function Index() {
                             >
                                 Delete
                             </button>
+
                             <button onclick={updateproperty(slug)}
                             className=" hover:border hover:border-black  bg-green-600 rounded-full transition-none m-1 p-2"
                              >
@@ -181,12 +182,11 @@ export default function Index() {
                             </button>
                         </div>
                         <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
-                            <Info listing={record?.data} ref={AmenitiesRef}
+                            {/* <Info listing={record?.data} ref={AmenitiesRef}
                                 loading={loading}
-                            />
-                           
+                            /> */}
                             <div className="hidden lg:block">
-                                <Date_GuestsPickerCard
+                                {/* <Date_GuestsPickerCard
                                     loading={loading}
                                     selection={selection}
                                     setSelection={setSelection}
@@ -199,7 +199,7 @@ export default function Index() {
                                     setGuests={setGuests}
                                     listing={record?.data?.data}
                                     ref={CardRef}
-                                />
+                                /> */}
                             </div>
                         </div>
                         {/* <Reviews data={record?.data} ref={ReviewsRef} />  */}

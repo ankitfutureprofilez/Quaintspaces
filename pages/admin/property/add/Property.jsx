@@ -166,6 +166,13 @@ export default function Property() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const requiredFields = ["propertyName", "propertytype", "city_id", "area_id", "location", "price" ,"about","latitude","longitude","selectedAmenities"];
+    const isAnyFieldEmpty = requiredFields.some(field => !Poperty[field]);
+    const areEnoughImagesSelected = Poperty?.images?.length >= 5;
+    if (isAnyFieldEmpty || !areEnoughImagesSelected) {
+      toast.error("Please fill all required fields and select at least five images.");
+      return;
+    }
     setLoading(true);
     const main = new Listing();
     const formData = new FormData();

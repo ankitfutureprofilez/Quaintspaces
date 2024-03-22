@@ -1,12 +1,18 @@
 "use client"
 
 import Image from 'next/image'
+import { useState,  useContext } from "react";
 import { ArrowRight2, Calendar, Document, Element3, Folder2, Headphone,TextalignJustifycenter, Profile2User, Setting2, Setting4, Star, Timer1, Triangle,ShopAdd  } from 'iconsax-react'
 import ProfileImage from '../components/assets/profile.png'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Context from "../../_app"
 
 function Sidebar() {
+
+    const auth = useContext(Context)
+
+    console.log("Auth",auth)
 
     const pathname = usePathname()
 

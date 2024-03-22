@@ -35,10 +35,10 @@ export default function Login() {
     response
       .then((res) => {
         if (res && res?.data && res?.data?.status) {
-          
+          console.log("res",res)
           toast.success(res.data.message);
           localStorage && localStorage.setItem("token", res?.data?.token);
-          const record = setAuth(res?.data?.data);
+         setAuth(res?.data?.data);
           router.push("/admin");
           setLoading(false);
         } else {
