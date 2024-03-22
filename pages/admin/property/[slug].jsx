@@ -167,15 +167,15 @@ export default function Index() {
                                 loading={loading}
                             />
                         </div>
-                        <div className="flex  items-left  justify-left gap-5">
+                        <div className="flex  items-left  justify-left gap-1">
                           <button
-                            className=" hover:border hover:border-black  bg-red-600 rounded-full transition-none m-1 p-2"
+                            className=" px-5 text-white  bg-red-600 rounded-full transition-none m-1 p-2"
                             onClick={() => deleteImage(slug)}
                             >
                                 Delete
                             </button>
                             <button onclick={updateproperty(slug)}
-                            className=" hover:border hover:border-black  bg-green-600 rounded-full transition-none m-1 p-2"
+                            className=" px-5 text-white  bg-green-600 rounded-full transition-none m-1 p-2"
                              >
                              update
                             </button>

@@ -11,10 +11,10 @@ function Sidebar() {
     const pathname = usePathname()
 
     return (
-        <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden'>
-            <div className='w-full h-full bg-white border-r'>
+        <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden '>
+            <div className='w-full h-full bg-white border-r '>
                 {/* logo */}
-                <div className='p-4 md:p-6 flex cursor-pointer group items-center gap-2'>
+                <div className='p-4 md:p-6 flex cursor-pointer group items-center gap-2 z-10'>
                     <div className='h-10 outline outline-violet-300 w-10 flex items-center bg-gradient-to-br justify-center rounded-full from-violet-500 to-violet-400 text-white'>
                         <Triangle size={24} className='relative group-hover:scale-75 duration-200' />
                     </div>
