@@ -56,7 +56,7 @@ export default function Login() {
 
   return (
     <>
-      <div className="  h-dvh flex items-center justify-center w-full dark:bg-gray-950">
+      <div className="  h-dvh flex items-center justify-center w-full bg-gray-950">
         <div className="  rounded-lg px-8 py-6 max-w-md shadow-2xl">
           <h1 className="text-3xl font-medium text-bold mb-6 text-center">
             {" "}
@@ -99,7 +99,7 @@ export default function Login() {
            <div className="flex items-center justify-between mb-4">
 				<div className="flex items-center">
 					<input type="checkbox" id="remember" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 focus:outline-none" checked/>
-					<label for="remember" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">Remember me</label>
+					<label for="remember" className="ml-2 block text-sm text-gray-700 text-gray-300">Remember me</label>
 				</div>
 				<a href="#"
 					className="text-xs text-indigo-500 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create
