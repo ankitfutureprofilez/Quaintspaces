@@ -37,7 +37,7 @@ const PageNavbarIconButton = React.forwardRef<
     (({ className, ...props }, ref) =>
         <button
             ref={ref}
-            className='all-center h-8 w-8 duration-200 hover:bg-gray-100 rounded-lg'
+            className='all-center h-8 w-8 duration-200 hover:bg-gray-100 rounded-lg flex justify-center items-center'
             {...props} />
     )
 
