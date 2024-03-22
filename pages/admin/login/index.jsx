@@ -56,10 +56,9 @@ export default function Login() {
 
   return (
     <>
-      <div className="  h-dvh flex items-center justify-center w-full dark:bg-gray-950">
+      <div className="  h-dvh flex items-center justify-center w-full  ">
         <div className="  rounded-lg px-8 py-6 max-w-md">
           <h1 className="text-3xl font-medium ml-4 text-bold mb-4">
-            {" "}
             Sign in to your account
           </h1>
           <form onSubmit={handleSubmit}>
