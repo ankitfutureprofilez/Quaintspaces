@@ -7,22 +7,21 @@ import axios from "axios";
 export default function Property() {
   const [step, setStep] = useState(1);
   const [Loading, setLoading] = useState(false);
-
   const [Poperty, setPoperty] = useState({
     name: "",
+    area_id: "",
+    city_id: "",
+    location: "",
     about: "",
     price: "",
-    propertytype: "",
+    propertytype: "flat",
     children: "1",
     adults: "1",
     guests: "",
     bedrooms: "1",
-    area_id: "",
     beds: "1",
     bathrooms: "1",
-    city_id: "",
     pets: "1",
-    location: "",
     latitude: "",
     longitude: "",
     address: "",
@@ -53,7 +52,21 @@ export default function Property() {
     }));
   };
 
-  const nextStep = () => setStep((prev) => prev + 1);
+  const nextStep = () => {
+    if (step == 1 && Poperty.name === "" || Poperty.area_id === "" || Poperty.city_id === "" || Poperty.location === "") {
+     toast.error("All fields are required.");
+      return false;
+    } 
+    if (step == 3 && Poperty.selectedAmenities && Poperty.selectedAmenities.length < 4) {
+     toast.error("Please choose atleast 4 amenities.");
+      return false;
+    } 
+    if (step == 4 && Poperty.about && Poperty.about.length < 100) {
+     toast.error("Property description is too short. Descrption should be minimum 100 words.");
+      return false;
+    } 
+    setStep((prev) => prev + 1);
+  };
   const prevStep = () => setStep((prev) => prev - 1);
 
   const handleCheckboxChange = (e) => {
@@ -179,6 +192,8 @@ export default function Property() {
     const main = new Listing();
     const formData = new FormData();
     formData.append("name", Poperty.name);
+    formData.append("city_id", Poperty.city_id);
+    formData.append("area_id", Poperty.area_id);
     formData.append("pet_allowed", "1");
     formData.append("no_of_pet_allowed", Poperty.pets);
     formData.append("description", Poperty.about);
@@ -195,8 +210,6 @@ export default function Property() {
     formData.append("check_out", "12:12");
     formData.append("country_id", "101");
     formData.append("state_id", "33");
-    formData.append("city_id", Poperty.city_id);
-    formData.append("area_id", Poperty.area_id);
     formData.append("adults", Poperty.adults);
     formData.append("children", Poperty.children);
     formData.append("infants", "1");
@@ -210,25 +223,6 @@ export default function Property() {
       .then((res) => {
         if (res?.data?.status) {
           toast.success(res.data.message);
-          setPoperty({
-            name: "",
-            about: "",
-            price: "",
-            propertytype: "",
-            children: "1",
-            adults: "1",
-            guests: "",
-            bedrooms: "1",
-            area_id: "",
-            beds: "1",
-            bathrooms: "1",
-            city_id: "",
-            pets: "",
-            location: "",
-            address: "",
-            selectedAmenities: [],
-            images: [],
-          });
           setLoading(false);
         }
       })
@@ -285,7 +279,6 @@ export default function Property() {
                       value={Poperty.propertytype}
                       onChange={handleInputChange}
                       name="propertytype" >
-                      <option value="">Select a property type</option>
                       <option value="flat">Flat/Apartment</option>
                       <option value="house">House</option>
                       <option value="unique_space">Unique Space</option>
@@ -561,11 +554,10 @@ export default function Property() {
                 />
                  <label
                   className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
-                  Minimum 200 words.
+                  Minimum 100 words.
                 </label>
               </div>
             </div>
-
 
             <div className={`${step === 5 ? " " : " display-none"}`}>
               <div className="flex items-center justify-center w-full mt-5 ">
