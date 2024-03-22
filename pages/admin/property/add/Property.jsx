@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Add, Notification, SearchNormal1, Setting4 } from "iconsax-react";
 import amenitiesList from "../../../../aminites.json";
 import Listing from "../../api/Listing";
 import Element from "../../element";
@@ -10,7 +9,7 @@ export default function Property() {
   const [Loading, setLoading] = useState(false);
 
   const [Poperty, setPoperty] = useState({
-    propertyName: "",
+    name: "",
     about: "",
     price: "",
     propertytype: "",
@@ -75,7 +74,6 @@ export default function Property() {
   };
 
   const id = 33;
-
   const [city, setCity] = useState([]);
   useEffect(() => {
     const main = new Listing();
@@ -102,13 +100,9 @@ export default function Property() {
           console.log("error", error);
         });
     };
-
     fetchAreaList();
   }, []);
 
-  // console.log("area", area)
-
-  console.log("loc", Poperty)
   const fetchLocationData = async (manualLocation) => {
     if (manualLocation) {
       try {
@@ -152,9 +146,6 @@ export default function Property() {
     }
   };
 
-
-
-
   const handleLocationInputChange = (event) => {
     const { name, value } = event.target;
     setPoperty((prevProperty) => ({
@@ -166,18 +157,18 @@ export default function Property() {
 
   async  function  updateproperty(){
     const main =  new  Listing();
-    const  response =  main.propertyedit(slug);
-    response.then((res)=>{
-        console.log("res",res)
-    }).catch((erorr)=>{
-        console.log("error",error)
-    })
-}
+      const  response =  main.propertyedit(slug);
+      response.then((res)=>{
+          console.log("res",res)
+      }).catch((error)=>{
+          console.log("error",error)
+      })
+  }
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const requiredFields = ["propertyName", "propertytype", "city_id", "area_id", "location", "price" ,"about","latitude","longitude","selectedAmenities"];
+    const requiredFields = ["name", "propertytype", "city_id", "area_id", "location", "price" ,"about","latitude","longitude","selectedAmenities"];
     const isAnyFieldEmpty = requiredFields.some(field => !Poperty[field]);
     const areEnoughImagesSelected = Poperty?.images?.length >= 5;
     if (isAnyFieldEmpty || !areEnoughImagesSelected) {
@@ -187,7 +178,7 @@ export default function Property() {
     setLoading(true);
     const main = new Listing();
     const formData = new FormData();
-    formData.append("name", Poperty.propertyName);
+    formData.append("name", Poperty.name);
     formData.append("pet_allowed", "1");
     formData.append("no_of_pet_allowed", Poperty.pets);
     formData.append("description", Poperty.about);
@@ -220,7 +211,7 @@ export default function Property() {
         if (res?.data?.status) {
           toast.success(res.data.message);
           setPoperty({
-            propertyName: "",
+            name: "",
             about: "",
             price: "",
             propertytype: "",
@@ -248,45 +239,52 @@ export default function Property() {
   };
   return (
     <>
+    <style>{`
+    .ammenties-checked-lists input:checked+ label { 
+      background: #006fc7;
+      color:#fff;
+    }
+    `}</style>
       <Element />
       <div className="min-h-screen flex items-center justify-center px-6 py-8">
         <div className="max-w-4xl w-full space-y-8">
-          <div className=" p-8 sm:p-12">
+
+          <div className="pages-wrapper p-8 max-w-[700px] m-auto ">
+
+
+            <h2 className="text-xl font-bold mb-4 " >Add Property</h2>
             <div className={`${step === 1 ? "" : "display-none"}`}>
               <div className="mt-4">
                 <label
-                  htmlFor="propertyName"
-                  className="block text-lg font-medium text-gray-700"
-                >
+                  htmlFor="name"
+                  className="block text-sm mb-1 font-medium text-gray-700 mt-3" >
                   Property Name
                 </label>
                 <input
-                required
+                  required
                   type="text"
-                  name="propertyName"
-                  id="propertyName"
-                  className="mt-1 p-4 border rounded-full w-full"
-                  value={Poperty.propertyName}
+                  name="name"
+                  id="name"
+                  className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
+                  value={Poperty.name}
                   onChange={handleInputChange}
                 />
               </div>
               <div className="mt-4">
-                <div className="flex justify-center item-center ">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 flex justify-center item-center ">
                   <div className=" ">
                     <label
                       htmlFor="propertyType"
-                      className="block text-lg font-medium text-gray-700 mb-1"
-                    >
+                      className="block text-sm mb-1 font-medium text-gray-700 mt-3" >
                       Property Type
                     </label>
                     <select
                       required
                       id="propertyType"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
                       value={Poperty.propertytype}
                       onChange={handleInputChange}
-                      name="propertytype"
-                    >
+                      name="propertytype" >
                       <option value="">Select a property type</option>
                       <option value="flat">Flat/Apartment</option>
                       <option value="house">House</option>
@@ -297,10 +295,10 @@ export default function Property() {
                       <option value="boutique_hotel">Boutique Hotel</option>
                     </select>
                   </div>
-                  <div className="max-w-sm mx-auto">
+                  <div className="">
                     <label
                       htmlFor="citySelect"
-                      className="block text-lg font-medium text-gray-700 mb-1"
+                      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
                     >
                       City
                     </label>
@@ -308,7 +306,7 @@ export default function Property() {
                       id="citySelect"
                       name="city_id"
                       onChange={handleInputChange}
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
                     >
                       <option>Choose a City</option>
                       {city &&
@@ -319,10 +317,10 @@ export default function Property() {
                         ))}
                     </select>
                   </div>
-                  <div className="max-w-sm mx-auto">
+                  <div className="">
                     <label
                       htmlFor="areaSelect"
-                      className="block text-lg font-medium text-gray-700 mb-1"
+                      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
                     >
                       Area
                     </label>
@@ -330,7 +328,7 @@ export default function Property() {
                       id="areaSelect"
                       name="area_id"
                       onChange={handleInputChange}
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
                     >
                       <option>Choose an Area</option>
                       {area &&
@@ -346,7 +344,7 @@ export default function Property() {
               <div className="relative mt-4 text-sm font-medium text-gray-700">
                 <label
                   htmlFor="location"
-                  className="block text-lg font-medium text-gray-700"
+                  className="block text-sm mb-1 font-medium text-gray-700 mt-3"
                 >
                   Location
                 </label>
@@ -357,14 +355,14 @@ export default function Property() {
                     name="location"
                     value={Poperty.location}
                     onChange={handleLocationInputChange}
-                    className="mt-1 p-4 border rounded-full w-full pl-4 pr-12"
+                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
                     placeholder="Enter Location or Click to Select"
                     onClick={() => fetchLocationData(Poperty.location)}
                   />
                  
                   <button
                     onClick={() => fetchLocationData()}
-                    className="absolute inset-y-0 right-10 flex items-center pr-3"
+                    className="absolute inset-y-0 right-2 flex items-center pr-3"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -383,14 +381,15 @@ export default function Property() {
                   </button>
                 </div>
               </div>
-
             </div>
+
+
             <div className={`${step === 2 ? " " : " display-none"}`}>
               <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 mt-5">
                 <div>
                   <label
                     htmlFor="guests"
-                    className="block text-lg  font-medium text-gray-700"
+                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
                   >
                     Adult
                   </label>
@@ -398,7 +397,7 @@ export default function Property() {
                     id="guests"
                     name="adults"
                     autoComplete="guests"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
                     value={Poperty.adults}
                     onChange={handleInputChange}
                   >
@@ -411,7 +410,7 @@ export default function Property() {
                 <div>
                   <label
                     htmlFor="guests"
-                    className="block text-lg font-medium text-gray-700"
+                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
                   >
                     children
                   </label>
@@ -419,7 +418,7 @@ export default function Property() {
                     id="guests"
                     name="children"
                     autoComplete="guests"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
                     value={Poperty.children}
                     onChange={handleInputChange}
                   >
@@ -432,14 +431,14 @@ export default function Property() {
                 <div>
                   <label
                     htmlFor="bedrooms"
-                    className="block text-lg font-medium text-gray-700"
+                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
                   >
                     Bedrooms
                   </label>
                   <select  required 
                     id="bedrooms"
                     name="bedrooms"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
                     value={Poperty.bedrooms}
                     onChange={handleInputChange}
                   >
@@ -451,7 +450,7 @@ export default function Property() {
                 <div>
                   <label
                     htmlFor="beds"
-                    className="block text-lg font-medium text-gray-700"
+                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
                   >
                     Beds
                   </label>
@@ -459,7 +458,7 @@ export default function Property() {
                     id="beds"
                     name="beds"
                     autoComplete="beds"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
                     value={Poperty.beds}
                     onChange={handleInputChange}
                   >
@@ -471,7 +470,7 @@ export default function Property() {
                 <div>
                   <label
                     htmlFor="bathrooms"
-                    className="block text-lg font-medium text-gray-700"
+                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
                   >
                     Bathrooms
                   </label>
@@ -479,7 +478,7 @@ export default function Property() {
                     id="bathrooms"
                     name="bathrooms"
                     autoComplete="bathrooms"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
                     value={Poperty.bathrooms}
                     onChange={handleInputChange}
                   >
@@ -492,7 +491,7 @@ export default function Property() {
                 <div>
                   <label
                     htmlFor="pet"
-                    className="block text-lg font-medium text-gray-700"
+                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
                   >
                     Pets
                   </label>
@@ -500,7 +499,7 @@ export default function Property() {
                     id="pet" required
                     name="pets"
                     autoComplete="pet"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
                     value={Poperty.pets}
                     onChange={handleInputChange}
                   >
@@ -511,12 +510,14 @@ export default function Property() {
                 </div>
               </div>
             </div>
+
+
             <div className={`${step === 3 ? " " : " display-none"}`}>
-              <div className="max-w-lg mx-auto mt-8">
-                <h2 className="block text-lg font-medium text-gray-700">
+              <div className="">
+                <h2 className="block text-lg mb-1 font-medium text-gray-700 mt-3 mb-3">
                   Amenities
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="flex flex-wrap ammenties-checked-lists">
                   {amenitiesList.map((amenity, index) => (
                     <div key={index} className="flex items-center">
                       <input required
@@ -524,13 +525,13 @@ export default function Property() {
                         name={amenity.value}
                         type="checkbox"
                         value={amenity.value}
-                        className="mr-2 rounded text-indigo-600 focus:ring-indigo-500"
+                        className="mr-2 rounded text-indigo-600 focus:ring-indigo-500 hidden"
                         checked={Property?.selectedAmenities?.includes(
                           amenity.value
                         )}
                         onChange={handleCheckboxChange}
                       />
-                      <label htmlFor={amenity.value} className="text-lg">
+                      <label htmlFor={amenity.value} className="me-2 mb-2 bg-gray-300 px-4 py-2 rounded-lg text-md text-gray-500 cursor-pointer">
                         {amenity.title}
                       </label>
                     </div>
@@ -538,11 +539,13 @@ export default function Property() {
                 </div>
               </div>
             </div>
+
+            
             <div className={`${step === 4 ? " " : " display-none"}`}>
               <div className="mt-4">
                 <label
                   htmlFor="about"
-                  className="block text-lg font-medium text-gray-700"
+                  className="block text-sm mb-2 font-medium text-gray-700 mt-3"
                 >
                   Describe Your Property to Guests
                 </label>
@@ -553,11 +556,17 @@ export default function Property() {
                   minRow={"5"}
                   value={Poperty.about}
                   onChange={handleInputChange}
-                  className="mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
+                  className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-lg shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
                   placeholder="Tell more about your property..."
                 />
+                 <label
+                  className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
+                  Minimum 200 words.
+                </label>
               </div>
             </div>
+
+
             <div className={`${step === 5 ? " " : " display-none"}`}>
               <div className="flex items-center justify-center w-full mt-5 ">
                 <label
@@ -589,7 +598,6 @@ export default function Property() {
                     </p>
                   </div>
                   <input
-                  required
                     id="dropzone-file"
                     type="file"
                     className="hidden"
@@ -602,7 +610,6 @@ export default function Property() {
               <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                 {Poperty.images.map((file, index) => (
                   <div key={index} className="relative" >
-                    {/* Overlay Remove Button */}
                     <button
                       type="button"
                       onClick={() => removeImage(index)}
@@ -620,88 +627,55 @@ export default function Property() {
                 ))}
               </div>
             </div>
+
+
             <div className={`${step === 6 ? "" : "display-none"}`}>
               <div className="mt-4">
                 <label
-                  htmlFor="propertyName"
-                  className="block text-lg font-medium text-gray-700"
-                >
+                  htmlFor="name"
+                  className="block text-sm mb-1 font-medium text-gray-700 mt-3" >
                   Price
                 </label>
                 <input  required 
                   type="text"
                   name="price"
-                  id="propertyName"
+                  id="name"
                   className="mt-1 p-4 border rounded-full w-full"
                   value={Poperty.price}
                   onChange={handleInputChange}
                 />
               </div>
+            </div>
 
+            <div className="pt-6 flex justify-between">
+                <button disabled={step < 2}
+                  type="button"
+                  onClick={prevStep}
+                  className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                >
+                  Back
+                </button>
+
+              {step < 6 ? (
+                <button
+                  type="button"
+                  onClick={nextStep}
+                  className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 "
+                >
+                  Next
+                </button>
+              ) : 
               <button
                 type="submit"
                 onClick={handleSubmit}
-                className="mx-auto flex justify-center mt-5 text-lg leading-tight text-center text-black bg-orange-300 border-2 p-4 rounded-full w-96"
-              >
+                className="mx-auto flex justify-center mt-5 text-lg leading-tight text-center text-black bg-orange-300 border-2 p-4 rounded-full w-96" >
                 {Loading ? "processing.. " : "Submit"}
               </button>
+              }
             </div>
           </div>
-          <div className="pt-6 flex justify-between">
-            {step > 1 && (
-              <button
-                type="button"
-                onClick={prevStep}
-                className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-              >
-                <svg
-                  width="32px"
-                  height="32px"
-                  viewBox="0 0 1024 1024"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill="#000000"
-                    d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z"
-                  />
-                  <path
-                    fill="#000000"
-                    d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
-                  />
-                </svg>
-              </button>
-            )}
-            {step < 6 && (
-              <button
-                type="button"
-                onClick={nextStep}
-                className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 "
-              >
-                <svg
-                  width="32px"
-                  height="32px"
-                  viewBox="0 0 24 24"
-                  id="_24x24_On_Light_Next"
-                  data-name="24x24/On Light/Next"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    id="view-box"
-                    width="24"
-                    height="24"
-                    fill="#141124"
-                    opacity="0"
-                  />
-                  <path
-                    id="Shape"
-                    d="M10.22,9.28a.75.75,0,0,1,0-1.06l2.72-2.72H.75A.75.75,0,0,1,.75,4H12.938L10.22,1.281A.75.75,0,1,1,11.281.22l4,4a.749.749,0,0,1,0,1.06l-4,4a.75.75,0,0,1-1.061,0Z"
-                    transform="translate(4.25 7.25)"
-                    fill="#141124"
-                  />
-                </svg>
-              </button>
-            )}
-          </div>
+
+
         </div>
       </div>
     </>

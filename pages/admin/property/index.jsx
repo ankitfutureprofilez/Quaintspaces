@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Element from "../element";
-import Layout from "../layout";
+import Layout from "../AdminLayout";
 import Listing from "../api/Listing";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 import Image from 'next/image';
-import AuthLayout from "../adminlayout/AuthLayout"
+import AdminLayout from "../AdminLayout";
 
 export default function index() {
 
@@ -26,8 +26,8 @@ export default function index() {
 
   return (
       <>
-      <AuthLayout>
-      <Layout>
+      
+      <AdminLayout>
         <Element />
         <div>
           <div className="flex flex-wrap mt-5 px-4 py-5">
@@ -95,8 +95,7 @@ export default function index() {
               ))}
           </div>
         </div>
-      </Layout>
-      </AuthLayout>
+      </AdminLayout>
     </>
   );
 }

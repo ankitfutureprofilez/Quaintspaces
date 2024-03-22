@@ -15,7 +15,7 @@ function Sidebar() {
     const pathname = usePathname()
 
     return (
-        <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden'>
+        <div className='w-60 shrink-0  md:block h-screen sticky top-0 overflow-hidden'>
             <div className='w-full h-full bg-white border-r'>
                 {/* logo */}
                 <div className='p-4 md:p-6 flex cursor-pointer group items-center gap-2'>
@@ -34,7 +34,7 @@ function Sidebar() {
                 {/* other section */}
                 <div className='flex flex-col h-full justify-between'>
                     {/* top */}
-                    <div className='pt-6 text-gray-500 font-medium space-y-2 md:px-2 text-xs'>
+                    <div className='pt-6 text-gray-500 font-medium space-y-2 md:px-2 text-normal'>
                         <Link href={'/admin'} className={`flex ${pathname === '/admin' ? 'text-primary' : ''} hover:px-8 duration-200 rounded-md w-full py-2 px-6 items-center gap-2`}>
                             <Element3 variant='Outline' size={16} />
                             Dashboard
@@ -143,7 +143,7 @@ function Sidebar() {
                             </div>
                         ) }
                        
-</div>
+                        </div>
                 </div>
 
             </div>

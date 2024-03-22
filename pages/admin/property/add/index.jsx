@@ -1,16 +1,11 @@
 import React from "react";
 import Property from "./Property"
-import AuthLayout from "../../adminlayout/AuthLayout";
-import Layout from "../../layout";
+import AdminLayout from "../../AdminLayout";
 
 export default function Index() {
   return (
-    <div>
-      <AuthLayout>
-        <Layout>
+    <AdminLayout>
       <Property/>
-      </Layout>
-      </AuthLayout>
-    </div>    
+    </AdminLayout>
   );
 }
