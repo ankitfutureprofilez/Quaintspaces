@@ -72,12 +72,11 @@ export default function Login() {
             <div className="space-y-5">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700 tracking-wide">Email</label>
-                <input className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"  type="email"
+                <input className="mt-1 p-4 border rounded-full w-full  w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"  type="email"
                 name="email"
                 value={record.email}
                 onChange={handleInputs}
                 id="email"
-                className="mt-1 p-4 border rounded-full w-full "
                 placeholder="your@email.com"
                 required />
               </div>
@@ -85,12 +84,11 @@ export default function Login() {
                 <label className="mb-5 text-sm font-medium text-gray-700 tracking-wide">
                   Password
                 </label>
-                <input className="w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" type="password"
+                <input className="mt-1 p-4 border rounded-full w-full w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" type="password"
                 name="password"
                 value={record.password}
                 onChange={handleInputs}
                 id="password"
-                className="mt-1 p-4 border rounded-full w-full "
                 placeholder="Enter your password"
                 required />
              </div>
@@ -109,7 +107,7 @@ export default function Login() {
             </div>
             </div>
             <div>
-              <button type="submit" className="w-full flex justify-center bg-green-400  hover:bg-green-500 text-gray-100 p-3 mt-4 rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500">
+              <button type="submit" className="w-full flex justify-center   bg-green-400  hover:bg-green-500 text-gray-100 p-3 mt-4 rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500">
                 {loading ? "please wait.." : "Sign in"} 
               </button>
             </div>
