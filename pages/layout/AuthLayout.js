@@ -6,33 +6,29 @@ import Listings from "../api/laravel/Listings";
 import toast from "react-hot-toast";
  
 export default function AuthLayout({ children }) {
+
   const router = useRouter();
   const [content, setContent] = useState([]);
-  
+
   useEffect(() => {
-    const auth = localStorage.getItem("token");
     const main = new Listings();
     const response =  main.GetUserProfile();
-    response
-      .then((res) => {
-        console.log("res", res);
-        if (res.data.status) {
-          setContent(res.data.data);
-        } else {
-        }
-      })
-      .catch((error) => {
-        console.log("error", error);
-        router.push("/login");
-        toast.error("Please log in first.");
-      });
+    response.then((res) => {
+      if (res.data.status) {
+        setContent(res.data.data);
+      } 
+    }).catch((error) => {
+      console.log("error", error);
+      router.push("/login");
+      toast.error("Please log in first.");
+    });
   }, []);
 
   return (
     <>
       <Header />
       <main>{children}</main>
-    <Footer />
+      <Footer />
     </>
   );
 }
