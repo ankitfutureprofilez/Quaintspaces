@@ -4,9 +4,13 @@ import Image from 'next/image'
 import { ArrowRight2, Calendar, Document, Element3, Folder2, Headphone,TextalignJustifycenter, Profile2User, Setting2, Setting4, Star, Timer1, Triangle,ShopAdd  } from 'iconsax-react'
 import ProfileImage from '../components/assets/profile.png'
 import Link from 'next/link'
+import {useContext} from  "react";
+import {Context} from "../../_app"
+
 import { usePathname } from 'next/navigation'
 
 function Sidebar() {
+    const auth = useContext(Context)
 
     const pathname = usePathname()
 
