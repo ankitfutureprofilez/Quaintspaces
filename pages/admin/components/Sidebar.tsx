@@ -44,7 +44,7 @@ function Sidebar() {
 
                             Property List
                         </button> */}
-{/* 
+                         {/* 
                         <button className={`flex ${pathname === '/admin/timeoff' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Timer1 size={16} />
                             Time Off
@@ -54,9 +54,6 @@ function Sidebar() {
                             <Folder2 size={16} />
                             Projects
                         </button> */}
-
-
-
                         <Link href={'/admin/property/add'} className={`flex ${pathname === '/admin/property/add' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                          <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3.1875L21.4501 10.275L21.0001 11.625H20.25V20.25H3.75005V11.625H3.00005L2.55005 10.275L12 3.1875ZM5.25005 10.125V18.75H18.75V10.125L12 5.0625L5.25005 10.125Z" fill="#080341"/>
@@ -106,24 +103,24 @@ function Sidebar() {
                         {/* bottom */}
                         { auth ? (
                            <div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200'>
-    <div className='flex items-center gap-2'>
-        <Image
-            src={auth?.auth?.admin_profile_url}
-            alt='User'
-            width={36}
-            height={36}
-            className='rounded-full'
-        />
-        <div className=''>
-            <p className='text-sm font-semibold text-gray-800'>{auth?.auth?.name}</p>
-            <p className='text-xs font-medium text-gray-500'>{auth?.auth?.email}</p>
-        </div>
-    </div>
+                             <div className='flex items-center gap-2'>
+                               <Image
+                               src={auth?.auth?.admin_profile_url}
+                               alt='User'
+                               width={36}
+                               height={36}
+                              className='rounded-full'
+                              />
+                                <div className=''>
+                                 <p className='text-sm font-semibold text-gray-800'>{auth?.auth?.name}</p>
+                                 <p className='text-xs font-medium text-gray-500'>{auth?.auth?.email}</p>
+                                </div>
+                               </div>
 
-    <button className='text-gray-500'>
-        <ArrowRight2 size={16} />
-    </button>
-                             </div>
+                                <button className='text-gray-500'>
+                                  <ArrowRight2 size={16} />
+                                </button>
+                            </div>
                         ) : (
                             <div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200'>
                             <div className='flex items-center gap-2'>
