@@ -14,6 +14,9 @@ export default function Header() {
   const auth = useContext(Context)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  if (typeof window !== 'undefined' && localStorage) {
+    const token = localStorage && localStorage.getItem("token");
+  }
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };

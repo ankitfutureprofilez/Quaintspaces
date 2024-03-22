@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Layout from "../layout/Layout";
 import Link from "next/link";
@@ -13,7 +14,7 @@ export default function index() {
 
     const handleSortChange = (value) => {
       setSortBy(value);
-      console.log(value);
+      // console.log(value);
       setIsOpen(false); // Close the dropdown after selecting an option
     };
 
@@ -29,11 +30,11 @@ export default function index() {
               aria-expanded="true"
               onClick={() => setIsOpen(!isOpen)}
             >
-              Sort by:{" "}
-              {sortingOptions.find((option) => option.key === sortBy)?.label}
+              {/* Sort by:{" "} */}
+              {sortingOptions.find((option) => option.key === sortBy).label}
               {/* Icon to indicate dropdown */}
               <svg
-                className="-mr-1 ml-2 h-5 w-5"
+                className="-mr-1 mt-1.25 sml-2 h-5 w-5"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -77,29 +78,17 @@ export default function index() {
 
   const [sortBy, setSortBy] = useState("popularity");
   const [isModalOpen, setIsModalOpen] = useState(false); // State variable for modal visibility
+
   const sortingOptions = [
-    { key: "popularity_sort", label: "Popularity" },
-    { key: "priceLow_asc", label: "Price: Low to High" },
-    { key: "priceHigh_desc", label: "Price: High to Low" },
-    { key: "rating_desc", label: "Rating" },
+    { key: "popularity", label: "Popularity" },
+    { key: "priceLow", label: "Price: Low to High" },
+    { key: "priceHigh", label: "Price: High to Low" },
+    { key: "rating", label: "Rating" },
   ];
 
-  const [query, setQuery] = useState({
-    sorting: sortingOptions[1].key,
-    direction: sortingOptions[1].key.includes("asc") ? "asc" : "asc",
-  });
-
-  const handleSortingChange = (selectedOption) => {
-    const direction = selectedOption.key.includes("desc") ? "desc" : "asc";
-    setQuery({ sorting: selectedOption.key, direction });
-  };
-
-  console.log("query", query); 
   const openModal = () => {
     setIsModalOpen(true);
   };
-
-  
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -110,9 +99,16 @@ export default function index() {
 
   async function fetchLists() {
     setloading(true);
+    // console.log("sortBy",sortBy);
+    let url;
+    if(sortBy=="popularity"){url="popularity_sort=desc"}
+    else if(sortBy=="rating"){url="rating_sort=desc"}
+    else if(sortBy=="priceLow"){url="price_sort=asc"} 
+    else {url="price_sort=desc"}
+    // console.log("url",url); 
     const main = new Listings();
     main
-      .PropertyListing()
+      .PropertyListing(url)
       .then((r) => {
         setloading(false);
         setListings(r.data.data);
@@ -128,7 +124,7 @@ export default function index() {
     const { signal } = controller;
     fetchLists();
     return () => controller.abort();
-  }, []);
+  }, [sortBy]);
 
   return (
     <Layout>
@@ -150,18 +146,6 @@ export default function index() {
               </button>
             </div>
           </div>
-          <select
-        value={query.sorting}
-        onChange={(e) =>
-          handleSortingChange(sortingOptions.find((opt) => opt.key === e.target.value))
-        }
-      >
-        {sortingOptions.map((option) => (
-          <option key={option.key} value={option.key}>
-            {option.label}
-          </option>
-        ))}
-      </select>
           <PostBody loading={loading} listings={listings} />
         </div>
       </div>
@@ -193,7 +177,11 @@ export default function index() {
                 </button>
               </div>
             </div>
-            <Filter />
+            <Filter 
+             min={5000}
+             max={50000}
+             onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+            />
           </div>
         </div>
       )}

@@ -4,7 +4,16 @@ const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     images: {
-      domains: ["quaintstays.laraveldevelopmentcompany.com"],
+      remotePatterns: [
+        {
+          protocol: "http",
+          hostname: "**",
+        },
+        {
+          protocol: "https",
+          hostname: "**",
+        },
+      ],
     },
   };
   
