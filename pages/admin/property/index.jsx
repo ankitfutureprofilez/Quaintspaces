@@ -5,6 +5,7 @@ import Listing from "../api/Listing";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 import Image from 'next/image';
+import AuthLayout from "../adminlayout/AuthLayout"
 
 export default function index() {
 
@@ -25,6 +26,7 @@ export default function index() {
 
   return (
       <>
+      <AuthLayout>
       <Layout>
         <Element />
         <div>
@@ -94,6 +96,7 @@ export default function index() {
           </div>
         </div>
       </Layout>
+      </AuthLayout>
     </>
   );
 }
