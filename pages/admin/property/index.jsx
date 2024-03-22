@@ -32,7 +32,7 @@ export default function index() {
                 <ul className="w-full sm:w-1/2 md:w-1/3 px-3" key={index}>
                   <li>
                     <div className="banipark-box">
-                      <div
+                      <div className="w-full"
                         style={{
                           position: "relative",
                           display: "inline-block",

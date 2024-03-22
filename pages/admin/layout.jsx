@@ -38,11 +38,11 @@ const AppLayout = ({ children }) => {
                 )} */}
             </AnimatePresence>
 
-            <div className='grid md:grid-cols-[240px_1fr] w-screen overflow-x-hidden'>
+            <div className='grid md:grid-cols-[240px_1fr] overflow-x-hidden'>
                 <div className='hidden md:block'>
                     <Sidebar />
                 </div>
-                <div className='w-full overflow-x-auto max-w-[1440px] mx-auto'>
+                <div className='w-full overflow-x-auto '>
                     {children}
                 </div>
             </div>

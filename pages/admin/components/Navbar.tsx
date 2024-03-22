@@ -43,7 +43,7 @@ function Navbar({ isOpen, sidebarChange }: { isOpen: boolean, sidebarChange: (va
                         <DirectNotification size={16} />
                     </button>
 
-                    <button className='h-8 w-8 gap-1 md:w-auto md:border py-1 px-2 duration-200 hover:bg-gray-100 rounded-lg text-xs all-center'>
+                    <button className='h-8 w-8 gap-1 md:w-auto md:border py-1 px-2 duration-200 hover:bg-gray-100 rounded-lg text-xs all-center flex items-center'>
                         <CalendarEdit size={16} />
                         <span className='hidden md:inline'>Schedule</span>
                     </button>

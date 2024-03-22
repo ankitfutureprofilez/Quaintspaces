@@ -10,7 +10,7 @@ function Integrations() {
         <div>
            <PageNavbar>
                 <PageNavbarLeftContent>
-                    <div className='border rounded-full w-10 h-10 all-center'>
+                    <div className='border rounded-full w-10 h-10 flex items-center justify-center all-center'>
                         <Setting4 size={18} />
                     </div>
                     <div>
