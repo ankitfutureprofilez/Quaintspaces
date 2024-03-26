@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Link from 'next/link';
+import Image from "next/image";
 import { useRouter } from 'next/router';
+import { Context } from '../_app';
+import toast from 'react-hot-toast';
 
 export default function Menu() {
 
+  const { setAuth, auth } = useContext(Context)
   const router = useRouter();
+  console.log("auth",auth);
+
   const handleLogoutClick = () => {
     localStorage && localStorage.removeItem('token');
-    router.push('/login');
+    setAuth(null);
+    toast.success("Logout Successfully !!")
+    router.push('/');
   };
-
 
   return (
     <>
@@ -17,16 +24,17 @@ export default function Menu() {
         <div className="w-full min-w-[250px]  p-3 drop-shadow-xl divide-y divide-gray-300">
         <div aria-label="header" className="flex space-x-4 items-center p-2">
           <div aria-label="avatar" className="flex mr-auto items-center space-x-4">
-            <img
-              src="https://avatars.githubusercontent.com/u/499550?v=4"
-              alt="avatar Evan You"
-              className="w-16 h-16 shrink-0 rounded-full"
-            />
+          <Image
+                    src={auth?.image_url ? auth?.image_url : "https://quaintstays.laraveldevelopmentcompany.com/public/storage/user/profile-images/1710928138.jpg"}
+                    alt="profile"
+                    width={100}
+                    height={100}
+                  />
             <div className="space-y-2 flex flex-col flex-1 truncate">
               <div className="font-medium relative text-xl leading-tight text-gray-900">
                 <span className="flex">
                   <span className=" relative pr-8">
-                    Evan You
+                  {auth?.first_name}
                     <span
                       aria-label="verified"
                       className="absolute top-1/2 -translate-y-1/2 right-0 inline-block rounded-full"
@@ -67,7 +75,7 @@ export default function Menu() {
 
             
             <Link
-              href="/profile"
+              href="/account"
               className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
             >
               <svg
@@ -92,8 +100,8 @@ export default function Menu() {
               <span>Settings</span>
             </Link>
              
-            <a
-              href="/contact"
+            <Link
+              href=""
               className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
             >
               <svg
@@ -119,7 +127,7 @@ export default function Menu() {
                 ></path>
               </svg>
               <span>Helper Center</span>
-            </a>
+            </Link>
           </nav>
         </div>
          

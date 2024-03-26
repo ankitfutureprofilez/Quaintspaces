@@ -15,7 +15,7 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
       });
       // setDates({ ...dates, selectedDay: selectedDay });
       // setDates({ ...dates, selectEnd: selectEnd });
-      console.log("selectedDay, selectEnd", selectedDay, selectEnd);
+      // console.log("selectedDay, selectEnd", selectedDay, selectEnd);
       // setDates({
       //   selectedDay: format(selectedDay, "MM/dd/yyyy"),
       //   selectEnd: format(selectEnd, "MM/dd/yyyy"),

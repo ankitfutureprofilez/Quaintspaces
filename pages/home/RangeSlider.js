@@ -46,6 +46,7 @@ const RangeSlider = ({ min, max, onChange }) => {
         type="range"
         min={min}
         max={max}
+        step={1000}
         value={minVal}
         onChange={(event) => {
           const value = Math.min(Number(event.target.value), maxVal - 1);
@@ -59,6 +60,7 @@ const RangeSlider = ({ min, max, onChange }) => {
         type="range"
         min={min}
         max={max}
+        step={1000}
         value={maxVal}
         onChange={(event) => {
           const value = Math.max(Number(event.target.value), minVal + 100);

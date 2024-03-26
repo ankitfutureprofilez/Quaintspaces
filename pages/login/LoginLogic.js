@@ -8,7 +8,7 @@ export default function LoginLogic({isPopup}) {
 
   const { setAuth, setOpenLogin } = useContext(Context);
   const router = useRouter();
-  console.log("router asPath",router.asPath);
+  // console.log("router asPath",router.asPath);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
