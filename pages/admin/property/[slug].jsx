@@ -145,8 +145,8 @@ export default function Index() {
     return  <>
         {/* <Layout> */}
             <Element /> 
-            <section className="w-full px-4">
-                <div className="max-w-[1120px] mx-auto py-4 sm:py-8">
+            <section className="w-full sm:px-4">
+                <div className="container mx-auto !py-4 sm:py-8">
                     <Title
                         // isSaved={isSaved}
                         loading={loading}

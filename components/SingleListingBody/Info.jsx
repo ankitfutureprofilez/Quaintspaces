@@ -109,7 +109,7 @@ export default React.memo(Info);
 
 const AmenitiesModal = ({ amenities, setAmenitiesModal }) => {
   return (
-    <div className="fixed w-screen h-screen inset-0 z-30 flex items-center justify-center">
+    <div className="fixed w-screen h-screen inset-0 z-30 flex items-center justify-center px-2">
       <div
         className="fixed top-0 left-0 w-full h-full z-30 bg-black bg-opacity-40"
         onClick={() => setAmenitiesModal(false)}
