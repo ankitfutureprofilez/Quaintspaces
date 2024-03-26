@@ -33,31 +33,23 @@ export default function Index() {
     const output = document.getElementById("preview_img");
     setRecord((prevData) => ({
       ...prevData,
-      image: file,
+      image_url: file,
     }));
-
-    output.src = URL.createObjectURL(file);
-    output.onload = () => {
-      URL.revokeObjectURL(output.src);
-    };
-
-    setPreviewImgSrc(output.src);
   };
+  console.log("record",record)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const main = new Listing();
       const formdata = new FormData();
-      formdata.append("email", record.email);
-      formdata.append("image", record.image); 
       formdata.append("name", record.name);
       formdata.append("phone_no", record.phone_no);
-      formdata.append("confirm_password", record.confirm_password);
+      formdata.append("email", record.email);
       formdata.append("password", record.password);
-  
-      const response = await main.userAdd(formdata); // Await the response
-  
+      formdata.append("confirm_password", record.confirm_password);
+      formdata.append("image", record.image_url); 
+      const response = await main.userAdd(formdata); 
       if (response && response.data && response.data.status) {
         toast.success(response.data.message);
         setRecord({
@@ -85,7 +77,7 @@ export default function Index() {
         <Element/>
         <div className="container mx-auto mt-5">
         {/* Image Upload */}
-        <div className="flex items-center profile-border">
+        <div className="flex items-center ">
           <div className="relative">
             <div className="shrink-0">
               <img id='preview_img' className="h-16 w-16 object-cover rounded-full" src={previewImgSrc} alt="Current profile photo" />
@@ -106,105 +98,85 @@ export default function Index() {
         </div>
       </div>
       <div className='container mx-auto mt-5 perso-form'>
-
-        <div className="pers-info ">
-          <h3 >Personal Information</h3>
-          <p>Update your personal information here </p>
-        </div>
         <div className='w-full md:w-9/12 '>
-          <form onSubmit={handleSubmit} className='grid sm:grid-cols-2 grid-cols-1 gap-4'>
-            <div className="mb-2 sm:mb-4">
-              <label
-                htmlFor="email"
-                className="block text-lg font-medium text-gray-700 "
-              >
-                 Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={record.name}
-                onChange={handleChange}
-                className="mt-1 p-4 border rounded-full w-full"
-                required
-              />
-            </div>
+        <form onSubmit={handleSubmit} className='grid grid-cols-2 gap-4'>
+  <div className="mb-2 sm:mb-4 col-span-2">
+    <label htmlFor="name" className="block text-lg font-medium text-gray-700">
+      Name
+    </label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      value={record.name}
+      onChange={handleChange}
+      className="mt-1 p-4 border rounded-full w-full"
+      required
+    />
+  </div>
+  <div className="mb-2 sm:mb-4">
+    <label htmlFor="email" className="block text-lg font-medium text-gray-700">
+      Email
+    </label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      value={record.email}
+      onChange={handleChange}
+      className="mt-1 p-4 border rounded-full w-full"
+      required
+    />
+  </div>
+  <div className="mb-2 sm:mb-4">
+    <label htmlFor="phone" className="block text-lg font-medium text-gray-700">
+      Phone
+    </label>
+    <input
+      type="tel"
+      id="phone"
+      name="phone_no"
+      maxLength="10"
+      value={record.phone_no}
+      onChange={handleChange}
+      className="mt-1 p-4 border rounded-full w-full"
+      required
+    />
+  </div>
+  <div className="mb-2 sm:mb-4">
+    <label htmlFor="password" className="block text-lg font-medium text-gray-700">
+      Password
+    </label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      value={record.password}
+      onChange={handleChange}
+      className="mt-1 p-4 border rounded-full w-full"
+      required
+    />
+  </div>
+  <div className="mb-2 sm:mb-4">
+    <label htmlFor="confirm_password" className="block text-lg font-medium text-gray-700">
+      Confirm Password
+    </label>
+    <input
+      type="password"
+      id="confirm_password"
+      name="confirm_password"
+      value={record.confirm_password}
+      onChange={handleChange}
+      className="mt-1 p-4 border rounded-full w-full"
+      required
+    />
+  </div>
+</form>
 
-            <div className="mb-2 sm:mb-4">
-              <label
-                htmlFor="email"
-                className="block text-lg font-medium text-gray-700 "
-              >
-                 password
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="password"
-                value={record.password}
-                onChange={handleChange}
-                className="mt-1 p-4 border rounded-full w-full"
-                required
-              />
-            </div>
-            <div className="mb-2 sm:mb-4">
-              <label
-                htmlFor="email"
-                className="block text-lg font-medium text-gray-700 "
-              >
-                 Confoirm 
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="confirm_password"
-                value={record.confirm_password}
-                onChange={handleChange}
-                className="mt-1 p-4 border rounded-full w-full"
-                required
-              />
-            </div>
 
-            
-            <div className="mb-2 sm:mb-4">
-              <label
-                htmlFor="email"
-                className="block text-lg font-medium text-gray-700"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={record.email}
-                onChange={handleChange}
-                className="mt-1 p-4 border rounded-full w-full"
-                required
-              />
-            </div>
-            <div className="mb-2 sm:mb-4">
-              <label
-                htmlFor="phone"
-                className="block text-lg font-medium text-gray-700"
-              >
-                Phone
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone_no"
-                maxlength="10"
-                value={record.phone_no}
-                onChange={handleChange}
-                className="mt-1 p-4 border rounded-full w-full"
-                required
-              />
-            </div>
-             <button text={"Update Details"} className={"font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-orange-300   p-4 rounded-full mt-14"} />
-          </form>
-
+             <button  className={"font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-orange-300   p-4 rounded-full mt-14"} >
+              Submit
+              </button>
         </div>
         <div className="border-bottom-form"></div>
       </div>

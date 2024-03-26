@@ -28,7 +28,7 @@ export default function index() {
       <>
       
       <AdminLayout>
-        <Element />
+        <Element text={"Property List"}/>
         <div>
           <div className="flex flex-wrap mt-5 px-4 py-5">
             {record &&
