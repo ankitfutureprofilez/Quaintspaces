@@ -4,8 +4,9 @@ import Image from 'next/image'
 import { ArrowRight2, Calendar, Document, Element3, Folder2, Headphone,TextalignJustifycenter, Profile2User, Setting2, Setting4, Star, Timer1, Triangle,ShopAdd  } from 'iconsax-react'
 import ProfileImage from '../components/assets/profile.png'
 import Link from 'next/link'
-import {useContext} from  "react";
+import {useContext,useState} from  "react";
 import {Context} from "../../_app"
+import Menu from "./menu"
 
 import { usePathname } from 'next/navigation'
 
@@ -13,6 +14,7 @@ function Sidebar() {
     const auth = useContext(Context)
 
     const pathname = usePathname()
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     return (
         <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden !fixed'>
@@ -124,8 +126,9 @@ function Sidebar() {
                                 </div>
                                </div>
 
-                                <button className='text-gray-500'>
-                                  <ArrowRight2 size={16} />
+                                <button className='text-gray-500'    onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                                  <ArrowRight2 size={16}  />
+                                  <Menu isOpen={isDropdownOpen} />
                                 </button>
                             </div>
                         ) : (
