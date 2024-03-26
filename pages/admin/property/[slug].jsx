@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import Element from "../element";
-import Layout from "../layout";
 import Listing from "../api/Listing";
 import { useRouter } from "next/router";
 import { v4 as uuidv4 } from 'uuid';
@@ -144,7 +143,7 @@ export default function Index() {
     }
 
     return  <>
-        <Layout>
+        {/* <Layout> */}
             <Element /> 
             <section className="w-full px-4">
                 <div className="max-w-[1120px] mx-auto py-4 sm:py-8">
@@ -204,6 +203,6 @@ export default function Index() {
                     {/* <Location listing={record} ref={LocationRef} /> */}
                 </div>
             </section>
-        </Layout>
+        {/* </Layout> */}
     </>
 }

@@ -56,64 +56,71 @@ export default function Login() {
 
   return (
     <>
-      <div className="  h-dvh flex items-center justify-center w-full bg-gray-950">
-        <div className="  rounded-lg px-8 py-6 max-w-md shadow-2xl">
-          <h1 className="text-3xl font-medium text-bold mb-6 text-center">
-            {" "}
-            Sign in to your account
-          </h1>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-6">
-              <label className="block text-lg font-medium text-gray-700">
-                Email Address
-              </label>
-              <input
-                type="email"
+    <div className="bg-no-repeat mainadmin bg-cover bg-center relative" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1951&q=80)' }}><div className="absolute bg-gradient-to-b from-green-500 to-green-400 opacity-75 inset-0 z-0"></div>
+  <div className="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
+    
+      <div className="flex justify-center self-center  z-10">
+        <div className="p-12 bg-white mx-auto rounded-2xl w-100 ">
+            <div className="mb-4">
+              <h3 className="font-semibold text-2xl text-gray-800">Sign In </h3>
+              <p className="text-gray-500">Please sign in to your account.</p>
+            </div>
+
+            <form onSubmit={handleSubmit}>
+
+           
+            <div className="space-y-5">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 tracking-wide">Email</label>
+                <input className="mt-1 p-4 border rounded-full w-full  w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"  type="email"
                 name="email"
                 value={record.email}
                 onChange={handleInputs}
                 id="email"
-                className="mt-1 p-4 border rounded-full w-full "
                 placeholder="your@email.com"
-                required
-              />
-            </div>
-            <div className="mb-6">
-              <label className="block text-lg font-medium text-gray-700">
-                Password
-              </label>
-              <input
-                type="password"
+                required />
+              </div>
+              <div className="space-y-2">
+                <label className="mb-5 text-sm font-medium text-gray-700 tracking-wide">
+                  Password
+                </label>
+                <input className="mt-1 p-4 border rounded-full w-full w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" type="password"
                 name="password"
                 value={record.password}
                 onChange={handleInputs}
                 id="password"
-                className="mt-1 p-4 border rounded-full w-full "
                 placeholder="Enter your password"
-                required
-              />
-              <a href="#"
-					className="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Forgot
-					Password?</a> 
+                required />
+             </div>
+              <div className="flex items-center justify-between mb-5" >
+                <div className="flex items-center">
+                  <input id="remember_me" name="remember_me" type="checkbox" className="h-4 w-4 bg-blue-500 focus:ring-blue-400 border-gray-300 rounded" />
+                  <label for="remember_me" className="ml-2 block text-sm text-gray-800">
+                    Remember me
+                  </label>
+                </div>
+                <div className="text-sm">
+                  <a href="#" className="text-green-400 hover:text-green-500">
+                    Forgot your password?
+                  </a>
+                </div>
             </div>
-           <div className="flex items-center justify-between mb-4">
-				<div className="flex items-center">
-					<input type="checkbox" id="remember" className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 focus:outline-none" checked/>
-					<label for="remember" className="ml-2 block text-sm text-gray-700 text-gray-300">Remember me</label>
-				</div>
-				<a href="#"
-					className="text-xs text-indigo-500 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create
-					Account</a>
-			</div>
-            <button
-              type="submit"
-              className="font-inter font-lg leading-tight text-center text-black-400 w-96 bg-orange-300   p-4 rounded-full"
-            >
-              {loading ? "processing.." : "Login"}
-            </button>
-          </form>
+            </div>
+            <div>
+              <button type="submit" className="w-full flex justify-center   bg-green-400  hover:bg-green-500 text-gray-100 p-3 mt-4 rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500">
+                {loading ? "please wait.." : "Sign in"} 
+              </button>
+            </div>
+            </form>
+            <div className="pt-5 text-center text-gray-400 text-xs">
+              <span>
+                Copyright © 2023-2024
+                <a href="https://codepen.io/uidesignhub" rel="" target="_blank" title="Ajimon" className="text-green hover:text-green-500 ">Quant Stay</a></span>
+            </div>
         </div>
       </div>
+  </div>
+</div>
     </>
   );
 }

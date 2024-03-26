@@ -9,10 +9,10 @@
     @apply bg-blackColor text-white rounded-lg font-medium text-sm md:text-base px-4 py-3 outline-offset-[2.8px];
   }
   .btn-tertiary {
-    @apply px-6 py-2 rounded-full border hover:border-blackColor hover:bg-blackColor hover:text-white bg-blackColor text-white border-blackColor outline-offset-[2.8px];
+    @apply px-6 py-2 rounded-full border hover:border-blackColor hover:bg-blackColor hover:text-black bg-blackColor text-black border-blackColor outline-offset-[2.8px];
   }
   .btn-tertiary-normal {
-    @apply px-6 py-2 rounded-full border hover:border-blackColor text-sm md:text-base hover:bg-blackColor hover:text-white  bg-white text-blackColor border-darkBorderColor outline-offset-[2.8px];
+    @apply px-6 py-2 rounded-full border hover:border-blackColor text-sm md:text-base hover:bg-blackColor hover:text-black  bg-white text-blackColor border-darkBorderColor outline-offset-[2.8px];
   }
   .btn-link {
     @apply underline font-medium text-sm md:text-base;

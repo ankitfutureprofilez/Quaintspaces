@@ -74,7 +74,7 @@ export default function index() {
                           className="block"
                           href={`/admin/property/${item.uuid}`}
                         >
-                          Explore{" "}
+                          View More{" "}
                           <svg
                             width="13"
                             height="13"
