@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Sidebar from "./components/Sidebar";
 import { useRouter } from "next/router";
 import Listing from "./api/Listing";
+import toast, { Toaster } from 'react-hot-toast';
 
 const AdminLayout = ({ children }) => {
 
