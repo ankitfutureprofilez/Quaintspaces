@@ -81,8 +81,8 @@ export default function index() {
 
   const [sortBy, setSortBy] = useState("popularity");
   const [isModalOpen, setIsModalOpen] = useState(false); // State variable for modal visibility
-  const [lowPrice,setLowPrice]=useState(5000);
-  const [highPrice,setHighPrice]=useState(50000);
+  const [lowPrice,setLowPrice]=useState(1000);
+  const [highPrice,setHighPrice]=useState(20000);
   const[fetch,setFetch]=useState(false);
   const [selection, setSelection] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
@@ -207,8 +207,8 @@ export default function index() {
             selectEnd={selectEnd}
             setSelectedDay={setSelectedDay}
             setSelectEnd={setSelectEnd}
-             min={5000}
-             max={50000}
+             min={1000}
+             max={20000}
              onChange={({ min, max }) => 
             {
               minVal=min;
