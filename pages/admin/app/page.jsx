@@ -9,6 +9,7 @@ import TimeTracker from '../components/Cards/TimeTracker'
 import TraningAnalysis from '../components/Cards/TraningAnalysis'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
+import AdminLayout from "../AdminLayout"
 
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
@@ -23,6 +24,8 @@ function Home() {
   }
 
   return (
+    <AdminLayout>
+
     <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
       className={`${isSidebarOpen ? 'overflow-hidden' : ''} h-screen`}
     >
@@ -55,9 +58,6 @@ function Home() {
       </AnimatePresence>
 
       <div className='flex'>
-        <div className='hidden md:block'>
-          <Sidebar />
-        </div>
 
         <div className='w-full '>
           <Navbar isOpen={isSidebarOpen} sidebarChange={handleSidebarChange} />
@@ -96,6 +96,7 @@ function Home() {
       </div>
 
     </motion.div>
+    </AdminLayout>
   )
 }
 

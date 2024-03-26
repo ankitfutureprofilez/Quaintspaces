@@ -240,7 +240,7 @@ export default function Property() {
       color:#fff;
     }
     `}</style>
-      <Element />
+      <Element  text={"Property"}/>
       <div className="min-h-screen flex items-center justify-center px-6 py-8">
         <div className="max-w-4xl w-full space-y-8">
 

@@ -30,8 +30,22 @@ class Listing extends Component {
         return Api.get("/admin/delete-property/" +uuid)
     }
 
+    async Adminpasschange(data){
+        return Api.post("/admin/change-password" ,data)
+    }
+
     async propertyedit(uuid,data){
         return Api.post("/admin/updateProperty/" +uuid ,data)
+    }
+    async  userListing (){
+        return Api.get("/admin/user-lists")
+    }
+    async userStauts(id,newStatus){
+        return  Api.get(`/admin/user-active-inactive/${id}/${newStatus}`)
+    }
+    
+    async userAdd(data){
+        return Api.post("/admin/add-user" ,data)
     }
 
     

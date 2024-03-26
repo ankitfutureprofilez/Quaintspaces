@@ -1,4 +1,6 @@
 import React from "react";
+import  Link from 'next/link';
+
 import PageNavbar, {
     PageNavbarIconButton,
     PageNavbarLeftContent,
@@ -7,7 +9,7 @@ import PageNavbar, {
   } from "./components/layout/PageNavbar";
   import { Add, Notification, SearchNormal1, Setting4 } from "iconsax-react";
 
-  export default function element() {
+  export default function element({text ,par}) {
   return (
     <div>
       <PageNavbar>
@@ -16,7 +18,7 @@ import PageNavbar, {
             <Setting4 size={18} />
           </div>
           <div>
-            <h1 className="text-md font-semibold text-gray-800">Property</h1>
+            <h1 className="text-md font-semibold text-gray-800">{text}</h1>
           </div>
         </PageNavbarLeftContent>
 
@@ -31,7 +33,6 @@ import PageNavbar, {
           <PageNavbarIconButton>
             <Notification size={16} />
           </PageNavbarIconButton>
-
 
         </PageNavbarRightContent>
 
