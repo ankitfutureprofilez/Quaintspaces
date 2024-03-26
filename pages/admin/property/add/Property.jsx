@@ -5,9 +5,12 @@ import Element from "../../element";
 import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";
 export default function Property() {
+
+
   const [step, setStep] = useState(1);
   const [Loading, setLoading] = useState(false);
-  const [Poperty, setPoperty] = useState({
+
+  const [item, setItem] = useState({
     name: "",
     area_id: "",
     city_id: "",
@@ -24,44 +27,42 @@ export default function Property() {
     pets: "1",
     latitude: "",
     longitude: "",
-    address: "",
+    address: "", 
     selectedAmenities: [],
     images: [],
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setPoperty({
-      ...Poperty,
-      [name]: value,
-    });
+    setItem({...item,[name]: value,});
   };
+  
   const handleFileChange = (e) => {
     let filesToAdd = Array.from(e.target.files);
-    let newImages = Poperty.images.concat(filesToAdd).slice(0, 6);
-
-    setPoperty((prevPoperty) => ({
+    let newImages = item.images.concat(filesToAdd).slice(0, 6);
+    setItem((prevPoperty) => ({
       ...prevPoperty,
       images: newImages,
     }));
   };
+
   const removeImage = (indexToRemove) => {
-    setPoperty((prevPoperty) => ({
+    setItem((prevPoperty) => ({
       ...prevPoperty,
       images: prevPoperty.images.filter((_, index) => index !== indexToRemove),
     }));
   };
 
   const nextStep = () => {
-    if (step == 1 && Poperty.name === "" || Poperty.area_id === "" || Poperty.city_id === "" || Poperty.location === "") {
+    if (step == 1 && item.name === "" || item.area_id === "" || item.city_id === "" || item.location === "") {
      toast.error("All fields are required.");
       return false;
     } 
-    if (step == 3 && Poperty.selectedAmenities && Poperty.selectedAmenities.length < 4) {
+    if (step == 3 && item.selectedAmenities && item.selectedAmenities.length < 4) {
      toast.error("Please choose atleast 4 amenities.");
       return false;
     } 
-    if (step == 4 && Poperty.about && Poperty.about.length < 100) {
+    if (step == 4 && item.about && item.about.length < 100) {
      toast.error("Property description is too short. Descrption should be minimum 100 words.");
       return false;
     } 
@@ -72,12 +73,12 @@ export default function Property() {
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
     if (checked) {
-      setPoperty((prevState) => ({
+      setItem((prevState) => ({
         ...prevState,
         selectedAmenities: [...prevState.selectedAmenities, value],
       }));
     } else {
-      setPoperty((prevState) => ({
+      setItem((prevState) => ({
         ...prevState,
         selectedAmenities: prevState.selectedAmenities.filter(
           (item) => item !== value
@@ -125,7 +126,7 @@ export default function Property() {
         const locationData = response.data[0];
         console.log("locationData", locationData)
         if (locationData) {
-          setPoperty((prevProperty) => ({
+          setItem((prevProperty) => ({
             ...prevProperty,
             location: manualLocation,
             latitude: locationData.lat.toString(),
@@ -144,7 +145,7 @@ export default function Property() {
           );
           const locationData = response.data;
           console.log("location ", locationData)
-          setPoperty((prevProperty) => ({
+          setItem((prevProperty) => ({
             ...prevProperty,
             location: locationData.display_name,
             latitude: latitude.toString(),
@@ -161,7 +162,7 @@ export default function Property() {
 
   const handleLocationInputChange = (event) => {
     const { name, value } = event.target;
-    setPoperty((prevProperty) => ({
+    setItem((prevProperty) => ({
       ...prevProperty,
       [name]: value,
     }));
@@ -182,8 +183,8 @@ export default function Property() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const requiredFields = ["name", "propertytype", "city_id", "area_id", "location", "price" ,"about","latitude","longitude","selectedAmenities"];
-    const isAnyFieldEmpty = requiredFields.some(field => !Poperty[field]);
-    const areEnoughImagesSelected = Poperty?.images?.length >= 5;
+    const isAnyFieldEmpty = requiredFields.some(field => !item[field]);
+    const areEnoughImagesSelected = item?.images?.length >= 5;
     if (isAnyFieldEmpty || !areEnoughImagesSelected) {
       toast.error("Please fill all required fields and select at least five images.");
       return;
@@ -191,31 +192,31 @@ export default function Property() {
     setLoading(true);
     const main = new Listing();
     const formData = new FormData();
-    formData.append("name", Poperty.name);
-    formData.append("city_id", Poperty.city_id);
-    formData.append("area_id", Poperty.area_id);
+    formData.append("name", item.name);
+    formData.append("city_id", item.city_id);
+    formData.append("area_id", item.area_id);
     formData.append("pet_allowed", "1");
-    formData.append("no_of_pet_allowed", Poperty.pets);
-    formData.append("description", Poperty.about);
-    formData.append("price", Poperty.price);
-    formData.append("properties_type", Poperty.propertytype);
-    formData.append("location", Poperty.location);
-    formData.append("bedrooms", Poperty.bedrooms);
-    formData.append("beds", Poperty.beds);
-    formData.append("bathrooms", Poperty.bathrooms);
-    formData.append("latitude", Poperty.latitude);
-    formData.append("longitudes",Poperty.longitude);
+    formData.append("no_of_pet_allowed", item.pets);
+    formData.append("description", item.about);
+    formData.append("price", item.price);
+    formData.append("properties_type", item.propertytype);
+    formData.append("location", item.location);
+    formData.append("bedrooms", item.bedrooms);
+    formData.append("beds", item.beds);
+    formData.append("bathrooms", item.bathrooms);
+    formData.append("latitude", item.latitude);
+    formData.append("longitudes",item.longitude);
     formData.append("discount_offer", "555");
     formData.append("check_in", " 11:55");
     formData.append("check_out", "12:12");
     formData.append("country_id", "101");
     formData.append("state_id", "33");
-    formData.append("adults", Poperty.adults);
-    formData.append("children", Poperty.children);
+    formData.append("adults", item.adults);
+    formData.append("children", item.children);
     formData.append("infants", "1");
     formData.append("free_cancel_time", "11");
-    formData.append("amenities", Poperty.selectedAmenities.join(","));
-    Poperty.images.forEach((image, index) => {
+    formData.append("amenities", item.selectedAmenities.join(","));
+    item.images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
     const response = main.addproperty(formData);
@@ -260,7 +261,7 @@ export default function Property() {
                   name="name"
                   id="name"
                   className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
-                  value={Poperty.name}
+                  value={item.name}
                   onChange={handleInputChange}
                 />
               </div>
@@ -276,7 +277,7 @@ export default function Property() {
                       required
                       id="propertyType"
                       className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
-                      value={Poperty.propertytype}
+                      value={item.propertytype}
                       onChange={handleInputChange}
                       name="propertytype" >
                       <option value="flat">Flat/Apartment</option>
@@ -346,11 +347,11 @@ export default function Property() {
                     type="text"
                     id="location"
                     name="location"
-                    value={Poperty.location}
+                    value={item.location}
                     onChange={handleLocationInputChange}
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
                     placeholder="Enter Location or Click to Select"
-                    onClick={() => fetchLocationData(Poperty.location)}
+                    onClick={() => fetchLocationData(item.location)}
                   />
                  
                   <button
@@ -391,7 +392,7 @@ export default function Property() {
                     name="adults"
                     autoComplete="guests"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={Poperty.adults}
+                    value={item.adults}
                     onChange={handleInputChange}
                   >
                     <option>1</option>
@@ -412,7 +413,7 @@ export default function Property() {
                     name="children"
                     autoComplete="guests"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={Poperty.children}
+                    value={item.children}
                     onChange={handleInputChange}
                   >
                     <option>1</option>
@@ -432,7 +433,7 @@ export default function Property() {
                     id="bedrooms"
                     name="bedrooms"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={Poperty.bedrooms}
+                    value={item.bedrooms}
                     onChange={handleInputChange}
                   >
                     <option>1</option>
@@ -452,7 +453,7 @@ export default function Property() {
                     name="beds"
                     autoComplete="beds"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={Poperty.beds}
+                    value={item.beds}
                     onChange={handleInputChange}
                   >
                     <option>1</option>
@@ -472,7 +473,7 @@ export default function Property() {
                     name="bathrooms"
                     autoComplete="bathrooms"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={Poperty.bathrooms}
+                    value={item.bathrooms}
                     onChange={handleInputChange}
                   >
                     <option>1</option>
@@ -493,7 +494,7 @@ export default function Property() {
                     name="pets"
                     autoComplete="pet"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={Poperty.pets}
+                    value={item.pets}
                     onChange={handleInputChange}
                   >
                     <option>1</option>
@@ -547,7 +548,7 @@ export default function Property() {
                   name="about"
                   minCol={"5"}
                   minRow={"5"}
-                  value={Poperty.about}
+                  value={item.about}
                   onChange={handleInputChange}
                   className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-lg shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
                   placeholder="Tell more about your property..."
@@ -600,7 +601,7 @@ export default function Property() {
                 </label>
               </div>
               <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                {Poperty.images.map((file, index) => (
+                {item.images.map((file, index) => (
                   <div key={index} className="relative" >
                     <button
                       type="button"
@@ -633,7 +634,7 @@ export default function Property() {
                   name="price"
                   id="name"
                   className="mt-1 p-4 border rounded-full w-full"
-                  value={Poperty.price}
+                  value={item.price}
                   onChange={handleInputChange}
                 />
               </div>
