@@ -78,6 +78,9 @@ export default function index() {
 
   const [sortBy, setSortBy] = useState("popularity");
   const [isModalOpen, setIsModalOpen] = useState(false); // State variable for modal visibility
+  const [lowPrice,setLowPrice]=useState(5000);
+  const [highPrice,setHighPrice]=useState(50000);
+  const[fetch,setFetch]=useState(false);
 
   const sortingOptions = [
     { key: "popularity", label: "Popularity" },
@@ -91,6 +94,7 @@ export default function index() {
   };
 
   const closeModal = () => {
+    setFetch(!fetch);
     setIsModalOpen(false);
   };
 
@@ -100,12 +104,13 @@ export default function index() {
   async function fetchLists() {
     setloading(true);
     // console.log("sortBy",sortBy);
-    let url;
-    if(sortBy=="popularity"){url="popularity_sort=desc"}
-    else if(sortBy=="rating"){url="rating_sort=desc"}
-    else if(sortBy=="priceLow"){url="price_sort=asc"} 
-    else {url="price_sort=desc"}
+    let url=`min_price=${lowPrice}&max_price=${highPrice}&`;
+    if(sortBy=="popularity"){url+="popularity_sort=desc"}
+    else if(sortBy=="rating"){url+="rating_sort=desc"}
+    else if(sortBy=="priceLow"){url+="price_sort=asc"} 
+    else {url+="price_sort=desc"}
     // console.log("url",url); 
+    
     const main = new Listings();
     main
       .PropertyListing(url)
@@ -124,7 +129,7 @@ export default function index() {
     const { signal } = controller;
     fetchLists();
     return () => controller.abort();
-  }, [sortBy]);
+  }, [sortBy,fetch]);
 
   return (
     <Layout>
@@ -178,9 +183,15 @@ export default function index() {
               </div>
             </div>
             <Filter 
-             min={5000}
-             max={50000}
-             onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+             min={lowPrice}
+             max={highPrice}
+             onChange={({ min, max }) => 
+            {
+              setLowPrice(min);
+              setHighPrice(max);   
+               console.log(`min = ${min}, max = ${max}`)
+            }
+            }
             />
           </div>
         </div>

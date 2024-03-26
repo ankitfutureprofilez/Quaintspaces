@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import RangeSlider from "./RangeSlider.js";
 import { DatePicker, Dates } from "../../components/index.js";
 
-export default function Filter({ min, max, onChange }) {
+export default function Filter({ min, max, onChange}) {
   const [selection, setSelection] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectEnd, setSelectEnd] = useState(null);
