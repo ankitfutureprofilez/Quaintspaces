@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import format from "date-fns/format";
 import RangeSlider from "./RangeSlider.js";
 import { DatePicker, Dates } from "../../components/index.js";
 
-export default function Filter({ min, max, onChange}) {
-  const [selection, setSelection] = useState(null);
-  const [selectedDay, setSelectedDay] = useState(null);
-  const [selectEnd, setSelectEnd] = useState(null);
+export default function Filter({ min, max, onChange, selection, setSelection, selectedDay, selectEnd, setSelectedDay, setSelectEnd}) {
+  // const [selection, setSelection] = useState(null);
+  // const [selectedDay, setSelectedDay] = useState(null);
+  // const [selectEnd, setSelectEnd] = useState(null);
   return (
     <div className="flex flex-col mx-auto max-w-md max-h-md rounded-lg p-6 shadow-md">
       {/* <h2 className="text-xl font-semibold mb-4 text-center">Filter</h2> */}

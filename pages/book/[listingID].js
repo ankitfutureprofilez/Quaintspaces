@@ -16,6 +16,7 @@ import Image from "next/image";
 import Button from "../elements/Button";
 import Listings from "../api/laravel/Listings";
 import AuthLayout from "../layout/AuthLayout";
+import toast from "react-hot-toast";
 
 const Book = () => {
   const router = useRouter();
@@ -92,9 +93,10 @@ const Book = () => {
 
   const [formData, setFormData] = useState({
     selectOption: "",
-    file: null,
+    fornt :null,
   });
 
+  console.log("formData",formData);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -104,165 +106,53 @@ const Book = () => {
   };
 
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
+    const formData = e.target.files[0];
     setFormData((prevState) => ({
       ...prevState,
-      file: file,
+      fornt: formData ,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(formData);
+    // console.log("Form Data",formData);
+    // if (loading == true) {
+    //   return;
+    // }
+    // setLoading(true);
+    const main = new Listings();
+    const record = new FormData();
+    record.append("property_uid", listingID);
+    record.append("check_in", infos.checkin);
+    record.append("check_out", infos.checkout);
+    record.append("adults", infos.numberOfAdults);
+    record.append("infants", infos.numberOfInfants);
+    record.append("children", infos.numberOfChildren);
+    record.append("doc_type", formData.selectOption);
+    record.append("front_doc", formData.fornt);
+    const response = main.PropertyBooking(record);
+    response
+      .then((res) => {
+        console.log("res",res)
+        if (res && res.data && res.data.status) {
+          toast.success(res.data.message);
+          router.push("/");
+          // console.log(res.data.message)
+        } else {
+          toast.error(res?.data.message);
+          // console.log(res?.data.message)
+          // setLoading(false);
+        }
+      })
+      .catch((error) => {
+        console.log("error", error);
+        toast.error(error.message);
+        // toast.error(error?.response.data);
+        // setLoading(false);
+      });
   };
 
   return (
-    // <>
-    //   <Head>
-    //     <title>Request to book - Airbnb Clone</title>
-    //   </Head>
-    //   <header className="p-6 border-b border-borderColor">
-    //     <Link href="/">
-    //       <div className="cursor-pointer">
-    //         <Logo />
-    //       </div>
-    //     </Link>
-    //   </header>
-
-    //   <main className="max-w-[1150px] min-h-screen py-[3.6rem] mx-auto">
-    //     <div className="flex items-center gap-3">
-    //       <button
-    //         onClick={() => router.push(`/listings/${router.query.listingID}`)}
-    //         className="p-4 rounded-full hover:bg-borderColor transition duration-150"
-    //       >
-    //         <LeftArrow />
-    //       </button>
-    //       <h1 className="text-3xl font-medium text-blackColor">
-    //         Confirm and Pay
-    //       </h1>
-    //     </div>
-
-    //     <div className="flex mt-14 px-3 gap-10">
-    //       <div className="w-8/12">
-    //         <h1 className="text-xl mb-4 font-medium">Your trip</h1>
-    //         <div className="flex items-center justify-between w-full py-2">
-    //           <div>
-    //             <h5 className="text-lg text-blackColor font-medium">Dates</h5>
-    //             <h5 className="text-md text-blackColor">{`${
-      //               infos?.checkin && format(new Date(infos.checkin), "MMM dd")
-    //             } - ${
-    //               infos?.checkout && format(new Date(infos.checkout), "MMM dd")
-    //             }`}</h5>
-    //           </div>
-    //           <button
-    //             onClick={() => setDateModel(true)}
-    //             className="underline text-md font-medium"
-    //           >
-    //             Edit
-    //           </button>
-    //         </div>
-    //         <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
-    //           <div>
-    //             <h5 className="text-lg text-blackColor font-medium">Guests</h5>
-    //             <h5 className="text-md text-blackColor">
-    //               {`${+infos.numberOfAdults + +infos.numberOfChildren} guests ${
-      //                 +infos.numberOfInfants
-    //                   ? ", " + infos.numberOfInfants + " infants"
-    //                   : ""
-    //               } ${
-      //                 +infos.numberOfPets
-    //                   ? ", " + infos.numberOfPets + " pets"
-    //                   : ""
-    //               }`}
-    //             </h5>
-    //           </div>
-    //           <button
-    //             onClick={() => setGuestsModel(true)}
-    //             className="underline text-md font-medium"
-    //           >
-    //             Edit
-    //           </button>
-    //         </div>
-    //       </div>
-    //       <div className="w-5/12 border border-borderColor rounded-xl shadow p-8">
-    //         <div className="flex gap-3 pb-4 border-b border-borderColor">
-    //           <img
-    //             src={
-    //               listing?.images?.length > 0
-    //                 ? listing.images[0].url
-    //                 : "https://a0.muscache.com/im/pictures/ed3c3933-428a-435b-9161-196722bcf63d.jpg?aki_policy=large"
-    //             }
-    //             className="w-32 h-28 rounded-lg object-cover"
-    //           />
-    //           <div>
-    //             <h4 className="text-md mb-1">{listing?.title}</h4>
-    //             <span className="flex text-sm items-center gap-1">
-    //               <span>
-    //                 <Star />
-    //               </span>
-    //               <span>
-    //                 {listing?.rating} ({listing?.reviews_length || 141} reviews)
-    //               </span>
-    //             </span>
-    //           </div>
-    //         </div>
-    //         <div className="py-4 border-b border-borderColor">
-    //           <h1 className="text-xl font-semibold">Price Details</h1>{" "}
-    //           <div className="flex gap-3 mt-2">
-    //             <div className="flex items-center justify-between w-full">
-    //               <span className="block text-blackColor">
-    //                 {listing?.price} x
-    //                 {` ${
-      //                   infos.checkout &&
-    //                   infos.checkin &&
-    //                   differenceInDays(
-      //                     new Date(infos.checkout),
-    //                     new Date(infos.checkin)
-    //                   )
-    //                 } `}
-    //                 nights
-    //               </span>
-    //               <span className="block text-blackColor font-medium">
-    //                 $
-    //                 {infos.checkout &&
-    //                   infos.checkin &&
-    //                   +listing?.price?.split("$")[1] *
-    //                     differenceInDays(
-      //                       new Date(infos.checkout),
-    //                       new Date(infos.checkin)
-    //                     )}
-    //               </span>
-    //             </div>
-    //           </div>
-    //         </div>
-    //         <div className="pt-4 flex items-center justify-between">
-    //           <span className="text-md font-semibold">Total(USD)</span>
-    //           <span className="text-md font-medium">
-    //             $
-    //             {infos.checkout &&
-    //               infos.checkin &&
-    //               +listing?.price?.split("$")[1] *
-    //                 differenceInDays(
-      //                   new Date(infos.checkout),
-    //                   new Date(infos.checkin)
-    //                 )}
-    //           </span>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </main>
-    //   <Footer />
-    //   {guestsModel && (
-      //     <GuestsModel
-    //       infos={infos}
-    //       setGuestsModel={setGuestsModel}
-    //       guests={guests}
-    //       setGuests={setGuests}
-    //     />
-    //   )}
-    //   {dateModel && <DatesModel infos={infos} setDateModel={setDateModel} />}
-    // </>
-
       <AuthLayout>
     <div>
       <main className="max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12">
@@ -276,9 +166,6 @@ const Book = () => {
             <div className="flex items-center justify-between w-full py-2">
               <div>
                 <h3 className="text-lg  font-medium item-heading ">Dates</h3>
-                {/* <h5 className="text-md text-blackColor">{infos.checkin && infos.checkout ?
-  `${format(new Date(infos.checkin), "MMM dd")} - ${format(new Date(infos.checkout), "MMM dd")}`
-: "Dates not specified"}</h5> */}
                 <p className="text-md item-paragraph">{`${
                   infos?.checkin && format(new Date(infos.checkin), "MMM dd")
                 } - ${
@@ -295,17 +182,6 @@ const Book = () => {
             <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
               <div>
                 <h5 className="text-lg font-medium item-heading">Guests</h5>
-                {/* <h5 className="text-md text-blackColor">
-                  {`${+infos.numberOfAdults + +infos.numberOfChildren} guests ${
-                    +infos.numberOfInfants
-                      ? ", " + infos.numberOfInfants + " infants"
-                      : ""
-                  } ${
-                    +infos.numberOfPets
-                      ? ", " + infos.numberOfPets + " pets"
-                      : ""
-                  }`}
-                </h5> */}
                 <p className="text-md item-paragrapg">
                   {`${+infos.numberOfAdults + +infos.numberOfChildren} guests ${
                     +infos.numberOfInfants
@@ -329,7 +205,7 @@ const Book = () => {
               Upload ID
             </h3>
             <div className=" border-b border-borderColor pb-11">
-              <form onSubmit={handleSubmit}>
+              <form >
                 <div className="mb-4">
                   <select
                     id="selectOption"
@@ -340,9 +216,9 @@ const Book = () => {
                     required
                   >
                     <option value="">Choose...</option>
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
+                    <option value="aadhar">Aadhar Card</option>
+                    <option value="pan">PAN Card</option>
+                    <option value="voterid">Voter ID</option>
                   </select>
                 </div>
 
@@ -350,8 +226,8 @@ const Book = () => {
                   <input
                     type="file"
                     id="fileUpload"
-                    name="fileUpload"
-                    accept=".pdf,.doc,.docx"
+                    name="fornt"
+                    accept=".pdf,.doc,.docx, .jpg, .png"
                     onChange={handleFileChange}
                     className="mt-1 p-4 border rounded-full w-full"
                     required
@@ -402,6 +278,7 @@ const Book = () => {
                 design={
                   "font-inter  font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 p-4 rounded-full"
                 }
+                onClick={handleSubmit}
               />
             </div>
           </div>
@@ -413,15 +290,6 @@ const Book = () => {
                 width={200}
                 height={200}
               />
-
-              {/* <img
-                src={
-                  listing?.images?.length > 0
-                    ? listing.images[0].url
-                    : "https://a0.muscache.com/im/pictures/ed3c3933-428a-435b-9161-196722bcf63d.jpg?aki_policy=large"
-                }
-                className="w-32 h-28 rounded-lg object-cover"
-              /> */}
               <div>
                 <h4 className="text-xl mb-1">{listing?.title}</h4>
                 <h3 className=" text-lg">Entire Apartment </h3>
@@ -441,15 +309,6 @@ const Book = () => {
               <div className="flex gap-3 mt-2">
                 <div className="flex items-center justify-between w-full">
                   <span className="block text-blackColor">
-                    {/* {listing?.price} x
-                    {` ${
-                      infos.checkout &&
-                      infos.checkin &&
-                      differenceInDays(
-                        new Date(infos.checkout),
-                        new Date(infos.checkin)
-                      )
-                    } `} */}
                     Nights
                   </span>
                   <span className="block text-blackColor font-medium">
@@ -465,15 +324,6 @@ const Book = () => {
               <div className="flex gap-3 mt-2">
                 <div className="flex items-center justify-between w-full">
                   <span className="block text-blackColor">
-                    {/* {listing?.price} x
-                    {` ${
-                      infos.checkout &&
-                      infos.checkin &&
-                      differenceInDays(
-                        new Date(infos.checkout),
-                        new Date(infos.checkin)
-                      )
-                    } `} */}
                     Charges Per Day
                   </span>
                   <span className="block text-blackColor font-medium confirm-price">

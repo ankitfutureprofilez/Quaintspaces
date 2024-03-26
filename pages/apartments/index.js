@@ -6,6 +6,8 @@ import RoomListings from "../home/RoomListings";
 import Filter from "../home/Filter";
 import { PostBody } from "../../components";
 import Listings from "../api/laravel/Listings";
+import format from "date-fns/format";
+
 
 export default function index() {
   // Sort By Button Logic
@@ -75,12 +77,16 @@ export default function index() {
       </div>
     );
   };
+  let minVal,maxVal;
 
   const [sortBy, setSortBy] = useState("popularity");
   const [isModalOpen, setIsModalOpen] = useState(false); // State variable for modal visibility
   const [lowPrice,setLowPrice]=useState(5000);
   const [highPrice,setHighPrice]=useState(50000);
   const[fetch,setFetch]=useState(false);
+  const [selection, setSelection] = useState(null);
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [selectEnd, setSelectEnd] = useState(null);
 
   const sortingOptions = [
     { key: "popularity", label: "Popularity" },
@@ -94,6 +100,8 @@ export default function index() {
   };
 
   const closeModal = () => {
+    setLowPrice(minVal);
+    setHighPrice(maxVal);
     setFetch(!fetch);
     setIsModalOpen(false);
   };
@@ -105,6 +113,16 @@ export default function index() {
     setloading(true);
     // console.log("sortBy",sortBy);
     let url=`min_price=${lowPrice}&max_price=${highPrice}&`;
+     if(selectedDay!=null)
+    {
+      url+=format(selectedDay,"yyyy-MM-dd")
+      url+="&"
+    }
+    if(selectEnd!=null)
+    {
+      url+=format(selectEnd,"yyyy-MM-dd")
+      url+="&"
+    }
     if(sortBy=="popularity"){url+="popularity_sort=desc"}
     else if(sortBy=="rating"){url+="rating_sort=desc"}
     else if(sortBy=="priceLow"){url+="price_sort=asc"} 
@@ -183,12 +201,20 @@ export default function index() {
               </div>
             </div>
             <Filter 
-             min={lowPrice}
-             max={highPrice}
+            selection={selection}
+            setSelection={setSelection}
+            selectedDay={selectedDay}
+            selectEnd={selectEnd}
+            setSelectedDay={setSelectedDay}
+            setSelectEnd={setSelectEnd}
+             min={5000}
+             max={50000}
              onChange={({ min, max }) => 
             {
-              setLowPrice(min);
-              setHighPrice(max);   
+              minVal=min;
+              maxVal=max;
+              // setLowPrice(min);
+              // setHighPrice(max);   
                console.log(`min = ${min}, max = ${max}`)
             }
             }
