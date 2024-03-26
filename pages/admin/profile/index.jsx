@@ -1,69 +1,40 @@
 
 import React, { useEffect, useState } from "react";
-import Heading from "../elements/Heading";
-import Button from "../elements/Button";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { Reorder } from "framer-motion";
-import Listings from './../api/laravel/Listings';
+import Listing from '../api/Listing';
 export default function Profileindex() {
-  const [data, setData] = useState({
-    email: "",
-    phone_no: "",
-    first_name: "",
-    last_name: "",
-    image_url: "",
-  });
-
   const [record, setRecord] = useState({
     email: "",
     phone: "",
-    first: "",
+    name: "",
     last: "",
     image: {},
   });
+  const [previewImgSrc, setPreviewImgSrc] = useState("");
 
-  // console.log("toast",toast)
   const router = useRouter();
 
-  const [previewImgSrc, setPreviewImgSrc] = useState(
-    "https://w7.pngwing.com/pngs/812/572/png-transparent-computer-icons-user-name-heroes-monochrome-black-thumbnail.png"
-  );
-
-
-  const loadFile = (event) => {
-    const file = event.target.files[0];
-    const output = document.getElementById("preview_img");
-    setRecord((prevData) => ({
-      ...prevData,
-      image: file,
-    }));
-
-    output.src = URL.createObjectURL(file);
-    output.onload = () => {
-      URL.revokeObjectURL(output.src);
-    };
-
-    setPreviewImgSrc(output.src);
-  };
-
   useEffect(() => {
-    const main = new Listings();
-    main.GetUserProfile().then((r) => {
-      // console.log("r.data.data", r.data.data);
-      const profiledata = r.data.data;
-      setRecord({
-        first: profiledata.first_name,
-        last: profiledata.last_name,
-        phone: profiledata.phone_no,
-        image: profiledata.image_url,
-        email: profiledata.email,
-      });
-      setPreviewImgSrc(profiledata.image_url);
-    })
-      .catch((err) => {
-        console.log(err);
-      });
+    const fetchData = async () => {
+      try {
+        const main = new Listing();
+        const response = await main.Adminprofile();
+        const profiledata = response.data.data;
+        setRecord({
+          name: profiledata.name,
+          last: profiledata.last_name,
+          phone: profiledata.phone_no,
+          email: profiledata.email,
+          image: profiledata.image_url,
+        });
+        setPreviewImgSrc(profiledata.image_url);
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    };
+    fetchData();
   }, []);
 
   const handleChange = (e) => {
@@ -73,56 +44,51 @@ export default function Profileindex() {
       [name]: value,
     }));
   };
-  // console.log("record", record);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log("record", record);
-    const main = new Listings();
-    const formdata = new FormData();
-    formdata.append("email", record.email);
-    formdata.append("image", record.image);
-    formdata.append("first_name", record.first);
-    formdata.append("last_name", record.last);
-    formdata.append("phone_no", record.phone);
-    const response = main.UpdateUserProfile(formdata);
-    response
-      .then((res) => {
-        // console.log("res", res);
-        if (res && res.data && res.data.status) {
-          toast.success(res.data.message);
-          // console.log("res", res);
-          // console.log(res.data.message);
-          setRecord({
-            email: "",
-            phone: "",
-            image: "",
-            first: "",
-            last: "",
-          });
-        } else {
-          toast.error(res?.data.message);
-          // console.log(res?.data.message);
-        }
-        // setLoading(false);
-      })
-      .catch((error) => {
-        console.log("error", error);
-        toast.error(error.message);
-        toast.error(error?.response.data);
-        // setLoading(false);
-      });
+    try {
+      const main = new Listing();
+      const formdata = new FormData();
+      formdata.append("email", record.email);
+      formdata.append("image", record.image);
+      formdata.append("name", record.name);
+      formdata.append("phone_no", record.phone);
+      
+      const response = await main.AdminProfileUpdate(formdata);
+      if (response.data.status) {
+        toast.success(response.data.message);
+        // Update the state with new profile data
+        setRecord((prevRecord) => ({
+          ...prevRecord,
+          // Assuming response.data contains updated profile data
+          name: response.data.name,
+          last: response.data.last_name,
+          phone: response.data.phone_no,
+          email: response.data.email,
+          image: response.data.image_url,
+        }));
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      toast.error("Error updating profile. Please try again.");
+    }
   };
 
-  // Image Uploader
+  const loadFile = (event) => {
+    const file = event.target.files[0];
+    const output = document.getElementById("preview_img");
+    setRecord((prevData) => ({
+      ...prevData,
+      image: file,
+    }));
+    setPreviewImgSrc(URL.createObjectURL(file));
+  };
 
   return (
     <>
-      <div className='container mx-auto  '>
-        <div className="py-6 sm:py-12">
-          <Heading text={"My Profile"} />
-        </div>
-      </div>
       <div className="container mx-auto mt-5">
         {/* Image Upload */}
         <div className="flex items-center profile-border">
@@ -165,36 +131,20 @@ export default function Profileindex() {
                 htmlFor="email"
                 className="block text-lg font-medium text-gray-700 "
               >
-                First Name
+                Full Name
               </label>
               <input
                 type="text"
                 id="email"
-                name="first"
-                value={record.first}
+                name="name"
+                value={record.name}
                 onChange={handleChange}
                 className="mt-1 p-4 border rounded-full w-full"
                 required
               />
             </div>
 
-            <div className="mb-2 sm:mb-4">
-              <label
-                htmlFor="email"
-                className="block text-lg font-medium text-gray-700"
-              >
-                Last Name
-              </label>
-              <input
-                type="text"
-                id="email"
-                name="last"
-                value={record.last}
-                onChange={handleChange}
-                className="mt-1 p-4 border rounded-full w-full"
-                required
-              />
-            </div>
+           
             <div className="mb-2 sm:mb-4">
               <label
                 htmlFor="email"
@@ -230,9 +180,10 @@ export default function Profileindex() {
                 required
               />
             </div>
-            <Button text={"Update Details"} design={"font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-orange-300   p-4 rounded-full mt-14"} />
+            <button  className={"font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-orange-300   p-4 rounded-full mt-14"} >
+              Update Details
+              </button>
           </form>
-
         </div>
         <div className="border-bottom-form"></div>
       </div>

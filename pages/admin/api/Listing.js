@@ -33,6 +33,9 @@ class Listing extends Component {
     async Adminpasschange(data){
         return Api.post("/admin/change-password" ,data)
     }
+    async AdminProfileUpdate(data){
+        return Api.post("/admin/update-profile",data)
+    }
 
     async propertyedit(uuid,data){
         return Api.post("/admin/updateProperty/" +uuid ,data)

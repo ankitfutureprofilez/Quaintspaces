@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import Listing from '../api/Listing';
+// import AuthLayout from "./AuthLayout"
+// import Element from "./element"
 export default function Security() {
     
     const router = useRouter();
@@ -56,6 +58,8 @@ export default function Security() {
 
     return (
         <>
+        {/* <AuthLayout>
+<Element/> */}
             <div className="container mx-auto">
                 <div className="my-3 sm:my-6 md:my-12 profile-text">
                     <h1 >
@@ -129,6 +133,7 @@ export default function Security() {
                 </form>
             </div>
            </div>
+           {/* </AuthLayout> */}
         </>
     )
 }

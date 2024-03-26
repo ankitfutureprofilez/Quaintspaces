@@ -207,8 +207,8 @@ export default function index() {
             selectEnd={selectEnd}
             setSelectedDay={setSelectedDay}
             setSelectEnd={setSelectEnd}
-             min={5000}
-             max={50000}
+             min={1000}
+             max={10000}
              onChange={({ min, max }) => 
             {
               minVal=min;
