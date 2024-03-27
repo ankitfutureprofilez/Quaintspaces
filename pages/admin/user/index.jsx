@@ -2,21 +2,26 @@ import React, { useState, useEffect } from "react";
 import AdminLayout from "../AdminLayout";
 import Listing from "../api/Listing";
 import Element from "../element"
+import LoadingSpinner from "../LoadingSpinner"
 import { usePathname } from 'next/navigation'
 import toast, { Toaster } from 'react-hot-toast';
 import  Link from 'next/link';
 
 export default function Index() {
   const [record, setRecord] = useState([]);
+  const [Loading ,setLoading ] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const main = new Listing();
         const response = await main.userListing();
         console.log("response", response);
         setRecord(response?.data?.data);
+        setLoading(false);
       } catch (error) {
         console.log("error", error);
+        setLoading(false);
       }
     };
 
@@ -47,6 +52,7 @@ export default function Index() {
     <div>
       <AdminLayout>
         <Element text ={"User List "} par={"User Listing here "} />
+        
     <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-5">
   <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
     <div class="rounded-t mb-0 px-4 py-3 border-0">
@@ -65,7 +71,11 @@ export default function Index() {
         </div>
       </div>
     </div>
-          <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+    {Loading ? ( <p>
+    <LoadingSpinner/>
+      </p>)
+        :(
+        <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
             <thead className="bg-gray-50">
               <tr>
                 <th scope="col" className="px-6 py-4 font-medium text-gray-900">
@@ -110,6 +120,9 @@ export default function Index() {
               ))}
             </tbody>
           </table>
+      )}
+    
+          
     </div>
     </div>
 
