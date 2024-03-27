@@ -3,7 +3,7 @@ const ListingsLoading = ({ divider = 5, css = "w-[calc(100%/2-25px)]" }) => {
     <div
       className={`${
         divider === 5
-          ? "w-full sm:w-[calc(100%/2-15px)] lg:w-[calc(100%/3-25px)] xl:w-[calc(100%/4-1.2rem)] 2xl:w-[calc(100%/5-1.2rem)]"
+          ? "ml-6 sm:w-[calc(100%/2-15px)] lg:w-[calc(100%/3-25px)] xl:w-[calc(100%/4-1.2rem)] 2xl:w-[calc(100%/5-1.2rem)]"
           : css
       }`}
     >

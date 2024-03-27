@@ -1,15 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../elements/Button";
 import Heading from "../elements/Heading";
 import { useRouter } from "next/router";
+import Listings from "../api/laravel/Listings";
 
 function Booking() {
   const [selectedButton, setSelectedButton] = useState("upcoming");
+  const [listings, setListings] = useState([]);
   const router = useRouter();
   const handleGroupChange = (e) => {
     setSelectedButton(e);
   };
-
+  useEffect(() => {
+    // setloading(true);
+    const main = new Listings();
+    main
+      .BookingHistory()
+      .then((r) => {
+        //   setloading(false)
+        setListings(r.data.data);
+      })
+      .catch((err) => {
+        //   setloading(false);
+        console.log(err);
+      });
+  }, []);
   const BookingTable = () => {
     return (
       <div className="table-responisve">
@@ -24,37 +39,40 @@ function Booking() {
               <th>Action </th>
             </tr>
           </thead>
-          <tbody>
-            <tr className="">
-              <td className="flex items-center">
-                <img src="image_source" alt="alt" />
-                <div className="text ml-2">
-                  <div class="title">title_text</div>
-                  <div class="description">2bhk_description</div>
-                </div>
-              </td>
-              <td className="px-4 py-2">16-02-2024</td>
-              <td className="px-4 py-2">18-02-2024</td>
-              <td className="px-4 py-2">
-                <Button
-                  text={"Upcoming"}
-                  design={
-                    "font-inter text-blue-700 font-medium leading-tight text-center w-32 p-3 rounded-full "
-                  }
-                />
-              </td>
-              <td className="px-4 py-2">530000</td>
-              <td className="px-4 py-2">
-                {" "}
-                <Button
-                  text={"Cancel"}
-                  design={
-                    "font-inter text-red-700 font-medium leading-tight text-center w-32  border-red-500 p-3 rounded-full "
-                  }
-                />
-              </td>
-            </tr>
-          </tbody>
+          {listings &&
+            listings.map((item) => (
+              <tbody>
+                <tr className="">
+                  <td className="flex items-center">
+                    <img src="image_source" alt="alt" />
+                    <div className="text ml-2">
+                      <div class="title">title_text</div>
+                      <div class="description">2bhk_description</div>
+                    </div>
+                  </td>
+                  <td className="px-4 py-2">{item.check_in}</td>
+                  <td className="px-4 py-2">{item.check_out}</td>
+                  <td className="px-4 py-2">
+                    <Button
+                      text={`${item.booking_status}`}
+                      design={
+                        "font-inter text-blue-700 font-medium leading-tight text-center w-32 p-3 rounded-full "
+                      }
+                    />
+                  </td>
+                  <td className="px-4 py-2">{item.price}</td>
+                  <td className="px-4 py-2">
+                    {" "}
+                    <Button
+                      text={"Cancel"}
+                      design={
+                        "font-inter text-red-700 font-medium leading-tight text-center w-32  border-red-500 p-3 rounded-full "
+                      }
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            ))}
         </table>
       </div>
     );
