@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import Image from 'next/image'
 export default function menu({ isOpen , record }) {
 
-  const 
 
   const router = useRouter();
 
@@ -21,7 +20,7 @@ export default function menu({ isOpen , record }) {
 
        <div className={`flex items-center absolute shadow-md left-0 bottom-16 rounded-lg bg-gray-200 justify-center right-70 ${isOpen ? 'block' : 'hidden'}`}> 
 
-        <div className="w-full min-w-[250px]  p-3 drop-shadow-xl divide-y divide-gray-300">
+        <div className="w-full min-w-[240px]  p-3 drop-shadow-xl divide-y divide-gray-300">
         <div  className="flex space-x-4 items-center p-2">
           <div className="flex mr-auto items-center space-x-4">
             <Image
@@ -52,7 +51,7 @@ export default function menu({ isOpen , record }) {
           <nav className="grid gap-1">
          <Link
               href="/admin/security"
-              className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md" >
+              className="flex items-center leading-6 space-x-3 py-2 px-2 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md" >
                 <svg
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
@@ -77,7 +76,7 @@ export default function menu({ isOpen , record }) {
             
             <Link
               href="/admin/profile"
-              className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
+              className="flex items-center leading-6 space-x-3 py-2 px-2 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +102,7 @@ export default function menu({ isOpen , record }) {
            
           <Link
               href="/contact"
-              className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
+              className="flex items-center leading-6 space-x-3 py-2 px-2 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -35,11 +35,11 @@ function Navbar({ isOpen, sidebarChange }: { isOpen: boolean, sidebarChange: (va
 
                 {/* right section */}
                 <div className='text-gray-500 hidden md:flex gap-2'>
-                    <button className='all-center h-8 w-8 duration-200 hover:bg-gray-100 rounded-lg'>
+                    <button className='all-center h-8 w-8 duration-200 hover:bg-gray-100 rounded-lg flex justify-center items-center'>
                         <SearchNormal1 size={16} />
                     </button>
 
-                    <button className='all-center h-8 w-8 duration-200 hover:bg-gray-100 rounded-lg'>
+                    <button className='all-center h-8 w-8 duration-200 hover:bg-gray-100 rounded-lg flex justify-center items-center'>
                         <DirectNotification size={16} />
                     </button>
 
