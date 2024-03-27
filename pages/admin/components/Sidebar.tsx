@@ -130,7 +130,7 @@ function Sidebar() {
                                   <ArrowRight2 size={16}  />
 
 
-                               <Menu isOpen={isDropdownOpen} /> 
+                               <Menu isOpen={isDropdownOpen} record ={auth}/> 
 
                                 </button>
                             </div>

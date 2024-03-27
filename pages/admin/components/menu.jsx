@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import Image from 'next/image'
 export default function menu({ isOpen , record }) {
 
-  const 
 
   const router = useRouter();
 
@@ -14,18 +13,13 @@ export default function menu({ isOpen , record }) {
   // };
 
   return (
-   
     <>
-
- 
-
        <div className={`flex items-center absolute shadow-md left-0 bottom-16 rounded-lg bg-gray-200 justify-center right-70 ${isOpen ? 'block' : 'hidden'}`}> 
-
         <div className="w-full min-w-[250px]  p-3 drop-shadow-xl divide-y divide-gray-300">
         <div  className="flex space-x-4 items-center p-2">
           <div className="flex mr-auto items-center space-x-4">
             <Image
-              src="https://avatars.githubusercontent.com/u/499550?v=4"
+              src={record?.auth?.admin_profile_url}
               alt="avatar Evan You"
               className="w-16 h-16 shrink-0 rounded-full"
               width={100}
@@ -35,7 +29,7 @@ export default function menu({ isOpen , record }) {
               <div className="font-medium relative text-xl leading-tight text-gray-900">
                 <span className="flex">
                   <span className=" relative pr-8">
-                    Evan You
+                    {record?.auth?.name}
                     <span
                     
                       className="absolute top-1/2 -translate-y-1/2 right-0 inline-block rounded-full"
