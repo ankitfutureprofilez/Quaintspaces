@@ -9,6 +9,7 @@ import Element from './../element';
 import Image from 'next/image'
 
 export default function Profileindex() {
+  const[Loading ,setLoading] =useState(false);
   const [record, setRecord] = useState({
     email: "",
     phone: "",
@@ -21,7 +22,9 @@ export default function Profileindex() {
 
   useEffect(() => {
     const fetchData = async () => {
+
       try {
+        setLoading(true);
         const main = new Listing();
         const response = await main.Adminprofile();
         const profiledata = response.data.data;
@@ -32,8 +35,10 @@ export default function Profileindex() {
           image: profiledata.image_url,
         });
         setPreviewImgSrc(profiledata.image_url);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching profile data:", error);
+        setLoading(false);
       }
     };
     fetchData();
@@ -154,10 +159,10 @@ export default function Profileindex() {
           required
         />
       </div>
-      <button className="font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-orange-300 p-4 rounded-full mt-14">
+    </form>
+      <button className="font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-indigo-500  p-4 rounded-full mt-14">
         Update Details
       </button>
-    </form>
   </div>
 </div>
     </AdminLayout>
