@@ -2,10 +2,12 @@ import React ,{useState}from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image'
-export default function menu({ isOpen }) {
+export default function menu({ isOpen , record }) {
 
+  const 
 
   const router = useRouter();
+
   // const handleLogoutClick = () => {
   //   localStorage && localStorage.removeItem('token');
   //   router.push('/admin/login');
@@ -14,11 +16,11 @@ export default function menu({ isOpen }) {
   return (
    
     <>
-      <div
-        className={`flex items-center absolute shadow-md rounded-lg bg-gray-200 justify-center right-70 ${
-          isOpen ? 'block' : 'hidden'
-        }`}
-      >
+
+ 
+
+       <div className={`flex items-center absolute shadow-md left-0 bottom-16 rounded-lg bg-gray-200 justify-center right-70 ${isOpen ? 'block' : 'hidden'}`}> 
+
         <div className="w-full min-w-[250px]  p-3 drop-shadow-xl divide-y divide-gray-300">
         <div  className="flex space-x-4 items-center p-2">
           <div className="flex mr-auto items-center space-x-4">
@@ -130,6 +132,7 @@ export default function menu({ isOpen }) {
           </nav>
         </div>
          
+
         <div className="pt-2">
           {/* <button 
             className="flex items-center space-x-3 py-3 px-4 w-full leading-6 text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
@@ -137,6 +140,8 @@ export default function menu({ isOpen }) {
             <span>Logout</span>
           </button> */}
         </div>
+
+
       </div>
       </div>
     </>
