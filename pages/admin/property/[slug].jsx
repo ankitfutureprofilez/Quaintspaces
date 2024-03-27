@@ -137,7 +137,7 @@ export default function Index() {
         const  response =  main.propertyedit(slug);
         response.then((res)=>{
             console.log("res",res)
-        }).catch((erorr)=>{
+        }).catch((error)=>{
             console.log("error",error)
         })
     }
