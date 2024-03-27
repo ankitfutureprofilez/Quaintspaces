@@ -61,7 +61,7 @@ export default function Property({ record, onClose }) {
     }));
   };
 
-  
+
   const removeRecordImage = (indexToRemove) => {
     setItem(prevItem => {
       const updatedImages = prevItem.record?.property_image?.filter((_, index) => index !== indexToRemove);
@@ -305,24 +305,22 @@ export default function Property({ record, onClose }) {
       color:#fff;
     }
     `}</style>
-    {
-      record?.uuid ?(
+      {record?.uuid ? (
         <>
         </>
       ) : (
-      <Element text={"Property"} />
-      )
-    }
+        <Element text={"Property"} />
 
+      )}
 
-      <div className={`flex items-center justify-center px-6 py-8 ${record && record.uuid ? '' : 'min-h-screen'}`}>
+      <div className={`flex items-center justify-center ${record && record.uuid ? 'w-full' : 'min-h-screen px-6 py-8'}`} style={{ overflowY: record && record.uuid ? 'scroll' : 'unset', height: record && record.uuid ? 'auto' : '100vh', maxHeight: '100vh' }}>
         <div className="max-w-4xl w-full space-y-8">
-          <div className="pages-wrapper p-8 max-w-[700px] m-auto ">
+          <div className={`pages-wrapper  ${record && record?.uuid ? '  ' : 'max-w-[700px] p-8 m-auto'}  `}>
             <div className="flex flex-wrap  justify-between">
               <h2 className="text-xl font-bold mb-4 " >Add Property</h2>
               {record?.uuid ? (
                 <button onClick={onClose}>
-                  <h2 className="text-xl font-bold mb-4 " >close</h2>
+                  <h2 className="text-xl font-bold mb-4 " >X</h2>
                 </button>
               ) : (<>
               </>)}
@@ -464,7 +462,7 @@ export default function Property({ record, onClose }) {
 
 
             <div className={`${step === 2 ? " " : " display-none"}`}>
-              <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8 mt-5">
+              <div className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-x-8 mt-5">
                 <div>
                   <label
                     htmlFor="guests"
@@ -730,9 +728,7 @@ export default function Property({ record, onClose }) {
                   </div>
                 ))}
               </div>
-
             </div>
-
 
 
             <div className={`${step === 6 ? "" : "display-none"}`}>
