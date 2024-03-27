@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import Heading from '../elements/Heading'
 import Button from '../elements/Button'
 import Link from 'next/link'
 import AuthLayout from "../layout/AuthLayout";
+import { Context } from "../_app";
+import { useRouter } from 'next/router'
+import toast from "react-hot-toast";
 
 export default function index() {
+  const {setAuth} = useContext(Context)
+  const router=useRouter();
+
+  const handleClick =()=>{
+    console.log("Logout Function")
+    localStorage && localStorage.removeItem('token');
+    setAuth(null);
+    toast.success("Logout Successfully !!")
+    router.push('/');
+  }
   return (
     <div>
       <AuthLayout>
@@ -13,6 +26,7 @@ export default function index() {
             <Heading text={"Account"} />
             <Button
               text={"Logout"}
+              onClick={handleClick}
               design={
                 "font-inter text-base font-medium leading-tight text-center text-black w-52 border border-gray-400 p-4 rounded-full"
               }

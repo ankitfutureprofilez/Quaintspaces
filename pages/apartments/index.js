@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import Layout from "../layout/Layout";
 import Link from "next/link";
@@ -7,7 +6,6 @@ import Filter from "../home/Filter";
 import { PostBody } from "../../components";
 import Listings from "../api/laravel/Listings";
 import format from "date-fns/format";
-
 
 export default function index() {
   // Sort By Button Logic
@@ -77,13 +75,13 @@ export default function index() {
       </div>
     );
   };
-  let minVal,maxVal;
+  let minVal, maxVal;
 
   const [sortBy, setSortBy] = useState("popularity");
   const [isModalOpen, setIsModalOpen] = useState(false); // State variable for modal visibility
-  const [lowPrice,setLowPrice]=useState(0);
-  const [highPrice,setHighPrice]=useState(20000);
-  const[fetch,setFetch]=useState(false);
+  const [lowPrice, setLowPrice] = useState(0);
+  const [highPrice, setHighPrice] = useState(20000);
+  const [fetch, setFetch] = useState(false);
   const [selection, setSelection] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectEnd, setSelectEnd] = useState(null);
@@ -99,10 +97,13 @@ export default function index() {
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
+  const handleClick = () => {
     setLowPrice(minVal);
     setHighPrice(maxVal);
     setFetch(!fetch);
+    setIsModalOpen(false);
+  };
+  const closeModal = () => {
     setIsModalOpen(false);
   };
 
@@ -112,23 +113,26 @@ export default function index() {
   async function fetchLists() {
     setloading(true);
     // console.log("sortBy",sortBy);
-    let url=`min_price=${lowPrice}&max_price=${highPrice}&`;
-     if(selectedDay!=null)
-    {
-      url+=format(selectedDay,"yyyy-MM-dd")
-      url+="&"
+    let url = `min_price=${lowPrice}&max_price=${highPrice}&`;
+    if (selectedDay != null) {
+      url += format(selectedDay, "yyyy-MM-dd");
+      url += "&";
     }
-    if(selectEnd!=null)
-    {
-      url+=format(selectEnd,"yyyy-MM-dd")
-      url+="&"
+    if (selectEnd != null) {
+      url += format(selectEnd, "yyyy-MM-dd");
+      url += "&";
     }
-    if(sortBy=="popularity"){url+="popularity_sort=desc"}
-    else if(sortBy=="rating"){url+="rating_sort=desc"}
-    else if(sortBy=="priceLow"){url+="price_sort=asc"} 
-    else {url+="price_sort=desc"}
-    // console.log("url",url); 
-    
+    if (sortBy == "popularity") {
+      url += "popularity_sort=desc";
+    } else if (sortBy == "rating") {
+      url += "rating_sort=desc";
+    } else if (sortBy == "priceLow") {
+      url += "price_sort=asc";
+    } else {
+      url += "price_sort=desc";
+    }
+    // console.log("url",url);
+
     const main = new Listings();
     main
       .PropertyListing(url)
@@ -147,7 +151,7 @@ export default function index() {
     const { signal } = controller;
     fetchLists();
     return () => controller.abort();
-  }, [sortBy,fetch]);
+  }, [sortBy, fetch]);
 
   return (
     <Layout>
@@ -200,24 +204,23 @@ export default function index() {
                 </button>
               </div>
             </div>
-            <Filter 
-            selection={selection}
-            setSelection={setSelection}
-            selectedDay={selectedDay}
-            selectEnd={selectEnd}
-            setSelectedDay={setSelectedDay}
-            setSelectEnd={setSelectEnd}
-             min={0}
-             max={20000}
-             onChange={({ min, max }) => 
-            {
-              minVal=min;
-              maxVal=max;
-              // setLowPrice(min);
-              // setHighPrice(max);   
-               console.log(`min = ${min}, max = ${max}`)
-            }
-            }
+            <Filter
+              selection={selection}
+              setSelection={setSelection}
+              selectedDay={selectedDay}
+              selectEnd={selectEnd}
+              setSelectedDay={setSelectedDay}
+              setSelectEnd={setSelectEnd}
+              min={0}
+              max={20000}
+              onClick={handleClick}
+              onChange={({ min, max }) => {
+                minVal = min;
+                maxVal = max;
+                // setLowPrice(min);
+                // setHighPrice(max);
+                // console.log(`min = ${min}, max = ${max}`);
+              }}
             />
           </div>
         </div>

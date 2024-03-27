@@ -1,8 +1,7 @@
 import { Component } from "react";
 import Api from "./Api";
 class Listings extends Component {
-    
-    // Signup api
+  // Signup api
   async Signup(data) {
     return Api.post("/register", data);
   }
@@ -13,7 +12,7 @@ class Listings extends Component {
     return Api.get("/get-user-profile");
   }
   async UpdateUserProfile(data) {
-    return Api.post("/update-profile",data);
+    return Api.post("/update-profile", data);
   }
   async ResetPassword(data) {
     return Api.post("/update-password", data);
@@ -30,6 +29,9 @@ class Listings extends Component {
   async PropertyBooking(data) {
     return Api.post("/add-booking", data);
   }
+  async BookingHistory() {
+    return Api.get("/user-booking-history");
+  }
   // async GetUser(data) {
   //   return Api.post("/get-user-profile", data);
   // }
@@ -40,10 +42,10 @@ class Listings extends Component {
     return Api.get("/top-places-Property-list", data);
   }
   async PropertyListing(data) {
-    return Api.get("/property-list?"+data);
+    return Api.get("/property-list?" + data);
   }
-  async PropertyDetail(uuid){
-    return Api.get("/property-details/"+uuid)
+  async PropertyDetail(uuid) {
+    return Api.get("/property-details/" + uuid);
   }
 
   render() {

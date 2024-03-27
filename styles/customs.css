@@ -274,7 +274,12 @@ footer {
 }
 .banipark-box {
   background: #fff;
+  transition: transform 0.3s !important;
 }
+.banipark-box:hover {
+  transform: scale(1.02);
+}
+
 .flat-info h4 {
   font-family: "Inter", sans-serif;
   font-size: 13px;

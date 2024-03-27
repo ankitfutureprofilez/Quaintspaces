@@ -60,7 +60,9 @@ export default function Security() {
         <div>
             <div className="container mx-auto">
             <div className="pt-3 sm:pt-6 md:pt-12">
-                <Heading text={"Security "} />
+                <Heading text={"Security "} 
+                handleClick={() => router.back()}
+                />
                 </div>
             </div>
             <div className="container mx-auto">
