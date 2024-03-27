@@ -128,7 +128,7 @@ function Sidebar() {
 
                                 <button className='text-gray-500'    onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                                   <ArrowRight2 size={16}  />
-                              {/* <Menu isOpen={isDropdownOpen} />  */}
+                               <Menu isOpen={isDropdownOpen} /> 
                                 </button>
                             </div>
                         ) : (

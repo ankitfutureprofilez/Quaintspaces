@@ -14,7 +14,7 @@ export default function menu({ isOpen }) {
   return (
    
     <>
-      <div className={`flex items-center absolute shadow-md rounded-lg bg-gray-200 justify-center right-70 ${isOpen ? 'block' : 'hidden'}`}>
+       <div className={`flex items-center absolute shadow-md left-0 bottom-16 rounded-lg bg-gray-200 justify-center right-70 ${isOpen ? 'block' : 'hidden'}`}> 
         <div className="w-full min-w-[250px]  p-3 drop-shadow-xl divide-y divide-gray-300">
         <div aria-label="header" className="flex space-x-4 items-center p-2">
           <div aria-label="avatar" className="flex mr-auto items-center space-x-4">
@@ -124,34 +124,7 @@ export default function menu({ isOpen }) {
           </nav>
         </div>
          
-        <div aria-label="footer" className="pt-2">
-          <button onClick={handleLogoutClick}
-            type="button"
-            className="flex items-center space-x-3 py-3 px-4 w-full leading-6 text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              className="w-7 h-7"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path
-                d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"
-              ></path>
-              <path d="M9 12h12l-3 -3"></path>
-              <path d="M18 15l3 -3"></path>
-            </svg>
-            <span>Logout</span>
-          </button>
-        </div>
+     
       </div>
       </div>
     </>
