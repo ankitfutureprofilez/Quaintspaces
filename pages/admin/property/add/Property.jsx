@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import amenitiesList from "../../../../aminites.json";
 import Listing from "../../api/Listing";
 import Element from "../../element";
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";
-export default function Property({record ,onClose}) {
+import Image from "next/image";
+export default function Property({ record, onClose }) {
 
   const router = useRouter();
-  console.log("record",record)
+  console.log("record", record)
 
   const [step, setStep] = useState(1);
   const [Loading, setLoading] = useState(false);
@@ -20,28 +21,30 @@ export default function Property({record ,onClose}) {
   const [item, setItem] = useState({
     name: record?.name || "",
     area_id: record?.area || "",
-    city_id: record?.city   || "",
+    city_id: record?.city || "",
     location: record?.location || "",
-    about: record?.description    || "",
+    about: record?.description || "",
     price: record?.price || "",
-    propertytype: record?.properties_type||    "flat",
+    propertytype: record?.properties_type || "flat",
     children: record?.children || "1",
-    adults: record?.adults|| "1",
-    bedrooms:record?.bedrooms||  "1",
-    beds: record?.beds|| "1"    ,
+    adults: record?.adults || "1",
+    bedrooms: record?.bedrooms || "1",
+    beds: record?.beds || "1",
     bathrooms: record?.bathrooms || "1",
-    pets: record?.no_of_pet_allowed||     "1",
-    latitude: record?.latitude ||"",
-    longitude: record?.longitudes|| "",
-    selectedAmenities: record?.amenities ?stringToArray(record?.amenities) : [],
-    images: record?.property_images?.image_url ? record.property_images.image_url : []
+    pets: record?.no_of_pet_allowed || "1",
+    latitude: record?.latitude || "",
+    longitude: record?.longitudes || "",
+    selectedAmenities: record?.amenities ? stringToArray(record?.amenities) : [],
+    images: record?.property_image ? record.property_image : []
   });
+  console.log("item", item)
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setItem({...item,[name]: value,});
+    setItem({ ...item, [name]: value, });
   };
-  
+
   const handleFileChange = (e) => {
     let filesToAdd = Array.from(e.target.files);
     let newImages = item.images.concat(filesToAdd).slice(0, 6);
@@ -58,31 +61,42 @@ export default function Property({record ,onClose}) {
     }));
   };
 
+  
+  const removeRecordImage = (indexToRemove) => {
+    setItem(prevItem => {
+      const updatedImages = prevItem.record?.property_image?.filter((_, index) => index !== indexToRemove);
+      return { ...prevItem, images: updatedImages };
+    });
+  };
+
+
+
   const nextStep = () => {
     if (step == 1 && item.name === "" || item.area_id === "" || item.city_id === "" || item.location === "") {
-     toast.error("All fields are required.");
+      toast.error("All fields are required.");
       return false;
-    } 
+    }
     if (step == 3 && item.selectedAmenities && item.selectedAmenities.length < 4) {
-     toast.error("Please choose atleast 4 amenities.");
+      toast.error("Please choose atleast 4 amenities.");
       return false;
-    } 
+    }
     if (step == 4 && item.about && item.about.length < 100) {
-     toast.error("Property description is too short. Descrption should be minimum 100 words.");
+      toast.error("Property description is too short. Descrption should be minimum 100 words.");
       return false;
-    } 
-    if (step == 5 && item?.images && item.images.length < 5) {
+    }
+
+    if (step == 5 && item?.images?.length + record?.property_images?.length < 5) {
       toast.error("Please  select at least five images.");
-       return false;
-     } 
-     if (step == 6 && item?.price ) {
+      return false;
+    }
+    if (step == 6 && item?.price) {
       toast.error("please  fields are required.");
-       return false;
-     } 
+      return false;
+    }
     setStep((prev) => prev + 1);
   };
   const prevStep = () => setStep((prev) => prev - 1);
-  
+
 
 
   const handleCheckboxChange = (e) => {
@@ -184,128 +198,128 @@ export default function Property({record ,onClose}) {
 
   };
 
- 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const requiredFields = ["name", "propertytype", "city_id", "area_id", "location", "price", "about", "latitude", "longitude", "selectedAmenities"];
     const isAnyFieldEmpty = requiredFields.some(field => !item[field]);
     const areEnoughImagesSelected = item?.images?.length >= 5;
     if (isAnyFieldEmpty || !areEnoughImagesSelected) {
-        toast.error("Please fill all required fields and select at least five images.");
-        return;
+      toast.error("Please fill all required fields and select at least five images.");
+      return;
     }
     setLoading(true);
     if (record?.uuid) {
-        const main = new Listing();
-        const formData = new FormData();
-        formData.append("name", item.name);
-        formData.append("city_id", item.city_id);
-        formData.append("area_id", item.area_id);
-        formData.append("pet_allowed", "1");
-        formData.append("no_of_pet_allowed", item.pets);
-        formData.append("description", item.about);
-        formData.append("price", item.price);
-        formData.append("properties_type", item.propertytype);
-        formData.append("location", item.location);
-        formData.append("bedrooms", item.bedrooms);
-        formData.append("beds", item.beds);
-        formData.append("bathrooms", item.bathrooms);
-        formData.append("latitude", item.latitude);
-        formData.append("longitudes", item.longitude);
-        formData.append("discount_offer", "555");
-        formData.append("check_in", " 11:55");
-        formData.append("check_out", "12:12");
-        formData.append("country_id", "101");
-        formData.append("state_id", "33");
-        formData.append("adults", item.adults);
-        formData.append("children", item.children);
-        formData.append("infants", "1");
-        formData.append("free_cancel_time", "11");
-        formData.append("amenities", item.selectedAmenities);
-        item.images.forEach((image, index) => {
-            formData.append("property_image[]", image);
-        });
-        const response = main.propertyedit(record.uuid, formData);
-        response.then((res) => {
-            console.log("res", res);
-            setLoading(false);
-            router.push("/admin/property")
-        }).catch((error) => {
-            console.log("error", error);
-            setLoading(false);
-        });
+      const main = new Listing();
+      const formData = new FormData();
+      formData.append("name", item.name);
+      formData.append("city_id", item.city_id);
+      formData.append("area_id", item.area_id);
+      formData.append("pet_allowed", "1");
+      formData.append("no_of_pet_allowed", item.pets);
+      formData.append("description", item.about);
+      formData.append("price", item.price);
+      formData.append("properties_type", item.propertytype);
+      formData.append("location", item.location);
+      formData.append("bedrooms", item.bedrooms);
+      formData.append("beds", item.beds);
+      formData.append("bathrooms", item.bathrooms);
+      formData.append("latitude", item.latitude);
+      formData.append("longitudes", item.longitude);
+      formData.append("discount_offer", "555");
+      formData.append("check_in", " 11:55");
+      formData.append("check_out", "12:12");
+      formData.append("country_id", "101");
+      formData.append("state_id", "33");
+      formData.append("adults", item.adults);
+      formData.append("children", item.children);
+      formData.append("infants", "1");
+      formData.append("free_cancel_time", "11");
+      formData.append("amenities", item.selectedAmenities);
+      item.images.forEach((image, index) => {
+        formData.append("property_image[]", image);
+      });
+      const response = main.propertyedit(record.uuid, formData);
+      response.then((res) => {
+        console.log("res", res);
+        setLoading(false);
+        router.push("/admin/property")
+      }).catch((error) => {
+        console.log("error", error);
+        setLoading(false);
+      });
     } else {
-        const main = new Listing();
-        const formData = new FormData();
-        formData.append("name", item.name);
-        formData.append("city_id", item.city_id);
-        formData.append("area_id", item.area_id);
-        formData.append("pet_allowed", "1");
-        formData.append("no_of_pet_allowed", item.pets);
-        formData.append("description", item.about);
-        formData.append("price", item.price);
-        formData.append("properties_type", item.propertytype);
-        formData.append("location", item.location);
-        formData.append("bedrooms", item.bedrooms);
-        formData.append("beds", item.beds);
-        formData.append("bathrooms", item.bathrooms);
-        formData.append("latitude", item.latitude);
-        formData.append("longitudes", item.longitude);
-        formData.append("discount_offer", "555");
-        formData.append("check_in", " 11:55");
-        formData.append("check_out", "12:12");
-        formData.append("country_id", "101");
-        formData.append("state_id", "33");
-        formData.append("adults", item.adults);
-        formData.append("children", item.children);
-        formData.append("infants", "1");
-        formData.append("free_cancel_time", "11");
-        formData.append("amenities", item.selectedAmenities.join(","));
-        item.images.forEach((image, index) => {
-            formData.append("property_image[]", image);
+      const main = new Listing();
+      const formData = new FormData();
+      formData.append("name", item.name);
+      formData.append("city_id", item.city_id);
+      formData.append("area_id", item.area_id);
+      formData.append("pet_allowed", "1");
+      formData.append("no_of_pet_allowed", item.pets);
+      formData.append("description", item.about);
+      formData.append("price", item.price);
+      formData.append("properties_type", item.propertytype);
+      formData.append("location", item.location);
+      formData.append("bedrooms", item.bedrooms);
+      formData.append("beds", item.beds);
+      formData.append("bathrooms", item.bathrooms);
+      formData.append("latitude", item.latitude);
+      formData.append("longitudes", item.longitude);
+      formData.append("discount_offer", "555");
+      formData.append("check_in", " 11:55");
+      formData.append("check_out", "12:12");
+      formData.append("country_id", "101");
+      formData.append("state_id", "33");
+      formData.append("adults", item.adults);
+      formData.append("children", item.children);
+      formData.append("infants", "1");
+      formData.append("free_cancel_time", "11");
+      formData.append("amenities", item.selectedAmenities.join(","));
+      item.images.forEach((image, index) => {
+        formData.append("property_image[]", image);
+      });
+      const response = main.addproperty(formData);
+      response
+        .then((res) => {
+          if (res?.data?.status) {
+            toast.success(res.data.message);
+            setLoading(false);
+          }
+        })
+        .catch((error) => {
+          setLoading(false);
+          console.log("error", error);
         });
-        const response = main.addproperty(formData);
-        response
-            .then((res) => {
-                if (res?.data?.status) {
-                    toast.success(res.data.message);
-                    setLoading(false);
-                }
-            })
-            .catch((error) => {
-                setLoading(false);
-                console.log("error", error);
-            });
     }
-};
+  };
 
 
 
-  
-  
+
+
   return (
     <>
-    <style>{`
+      <style>{`
     .ammenties-checked-lists input:checked+ label { 
       background: #006fc7;
       color:#fff;
     }
     `}</style>
-      <Element  text={"Property"}/>
-  
-    
+      <Element text={"Property"} />
+
+
       <div className={`flex items-center justify-center px-6 py-8 ${record && record.uuid ? '' : 'min-h-screen'}`}>
         <div className="max-w-4xl w-full space-y-8">
           <div className="pages-wrapper p-8 max-w-[700px] m-auto ">
             <div className="flex flex-wrap  justify-between">
-            <h2 className="text-xl font-bold mb-4 " >Add Property</h2>
-            {record?.uuid ? (
-         <button onClick={onClose}>
-         <h2 className="text-xl font-bold mb-4 " >close</h2>
-       </button>
-      ) : (<>
-      </>)}
-              </div>
+              <h2 className="text-xl font-bold mb-4 " >Add Property</h2>
+              {record?.uuid ? (
+                <button onClick={onClose}>
+                  <h2 className="text-xl font-bold mb-4 " >close</h2>
+                </button>
+              ) : (<>
+              </>)}
+            </div>
 
             <div className={`${step === 1 ? "" : "display-none"}`}>
               <div className="mt-4">
@@ -355,22 +369,22 @@ export default function Property({record ,onClose}) {
                     >
                       City
                     </label>
-                    <select  required
+                    <select required
                       id="citySelect"
                       name="city_id"
                       onChange={handleInputChange}
                       className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
                     >
-                       {record && record.city && (
-                         <option value={record.city}>{record.city}</option>
-                            )}
+                      {record && record.city && (
+                        <option value={record.city}>{record.city}</option>
+                      )}
                       {city &&
                         city.map((item, index) => (
                           <option key={index} value={item.id}>
                             {item.name}
                           </option>
                         ))}
-                       
+
                     </select>
                   </div>
                   <div className="">
@@ -386,9 +400,9 @@ export default function Property({record ,onClose}) {
                       onChange={handleInputChange}
                       className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
                     >
-                       {record && record.area && (
-                         <option value={record.area}>{record.area}</option>
-                            )}
+                      {record && record.area && (
+                        <option value={record.area}>{record.area}</option>
+                      )}
                       {area &&
                         area.map((item, index) => (
                           <option key={index} value={item.id}>
@@ -407,7 +421,7 @@ export default function Property({record ,onClose}) {
                   Location
                 </label>
                 <div className="relative">
-                  <input  required
+                  <input required
                     type="text"
                     id="location"
                     name="location"
@@ -417,7 +431,7 @@ export default function Property({record ,onClose}) {
                     placeholder="Enter Location or Click to Select"
                     onClick={() => fetchLocationData(item.location)}
                   />
-                 
+
                   <button
                     onClick={() => fetchLocationData()}
                     className="absolute inset-y-0 right-2 flex items-center pr-3"
@@ -451,7 +465,7 @@ export default function Property({record ,onClose}) {
                   >
                     Adult
                   </label>
-                  <select  required
+                  <select required
                     id="guests"
                     name="adults"
                     autoComplete="guests"
@@ -472,7 +486,7 @@ export default function Property({record ,onClose}) {
                   >
                     children
                   </label>
-                  <select  required
+                  <select required
                     id="guests"
                     name="children"
                     autoComplete="guests"
@@ -493,7 +507,7 @@ export default function Property({record ,onClose}) {
                   >
                     Bedrooms
                   </label>
-                  <select  required 
+                  <select required
                     id="bedrooms"
                     name="bedrooms"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
@@ -512,7 +526,7 @@ export default function Property({record ,onClose}) {
                   >
                     Beds
                   </label>
-                  <select required 
+                  <select required
                     id="beds"
                     name="beds"
                     autoComplete="beds"
@@ -532,7 +546,7 @@ export default function Property({record ,onClose}) {
                   >
                     Bathrooms
                   </label>
-                  <select  required 
+                  <select required
                     id="bathrooms"
                     name="bathrooms"
                     autoComplete="bathrooms"
@@ -571,33 +585,33 @@ export default function Property({record ,onClose}) {
 
 
             <div className={`${step === 3 ? " " : " display-none"}`}>
-  <div className="">
-    <h2 className="block text-lg mb-1 font-medium text-gray-700 mt-3 mb-3">
-      Amenities
-    </h2>
-    <div className="flex flex-wrap ammenties-checked-lists">
-      {amenitiesList.map((amenity, index) => (
-        <div key={index} className="flex items-center">
-          <input
-            id={amenity.value}
-            name={amenity.value}
-            type="checkbox"
-            value={amenity.value}
-            className="mr-2 rounded text-indigo-600 focus:ring-indigo-500 hidden"
-            checked={item.selectedAmenities.includes(amenity.value)} // Check if amenity is selected
-            onChange={handleCheckboxChange}
-          />
-          <label htmlFor={amenity.value} className="me-2 mb-2 bg-gray-300 px-4 py-2 rounded-lg text-md text-gray-500 cursor-pointer">
-            {amenity.title}
-          </label>
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
+              <div className="">
+                <h2 className="block text-lg mb-1 font-medium text-gray-700 mt-3 mb-3">
+                  Amenities
+                </h2>
+                <div className="flex flex-wrap ammenties-checked-lists">
+                  {amenitiesList.map((amenity, index) => (
+                    <div key={index} className="flex items-center">
+                      <input
+                        id={amenity.value}
+                        name={amenity.value}
+                        type="checkbox"
+                        value={amenity.value}
+                        className="mr-2 rounded text-indigo-600 focus:ring-indigo-500 hidden"
+                        checked={item.selectedAmenities.includes(amenity.value)} // Check if amenity is selected
+                        onChange={handleCheckboxChange}
+                      />
+                      <label htmlFor={amenity.value} className="me-2 mb-2 bg-gray-300 px-4 py-2 rounded-lg text-md text-gray-500 cursor-pointer">
+                        {amenity.title}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
 
 
-            
+
             <div className={`${step === 4 ? " " : " display-none"}`}>
               <div className="mt-4">
                 <label
@@ -616,17 +630,17 @@ export default function Property({record ,onClose}) {
                   className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-lg shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
                   placeholder="Tell more about your property..."
                 />
-                <div className= "flex flex-wrap justify-between">
+                <div className="flex flex-wrap justify-between">
 
-                <label
-                  className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
-                 Word Count  {item?.about?.length ? (item?.about?.length) : ("0")}
-                </label>
-                 <label
-                  className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
-                  Minimum 100 words.
-                </label>
-                  </div>
+                  <label
+                    className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
+                    Word Count  {item?.about?.length ? (item?.about?.length) : ("0")}
+                  </label>
+                  <label
+                    className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
+                    Minimum 100 words.
+                  </label>
+                </div>
               </div>
             </div>
 
@@ -665,14 +679,14 @@ export default function Property({record ,onClose}) {
                     type="file"
                     className="hidden"
                     onChange={handleFileChange}
-                    name="images" required 
+                    name="images" required
                     multiple
                   />
                 </label>
               </div>
               <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                {item.images.map((file, index) => (
-                  <div key={index} className="relative" >
+                {item?.images?.map((file, index) => (
+                  <div key={index} className="relative">
                     <button
                       type="button"
                       onClick={() => removeImage(index)}
@@ -680,16 +694,38 @@ export default function Property({record ,onClose}) {
                     >
                       &times;
                     </button>
-                    <img
-                      src={URL.createObjectURL(file)}
+                    <Image
+                      src={(file)}
+                      width={200}
+                      height={200}
                       alt={`Preview ${index}`}
                       className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
-                      onLoad={() => URL.revokeObjectURL(file)}
+                      onLoad={() => (file)}
+                    />
+                  </div>
+                ))}
+
+                {record?.uuid && record?.property_image?.map((file, index) => (
+                  <div key={index} className="relative">
+                    <button
+                      type="button"
+                      onClick={() => removeRecordImage(index)}
+                      className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
+                    >
+                      &times;
+                    </button>
+                    <img
+                      src={file.image_url}
+                      alt={`Preview ${index}`}
+                      className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
+                      onLoad={() => URL.revokeObjectURL(file.image_url)}
                     />
                   </div>
                 ))}
               </div>
+
             </div>
+
 
 
             <div className={`${step === 6 ? "" : "display-none"}`}>
@@ -699,7 +735,7 @@ export default function Property({record ,onClose}) {
                   className="block text-sm mb-1 font-medium text-gray-700 mt-3" >
                   Price
                 </label>
-                <input  required 
+                <input required
                   type="text"
                   name="price"
                   id="name"
@@ -711,13 +747,13 @@ export default function Property({record ,onClose}) {
             </div>
 
             <div className="pt-6 flex justify-between">
-                <button disabled={step < 2}
-                  type="button"
-                  onClick={prevStep}
-                  className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                >
-                  Back
-                </button>
+              <button disabled={step < 2}
+                type="button"
+                onClick={prevStep}
+                className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+              >
+                Back
+              </button>
 
               {step < 6 ? (
                 <button
@@ -727,13 +763,13 @@ export default function Property({record ,onClose}) {
                 >
                   Next
                 </button>
-              ) : 
-              <button
-                type="submit"
-                onClick={handleSubmit}
-                className="mx-auto flex justify-center mt-5 text-lg leading-tight text-center text-black bg-orange-300 border-2 p-4 rounded-full w-96" >
-                {Loading ? "processing.. " : "Submit"}
-              </button>
+              ) :
+                <button
+                  type="submit"
+                  onClick={handleSubmit}
+                  className="mx-auto flex justify-center mt-5 text-lg leading-tight text-center text-black bg-orange-300 border-2 p-4 rounded-full w-96" >
+                  {Loading ? "processing.. " : "Submit"}
+                </button>
               }
             </div>
           </div>
