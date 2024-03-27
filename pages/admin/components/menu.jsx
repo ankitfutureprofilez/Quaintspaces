@@ -1,27 +1,33 @@
 import React ,{useState}from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
+import Image from 'next/image'
 export default function menu({ isOpen }) {
 
 
   const router = useRouter();
-  const handleLogoutClick = () => {
-    localStorage && localStorage.removeItem('token');
-    router.push('/admin/login');
-  };
+  // const handleLogoutClick = () => {
+  //   localStorage && localStorage.removeItem('token');
+  //   router.push('/admin/login');
+  // };
 
   return (
    
     <>
-      <div className={`flex items-center absolute shadow-md rounded-lg bg-gray-200 justify-center right-70 ${isOpen ? 'block' : 'hidden'}`}>
+      <div
+        className={`flex items-center absolute shadow-md rounded-lg bg-gray-200 justify-center right-70 ${
+          isOpen ? 'block' : 'hidden'
+        }`}
+      >
         <div className="w-full min-w-[250px]  p-3 drop-shadow-xl divide-y divide-gray-300">
-        <div aria-label="header" className="flex space-x-4 items-center p-2">
-          <div aria-label="avatar" className="flex mr-auto items-center space-x-4">
-            <img
+        <div  className="flex space-x-4 items-center p-2">
+          <div className="flex mr-auto items-center space-x-4">
+            <Image
               src="https://avatars.githubusercontent.com/u/499550?v=4"
               alt="avatar Evan You"
               className="w-16 h-16 shrink-0 rounded-full"
+              width={100}
+              height={100}
             />
             <div className="space-y-2 flex flex-col flex-1 truncate">
               <div className="font-medium relative text-xl leading-tight text-gray-900">
@@ -29,7 +35,7 @@ export default function menu({ isOpen }) {
                   <span className=" relative pr-8">
                     Evan You
                     <span
-                      aria-label="verified"
+                    
                       className="absolute top-1/2 -translate-y-1/2 right-0 inline-block rounded-full"
                     >
                     </span>
@@ -40,9 +46,9 @@ export default function menu({ isOpen }) {
           </div>
            
         </div>
-        <div aria-label="navigation" className="py-2">
+        <div className="py-2">
           <nav className="grid gap-1">
-            <Link
+         <Link
               href="/admin/security"
               className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md" >
                 <svg
@@ -63,7 +69,7 @@ export default function menu({ isOpen }) {
                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
               </svg>
               <span>Security</span>
-            </Link>
+            </Link> 
 
 
             
@@ -92,8 +98,8 @@ export default function menu({ isOpen }) {
               </svg>
               <span>Settings</span>
             </Link>
-             
-            <a
+           
+          <Link
               href="/contact"
               className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
             >
@@ -120,37 +126,16 @@ export default function menu({ isOpen }) {
                 ></path>
               </svg>
               <span>Helper Center</span>
-            </a>
+            </Link> 
           </nav>
         </div>
          
-        <div aria-label="footer" className="pt-2">
-          <button onClick={handleLogoutClick}
-            type="button"
+        <div className="pt-2">
+          {/* <button 
             className="flex items-center space-x-3 py-3 px-4 w-full leading-6 text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              className="w-7 h-7"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path
-                d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"
-              ></path>
-              <path d="M9 12h12l-3 -3"></path>
-              <path d="M18 15l3 -3"></path>
-            </svg>
             <span>Logout</span>
-          </button>
+          </button> */}
         </div>
       </div>
       </div>

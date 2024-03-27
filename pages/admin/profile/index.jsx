@@ -4,6 +4,9 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { Reorder } from "framer-motion";
 import Listing from '../api/Listing';
+import AdminLayout from "../AdminLayout";
+import Element from './../element';
+
 export default function Profileindex() {
   const [record, setRecord] = useState({
     email: "",
@@ -83,6 +86,8 @@ export default function Profileindex() {
 
   return (
     <>
+    <AdminLayout>
+      <Element text= {"profile Management"} />
       <div className="container mx-auto mt-5">
         <div className="flex items-center profile-border">
           <div className="relative">
@@ -100,18 +105,9 @@ export default function Profileindex() {
               </div>
             </label>
           </div>
-          <div className="ml-7 edit-here">
-            <h2>Edit Profile</h2>
-            <p>Update your profile here</p>
-          </div>
-          <div className='border-b-2 border-soild border-zinc-300 '> </div>
         </div>
       </div>
       <div className='container mx-auto mt-5 perso-form'>
-        <div className="pers-info ">
-          <h3 >Personal Information</h3>
-          <p>Update your personal information here </p>
-        </div>
         <div className='w-full md:w-9/12 '>
           <form onSubmit={handleSubmit} className='grid sm:grid-cols-2 grid-cols-1 gap-4'>
             <div className="mb-2 sm:mb-4">
@@ -173,6 +169,7 @@ export default function Profileindex() {
         </div>
         <div className="border-bottom-form"></div>
       </div>
+    </AdminLayout>
     </>
   );
 }
