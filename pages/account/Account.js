@@ -2,14 +2,26 @@ import React from 'react'
 import Heading from '../elements/Heading'
 import Button from '../elements/Button'
 import Link from 'next/link'
+import toast from 'react-hot-toast'
 export default function Account() {
+  const setAuth = useContext(Context)
+
+  const handleClick =()=>{
+    console.log("Logout Function")
+    localStorage && localStorage.removeItem('token');
+    setAuth(null);
+    toast.success("Logout Successfully !!")
+    router.push('/');
+  }
   return (
     <>
 
       <div className='container mx-auto  account-btn'>
         <div className='flex justify-between items-center pt-12'>
           <Heading text={"Account"} />
-          <Button text={"Logout"} design={"font-inter text-base font-medium leading-tight text-center text-black w-52 border border-gray-400 p-4 rounded-full"} />
+          <Button text={"Logout"} 
+          onClick={handleClick}          
+          design={"font-inter text-base font-medium leading-tight text-center text-black w-52 border border-gray-400 p-4 rounded-full"} />
         </div>
       </div>
 

@@ -124,7 +124,9 @@ export default function Profile() {
     <>
       <div className="container mx-auto  ">
         <div className="py-6 sm:py-12">
-          <Heading text={"My Profile"} />
+          <Heading text={"My Profile"}
+          handleClick={() => router.back()}
+           />
         </div>
       </div>
       <div className="container mx-auto mt-5">
