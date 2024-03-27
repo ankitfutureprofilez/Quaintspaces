@@ -127,7 +127,8 @@ export default function Security() {
                             required
                         />
                     </div>
-                    <Button text={"Update Password"} 
+                    <Button 
+                    text = {loading ? "Updating..." : "Update Password"}
                     design={"font-inter font-lg leading-tight update-btn text-center text-black-400 w-full sm:w-96 bg-orange-300  border-0 p-4 rounded-full mt-10 mb-12"} 
                     />
                 </form>

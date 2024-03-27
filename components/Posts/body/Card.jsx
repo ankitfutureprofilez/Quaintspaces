@@ -51,7 +51,7 @@ const Card = ({ post }) => {
 
 {/* .banipark-box img { height: 250px !IMPORTANT; object-fit: cover; } */}
 
-    <div className="banipark-box">
+    <div className="banipark-box rounded-lg">
               <Image width={100} height={300}
               layout="responsive" 
               src=
