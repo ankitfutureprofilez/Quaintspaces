@@ -58,15 +58,7 @@ export default function Security() {
   return (
     <>
       <AdminLayout>
-        <Element />
-        <div className="container mx-auto">
-          <div className="my-3 sm:my-6 md:my-12 profile-text">
-            <h1>Update Password</h1>
-            <p>
-              Increase the security of your account by updating password etc.
-            </p>
-          </div>
-        </div>
+        <Element  />
         <div className=" container mx-auto">
           <div className="w-full sm:w-3/5 security-box-form">
             <form onSubmit={handleSubmit}>
