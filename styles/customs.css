@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
 }
-.banipark-box img { height: 250px !important; width: 100%; object-fit: cover; }
+.banipark-box img { height: 250px !important; width: 100%; object-fit: cover; border-radius: 3%;}
 .login-signup-btn a {
   padding: 8px 20px;
   margin: 0 7px;
@@ -270,6 +270,7 @@ footer {
 .banipark-box {
   background: #fff;
   margin-bottom: 20px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
 .banipark-box {
   background: #fff;
