@@ -1,12 +1,13 @@
 import React from "react";
+import Layout from "../layout"
 import Page from "./page"
-import AdminLayout from "../AdminLayout"
+
 export default function Index() {
   return (
     <div>
-      <AdminLayout>
+      <Layout>
       <Page/>
-      </AdminLayout>
+      </Layout>
     </div>
   );
 }

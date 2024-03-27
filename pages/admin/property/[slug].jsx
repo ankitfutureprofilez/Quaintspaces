@@ -14,6 +14,7 @@ import Date_GuestsPickerCard from "../../../components/SingleListingBody/Date_Gu
 import Reviews from "../../../components/SingleListingBody/Reviews";
 import Location from "../../../components/SingleListingBody/Location";
 import useLabeling from "../../../hooks/useLabeling";
+import Property  from "./add/Property"
 
 export default function Index() {
     const ImagesRef = useRef(null);
@@ -24,6 +25,11 @@ export default function Index() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const { slug } = router.query;
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+    const togglePopup = () => {
+      setIsPopupOpen(!isPopupOpen);
+    };
     console.log("slug",slug)
     const [record, setRecord] = useState(null);
     const [selection, setSelection] = useState(null);
@@ -137,7 +143,7 @@ export default function Index() {
         const  response =  main.propertyedit(slug);
         response.then((res)=>{
             console.log("res",res)
-        }).catch((erorr)=>{
+        }).catch((error)=>{
             console.log("error",error)
         })
     }
@@ -171,12 +177,23 @@ export default function Index() {
                         >
                             Delete
                         </button>
+                        <div>
+  <button
+    onClick={togglePopup}
+    className="hover:border hover:border-black bg-green-600 rounded-full transition-none m-1 p-2"
+  >
+    Update
+  </button>
+  {isPopupOpen && (
+    <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
+      <div className="bg-gray-200 rounded-lg flex flex-col items-center justify-center p-4">
+        <Property record={record?.data?.data} uuid={slug} onClose={togglePopup} />
+      </div>
+    </div>
+  )}
+</div>
 
-                        <button onclick={updateproperty(slug)}
-                        className=" hover:border hover:border-black  bg-green-600 rounded-full transition-none m-1 p-2"
-                            >
-                            Update
-                        </button>
+
                     </div>
                     <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
                         {/* <Info listing={record?.data} ref={AmenitiesRef}

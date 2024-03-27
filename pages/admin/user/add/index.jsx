@@ -73,8 +73,9 @@ export default function Index() {
 
   return (
     <div>
+      
       <AdminLayout>
-        <Element/>
+        <Element text={"User Add"}/>
         <div className="container mx-auto mt-5">
         {/* Image Upload */}
         <div className="flex items-center ">
@@ -174,7 +175,7 @@ export default function Index() {
 </form>
 
 
-             <button  className={"font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-orange-300   p-4 rounded-full mt-14"} >
+             <button  className={"font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-indigo-500 p-4 rounded-full mt-14"} >
               Submit
               </button>
         </div>

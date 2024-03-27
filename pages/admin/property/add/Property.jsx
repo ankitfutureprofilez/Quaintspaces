@@ -2,34 +2,35 @@ import React, { useEffect, useState } from "react";
 import amenitiesList from "../../../../aminites.json";
 import Listing from "../../api/Listing";
 import Element from "../../element";
+import {useRouter} from 'next/router';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";
-export default function Property() {
+export default function Property({record ,onClose}) {
 
+  const router = useRouter();
+  console.log("record",record)
 
   const [step, setStep] = useState(1);
   const [Loading, setLoading] = useState(false);
 
   const [item, setItem] = useState({
-    name: "",
-    area_id: "",
-    city_id: "",
-    location: "",
-    about: "",
-    price: "",
-    propertytype: "flat",
-    children: "1",
-    adults: "1",
-    guests: "",
-    bedrooms: "1",
-    beds: "1",
-    bathrooms: "1",
-    pets: "1",
-    latitude: "",
-    longitude: "",
-    address: "", 
-    selectedAmenities: [],
-    images: [],
+    name: record?.name || "",
+    area_id: record?.area || "",
+    city_id: record?.city   || "",
+    location: record?.location || "",
+    about: record?.description    || "",
+    price: record?.price || "",
+    propertytype: record?.properties_type||    "flat",
+    children: record?.children || "1",
+    adults: record?.adults|| "1",
+    bedrooms:record?.bedrooms||  "1",
+    beds: record?.beds|| "1"    ,
+    bathrooms: record?.bathrooms || "1",
+    pets: record?.no_of_pet_allowed||     "1",
+    latitude: record?.latitude ||"",
+    longitude: record?.longitudes|| "",
+    selectedAmenities: record?.amenities ? record?.amenities : [],
+    images: record?.property_images?.image_url ? record.property_images.image_url : []
   });
 
   const handleInputChange = (e) => {
@@ -66,9 +67,19 @@ export default function Property() {
      toast.error("Property description is too short. Descrption should be minimum 100 words.");
       return false;
     } 
+    if (step == 5 && item?.images && item.images.length < 5) {
+      toast.error("Please  select at least five images.");
+       return false;
+     } 
+     if (step == 6 && item?.price ) {
+      toast.error("please  fields are required.");
+       return false;
+     } 
     setStep((prev) => prev + 1);
   };
   const prevStep = () => setStep((prev) => prev - 1);
+  
+
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -169,69 +180,105 @@ export default function Property() {
 
   };
 
-  async  function  updateproperty(){
-    const main =  new  Listing();
-      const  response =  main.propertyedit(slug);
-      response.then((res)=>{
-          console.log("res",res)
-      }).catch((error)=>{
-          console.log("error",error)
-      })
-  }
-
-
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const requiredFields = ["name", "propertytype", "city_id", "area_id", "location", "price" ,"about","latitude","longitude","selectedAmenities"];
+    const requiredFields = ["name", "propertytype", "city_id", "area_id", "location", "price", "about", "latitude", "longitude", "selectedAmenities"];
     const isAnyFieldEmpty = requiredFields.some(field => !item[field]);
     const areEnoughImagesSelected = item?.images?.length >= 5;
     if (isAnyFieldEmpty || !areEnoughImagesSelected) {
-      toast.error("Please fill all required fields and select at least five images.");
-      return;
+        toast.error("Please fill all required fields and select at least five images.");
+        return;
     }
     setLoading(true);
-    const main = new Listing();
-    const formData = new FormData();
-    formData.append("name", item.name);
-    formData.append("city_id", item.city_id);
-    formData.append("area_id", item.area_id);
-    formData.append("pet_allowed", "1");
-    formData.append("no_of_pet_allowed", item.pets);
-    formData.append("description", item.about);
-    formData.append("price", item.price);
-    formData.append("properties_type", item.propertytype);
-    formData.append("location", item.location);
-    formData.append("bedrooms", item.bedrooms);
-    formData.append("beds", item.beds);
-    formData.append("bathrooms", item.bathrooms);
-    formData.append("latitude", item.latitude);
-    formData.append("longitudes",item.longitude);
-    formData.append("discount_offer", "555");
-    formData.append("check_in", " 11:55");
-    formData.append("check_out", "12:12");
-    formData.append("country_id", "101");
-    formData.append("state_id", "33");
-    formData.append("adults", item.adults);
-    formData.append("children", item.children);
-    formData.append("infants", "1");
-    formData.append("free_cancel_time", "11");
-    formData.append("amenities", item.selectedAmenities.join(","));
-    item.images.forEach((image, index) => {
-      formData.append("property_image[]", image);
-    });
-    const response = main.addproperty(formData);
-    response
-      .then((res) => {
-        if (res?.data?.status) {
-          toast.success(res.data.message);
-          setLoading(false);
-        }
-      })
-      .catch((error) => {
-        setLoading(false);
-        console.log("error", error);
-      });
-  };
+    if (record?.uuid) {
+        const main = new Listing();
+        const formData = new FormData();
+        formData.append("name", item.name);
+        formData.append("city_id", item.city_id);
+        formData.append("area_id", item.area_id);
+        formData.append("pet_allowed", "1");
+        formData.append("no_of_pet_allowed", item.pets);
+        formData.append("description", item.about);
+        formData.append("price", item.price);
+        formData.append("properties_type", item.propertytype);
+        formData.append("location", item.location);
+        formData.append("bedrooms", item.bedrooms);
+        formData.append("beds", item.beds);
+        formData.append("bathrooms", item.bathrooms);
+        formData.append("latitude", item.latitude);
+        formData.append("longitudes", item.longitude);
+        formData.append("discount_offer", "555");
+        formData.append("check_in", " 11:55");
+        formData.append("check_out", "12:12");
+        formData.append("country_id", "101");
+        formData.append("state_id", "33");
+        formData.append("adults", item.adults);
+        formData.append("children", item.children);
+        formData.append("infants", "1");
+        formData.append("free_cancel_time", "11");
+        formData.append("amenities", item.selectedAmenities);
+        item.images.forEach((image, index) => {
+            formData.append("property_image[]", image);
+        });
+        const response = main.propertyedit(record.uuid, formData);
+        response.then((res) => {
+            console.log("res", res);
+            setLoading(false);
+            router.push("/admin/property")
+        }).catch((error) => {
+            console.log("error", error);
+            setLoading(false);
+        });
+    } else {
+        const main = new Listing();
+        const formData = new FormData();
+        formData.append("name", item.name);
+        formData.append("city_id", item.city_id);
+        formData.append("area_id", item.area_id);
+        formData.append("pet_allowed", "1");
+        formData.append("no_of_pet_allowed", item.pets);
+        formData.append("description", item.about);
+        formData.append("price", item.price);
+        formData.append("properties_type", item.propertytype);
+        formData.append("location", item.location);
+        formData.append("bedrooms", item.bedrooms);
+        formData.append("beds", item.beds);
+        formData.append("bathrooms", item.bathrooms);
+        formData.append("latitude", item.latitude);
+        formData.append("longitudes", item.longitude);
+        formData.append("discount_offer", "555");
+        formData.append("check_in", " 11:55");
+        formData.append("check_out", "12:12");
+        formData.append("country_id", "101");
+        formData.append("state_id", "33");
+        formData.append("adults", item.adults);
+        formData.append("children", item.children);
+        formData.append("infants", "1");
+        formData.append("free_cancel_time", "11");
+        formData.append("amenities", item.selectedAmenities.join(","));
+        item.images.forEach((image, index) => {
+            formData.append("property_image[]", image);
+        });
+        const response = main.addproperty(formData);
+        response
+            .then((res) => {
+                if (res?.data?.status) {
+                    toast.success(res.data.message);
+                    setLoading(false);
+                }
+            })
+            .catch((error) => {
+                setLoading(false);
+                console.log("error", error);
+            });
+    }
+};
+
+
+
+  
+  
   return (
     <>
     <style>{`
@@ -241,13 +288,21 @@ export default function Property() {
     }
     `}</style>
       <Element  text={"Property"}/>
-      <div className="min-h-screen flex items-center justify-center px-6 py-8">
+  
+    
+      <div className={`flex items-center justify-center px-6 py-8 ${record && record.uuid ? '' : 'min-h-screen'}`}>
         <div className="max-w-4xl w-full space-y-8">
-
           <div className="pages-wrapper p-8 max-w-[700px] m-auto ">
-
-
+            <div className="flex flex-wrap  justify-between">
             <h2 className="text-xl font-bold mb-4 " >Add Property</h2>
+            {record?.uuid ? (
+         <button onClick={onClose}>
+         <h2 className="text-xl font-bold mb-4 " >close</h2>
+       </button>
+      ) : (<>
+      </>)}
+              </div>
+
             <div className={`${step === 1 ? "" : "display-none"}`}>
               <div className="mt-4">
                 <label
@@ -302,13 +357,16 @@ export default function Property() {
                       onChange={handleInputChange}
                       className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
                     >
-                      <option>Choose a City</option>
+                       {record && record.city && (
+                         <option value={record.city}>{record.city}</option>
+                            )}
                       {city &&
                         city.map((item, index) => (
                           <option key={index} value={item.id}>
                             {item.name}
                           </option>
                         ))}
+                       
                     </select>
                   </div>
                   <div className="">
@@ -324,7 +382,9 @@ export default function Property() {
                       onChange={handleInputChange}
                       className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
                     >
-                      <option>Choose an Area</option>
+                       {record && record.area && (
+                         <option value={record.area}>{record.area}</option>
+                            )}
                       {area &&
                         area.map((item, index) => (
                           <option key={index} value={item.id}>
@@ -507,32 +567,31 @@ export default function Property() {
 
 
             <div className={`${step === 3 ? " " : " display-none"}`}>
-              <div className="">
-                <h2 className="block text-lg mb-1 font-medium text-gray-700 mt-3 mb-3">
-                  Amenities
-                </h2>
-                <div className="flex flex-wrap ammenties-checked-lists">
-                  {amenitiesList.map((amenity, index) => (
-                    <div key={index} className="flex items-center">
-                      <input required
-                        id={amenity.value}
-                        name={amenity.value}
-                        type="checkbox"
-                        value={amenity.value}
-                        className="mr-2 rounded text-indigo-600 focus:ring-indigo-500 hidden"
-                        checked={Property?.selectedAmenities?.includes(
-                          amenity.value
-                        )}
-                        onChange={handleCheckboxChange}
-                      />
-                      <label htmlFor={amenity.value} className="me-2 mb-2 bg-gray-300 px-4 py-2 rounded-lg text-md text-gray-500 cursor-pointer">
-                        {amenity.title}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+  <div className="">
+    <h2 className="block text-lg mb-1 font-medium text-gray-700 mt-3 mb-3">
+      Amenities
+    </h2>
+    <div className="flex flex-wrap ammenties-checked-lists">
+      {amenitiesList.map((amenity, index) => (
+        <div key={index} className="flex items-center">
+          <input
+            id={amenity.value}
+            name={amenity.value}
+            type="checkbox"
+            value={amenity.value}
+            className="mr-2 rounded text-indigo-600 focus:ring-indigo-500 hidden"
+            checked={item.selectedAmenities.includes(amenity.value)} // Check if amenity is selected
+            onChange={handleCheckboxChange}
+          />
+          <label htmlFor={amenity.value} className="me-2 mb-2 bg-gray-300 px-4 py-2 rounded-lg text-md text-gray-500 cursor-pointer">
+            {amenity.title}
+          </label>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
 
             
             <div className={`${step === 4 ? " " : " display-none"}`}>
@@ -553,10 +612,17 @@ export default function Property() {
                   className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-lg shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
                   placeholder="Tell more about your property..."
                 />
+                <div className= "flex flex-wrap justify-between">
+
+                <label
+                  className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
+                 Word Count  {item?.about?.length ? (item?.about?.length) : ("0")}
+                </label>
                  <label
                   className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
                   Minimum 100 words.
                 </label>
+                  </div>
               </div>
             </div>
 
@@ -564,7 +630,7 @@ export default function Property() {
               <div className="flex items-center justify-center w-full mt-5 ">
                 <label
                   htmlFor="dropzone-file"
-                  className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-bray-800 bg-gray-700 hover:bg-gray-100 border-gray-600 hover:border-gray-500 hover:bg-gray-600"
+                  className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
                     <svg
@@ -633,7 +699,7 @@ export default function Property() {
                   type="text"
                   name="price"
                   id="name"
-                  className="mt-1 p-4 border rounded-full w-full"
+                  className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
                   value={item.price}
                   onChange={handleInputChange}
                 />

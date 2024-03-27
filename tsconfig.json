@@ -21,7 +21,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/admin/app/app/login/Login.jsx", "pages/admin/app/app/login/index.jsx", "pages/admin/app/app/property/Property.jsx", "pages/admin/app/app/property/index.jsx", "pages/admin/app/app/integrations/page.jsx", "pages/admin/app/app/teams/index.jsx", "pages/admin/app/app/teams/page.jsx", "pages/admin/app/app/layout.jsx", "pages/admin/app/app/page.jsx", "pages/admin/components/Cards/ui/tabs.jsx", "pages/admin/app/layout.tsx", "pages/admin/app/page.jsx", "pages/admin/components/layout/PageContent.jsx", "pages/admin/components/Cards/ui/ToggleSwitch.jsx", "pages/admin/components/ui/Button.jsx", "pages/admin/components/ui/Table.jsx", "pages/admin/Store.js", "pages/admin/components/teams/index.jsx", "pages/admin/components/teams/MembersTable.jsx", "pages/admin/index.jsx", "pages/admin/components/Sidebar.jsx"  ],
+, "pages/admin/app/app/login/Login.jsx", "pages/admin/app/app/login/index.jsx", "pages/admin/app/app/property/Property.jsx", "pages/admin/app/app/property/index.jsx", "pages/admin/app/app/integrations/page.jsx", "pages/admin/app/app/teams/index.jsx", "pages/admin/app/app/teams/page.jsx", "pages/admin/app/app/layout.jsx", "pages/admin/app/app/page.jsx", "pages/admin/components/Cards/ui/tabs.jsx", "pages/admin/app/layout.tsx", "pages/admin/app/page.jsx", "pages/admin/components/layout/PageContent.jsx", "pages/admin/components/Cards/ui/ToggleSwitch.jsx", "pages/admin/components/ui/Button.jsx", "pages/admin/components/ui/Table.jsx", "pages/admin/Store.js", "pages/admin/components/teams/index.jsx", "pages/admin/components/teams/MembersTable.jsx", "pages/admin/index.jsx", "pages/admin/components/Sidebar.jsx", "pages/admin/components/ui/Tablejsx"  ],
   "exclude": [
     "node_modules"
   ]
