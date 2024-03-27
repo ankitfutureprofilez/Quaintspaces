@@ -13,6 +13,10 @@ export default function Property({record ,onClose}) {
   const [step, setStep] = useState(1);
   const [Loading, setLoading] = useState(false);
 
+  function stringToArray(inputString) {
+    return inputString.split(",");
+  }
+
   const [item, setItem] = useState({
     name: record?.name || "",
     area_id: record?.area || "",
@@ -29,7 +33,7 @@ export default function Property({record ,onClose}) {
     pets: record?.no_of_pet_allowed||     "1",
     latitude: record?.latitude ||"",
     longitude: record?.longitudes|| "",
-    selectedAmenities: record?.amenities ? record?.amenities : [],
+    selectedAmenities: record?.amenities ?stringToArray(record?.amenities) : [],
     images: record?.property_images?.image_url ? record.property_images.image_url : []
   });
 

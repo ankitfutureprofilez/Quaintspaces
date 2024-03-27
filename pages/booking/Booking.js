@@ -44,10 +44,10 @@ function Booking() {
               <tbody>
                 <tr className="">
                   <td className="flex items-center">
-                    <img src="image_source" alt="alt" />
+                    {/* <img src="image_source" alt="alt" /> */}
                     <div className="text ml-2">
-                      <div class="title">title_text</div>
-                      <div class="description">2bhk_description</div>
+                      <div class="title">{item.booking_property.name}</div>
+                      {/* <div class="description">2bhk_description</div> */}
                     </div>
                   </td>
                   <td className="px-4 py-2">{item.check_in}</td>
