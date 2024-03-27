@@ -78,6 +78,8 @@ export default function Property({record ,onClose}) {
     setStep((prev) => prev + 1);
   };
   const prevStep = () => setStep((prev) => prev - 1);
+  
+
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -215,7 +217,7 @@ export default function Property({record ,onClose}) {
         formData.append("children", item.children);
         formData.append("infants", "1");
         formData.append("free_cancel_time", "11");
-        formData.append("amenities", item.selectedAmenities?.join(","));
+        formData.append("amenities", item.selectedAmenities);
         item.images.forEach((image, index) => {
             formData.append("property_image[]", image);
         });
