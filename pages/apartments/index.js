@@ -55,7 +55,7 @@ export default function index() {
         {/* Dropdown menu */}
         {isOpen && (
           <div
-            className="sortlist !p-0 !rounded-none"
+            className="sortlist "
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="options-menu"
