@@ -305,7 +305,14 @@ export default function Property({ record, onClose }) {
       color:#fff;
     }
     `}</style>
+    {
+      record?.uuid ?(
+        <>
+        </>
+      ) : (
       <Element text={"Property"} />
+      )
+    }
 
 
       <div className={`flex items-center justify-center px-6 py-8 ${record && record.uuid ? '' : 'min-h-screen'}`}>
