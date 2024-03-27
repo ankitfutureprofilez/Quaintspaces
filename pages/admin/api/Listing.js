@@ -40,8 +40,8 @@ class Listing extends Component {
     async propertyedit(uuid,data){
         return Api.post("/admin/updateProperty/" +uuid ,data)
     }
-    async  userListing (){
-        return Api.get("/admin/user-lists")
+    async  userListing (page){
+        return Api.get(`/admin/user-lists?page=${page}`)
     }
     async userStauts(id,newStatus){
         return  Api.get(`/admin/user-active-inactive/${id}/${newStatus}`)

@@ -12,31 +12,31 @@ export default function Index() {
   const [page, setPage] = useState(1);
   const [hasmore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
-
+  
   const fetchData = async (pg) => {
     try {
       setLoading(true);
       const main = new Listing();
-      const response = await main.userListing();
+      const response = await main.userListing(pg); 
       console.log("response", response);
-      if (Array.isArray(response?.data?.data)) {
-        const newdata = response?.data?.data || [];
+      if (response?.data?.data) {
+        const newdata = response?.data?.data?.data || [];
         console.log("newdata",newdata)
         setRecord((prevData) => {
-            if (pg === 1) {
-                return newdata;
-            } else {
-                return [...prevData, ...newdata];
-            }
+          if (pg === 1) {
+            return newdata;
+          } else {
+            return [...prevData, ...newdata];
+          }
         });
         setPage(response.data.current_page);
         if (response.data.current_page === response.data.last_page) {
-            setHasMore(false);
+          setHasMore(false);
         } else {
-            setHasMore(true);
+          setHasMore(true);
         }
       } else {
-          setRecord([]);
+        setRecord([]);
       }
       setLoading(false);
     } catch (error) {
@@ -44,7 +44,7 @@ export default function Index() {
       setLoading(false);
     }
   };
-
+  
   useEffect(() => {
     fetchData(1);
   }, []);
@@ -74,6 +74,7 @@ export default function Index() {
       fetchData(page + 1);
     }
   };
+  console.log("ddd",record)
 
   return (
     <div>
@@ -93,44 +94,86 @@ export default function Index() {
                 <LoadingSpinner />
               </p>
             ) : (
-              <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+              <table className="w-full overflow-x-auto text-sm rounded-md">
                 <thead className="bg-gray-50">
-                  <tr>
-                    <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+                  <tr className="hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700">
+                    <th scope="col" className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
                       Name
                     </th>
-                    <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+                    <th scope="col" className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
                       Phone Number
                     </th>
-                    <th scope="col" className="px-6 py-4 font-medium text-gray-900">
+                    <th scope="col" className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
                       Status
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                  {record.map((item, index) => (
-                    <tr key={index} className="hover:bg-gray-50">
-                      <td className="flex gap-3 px-6 py-4 font-normal text-gray-900">
+                <tbody className="space-y-2 divide-y">
+                  {record && record.map((item, index) => (
+                    <tr key={index} className="hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700">
+                      <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
                         <div className="relative h-10 w-10">
                           <img
                             className="h-full w-full rounded-full object-cover object-center"
-                            src={item.image_url ? item.image_url : "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"}
+                            src={item.image_url ? item.image_url : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"}
                             alt={item.index ? item.index : "0"}
                           />
                           <span className="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
                         </div>
                         <div className="text-sm">
-                          <div className="font-medium text-gray-700">{item.name}</div>
-                          <div className="text-gray-400">{item.email}</div>
+                          <div className="text-gray-800 font-medium">{item.name}</div>
+                          <div className="text-xs">{item.email}</div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">{item.phone_no ? item.phone_no : "null"}</td>
-                      <td className="px-6 py-4">
-                        <button onClick={() => statusUpdate(item.id, item.status === 0 ? 1 : 0)}>
-                          <span className={item.status === 0 ? "relative  inline-block px-3 py-1 font-semibold text-red-900 leading-tight" : "relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight"}>
-                            <span className="relative">{item.status === 0 ? "Deactivate" : "Activate"}</span>
-                          </span>
-                        </button>
+                      <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">{item.phone_no ? item.phone_no : ""}</td>
+                      <td className="flex gap-2 items-center text-sm py-1.5 px-2 justify-between w-[180px]">
+                       <div className="flex items-center gap-1 border rounded-full p-1">
+
+                       <button onClick={() => statusUpdate(item.id, item.status === 0 ? 1 : 0)}>
+    {item.status === 0 ? (
+      <>
+        Deactivate{" "}
+        <svg
+          className="text-gray-400"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="m19.53 5.53-14 14c-.02.02-.03.03-.05.04-.38-.32-.73-.67-1.05-1.05A9.903 9.903 0 0 1 2 12C2 6.48 6.48 2 12 2c2.49 0 4.77.91 6.52 2.43.38.32.73.67 1.05 1.05-.01.02-.02.03-.04.05ZM22 12c0 5.49-4.51 10-10 10-1.5 0-2.92-.33-4.2-.93-.62-.29-.74-1.12-.26-1.61L19.46 7.54c.48-.48 1.32-.36 1.61.26.6 1.27.93 2.7.93 4.2Z"
+            fill="currentColor"
+          ></path>
+          <path
+            d="M21.77 2.229c-.3-.3-.79-.3-1.09 0L2.23 20.689c-.3.3-.3.79 0 1.09a.758.758 0 0 0 1.08-.01l18.46-18.46c.31-.3.31-.78 0-1.08Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </>
+    ) : (
+      <>
+        <span>Activate</span>{" "}
+        <svg
+          className="text-emerald-500"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </>
+    )}
+  </span>
+</button>
+
+                       </div>
+
                       </td>
                     </tr>
                   ))}
@@ -138,10 +181,14 @@ export default function Index() {
               </table>
             )}
             {record && record.length > 0 && hasmore && !loading && (
-              <div className="loader-btn" onClick={loadMore}>
-                <Link className="btn blue-gradient-btn">Load More</Link>
-              </div>
-            )}
+  <div className="flex justify-center">
+    <div className="btn blue-gradient-btn text-center bg-indigo-500" onClick={loadMore} style={{ marginBottom: "1rem" }}>
+      Load More
+    </div>
+  </div>
+)}
+
+
             {!loading && !hasmore && record.length < 0 && (
               <div className="loader-btn">
                 <button className="btn blue-gradient-btn">No More Data !!</button>
