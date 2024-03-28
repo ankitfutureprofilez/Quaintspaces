@@ -19,8 +19,8 @@ export default function Property({ record, onClose }) {
 
   const [item, setItem] = useState({
     name: record?.name || "",
-    area_id: record?.area || "",
-    city_id: record?.city || "",
+    area_id: record?.area_id || "",
+    city_id: record?.city_id || "",
     location: record?.location || "",
     about: record?.description || "",
     price: record?.price || "",
@@ -36,9 +36,7 @@ export default function Property({ record, onClose }) {
     selectedAmenities: record?.amenities
       ? stringToArray(record?.amenities)
       : [],
-    images: record?.property_image
-      ? record.property_image.map((image) => image.image_url)
-      : [],
+    images: [],
   });
   console.log("item", item.images);
 
@@ -82,20 +80,16 @@ export default function Property({ record, onClose }) {
       toast.error("Please choose atleast 4 amenities.");
       return false;
     }
-    if (step == 4 && item.about && item.about.length < 100) {
-      toast.error(
-        "Property description is too short. Descrption should be minimum 100 words."
-      );
+    if (step === 4 && (!item.about || item.about.trim().length === 0 || item.about.length < 100)) {
+      toast.error("Property description is too short. Description should be a minimum of 100 words.");
       return false;
     }
 
-    if (
-      step == 5 &&
-      item?.images?.length + record?.property_images?.length < 5
-    ) {
-      toast.error("Please  select at least five images.");
+    if (step === 5 && item?.images?.length < 5) {
+      toast.error("Please select at least five images.");
       return false;
     }
+
     if (step == 6 && item?.price) {
       toast.error("please  fields are required.");
       return false;
@@ -207,6 +201,19 @@ export default function Property({ record, onClose }) {
     }));
   };
 
+  const deletePropertyImage = (recordUUID, itemUUID) => {
+    const main = new Listing();
+    main
+      .propertyImagedelete(recordUUID, itemUUID)
+      .then((response) => {
+        // router.push("/admin/property")
+        toast.success(response.data.message)
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const requiredFields = [
@@ -263,9 +270,12 @@ export default function Property({ record, onClose }) {
       const response = main.propertyedit(record.uuid, formData);
       response
         .then((res) => {
-          console.log("res", res);
-          setLoading(false);
-          router.push("/admin/property");
+          if (res?.data?.status) {
+            console.log("update res", res)
+            setLoading(false);
+            toast.success(res.data.message);
+            router.push("/admin/property");
+          }
         })
         .catch((error) => {
           console.log("error", error);
@@ -304,10 +314,31 @@ export default function Property({ record, onClose }) {
       const response = main.addproperty(formData);
       response
         .then((res) => {
+          console.log("res", res)
           if (res?.data?.status) {
             toast.success(res.data.message);
             setLoading(false);
           }
+          setItem({
+            name: "",
+            area_id: "",
+            city_id: "",
+            location: "",
+            about: "",
+            price: "",
+            propertytype: "flat",
+            children: "1",
+            adults: "1",
+            bedrooms: "1",
+            beds: "1",
+            bathrooms: "1",
+            pets: "1",
+            latitude: "",
+            longitude: "",
+            selectedAmenities: ""
+
+          })
+          router.push("/admin/property")
         })
         .catch((error) => {
           setLoading(false);
@@ -327,15 +358,13 @@ export default function Property({ record, onClose }) {
       {record?.uuid ? <>6</> : <Element text={"Property"} />}
 
       <div
-        className={`flex items-center justify-center px-6 py-8 ${
-          record && record.uuid ? "w-full !px-0 !py-0" : "min-h-screen"
-        }`}
+        className={`flex items-center justify-center px-6 py-8 ${record && record.uuid ? "w-full !px-0 !py-0" : "min-h-screen"
+          }`}
       >
         <div className="max-w-4xl w-full space-y-8">
           <div
-            className={`pages-wrapper  ${
-              record && record.uuid ? " max-w-[700px]" : ""
-            } m-auto `}
+            className={`pages-wrapper  ${record && record.uuid ? " max-w-[700px]" : ""
+              } m-auto `}
           >
             <div className="flex flex-wrap  justify-between">
               <h2 className="text-xl font-bold mb-4 ">Add Property</h2>
@@ -407,7 +436,7 @@ export default function Property({ record, onClose }) {
                       className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
                     >
                       {record && record.city && (
-                        <option value={record.city}>{record.city}</option>
+                        <option value={record.city_id}>{record.city}</option>
                       )}
                       {city &&
                         city.map((item, index) => (
@@ -432,7 +461,7 @@ export default function Property({ record, onClose }) {
                       className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
                     >
                       {record && record.area && (
-                        <option value={record.area}>{record.area}</option>
+                        <option value={record.area_id}>{record.area}</option>
                       )}
                       {area &&
                         area.map((item, index) => (
@@ -491,46 +520,44 @@ export default function Property({ record, onClose }) {
               <div className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-x-8 mt-5">
                 <div>
                   <label
-                    htmlFor="guests"
+                    htmlFor="adults"
                     className="block text-sm mb-1 font-medium text-gray-700 mt-3"
                   >
                     Adult
                   </label>
                   <select
                     required
-                    id="guests"
+                    id="adults"
                     name="adults"
                     autoComplete="guests"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
                     value={item.adults}
                     onChange={handleInputChange}
                   >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                    {Array.from({ length: 20 }, (_, i) => (
+                      <option key={i + 1}>{i + 1}</option>
+                    ))}
                   </select>
                 </div>
                 <div>
                   <label
-                    htmlFor="guests"
+                    htmlFor="children"
                     className="block text-sm mb-1 font-medium text-gray-700 mt-3"
                   >
-                    children
+                    Children
                   </label>
                   <select
                     required
-                    id="guests"
+                    id="children"
                     name="children"
                     autoComplete="guests"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
                     value={item.children}
                     onChange={handleInputChange}
                   >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                    {Array.from({ length: 20 }, (_, i) => (
+                      <option key={i + 1}>{i + 1}</option>
+                    ))}
                   </select>
                 </div>
                 <div>
@@ -548,9 +575,9 @@ export default function Property({ record, onClose }) {
                     value={item.bedrooms}
                     onChange={handleInputChange}
                   >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    {Array.from({ length: 20 }, (_, i) => (
+                      <option key={i + 1}>{i + 1}</option>
+                    ))}
                   </select>
                 </div>
                 <div>
@@ -569,9 +596,9 @@ export default function Property({ record, onClose }) {
                     value={item.beds}
                     onChange={handleInputChange}
                   >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    {Array.from({ length: 20 }, (_, i) => (
+                      <option key={i + 1}>{i + 1}</option>
+                    ))}
                   </select>
                 </div>
                 <div>
@@ -590,12 +617,11 @@ export default function Property({ record, onClose }) {
                     value={item.bathrooms}
                     onChange={handleInputChange}
                   >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    {Array.from({ length: 20 }, (_, i) => (
+                      <option key={i + 1}>{i + 1}</option>
+                    ))}
                   </select>
                 </div>
-
                 <div>
                   <label
                     htmlFor="pet"
@@ -612,13 +638,14 @@ export default function Property({ record, onClose }) {
                     value={item.pets}
                     onChange={handleInputChange}
                   >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    {Array.from({ length: 20 }, (_, i) => (
+                      <option key={i + 1}>{i + 1}</option>
+                    ))}
                   </select>
                 </div>
               </div>
             </div>
+
 
             <div className={`${step === 3 ? " " : " display-none"}`}>
               <div className="">
@@ -670,7 +697,12 @@ export default function Property({ record, onClose }) {
                 />
                 <div className="flex flex-wrap justify-between">
                   <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
-                    Word Count {item?.about?.length ? item?.about?.length : "0"}
+                    {item?.about ? (
+                      <span>{item.about.length}/100 characters</span>
+                    ) : (
+                      <span>0/100 characters</span>
+                    )}
+
                   </label>
                   <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
                     Minimum 100 words.
@@ -721,26 +753,52 @@ export default function Property({ record, onClose }) {
                 </label>
               </div>
               <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                {item?.images?.map((file, index) => (
-                  <div key={index} className="relative">
-                    <button
-                      type="button"
-                      onClick={() => removeImage(index)}
-                      className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
-                    >
-                      &times;
-                    </button>
-                    <Image
-                      src={file}
-                      width={200}
-                      height={200}
-                      alt={`Preview ${index}`}
-                      className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
-                      onLoad={() => file}
-                    />
-                  </div>
-                ))}
+
+                {record.uuid ? (
+                  record?.property_image.map((item, index) => (
+
+                    <div key={index} className="relative">
+
+                      <button
+                        type="button"
+                        onClick={() => deletePropertyImage(record.uuid, item.uuid)}
+                        className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
+                      >
+                        &times;
+                      </button>
+                      <Image
+                        src={item?.image_url}
+                        width={200}
+                        height={200}
+                        alt={`Preview ${index}`}
+                        className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
+                      />
+                    </div>
+                  ))
+                ) : (<></>)}
+                {(
+                  item?.images?.map((file, index) => (
+                    <div key={index} className="relative">
+                      <button
+                        type="button"
+                        onClick={() => removeImage(index)}
+                        className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
+                      >
+                        &times;
+                      </button>
+                      <Image
+                        src={URL.createObjectURL(file)}
+                        width={200}
+                        height={200}
+                        alt={`Preview ${index}`}
+                        className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
+                        onLoad={() => URL.revokeObjectURL(file)}
+                      />
+                    </div>
+                  ))
+                )}
               </div>
+
             </div>
 
             <div className={`${step === 6 ? "" : "display-none"}`}>
@@ -768,7 +826,7 @@ export default function Property({ record, onClose }) {
                 disabled={step < 2}
                 type="button"
                 onClick={prevStep}
-                className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                className="inline-flex justify-center items-center h-10 py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
               >
                 Back
               </button>
