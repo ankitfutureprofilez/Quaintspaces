@@ -695,7 +695,7 @@ export default function Property({ record, onClose }) {
   height={200}
   alt={`Preview ${index}`}
   className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
-  onLoad={() => file && URL.revokeObjectURL(file)}
+  onLoad={() => URL.revokeObjectURL(file)}
 />
 
                   </div>
