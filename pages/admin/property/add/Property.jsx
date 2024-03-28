@@ -6,9 +6,9 @@ import { useRouter } from "next/router";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Image from "next/image";
-export default function Property({ record, onClose }) {
+export default function Property({ record, onClose,uuid }) {
   const router = useRouter();
-  console.log("record", record);
+  console.log("updatrecord", record);
 
   const [step, setStep] = useState(1);
   const [Loading, setLoading] = useState(false);
@@ -117,7 +117,10 @@ export default function Property({ record, onClose }) {
 
   const id = 33;
   const [city, setCity] = useState([]);
-  useEffect(() => {
+
+  const [area, setArea] = useState([]);
+
+  const handleCitySelect = () => {
     const main = new Listing();
     const response = main.city_list(id);
     response
@@ -127,23 +130,19 @@ export default function Property({ record, onClose }) {
       .catch((error) => {
         console.log("error", error);
       });
-  }, []);
-
-  const [area, setArea] = useState([]);
-  useEffect(() => {
+  };
+  
+  const handleAreaSelect = () => {
     const main = new Listing();
-    const fetchAreaList = async () => {
-      const response = main.area_list(3378);
-      response
-        .then((res) => {
-          setArea(res?.data?.data);
-        })
-        .catch((error) => {
-          console.log("error", error);
-        });
-    };
-    fetchAreaList();
-  }, []);
+    const response = main.area_list(3378);
+    response
+      .then((res) => {
+        setArea(res?.data?.data);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  };
 
   const fetchLocationData = async (manualLocation) => {
     if (manualLocation) {
@@ -355,7 +354,7 @@ export default function Property({ record, onClose }) {
       color:#fff;
     }
     `}</style>
-      {record?.uuid ? <>6</> : <Element text={"Property"} />}
+      {record?.uuid ? <></> : <Element text={"Property"} />}
 
       <div
         className={`flex items-center justify-center px-6 py-8 ${record && record.uuid ? "w-full !px-0 !py-0" : "min-h-screen"
@@ -422,55 +421,57 @@ export default function Property({ record, onClose }) {
                     </select>
                   </div>
                   <div className="">
-                    <label
-                      htmlFor="citySelect"
-                      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                    >
-                      City
-                    </label>
-                    <select
-                      required
-                      id="citySelect"
-                      name="city_id"
-                      onChange={handleInputChange}
-                      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
-                    >
-                      {record && record.city && (
-                        <option value={record.city_id}>{record.city}</option>
-                      )}
-                      {city &&
-                        city.map((item, index) => (
-                          <option key={index} value={item.id}>
-                            {item.name}
-                          </option>
-                        ))}
-                    </select>
-                  </div>
-                  <div className="">
-                    <label
-                      htmlFor="areaSelect"
-                      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                    >
-                      Area
-                    </label>
-                    <select
-                      required
-                      id="areaSelect"
-                      name="area_id"
-                      onChange={handleInputChange}
-                      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
-                    >
-                      {record && record.area && (
-                        <option value={record.area_id}>{record.area}</option>
-                      )}
-                      {area &&
-                        area.map((item, index) => (
-                          <option key={index} value={item.id}>
-                            {item.name}
-                          </option>
-                        ))}
-                    </select>
-                  </div>
+    <label
+      htmlFor="citySelect"
+      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
+    >
+      City
+    </label>
+    <select
+      required
+      id="citySelect"
+      name="city_id"
+      onChange={handleInputChange}
+      onClick={handleCitySelect} // Trigger API call on click
+      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
+    >
+      {record && record.city && (
+        <option value={record.city_id}>{record.city}</option>
+      )}
+      {city &&
+        city.map((item, index) => (
+          <option key={index} value={item.id}>
+            {item.name}
+          </option>
+        ))}
+    </select>
+  </div>
+  <div className="">
+    <label
+      htmlFor="areaSelect"
+      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
+    >
+      Area
+    </label>
+    <select
+      required
+      id="areaSelect"
+      name="area_id"
+      onChange={handleInputChange}
+      onClick={handleAreaSelect} // Trigger API call on click
+      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
+    >
+      {record && record.area && (
+        <option value={record.area_id}>{record.area}</option>
+      )}
+      {area &&
+        area.map((item, index) => (
+          <option key={index} value={item.id}>
+            {item.name}
+          </option>
+        ))}
+    </select>
+  </div>
                 </div>
               </div>
               <div className="relative mt-4 text-sm font-medium text-gray-700">
@@ -661,7 +662,7 @@ export default function Property({ record, onClose }) {
                         type="checkbox"
                         value={amenity.value}
                         className="mr-2 rounded text-indigo-600 focus:ring-indigo-500 hidden"
-                        checked={item.selectedAmenities.includes(amenity.value)} // Check if amenity is selected
+                        checked={item.selectedAmenities.includes(amenity.value)} 
                         onChange={handleCheckboxChange}
                       />
                       <label
@@ -754,7 +755,7 @@ export default function Property({ record, onClose }) {
               </div>
               <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
 
-                {record.uuid ? (
+                {uuid ? (
                   record?.property_image.map((item, index) => (
 
                     <div key={index} className="relative">
