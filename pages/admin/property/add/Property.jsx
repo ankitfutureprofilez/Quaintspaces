@@ -684,13 +684,13 @@ export default function Property({ record, onClose }) {
                   <div key={index} className="relative">
                     <button
                       type="button"
-                      onClick={() => removeImage(index)}
+                      onClick={() => URL.removeImage(index)}
                       className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
                     >
                       &times;
                     </button>
                     <Image
-  src={createObjectURL(file)}
+  src={URL.createObjectURL(file)}
   width={200}
   height={200}
   alt={`Preview ${index}`}
