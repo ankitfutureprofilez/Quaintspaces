@@ -35,7 +35,7 @@ export default function Property({ record, onClose }) {
     latitude: record?.latitude || "",
     longitude: record?.longitudes || "",
     selectedAmenities: record?.amenities ? stringToArray(record?.amenities) : [],
-    images: record?.property_image ? record.property_image : []
+      images: record?.property_image ? record.property_image.map(image => image.image_url) : []
   });
   console.log("item", item)
 
@@ -61,13 +61,6 @@ export default function Property({ record, onClose }) {
     }));
   };
 
-
-  const removeRecordImage = (indexToRemove) => {
-    setItem(prevItem => {
-      const updatedImages = prevItem.record?.property_image?.filter((_, index) => index !== indexToRemove);
-      return { ...prevItem, images: updatedImages };
-    });
-  };
 
 
 
@@ -700,33 +693,17 @@ export default function Property({ record, onClose }) {
                       &times;
                     </button>
                     <Image
-                      src={(file)}
+                      src={URL?.createObjectURL(file)}
                       width={200}
                       height={200}
                       alt={`Preview ${index}`}
                       className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
-                      onLoad={() => (file)}
+                      onLoad={() => (URL?.revokeObjectURL(file))}
                     />
                   </div>
                 ))}
 
-                {record?.uuid && record?.property_image?.map((file, index) => (
-                  <div key={index} className="relative">
-                    <button
-                      type="button"
-                      onClick={() => removeRecordImage(index)}
-                      className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
-                    >
-                      &times;
-                    </button>
-                    <img
-                      src={file.image_url}
-                      alt={`Preview ${index}`}
-                      className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
-                      onLoad={() => URL.revokeObjectURL(file.image_url)}
-                    />
-                  </div>
-                ))}
+               
               </div>
             </div>
 
