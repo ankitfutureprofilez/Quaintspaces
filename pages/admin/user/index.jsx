@@ -127,12 +127,12 @@ export default function Index() {
                       </td>
                       <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">{item.phone_no ? item.phone_no : ""}</td>
                       <td className="flex gap-2 items-center text-sm py-1.5 px-2 justify-between w-[180px]">
-                       <div className="flex items-center gap-1 border rounded-full p-1">
-
                        <button onClick={() => statusUpdate(item.id, item.status === 0 ? 1 : 0)}>
     {item.status === 0 ? (
-      <>
-        Deactivate{" "}
+      <div classname ="flex items-center gap-1 border rounded-full p-1">
+      <p className="text-xs">
+      Deactivate{" "}
+        </p>
         <svg
           className="text-gray-400"
           xmlns="http://www.w3.org/2000/svg"
@@ -150,10 +150,10 @@ export default function Index() {
             fill="currentColor"
           ></path>
         </svg>
-      </>
+      </div>
     ) : (
-      <>
-        <span>Activate</span>{" "}
+      <div className ="flex items-center gap-1 border rounded-full p-1">
+        <p className="text-xs">Activate</p>{" "}
         <svg
           className="text-emerald-500"
           xmlns="http://www.w3.org/2000/svg"
@@ -167,12 +167,10 @@ export default function Index() {
             fill="currentColor"
           ></path>
         </svg>
-      </>
+      </div>
     )}
-  </span>
 </button>
 
-                       </div>
 
                       </td>
                     </tr>

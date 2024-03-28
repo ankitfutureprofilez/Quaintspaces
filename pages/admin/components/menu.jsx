@@ -46,7 +46,7 @@ export default function menu({ isOpen , record }) {
           <nav className="grid gap-1">
          <Link
               href="/admin/security"
-              className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md" >
+              className="flex items-center leading-6 space-x-3 py-2 px-2 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md" >
                 <svg
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
@@ -71,7 +71,7 @@ export default function menu({ isOpen , record }) {
             
             <Link
               href="/admin/profile"
-              className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
+              className="flex items-center leading-6 space-x-3 py-2 px-2 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +97,7 @@ export default function menu({ isOpen , record }) {
            
           <Link
               href="/contact"
-              className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
+              className="flex items-center leading-6 space-x-3 py-2 px-2 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

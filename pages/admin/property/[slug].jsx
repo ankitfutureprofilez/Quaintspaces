@@ -186,7 +186,7 @@ export default function Index() {
   </button>
   {isPopupOpen && (
     <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
-      <div className="bg-gray-200 rounded-lg flex flex-col items-center justify-center p-4">
+      <div className="bg-gray-200 rounded-lg flex flex-col items-center justify-center p-8 property-popup">
         <Property record={record?.data?.data} uuid={slug} onClose={togglePopup} />
       </div>
     </div>
