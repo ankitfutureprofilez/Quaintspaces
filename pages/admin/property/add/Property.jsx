@@ -298,7 +298,7 @@ export default function Property({ record, onClose }) {
       color:#fff;
     }
     `}</style>
-    {record?.uuid : (<>
+    {record?.uuid ? (<>6
     </>) : ( <Element  text={"Property"}/>) }
      
   
@@ -690,13 +690,14 @@ export default function Property({ record, onClose }) {
                       &times;
                     </button>
                     <Image
-                      src={URL?.createObjectURL(file)}
-                      width={200}
-                      height={200}
-                      alt={`Preview ${index}`}
-                      className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
-                      onLoad={() => (URL?.revokeObjectURL(file))}
-                    />
+  src={createObjectURL(file)}
+  width={200}
+  height={200}
+  alt={`Preview ${index}`}
+  className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
+  onLoad={() => file && URL.revokeObjectURL(file)}
+/>
+
                   </div>
                 ))}
 
