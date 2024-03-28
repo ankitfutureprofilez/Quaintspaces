@@ -699,6 +699,7 @@ export default function Property({ record, onClose }) {
   onLoad={() => (file)}
 />
 
+
                   </div>
                 ))}
 
