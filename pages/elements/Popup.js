@@ -1,5 +1,6 @@
-import React, { Fragment, useRef, useEffect, useState } from "react";
+import React, { Fragment, useRef, useEffect, useState, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { Context } from "../_app";
 
 export default function Popup({
   children,
@@ -13,6 +14,7 @@ export default function Popup({
 }) {
   // console.log("isOpen", isOpen);
 
+  const { setOpenLogin } = useContext(Context);
   const cancelButtonRef = useRef(null);
   const [isClient, setIsClient] = useState(false);
 
@@ -26,7 +28,7 @@ export default function Popup({
   }, [isOpen]);
 
   const closep = () => {
-    setOpenpop(false);
+    setOpenLogin(false);
     // togglePopup && togglePopup(!isOpen);
   };
 
