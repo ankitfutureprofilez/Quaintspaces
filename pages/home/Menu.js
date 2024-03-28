@@ -20,33 +20,6 @@ export default function Menu() {
   return (
     <>
       <div className="flex items-center absolute shadow-md rounded-lg bg-gray-200 justify-center right-0">
-<<<<<<< HEAD
-        <div className="w-full min-w-[250px]  p-3 drop-shadow-xl divide-y divide-gray-300">
-          <div aria-label="header" className="flex space-x-4 items-center p-2">
-            <div
-              aria-label="avatar"
-              className="flex mr-auto items-center space-x-4"
-            >
-              <Image
-                src={
-                  auth?.image_url
-                    ? auth?.image_url
-                    : "https://quaintstays.laraveldevelopmentcompany.com/public/storage/user/profile-images/1710928138.jpg"
-                }
-                alt="profile"
-                width={100}
-                height={100}
-              />
-              <div className="space-y-2 flex flex-col flex-1 truncate">
-                <div className="font-medium relative text-xl leading-tight text-gray-900">
-                  <span className="flex">
-                    <span className=" relative pr-8">
-                      {auth?.first_name}
-                      <span
-                        aria-label="verified"
-                        className="absolute top-1/2 -translate-y-1/2 right-0 inline-block rounded-full"
-                      ></span>
-=======
         <div className="w-full min-w-[240px]  p-3 drop-shadow-xl divide-y divide-gray-300">
         <div aria-label="header" className="flex space-x-4 items-center p-2">
           <div aria-label="avatar" className="flex mr-auto items-center space-x-4">
@@ -58,15 +31,9 @@ export default function Menu() {
                   />
             <div className="space-y-2 flex flex-col flex-1 truncate">
               <div className="font-medium relative text-xl leading-tight text-gray-900">
-                <span className="flex">
-                  <span className=" relative pr-8">
+                <span className="flex relative pr-8">
                   {auth?.first_name}
-                    <span
-                      aria-label="verified"
-                      className="absolute top-1/2 -translate-y-1/2 right-0 inline-block rounded-full"
-                    >
->>>>>>> 98798a01ca01167ffc26b0c02a57ae01004bcbd9
-                    </span>
+                    <span aria-label="verified" className="absolute top-1/2 -translate-y-1/2 right-0 inline-block rounded-full"></span>
                   </span>
                 </div>
               </div>

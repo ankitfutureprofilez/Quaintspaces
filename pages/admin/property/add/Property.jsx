@@ -9,8 +9,6 @@ import Image from "next/image";
 export default function Property({ record, onClose }) {
 
   const router = useRouter();
-  console.log("record", record)
-
   const [step, setStep] = useState(1);
   const [Loading, setLoading] = useState(false);
 
@@ -37,8 +35,6 @@ export default function Property({ record, onClose }) {
     selectedAmenities: record?.amenities ? stringToArray(record?.amenities) : [],
       images: record?.property_image ? record.property_image.map(image => image.image_url) : []
   });
-  console.log("item", item)
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -73,11 +69,10 @@ export default function Property({ record, onClose }) {
       toast.error("Please choose atleast 4 amenities.");
       return false;
     }
-    if (step == 4 && item.about && item.about.length < 100) {
-      toast.error("Property description is too short. Descrption should be minimum 100 words.");
+    if (step == 4 && item.about && item.about == null && item.about.length < 100) {
+      toast.error("Property description is too short. Description should be minimum 100 words.");
       return false;
     }
-
     if (step == 5 && item?.images?.length + record?.property_images?.length < 5) {
       toast.error("Please  select at least five images.");
       return false;
@@ -307,7 +302,7 @@ export default function Property({ record, onClose }) {
         <div className="max-w-4xl w-full space-y-8">
           <div className={`pages-wrapper  ${record && record.uuid ? ' max-w-[700px]' : ''} m-auto `}>
             <div className="flex flex-wrap  justify-between">
-            <h2 className="text-xl font-bold mb-4 " >Add Property</h2>
+            <h2 className="text-xl font-bold mb-4 " >Add Property {step}</h2>
             {record?.uuid ? (
          <button onClick={onClose}>
          <h2 className="text-xl font-bold mb-4 " >X</h2>
