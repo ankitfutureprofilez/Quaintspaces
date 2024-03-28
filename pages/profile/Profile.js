@@ -7,6 +7,7 @@ import { Reorder } from "framer-motion";
 import Listings from "./../api/laravel/Listings";
 export default function Profile() {
   const [loading, setLoading] = useState(false);
+  const [ImageUploaded, setImageUploaded] = useState(false);
   const [data, setData] = useState({
     email: "",
     phone_no: "",
@@ -32,6 +33,7 @@ export default function Profile() {
 
   const loadFile = (event) => {
     const file = event.target.files[0];
+    setImageUploaded(true);
     const output = document.getElementById("preview_img");
     setRecord((prevData) => ({
       ...prevData,
@@ -86,7 +88,7 @@ export default function Profile() {
     const main = new Listings();
     const formdata = new FormData();
     formdata.append("email", record.email);
-    formdata.append("image", record.image);
+    ImageUploaded === true ? formdata.append("image", record.image) : null;
     formdata.append("first_name", record.first);
     formdata.append("last_name", record.last);
     formdata.append("phone_no", record.phone);
@@ -104,17 +106,21 @@ export default function Profile() {
             first: res?.data?.data?.first_name,
             last: res?.data?.data?.last_name,
           });
+          setImageUploaded(false);
         } else {
           toast.error(res?.data.message);
+          setImageUploaded(false);
           // console.log(res?.data.message);
         }
         setLoading(false);
+        setImageUploaded(false);
       })
       .catch((error) => {
         console.log("error", error);
         toast.error(error.message);
         toast.error(error?.response.data);
         setLoading(false);
+        setImageUploaded(false);
       });
   };
 

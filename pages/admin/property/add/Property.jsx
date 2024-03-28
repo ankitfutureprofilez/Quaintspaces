@@ -37,7 +37,7 @@ export default function Property({ record, onClose }) {
     selectedAmenities: record?.amenities ? stringToArray(record?.amenities) : [],
       images: record?.property_image ? record.property_image.map(image => image.image_url) : []
   });
-  console.log("item", item)
+  console.log("item", item.images)
 
 
   const handleInputChange = (e) => {
@@ -47,6 +47,7 @@ export default function Property({ record, onClose }) {
 
   const handleFileChange = (e) => {
     let filesToAdd = Array.from(e.target.files);
+    console.log("filed uploaded",filesToAdd)
     let newImages = item.images.concat(filesToAdd).slice(0, 6);
     setItem((prevPoperty) => ({
       ...prevPoperty,
@@ -684,18 +685,18 @@ export default function Property({ record, onClose }) {
                   <div key={index} className="relative">
                     <button
                       type="button"
-                      onClick={() => URL.removeImage(index)}
+                      onClick={() => removeImage(index)}
                       className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
                     >
                       &times;
                     </button>
                     <Image
-  src={URL.createObjectURL(file)}
+  src={(file)}
   width={200}
   height={200}
   alt={`Preview ${index}`}
   className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
-  onLoad={() => URL.revokeObjectURL(file)}
+  onLoad={() => (file)}
 />
 
                   </div>
