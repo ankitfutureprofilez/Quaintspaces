@@ -79,8 +79,8 @@ export default function index() {
 
   const [sortBy, setSortBy] = useState("popularity");
   const [isModalOpen, setIsModalOpen] = useState(false); // State variable for modal visibility
-  const [lowPrice, setLowPrice] = useState(0);
-  const [highPrice, setHighPrice] = useState(20000);
+  const [lowPrice, setLowPrice] = useState(null);
+  const [highPrice, setHighPrice] = useState(null);
   const [fetch, setFetch] = useState(false);
   const [selection, setSelection] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
@@ -113,14 +113,19 @@ export default function index() {
   async function fetchLists() {
     setloading(true);
     // console.log("sortBy",sortBy);
-    let url = `min_price=${lowPrice}&max_price=${highPrice}&`;
+    let url = "";
+    // let url = `min_price=${lowPrice}&max_price=${highPrice}&`;
+    if(lowPrice!=null){
+      url+=`min_price=${lowPrice}+&`;
+    }
+    if(highPrice!=null){
+      url+=`max_price=${highPrice}+&`;
+    }
     if (selectedDay != null) {
-      url += format(selectedDay, "yyyy-MM-dd");
-      url += "&";
+      url +="check_in="+ format(selectedDay, "yyyy-MM-dd")+"&";
     }
     if (selectEnd != null) {
-      url += format(selectEnd, "yyyy-MM-dd");
-      url += "&";
+      url +="check_out="+ format(selectEnd, "yyyy-MM-dd")+"&";
     }
     if (sortBy == "popularity") {
       url += "popularity_sort=desc";

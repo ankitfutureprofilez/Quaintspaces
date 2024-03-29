@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 import Image from 'next/image';
 import AdminLayout from "../AdminLayout";
+import Property from "./add/Property";
 
 export default function index() {
 
@@ -22,13 +23,38 @@ export default function index() {
       });
   }, []);
 
- console.log("re",record)
+  console.log("re", record)
+
+  const deleteImage = (uuid) => {
+    if (!uuid) {
+      console.error("UUID is undefined or null");
+      return;
+    }
+
+    const main = new Listing();
+    main
+      .propertydelete(uuid)
+      .then((response) => {
+        console.log("response.data.message", response.data.message)
+        toast.success(response.data.message);
+        router.push("/admin/property");
+      })
+      .catch((error) => {
+        console.error("Error deleting image:", error);
+      });
+  };
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
 
   return (
-      <>
-      
+    <>
+
       <AdminLayout>
-        <Element text={"Property List"}/>
+        <Element text={"Property List"} />
         <div>
           <div className="flex flex-wrap mt-5 px-4 py-5">
             {record &&
@@ -42,7 +68,7 @@ export default function index() {
                           display: "inline-block",
                         }}
                       >
-                       
+
                         <img
                           loading="lazy"
                           width="100"
@@ -88,7 +114,33 @@ export default function index() {
                             ></path>
                           </svg>
                         </Link>
+
                       </div>
+                    </div>
+                    <div className="flex  items-left  justify-left gap-5">
+                      <button
+                        className=" hover:border hover:border-black  bg-red-600 rounded-full transition-none m-1 p-2"
+                        onClick={() => deleteImage(item?.uuid)}
+                      >
+                        Delete
+                      </button>
+                      <div>
+                        {/* <button
+                          onClick={togglePopup}
+                          className="hover:border hover:border-black bg-green-600 rounded-full transition-none m-1 p-2"
+                        >
+                          Update
+                        </button>
+                        {isPopupOpen && (
+                          <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
+                            <div className="bg-gray-200 rounded-lg flex flex-col items-center justify-center p-8 property-popup">
+                              <Property record={item} uuid={item.uuid} onClose={togglePopup} />
+                            </div>
+                          </div>
+                        )} */}
+                      </div>
+
+
                     </div>
                   </li>
                 </ul>

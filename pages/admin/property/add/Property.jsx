@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Image from "next/image";
-export default function Property({ record, onClose }) {
+export default function Property({ record, onClose,uuid }) {
   const router = useRouter();
   console.log("record", record)
 
@@ -19,8 +19,8 @@ export default function Property({ record, onClose }) {
 
   const [item, setItem] = useState({
     name: record?.name || "",
-    area_id: record?.area || "",
-    city_id: record?.city || "",
+    area_id: record?.area_id || "",
+    city_id: record?.city_id || "",
     location: record?.location || "",
     about: record?.description || "",
     price: record?.price || "",
@@ -36,9 +36,7 @@ export default function Property({ record, onClose }) {
     selectedAmenities: record?.amenities
       ? stringToArray(record?.amenities)
       : [],
-    images: record?.property_image
-      ? record.property_image.map((image) => image.image_url)
-      : [],
+    images: [],
   });
   console.log("item", item)
 
@@ -92,6 +90,7 @@ export default function Property({ record, onClose }) {
       toast.error("Please  select at least five images.");
       return false;
     }
+
     if (step == 6 && item?.price) {
       toast.error("please  fields are required.");
       return false;
@@ -119,7 +118,10 @@ export default function Property({ record, onClose }) {
 
   const id = 33;
   const [city, setCity] = useState([]);
-  useEffect(() => {
+
+  const [area, setArea] = useState([]);
+
+  const handleCitySelect = () => {
     const main = new Listing();
     const response = main.city_list(id);
     response
@@ -129,23 +131,19 @@ export default function Property({ record, onClose }) {
       .catch((error) => {
         console.log("error", error);
       });
-  }, []);
-
-  const [area, setArea] = useState([]);
-  useEffect(() => {
+  };
+  
+  const handleAreaSelect = () => {
     const main = new Listing();
-    const fetchAreaList = async () => {
-      const response = main.area_list(3378);
-      response
-        .then((res) => {
-          setArea(res?.data?.data);
-        })
-        .catch((error) => {
-          console.log("error", error);
-        });
-    };
-    fetchAreaList();
-  }, []);
+    const response = main.area_list(3378);
+    response
+      .then((res) => {
+        setArea(res?.data?.data);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  };
 
   const fetchLocationData = async (manualLocation) => {
     if (manualLocation) {
@@ -201,6 +199,19 @@ export default function Property({ record, onClose }) {
       ...prevProperty,
       [name]: value,
     }));
+  };
+
+  const deletePropertyImage = (recordUUID, itemUUID) => {
+    const main = new Listing();
+    main
+      .propertyImagedelete(recordUUID, itemUUID)
+      .then((response) => {
+        // router.push("/admin/property")
+        toast.success(response.data.message)
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   };
 
   const handleSubmit = (e) => {
@@ -259,9 +270,12 @@ export default function Property({ record, onClose }) {
       const response = main.propertyedit(record.uuid, formData);
       response
         .then((res) => {
-          console.log("res", res);
-          setLoading(false);
-          router.push("/admin/property");
+          if (res?.data?.status) {
+            console.log("update res", res)
+            setLoading(false);
+            toast.success(res.data.message);
+            router.push("/admin/property");
+          }
         })
         .catch((error) => {
           console.log("error", error);
@@ -300,10 +314,31 @@ export default function Property({ record, onClose }) {
       const response = main.addproperty(formData);
       response
         .then((res) => {
+          console.log("res", res)
           if (res?.data?.status) {
             toast.success(res.data.message);
             setLoading(false);
           }
+          setItem({
+            name: "",
+            area_id: "",
+            city_id: "",
+            location: "",
+            about: "",
+            price: "",
+            propertytype: "flat",
+            children: "1",
+            adults: "1",
+            bedrooms: "1",
+            beds: "1",
+            bathrooms: "1",
+            pets: "1",
+            latitude: "",
+            longitude: "",
+            selectedAmenities: ""
+
+          })
+          router.push("/admin/property")
         })
         .catch((error) => {
           setLoading(false);
@@ -320,18 +355,16 @@ export default function Property({ record, onClose }) {
       color:#fff;
     }
     `}</style>
-      {record?.uuid ? <>6</> : <Element text={"Property"} />}
+      {record?.uuid ? <></> : <Element text={"Property"} />}
 
       <div
-        className={`flex items-center justify-center px-6 py-8 ${
-          record && record.uuid ? "w-full !px-0 !py-0" : "min-h-screen"
-        }`}
+        className={`flex items-center justify-center px-6 py-8 ${record && record.uuid ? "w-full !px-0 !py-0" : "min-h-screen"
+          }`}
       >
         <div className="max-w-4xl w-full space-y-8">
           <div
-            className={`pages-wrapper  ${
-              record && record.uuid ? " max-w-[700px]" : ""
-            } m-auto `}
+            className={`pages-wrapper  ${record && record.uuid ? " max-w-[700px]" : ""
+              } m-auto `}
           >
             <div className="flex flex-wrap  justify-between">
             <h2 className="text-xl font-bold mb-4 " >Add Property</h2>
@@ -388,55 +421,57 @@ export default function Property({ record, onClose }) {
                     </select>
                   </div>
                   <div className="">
-                    <label
-                      htmlFor="citySelect"
-                      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                    >
-                      City
-                    </label>
-                    <select
-                      required
-                      id="citySelect"
-                      name="city_id"
-                      onChange={handleInputChange}
-                      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
-                    >
-                      {record && record.city && (
-                        <option value={record.city}>{record.city}</option>
-                      )}
-                      {city &&
-                        city.map((item, index) => (
-                          <option key={index} value={item.id}>
-                            {item.name}
-                          </option>
-                        ))}
-                    </select>
-                  </div>
-                  <div className="">
-                    <label
-                      htmlFor="areaSelect"
-                      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                    >
-                      Area
-                    </label>
-                    <select
-                      required
-                      id="areaSelect"
-                      name="area_id"
-                      onChange={handleInputChange}
-                      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
-                    >
-                      {record && record.area && (
-                        <option value={record.area}>{record.area}</option>
-                      )}
-                      {area &&
-                        area.map((item, index) => (
-                          <option key={index} value={item.id}>
-                            {item.name}
-                          </option>
-                        ))}
-                    </select>
-                  </div>
+    <label
+      htmlFor="citySelect"
+      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
+    >
+      City
+    </label>
+    <select
+      required
+      id="citySelect"
+      name="city_id"
+      onChange={handleInputChange}
+      onClick={handleCitySelect} // Trigger API call on click
+      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
+    >
+      {record && record.city && (
+        <option value={record.city_id}>{record.city}</option>
+      )}
+      {city &&
+        city.map((item, index) => (
+          <option key={index} value={item.id}>
+            {item.name}
+          </option>
+        ))}
+    </select>
+  </div>
+  <div className="">
+    <label
+      htmlFor="areaSelect"
+      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
+    >
+      Area
+    </label>
+    <select
+      required
+      id="areaSelect"
+      name="area_id"
+      onChange={handleInputChange}
+      onClick={handleAreaSelect} // Trigger API call on click
+      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
+    >
+      {record && record.area && (
+        <option value={record.area_id}>{record.area}</option>
+      )}
+      {area &&
+        area.map((item, index) => (
+          <option key={index} value={item.id}>
+            {item.name}
+          </option>
+        ))}
+    </select>
+  </div>
                 </div>
               </div>
               <div className="relative mt-4 text-sm font-medium text-gray-700">
@@ -486,46 +521,44 @@ export default function Property({ record, onClose }) {
               <div className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-x-8 mt-5">
                 <div>
                   <label
-                    htmlFor="guests"
+                    htmlFor="adults"
                     className="block text-sm mb-1 font-medium text-gray-700 mt-3"
                   >
                     Adult
                   </label>
                   <select
                     required
-                    id="guests"
+                    id="adults"
                     name="adults"
                     autoComplete="guests"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
                     value={item.adults}
                     onChange={handleInputChange}
                   >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                    {Array.from({ length: 20 }, (_, i) => (
+                      <option key={i + 1}>{i + 1}</option>
+                    ))}
                   </select>
                 </div>
                 <div>
                   <label
-                    htmlFor="guests"
+                    htmlFor="children"
                     className="block text-sm mb-1 font-medium text-gray-700 mt-3"
                   >
-                    children
+                    Children
                   </label>
                   <select
                     required
-                    id="guests"
+                    id="children"
                     name="children"
                     autoComplete="guests"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
                     value={item.children}
                     onChange={handleInputChange}
                   >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                    {Array.from({ length: 20 }, (_, i) => (
+                      <option key={i + 1}>{i + 1}</option>
+                    ))}
                   </select>
                 </div>
                 <div>
@@ -543,9 +576,9 @@ export default function Property({ record, onClose }) {
                     value={item.bedrooms}
                     onChange={handleInputChange}
                   >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    {Array.from({ length: 20 }, (_, i) => (
+                      <option key={i + 1}>{i + 1}</option>
+                    ))}
                   </select>
                 </div>
                 <div>
@@ -564,9 +597,9 @@ export default function Property({ record, onClose }) {
                     value={item.beds}
                     onChange={handleInputChange}
                   >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    {Array.from({ length: 20 }, (_, i) => (
+                      <option key={i + 1}>{i + 1}</option>
+                    ))}
                   </select>
                 </div>
                 <div>
@@ -585,12 +618,11 @@ export default function Property({ record, onClose }) {
                     value={item.bathrooms}
                     onChange={handleInputChange}
                   >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    {Array.from({ length: 20 }, (_, i) => (
+                      <option key={i + 1}>{i + 1}</option>
+                    ))}
                   </select>
                 </div>
-
                 <div>
                   <label
                     htmlFor="pet"
@@ -607,13 +639,14 @@ export default function Property({ record, onClose }) {
                     value={item.pets}
                     onChange={handleInputChange}
                   >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    {Array.from({ length: 20 }, (_, i) => (
+                      <option key={i + 1}>{i + 1}</option>
+                    ))}
                   </select>
                 </div>
               </div>
             </div>
+
 
             <div className={`${step === 3 ? " " : " display-none"}`}>
               <div className="">
@@ -629,7 +662,7 @@ export default function Property({ record, onClose }) {
                         type="checkbox"
                         value={amenity.value}
                         className="mr-2 rounded text-indigo-600 focus:ring-indigo-500 hidden"
-                        checked={item.selectedAmenities.includes(amenity.value)} // Check if amenity is selected
+                        checked={item.selectedAmenities.includes(amenity.value)} 
                         onChange={handleCheckboxChange}
                       />
                       <label
@@ -665,7 +698,12 @@ export default function Property({ record, onClose }) {
                 />
                 <div className="flex flex-wrap justify-between">
                   <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
-                    Word Count {item?.about?.length ? item?.about?.length : "0"}
+                    {item?.about ? (
+                      <span>{item.about.length}/100 characters</span>
+                    ) : (
+                      <span>0/100 characters</span>
+                    )}
+
                   </label>
                   <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
                     Minimum 100 words.
@@ -716,26 +754,52 @@ export default function Property({ record, onClose }) {
                 </label>
               </div>
               <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                {item?.images?.map((file, index) => (
-                  <div key={index} className="relative">
-                    <button
-                      type="button"
-                      onClick={() => removeImage(index)}
-                      className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
-                    >
-                      &times;
-                    </button>
-                    <Image
-                      src={file}
-                      width={200}
-                      height={200}
-                      alt={`Preview ${index}`}
-                      className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
-                      onLoad={() => file}
-                    />
-                  </div>
-                ))}
+
+                {uuid ? (
+                  record?.property_image.map((item, index) => (
+
+                    <div key={index} className="relative">
+
+                      <button
+                        type="button"
+                        onClick={() => deletePropertyImage(record.uuid, item.uuid)}
+                        className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
+                      >
+                        &times;
+                      </button>
+                      <Image
+                        src={item?.image_url}
+                        width={200}
+                        height={200}
+                        alt={`Preview ${index}`}
+                        className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
+                      />
+                    </div>
+                  ))
+                ) : (<></>)}
+                {(
+                  item?.images?.map((file, index) => (
+                    <div key={index} className="relative">
+                      <button
+                        type="button"
+                        onClick={() => removeImage(index)}
+                        className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
+                      >
+                        &times;
+                      </button>
+                      <Image
+                        src={URL.createObjectURL(file)}
+                        width={200}
+                        height={200}
+                        alt={`Preview ${index}`}
+                        className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
+                        onLoad={() => URL.revokeObjectURL(file)}
+                      />
+                    </div>
+                  ))
+                )}
               </div>
+
             </div>
 
             <div className={`${step === 6 ? "" : "display-none"}`}>
@@ -763,7 +827,7 @@ export default function Property({ record, onClose }) {
                 disabled={step < 2}
                 type="button"
                 onClick={prevStep}
-                className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                className="inline-flex justify-center items-center h-10 py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
               >
                 Back
               </button>

@@ -41,7 +41,7 @@ const Card = ({ post }) => {
         </h4>
       </div>
       <div className="explor-btn">
-        <Link className="block" href={`/listings/${post.uuid}`}>
+        <Link className="block" href={`/property/${post.uuid}`}>
           Explore{" "}
           <svg
             width="13"

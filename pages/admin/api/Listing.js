@@ -47,6 +47,10 @@ class Listing extends Component {
         return  Api.get(`/admin/user-active-inactive/${id}/${newStatus}`)
     }
     
+    async propertyImagedelete (uuId ,imgUid){
+        return Api.get(`/admin/property-image-delete/${uuId}/${imgUid}` 
+       )
+    }
     async userAdd(data){
         return Api.post("/admin/add-user" ,data)
     }

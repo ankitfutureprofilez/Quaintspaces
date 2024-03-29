@@ -14,7 +14,8 @@ import Date_GuestsPickerCard from "../../../components/SingleListingBody/Date_Gu
 import Reviews from "../../../components/SingleListingBody/Reviews";
 import Location from "../../../components/SingleListingBody/Location";
 import useLabeling from "../../../hooks/useLabeling";
-import Property  from "./add/Property"
+import Property from "./add/Property"
+import AdminLayout from "../AdminLayout";
 
 export default function Index() {
     const ImagesRef = useRef(null);
@@ -28,9 +29,9 @@ export default function Index() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     const togglePopup = () => {
-      setIsPopupOpen(!isPopupOpen);
+        setIsPopupOpen(!isPopupOpen);
     };
-    console.log("slug",slug)
+    console.log("slug", slug)
     const [record, setRecord] = useState(null);
     const [selection, setSelection] = useState(null);
     const [guests, setGuests] = useState({
@@ -38,7 +39,7 @@ export default function Index() {
         adults: { ...guestsData.adults, value: 1 },
     });
 
-   const result = useLabeling(guests);
+    const result = useLabeling(guests);
 
     const [selectedDay, setSelectedDay] = useState(null);
     const [selectEnd, setSelectEnd] = useState(null);
@@ -49,8 +50,8 @@ export default function Index() {
     const [rightSectionHeader, setRightSectionHeader] = useState(false);
     const [scroll, setScroll] = useState(null);
 
-       
-       const fetchPropertyDetails = () => {
+
+    const fetchPropertyDetails = () => {
         setLoading(true);
         const main = new Listing();
         const response = main.Adminpropertydetails(slug);
@@ -67,7 +68,7 @@ export default function Index() {
 
 
     useEffect(() => {
-        if (slug !== null ) {
+        if (slug !== null) {
             fetchPropertyDetails();
         }
     }, [slug]);
@@ -125,32 +126,40 @@ export default function Index() {
         }
     }, [imageViewer]);
 
+
+    const [showConfirmation, setShowConfirmation] = useState(false);
     const deleteImage = () => {
         const main = new Listing();
         main
             .propertydelete(slug)
             .then((response) => {
                 router.push("/admin/property")
-                toast.success(response.data.data)
+                toast.success(response.data.message)
             })
             .catch((error) => {
                 console.log("error", error);
             });
     };
 
-    async  function  updateproperty(){
-        const main =  new  Listing();
-        const  response =  main.propertyedit(slug);
-        response.then((res)=>{
-            console.log("res",res)
-        }).catch((error)=>{
-            console.log("error",error)
-        })
+
+    const handleDelete = () => {
+        setShowConfirmation(true);
     }
 
-    return  <>
-        {/* <Layout> */}
-            <Element /> 
+    const handleConfirmation = () => {
+        deleteImage(slug);
+        setShowConfirmation(false);
+    }
+
+    const handleCancel = () => {
+        setShowConfirmation(false);
+    }
+
+
+    return <>
+        <AdminLayout>
+
+            <Element />
             <section className="w-full sm:px-4">
                 <div className="container mx-auto !py-4 sm:py-8">
                     <Title
@@ -171,34 +180,58 @@ export default function Index() {
                         />
                     </div>
                     <div className="flex  items-left  justify-left gap-5">
-                        <button
-                        className=" hover:border hover:border-black  bg-red-600 rounded-full transition-none m-1 p-2"
-                        onClick={() => deleteImage(slug)}
-                        >
-                            Delete
-                        </button>
                         <div>
-  <button
-    onClick={togglePopup}
-    className="hover:border hover:border-black bg-green-600 rounded-full transition-none m-1 p-2"
-  >
-    Update
-  </button>
-  {isPopupOpen && (
-    <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
-      <div className="bg-gray-200 rounded-lg flex flex-col items-center justify-center p-8 property-popup">
-        <Property record={record?.data?.data} uuid={slug} onClose={togglePopup} />
-      </div>
-    </div>
-  )}
-</div>
+                            <button
+                                className="hover:border hover:border-black bg-red-600 rounded-full transition-none m-1 p-2"
+                                onClick={handleDelete}
+                            >
+                                Delete
+                            </button>
+                            {showConfirmation &&
+                                <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-75">
+                                    <div className="bg-white p-6 rounded-lg">
+                                        <p>Are you sure you want to delete this property?</p>
+                                        <div className="mt-4 flex justify-center">
+                                            <button
+                                                className="mr-2 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                                                onClick={handleConfirmation}
+                                            >
+                                                Yes
+                                            </button>
+                                            <button
+                                                className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
+                                                onClick={handleCancel}
+                                            >
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <div>
+                            <button
+                                onClick={togglePopup}
+                                className="hover:border hover:border-black bg-green-600 rounded-full transition-none m-1 p-2"
+                            >
+                                Update
+                            </button>
+                            {isPopupOpen && (
+                                <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50 overflow-auto">
+                                    <div className="bg-gray-200 rounded-lg flex flex-col items-center justify-center p-8 property-popup">
+                                        <Property record={record?.data?.data} uuid={slug} onClose={togglePopup} />
+                                    </div>
+                                </div>
+                            )}
+                        </div>
 
 
                     </div>
                     <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
-                        {/* <Info listing={record?.data} ref={AmenitiesRef}
+                        <Info listing={record?.data} ref={AmenitiesRef}
                             loading={loading}
-                        /> */}
+                        />
                         <div className="hidden lg:block">
                             {/* <Date_GuestsPickerCard
                                 loading={loading}
@@ -220,6 +253,7 @@ export default function Index() {
                     {/* <Location listing={record} ref={LocationRef} /> */}
                 </div>
             </section>
+        </AdminLayout>
         {/* </Layout> */}
     </>
 }
