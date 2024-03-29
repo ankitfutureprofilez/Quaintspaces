@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import Api from './../../api/laravel/Api';
+import Api  from "../ApiAdmin"
 class Listing extends Component {
     async adminlogin(data) {
         return Api.post("/admin/login",data);
