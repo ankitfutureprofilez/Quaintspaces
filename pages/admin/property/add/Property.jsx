@@ -69,7 +69,7 @@ export default function Property({
   const handleFileChange = (e) => {
     let filesToAdd = Array.from(e.target.files);
     console.log("filed uploaded", filesToAdd);
-    let newImages = item.images.concat(filesToAdd).slice(0, 6);
+    let newImages = item?.images.concat(filesToAdd).slice(0, 6);
     console.log("newImages", newImages);
     setItem((prevPoperty) => ({
       ...prevPoperty,
@@ -86,18 +86,18 @@ export default function Property({
 
   const nextStep = () => {
     if (
-      (step == 1 && item.name === "") ||
-      item.area_id === "" ||
-      item.city_id === "" ||
-      item.location === ""
+      (step == 1 && item?.name === "") ||
+      item?.area_id === "" ||
+      item?.city_id === "" ||
+      item?.location === ""
     ) {
       toast.error("All fields are required.");
       return false;
     }
     if (
       step == 3 &&
-      item.selectedAmenities &&
-      item.selectedAmenities.length < 4
+      item?.selectedAmenities &&
+      item?.selectedAmenities.length < 4
     ) {
       toast.error("Please choose atleast 4 amenities.");
       return false;
@@ -105,7 +105,7 @@ export default function Property({
 
     if (
       step === 4 &&
-      (!item.about || item.about.trim().length === 0 || item.about.length < 100)
+      (!item?.about || item?.about.trim().length === 0 || item?.about.length < 100)
     ) {
       toast.error(
         "Property description is too short. Description should be a minimum of 100 words."
@@ -229,31 +229,31 @@ export default function Property({
     if (uuid) {
       const main = new Listing();
       const formData = new FormData();
-      formData.append("name", item.name);
-      formData.append("city_id", item.city_id);
-      formData.append("area_id", item.area_id);
+      formData.append("name", item?.name);
+      formData.append("city_id", item?.city_id);
+      formData.append("area_id", item?.area_id);
       formData.append("pet_allowed", "1");
-      formData.append("no_of_pet_allowed", item.pets);
-      formData.append("description", item.about);
-      formData.append("price", item.price);
-      formData.append("properties_type", item.propertytype);
-      formData.append("location", item.location);
-      formData.append("bedrooms", item.bedrooms);
-      formData.append("beds", item.beds);
-      formData.append("bathrooms", item.bathrooms);
-      formData.append("latitude", item.latitude);
-      formData.append("longitudes", item.longitude);
+      formData.append("no_of_pet_allowed", item?.pets);
+      formData.append("description", item?.about);
+      formData.append("price", item?.price);
+      formData.append("properties_type", item?.propertytype);
+      formData.append("location", item?.location);
+      formData.append("bedrooms", item?.bedrooms);
+      formData.append("beds", item?.beds);
+      formData.append("bathrooms", item?.bathrooms);
+      formData.append("latitude", item?.latitude);
+      formData.append("longitudes", item?.longitude);
       formData.append("discount_offer", "555");
       formData.append("check_in", " 11:55");
       formData.append("check_out", "12:12");
       formData.append("country_id", "101");
       formData.append("state_id", "33");
-      formData.append("adults", item.adults);
-      formData.append("children", item.children);
+      formData.append("adults", item?.adults);
+      formData.append("children", item?.children);
       formData.append("infants", "1");
       formData.append("free_cancel_time", "11");
-      formData.append("amenities", item.selectedAmenities);
-      item.images.forEach((image, index) => {
+      formData.append("amenities", item?.selectedAmenities);
+      item?.images.forEach((image, index) => {
         formData.append(`property_image[${index}]`, image);
       });
       const response = main.propertyedit(uuid, formData);
@@ -273,31 +273,31 @@ export default function Property({
     } else {
       const main = new Listing();
       const formData = new FormData();
-      formData.append("name", item.name);
-      formData.append("city_id", item.city_id);
-      formData.append("area_id", item.area_id);
+      formData.append("name", item?.name);
+      formData.append("city_id", item?.city_id);
+      formData.append("area_id", item?.area_id);
       formData.append("pet_allowed", "1");
-      formData.append("no_of_pet_allowed", item.pets);
-      formData.append("description", item.about);
-      formData.append("price", item.price);
-      formData.append("properties_type", item.propertytype);
-      formData.append("location", item.location);
-      formData.append("bedrooms", item.bedrooms);
-      formData.append("beds", item.beds);
-      formData.append("bathrooms", item.bathrooms);
-      formData.append("latitude", item.latitude);
-      formData.append("longitudes", item.longitude);
+      formData.append("no_of_pet_allowed", item?.pets);
+      formData.append("description", item?.about);
+      formData.append("price", item?.price);
+      formData.append("properties_type", item?.propertytype);
+      formData.append("location", item?.location);
+      formData.append("bedrooms", item?.bedrooms);
+      formData.append("beds", item?.beds);
+      formData.append("bathrooms", item?.bathrooms);
+      formData.append("latitude", item?.latitude);
+      formData.append("longitudes", item?.longitude);
       formData.append("discount_offer", "555");
       formData.append("check_in", " 11:55");
       formData.append("check_out", "12:12");
       formData.append("country_id", "101");
       formData.append("state_id", "33");
-      formData.append("adults", item.adults);
-      formData.append("children", item.children);
+      formData.append("adults", item?.adults);
+      formData.append("children", item?.children);
       formData.append("infants", "1");
       formData.append("free_cancel_time", "11");
-      formData.append("amenities", item.selectedAmenities.join(","));
-      item.images.forEach((image, index) => {
+      formData.append("amenities", item?.selectedAmenities?.join(","));
+      item?.images.forEach((image, index) => {
         formData.append("property_image[]", image);
       });
       const response = main.addproperty(formData);
@@ -382,7 +382,7 @@ export default function Property({
                   name="name"
                   id="name"
                   className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
-                  value={item.name}
+                  value={item?.name}
                   onChange={handleInputChange}
                 />
               </div>
@@ -399,11 +399,11 @@ export default function Property({
                       required
                       id="propertyType"
                       className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
-                      value={item.propertytype}
+                      value={item?.propertytype}
                       onChange={handleInputChange}
                       name="propertytype"
                     >
-                      <option value="flat">Flat/Apartment</option>
+                      <option value="flat">Flat</option>
                       <option value="house">House</option>
                       <option value="unique_space">Unique Space</option>
                       <option value="gust_house">Guest House</option>
@@ -433,8 +433,8 @@ export default function Property({
                       )}
                       {city &&
                         city.map((item, index) => (
-                          <option key={index} value={item.id}>
-                            {item.name}
+                          <option key={index} value={item?.id}>
+                            {item?.name}
                           </option>
                         ))}
                     </select>
@@ -460,8 +460,8 @@ export default function Property({
                       )}
                       {area &&
                         area.map((item, index) => (
-                          <option key={index} value={item.id}>
-                            {item.name}
+                          <option key={index} value={item?.id}>
+                            {item?.name}
                           </option>
                         ))}
                     </select>
@@ -481,11 +481,11 @@ export default function Property({
                     type="text"
                     id="location"
                     name="location"
-                    value={item.location}
+                    value={item?.location}
                     onChange={handleLocationInputChange}
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
                     placeholder="Enter Location or Click to Select"
-                    onClick={() => fetchLocationData(item.location)}
+                    onClick={() => fetchLocationData(item?.location)}
                   />
                 </div>
               </div>
@@ -506,7 +506,7 @@ export default function Property({
                     name="adults"
                     autoComplete="guests"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item.adults}
+                    value={item?.adults}
                     onChange={handleInputChange}
                   >
                     {Array.from({ length: 20 }, (_, i) => (
@@ -527,7 +527,7 @@ export default function Property({
                     name="children"
                     autoComplete="guests"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item.children}
+                    value={item?.children}
                     onChange={handleInputChange}
                   >
                     {Array.from({ length: 20 }, (_, i) => (
@@ -547,7 +547,7 @@ export default function Property({
                     id="bedrooms"
                     name="bedrooms"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item.bedrooms}
+                    value={item?.bedrooms}
                     onChange={handleInputChange}
                   >
                     {Array.from({ length: 20 }, (_, i) => (
@@ -568,7 +568,7 @@ export default function Property({
                     name="beds"
                     autoComplete="beds"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item.beds}
+                    value={item?.beds}
                     onChange={handleInputChange}
                   >
                     {Array.from({ length: 20 }, (_, i) => (
@@ -589,7 +589,7 @@ export default function Property({
                     name="bathrooms"
                     autoComplete="bathrooms"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item.bathrooms}
+                    value={item?.bathrooms}
                     onChange={handleInputChange}
                   >
                     {Array.from({ length: 20 }, (_, i) => (
@@ -610,7 +610,7 @@ export default function Property({
                     name="pets"
                     autoComplete="pet"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item.pets}
+                    value={item?.pets}
                     onChange={handleInputChange}
                   >
                     {Array.from({ length: 20 }, (_, i) => (
@@ -635,7 +635,7 @@ export default function Property({
                         type="checkbox"
                         value={amenity.value}
                         className="mr-2 rounded text-indigo-600 focus:ring-indigo-500 hidden"
-                        checked={item.selectedAmenities.includes(amenity.value)}
+                        checked={item?.selectedAmenities.includes(amenity.value)}
                         onChange={handleCheckboxChange}
                       />
                       <label
@@ -664,7 +664,7 @@ export default function Property({
                   name="about"
                   minCol={"5"}
                   minRow={"5"}
-                  value={item.about}
+                  value={item?.about}
                   onChange={handleInputChange}
                   className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-lg shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
                   placeholder="Tell more about your property..."
@@ -672,7 +672,7 @@ export default function Property({
                 <div className="flex flex-wrap justify-between">
                   <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
                     {item?.about ? (
-                      <span>{item.about.length}/100 characters</span>
+                      <span>{item?.about.length}/100 characters</span>
                     ) : (
                       <span>0/100 characters</span>
                     )}
@@ -726,20 +726,18 @@ export default function Property({
                 </label>
               </div>
               
-<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-    
-
+<div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {uuid ? ( property_image?.map((item, index) => (
 
                   <div key={index} className="relative" >
-                    <img class="h-full max-w-full rounded-lg" 
+                    <img className="h-full max-w-full rounded-lg" 
                       src={item?.image_url}
                       width={200}
                       height={200}
                       alt={`Preview ${index}`}  />
                       <button
                         type="button"
-                        onClick={() => deletePropertyImage(uuid, item.uuid)}
+                        onClick={() => deletePropertyImage(uuid, item?.uuid)}
                         className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg  px-3 py-1 m-1"
                       >
                         Remove
@@ -749,25 +747,25 @@ export default function Property({
                 ) : (
                   <></>
                 )}
-                <div>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {item?.images?.map((file, index) => (
                     <div key={index} className="relative">
-                      <p>{index}</p>
-                      <button
-                        type="button"
-                        onClick={() => removeImage(index)}
-                        className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
-                      >
-                        &times;
-                      </button>
-                      <img
+                       <img
                         src={URL.createObjectURL(file)}
                         width={200}
                         height={200}
                         alt={`Preview ${index}`}
-                        className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
+                        className="h-full w-full rounded-lg"
                         onLoad={() => URL.revokeObjectURL(file)}
                       />
+                      <button
+                        type="button"
+                        onClick={() => removeImage(index)}
+                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg  px-3 py-1 m-1"
+                      >
+                        &times;
+                      </button>
+                     
                     </div>
                   ))}
                 </div>
@@ -788,7 +786,7 @@ export default function Property({
                   name="price"
                   id="name"
                   className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
-                  value={item.price}
+                  value={item?.price}
                   onChange={handleInputChange}
                 />
               </div>
