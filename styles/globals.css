@@ -107,6 +107,9 @@
   margin-top: -1px;
 }
 
+.updateproperty { 
+  z-index:9999;
+}
 .white-box.animation-on {
   -webkit-animation: white-box-animation 250ms ease;
           animation: white-box-animation 250ms ease;

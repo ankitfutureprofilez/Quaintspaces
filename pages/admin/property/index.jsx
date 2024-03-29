@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import Element from "../element";
 import Layout from "../AdminLayout";
@@ -15,7 +14,7 @@ export default function index() {
 
   useEffect(() => {
     const main = new Listing();
-    const response = main
+    main
       .Adminproperty()
       .then((res) => {
         let properties = res?.data?.data; 
@@ -24,54 +23,49 @@ export default function index() {
         } else {
           toast.error("No properties found");
         }
-        setRecord(res?.data?.data);
       })
       .catch((error) => {
-        console.log("erorr0", error);
+        console.log("error", error);
       });
   }, []);
 
-
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedProperty, setSelectedProperty] = useState(null);
 
-  const togglePopup = () => {
+  const togglePopup = (uuid) => {
+    setSelectedProperty(uuid);
     setIsPopupOpen(!isPopupOpen);
   };
 
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const deleteImage = (uuid) => {
-    if (!uuid) {
-      console.error("UUID is undefined or null");
-      return;
-    }
+  const deleteProperty = (uuid) => {
     const main = new Listing();
     main
       .propertydelete(uuid)
       .then((response) => {
         console.log("response.data.message", response.data.message)
         toast.success(response.data.message);
-        router.push("/admin/property");
+        setRecord(record.filter(item => item.uuid !== uuid));
       })
       .catch((error) => {
-        console.error("Error deleting image:", error);
+        console.error("Error deleting property:", error);
       });
   };
 
+  const handleDelete = (uuid) => {
+    deleteProperty(uuid);
+  };
 
-  const handleDelete = () => {
-      setShowConfirmation(true);
-  }
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleConfirmation = () => {
-      deleteImage();
-      setShowConfirmation(false);
+    deleteProperty(selectedProperty);
+    setShowConfirmation(false);
   }
 
+  console.log("selectedProperty",selectedProperty)
   const handleCancel = () => {
-      setShowConfirmation(false);
+    setShowConfirmation(false);
   }
-
-  const [loading, setLoading] = useState(false);
 
   return (
     <>
@@ -143,7 +137,7 @@ export default function index() {
                       <div>
                       <button
                                 className="hover:border hover:border-black bg-red-600 rounded-full transition-none m-1 p-2"
-                                onClick={handleDelete}
+                                onClick={() => setShowConfirmation(true)}
                             >
                                 Delete
                             </button>
@@ -171,38 +165,36 @@ export default function index() {
                         </div>
                         </div>
                         <button
-                          onClick={togglePopup}
+                          onClick={() => togglePopup(item.uuid)}
                           className="hover:border hover:border-black bg-green-600 rounded-full transition-none m-1 p-2"
                         >
                           Update
                         </button>
-                        {isPopupOpen && (
-                          <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
+                        {isPopupOpen && selectedProperty === item.uuid && (
+                          <div className="fixed updateproperty inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
                             <div className="bg-gray-200 rounded-lg flex flex-col items-center justify-center p-8 property-popup">
                             <Property 
                               name={item?.name} 
-beds= {item.beds}
-price ={item?.price}
-latitude ={item?.latitude}
-longitudes ={item?.longitudes}
-location={item?.location}
-properties_type = {item?.properties_type}
-bedrooms ={item?.bedrooms}
-bathrooms={item?.bathrooms}
-city_id={item?.city_id}
-area_id = {item?.area_id}
-description = {item?.description}
-amenities = {item?.amenities}
-adults={item?.adults}
-children={item?.children}
-no_of_pet_allowed={item?.no_of_pet_allowed}
-property_image = {item?.property_image}
-localarea = {item?.area}
-LocaLcity={item?.city}
-
-
+                              beds={item.beds}
+                              price={item?.price}
+                              latitude={item?.latitude}
+                              longitudes={item?.longitudes}
+                              location={item?.location}
+                              properties_type={item?.properties_type}
+                              bedrooms={item?.bedrooms}
+                              bathrooms={item?.bathrooms}
+                              city_id={item?.city_id}
+                              area_id={item?.area_id}
+                              description={item?.description}
+                              amenities={item?.amenities}
+                              adults={item?.adults}
+                              children={item?.children}
+                              no_of_pet_allowed={item?.no_of_pet_allowed}
+                              property_image={item?.property_image}
+                              localarea={item?.area}
+                              LocaLcity={item?.city}
                               uuid={item?.uuid}
-                              onClose={togglePopup}
+                              onClose={() => setIsPopupOpen(false)}
                             />
                             </div>
                           </div>

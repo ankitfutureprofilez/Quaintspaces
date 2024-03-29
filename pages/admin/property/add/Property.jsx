@@ -6,9 +6,32 @@ import { useRouter } from "next/router";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Image from "next/image";
-export default function Property({ record,longitudes, latitude,children,adults, onClose,uuid ,name, price, area_id ,city_id,location ,description,properties_type,bedrooms,localarea, beds, LocaLcity,bathrooms,no_of_pet_allowed,amenities, property_image}) {
+export default function Property({
+  record,
+  longitudes,
+  latitude,
+  children,
+  adults,
+  onClose,
+  uuid,
+  name,
+  price,
+  area_id,
+  city_id,
+  location,
+  description,
+  properties_type,
+  bedrooms,
+  localarea,
+  beds,
+  LocaLcity,
+  bathrooms,
+  no_of_pet_allowed,
+  amenities,
+  property_image,
+}) {
   const router = useRouter();
-   console.log("recorditem", record);
+  console.log("recorditem", record);
 
   const [step, setStep] = useState(1);
   const [Loading, setLoading] = useState(false);
@@ -19,22 +42,22 @@ export default function Property({ record,longitudes, latitude,children,adults, 
 
   const [item, setItem] = useState({
     name: name || "",
-    area_id:area_id|| "",
+    area_id: area_id || "",
     city_id: city_id || "",
     location: location || "",
     about: description || "",
     price: price || "",
-    propertytype:properties_type || "flat",
-    children:children || "1",
+    propertytype: properties_type || "flat",
+    children: children || "1",
     adults: adults || "1",
-    bedrooms:bedrooms || "1",
+    bedrooms: bedrooms || "1",
     beds: beds || "1",
     bathrooms: bathrooms || "1",
     pets: no_of_pet_allowed || "1",
     latitude: latitude || "",
     longitude: longitudes || "",
-    selectedAmenities:amenities? stringToArray(amenities): [],
-    images: [] ,
+    selectedAmenities: amenities ? stringToArray(amenities) : [],
+    images: [],
   });
   console.log("item", item);
 
@@ -47,7 +70,7 @@ export default function Property({ record,longitudes, latitude,children,adults, 
     let filesToAdd = Array.from(e.target.files);
     console.log("filed uploaded", filesToAdd);
     let newImages = item.images.concat(filesToAdd).slice(0, 6);
-    console.log("newImages",newImages)
+    console.log("newImages", newImages);
     setItem((prevPoperty) => ({
       ...prevPoperty,
       images: newImages,
@@ -79,23 +102,26 @@ export default function Property({ record,longitudes, latitude,children,adults, 
       toast.error("Please choose atleast 4 amenities.");
       return false;
     }
-   
-    if (step === 4 && (!item.about || item.about.trim().length === 0 || item.about.length < 100)) {
-      toast.error("Property description is too short. Description should be a minimum of 100 words.");
+
+    if (
+      step === 4 &&
+      (!item.about || item.about.trim().length === 0 || item.about.length < 100)
+    ) {
+      toast.error(
+        "Property description is too short. Description should be a minimum of 100 words."
+      );
       return false;
     }
 
-    if(property_image ) {
-    <>
-    </>
-    }else{
-      if (step === 5 && item?.images?.length < 5  ) {
+    if (property_image) {
+      <></>;
+    } else {
+      if (step === 5 && item?.images?.length < 5) {
         toast.error("Please select at least five images.");
         return false;
       }
-  
     }
-  
+
     if (step == 6 && item?.price) {
       toast.error("please  fields are required.");
       return false;
@@ -120,7 +146,6 @@ export default function Property({ record,longitudes, latitude,children,adults, 
       }));
     }
   };
-
 
   const id = 33;
   const [city, setCity] = useState([]);
@@ -153,7 +178,7 @@ export default function Property({ record,longitudes, latitude,children,adults, 
   }, []);
 
   const fetchLocationData = async (manualLocation) => {
-    console.log("manualLocation",manualLocation)
+    console.log("manualLocation", manualLocation);
     if (manualLocation) {
       try {
         const response = await axios.get(
@@ -174,9 +199,8 @@ export default function Property({ record,longitudes, latitude,children,adults, 
       } catch (error) {
         console.log("Error fetching data for manual location:", error);
       }
-    } 
     }
-  
+  };
 
   const handleLocationInputChange = (event) => {
     const { name, value } = event.target;
@@ -192,7 +216,7 @@ export default function Property({ record,longitudes, latitude,children,adults, 
       .propertyImagedelete(recordUUID, itemUUID)
       .then((response) => {
         // router.push("/admin/property")
-        toast.success(response.data.message)
+        toast.success(response.data.message);
       })
       .catch((error) => {
         console.log("error", error);
@@ -236,7 +260,7 @@ export default function Property({ record,longitudes, latitude,children,adults, 
       response
         .then((res) => {
           if (res?.data?.status) {
-            console.log("update res", res)
+            console.log("update res", res);
             setLoading(false);
             toast.success(res.data.message);
             router.push("/admin/property");
@@ -279,13 +303,12 @@ export default function Property({ record,longitudes, latitude,children,adults, 
       const response = main.addproperty(formData);
       response
         .then((res) => {
-          console.log("res", res)
-          if (res?.data?.status === true ) {
+          console.log("res", res);
+          if (res?.data?.status === true) {
             toast.success(res.data.message);
             setLoading(false);
-          router.push("/admin/property")
-
-          }else{
+            router.push("/admin/property");
+          } else {
             toast.error(res.data.message);
             setLoading(false);
           }
@@ -305,9 +328,8 @@ export default function Property({ record,longitudes, latitude,children,adults, 
             pets: "1",
             latitude: "",
             longitude: "",
-            selectedAmenities: ""
-
-          })
+            selectedAmenities: "",
+          });
         })
         .catch((error) => {
           setLoading(false);
@@ -327,13 +349,13 @@ export default function Property({ record,longitudes, latitude,children,adults, 
       {uuid ? <></> : <Element text={"Property"} />}
 
       <div
-        className={`flex items-center justify-center px-6 py-8 ${uuid ? "w-full !px-0 !py-0" : "min-h-screen"
-          }`}
+        className={`flex items-center justify-center px-6 py-8 ${
+          uuid ? "w-full !px-0 !py-0" : "min-h-screen"
+        }`}
       >
         <div className="max-w-4xl w-full space-y-8">
           <div
-            className={`pages-wrapper  ${ uuid ? " max-w-[700px]" : ""
-              } m-auto `}
+            className={`pages-wrapper  ${uuid ? " max-w-[700px]" : ""} m-auto `}
           >
             <div className="flex flex-wrap  justify-between">
               <h2 className="text-xl font-bold mb-4 ">Add Property</h2>
@@ -391,46 +413,51 @@ export default function Property({ record,longitudes, latitude,children,adults, 
                     </select>
                   </div>
                   <div className="">
-                  <label
+                    <label
                       htmlFor="citySelect"
                       className="block text-sm mb-1 font-medium text-gray-700 mt-3"
                     >
                       City
                     </label>
-                    <select  required
+                    <select
+                      required
                       id="citySelect"
                       name="city_id"
                       onChange={handleInputChange}
                       className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
                     >
-                       { LocaLcity ? (
-                         <option value={LocaLcity}>{LocaLcity}</option>
-                            ) : ( <option value={""}>OPTION</option>)}
+                      {LocaLcity ? (
+                        <option value={LocaLcity}>{LocaLcity}</option>
+                      ) : (
+                        <option value={""}>OPTION</option>
+                      )}
                       {city &&
                         city.map((item, index) => (
                           <option key={index} value={item.id}>
                             {item.name}
                           </option>
                         ))}
-                       
                     </select>
-  </div>
-  <div className="">
-  <label
+                  </div>
+                  <div className="">
+                    <label
                       htmlFor="areaSelect"
                       className="block text-sm mb-1 font-medium text-gray-700 mt-3"
                     >
                       Area
                     </label>
-                    <select required
+                    <select
+                      required
                       id="areaSelect"
                       name="area_id"
                       onChange={handleInputChange}
                       className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
                     >
-                       {localarea ? (
-                         <option value={localarea}>{localarea}</option>
-                            ) : ( <option value={""}>Option </option>)}
+                      {localarea ? (
+                        <option value={localarea}>{localarea}</option>
+                      ) : (
+                        <option value={""}>Option </option>
+                      )}
                       {area &&
                         area.map((item, index) => (
                           <option key={index} value={item.id}>
@@ -438,7 +465,7 @@ export default function Property({ record,longitudes, latitude,children,adults, 
                           </option>
                         ))}
                     </select>
-                   </div>
+                  </div>
                 </div>
               </div>
               <div className="relative mt-4 text-sm font-medium text-gray-700">
@@ -594,7 +621,6 @@ export default function Property({ record,longitudes, latitude,children,adults, 
               </div>
             </div>
 
-
             <div className={`${step === 3 ? " " : " display-none"}`}>
               <div className="">
                 <h2 className="block text-lg mb-1 font-medium text-gray-700 mt-3 mb-3">
@@ -609,7 +635,7 @@ export default function Property({ record,longitudes, latitude,children,adults, 
                         type="checkbox"
                         value={amenity.value}
                         className="mr-2 rounded text-indigo-600 focus:ring-indigo-500 hidden"
-                        checked={item.selectedAmenities.includes(amenity.value)} 
+                        checked={item.selectedAmenities.includes(amenity.value)}
                         onChange={handleCheckboxChange}
                       />
                       <label
@@ -650,7 +676,6 @@ export default function Property({ record,longitudes, latitude,children,adults, 
                     ) : (
                       <span>0/100 characters</span>
                     )}
-
                   </label>
                   <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
                     Minimum 100 words.
@@ -700,52 +725,53 @@ export default function Property({ record,longitudes, latitude,children,adults, 
                   />
                 </label>
               </div>
-              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+              
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    
 
-              {uuid ? (
-  property_image?.map((item, index) => (
-    <div key={index} className="relative">
-      <button
-        type="button"
-        onClick={() => deletePropertyImage(uuid, item.uuid)}
-        className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
-      >
-        &times;
-      </button>
-      <img
-        src={item?.image_url}
-        width={200}
-        height={200}
-        alt={`Preview ${index}`}
-        className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
-      />
-    </div>
-  ))
-) : (<></>)}
-<div>
-    {item?.images?.map((file, index) => (
-      <div key={index} className="relative">
-        <p>{index}</p>
-        <button
-          type="button"
-          onClick={() => removeImage(index)}
-          className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
-        >
-          &times;
-        </button>
-        <img
-          src={URL.createObjectURL(file)}
-          width={200}
-          height={200}
-          alt={`Preview ${index}`}
-          className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
-          onLoad={() => URL.revokeObjectURL(file)}
-        />
-      </div>
-    ))}
-  </div>
+                {uuid ? ( property_image?.map((item, index) => (
+
+                  <div key={index} className="relative" >
+                    <img class="h-full max-w-full rounded-lg" 
+                      src={item?.image_url}
+                      width={200}
+                      height={200}
+                      alt={`Preview ${index}`}  />
+                      <button
+                        type="button"
+                        onClick={() => deletePropertyImage(uuid, item.uuid)}
+                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg  px-3 py-1 m-1"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ))
+                ) : (
+                  <></>
+                )}
+                <div>
+                  {item?.images?.map((file, index) => (
+                    <div key={index} className="relative">
+                      <p>{index}</p>
+                      <button
+                        type="button"
+                        onClick={() => removeImage(index)}
+                        className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
+                      >
+                        &times;
+                      </button>
+                      <img
+                        src={URL.createObjectURL(file)}
+                        width={200}
+                        height={200}
+                        alt={`Preview ${index}`}
+                        className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
+                        onLoad={() => URL.revokeObjectURL(file)}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-
             </div>
 
             <div className={`${step === 6 ? "" : "display-none"}`}>
