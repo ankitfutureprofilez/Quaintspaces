@@ -29,8 +29,8 @@ class Listings extends Component {
   async PropertyBooking(data) {
     return Api.post("/add-booking", data);
   }
-  async BookingHistory() {
-    return Api.get("/user-booking-history");
+  async BookingHistory(data) {
+    return Api.get("/user-booking-history?" + data);
   }
   // async GetUser(data) {
   //   return Api.post("/get-user-profile", data);

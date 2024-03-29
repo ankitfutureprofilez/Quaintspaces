@@ -12,19 +12,22 @@ function Booking() {
     setSelectedButton(e);
   };
   useEffect(() => {
-    // setloading(true);
+    let url="";
+    if(selectedButton ==="upcoming"){url+="booking_event=upcoming&"}
+    else if(selectedButton ==="completed"){url+="booking_event=completed&"}
+    else {url+="booking_status=canceled&"}
     const main = new Listings();
     main
-      .BookingHistory()
+      .BookingHistory(url)
       .then((r) => {
-        //   setloading(false)
         setListings(r.data.data);
       })
       .catch((err) => {
-        //   setloading(false);
         console.log(err);
       });
-  }, []);
+  }, [selectedButton]);
+
+
   const BookingTable = () => {
     return (
       <div className="table-responisve">
@@ -46,21 +49,21 @@ function Booking() {
                   <td className="flex items-center">
                     {/* <img src="image_source" alt="alt" /> */}
                     <div className="text ml-2">
-                      <div class="title">{item.booking_property.name}</div>
+                      <div class="title">{item?.booking_property?.name}</div>
                       {/* <div class="description">2bhk_description</div> */}
                     </div>
                   </td>
-                  <td className="px-4 py-2">{item.check_in}</td>
-                  <td className="px-4 py-2">{item.check_out}</td>
+                  <td className="px-4 py-2">{item?.check_in}</td>
+                  <td className="px-4 py-2">{item?.check_out}</td>
                   <td className="px-4 py-2">
                     <Button
-                      text={`${item.booking_status}`}
+                      text={`${item?.booking_status}`}
                       design={
                         "font-inter text-blue-700 font-medium leading-tight text-center w-32 p-3 rounded-full "
                       }
                     />
                   </td>
-                  <td className="px-4 py-2">{item.price}</td>
+                  <td className="px-4 py-2">{item?.price}</td>
                   <td className="px-4 py-2">
                     {" "}
                     <Button
@@ -122,17 +125,17 @@ function Booking() {
         />
       </div>
 
-      {selectedButton === "upcoming" && (
+      {/* {selectedButton === "upcoming" && ( */}
         <div className="container mx-auto">
           <BookingTable />
         </div>
-      )}
-      {selectedButton === "completed" && (
+      
+      {/* {selectedButton === "completed" && (
         <div className="container mx-auto">2ccompleted</div>
       )}
       {selectedButton === "canceled" && (
         <div className="container mx-auto">3</div>
-      )}
+      )} */}
     </>
   );
 }

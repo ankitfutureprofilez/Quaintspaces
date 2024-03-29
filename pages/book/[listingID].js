@@ -137,6 +137,13 @@ const Book = () => {
     record.append("doc_type", formData.selectOption);
     record.append("front_doc", formData.fornt);
     record.append("no_of_pet", infos.numberOfPets);
+    record.append("price", infos.checkout &&
+    infos.checkin &&
+    +listing?.price *
+      differenceInDays(
+        new Date(infos.checkout),
+        new Date(infos.checkin)
+      ));
     formData.message.length !=0 ? record.append("message", formData.message) : null;
     record.append("phone_no", formData.phone);
     const response = main.PropertyBooking(record);
