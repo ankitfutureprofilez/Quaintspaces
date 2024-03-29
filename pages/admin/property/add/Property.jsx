@@ -85,7 +85,7 @@ export default function Property({ record, onClose,uuid }) {
       return false;
     }
 
-    if (step === 5 && item?.images?.length < 5 || record?.property_image?.length < 5 ) {
+    if (step === 5 && item?.images?.length < 5  ) {
       toast.error("Please select at least five images.");
       return false;
     }
@@ -432,7 +432,7 @@ export default function Property({ record, onClose,uuid }) {
       id="citySelect"
       name="city_id"
       onChange={handleInputChange}
-      onClick={handleCitySelect} // Trigger API call on click
+      onClick={handleCitySelect} 
       className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
     >
       {record && record.city && (

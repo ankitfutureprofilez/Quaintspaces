@@ -11,15 +11,18 @@ import Property from "./add/Property";
 export default function index() {
 
   const [record, setRecord] = useState();
+  const[laoding ,setloading ] =useState(false);
   useEffect(() => {
     const main = new Listing();
     const response = main
       .Adminproperty()
       .then((res) => {
         setRecord(res?.data?.data);
+        setloading(true);
       })
       .catch((error) => {
         console.log("erorr0", error);
+        setloading(true);
       });
   }, []);
 

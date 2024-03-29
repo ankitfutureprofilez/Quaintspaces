@@ -58,7 +58,7 @@ export default function Security() {
   return (
     <>
       <AdminLayout>
-        <Element  />
+        <Element  text={"secuirty"}/>
         <div className=" container mx-auto">
           <div className="w-full sm:w-3/5 security-box-form">
             <form onSubmit={handleSubmit}>
@@ -118,7 +118,7 @@ export default function Security() {
                   "font-inter font-lg leading-tight update-btn text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12"
                 }
               >
-                submit
+                {loading ? "Processing ":"Submit " }
               </button>
             </form>
           </div>

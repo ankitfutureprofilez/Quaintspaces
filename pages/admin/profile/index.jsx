@@ -16,6 +16,7 @@ export default function Profileindex() {
     name: "",
     image: {},
   });
+  console.log("record",record)
   const [previewImgSrc, setPreviewImgSrc] = useState("");
 
   const router = useRouter();
@@ -24,7 +25,6 @@ export default function Profileindex() {
     const fetchData = async () => {
 
       try {
-        setLoading(true);
         const main = new Listing();
         const response = await main.Adminprofile();
         const profiledata = response.data.data;
@@ -32,13 +32,10 @@ export default function Profileindex() {
           name: profiledata.name,
           phone: profiledata.phone_no,
           email: profiledata.email,
-          image: profiledata.image_url,
+          image: profiledata.admin_profile_url,
         });
-        setPreviewImgSrc(profiledata.image_url);
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching profile data:", error);
-        setLoading(false);
       }
     };
     fetchData();
@@ -52,36 +49,36 @@ export default function Profileindex() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  
+  
+  
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    try {
-      const main = new Listing();
-      const formdata = new FormData();
-      formdata.append("email", record.email);
-      formdata.append("image", record.image);
-      formdata.append("name", record.name);
-      formdata.append("phone_no", record.phone);
-      const response = await main.AdminProfileUpdate(formdata);
-      if (response?.data?.status) {
-        toast.success(response?.data?.message);
-        setRecord((prevRecord) => ({
-          ...prevRecord,
-          name: response.data.name,
-          phone: response.data.phone_no,
-          email: response.data.email,
-          image: response.data.image_url,
-        }));
-        setLoading(false);
-      } else {
-        toast.error(response.data.message);
-        setLoading(false);
-      }
-    } catch (error) {
-      console.error("Error updating profile:", error);
-      setLoading(false);
-      toast.error("Error updating profile. Please try again.");
+    console.log("Form submitted:", record);
+    if (Loading == true) {
+      return;
     }
+    setLoading(true);
+    const main = new Listing();
+    const response = main.AdminProfileUpdate({
+      email: record.email,
+      phone_no:record.phone,
+      name: record.name,
+      image: record.image,
+    });
+    response
+      .then((res) => {
+        if (res && res.data && res.data.status) {
+          toast.success(res.data.message);
+        } else {
+          toast.error(res?.data.message);
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        console.log("error", error);
+        setLoading(false);
+      });
   };
 
   const loadFile = (event) => {
@@ -91,7 +88,6 @@ export default function Profileindex() {
       ...prevData,
       image: file,
     }));
-    setPreviewImgSrc(URL.createObjectURL(file));
   };
 
   return (
@@ -166,7 +162,6 @@ export default function Profileindex() {
     </form>
       <button className="font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-indigo-500  p-4 rounded-full mt-14">
         {Loading ? "Processing " : " Update Details"}
-       
       </button>
   </div>
 </div>
