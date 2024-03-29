@@ -6,9 +6,9 @@ import { useRouter } from "next/router";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Image from "next/image";
-export default function Property({ record, onClose,uuid }) {
+export default function Property({ record,longitudes, latitude,children,adults, onClose,uuid ,name, price, area_id ,city_id,location ,description,properties_type,bedrooms,localarea, beds, LocaLcity,bathrooms,no_of_pet_allowed,amenities, property_image}) {
   const router = useRouter();
-  console.log("updatrecord", record);
+   console.log("recorditem", record);
 
   const [step, setStep] = useState(1);
   const [Loading, setLoading] = useState(false);
@@ -18,27 +18,25 @@ export default function Property({ record, onClose,uuid }) {
   }
 
   const [item, setItem] = useState({
-    name: record?.name || "",
-    area_id: record?.area_id || "",
-    city_id: record?.city_id || "",
-    location: record?.location || "",
-    about: record?.description || "",
-    price: record?.price || "",
-    propertytype: record?.properties_type || "flat",
-    children: record?.children || "1",
-    adults: record?.adults || "1",
-    bedrooms: record?.bedrooms || "1",
-    beds: record?.beds || "1",
-    bathrooms: record?.bathrooms || "1",
-    pets: record?.no_of_pet_allowed || "1",
-    latitude: record?.latitude || "",
-    longitude: record?.longitudes || "",
-    selectedAmenities: record?.amenities
-      ? stringToArray(record?.amenities)
-      : [],
-    images: [],
+    name: name || "",
+    area_id:area_id|| "",
+    city_id: city_id || "",
+    location: location || "",
+    about: description || "",
+    price: price || "",
+    propertytype:properties_type || "flat",
+    children:children || "1",
+    adults: adults || "1",
+    bedrooms:bedrooms || "1",
+    beds: beds || "1",
+    bathrooms: bathrooms || "1",
+    pets: no_of_pet_allowed || "1",
+    latitude: latitude || "",
+    longitude: longitudes || "",
+    selectedAmenities:amenities? stringToArray(amenities): [],
+    images: [] ,
   });
-  console.log("item", item.images);
+  console.log("item", item);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -49,6 +47,7 @@ export default function Property({ record, onClose,uuid }) {
     let filesToAdd = Array.from(e.target.files);
     console.log("filed uploaded", filesToAdd);
     let newImages = item.images.concat(filesToAdd).slice(0, 6);
+    console.log("newImages",newImages)
     setItem((prevPoperty) => ({
       ...prevPoperty,
       images: newImages,
@@ -80,16 +79,23 @@ export default function Property({ record, onClose,uuid }) {
       toast.error("Please choose atleast 4 amenities.");
       return false;
     }
+   
     if (step === 4 && (!item.about || item.about.trim().length === 0 || item.about.length < 100)) {
       toast.error("Property description is too short. Description should be a minimum of 100 words.");
       return false;
     }
 
-    if (step === 5 && item?.images?.length < 5  ) {
-      toast.error("Please select at least five images.");
-      return false;
+    if(property_image ) {
+    <>
+    </>
+    }else{
+      if (step === 5 && item?.images?.length < 5  ) {
+        toast.error("Please select at least five images.");
+        return false;
+      }
+  
     }
-
+  
     if (step == 6 && item?.price) {
       toast.error("please  fields are required.");
       return false;
@@ -103,24 +109,22 @@ export default function Property({ record, onClose,uuid }) {
     if (checked) {
       setItem((prevState) => ({
         ...prevState,
-        selectedAmenities: [...prevState.selectedAmenities, value],
+        selectedAmenities: [...prevState?.selectedAmenities, value],
       }));
     } else {
       setItem((prevState) => ({
         ...prevState,
-        selectedAmenities: prevState.selectedAmenities.filter(
+        selectedAmenities: prevState?.selectedAmenities?.filter(
           (item) => item !== value
         ),
       }));
     }
   };
 
+
   const id = 33;
   const [city, setCity] = useState([]);
-
-  const [area, setArea] = useState([]);
-
-  const handleCitySelect = () => {
+  useEffect(() => {
     const main = new Listing();
     const response = main.city_list(id);
     response
@@ -130,21 +134,26 @@ export default function Property({ record, onClose,uuid }) {
       .catch((error) => {
         console.log("error", error);
       });
-  };
-  
-  const handleAreaSelect = () => {
+  }, []);
+
+  const [area, setArea] = useState([]);
+  useEffect(() => {
     const main = new Listing();
-    const response = main.area_list(3378);
-    response
-      .then((res) => {
-        setArea(res?.data?.data);
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
-  };
+    const fetchAreaList = async () => {
+      const response = main.area_list(3378);
+      response
+        .then((res) => {
+          setArea(res?.data?.data);
+        })
+        .catch((error) => {
+          console.log("error", error);
+        });
+    };
+    fetchAreaList();
+  }, []);
 
   const fetchLocationData = async (manualLocation) => {
+    console.log("manualLocation",manualLocation)
     if (manualLocation) {
       try {
         const response = await axios.get(
@@ -165,32 +174,9 @@ export default function Property({ record, onClose,uuid }) {
       } catch (error) {
         console.log("Error fetching data for manual location:", error);
       }
-    } else if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const { latitude, longitude } = position.coords;
-          try {
-            const response = await axios.get(
-              `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-            );
-            const locationData = response.data;
-            console.log("location ", locationData);
-            setItem((prevProperty) => ({
-              ...prevProperty,
-              location: locationData.display_name,
-              latitude: latitude.toString(),
-              longitude: longitude.toString(),
-            }));
-          } catch (error) {
-            console.log("Error fetching data:", error);
-          }
-        },
-        () => {
-          console.log("Geolocation failed");
-        }
-      );
+    } 
     }
-  };
+  
 
   const handleLocationInputChange = (event) => {
     const { name, value } = event.target;
@@ -215,28 +201,8 @@ export default function Property({ record, onClose,uuid }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const requiredFields = [
-      "name",
-      "propertytype",
-      "city_id",
-      "area_id",
-      "location",
-      "price",
-      "about",
-      "latitude",
-      "longitude",
-      "selectedAmenities",
-    ];
-    const isAnyFieldEmpty = requiredFields.some((field) => !item[field]);
-    const areEnoughImagesSelected = item?.images?.length >= 5;
-    if (isAnyFieldEmpty || !areEnoughImagesSelected) {
-      toast.error(
-        "Please fill all required fields and select at least five images."
-      );
-      return;
-    }
     setLoading(true);
-    if (record?.uuid) {
+    if (uuid) {
       const main = new Listing();
       const formData = new FormData();
       formData.append("name", item.name);
@@ -264,9 +230,9 @@ export default function Property({ record, onClose,uuid }) {
       formData.append("free_cancel_time", "11");
       formData.append("amenities", item.selectedAmenities);
       item.images.forEach((image, index) => {
-        formData.append("property_image[]", image);
+        formData.append(`property_image[${index}]`, image);
       });
-      const response = main.propertyedit(record.uuid, formData);
+      const response = main.propertyedit(uuid, formData);
       response
         .then((res) => {
           if (res?.data?.status) {
@@ -314,8 +280,13 @@ export default function Property({ record, onClose,uuid }) {
       response
         .then((res) => {
           console.log("res", res)
-          if (res?.data?.status) {
+          if (res?.data?.status === true ) {
             toast.success(res.data.message);
+            setLoading(false);
+          router.push("/admin/property")
+
+          }else{
+            toast.error(res.data.message);
             setLoading(false);
           }
           setItem({
@@ -337,7 +308,6 @@ export default function Property({ record, onClose,uuid }) {
             selectedAmenities: ""
 
           })
-          router.push("/admin/property")
         })
         .catch((error) => {
           setLoading(false);
@@ -354,20 +324,20 @@ export default function Property({ record, onClose,uuid }) {
       color:#fff;
     }
     `}</style>
-      {record?.uuid ? <></> : <Element text={"Property"} />}
+      {uuid ? <></> : <Element text={"Property"} />}
 
       <div
-        className={`flex items-center justify-center px-6 py-8 ${record && record.uuid ? "w-full !px-0 !py-0" : "min-h-screen"
+        className={`flex items-center justify-center px-6 py-8 ${uuid ? "w-full !px-0 !py-0" : "min-h-screen"
           }`}
       >
         <div className="max-w-4xl w-full space-y-8">
           <div
-            className={`pages-wrapper  ${record && record.uuid ? " max-w-[700px]" : ""
+            className={`pages-wrapper  ${ uuid ? " max-w-[700px]" : ""
               } m-auto `}
           >
             <div className="flex flex-wrap  justify-between">
               <h2 className="text-xl font-bold mb-4 ">Add Property</h2>
-              {record?.uuid ? (
+              {uuid ? (
                 <button onClick={onClose}>
                   <h2 className="text-xl font-bold mb-4 ">X</h2>
                 </button>
@@ -421,57 +391,54 @@ export default function Property({ record, onClose,uuid }) {
                     </select>
                   </div>
                   <div className="">
-    <label
-      htmlFor="citySelect"
-      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-    >
-      City
-    </label>
-    <select
-      required
-      id="citySelect"
-      name="city_id"
-      onChange={handleInputChange}
-      onClick={handleCitySelect} 
-      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
-    >
-      {record && record.city && (
-        <option value={record.city_id}>{record.city}</option>
-      )}
-      {city &&
-        city.map((item, index) => (
-          <option key={index} value={item.id}>
-            {item.name}
-          </option>
-        ))}
-    </select>
+                  <label
+                      htmlFor="citySelect"
+                      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
+                    >
+                      City
+                    </label>
+                    <select  required
+                      id="citySelect"
+                      name="city_id"
+                      onChange={handleInputChange}
+                      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
+                    >
+                       { LocaLcity ? (
+                         <option value={LocaLcity}>{LocaLcity}</option>
+                            ) : ( <option value={""}>OPTION</option>)}
+                      {city &&
+                        city.map((item, index) => (
+                          <option key={index} value={item.id}>
+                            {item.name}
+                          </option>
+                        ))}
+                       
+                    </select>
   </div>
   <div className="">
-    <label
-      htmlFor="areaSelect"
-      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-    >
-      Area
-    </label>
-    <select
-      required
-      id="areaSelect"
-      name="area_id"
-      onChange={handleInputChange}
-      onClick={handleAreaSelect} // Trigger API call on click
-      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
-    >
-      {record && record.area && (
-        <option value={record.area_id}>{record.area}</option>
-      )}
-      {area &&
-        area.map((item, index) => (
-          <option key={index} value={item.id}>
-            {item.name}
-          </option>
-        ))}
-    </select>
-  </div>
+  <label
+                      htmlFor="areaSelect"
+                      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
+                    >
+                      Area
+                    </label>
+                    <select required
+                      id="areaSelect"
+                      name="area_id"
+                      onChange={handleInputChange}
+                      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
+                    >
+                       {localarea ? (
+                         <option value={localarea}>{localarea}</option>
+                            ) : ( <option value={""}>Option </option>)}
+                      {area &&
+                        area.map((item, index) => (
+                          <option key={index} value={item.id}>
+                            {item.name}
+                          </option>
+                        ))}
+                    </select>
+                   </div>
                 </div>
               </div>
               <div className="relative mt-4 text-sm font-medium text-gray-700">
@@ -493,26 +460,6 @@ export default function Property({ record, onClose,uuid }) {
                     placeholder="Enter Location or Click to Select"
                     onClick={() => fetchLocationData(item.location)}
                   />
-
-                  <button
-                    onClick={() => fetchLocationData()}
-                    className="absolute inset-y-0 right-2 flex items-center pr-3"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      className="w-6 h-6 text-gray-500"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 4c-2.761 0-5 2.239-5 5 0 3.86 5 11 5 11s5-7.14 5-11c0-2.761-2.239-5-5-5zm0 7a2 2 0 100-4 2 2 0 000 4z"
-                      />
-                    </svg>
-                  </button>
                 </div>
               </div>
             </div>
@@ -755,49 +702,48 @@ export default function Property({ record, onClose,uuid }) {
               </div>
               <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
 
-                {uuid ? (
-                  record?.property_image.map((item, index) => (
-
-                    <div key={index} className="relative">
-
-                      <button
-                        type="button"
-                        onClick={() => deletePropertyImage(record.uuid, item.uuid)}
-                        className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
-                      >
-                        &times;
-                      </button>
-                      <Image
-                        src={item?.image_url}
-                        width={200}
-                        height={200}
-                        alt={`Preview ${index}`}
-                        className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
-                      />
-                    </div>
-                  ))
-                ) : (<></>)}
-                {(
-                  item?.images?.map((file, index) => (
-                    <div key={index} className="relative">
-                      <button
-                        type="button"
-                        onClick={() => removeImage(index)}
-                        className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
-                      >
-                        &times;
-                      </button>
-                      <Image
-                        src={URL.createObjectURL(file)}
-                        width={200}
-                        height={200}
-                        alt={`Preview ${index}`}
-                        className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
-                        onLoad={() => URL.revokeObjectURL(file)}
-                      />
-                    </div>
-                  ))
-                )}
+              {uuid ? (
+  property_image?.map((item, index) => (
+    <div key={index} className="relative">
+      <button
+        type="button"
+        onClick={() => deletePropertyImage(uuid, item.uuid)}
+        className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
+      >
+        &times;
+      </button>
+      <img
+        src={item?.image_url}
+        width={200}
+        height={200}
+        alt={`Preview ${index}`}
+        className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
+      />
+    </div>
+  ))
+) : (<></>)}
+<div>
+    {item?.images?.map((file, index) => (
+      <div key={index} className="relative">
+        <p>{index}</p>
+        <button
+          type="button"
+          onClick={() => removeImage(index)}
+          className="absolute right-0 top-0 bg-red-500 text-white rounded-full p-1 m-1"
+        >
+          &times;
+        </button>
+        <img
+          src={URL.createObjectURL(file)}
+          width={200}
+          height={200}
+          alt={`Preview ${index}`}
+          className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
+          onLoad={() => URL.revokeObjectURL(file)}
+        />
+      </div>
+    ))}
+  </div>
               </div>
 
             </div>

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Element from "../element";
 import Layout from "../AdminLayout";
@@ -10,30 +11,39 @@ import Property from "./add/Property";
 
 export default function index() {
 
-  const [record, setRecord] = useState();
-  const[laoding ,setloading ] =useState(false);
+  const [record, setRecord] = useState([]);
+
   useEffect(() => {
     const main = new Listing();
     const response = main
       .Adminproperty()
       .then((res) => {
+        let properties = res?.data?.data; 
+        if (properties) {
+          setRecord(properties);
+        } else {
+          toast.error("No properties found");
+        }
         setRecord(res?.data?.data);
-        setloading(true);
       })
       .catch((error) => {
         console.log("erorr0", error);
-        setloading(true);
       });
   }, []);
 
-  console.log("re", record)
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
+
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const deleteImage = (uuid) => {
     if (!uuid) {
       console.error("UUID is undefined or null");
       return;
     }
-
     const main = new Listing();
     main
       .propertydelete(uuid)
@@ -47,15 +57,24 @@ export default function index() {
       });
   };
 
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const togglePopup = () => {
-    setIsPopupOpen(!isPopupOpen);
-  };
+  const handleDelete = () => {
+      setShowConfirmation(true);
+  }
+
+  const handleConfirmation = () => {
+      deleteImage();
+      setShowConfirmation(false);
+  }
+
+  const handleCancel = () => {
+      setShowConfirmation(false);
+  }
+
+  const [loading, setLoading] = useState(false);
 
   return (
     <>
-
       <AdminLayout>
         <Element text={"Property List"} />
         <div>
@@ -101,7 +120,7 @@ export default function index() {
                       <div className="explor-btn">
                         <Link
                           className="block"
-                          href={`/admin/property/${item.uuid}`}
+                          href={`/property/${item.uuid}`}
                         >
                           View {" "}
                           <svg
@@ -120,7 +139,74 @@ export default function index() {
 
                       </div>
                     </div>
-                   
+                    <div>
+                      <div>
+                      <button
+                                className="hover:border hover:border-black bg-red-600 rounded-full transition-none m-1 p-2"
+                                onClick={handleDelete}
+                            >
+                                Delete
+                            </button>
+                            {showConfirmation &&
+                                <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center ">
+                                    <div className="bg-black text-white p-6 rounded-lg">
+                                        <p>Are you sure you want to delete this property?</p>
+                                        <div className="mt-4 flex justify-center">
+                                            <button
+                                                className="mr-2 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+                                                onClick={handleConfirmation}
+                                            >
+                                                Delete
+                                            </button>
+                                            <button
+                                                className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
+                                                onClick={handleCancel}
+                                            >
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        </div>
+                        <button
+                          onClick={togglePopup}
+                          className="hover:border hover:border-black bg-green-600 rounded-full transition-none m-1 p-2"
+                        >
+                          Update
+                        </button>
+                        {isPopupOpen && (
+                          <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
+                            <div className="bg-gray-200 rounded-lg flex flex-col items-center justify-center p-8 property-popup">
+                            <Property 
+                              name={item?.name} 
+beds= {item.beds}
+price ={item?.price}
+latitude ={item?.latitude}
+longitudes ={item?.longitudes}
+location={item?.location}
+properties_type = {item?.properties_type}
+bedrooms ={item?.bedrooms}
+bathrooms={item?.bathrooms}
+city_id={item?.city_id}
+area_id = {item?.area_id}
+description = {item?.description}
+amenities = {item?.amenities}
+adults={item?.adults}
+children={item?.children}
+no_of_pet_allowed={item?.no_of_pet_allowed}
+property_image = {item?.property_image}
+localarea = {item?.area}
+LocaLcity={item?.city}
+
+
+                              uuid={item?.uuid}
+                              onClose={togglePopup}
+                            />
+                            </div>
+                          </div>
+                        )}
                   </li>
                 </ul>
               ))}
