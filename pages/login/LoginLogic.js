@@ -3,6 +3,7 @@ import { toast } from "react-hot-toast";
 import Listings from "../api/laravel/Listings";
 import { Context } from "../_app";
 import { useContext, useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function LoginLogic({isPopup}) {
 
@@ -75,7 +76,7 @@ export default function LoginLogic({isPopup}) {
             <div className="quainttay">
               <h2>Welcome to Quaint Stay Jaipur </h2>
               <h3>
-                Don't have an account? <a href="/signup">Sign up</a>
+                Don't have an account? <Link href="/signup">Sign up</Link>
               </h3>
             </div>
             <form onSubmit={handleSubmit}>

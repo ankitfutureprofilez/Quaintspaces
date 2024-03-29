@@ -18,6 +18,7 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
       document.querySelector("body").style.overflow = "auto";
     }
   }, [amenitiesModal]);
+  console.log("amenities",listing?.data?.amenities)
 
   return (
     <div className="w-full">
@@ -47,8 +48,7 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
                   <span>
                     <Star />
                   </span>
-                  {/* {listing.data?.rating} */}
-                  5.0
+                  {listing.data?.rating}
                 </span>
                 <div className="hidden">·</div>
                 <span className="underline text-md font-medium">
@@ -106,6 +106,19 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
 });
 
 export default React.memo(Info);
+function formatAmenities(input) {
+  // Replace underscores with spaces and split by commas or hyphens
+  const words = input.replace(/_/g, ' ').split(/,|-/);
+  
+  // Capitalize the first letter of each word
+  const formattedWords = words.map(word => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
+  
+  // Join the words back together with commas and return the formatted string
+  return formattedWords.join(', ');
+}
+
 
 const AmenitiesModal = ({ amenities, setAmenitiesModal }) => {
   return (
@@ -132,29 +145,15 @@ const AmenitiesModal = ({ amenities, setAmenitiesModal }) => {
                   src={`/icons/${e
                     .toLowerCase()
                     .trim()
-                    .replaceAll(" ", "_")}.png`}
+                    .replaceAll(" ", "_")
+                  }.png`
+                  }
                   className="w-6 h-6"
                   alt=""
                 />
-                {e}
+                {formatAmenities(e)}
               </li>
             ))}
-            {/* {amenities?.map((e) => (
-              <li
-                className="w-full py-6 border-b border-borderColor flex gap-2 items-center my-2"
-                key={uuidv4()}
-              >
-                <img
-                  src={`/icons/${e
-                    .toLowerCase()
-                    .trim()
-                    .replaceAll(" ", "_")}.png`}
-                  className="w-6 h-6"
-                  alt=""
-                />
-                {e}
-              </li>
-            ))} */}
           </div>
         </main>
       </div>

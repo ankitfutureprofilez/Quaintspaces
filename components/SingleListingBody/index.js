@@ -17,6 +17,7 @@ import Heart from "../../public/_svgs/Heart";
 import { Context } from "../../pages/_app";
 import useWishlist from "../../hooks/useWishlist";
 import { addDays } from 'date-fns';
+import { formatMultiPrice } from "../../hooks/ValueData";
 
 const SingleListingBody = ({ listing, loading }) => {
   const router = useRouter();
@@ -167,7 +168,7 @@ const [selectEnd, setSelectEnd] = useState(null);
             <div className="whitespace-nowrap">
               <span>
                 <span className="font-medium text-lg">
-                  {listing.data.price}
+                  {formatMultiPrice(listing.data.price)}
                 </span>
                 <span className="text-md"> night</span>
               </span>
