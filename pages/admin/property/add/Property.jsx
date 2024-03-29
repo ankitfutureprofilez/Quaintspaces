@@ -8,7 +8,7 @@ import axios from "axios";
 import Image from "next/image";
 export default function Property({ record, onClose }) {
   const router = useRouter();
-  console.log("record", record);
+  console.log("record", record)
 
   const [step, setStep] = useState(1);
   const [Loading, setLoading] = useState(false);
@@ -40,7 +40,8 @@ export default function Property({ record, onClose }) {
       ? record.property_image.map((image) => image.image_url)
       : [],
   });
-  console.log("item", item.images);
+  console.log("item", item)
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -83,16 +84,11 @@ export default function Property({ record, onClose }) {
       return false;
     }
     if (step == 4 && item.about && item.about.length < 100) {
-      toast.error(
-        "Property description is too short. Descrption should be minimum 100 words."
-      );
+      toast.error("Property description is too short. Descrption should be minimum 100 words.");
       return false;
     }
 
-    if (
-      step == 5 &&
-      item?.images?.length + record?.property_images?.length < 5
-    ) {
+    if (step == 5 && item?.images?.length + record?.property_images?.length < 5) {
       toast.error("Please  select at least five images.");
       return false;
     }
@@ -338,15 +334,14 @@ export default function Property({ record, onClose }) {
             } m-auto `}
           >
             <div className="flex flex-wrap  justify-between">
-              <h2 className="text-xl font-bold mb-4 ">Add Property</h2>
-              {record?.uuid ? (
-                <button onClick={onClose}>
-                  <h2 className="text-xl font-bold mb-4 ">X</h2>
-                </button>
-              ) : (
-                <></>
-              )}
-            </div>
+            <h2 className="text-xl font-bold mb-4 " >Add Property</h2>
+            {record?.uuid ? (
+         <button onClick={onClose}>
+         <h2 className="text-xl font-bold mb-4 " >X</h2>
+       </button>
+      ) : (<>
+      </>)}
+              </div>
 
             <div className={`${step === 1 ? "" : "display-none"}`}>
               <div className="mt-4">
