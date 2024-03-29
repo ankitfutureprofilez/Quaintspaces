@@ -54,6 +54,7 @@ export default function Profileindex() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const main = new Listing();
       const formdata = new FormData();
@@ -62,8 +63,8 @@ export default function Profileindex() {
       formdata.append("name", record.name);
       formdata.append("phone_no", record.phone);
       const response = await main.AdminProfileUpdate(formdata);
-      if (response.data.status) {
-        toast.success(response.data.message);
+      if (response?.data?.status) {
+        toast.success(response?.data?.message);
         setRecord((prevRecord) => ({
           ...prevRecord,
           name: response.data.name,
@@ -71,11 +72,14 @@ export default function Profileindex() {
           email: response.data.email,
           image: response.data.image_url,
         }));
+        setLoading(false);
       } else {
         toast.error(response.data.message);
+        setLoading(false);
       }
     } catch (error) {
       console.error("Error updating profile:", error);
+      setLoading(false);
       toast.error("Error updating profile. Please try again.");
     }
   };
@@ -161,7 +165,8 @@ export default function Profileindex() {
       </div>
     </form>
       <button className="font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-indigo-500  p-4 rounded-full mt-14">
-        Update Details
+        {Loading ? "Processing " : " Update Details"}
+       
       </button>
   </div>
 </div>
