@@ -64,10 +64,10 @@ function Navbar({ isOpen, sidebarChange }: { isOpen: boolean, sidebarChange: (va
                         <DirectNotification size={16} />
                     </button>
 
-                    <button className='h-8 w-8 gap-1 md:w-auto md:border py-1 px-2 duration-200 hover:bg-gray-100 rounded-lg text-xs all-center flex items-center'>
+                    {/* <button className='h-8 w-8 gap-1 md:w-auto md:border py-1 px-2 duration-200 hover:bg-gray-100 rounded-lg text-xs all-center flex items-center'>
                         <CalendarEdit size={16} />
                         <span className='hidden md:inline'>Schedule</span>
-                    </button>
+                    </button> */}
 
                     <button className='h-8 gap-1 bg-primary hidden py-1 px-2 duration-200 text-black rounded-lg border-2 h-8 gap-1 bg-primary hidden py-1 px-2 duration-200 text-black rounded-lg text-xs border-2 md:flex items-center justify-centertext-xs md:flex items-center justify-center' onClick={handleproperty}>
                         <Add size={16} />

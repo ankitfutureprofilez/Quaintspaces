@@ -1,10 +1,10 @@
 "use client"
 
-import PageNavbar, { PageNavbarIconButton, PageNavbarLeftContent, PageNavbarRightContent } from '../../../components/layout/PageNavbar'
+import PageNavbar, { PageNavbarIconButton, PageNavbarLeftContent, PageNavbarRightContent } from '../components/layout/PageNavbar'
 import { Add, ExportCurve, Notification, Profile, SearchNormal1 } from 'iconsax-react'
-import PageContent from '../../../components/layout/PageContent'
-import { PrimaryButton, OutlineButton } from '../../../components/ui/Button'
-import MembersTable from '../../../components/teams/MembersTable'
+import PageContent from '../components/layout/PageContent'
+import { PrimaryButton, OutlineButton } from '../components/ui/Button'
+import MembersTable from '../components/teams/MembersTable'
 
 function Teams() {
 
