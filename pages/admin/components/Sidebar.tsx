@@ -25,8 +25,8 @@ function Sidebar() {
                         <Triangle size={24} className='relative group-hover:scale-75 duration-200' />
                     </div>
                     <div>
-                        <h1 className='text-sm font-bold text-gray-800'>Githr</h1>
-                        <p className='text-xs text-gray-500 font-medium'>HR Management</p>
+                        <h1 className='text-sm font-bold text-gray-800'>Admin</h1>
+                        <p className='text-xs text-gray-500 font-medium'>Admin Management</p>
                     </div>
                 </div>
 

@@ -8,7 +8,7 @@ import axios from "axios";
 import Image from "next/image";
 export default function Property({ record, onClose,uuid }) {
   const router = useRouter();
-  console.log("record", record)
+  console.log("updatrecord", record);
 
   const [step, setStep] = useState(1);
   const [Loading, setLoading] = useState(false);
@@ -38,8 +38,7 @@ export default function Property({ record, onClose,uuid }) {
       : [],
     images: [],
   });
-  console.log("item", item)
-
+  console.log("item", item.images);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -81,13 +80,13 @@ export default function Property({ record, onClose,uuid }) {
       toast.error("Please choose atleast 4 amenities.");
       return false;
     }
-    if (step == 4 && item.about && item.about.length < 100) {
-      toast.error("Property description is too short. Descrption should be minimum 100 words.");
+    if (step === 4 && (!item.about || item.about.trim().length === 0 || item.about.length < 100)) {
+      toast.error("Property description is too short. Description should be a minimum of 100 words.");
       return false;
     }
 
-    if (step == 5 && item?.images?.length + record?.property_images?.length < 5) {
-      toast.error("Please  select at least five images.");
+    if (step === 5 && item?.images?.length < 5 || record?.property_image?.length < 5 ) {
+      toast.error("Please select at least five images.");
       return false;
     }
 
@@ -367,14 +366,15 @@ export default function Property({ record, onClose,uuid }) {
               } m-auto `}
           >
             <div className="flex flex-wrap  justify-between">
-            <h2 className="text-xl font-bold mb-4 " >Add Property</h2>
-            {record?.uuid ? (
-         <button onClick={onClose}>
-         <h2 className="text-xl font-bold mb-4 " >X</h2>
-       </button>
-      ) : (<>
-      </>)}
-              </div>
+              <h2 className="text-xl font-bold mb-4 ">Add Property</h2>
+              {record?.uuid ? (
+                <button onClick={onClose}>
+                  <h2 className="text-xl font-bold mb-4 ">X</h2>
+                </button>
+              ) : (
+                <></>
+              )}
+            </div>
 
             <div className={`${step === 1 ? "" : "display-none"}`}>
               <div className="mt-4">

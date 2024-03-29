@@ -117,31 +117,7 @@ export default function index() {
 
                       </div>
                     </div>
-                    <div className="flex  items-left  justify-left gap-5">
-                      <button
-                        className=" hover:border hover:border-black  bg-red-600 rounded-full transition-none m-1 p-2"
-                        onClick={() => deleteImage(item?.uuid)}
-                      >
-                        Delete
-                      </button>
-                      <div>
-                        {/* <button
-                          onClick={togglePopup}
-                          className="hover:border hover:border-black bg-green-600 rounded-full transition-none m-1 p-2"
-                        >
-                          Update
-                        </button>
-                        {isPopupOpen && (
-                          <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
-                            <div className="bg-gray-200 rounded-lg flex flex-col items-center justify-center p-8 property-popup">
-                              <Property record={item} uuid={item.uuid} onClose={togglePopup} />
-                            </div>
-                          </div>
-                        )} */}
-                      </div>
-
-
-                    </div>
+                   
                   </li>
                 </ul>
               ))}

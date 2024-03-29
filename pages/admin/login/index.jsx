@@ -42,11 +42,13 @@ export default function Login() {
           setLoading(false);
         } else {
           toast.error(res.data.message);
+          setLoading(false);
         }
         setRecord({
           email: "",
           password: "",
         });
+        setLoading(false);
       })
       .catch((error) => {
         console.log("error", error);
@@ -95,7 +97,7 @@ export default function Login() {
               <div className="flex items-center justify-between mb-5" >
                 <div className="flex items-center">
                   <input id="remember_me" name="remember_me" type="checkbox" className="h-4 w-4 bg-blue-500 focus:ring-blue-400 border-gray-300 rounded" />
-                  <label for="remember_me" className="ml-2 block text-sm text-gray-800">
+                  <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-800">
                     Remember me
                   </label>
                 </div>
@@ -107,7 +109,7 @@ export default function Login() {
             </div>
             </div>
             <div>
-              <button type="submit" className="w-full flex justify-center   bg-green-400  hover:bg-green-500 text-gray-100 p-3 mt-4 rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500">
+              <button type="submit" className="w-full flex justify-center   bg-indigo-600  hover:bg-indigo-500 text-gray-100 p-3 mt-4 rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500">
                 {loading ? "please wait.." : "Sign in"} 
               </button>
             </div>

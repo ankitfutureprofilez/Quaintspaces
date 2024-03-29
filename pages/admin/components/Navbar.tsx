@@ -1,6 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router';
+import {useContext} from  "react";
+import {Context} from "../../_app"
 import ProfileImage from '../components/assets/profile.png'
 import { Add, CalendarEdit, DirectNotification, SearchNormal1, SidebarLeft } from 'iconsax-react'
 
@@ -11,23 +13,42 @@ function Navbar({ isOpen, sidebarChange }: { isOpen: boolean, sidebarChange: (va
     function handleproperty(){
         router.push("/admin/property/add")
       }
+
+      const auth = useContext(Context)
+      console.log("aaanav",auth)
     return (
         <div>
             <div className='flex p-4 md:p-6 justify-between items-center'>
-                {/* profile/left section */}
-                <div className='flex items-center justify-between gap-2'>
-                    <Image
-                        src={ProfileImage}
-                        alt='User'
-                        width={40}
-                        height={40}
-                        className='rounded-full'
-                    />
-                    <div className=''>
-                        <p className='text-sm font-semibold text-gray-800'>Steve Jobs</p>
-                        <p className='text-xs font-medium text-gray-500'>Welcome back</p>
-                    </div>
-                </div>
+                {auth ? (
+                     <div className='flex items-center justify-between gap-2'>
+                     <Image
+                         src={auth?.auth?.admin_profile_url}
+                         alt='User'
+                         width={40}
+                         height={40}
+                         className='rounded-full'
+                     />
+                     <div className=''>
+                         <p className='text-sm font-semibold text-gray-800'>{auth?.auth?.name}</p>
+                         <p className='text-xs font-medium text-gray-500'>Welcome back</p>
+                     </div>
+                 </div>
+                ) : (
+                     <div className='flex items-center justify-between gap-2'>
+                     <Image
+                         src={ProfileImage}
+                         alt='User'
+                         width={40}
+                         height={40}
+                         className='rounded-full'
+                     />
+                     <div className=''>
+                         <p className='text-sm font-semibold text-gray-800'>Steve Jobs</p>
+                         <p className='text-xs font-medium text-gray-500'>Welcome back</p>
+                     </div>
+                 </div>
+                )}
+               
 
                 <button onClick={() => sidebarChange(!isOpen)} className='all-center text-gray-500 h-8 w-8 md:hidden'>
                     <SidebarLeft size={16} />

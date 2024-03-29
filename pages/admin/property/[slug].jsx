@@ -158,7 +158,6 @@ export default function Index() {
 
     return <>
         <AdminLayout>
-
             <Element />
             <section className="w-full sm:px-4">
                 <div className="container mx-auto !py-4 sm:py-8">
@@ -196,7 +195,7 @@ export default function Index() {
                                                 className="mr-2 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
                                                 onClick={handleConfirmation}
                                             >
-                                                Yes
+                                                Delete
                                             </button>
                                             <button
                                                 className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
@@ -209,7 +208,6 @@ export default function Index() {
                                 </div>
                             }
                         </div>
-
                         <div>
                             <button
                                 onClick={togglePopup}
@@ -218,18 +216,16 @@ export default function Index() {
                                 Update
                             </button>
                             {isPopupOpen && (
-                                <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50 overflow-auto">
+                                <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50 ">
                                     <div className="bg-gray-200 rounded-lg flex flex-col items-center justify-center p-8 property-popup">
                                         <Property record={record?.data?.data} uuid={slug} onClose={togglePopup} />
                                     </div>
                                 </div>
                             )}
                         </div>
-
-
                     </div>
                     <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
-                        <Info listing={record?.data} ref={AmenitiesRef}
+                       <Info listing={record?.data} ref={AmenitiesRef}
                             loading={loading}
                         />
                         <div className="hidden lg:block">
