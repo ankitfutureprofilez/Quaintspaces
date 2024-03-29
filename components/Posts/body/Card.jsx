@@ -4,6 +4,7 @@ import { Context } from "../../../pages/_app";
 import { textResizer } from "../../../utils/handlers";
 import Link from "next/link";
 import Image from "next/image";
+import { formatMultiPrice } from "../../../hooks/ValueData";
 
 const Card = ({ post }) => {
   const { wishlist } = useContext(Context);
@@ -37,7 +38,7 @@ const Card = ({ post }) => {
           {post.bedrooms} Bedrooms · {post.beds} Bed
         </p>
         <h4>
-          From <span> ₹{post.price}</span> /night
+          From <span> {formatMultiPrice(post.price)}</span> /night
         </h4>
       </div>
       <div className="explor-btn">

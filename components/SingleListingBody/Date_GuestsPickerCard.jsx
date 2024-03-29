@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { Context } from "../../pages/_app";
+import { formatMultiPrice } from './../../hooks/ValueData';
 
 const Date_GuestsPickerCard = React.forwardRef(
   (
@@ -24,7 +25,7 @@ const Date_GuestsPickerCard = React.forwardRef(
     },
     ref
   ) => {
-console.log("price",listing)
+// console.log("price",listing)
     const router = useRouter();
     const { auth, setOpenLogin } = useContext(Context);
   console.log("auth",auth)
@@ -36,7 +37,7 @@ console.log("price",listing)
         <div className="rounded-xl shadow border border-orange-300 p-5">
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-md font-normal">
-              <span className="font-medium text-orange-300 text-2xl">₹{listing?.price}</span> /night
+              <span className="font-medium text-orange-300 text-2xl">{formatMultiPrice(listing?.price)}</span> /night
             </h1>
             <span className="flex items-center gap-2">
               <span className="flex items-center gap-1">
