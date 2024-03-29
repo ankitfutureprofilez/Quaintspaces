@@ -69,7 +69,7 @@ export default function Property({
   const handleFileChange = (e) => {
     let filesToAdd = Array.from(e.target.files);
     console.log("filed uploaded", filesToAdd);
-    let newImages = item?.images.concat(filesToAdd).slice(0, 6);
+    let newImages = item?.images.concat(filesToAdd).slice(0, 100);
     console.log("newImages", newImages);
     setItem((prevPoperty) => ({
       ...prevPoperty,
@@ -80,20 +80,26 @@ export default function Property({
   const removeImage = (indexToRemove) => {
     setItem((prevPoperty) => ({
       ...prevPoperty,
-      images: prevPoperty.images.filter((_, index) => index !== indexToRemove),
+      images: prevPoperty?.images?.filter((_, index) => index !== indexToRemove),
     }));
   };
 
   const nextStep = () => {
     if (
-      (step == 1 && item?.name === "") ||
+      (step === 1 && item?.name === "") ||
       item?.area_id === "" ||
       item?.city_id === "" ||
-      item?.location === ""
+      item?.location === "" ||
+      item?.latitude.trim() === "" ||
+      item?.longitude.trim() === ""
     ) {
       toast.error("All fields are required.");
       return false;
+    } else if (item?.latitude.trim() === "" || item?.longitude.trim() === "") {
+      toast.error("Latitude and Longitude are required for the location.");
+      return false;
     }
+    
     if (
       step == 3 &&
       item?.selectedAmenities &&
@@ -209,17 +215,15 @@ export default function Property({
       [name]: value,
     }));
   };
-
   const deletePropertyImage = (recordUUID, itemUUID) => {
     const main = new Listing();
     main
       .propertyImagedelete(recordUUID, itemUUID)
       .then((response) => {
-        // router.push("/admin/property")
-        toast.success(response.data.message);
+        toast.success(response.data.message)
       })
       .catch((error) => {
-        console.log("error", error);
+        console.error("Error:", error);
       });
   };
 
@@ -349,9 +353,8 @@ export default function Property({
       {uuid ? <></> : <Element text={"Property"} />}
 
       <div
-        className={`flex items-center justify-center px-6 py-8 ${
-          uuid ? "w-full !px-0 !py-0" : "min-h-screen"
-        }`}
+        className={`flex items-center justify-center px-6 py-8 ${uuid ? "w-full !px-0 !py-0" : "min-h-screen"
+          }`}
       >
         <div className="max-w-4xl w-full space-y-8">
           <div
@@ -456,7 +459,7 @@ export default function Property({
                       {localarea ? (
                         <option value={localarea}>{localarea}</option>
                       ) : (
-                        <option value={""}>Option </option>
+                        <option value={""}>OPTION</option>
                       )}
                       {area &&
                         area.map((item, index) => (
@@ -685,7 +688,7 @@ export default function Property({
             </div>
 
             <div className={`${step === 5 ? " " : " display-none"}`}>
-              <div className="flex items-center justify-center w-full mt-5 ">
+              <div className="flex items-center justify-center w-full mt-5 mb-4 ">
                 <label
                   htmlFor="dropzone-file"
                   className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
@@ -725,19 +728,22 @@ export default function Property({
                   />
                 </label>
               </div>
-              
-<div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {uuid ? ( property_image?.map((item, index) => (
-                  <div key={index} className="relative" >
-                    <img className="h-full max-w-full rounded-lg" 
-                      src={item?.image_url}
-                      width={200}
-                      height={200}
-                      alt={`Preview ${index}`}  />
+
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 ">
+                {uuid ? (
+                  property_image?.map((item, index) => (
+                    <div key={index} className="relative">
+                      <img
+                        className="image-preview h-full w-full max-w-full rounded-lg"
+                        src={item?.image_url}
+                        width={200}
+                        height={200}
+                        alt={`Preview ${index}`}
+                      />
                       <button
                         type="button"
                         onClick={() => deletePropertyImage(uuid, item?.uuid)}
-                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg  px-3 py-1 m-1"
+                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
                       >
                         Remove
                       </button>
@@ -746,25 +752,24 @@ export default function Property({
                 ) : (
                   <></>
                 )}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 ">
                   {item?.images?.map((file, index) => (
                     <div key={index} className="relative">
-                       <img
+                      <img
                         src={URL.createObjectURL(file)}
-                        width={200}
+                        width={200} 
                         height={200}
                         alt={`Preview ${index}`}
-                        className="h-full w-full rounded-lg"
+                        className="image-preview h-full w-full max-w-full rounded-lg"
                         onLoad={() => URL.revokeObjectURL(file)}
                       />
                       <button
                         type="button"
                         onClick={() => removeImage(index)}
-                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg  px-3 py-1 m-1"
+                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-1 py-1 m-1"
                       >
-                        &times;
+                       Remove
                       </button>
-                     
                     </div>
                   ))}
                 </div>

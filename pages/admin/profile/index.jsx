@@ -16,7 +16,6 @@ export default function Profileindex() {
     name: "",
     image: {},
   });
-  console.log("record",record)
   const [previewImgSrc, setPreviewImgSrc] = useState("");
 
   const router = useRouter();
@@ -25,6 +24,7 @@ export default function Profileindex() {
     const fetchData = async () => {
 
       try {
+        setLoading(true);
         const main = new Listing();
         const response = await main.Adminprofile();
         const profiledata = response.data.data;
@@ -34,8 +34,11 @@ export default function Profileindex() {
           email: profiledata.email,
           image: profiledata.admin_profile_url,
         });
+        setPreviewImgSrc(profiledata.admin_profile_url);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching profile data:", error);
+        setLoading(false);
       }
     };
     fetchData();
@@ -49,36 +52,31 @@ export default function Profileindex() {
     }));
   };
 
-  
-  
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", record);
-    if (Loading == true) {
-      return;
-    }
+  const handleSubmit = async (e) => {
     setLoading(true);
-    const main = new Listing();
-    const response = main.AdminProfileUpdate({
-      email: record.email,
-      phone_no:record.phone,
-      name: record.name,
-      image: record.image,
-    });
-    response
-      .then((res) => {
-        if (res && res.data && res.data.status) {
+    e.preventDefault();
+      const main = new Listing();
+      const formdata = new FormData();
+      formdata.append("email", record.email);
+      formdata.append("image", record.image);
+      formdata.append("name", record.name);
+      formdata.append("phone_no", record.phone);
+      const response =  main.AdminProfileUpdate(formdata);
+      response.then((res)=>{
+        if (res.data.status) {
           toast.success(res.data.message);
-        } else {
-          toast.error(res?.data.message);
           setLoading(false);
+        } else {
+          setLoading(false);
+
+          toast.error(res.data.message);
         }
-      })
-      .catch((error) => {
-        console.log("error", error);
-        setLoading(false);
-      });
+      }).catch((error)=>{console.log("error",error)
+      setLoading(false);
+    
+    })
+    
+    
   };
 
   const loadFile = (event) => {
@@ -88,6 +86,7 @@ export default function Profileindex() {
       ...prevData,
       image: file,
     }));
+    setPreviewImgSrc(URL.createObjectURL(file));
   };
 
   return (
@@ -96,8 +95,8 @@ export default function Profileindex() {
       <Element text= {"profile Management"} />
       <div className="container mx-auto mt-5">
   <div className="flex items-center profile-border">
-    <div className="relative">
-      <div className="shrink-0">
+    <div className="relative mt-5">
+      <div className="shrink-0  ">
         <img id="preview_img" className="h-16 w-16 object-cover rounded-full" src={previewImgSrc} alt="Current profile photo" />
       </div>
       <label className="block">
@@ -115,7 +114,7 @@ export default function Profileindex() {
 </div>
 <div className="container mx-auto mt-5 perso-form">
   <div className="w-full md:w-9/12 ">
-    <form onSubmit={handleSubmit} className="grid sm:grid-cols-2 grid-cols-1 gap-4">
+    <form  className="grid sm:grid-cols-2 grid-cols-1 gap-4">
       <div className="mb-2 sm:mb-4">
         <label htmlFor="name" className="block text-lg font-medium text-gray-700">
           Full Name
@@ -160,8 +159,9 @@ export default function Profileindex() {
         />
       </div>
     </form>
-      <button className="font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-indigo-500  p-4 rounded-full mt-14">
-        {Loading ? "Processing " : " Update Details"}
+        
+      <button  onClick={handleSubmit} className="font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-indigo-500  p-4 rounded-full mt-14">
+      {Loading ? "Updating..." : "Update Details"}
       </button>
   </div>
 </div>
