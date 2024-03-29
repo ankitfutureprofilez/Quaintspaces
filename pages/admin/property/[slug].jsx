@@ -225,9 +225,9 @@ export default function Index() {
                         </div>
                     </div>
                     <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
-                       <Info listing={record?.data} ref={AmenitiesRef}
+                       {/* <Info listing={record?.data} ref={AmenitiesRef}
                             loading={loading}
-                        />
+                        /> */}
                         <div className="hidden lg:block">
                             {/* <Date_GuestsPickerCard
                                 loading={loading}
