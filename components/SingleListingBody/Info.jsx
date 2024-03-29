@@ -83,7 +83,7 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
                   className="w-6 h-6 mt-1"
                   alt=""
                 />
-                {amenity}
+                {formatAmenities(amenity)}
               </li>
             ))}
         </ul>

@@ -28,6 +28,8 @@ const Book = () => {
   const [dateModel, setDateModel] = useState(false);
   const [guestsModel, setGuestsModel] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [numberField, setNumberField] = useState(false);
+  const [messageField, setMessageField] = useState(false);
 
   // console.log("infos",infos)
   const [guests, setGuests] = useState({
@@ -92,13 +94,15 @@ const Book = () => {
       },
     });
   }, [router.asPath]);
+  console.log("infos",infos)
 
   const [formData, setFormData] = useState({
     selectOption: "",
     fornt: null,
+    message: "",
+    phone:"",
   });
-
-  console.log("formData", formData);
+  0;
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -132,6 +136,9 @@ const Book = () => {
     record.append("children", infos.numberOfChildren);
     record.append("doc_type", formData.selectOption);
     record.append("front_doc", formData.fornt);
+    record.append("no_of_pet", infos.numberOfPets);
+    formData.message.length !=0 ? record.append("message", formData.message) : null;
+    record.append("phone_no", formData.phone);
     const response = main.PropertyBooking(record);
     response
       .then((res) => {
@@ -255,16 +262,63 @@ const Book = () => {
                       Share why you're travelling, who's coming with you and
                       what you love about the space.
                     </p>
-                    <p className="edit-color underline font-bold">ADD</p>
+                    <button
+                      onClick={() => setMessageField(true)}
+                      className="edit-color underline font-bold"
+                    >
+                      ADD
+                    </button>
                   </div>
+                  {messageField ? (
+                    <div className="mt-2 mb-2 sm:mb-4 flex">
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        className="mt-1 mr-1 p-4 border rounded w-5/6"
+                      ></textarea>
+                      <button
+                        onClick={() => setMessageField(false)}
+                        className="w-1/6 sort btn"
+                      >
+                        Confirm
+                      </button>
+                    </div>
+                  ) : null}
 
                   <h1 className="text-lg item-heading mb-2">Phone number</h1>
                   <div className="flex flex-wrap justify-between">
                     <p className="item-pargraph">
                       Add and confirm your phone number to get trip updates.
                     </p>
-                    <p className="edit-color underline font-bold">ADD</p>
+                    <button
+                      onClick={() => setNumberField(true)}
+                      className="edit-color underline font-bold"
+                    >
+                      ADD
+                    </button>
                   </div>
+                  {numberField ? (
+                    <div className="mt-2 mb-2 sm:mb-4 flex">
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        maxlength="10"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="mt-1 mr-1 p-4 border rounded-full w-5/6"
+                        required
+                      />
+                      <button
+                        onClick={() => setNumberField(false)}
+                        className="w-1/6 sort btn"
+                      >
+                        Confirm
+                      </button>
+                    </div>
+                  ) : null}
                 </div>
               </div>
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">

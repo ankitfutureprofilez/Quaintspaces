@@ -8,7 +8,8 @@ export default function Popup({
   btnclass,
   buttontext,
   togglePopup,
-  isOpen = false,
+  isOpen ,
+  setisOpen,
   text,
   footer,
 }) {
@@ -29,7 +30,8 @@ export default function Popup({
 
   const closep = () => {
     setOpenLogin(false);
-    // togglePopup && togglePopup(!isOpen);
+    togglePopup (!isOpen);
+    setisOpen(false);
   };
 
   return isClient ? (
