@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import amenitiesList from "../../../../aminites.json";
 import Listing from "../../api/Listing";
 import Element from "../../element";
-import { useRouter } from 'next/router';
-import toast, { Toaster } from 'react-hot-toast';
+import { useRouter } from "next/router";
+import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Image from "next/image";
 export default function Property({ record, onClose }) {
-
   const router = useRouter();
-  console.log("record", record)
+  console.log("record", record);
 
   const [step, setStep] = useState(1);
   const [Loading, setLoading] = useState(false);
@@ -34,20 +33,23 @@ export default function Property({ record, onClose }) {
     pets: record?.no_of_pet_allowed || "1",
     latitude: record?.latitude || "",
     longitude: record?.longitudes || "",
-    selectedAmenities: record?.amenities ? stringToArray(record?.amenities) : [],
-      images: record?.property_image ? record.property_image.map(image => image.image_url) : []
+    selectedAmenities: record?.amenities
+      ? stringToArray(record?.amenities)
+      : [],
+    images: record?.property_image
+      ? record.property_image.map((image) => image.image_url)
+      : [],
   });
-  console.log("item", item.images)
-
+  console.log("item", item.images);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setItem({ ...item, [name]: value, });
+    setItem({ ...item, [name]: value });
   };
 
   const handleFileChange = (e) => {
     let filesToAdd = Array.from(e.target.files);
-    console.log("filed uploaded",filesToAdd)
+    console.log("filed uploaded", filesToAdd);
     let newImages = item.images.concat(filesToAdd).slice(0, 6);
     setItem((prevPoperty) => ({
       ...prevPoperty,
@@ -62,24 +64,35 @@ export default function Property({ record, onClose }) {
     }));
   };
 
-
-
-
   const nextStep = () => {
-    if (step == 1 && item.name === "" || item.area_id === "" || item.city_id === "" || item.location === "") {
+    if (
+      (step == 1 && item.name === "") ||
+      item.area_id === "" ||
+      item.city_id === "" ||
+      item.location === ""
+    ) {
       toast.error("All fields are required.");
       return false;
     }
-    if (step == 3 && item.selectedAmenities && item.selectedAmenities.length < 4) {
+    if (
+      step == 3 &&
+      item.selectedAmenities &&
+      item.selectedAmenities.length < 4
+    ) {
       toast.error("Please choose atleast 4 amenities.");
       return false;
     }
     if (step == 4 && item.about && item.about.length < 100) {
-      toast.error("Property description is too short. Descrption should be minimum 100 words.");
+      toast.error(
+        "Property description is too short. Descrption should be minimum 100 words."
+      );
       return false;
     }
 
-    if (step == 5 && item?.images?.length + record?.property_images?.length < 5) {
+    if (
+      step == 5 &&
+      item?.images?.length + record?.property_images?.length < 5
+    ) {
       toast.error("Please  select at least five images.");
       return false;
     }
@@ -90,8 +103,6 @@ export default function Property({ record, onClose }) {
     setStep((prev) => prev + 1);
   };
   const prevStep = () => setStep((prev) => prev - 1);
-
-
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -144,10 +155,12 @@ export default function Property({ record, onClose }) {
     if (manualLocation) {
       try {
         const response = await axios.get(
-          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(manualLocation)}`
+          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+            manualLocation
+          )}`
         );
         const locationData = response.data[0];
-        console.log("locationData", locationData)
+        console.log("locationData", locationData);
         if (locationData) {
           setItem((prevProperty) => ({
             ...prevProperty,
@@ -157,29 +170,32 @@ export default function Property({ record, onClose }) {
           }));
         }
       } catch (error) {
-        console.log('Error fetching data for manual location:', error);
+        console.log("Error fetching data for manual location:", error);
       }
     } else if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(async (position) => {
-        const { latitude, longitude } = position.coords;
-        try {
-          const response = await axios.get(
-            `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-          );
-          const locationData = response.data;
-          console.log("location ", locationData)
-          setItem((prevProperty) => ({
-            ...prevProperty,
-            location: locationData.display_name,
-            latitude: latitude.toString(),
-            longitude: longitude.toString(),
-          }));
-        } catch (error) {
-          console.log('Error fetching data:', error);
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const response = await axios.get(
+              `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+            );
+            const locationData = response.data;
+            console.log("location ", locationData);
+            setItem((prevProperty) => ({
+              ...prevProperty,
+              location: locationData.display_name,
+              latitude: latitude.toString(),
+              longitude: longitude.toString(),
+            }));
+          } catch (error) {
+            console.log("Error fetching data:", error);
+          }
+        },
+        () => {
+          console.log("Geolocation failed");
         }
-      }, () => {
-        console.log("Geolocation failed");
-      });
+      );
     }
   };
 
@@ -189,17 +205,28 @@ export default function Property({ record, onClose }) {
       ...prevProperty,
       [name]: value,
     }));
-
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const requiredFields = ["name", "propertytype", "city_id", "area_id", "location", "price", "about", "latitude", "longitude", "selectedAmenities"];
-    const isAnyFieldEmpty = requiredFields.some(field => !item[field]);
+    const requiredFields = [
+      "name",
+      "propertytype",
+      "city_id",
+      "area_id",
+      "location",
+      "price",
+      "about",
+      "latitude",
+      "longitude",
+      "selectedAmenities",
+    ];
+    const isAnyFieldEmpty = requiredFields.some((field) => !item[field]);
     const areEnoughImagesSelected = item?.images?.length >= 5;
     if (isAnyFieldEmpty || !areEnoughImagesSelected) {
-      toast.error("Please fill all required fields and select at least five images.");
+      toast.error(
+        "Please fill all required fields and select at least five images."
+      );
       return;
     }
     setLoading(true);
@@ -234,14 +261,16 @@ export default function Property({ record, onClose }) {
         formData.append("property_image[]", image);
       });
       const response = main.propertyedit(record.uuid, formData);
-      response.then((res) => {
-        console.log("res", res);
-        setLoading(false);
-        router.push("/admin/property")
-      }).catch((error) => {
-        console.log("error", error);
-        setLoading(false);
-      });
+      response
+        .then((res) => {
+          console.log("res", res);
+          setLoading(false);
+          router.push("/admin/property");
+        })
+        .catch((error) => {
+          console.log("error", error);
+          setLoading(false);
+        });
     } else {
       const main = new Listing();
       const formData = new FormData();
@@ -287,10 +316,6 @@ export default function Property({ record, onClose }) {
     }
   };
 
-
-
-
-
   return (
     <>
       <style>{`
@@ -299,29 +324,36 @@ export default function Property({ record, onClose }) {
       color:#fff;
     }
     `}</style>
-    {record?.uuid ? (<>6
-    </>) : ( <Element  text={"Property"}/>) }
-     
-  
-    
-      <div className={`flex items-center justify-center px-6 py-8 ${record && record.uuid ? 'w-full !px-0 !py-0' : 'min-h-screen'}`}>
+      {record?.uuid ? <>6</> : <Element text={"Property"} />}
+
+      <div
+        className={`flex items-center justify-center px-6 py-8 ${
+          record && record.uuid ? "w-full !px-0 !py-0" : "min-h-screen"
+        }`}
+      >
         <div className="max-w-4xl w-full space-y-8">
-          <div className={`pages-wrapper  ${record && record.uuid ? ' max-w-[700px]' : ''} m-auto `}>
+          <div
+            className={`pages-wrapper  ${
+              record && record.uuid ? " max-w-[700px]" : ""
+            } m-auto `}
+          >
             <div className="flex flex-wrap  justify-between">
-            <h2 className="text-xl font-bold mb-4 " >Add Property</h2>
-            {record?.uuid ? (
-         <button onClick={onClose}>
-         <h2 className="text-xl font-bold mb-4 " >X</h2>
-       </button>
-      ) : (<>
-      </>)}
-              </div>
+              <h2 className="text-xl font-bold mb-4 ">Add Property</h2>
+              {record?.uuid ? (
+                <button onClick={onClose}>
+                  <h2 className="text-xl font-bold mb-4 ">X</h2>
+                </button>
+              ) : (
+                <></>
+              )}
+            </div>
 
             <div className={`${step === 1 ? "" : "display-none"}`}>
               <div className="mt-4">
                 <label
                   htmlFor="name"
-                  className="block text-sm mb-1 font-medium text-gray-700 mt-3" >
+                  className="block text-sm mb-1 font-medium text-gray-700 mt-3"
+                >
                   Property Name
                 </label>
                 <input
@@ -339,7 +371,8 @@ export default function Property({ record, onClose }) {
                   <div className=" ">
                     <label
                       htmlFor="propertyType"
-                      className="block text-sm mb-1 font-medium text-gray-700 mt-3" >
+                      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
+                    >
                       Property Type
                     </label>
                     <select
@@ -348,7 +381,8 @@ export default function Property({ record, onClose }) {
                       className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
                       value={item.propertytype}
                       onChange={handleInputChange}
-                      name="propertytype" >
+                      name="propertytype"
+                    >
                       <option value="flat">Flat/Apartment</option>
                       <option value="house">House</option>
                       <option value="unique_space">Unique Space</option>
@@ -365,7 +399,8 @@ export default function Property({ record, onClose }) {
                     >
                       City
                     </label>
-                    <select required
+                    <select
+                      required
                       id="citySelect"
                       name="city_id"
                       onChange={handleInputChange}
@@ -380,7 +415,6 @@ export default function Property({ record, onClose }) {
                             {item.name}
                           </option>
                         ))}
-
                     </select>
                   </div>
                   <div className="">
@@ -390,7 +424,8 @@ export default function Property({ record, onClose }) {
                     >
                       Area
                     </label>
-                    <select required
+                    <select
+                      required
                       id="areaSelect"
                       name="area_id"
                       onChange={handleInputChange}
@@ -417,7 +452,8 @@ export default function Property({ record, onClose }) {
                   Location
                 </label>
                 <div className="relative">
-                  <input required
+                  <input
+                    required
                     type="text"
                     id="location"
                     name="location"
@@ -451,7 +487,6 @@ export default function Property({ record, onClose }) {
               </div>
             </div>
 
-
             <div className={`${step === 2 ? " " : " display-none"}`}>
               <div className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-x-8 mt-5">
                 <div>
@@ -461,7 +496,8 @@ export default function Property({ record, onClose }) {
                   >
                     Adult
                   </label>
-                  <select required
+                  <select
+                    required
                     id="guests"
                     name="adults"
                     autoComplete="guests"
@@ -482,7 +518,8 @@ export default function Property({ record, onClose }) {
                   >
                     children
                   </label>
-                  <select required
+                  <select
+                    required
                     id="guests"
                     name="children"
                     autoComplete="guests"
@@ -503,7 +540,8 @@ export default function Property({ record, onClose }) {
                   >
                     Bedrooms
                   </label>
-                  <select required
+                  <select
+                    required
                     id="bedrooms"
                     name="bedrooms"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
@@ -522,7 +560,8 @@ export default function Property({ record, onClose }) {
                   >
                     Beds
                   </label>
-                  <select required
+                  <select
+                    required
                     id="beds"
                     name="beds"
                     autoComplete="beds"
@@ -542,7 +581,8 @@ export default function Property({ record, onClose }) {
                   >
                     Bathrooms
                   </label>
-                  <select required
+                  <select
+                    required
                     id="bathrooms"
                     name="bathrooms"
                     autoComplete="bathrooms"
@@ -564,7 +604,8 @@ export default function Property({ record, onClose }) {
                     Pets
                   </label>
                   <select
-                    id="pet" required
+                    id="pet"
+                    required
                     name="pets"
                     autoComplete="pet"
                     className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
@@ -578,7 +619,6 @@ export default function Property({ record, onClose }) {
                 </div>
               </div>
             </div>
-
 
             <div className={`${step === 3 ? " " : " display-none"}`}>
               <div className="">
@@ -597,7 +637,10 @@ export default function Property({ record, onClose }) {
                         checked={item.selectedAmenities.includes(amenity.value)} // Check if amenity is selected
                         onChange={handleCheckboxChange}
                       />
-                      <label htmlFor={amenity.value} className="me-2 mb-2 bg-gray-300 px-4 py-2 rounded-lg text-md text-gray-500 cursor-pointer">
+                      <label
+                        htmlFor={amenity.value}
+                        className="me-2 mb-2 bg-gray-300 px-4 py-2 rounded-lg text-md text-gray-500 cursor-pointer"
+                      >
                         {amenity.title}
                       </label>
                     </div>
@@ -605,8 +648,6 @@ export default function Property({ record, onClose }) {
                 </div>
               </div>
             </div>
-
-
 
             <div className={`${step === 4 ? " " : " display-none"}`}>
               <div className="mt-4">
@@ -616,7 +657,8 @@ export default function Property({ record, onClose }) {
                 >
                   Describe Your Property to Guests
                 </label>
-                <textarea required
+                <textarea
+                  required
                   id="about"
                   name="about"
                   minCol={"5"}
@@ -627,13 +669,10 @@ export default function Property({ record, onClose }) {
                   placeholder="Tell more about your property..."
                 />
                 <div className="flex flex-wrap justify-between">
-
-                  <label
-                    className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
-                    Word Count  {item?.about?.length ? (item?.about?.length) : ("0")}
+                  <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
+                    Word Count {item?.about?.length ? item?.about?.length : "0"}
                   </label>
-                  <label
-                    className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
+                  <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
                     Minimum 100 words.
                   </label>
                 </div>
@@ -675,7 +714,8 @@ export default function Property({ record, onClose }) {
                     type="file"
                     className="hidden"
                     onChange={handleFileChange}
-                    name="images" required
+                    name="images"
+                    required
                     multiple
                   />
                 </label>
@@ -691,30 +731,28 @@ export default function Property({ record, onClose }) {
                       &times;
                     </button>
                     <Image
-  src={(file)}
-  width={200}
-  height={200}
-  alt={`Preview ${index}`}
-  className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
-  onLoad={() => (file)}
-/>
-
+                      src={file}
+                      width={200}
+                      height={200}
+                      alt={`Preview ${index}`}
+                      className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
+                      onLoad={() => file}
+                    />
                   </div>
                 ))}
-
-               
               </div>
             </div>
-
 
             <div className={`${step === 6 ? "" : "display-none"}`}>
               <div className="mt-4">
                 <label
                   htmlFor="name"
-                  className="block text-sm mb-1 font-medium text-gray-700 mt-3" >
+                  className="block text-sm mb-1 font-medium text-gray-700 mt-3"
+                >
                   Price
                 </label>
-                <input required
+                <input
+                  required
                   type="text"
                   name="price"
                   id="name"
@@ -726,7 +764,8 @@ export default function Property({ record, onClose }) {
             </div>
 
             <div className="pt-6 flex justify-between">
-              <button disabled={step < 2}
+              <button
+                disabled={step < 2}
                 type="button"
                 onClick={prevStep}
                 className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
@@ -742,18 +781,17 @@ export default function Property({ record, onClose }) {
                 >
                   Next
                 </button>
-              ) :
+              ) : (
                 <button
                   type="submit"
                   onClick={handleSubmit}
-                  className="mx-auto flex justify-center mt-5 text-lg leading-tight text-center text-black bg-orange-300 border-2 p-4 rounded-full w-96" >
+                  className="mx-auto flex justify-center mt-5 text-lg leading-tight text-center text-black bg-orange-300 border-2 p-4 rounded-full w-96"
+                >
                   {Loading ? "processing.. " : "Submit"}
                 </button>
-              }
+              )}
             </div>
           </div>
-
-
         </div>
       </div>
     </>
