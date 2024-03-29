@@ -119,6 +119,21 @@ const Book = () => {
     }));
   };
 
+  
+
+  const [pricerate, setPriceRate] = useState(0); 
+
+  useEffect(() => {
+    if (infos.checkout && infos.checkin && listing) {
+      const calculatedPriceRate = +listing.price * differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
+      setPriceRate(formatMultiPrice(calculatedPriceRate));
+    } else {
+      setPriceRate(0); 
+    }
+  }, [infos.checkout, infos.checkin, listing]); 
+  
+  console.log("pricerate",pricerate)
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log("Form Data",formData);
@@ -395,15 +410,7 @@ const Book = () => {
               <div className="pt-4 flex items-center justify-between confirm-total">
                 <span className="font-bold">Total(INR)</span>
                 <span className="text-md font-medium">
-                  {formatMultiPrice(
-                    infos.checkout &&
-                      infos.checkin &&
-                      +listing?.price *
-                        differenceInDays(
-                          new Date(infos.checkout),
-                          new Date(infos.checkin)
-                        )
-                  )}
+                {pricerate}
                 </span>
               </div>
             </div>
