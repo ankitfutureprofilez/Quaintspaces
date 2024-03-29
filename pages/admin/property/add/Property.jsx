@@ -728,7 +728,6 @@ export default function Property({
               
 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {uuid ? ( property_image?.map((item, index) => (
-
                   <div key={index} className="relative" >
                     <img className="h-full max-w-full rounded-lg" 
                       src={item?.image_url}
