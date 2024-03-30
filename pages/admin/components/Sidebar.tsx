@@ -6,8 +6,10 @@ import { ArrowRight2, Calendar, Document, Element3, Folder2, Headphone,Textalign
 import Link from 'next/link'
 import React, { useEffect} from "react";
 import {useContext,useState} from  "react";
+import Listing from '../api/Listing';
 import {Context} from "../../_app"
-import { verifylogin } from '../hook/hook';
+import LocalToken from "../../../hooks/LocalToken"
+// import { verifylogin } from '../hook/hook';
 import Menu from "./menu"
 import { usePathname } from 'next/navigation'
 
@@ -17,10 +19,23 @@ function Sidebar() {
     const pathname = usePathname()
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-    useEffect(() => {
-        verifylogin(setAuth); 
-      }, []);
-      console.log("auth",auth);
+    const webtoken = LocalToken('Admintoken');
+    if(webtoken){
+      const main = new Listing();
+      const response =  main.Adminprofile();
+      response.then((res) => {
+        if (res.data.status) {
+          setAuth(res.data.data);
+        } 
+      }).catch((error) => {
+        console.log("error", error);
+      });
+    }
+  }
+    // useEffect(() => {
+    //     verifylogin(setAuth); 
+    //   }, []);
+    //   console.log("auth",auth);
 
     return (
         <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden !fixed'>
