@@ -1,8 +1,8 @@
 import { Component } from 'react'
-import ApiAdminAdmin from "./ApiAdminAdmin"
+import ApiAdmin from "./ApiAdmin"
 class Listing extends Component {
     async adminlogin(data) {
-        return ApiAdminAdmin.post("/admin/login",data);
+        return ApiAdmin.post("/admin/login",data);
     }
     async addproperty(data) {
         return ApiAdmin.post("/admin/add-property",data);
