@@ -26,7 +26,7 @@ function Sidebar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  
+
     return (
 <>
 <div className="nav-bar flex items-center">
@@ -160,25 +160,24 @@ function Sidebar() {
                                 </button>
                             </div>
                         ) : (
-                            <div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200'>
-                            <div className='flex items-center gap-2'>
-                                <Image
-                                    src={ProfileImage}
-                                    alt='User'
-                                    width={36}
-                                    height={36}
-                                    className='rounded-full'
-                                />
-                                <div className=''>
-                                    <p className='text-sm font-semibold text-gray-800'>Steve Jobs</p>
-                                    <p className='text-xs font-medium text-gray-500'>steve@adminle.com</p>
-                                </div>
-                            </div>
-                            
-                            <button className='text-gray-500'>
-                                <ArrowRight2 size={16} />
-                            </button>
-                            </div>
+                         <div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200'>
+    <div className='flex items-center gap-2'>
+        <img
+            src={ProfileImage}
+            alt='User'
+            className='side-img'
+        />
+        <div className=''>
+            <p className='text-sm font-semibold text-gray-800'>Steve Jobs</p>
+            <p className='text-xs font-medium text-gray-500'>steve@adminle.com</p>
+        </div>
+    </div>
+    
+    <button className='text-gray-500 '>
+        <ArrowRight2 size={16} />
+    </button>
+</div>
+
                         ) }
                     </div>
                 </div>

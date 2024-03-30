@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import AdminLayout from "../AdminLayout";
 import Listing from "../api/Listing";
 import Element from "../element";
-import toast from "react-hot-toast";
-import Link from "next/link";
-import LoadingSpinner from "../Loading/LoadingSpinner";
+import toast from 'react-hot-toast';
+import Link from 'next/link';
+import Loading from "../Loading/"
 import Image from "next/image";
 
 export default function Index() {
