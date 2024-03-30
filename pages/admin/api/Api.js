@@ -18,7 +18,7 @@ let ApiAdmin = axios.create({
   }
 });
 
-ApiAdmin.interceptors.request.use(
+Api.interceptors.request.use(
   async (config) => {
     const token = getToken();
     if (token !== null) {
@@ -31,4 +31,4 @@ ApiAdmin.interceptors.request.use(
   }
 );
 
-export default ApiAdmin;
+export default Api;
