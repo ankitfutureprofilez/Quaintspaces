@@ -6,130 +6,114 @@ import { useRouter } from "next/router";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Image from "next/image";
-export default function Property({
-  record,
-  longitudes,
-  latitude,
-  children,
-  adults,
-  onClose,
-  uuid,
-  name,
-  price,
-  area_id,
-  city_id,
-  location,
-  description,
-  properties_type,
-  bedrooms,
-  localarea,
-  beds,
-  LocaLcity,
-  bathrooms,
-  no_of_pet_allowed,
-  amenities,
-  property_image,
-}) {
-  const router = useRouter();
-  console.log("recorditem", record);
+import { House, Add } from 'iconsax-react'
 
-  const [step, setStep] = useState(1);
+const propertyTypes = [ 
+    { value: "flat", label: "Flat" },
+    { value: "house", label: "House" },
+    { value: "unique_space", label: "Unique Space" },
+    { value: "guest_house", label: "Guest House" },
+    { value: "hotel", label: "Hotel" },
+    { value: "single_room", label: "Single Room" },
+    { value: "boutique_hotel", label: "Boutique Hotel" }
+  ];
+  
+export default function Property(props) {
+
+  const {longitudes,latitude,children,adults,onClose,uuid,name,price,description,bedrooms,beds,bathrooms,amenities,property_image} = props;
+  const router = useRouter();
+  const [step, setStep] = useState(0);
   const [Loading, setLoading] = useState(false);
 
   function stringToArray(inputString) {
     return inputString.split(",");
   }
 
+  const [images, setImages] = useState([]);
+  const [property_type, setproperty_type] = useState("");
+  const [address, setAddress] = useState({ 
+    street_address: "",
+    flat_house: "",
+    district: "",
+    nearby: "",
+    city: "",
+    state: "",
+    pin: "",
+    location: "",
+    latitude: '',
+    longitude: "",
+  });
+
+  const handleAddress = (e) => {
+    const { name, value } = e.target;
+    setAddress({ ...address, [name]: value });
+  };
+
   const [item, setItem] = useState({
     name: name || "",
-    area_id: area_id || "",
-    city_id: city_id || "",
-    location: location || "",
     about: description || "",
+    type: "single_room", // single_room, entire_place
     price: price || "",
-    propertytype: properties_type || "flat",
+    propertytype: property_type, 
     children: children || "1",
     adults: adults || "1",
     bedrooms: bedrooms || "1",
     beds: beds || "1",
     bathrooms: bathrooms || "1",
-    pets: no_of_pet_allowed || "1",
-    latitude: latitude || "",
-    longitude: longitudes || "",
+    pets: "1",
     selectedAmenities: amenities ? stringToArray(amenities) : [],
-    images: [],
+    free_cancel_time : ""
   });
-  console.log("item", item);
+  console.log("item", {...item, address, propertytype:property_type, images});
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setItem({ ...item, [name]: value });
   };
 
-  const handleFileChange = (e) => {
-    let filesToAdd = Array.from(e.target.files);
-    console.log("filed uploaded", filesToAdd);
-    let newImages = item?.images.concat(filesToAdd).slice(0, 100);
-    console.log("newImages", newImages);
-    setItem((prevPoperty) => ({
-      ...prevPoperty,
-      images: newImages,
-    }));
+  const handleFileChange = async (e) => {
+    let files = Array.from(e.target.files);
+    let arr = [];
+    files.forEach(element => {
+       arr.push(element);
+    });
+    setImages([...images, ...arr]);
+    console.log("files", [...images, ...arr]);
   };
 
-  const removeImage = (indexToRemove) => {
-    setItem((prevPoperty) => ({
-      ...prevPoperty,
-      images: prevPoperty?.images?.filter((_, index) => index !== indexToRemove),
-    }));
+  const removeImage = (f) => {
+    const filter = images && images?.filter((file, index) => file !== f);
+    setImages(filter);
   };
 
-  const nextStep = () => {
-    if (
-      (step === 1 && item?.name === "") ||
-      item?.area_id === "" ||
-      item?.city_id === "" ||
-      item?.location === ""
-    ) {
-      toast.error("All fields are required.");
+  const prevStep = () => setStep((prev) => prev - 1);
+  const nextStep = async () => {
+    if (step === 0 && property_type == '') {
+      toast.error("Please choose a property type which one you want to list.");
+    } 
+    if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "") ) {
+      toast.error(`All fields are required.`);
       return false;
     } 
-    
-    if (
-      step == 3 &&
-      item?.selectedAmenities &&
-      item?.selectedAmenities.length < 4
-    ) {
+    if (step === 1 && (!item?.about || item?.about.trim().length === 0 || item?.about.length < 100)) {
+      toast.error( "Property description is too short. Description should be a minimum of 100 words.");
+      return false;
+    }
+    if (step === 2 && ( 
+      address?.pin === "" || address?.pin.length < 5 ||  
+      address?.state === "" ||  
+      address?.city === "" || 
+      address?.street_address === "" || 
+      address?.district === "")) {
+      toast.error(`Incomplete address. Please enter complete address.`);
+      return false;
+    } 
+    if ( step == 4 && item?.selectedAmenities && item?.selectedAmenities.length < 4 ) {
       toast.error("Please choose atleast 4 amenities.");
-      return false;
-    }
-
-    if (
-      step === 4 &&
-      (!item?.about || item?.about.trim().length === 0 || item?.about.length < 100)
-    ) {
-      toast.error(
-        "Property description is too short. Description should be a minimum of 100 words."
-      );
-      return false;
-    }
-
-    if (property_image) {
-      <></>;
-    } else {
-      if (step === 5 && item?.images?.length < 5) {
-        toast.error("Please select at least five images.");
-        return false;
-      }
-    }
-
-    if (step == 6 && item?.price) {
-      toast.error("please  fields are required.");
       return false;
     }
     setStep((prev) => prev + 1);
   };
-  const prevStep = () => setStep((prev) => prev - 1);
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -147,36 +131,6 @@ export default function Property({
       }));
     }
   };
-
-  const id = 33;
-  const [city, setCity] = useState([]);
-  useEffect(() => {
-    const main = new Listing();
-    const response = main.city_list(id);
-    response
-      .then((res) => {
-        setCity(res?.data?.data);
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
-  }, []);
-
-  const [area, setArea] = useState([]);
-  useEffect(() => {
-    const main = new Listing();
-    const fetchAreaList = async () => {
-      const response = main.area_list(3378);
-      response
-        .then((res) => {
-          setArea(res?.data?.data);
-        })
-        .catch((error) => {
-          console.log("error", error);
-        });
-    };
-    fetchAreaList();
-  }, []);
 
   const fetchLocationData = async (manualLocation) => {
     console.log("manualLocation", manualLocation);
@@ -210,6 +164,7 @@ export default function Property({
       [name]: value,
     }));
   };
+  
   const deletePropertyImage = (recordUUID, itemUUID) => {
     const main = new Listing();
     main
@@ -222,276 +177,178 @@ export default function Property({
       });
   };
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e){
     e.preventDefault();
-    setLoading(true);
-    if (uuid) {
-      const main = new Listing();
-      const formData = new FormData();
-      formData.append("name", item?.name);
-      formData.append("city_id", item?.city_id);
-      formData.append("area_id", item?.area_id);
-      formData.append("pet_allowed", "1");
-      formData.append("no_of_pet_allowed", item?.pets);
-      formData.append("description", item?.about);
-      formData.append("price", item?.price);
-      formData.append("properties_type", item?.propertytype);
-      formData.append("location", item?.location);
-      formData.append("bedrooms", item?.bedrooms);
-      formData.append("beds", item?.beds);
-      formData.append("bathrooms", item?.bathrooms);
-      formData.append("latitude", item?.latitude);
-      formData.append("longitudes", item?.longitude);
-      formData.append("discount_offer", "555");
-      formData.append("check_in", " 11:55");
-      formData.append("check_out", "12:12");
-      formData.append("country_id", "101");
-      formData.append("state_id", "33");
-      formData.append("adults", item?.adults);
-      formData.append("children", item?.children);
-      formData.append("infants", "1");
-      formData.append("free_cancel_time", "11");
-      formData.append("amenities", item?.selectedAmenities);
-      item?.images.forEach((image, index) => {
-        formData.append(`property_image[${index}]`, image);
-      });
-      const response = main.propertyedit(uuid, formData);
-      response
-        .then((res) => {
-          if (res?.data?.status) {
-            console.log("update res", res);
-            setLoading(false);
-            toast.success(res.data.message);
-            router.push("/admin/property");
-          }
-        })
-        .catch((error) => {
-          console.log("error", error);
-          setLoading(false);
-        });
-    } else {
-      const main = new Listing();
-      const formData = new FormData();
-      formData.append("name", item?.name);
-      formData.append("city_id", item?.city_id);
-      formData.append("area_id", item?.area_id);
-      formData.append("pet_allowed", "1");
-      formData.append("no_of_pet_allowed", item?.pets);
-      formData.append("description", item?.about);
-      formData.append("price", item?.price);
-      formData.append("properties_type", item?.propertytype);
-      formData.append("location", item?.location);
-      formData.append("bedrooms", item?.bedrooms);
-      formData.append("beds", item?.beds);
-      formData.append("bathrooms", item?.bathrooms);
-      formData.append("latitude", item?.latitude);
-      formData.append("longitudes", item?.longitude);
-      formData.append("discount_offer", "555");
-      formData.append("check_in", " 11:55");
-      formData.append("check_out", "12:12");
-      formData.append("country_id", "101");
-      formData.append("state_id", "33");
-      formData.append("adults", item?.adults);
-      formData.append("children", item?.children);
-      formData.append("infants", "1");
-      formData.append("free_cancel_time", "11");
-      formData.append("amenities", item?.selectedAmenities?.join(","));
-      item?.images.forEach((image, index) => {
-        formData.append("property_image[]", image);
-      });
-      const response = main.addproperty(formData);
-      response
-        .then((res) => {
-          console.log("res", res);
-          if (res?.data?.status === true) {
-            toast.success(res.data.message);
-            onClose();
-            setLoading(false);
-            router.push("/admin/property");
-          } else {
-            toast.error(res.data.message);
-            setLoading(false);
-          }
-          setItem({
-            name: "",
-            area_id: "",
-            city_id: "",
-            location: "",
-            about: "",
-            price: "",
-            propertytype: "flat",
-            children: "1",
-            adults: "1",
-            bedrooms: "1",
-            beds: "1",
-            bathrooms: "1",
-            pets: "1",
-            latitude: "",
-            longitude: "",
-            selectedAmenities: "",
-          });
-        })
-        .catch((error) => {
-          setLoading(false);
-          console.log("error", error);
-        });
+    if (step === 5 && images?.length < 5) {
+      toast.error("Please select at least five images.");
+      return false;
     }
+    setLoading(true);
+    const main = new Listing();
+    const formData = new FormData();
+    formData.append("name", item?.name);
+    formData.append("pets", item?.pets);
+    formData.append("description", item?.about);
+    formData.append("price", item?.price);
+    formData.append("properties_type",property_type);
+    formData.append("bedrooms", item?.bedrooms);
+    formData.append("beds", item?.beds);
+    formData.append("bathrooms", item?.bathrooms);
+    formData.append("adults", item?.adults);
+    formData.append("children", item?.children);
+    formData.append("address", JSON.stringify(address) );
+    formData.append("infants", "1");
+    formData.append("free_cancel_time", "1");
+    formData.append("amenities", item?.selectedAmenities);
+    images.forEach((image, index) => {
+      formData.append("property_image[]", image);
+    });
+    const response = uuid ? main.propertyedit(uuid, formData) : main.addproperty(formData);
+    response.then(res=>{
+      if (res?.data?.status === true) {
+        toast.success(res.data.message);
+        router.push("/admin/property");
+      } else {
+        toast.error(res.data.message);
+      }
+      setLoading(false);
+    }).catch((error) => {
+      setLoading(false);
+      console.log("error", error);
+    });
+
+
   };
 
   return (
     <>
-      <style>{`
-    .ammenties-checked-lists input:checked+ label { 
-      background: #006fc7;
-      color:#fff;
-    }
+      <style >{`
+      .ammenties-checked-lists input:checked+ label { 
+        background: #006fc7;
+        color:#fff;
+      }
+      .property-type:checked + label { 
+        color :#000 !important;
+        border-color:#000 !important;
+      }
+      .property-type:checked + label h2 { 
+        color :#000 !important;
+        border-color:#000 !important;
+      }
     `}</style>
-      {uuid ? <></> : <Element text={"Property"} />}
 
-      <div
-        className={`flex items-center justify-center px-6 py-8 ${uuid ? "w-full !px-0 !py-0" : "min-h-screen"
-          }`}
-      >
+
+    <div className={`flex items-center justify-center px-6 py-8 `} >
         <div className="max-w-4xl w-full space-y-8">
-          <div
-            className={`pages-wrapper  ${uuid ? " max-w-[700px]" : ""} m-auto `}
-          >
-            <div className="flex flex-wrap  justify-between">
-              <h2 className="text-xl font-bold mb-4 ">Add Property</h2>
+          <div 
+            className={`pages-wrapper  ${uuid ? " max-w-[700px]" : ""} m-auto `} >
               {uuid ? (
-                <button onClick={onClose}>
-                  <h2 className="text-xl font-bold mb-4 ">X</h2>
-                </button>
+                <div className="flex flex-wrap  justify-between">
+                  <h2 className="text-xl font-bold mb-4 ">Add Property</h2>
+                    <button onClick={onClose}>
+                      <h2 className="text-xl font-bold mb-4 ">X</h2>
+                    </button>
+                </div>
               ) : (
                 <></>
               )}
+
+            <div className={`${step === 0 ? "" : "display-none"} max-w-[600px] m-auto table w-full`}>
+              <h2 className="text-3xl text-center font-bold mb-8" >Which of these best describes your place?</h2>
+               <div className="grid grid-cols-3 gap-4  " >
+                  {propertyTypes && propertyTypes.map((p, i )=>{ 
+                    return <div className="" >
+                        <input onChange={(e)=>setproperty_type(e.target.value)} value={p.value} type="radio" name="property-type" className={"hidden property-type"} id={`property-type-${i}`} />
+                        <label htmlFor={`property-type-${i}`} className="block propety-type-wrap cursor-pointer p-4 border rounded-xl" >
+                          <House size="52" color="#dedede" /> 
+                          <h2 className="text-xl mt-4 font-normal text-gray-400" >{p.label}</h2>
+                        </label>
+                    </div>
+                  })}
+               </div>
             </div>
 
-            <div className={`${step === 1 ? "" : "display-none"}`}>
+            <div className={`${step === 1 ? "" : "display-none"} max-w-[600px] m-auto table w-full`}>
+              <h2 className="text-3xl text-center font-bold mb-8" >Describes your place?</h2>
               <div className="mt-4">
-                <label
-                  htmlFor="name"
-                  className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                >
-                  Property Name
-                </label>
                 <input
                   required
                   type="text"
-                  name="name"
+                  name="name" placeholder="Property Name"
                   id="name"
-                  className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
+                  className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
                   value={item?.name}
                   onChange={handleInputChange}
                 />
               </div>
+               
+              <div className="relative mt-4 text-sm font-medium text-gray-700">
+                <input
+                  required
+                  type="number"
+                  name="price" placeholder="Property Price"
+                  id="name"
+                  className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                  value={item?.price}
+                  onChange={handleInputChange}
+                />
               <div className="mt-4">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 flex justify-center item-center ">
-                  <div className=" ">
-                    <label
-                      htmlFor="propertyType"
-                      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                    >
-                      Property Type
-                    </label>
-                    <select
-                      required
-                      id="propertyType"
-                      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
-                      value={item?.propertytype}
-                      onChange={handleInputChange}
-                      name="propertytype"
-                    >
-                      <option value="flat">Flat</option>
-                      <option value="house">House</option>
-                      <option value="unique_space">Unique Space</option>
-                      <option value="gust_house">Guest House</option>
-                      <option value="hotel">Hotel</option>
-                      <option value="single_room">single Room</option>
-                      <option value="boutique_hotel">Boutique Hotel</option>
-                    </select>
-                  </div>
-                  <div className="">
-                    <label
-                      htmlFor="citySelect"
-                      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                    >
-                      City
-                    </label>
-                    <select
-                      required
-                      id="citySelect"
-                      name="city_id"
-                      onChange={handleInputChange}
-                      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
-                    >
-                      {LocaLcity ? (
-                        <option value={LocaLcity}>{LocaLcity}</option>
-                      ) : (
-                        <option value={""}>OPTION</option>
-                      )}
-                      {city &&
-                        city.map((item, index) => (
-                          <option key={index} value={item?.id}>
-                            {item?.name}
-                          </option>
-                        ))}
-                    </select>
-                  </div>
-                  <div className="">
-                    <label
-                      htmlFor="areaSelect"
-                      className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                    >
-                      Area
-                    </label>
-                    <select
-                      required
-                      id="areaSelect"
-                      name="area_id"
-                      onChange={handleInputChange}
-                      className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
-                    >
-                      {localarea ? (
-                        <option value={localarea}>{localarea}</option>
-                      ) : (
-                        <option value={""}>OPTION</option>
-                      )}
-                      {area &&
-                        area.map((item, index) => (
-                          <option key={index} value={item?.id}>
-                            {item?.name}
-                          </option>
-                        ))}
-                    </select>
-                  </div>
+                <textarea
+                  required
+                  id="about"
+                  name="about"
+                  minCol={"5"} 
+                  minRow={"5"}
+                  value={item?.about}
+                  onChange={handleInputChange}
+                  className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-xl shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
+                  placeholder="Tell more about your property..."
+                />
+                <div className="flex flex-wrap justify-between">
+                  <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
+                    {item?.about ? (
+                      <span>{item?.about.length}/100 characters</span>
+                    ) : (
+                      <span>0/100 characters</span>
+                    )}
+                  </label>
+                  <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
+                    Minimum 100 words.
+                  </label>
                 </div>
               </div>
-              <div className="relative mt-4 text-sm font-medium text-gray-700">
-                <label
-                  htmlFor="location"
-                  className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                >
-                  Location
-                </label>
-                <div className="relative">
-                  <input
-                    required
-                    type="text"
-                    id="location"
-                    name="location"
-                    value={item?.location}
-                    onChange={handleLocationInputChange}
-                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    placeholder="Enter Location or Click to Select"
-                    onClick={() => fetchLocationData(item?.location)}
-                  />
+              </div>
+            </div>
+            
+            <div className={`${step === 2 ? "" : "display-none"}`}>
+              <h2 className="text-3xl text-center font-bold mb-2" >Where's your place located?</h2>
+              <p className="text-normal text-center text-gray-500 mb-8" >Your address is only shared with guests after they’ve made a reservation.</p>
+
+              <div class="table w-full m-auto max-w-[500px] space-y-4 text-center">
+                <div class="w-full mt-4">
+                    <button className="btn sort w-full" onClick={() => fetchLocationData(item?.location)} >Use Current Location</button>
+                </div>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="font-semibold text-gray-400 py-3 text-center">OR</div>
+                </div>
+                <div class="w-full  border border-gray-300 rounded-lg overflow-hidden">
+                    <input defaultValue={address.flat_house} name='flat_house' onChange={handleAddress} type="text" placeholder="Flat, house, etc. (if applicable)" className=" w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                    <input defaultValue={address.street_address} name="street_address" onChange={handleAddress} type="text" placeholder="Street Address" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                    <input defaultValue={address.nearby} name="nearby" onChange={handleAddress} type="text" placeholder="Nearby Landmark (if applicable)" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                    <input defaultValue={address.district} name="district" onChange={handleAddress} type="text" placeholder="District/Locality" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                    <input defaultValue={address.city} name="city" onChange={handleAddress} type="text" placeholder="City/Town" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                    <input defaultValue={address.state} name="state" onChange={handleAddress} type="text" placeholder="State" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                    <input defaultValue={address.pin} name="pin" onChange={handleAddress} type="text" placeholder="PIN Code" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
                 </div>
               </div>
             </div>
 
-            <div className={`${step === 2 ? " " : " display-none"}`}>
-              <div className="grid grid-cols-1 gap-y-2 sm:grid-cols-2 sm:gap-x-8 mt-5">
+
+
+            <div className={`${step === 3 ? "" : "display-none"}`}>
+              <h2 className="text-3xl text-center font-bold mb-8" >Let's start with the basics</h2>
+              <h2 className="text-xl text-center font-bold mb-8" >How many people can stay here?</h2>
+              <div className="grid grid-cols-1 max-w-[500px] m-auto table gap-y-2 sm:grid-cols-2 sm:gap-x-8 mt-5">
                 <div>
                   <label
                     htmlFor="adults"
@@ -617,15 +474,17 @@ export default function Property({
                     ))}
                   </select>
                 </div>
-              </div>
+            </div>
             </div>
 
-            <div className={`${step === 3 ? " " : " display-none"}`}>
-              <div className="">
-                <h2 className="block text-lg mb-1 font-medium text-gray-700 mt-3 mb-3">
-                  Amenities
-                </h2>
-                <div className="flex flex-wrap ammenties-checked-lists">
+
+
+
+            <div className={`${step === 4 ? "" : "display-none"}`}>
+              <h2 className="text-3xl text-center font-bold mb-2" >Tell guests what your place has to offer</h2>
+              <p className="text-normal text-center text-gray-500 mb-8" >You can add more amenities after you publish your listing.</p>
+
+              <div className="max-w-[600px] m-auto justify-center flex flex-wrap ammenties-checked-lists">
                   {amenitiesList.map((amenity, index) => (
                     <div key={index} className="flex items-center">
                       <input
@@ -639,78 +498,35 @@ export default function Property({
                       />
                       <label
                         htmlFor={amenity.value}
-                        className="me-2 mb-2 bg-gray-300 px-4 py-2 rounded-lg text-md text-gray-500 cursor-pointer"
-                      >
+                        className="me-2 mb-2 bg-gray-300 px-4 py-2 rounded-lg text-md text-gray-500 cursor-pointer" >
                         {amenity.title}
                       </label>
                     </div>
                   ))}
                 </div>
-              </div>
             </div>
 
-            <div className={`${step === 4 ? " " : " display-none"}`}>
-              <div className="mt-4">
-                <label
-                  htmlFor="about"
-                  className="block text-sm mb-2 font-medium text-gray-700 mt-3"
-                >
-                  Describe Your Property to Guests
-                </label>
-                <textarea
-                  required
-                  id="about"
-                  name="about"
-                  minCol={"5"}
-                  minRow={"5"}
-                  value={item?.about}
-                  onChange={handleInputChange}
-                  className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-lg shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
-                  placeholder="Tell more about your property..."
-                />
-                <div className="flex flex-wrap justify-between">
-                  <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
-                    {item?.about ? (
-                      <span>{item?.about.length}/100 characters</span>
-                    ) : (
-                      <span>0/100 characters</span>
-                    )}
-                  </label>
-                  <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
-                    Minimum 100 words.
-                  </label>
-                </div>
-              </div>
-            </div>
 
-            <div className={`${step === 5 ? " " : " display-none"}`}>
-              <div className="flex items-center justify-center w-full mt-5 mb-4 ">
+            <div className={`${step === 5 ? "" : "display-none"} max-w-[600px] m-auto`}>
+              <h2 className="text-3xl text-center font-bold mb-2" >Add some photos of your { property_type ? property_type.replace("_", ' ') : "house"}</h2>
+              <p className="text-normal text-center text-gray-500 mb-8" >You'll need 5 photos to get started. You can add more or make changes later.</p>
+
+              <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
                 <label
                   htmlFor="dropzone-file"
                   className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                    <svg
-                      className="w-8 h-8 mb-4 text-gray-500 text-gray-400"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 20 16"
-                    >
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                      />
-                    </svg>
-                    <p className="mb-2 text-sm text-gray-500 text-gray-400">
+                  <Add
+                  size="100"
+                  color="#ccc"
+                  />
+                    <p className="mb-2 text-lg text-gray-500 text-gray-400">
                       <span className="font-semibold">Click to upload</span> or
                       drag and drop
                     </p>
-                    <p className="text-xs text-gray-500 text-gray-400">
-                      SVG, PNG, JPG or GIF (MAX. 800x400px)
+                    <p className="text-normal text-gray-500 text-gray-400">
+                      Choose atleast 5 images
                     </p>
                   </div>
                   <input
@@ -729,7 +545,7 @@ export default function Property({
                   property_image?.map((item, index) => (
                     <div key={index} className="relative">
                       <img
-                        className="image-preview h-full w-full max-w-full rounded-lg"
+                        className="image-preview object-cover border min-h-[150px] h-full w-full max-w-full rounded-lg"
                         src={item?.image_url}
                         width={200}
                         height={200}
@@ -738,8 +554,7 @@ export default function Property({
                       <button
                         type="button"
                         onClick={() => deletePropertyImage(uuid, item?.uuid)}
-                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
-                      >
+                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1" >
                         Remove
                       </button>
                     </div>
@@ -747,78 +562,57 @@ export default function Property({
                 ) : (
                   <></>
                 )}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 ">
-                  {item?.images?.map((file, index) => (
-                    <div key={index} className="relative">
-                      <img
-                        src={URL.createObjectURL(file)}
-                        width={200} 
-                        height={200}
-                        alt={`Preview ${index}`}
-                        className="image-preview h-full w-full max-w-full rounded-lg"
-                        onLoad={() => URL.revokeObjectURL(file)}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeImage(index)}
-                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-1 py-1 m-1"
-                      >
-                       Remove
-                      </button>
-                    </div>
-                  ))}
+
+                {images && images.length && images?.map((file, index) => (
+                  <div key={index} className="relative">
+                    <img
+                      src={URL.createObjectURL(file)}
+                      width={200} 
+                      height={200}
+                      alt={`Preview ${index}`}
+                      className="image-preview h-full object-cover border min-h-[150px] w-full max-w-full rounded-lg"
+                      onLoad={() => URL.revokeObjectURL(file)}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeImage(file)}
+                      className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1" >
+                      Remove
+                    </button>
+                  </div>
+                )) || ''}
                 </div>
-              </div>
             </div>
+             
 
-            <div className={`${step === 6 ? "" : "display-none"}`}>
-              <div className="mt-4">
-                <label
-                  htmlFor="name"
-                  className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                >
-                  Price
-                </label>
-                <input
-                  required
-                  type="text"
-                  name="price"
-                  id="name"
-                  className="mt-1 p-3 focus:outline-0 border rounded-lg w-full"
-                  value={item?.price}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-
-            <div className="pt-6 flex justify-between">
+            <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
               <button
-                disabled={step < 2}
+                disabled={step < 1}
                 type="button"
                 onClick={prevStep}
-                className="inline-flex justify-center items-center h-10 py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-              >
+                className="inline-flex justify-center items-center h-10 py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" >
                 Back
-              </button>
+              </button> 
 
-              {step < 6 ? (
+              {step < 5 ? (
                 <button
                   type="button"
                   onClick={nextStep}
-                  className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 "
-                >
+                  className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 " >
                   Next
                 </button>
               ) : (
                 <button
                   type="submit"
                   onClick={handleSubmit}
-                  className="mx-auto flex justify-center mt-5 text-lg leading-tight text-center text-black bg-orange-300 border-2 p-4 rounded-full w-96"
-                >
+                  className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 " >
                   {Loading ? "processing.. " : "Submit"}
                 </button>
               )}
             </div>
+
+
+
           </div>
         </div>
       </div>

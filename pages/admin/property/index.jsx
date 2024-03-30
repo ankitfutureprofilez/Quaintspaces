@@ -9,25 +9,23 @@ import Property from "./add/Property";
 
 export default function index() {
   const [record, setRecord] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Add loading state
-
+  const [isLoading, setIsLoading] = useState(true); 
   useEffect(() => {
     const main = new Listing();
-    main
-      .Adminproperty()
+    main.Adminproperty()
       .then((res) => {
         let properties = res?.data?.data;
         if (properties) {
           setRecord(properties);
-          setIsLoading(false); // Update loading state when data is fetched
+          setIsLoading(false); 
         } else {
           toast.error("No properties found");
-          setIsLoading(false); // Update loading state even if no properties found
+          setIsLoading(false);  
         }
       })
       .catch((error) => {
         console.log("error", error);
-        setIsLoading(false); // Update loading state in case of error
+        setIsLoading(false); 
       });
   }, []);
 
@@ -70,15 +68,13 @@ export default function index() {
 
   return (
     <>
-      <AdminLayout>
-        <Element text={"Property List"} />
+      <AdminLayout heading="Properties" >
         {isLoading ? (
-          // Conditional rendering for loading indicator
           <div className="flex justify-center items-center h-screen">
             <p>Loading...</p>
           </div>
         ) : (
-          <div className="flex flex-wrap mt-5 px-4 py-5">
+          <div className="flex flex-wrap px-4 py-5 pt-0">
             {record.map((item, index) => (
               <div className="w-full sm:w-1/2 md:w-1/3 px-3 mt-4" key={index}>
                 <div className="border rounded-lg overflow-hidden shadow-md">

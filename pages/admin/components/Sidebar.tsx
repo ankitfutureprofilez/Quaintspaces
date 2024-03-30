@@ -18,45 +18,25 @@ function Sidebar() {
 
     return (
         <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden !fixed'>
-            <div className='w-full h-full bg-white border-r '>
-                {/* logo */}
-                <div className='p-4 md:p-6 flex cursor-pointer group items-center gap-2 z-10'>
-                    <div className='h-10 outline outline-violet-300 w-10 flex items-center bg-gradient-to-br justify-center rounded-full from-violet-500 to-violet-400 text-white'>
-                        <Triangle size={24} className='relative group-hover:scale-75 duration-200' />
-                    </div>
-                    <div>
-                        <h1 className='text-sm font-bold text-gray-800'>Admin</h1>
-                        <p className='text-xs text-gray-500 font-medium'>Admin Management</p>
+            <div className='w-full h-full border-r '>
+                <div className='p-4 md:p-6 flex cursor-pointer group items-center justify-center z-10'>
+                    <div className='flex items-center justify-center  '>
+                        <Image
+                         src={'/images/QsJaipur.png'}
+                         alt='User' layout="responsive"
+                         width={126}
+                         height={49}
+                         className=''
+                         />
                     </div>
                 </div>
 
-                {/* section divider */}
-                <hr className='bg-gray-400 mx-2' />
-
-                {/* other section */}
                 <div className='flex flex-col h-full justify-between'>
-                    {/* top */}
-                    <div className='pt-6 text-gray-500 font-medium space-y-2 md:px-2 text-normal'>
+                    <div className='pt-6 text-gray-500 font-medium space-y-2 md:px-2 text-lg'>
                         <Link href={'/admin'} className={`flex ${pathname === '/admin' ? 'text-primary' : ''} hover:px-8 duration-200 rounded-md w-full py-2 px-6 items-center gap-2`}>
                             <Element3 variant='Outline' size={16} />
                             Dashboard
                         </Link>
-
-                        {/* <button className={`flex ${pathname === '/admin/property/list' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
-
-                            Property List
-                        </button> */}
-{/* 
-                        <button className={`flex ${pathname === '/admin/timeoff' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
-                            <Timer1 size={16} />
-                            Time Off
-                        </button> */}
-
-                        {/* <button className={`flex ${pathname === '/admin/projects' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
-                            <Folder2 size={16} />
-                            Projects
-                        </button> */}
-
 
                         <Link href={'/admin/property/add'} className={`flex ${pathname === '/admin/property/add' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                          <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
