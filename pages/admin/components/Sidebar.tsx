@@ -7,7 +7,7 @@ import Link from 'next/link'
 import React, { useEffect} from "react";
 import {useContext,useState} from  "react";
 import {Context} from "../../_app"
-import { verifylogin } from './IsAdminLogin';
+import { verifylogin } from './Adminlogin';
 import Menu from "./menu"
 import { usePathname } from 'next/navigation'
 

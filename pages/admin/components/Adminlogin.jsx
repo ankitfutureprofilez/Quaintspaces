@@ -17,11 +17,11 @@ async function verifylogin (setAuth) {
     }
   }
 
-const IsAdminLogin = () => {
+const Adminlogin = () => {
   return (
     <div>
     </div>
   );
 }
 
-export { IsAdminLogin, verifylogin };
+export { Adminlogin, verifylogin };
