@@ -8,19 +8,42 @@ import { useRouter } from "next/router";
 import { Context } from "../_app";
 import { toast } from 'react-hot-toast';
 import Menu from "./Menu";
+import Listings from "../api/laravel/Listings";
+
 export default function Header() {
 
   const router = useRouter();
   const auth = useContext(Context)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  if (typeof window !== 'undefined' && localStorage) {
-    const token = localStorage && localStorage.getItem("token");
-  }
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const { setAuth } = useContext(Context);
+  const webtoken = LocalToken('token');
+  
+  async function getAuth (s) { 
+    if(webtoken){
+      const main = new Listings();
+      const response =  main.GetUserProfile(s);
+      response.then((res) => {
+        if (res.data.status) {
+          setAuth(res.data.data);
+        } 
+      }).catch((error) => {
+        console.log("error", error);
+      });
+    }
+  }
+
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+    getAuth(signal);
+    return () => controller.abort();
+  }, []);
  
 
   return (

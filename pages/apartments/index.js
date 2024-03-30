@@ -136,7 +136,6 @@ export default function index() {
     } else {
       url += "price_sort=desc";
     }
-    // console.log("url",url);
 
     const main = new Listings();
     main
@@ -162,7 +161,7 @@ export default function index() {
     <Layout>
       <div className="container mx-auto ">
         <div className="mt-6 sm:mt-10">
-          <div className="flex justify-between mb-10 filter-box">
+          <div className="flex justify-between mb-10 filter-box px-[15px]">
             <h2 className="listing-heading text-left">
               Explore our Apartments
             </h2>
@@ -173,7 +172,7 @@ export default function index() {
                 sortingOptions={sortingOptions}
               />
               {/* Filter button to open the modal */}
-              <button className="filter btn mx-2" onClick={openModal}>
+              <button className="filter btn ms-2" onClick={openModal}>
                 Filter
               </button>
             </div>
