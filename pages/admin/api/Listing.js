@@ -55,6 +55,10 @@ class Listing extends Component {
         return Api.post("/admin/add-user" ,data)
     }
 
+    async userdetails (id) {
+        return  Api.get("/admin/user-detail/" +id)
+    }
+
     
     render() {
         return (

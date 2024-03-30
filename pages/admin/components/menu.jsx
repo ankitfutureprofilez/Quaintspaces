@@ -18,7 +18,7 @@ export default function menu({ isOpen , record }) {
         <div className="w-full min-w-[250px]  p-3 drop-shadow-xl divide-y divide-gray-300">
           <div className="flex mr-auto items-center space-x-4">
             <Image
-              src={record?.auth?.admin_profile_url}
+              src={record?.admin_profile_url}
               alt="avatar Evan You"
               className="rounded-full"
               width={30}
@@ -28,7 +28,7 @@ export default function menu({ isOpen , record }) {
               <div className="font-medium relative text-xl leading-tight text-gray-900">
                 <span className="flex">
                   <span className=" relative pr-8">
-                    {record?.auth?.name}
+                    {record?.name}
                     <span
                     
                       className="absolute top-1/2 -translate-y-1/2 right-0 inline-block rounded-full"

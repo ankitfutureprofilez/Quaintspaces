@@ -19,8 +19,7 @@ const AdminLayout = ({ children, heading }) => {
             setContent(res.data.data);
           } else {
           }
-        })
-        .catch((error) => {
+        }).catch((error) => {
           console.log("error", error);
           router.push("/admin/login");
           toast.error("Please log in first.");

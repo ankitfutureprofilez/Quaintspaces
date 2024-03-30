@@ -200,6 +200,7 @@ export default function Property(props) {
     formData.append("infants", "1");
     formData.append("free_cancel_time", "1");
     formData.append("amenities", item?.selectedAmenities);
+    formData.append("type", item?.type);
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });

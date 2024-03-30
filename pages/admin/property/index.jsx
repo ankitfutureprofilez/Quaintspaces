@@ -6,10 +6,15 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import AdminLayout from "../AdminLayout";
 import Property from "./add/Property";
+// import ListingLoading  from "../Loading/ListingLoading"
 
 export default function index() {
   const [record, setRecord] = useState([]);
   const [isLoading, setIsLoading] = useState(true); 
+  const[showConfirmation ,setShowConfirmation]= useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedProperty, setSelectedProperty] = useState(null);
+
   useEffect(() => {
     const main = new Listing();
     main.Adminproperty()
@@ -17,10 +22,10 @@ export default function index() {
         let properties = res?.data?.data;
         if (properties) {
           setRecord(properties);
-          setIsLoading(false); 
+          setIsLoading(false);
         } else {
           toast.error("No properties found");
-          setIsLoading(false);  
+          setIsLoading(false); 
         }
       })
       .catch((error) => {
@@ -29,49 +34,49 @@ export default function index() {
       });
   }, []);
 
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [selectedProperty, setSelectedProperty] = useState(null);
 
-  const togglePopup = (uuid) => {
+  const handleDelete = (uuid) => {
     setSelectedProperty(uuid);
-    setIsPopupOpen(!isPopupOpen);
+    setShowConfirmation(true);
   };
 
+  
+  const togglePopup = (uuid) => {
+    
+    setIsPopupOpen(!isPopupOpen);
+  };
+  
   const deleteProperty = (uuid) => {
     const main = new Listing();
     main
       .propertydelete(uuid)
       .then((response) => {
-        console.log("response.data.message", response.data.message);
-        toast.success(response.data.message);
-        setRecord(record.filter((item) => item.uuid !== uuid));
+        if(response.data.status ===true){
+          toast.success(response.data.message);
+          setRecord(record.filter((item) => item.uuid !== uuid));
+        }else{
+          toast.error(response.data.message)
+        }
       })
       .catch((error) => {
         console.error("Error deleting property:", error);
       });
   };
-
-  const handleDelete = (uuid) => {
-    deleteProperty(uuid);
-  };
-
-  const [showConfirmation, setShowConfirmation] = useState(false);
-
+  
   const handleConfirmation = () => {
     deleteProperty(selectedProperty);
     setShowConfirmation(false);
   };
-
+  
   const handleCancel = () => {
     setShowConfirmation(false);
-  };
-
+  }
   return (
     <>
       <AdminLayout heading="Properties" >
         {isLoading ? (
           <div className="flex justify-center items-center h-screen">
-            <p>Loading...</p>
+         <p>Loaidng....</p>
           </div>
         ) : (
           <div className="flex flex-wrap px-4 py-5 pt-0">
@@ -86,19 +91,26 @@ export default function index() {
                   <div className="p-4">
                     <h2 className="text-lg font-medium mb-2">{item.name}</h2>
                     <h3 className="text-sm font-medium ">{item.location}</h3>
-                    <p className="text-sm text-gray-600 mt-1">
+                    <p className="text-sm text-gray-600 mt-3">
                       {item.bedrooms} Bedrooms · {item.beds} Beds
                     </p>
-                    <div className="flex justify-between items-center">
+                    <p  className="text-sm text-gray-600 mt-3">
+                      {
+                      item?.price } as per night
+                      </p>
+                    <div className="flex justify-between items-center mt-4">
                       <Link href={`/property/${item.uuid}`}>
-                        <div className="text-blue-500 hover:text-blue-600">
+                      <button
+                          className="bg-indigo-600 text-white px-3 py-1 rounded-md mr-2 hover:bg-indigo-700"
+                         
+                        >
                           View
-                        </div>
+                        </button>
                       </Link>
                       <div>
                         <button
                           className="bg-red-600 text-white px-3 py-1 rounded-md mr-2 hover:bg-red-700"
-                          onClick={() => setShowConfirmation(true)}
+                          onClick={() => handleDelete(item?.uuid)}
                         >
                           Delete
                         </button>
@@ -127,7 +139,7 @@ export default function index() {
                         )}
                         <button
                           className="bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700"
-                          onClick={() => togglePopup(item.uuid)}
+                          onClick={() => togglePopup(item?.uuid)}
                         >
                           Update
                         </button>

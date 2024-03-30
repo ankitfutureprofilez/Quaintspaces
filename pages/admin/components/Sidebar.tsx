@@ -85,8 +85,7 @@ function Sidebar() {
                                 <Headphone size={16} />
                                 Support
                             </button>
-                        </div> */}
-
+                        </div> */} 
                         <hr className='bg-gray-400 mx-2 my-4' />
 
                         { auth ? (
