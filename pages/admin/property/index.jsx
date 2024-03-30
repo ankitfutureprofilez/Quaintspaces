@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import AdminLayout from "../AdminLayout";
 import Property from "./add/Property";
-import ListingLoading  from "../loading/ListingLoading"
+import ListingsLoading from './../../../components/Loading/ListingsLoading';
 
 export default function index() {
   const [record, setRecord] = useState([]);
@@ -82,7 +82,7 @@ export default function index() {
         <Element text={"Property List"} />
         {isLoading ? (
           <div className="flex justify-center items-center h-screen">
-         <ListingLoading/>
+         <ListingsLoading/>
           </div>
         ) : (
           <div className="flex flex-wrap mt-5 px-4 py-5">
