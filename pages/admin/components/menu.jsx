@@ -7,23 +7,22 @@ export default function menu({ isOpen , record }) {
 
   const router = useRouter();
 
-  // const handleLogoutClick = () => {
-  //   localStorage && localStorage.removeItem('token');
-  //   router.push('/admin/login');
-  // };
+  const handleLogoutClick = () => {
+    localStorage && localStorage.removeItem('Admintoken');
+    router.push('/admin/login');
+  };
 
   return (
     <>
        <div className={`flex items-center absolute shadow-md left-0 bottom-16 rounded-lg bg-gray-200 justify-center right-70 ${isOpen ? 'block' : 'hidden'}`}> 
         <div className="w-full min-w-[250px]  p-3 drop-shadow-xl divide-y divide-gray-300">
-        <div  className="flex space-x-4 items-center p-2">
           <div className="flex mr-auto items-center space-x-4">
             <Image
               src={record?.auth?.admin_profile_url}
               alt="avatar Evan You"
-              className="w-16 h-16 shrink-0 rounded-full"
-              width={100}
-              height={100}
+              className="rounded-full"
+              width={30}
+              height={30}
             />
             <div className="space-y-2 flex flex-col flex-1 truncate">
               <div className="font-medium relative text-xl leading-tight text-gray-900">
@@ -40,9 +39,7 @@ export default function menu({ isOpen , record }) {
               </div>
             </div>
           </div>
-           
-        </div>
-        <div className="py-2">
+          <div className="py-2">
           <nav className="grid gap-1">
          <Link
               href="/admin/security"
@@ -124,19 +121,18 @@ export default function menu({ isOpen , record }) {
               <span>Helper Center</span>
             </Link> 
           </nav>
-        </div>
+          </div>
          
 
-        <div className="pt-2">
-          {/* <button 
+          <div className="pt-2">
+          <div 
+          onClick={handleLogoutClick}
             className="flex items-center space-x-3 py-3 px-4 w-full leading-6 text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
           >
             <span>Logout</span>
-          </button> */}
+          </div>
+          </div>
         </div>
-
-
-      </div>
       </div>
     </>
       );

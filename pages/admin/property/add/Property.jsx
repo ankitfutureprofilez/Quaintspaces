@@ -89,16 +89,11 @@ export default function Property({
       (step === 1 && item?.name === "") ||
       item?.area_id === "" ||
       item?.city_id === "" ||
-      item?.location === "" ||
-      item?.latitude.trim() === "" ||
-      item?.longitude.trim() === ""
+      item?.location === ""
     ) {
       toast.error("All fields are required.");
       return false;
-    } else if (item?.latitude.trim() === "" || item?.longitude.trim() === "") {
-      toast.error("Latitude and Longitude are required for the location.");
-      return false;
-    }
+    } 
     
     if (
       step == 3 &&
@@ -310,6 +305,7 @@ export default function Property({
           console.log("res", res);
           if (res?.data?.status === true) {
             toast.success(res.data.message);
+            onClose();
             setLoading(false);
             router.push("/admin/property");
           } else {
