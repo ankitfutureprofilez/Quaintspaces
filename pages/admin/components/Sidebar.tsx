@@ -8,7 +8,7 @@ import React, { useEffect} from "react";
 import {useContext,useState} from  "react";
 import {Context} from "../../_app"
 import Menu from "./menu"
-import {verifylogin} from './IsAdminLogin';
+import {verifylogin} from './isadminlogin';
 import { usePathname } from 'next/navigation'
 
 function Sidebar() {
