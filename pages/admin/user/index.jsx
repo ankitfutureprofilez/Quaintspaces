@@ -46,22 +46,26 @@ export default function Index() {
   }, []);
 
   const statusUpdate = async (id, newStatus) => {
-    try {
-      console.log("id, newStatus0", id, newStatus);
+      console.log("Updating status for ID:", id, "New status:", newStatus);
       const main = new Listing();
-      const response = await main.userStatus(id, newStatus);
-      console.log("response", response);
-      toast.success(response.data.message);
-      setRecord((prevRecord) =>
-        prevRecord.map((item) =>
-          item.id === id ? { ...item, status: newStatus } : item
-        )
-      );
-    } catch (error) {
-      console.log("error", error);
-      toast.error("Failed to update status");
-    }
+      const response =  main.userStauts(id, newStatus);
+      response.then((res)=>{
+        if (res && res.data && res.data.status ) {
+          console.log("response.data.message",res.data.message)
+          toast.success(res.data.message);
+          setRecord((prevRecord) =>
+            prevRecord.map((item) =>
+              item.id === id ? { ...item, status: newStatus } : item
+            )
+          );
+        } else {
+          toast.error(res.data.message);
+        }
+      }).catch((error)=>{
+        console.log("erro",error)
+      })
   };
+  
 
   const loadMore = () => {
     if (!loading && hasmore) {
@@ -93,6 +97,11 @@ export default function Index() {
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"></path></svg>
 
                   </th>
+                  <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+                    Action
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"></path></svg>
+
+                  </th>
                 </div>
               </tr>
             </thead>
@@ -112,6 +121,7 @@ export default function Index() {
                     </div>
                   </td>
                   <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">{item.phone_no ? item.phone_no : ""}</td>
+                  <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">{item.status=== 0 ? "DeActivate " : "Activate"}</td>
                   <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
                     <div className="flex items-center gap-1  p-1">
 

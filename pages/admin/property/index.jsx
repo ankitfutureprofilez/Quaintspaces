@@ -6,10 +6,11 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import AdminLayout from "../AdminLayout";
 import Property from "./add/Property";
+import LoadingSpinner  from "../LoadingSpinner"
 
 export default function index() {
   const [record, setRecord] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Add loading state
+  const [isLoading, setIsLoading] = useState(true); 
 
   useEffect(() => {
     const main = new Listing();
@@ -19,32 +20,38 @@ export default function index() {
         let properties = res?.data?.data;
         if (properties) {
           setRecord(properties);
-          setIsLoading(false); // Update loading state when data is fetched
+          setIsLoading(false);
         } else {
           toast.error("No properties found");
-          setIsLoading(false); // Update loading state even if no properties found
+          setIsLoading(false); 
         }
       })
       .catch((error) => {
         console.log("error", error);
-        setIsLoading(false); // Update loading state in case of error
+        setIsLoading(false); 
       });
   }, []);
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
+  console.log("selectedProperty",selectedProperty)
+  const handleDelete = (uuid) => {
+    deleteProperty(uuid);
+  };
 
   const togglePopup = (uuid) => {
+    console.log("Toggling popup for UUID:", uuid);
     setSelectedProperty(uuid);
     setIsPopupOpen(!isPopupOpen);
   };
-
+  
   const deleteProperty = (uuid) => {
+    console.log("Deleting property with UUID:", uuid);
     const main = new Listing();
     main
       .propertydelete(uuid)
       .then((response) => {
-        console.log("response.data.message", response.data.message);
+        console.log("Response:", response.data.message);
         toast.success(response.data.message);
         setRecord(record.filter((item) => item.uuid !== uuid));
       })
@@ -52,30 +59,20 @@ export default function index() {
         console.error("Error deleting property:", error);
       });
   };
-
-  const handleDelete = (uuid) => {
-    deleteProperty(uuid);
-  };
-
-  const [showConfirmation, setShowConfirmation] = useState(false);
-
+  
   const handleConfirmation = () => {
+    console.log("Confirming deletion for UUID:", selectedProperty);
     deleteProperty(selectedProperty);
     setShowConfirmation(false);
   };
-
-  const handleCancel = () => {
-    setShowConfirmation(false);
-  };
-
+  
   return (
     <>
       <AdminLayout>
         <Element text={"Property List"} />
         {isLoading ? (
-          // Conditional rendering for loading indicator
           <div className="flex justify-center items-center h-screen">
-            <p>Loading...</p>
+         <LoadingSpinner/>
           </div>
         ) : (
           <div className="flex flex-wrap mt-5 px-4 py-5">
@@ -131,7 +128,7 @@ export default function index() {
                         )}
                         <button
                           className="bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700"
-                          onClick={() => togglePopup(item.uuid)}
+                          onClick={() => togglePopup(item?.uuid)}
                         >
                           Update
                         </button>
