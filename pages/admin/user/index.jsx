@@ -5,7 +5,6 @@ import Element from "../element";
 import toast from 'react-hot-toast';
 import Link from 'next/link';
 import LoadingSpinner from "../Loading/LoadingSpinner"
-import Popup  from "../hook/Popup"
 import Image from "next/image";
 
 export default function Index() {
@@ -26,10 +25,8 @@ export default function Index() {
       setLoading(true);
       const main = new Listing();
       const response = await main.userListing(pg);
-      console.log("response", response);
       if (response?.data?.data) {
         const newdata = response?.data?.data?.data || [];
-        console.log("newdata", newdata)
         setRecord((prevData) => {
           if (pg === 1) {
             return newdata;
@@ -54,12 +51,10 @@ export default function Index() {
   }, []);
 
   const statusUpdate = async (id, newStatus) => {
-      console.log("Updating status for ID:", id, "New status:", newStatus);
       const main = new Listing();
       const response =  main.userStauts(id, newStatus);
       response.then((res)=>{
         if (res && res.data && res.data.status ) {
-          console.log("response.data.message",res.data.message)
           toast.success(res.data.message);
           setRecord((prevRecord) =>
             prevRecord.map((item) =>

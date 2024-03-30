@@ -20,7 +20,6 @@ function Sidebar() {
     useEffect(() => {
         verifylogin(setAuth); 
       }, []);
-      console.log("auth",auth);
 
     return (
         <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden !fixed'>

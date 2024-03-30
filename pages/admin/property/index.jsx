@@ -37,7 +37,6 @@ export default function index() {
 
 
   const handleDelete = (uuid) => {
-    console.log("Toggling popup for UUID:", uuid);
     setSelectedProperty(uuid);
     setShowConfirmation(true);
   };
@@ -49,13 +48,11 @@ export default function index() {
   };
   
   const deleteProperty = (uuid) => {
-    console.log("Deleting property with UUID:", uuid);
     const main = new Listing();
     main
       .propertydelete(uuid)
       .then((response) => {
         if(response.data.status ===true){
-          console.log("Response:", response.data.message);
           toast.success(response.data.message);
           setRecord(record.filter((item) => item.uuid !== uuid));
         }else{
@@ -68,7 +65,6 @@ export default function index() {
   };
   
   const handleConfirmation = () => {
-    console.log("Confirming deletion for UUID:", selectedProperty);
     deleteProperty(selectedProperty);
     setShowConfirmation(false);
   };
