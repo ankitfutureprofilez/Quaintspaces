@@ -4,17 +4,23 @@ import Image from 'next/image'
 import { ArrowRight2, Calendar, Document, Element3, Folder2, Headphone,TextalignJustifycenter, Profile2User, Setting2, Setting4, Star, Timer1, Triangle,ShopAdd  } from 'iconsax-react'
 import ProfileImage from '../components/assets/profile.png'
 import Link from 'next/link'
+import React, { useEffect} from "react";
 import {useContext,useState} from  "react";
 import {Context} from "../../_app"
 import Menu from "./menu"
-
+import {verifylogin} from './IsAdminLogin';
 import { usePathname } from 'next/navigation'
 
 function Sidebar() {
-    const auth = useContext(Context)
+    const {auth,setAuth} = useContext(Context)
 
     const pathname = usePathname()
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    useEffect(() => {
+        verifylogin(setAuth); 
+      }, []);
+      console.log("auth",auth);
 
     return (
         <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden !fixed'>
@@ -56,7 +62,6 @@ function Sidebar() {
                             <Folder2 size={16} />
                             Projects
                         </button> */}
-
 
 
                         <Link href={'/admin/property/add'} className={`flex ${pathname === '/admin/property/add' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
@@ -127,11 +132,8 @@ function Sidebar() {
                                </div>
 
                                 <button className='text-gray-500'    onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-                                  <ArrowRight2 size={16}  />
-
-
-                               <Menu isOpen={isDropdownOpen} record ={auth}/> 
-
+                                    <ArrowRight2 size={16}  />
+                                    <Menu isOpen={isDropdownOpen} record ={auth}/> 
                                 </button>
                             </div>
                         ) : (
@@ -155,7 +157,6 @@ function Sidebar() {
                             </button>
                             </div>
                         ) }
-                        {/* bottom */}
                     </div>
                 </div>
             </div>

@@ -21,6 +21,12 @@
     @apply border border-darkBorderColor rounded-xl px-6 py-3 text-sm md:text-base font-medium hover:bg-gray-100 outline-offset-[2.8px];
   }
 }
+.menutoggle { 
+  z-index:99 !important;
+}
+.bg-borderColor {
+  background-color: rgb(233 233 233) !important;
+}
 
 .display-none { 
   display:none !important;

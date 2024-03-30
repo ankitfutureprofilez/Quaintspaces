@@ -30,7 +30,6 @@ export default function LoginLogic({isPopup}) {
       return;
     }
     setLoading(true);
-    console.log("Form submitted:", formData);
     const main = new Listings();
     const response = main.Login({
       email: formData.email,
@@ -39,24 +38,20 @@ export default function LoginLogic({isPopup}) {
     response
       .then((res) => {
         if (res && res.data && res.data.status) {
-          // console.log("res",res)
-          const record = setAuth(res?.data?.data);
-          console.log("record", record);
-          localStorage && localStorage.setItem("token", res?.data?.token);
           if(isPopup){
             setOpenLogin(false);
           } else {
             router.push("/");
           }
+          setAuth(res?.data?.data || null);
+          localStorage && localStorage.setItem("token", res?.data?.token);
           toast.success(res.data.message);
-          // console.log(res.data.message)
           setFormData({
             email: "",
             password: "",
           });
         } else {
           toast.error(res?.data.message);
-          // console.log(res?.data.message)
           setLoading(false);
         }
       })
@@ -108,7 +103,7 @@ export default function LoginLogic({isPopup}) {
                 <a href="/forgot-password">Forgot Password?</a>
               </h3>
               <button type="submit" className="submint-btn">
-                {loading ? "Processing.." : "Submit"}
+                {loading ? "Logging in.." : "Log In"}
               </button>
             </form>
           </div>

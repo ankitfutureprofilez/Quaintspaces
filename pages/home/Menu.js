@@ -19,7 +19,7 @@ export default function Menu() {
 
   return (
     <>
-      <div className="flex items-center absolute shadow-md rounded-lg bg-gray-200 justify-center right-0">
+      <div className="menutoggle flex items-center absolute shadow-md rounded-lg bg-gray-200 justify-center right-0">
         <div className="w-full min-w-[250px]  p-3 drop-shadow-xl divide-y divide-gray-300">
           <div aria-label="header" className="flex space-x-4 items-center p-2">
             <div
