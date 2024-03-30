@@ -21,8 +21,29 @@ function Sidebar() {
         verifylogin(setAuth); 
       }, []);
 
+      const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
     return (
-        <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden !fixed'>
+<>
+        <div className="menu-icon" onClick={toggleMenu}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 cursor-pointer block md:hidden"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M4 6h16M4 12h16m-7 6h7"
+          />
+        </svg>
+      </div>
+        <div className={`w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden !fixed ${isMenuOpen ? 'block' : 'hidden'}`}>
             <div className='w-full h-full bg-white border-r '>
                 {/* logo */}
                 <div className='p-4 md:p-6 flex cursor-pointer group items-center gap-2 z-10'>
@@ -160,6 +181,7 @@ function Sidebar() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 
