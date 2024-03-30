@@ -2,13 +2,13 @@
 
 import Image from 'next/image'
 import { ArrowRight2, Calendar, Document, Element3, Folder2, Headphone,TextalignJustifycenter, Profile2User, Setting2, Setting4, Star, Timer1, Triangle,ShopAdd  } from 'iconsax-react'
-import ProfileImage from '../components/assets/profile.png'
+// import ProfileImage from '../components/assets/profile.png'
 import Link from 'next/link'
 import React, { useEffect} from "react";
 import {useContext,useState} from  "react";
 import {Context} from "../../_app"
+import { verifylogin } from './IsAdminLogin';
 import Menu from "./menu"
-import {verifylogin} from './isadminlogin';
 import { usePathname } from 'next/navigation'
 
 function Sidebar() {
@@ -140,7 +140,7 @@ function Sidebar() {
                             <div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200'>
                             <div className='flex items-center gap-2'>
                                 <Image
-                                    src={ProfileImage}
+                                    src={"https://th.bing.com/th/id/OIP.aPrAXebVFheO1nA-8qU47gHaJA?rs=1&pid=ImgDetMain"}
                                     alt='User'
                                     width={36}
                                     height={36}
