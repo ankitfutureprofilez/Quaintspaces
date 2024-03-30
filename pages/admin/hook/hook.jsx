@@ -3,10 +3,10 @@ import LocalToken from '../../../hooks/LocalToken';
 import Listing from '../api/Listing'
 
 async function verifylogin (setAuth) { 
-    const webtoken = LocalToken('Isadminlogintoken');
+    const webtoken = LocalToken('Admintoken');
     if(webtoken){
       const main = new Listing;
-      const response =  main.Isadminloginprofile();
+      const response =  main.Adminprofile();
       response.then((res) => {
         if (res.data.status) {
           setAuth(res.data.data);
@@ -17,11 +17,11 @@ async function verifylogin (setAuth) {
     }
   }
 
-const Isadminlogin = () => {
+const hook = () => {
   return (
     <div>
     </div>
   );
 }
 
-export { Isadminlogin, verifylogin };
+export { hook, verifylogin };
