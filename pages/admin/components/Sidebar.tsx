@@ -2,11 +2,11 @@ import React, { useContext, useState, useEffect } from "react";
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight2, Element3, Setting4, TextalignJustifycenter, Triangle } from 'iconsax-react';
-import Listing from '../api/Listing';
 import { Context } from "../../_app";
 import LocalToken from "../../../hooks/LocalToken";
 import { usePathname } from 'next/navigation';
 import Menu from "./menu";
+import Listing from "../api/Listing";
 
 function Sidebar() {
     const { auth, setAuth } = useContext(Context);
@@ -16,8 +16,8 @@ function Sidebar() {
     useEffect(() => {
         const webtoken = LocalToken('Admintoken');
         if (webtoken) {
-            const main = new Listing();
-            const response = main.Adminprofile();
+           const main = new Listing();
+           const response  = main.Adminprofile();
             response.then((res) => {
                 if (res.data.status) {
                     setAuth(res.data.data);
