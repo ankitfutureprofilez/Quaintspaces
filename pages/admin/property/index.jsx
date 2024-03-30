@@ -78,7 +78,7 @@ export default function index() {
         <Element text={"Property List"} />
         {isLoading ? (
           <div className="flex justify-center items-center h-screen">
-         <P>Loaidng....</P>
+         <p>Loaidng....</p>
           </div>
         ) : (
           <div className="flex flex-wrap mt-5 px-4 py-5">
@@ -93,14 +93,21 @@ export default function index() {
                   <div className="p-4">
                     <h2 className="text-lg font-medium mb-2">{item.name}</h2>
                     <h3 className="text-sm font-medium ">{item.location}</h3>
-                    <p className="text-sm text-gray-600 mt-1">
+                    <p className="text-sm text-gray-600 mt-3">
                       {item.bedrooms} Bedrooms · {item.beds} Beds
                     </p>
-                    <div className="flex justify-between items-center">
+                    <p  className="text-sm text-gray-600 mt-3">
+                      {
+                      item?.price } as per night
+                      </p>
+                    <div className="flex justify-between items-center mt-4">
                       <Link href={`/property/${item.uuid}`}>
-                        <div className="text-blue-500 hover:text-blue-600">
+                      <button
+                          className="bg-indigo-600 text-white px-3 py-1 rounded-md mr-2 hover:bg-indigo-700"
+                         
+                        >
                           View
-                        </div>
+                        </button>
                       </Link>
                       <div>
                         <button

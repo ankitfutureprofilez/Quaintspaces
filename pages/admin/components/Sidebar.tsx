@@ -27,6 +27,7 @@ function Sidebar() {
   };
     return (
 <>
+<div className="nav-bar flex items-center">
         <div className="menu-icon" onClick={toggleMenu}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -180,6 +181,7 @@ function Sidebar() {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         </>
     )

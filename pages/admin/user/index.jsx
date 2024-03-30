@@ -82,36 +82,31 @@ export default function Index() {
       <div className="p-4 w-full md:p-6 space-y-4">
         <div className="w-full overflow-x-auto">
           <table className="w-full overflow-x-auto text-sm rounded-md">
-            <thead>
-              <tr>
-                <div className="bg-gray-100 rounded-lg flex items-center justify-between text-gray-500">
-                  <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                    Name
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"></path></svg>
+          <thead>
+  <tr className="bg-gray-100 rounded-lg flex items-center justify-between text-gray-500">
+    <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+      Name
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"></path></svg>
+    </th>
+    <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+      Phone Number
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"></path></svg>
+    </th>
+    <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+      Status
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"></path></svg>
+    </th>
+    <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+      Action
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"></path></svg>
+    </th>
+    <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+      Details
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"></path></svg>
+    </th>
+  </tr>
+</thead>
 
-                  </th>
-                  <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                    Phone Number
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"></path></svg>
-
-                  </th>
-                  <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                    Status
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"></path></svg>
-
-                  </th>
-                  <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                    Action
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"></path></svg>
-                  </th>
-                  <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                    Detilas
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"></path></svg>
-
-                  </th>
-                </div>
-              </tr>
-            </thead>
             <tbody className="space-y-2 divide-y">
               {record.map((item, index) => (
                 <tr key={index} className="hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700">

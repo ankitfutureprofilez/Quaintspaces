@@ -22,17 +22,17 @@ function index() {
   return (
     <AdminLayout>
       <Element text={"User Details"} />
-      <div className="p-5 text-center w-full">
-        <img className="w-32 h-32 rounded-full mx-auto" src={record?.image_url ? record?.image_url : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"} alt="" />
-        <div className="text-sm mt-5">
-          <div className="font-medium leading-none text-gray-900 mb-3">
+      <div className="p-5 w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start">
+        <img className="w-32 h-32 rounded-full mx-auto lg:mr-8 mb-6 lg:mb-0" src={record?.image_url ? record?.image_url : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"} alt="" />
+        <div className="text-sm text-gray-900 text-center mr-6  ">
+          <div className="font-medium leading-none mb-3">
             {record?.name}
           </div>
-          <p className="text-sm mt-3 font-medium">{record?.email}</p>
+          <p className="text-sm font-medium mb-3">{record?.email}</p>
+          <p className="text-sm text-gray-900">{record?.phone_no}</p>
         </div>
-        <p className="mt-2 text-sm text-gray-900">{record?.phone_no}</p>
         <button className="mt-4 focus:outline-none">
-          {record.status === 0 ? (
+          {record?.status === 0 ? (
             <>
               <div className="flex items-center gap-1 border rounded-full p-1 bg-gray-100">
                 <p className="text-xs">Deactivate</p>{" "}
