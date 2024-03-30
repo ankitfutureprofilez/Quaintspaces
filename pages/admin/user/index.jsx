@@ -4,10 +4,18 @@ import Listing from "../api/Listing";
 import Element from "../element";
 import toast from 'react-hot-toast';
 import Link from 'next/link';
-import Loading from "../Loading/"
+import LoadingSpinner from "../Loading/LoadingSpinner"
+import Popup  from "../hook/Popup"
 import Image from "next/image";
 
 export default function Index() {
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const togglePopup = (isOpen) => {
+    setIsDropdownOpen(isOpen);
+  };
+  
   const [record, setRecord] = useState([]);
   const [page, setPage] = useState(1);
   const [hasmore, setHasMore] = useState(true);
@@ -100,6 +108,10 @@ export default function Index() {
                   <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
                     Action
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"></path></svg>
+                  </th>
+                  <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+                    Detilas
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"></path></svg>
 
                   </th>
                 </div>
@@ -122,10 +134,9 @@ export default function Index() {
                   </td>
                   <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">{item.phone_no ? item.phone_no : ""}</td>
                   <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">{item.status=== 0 ? "DeActivate " : "Activate"}</td>
+                 
                   <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                    <div className="flex items-center gap-1  p-1">
-
-
+                  <div className="flex items-center gap-1  p-1">
                       <button onClick={() => statusUpdate(item.id, item.status === 0 ? 1 : 0)}>
                         {item.status === 0 ? (
                           <div className="flex items-center gap-1 border rounded-full p-1">
@@ -152,7 +163,21 @@ export default function Index() {
                         )}
                       </button>
                     </div>
+                    </td>
+
+                    <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+                  <Link href= {`user/${item.id}`}>
+                  <svg width="32px" height="32px" viewBox="0 0 24 24" id="three-dots" xmlns="http://www.w3.org/2000/svg">
+                   <g id="_20x20_three-dots--grey" data-name="20x20/three-dots--grey" transform="translate(24) rotate(90)">
+                   <rect id="Rectangle" width="24" height="24" fill="none"/>
+                   <circle id="Oval" cx="1" cy="1" r="1" transform="translate(5 11)" stroke="#000000" stroke-miterlimit="10" stroke-width="0.5"/>
+                   <circle id="Oval-2" data-name="Oval" cx="1" cy="1" r="1" transform="translate(11 11)" stroke="#000000" stroke-miterlimit="10" stroke-width="0.5"/>
+                   <circle id="Oval-3" data-name="Oval" cx="1" cy="1" r="1" transform="translate(17 11)" stroke="#000000" stroke-miterlimit="10" stroke-width="0.5"/>
+                   </g>
+                  </svg>
+                    </Link>
                   </td>
+
                 </tr>
               ))}
             </tbody>
@@ -160,7 +185,7 @@ export default function Index() {
         </div>
 
         {loading && 
-        <p>Loading... </p>
+        <LoadingSpinner/>
         }
         {!loading && hasmore && (
           <div className="flex justify-center">

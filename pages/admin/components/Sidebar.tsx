@@ -116,7 +116,7 @@ function Sidebar() {
                         <hr className='bg-gray-400 mx-2 my-4' />
 
                         { auth ? (
-                           <div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200' >
+                           <div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200'  onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                              <div className='flex items-center gap-2'>
                                <Image
                                src={auth?.admin_profile_url}
@@ -131,7 +131,7 @@ function Sidebar() {
                                 </div>
                                </div>
 
-                                <button className='text-gray-500'    onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                                <button className='text-gray-500'    >
                                     <ArrowRight2 size={16}  />
                                     <Menu isOpen={isDropdownOpen} record ={auth}/> 
                                 </button>
