@@ -4,17 +4,23 @@ import Image from 'next/image'
 import { ArrowRight2, Calendar, Document, Element3, Folder2, Headphone,TextalignJustifycenter, Profile2User, Setting2, Setting4, Star, Timer1, Triangle,ShopAdd  } from 'iconsax-react'
 import ProfileImage from '../components/assets/profile.png'
 import Link from 'next/link'
+import React, { useEffect} from "react";
 import {useContext,useState} from  "react";
 import {Context} from "../../_app"
 import Menu from "./menu"
-
+import {verifylogin} from './IsAdminLogin';
 import { usePathname } from 'next/navigation'
 
 function Sidebar() {
-    const auth = useContext(Context)
+    const {auth,setAuth} = useContext(Context)
 
     const pathname = usePathname()
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    useEffect(() => {
+        verifylogin(setAuth); 
+      }, []);
+      console.log("auth",auth);
 
     return (
         <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden !fixed'>
