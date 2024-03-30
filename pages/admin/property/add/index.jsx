@@ -4,8 +4,8 @@ import AdminLayout from "../../AdminLayout";
 
 export default function Index() {
   return (
-    <AdminLayout>
-      <Property/>
+    <AdminLayout heading="Add Property" >
+        <Property/>
     </AdminLayout>
   );
 }

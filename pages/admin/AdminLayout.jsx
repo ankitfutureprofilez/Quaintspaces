@@ -4,12 +4,12 @@ import Sidebar from "./components/Sidebar";
 import { useRouter } from "next/router";
 import Listing from "./api/Listing";
 import toast, { Toaster } from 'react-hot-toast';
+import Navbar from './components/Navbar'
 
-const AdminLayout = ({ children }) => {
+const AdminLayout = ({ children, heading }) => {
 
     const router = useRouter();
     const [content, setContent] = useState([]);
-    
     useEffect(() => {
       const main = new Listing();
       const response =  main.Adminprofile();
@@ -19,8 +19,7 @@ const AdminLayout = ({ children }) => {
             setContent(res.data.data);
           } else {
           }
-        })
-        .catch((error) => {
+        }).catch((error) => {
           console.log("error", error);
           router.push("/admin/login");
           toast.error("Please log in first.");
@@ -30,14 +29,6 @@ const AdminLayout = ({ children }) => {
 
     return (
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <AnimatePresence>
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className='bg-black/60 absolute top-0 left-0 md:hidden w-full h-screen z-20'
-                />
-              
-            </AnimatePresence>
 
             <AnimatePresence>
                 <motion.div
@@ -51,12 +42,13 @@ const AdminLayout = ({ children }) => {
             
             </AnimatePresence>
 
-            <div className='grid md:grid-cols-[240px_1fr] '>
+            <div className='grid md:grid-cols-[240px_1fr]'>
                 <div className='hidden md:block'>
                     <Sidebar />
                 </div>
-                <div className='w-full '>
-                    {children}
+                <div className='w-full overflow-x-auto '>
+                    <Navbar heading={heading} />
+                    <div className="pt-24" >{children}</div>
                 </div>
             </div>
         </motion.div>

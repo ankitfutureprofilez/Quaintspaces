@@ -17,8 +17,7 @@ export default function index() {
 
   useEffect(() => {
     const main = new Listing();
-    main
-      .Adminproperty()
+    main.Adminproperty()
       .then((res) => {
         let properties = res?.data?.data;
         if (properties) {
@@ -74,14 +73,13 @@ export default function index() {
   }
   return (
     <>
-      <AdminLayout>
-        <Element text={"Property List"} />
+      <AdminLayout heading="Properties" >
         {isLoading ? (
           <div className="flex justify-center items-center h-screen">
          <ListingsLoading/>
           </div>
         ) : (
-          <div className="flex flex-wrap mt-5 px-4 py-5">
+          <div className="flex flex-wrap px-4 py-5 pt-0">
             {record.map((item, index) => (
               <div className="w-full sm:w-1/2 md:w-1/3 px-3 mt-4" key={index}>
                 <div className="border rounded-lg overflow-hidden shadow-md">
