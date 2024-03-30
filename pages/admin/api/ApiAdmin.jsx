@@ -10,7 +10,7 @@ function getToken() {
   return null;
 }
 
-let Api = axios.create({
+let ApiAdmin = axios.create({
   baseURL: API_URL,
   headers: {
     'Accept': 'application/json',
@@ -18,7 +18,7 @@ let Api = axios.create({
   }
 });
 
-Api.interceptors.request.use(
+ApiAdmin.interceptors.request.use(
   async (config) => {
     const token = getToken();
     if (token !== null) {
@@ -31,4 +31,4 @@ Api.interceptors.request.use(
   }
 );
 
-export default Api;
+export default ApiAdmin;
