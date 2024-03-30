@@ -21,43 +21,44 @@ function index() {
     },[slug])
     return ( 
         <AdminLayout>
-<Element text={"USer Detilas"}/>
-<div className="p-5   text-center w-full">
-
+         <Element text={"USer Detilas"}/>
+          <div className="p-5   text-center w-full">
             <img className="w-32 h-32 rounded-full mx-auto" src={record?.image_url ? record?.image_url : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"} alt="" />
             <div className="text-sm mt-5">
                    <div   
-                     className="font-medium leading-none text-gray-900 hover:text-indigo-600 transition duration-500 ease-in-out">
+                     className="font-medium leading-none text-gray-900 mb-3">
                  {record?.name}
                  </div>
-                <p>{record?.email}</p>
+                <p classname = "text-sm  mt-3 font-medium ">{record?.email}</p>
             </div>
-            <p className="mt-2 text-sm text-gray-900">Lorem ipsum dolor sit amet, consecte adipisicing elit. Voluptatibus quia
-                Maiores et perferendis eaque.</p>
-            <div className="flex mt-4 justify-center">
-                <a href="#" className="w-6 mx-1">
-                    <svg className="fill-current cursor-pointer text-gray-500 hover:text-indigo-600" width="100%" height="100%"
-                        viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                        xmlnsXlink="http://www.w3.org/1999/xlink" xmlSpace="preserve">
-                        <path id="Twitter" d="M24,12c0,6.627 -5.373,12 -12,12c-6.627,0 -12,-5.373 -12,-12c0,-6.627
-                        5.373,-12 12,-12c6.627,0 12,5.373 12,12Zm-6.465,-3.192c-0.379,0.168
-                        -0.786,0.281 -1.213,0.333c0.436,-0.262 0.771,-0.676
-                        0.929,-1.169c-0.408,0.242 -0.86,0.418 -1.341,0.513c-0.385,-0.411
-                        -0.934,-0.667 -1.541,-0.667c-1.167,0 -2.112,0.945 -2.112,2.111c0,0.166
-                        0.018,0.327 0.054,0.482c-1.754,-0.088 -3.31,-0.929
-                        -4.352,-2.206c-0.181,0.311 -0.286,0.674 -0.286,1.061c0,0.733 0.373,1.379
-                        0.94,1.757c-0.346,-0.01 -0.672,-0.106 -0.956,-0.264c-0.001,0.009
-                        -0.001,0.018 -0.001,0.027c0,1.023 0.728,1.877 1.694,2.07c-0.177,0.049
-                        -0.364,0.075 -0.556,0.075c-0.137,0 -0.269,-0.014 -0.397,-0.038c0.268,0.838
-                        1.048,1.449 1.972,1.466c-0.723,0.566 -1.633,0.904 -2.622,0.904c-0.171,0
-                        -0.339,-0.01 -0.504,-0.03c0.934,0.599 2.044,0.949 3.237,0.949c3.883,0
-                        6.007,-3.217 6.007,-6.008c0,-0.091 -0.002,-0.183 -0.006,-0.273c0.413,-0.298
-                        0.771,-0.67 1.054,-1.093Z"></path>
-                    </svg>
-                </a>
-                {/* Other social media icons */}
-            </div>
-        </div>
+            <p className="mt-2 text-sm text-gray-900">{record?.phone_no}</p>
+            <button >
+                        {record.status === 0 ? (
+                          <div className="flex items-center gap-1 border rounded-full p-1">
+                            <p className="text-xs">Deactivate</p>{" "}
+                            <svg class="text-gray-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m19.53 5.53-14 14c-.02.02-.03.03-.05.04-.38-.32-.73-.67-1.05-1.05A9.903 9.903 0 0 1 2 12C2 6.48 6.48 2 12 2c2.49 0 4.77.91 6.52 2.43.38.32.73.67 1.05 1.05-.01.02-.02.03-.04.05ZM22 12c0 5.49-4.51 10-10 10-1.5 0-2.92-.33-4.2-.93-.62-.29-.74-1.12-.26-1.61L19.46 7.54c.48-.48 1.32-.36 1.61.26.6 1.27.93 2.7.93 4.2Z" fill="currentColor"></path><path d="M21.77 2.229c-.3-.3-.79-.3-1.09 0L2.23 20.689c-.3.3-.3.79 0 1.09a.758.758 0 0 0 1.08-.01l18.46-18.46c.31-.3.31-.78 0-1.08Z" fill="currentColor"></path></svg>
+                          </div>
+                        ) : (
+                          <div className="flex items-center gap-1 border rounded-full p-1">
+                            <p className="text-xs">Activate</p>{" "}
+                            <svg
+                              className="text-emerald-500"
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                            >
+                              <path
+                                d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z"
+                                fill="currentColor"
+                              ></path>
+                            </svg>
+                          </div>
+                        )}
+                      </button>
+         
+         </div>
         </AdminLayout>
     );
 }
