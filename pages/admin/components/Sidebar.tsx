@@ -49,7 +49,7 @@ function Sidebar() {
                 {/* logo */}
                 <div className='p-4 md:p-6 flex cursor-pointer group items-center gap-2 z-10'>
                     <div className='h-10 outline outline-violet-300 w-10 flex items-center bg-gradient-to-br justify-center rounded-full from-violet-500 to-violet-400 text-white'>
-                        <Triangle size={24} className='relative group-hover:scale-75 duration-200' />
+                        <Triangle size={24} className='relative group-hover:scale-75 duration-200 '  />
                     </div>
                     <div>
                         <h1 className='text-sm font-bold text-gray-800'>Admin</h1>
@@ -64,7 +64,7 @@ function Sidebar() {
                 <div className='flex flex-col h-full justify-between'>
                     {/* top */}
                     <div className='pt-6 text-gray-500 font-medium space-y-2 md:px-2 text-normal'>
-                        <Link href={'/admin'} className={`flex ${pathname === '/admin' ? 'text-primary' : ''} hover:px-8 duration-200 rounded-md w-full py-2 px-6 items-center gap-2`}>
+                        <Link href={'/admin'} className={`flex ${pathname === '/admin' ? 'text-primary' : ''} hover:px-8 duration-200 rounded-md w-full py-2 px-6 items-center gap-2  focus:text-indigo-600`}>
                             <Element3 variant='Outline' size={16} />
                             Dashboard
                         </Link>
@@ -85,13 +85,13 @@ function Sidebar() {
                         </button> */}
 
 
-                        <Link href={'/admin/property/add'} className={`flex ${pathname === '/admin/property/add' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        <Link href={'/admin/property/add'} className={`flex ${pathname === '/admin/property/add' ? 'text-primary' : ''} hover:px-8  focus:text-indigo-600 duration-200 px-6 py-2 items-center gap-2`}>
                          <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                          <path fillRule="evenodd" clip-rule="evenodd" d="M12 3.1875L21.4501 10.275L21.0001 11.625H20.25V20.25H3.75005V11.625H3.00005L2.55005 10.275L12 3.1875ZM5.25005 10.125V18.75H18.75V10.125L12 5.0625L5.25005 10.125Z" fill="#080341"/>
                          </svg>
                             Property Add
                         </Link>
-                        <Link href={'/admin/property'} className={`flex ${pathname === '/admin/property' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        <Link href={'/admin/property'} className={`flex ${pathname === '/admin/property' ? 'text-primary' : ''} hover:px-8   focus:text-indigo-600 duration-200 px-6 py-2 items-center gap-2`}>
                         <TextalignJustifycenter size={16}/>
                             Property List
                         </Link>
@@ -100,12 +100,12 @@ function Sidebar() {
                             Integrations
                         </Link> */}
 
-                        <Link href={'/admin/integrations'} className={`flex ${pathname === '/admin/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        <Link href={'/admin/integrations'} className={`flex ${pathname === '/admin/integrations' ? 'text-primary' : ''} hover:px-8  focus:text-indigo-600  duration-200 px-6 py-2 items-center gap-2`}>
                             <Setting4 size={16} />
                             Integrations
                         </Link>
 
-                        <Link href={'/admin/user'} className={`flex ${pathname === '/admin/user' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        <Link href={'/admin/user'} className={`flex ${pathname === '/admin/user' ? 'text-primary' : ''} hover:px-8 duration-200   focus:text-indigo-600 px-6 py-2 items-center gap-2`}>
                             <Setting4 size={16} />
                             User List
                         </Link>

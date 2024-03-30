@@ -58,8 +58,8 @@ export default function Login() {
 
   return (
     <>
-    <div className="bg-no-repeat mainadmin bg-cover bg-center relative" style={{ backgroundImage: 
-      'url(https://images.pexels.com/photos/5417293/pexels-photo-5417293.jpeg?auto=compress&cs=tinysrgb&w=400)'
+    <div className="bg-no-repeat mainadmin bg-cover bg-center relative object-cover" style={{ backgroundImage: 
+      'url(https://get.pxhere.com/photo/villa-mansion-house-floor-interior-home-construction-residence-property-living-room-room-lighting-interior-design-hardwood-resort-windows-estate-lobby-suite-condominium-real-estate-wood-flooring-family-room-1196622.jpg)'
        }}>
   <div className="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
     

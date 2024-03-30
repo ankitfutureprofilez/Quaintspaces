@@ -51,11 +51,11 @@ const AdminLayout = ({ children }) => {
             
             </AnimatePresence>
 
-            <div className='grid md:grid-cols-[240px_1fr] overflow-x-hidden'>
+            <div className='grid md:grid-cols-[240px_1fr] '>
                 <div className='hidden md:block'>
                     <Sidebar />
                 </div>
-                <div className='w-full overflow-x-auto '>
+                <div className='w-full '>
                     {children}
                 </div>
             </div>
