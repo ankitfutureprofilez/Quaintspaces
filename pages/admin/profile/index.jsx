@@ -19,10 +19,8 @@ export default function Profileindex() {
 
   const router = useRouter();
 
-  useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
         const main = new Listing();
         const response = await main.Adminprofile();
         const profiledata = response.data.data;
@@ -30,17 +28,15 @@ export default function Profileindex() {
           name: profiledata.name,
           phone: profiledata.phone_no,
           email: profiledata.email,
-          image: profiledata.admin_profile_url,
+          // image: profiledata.admin_profile_url,
         });
         setPreviewImgSrc(profiledata.admin_profile_url);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching profile data:", error);
-        setLoading(false);
       }
     };
-    fetchData();
-  }, []);
+    
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,7 +52,7 @@ export default function Profileindex() {
     const main = new Listing();
     const formdata = new FormData();
     formdata.append("email", record.email);
-    formdata.append("image", record.image);
+    formdata.append("image", record.image );
     formdata.append("name", record.name);
     formdata.append("phone_no", record.phone);
     const response =  main.AdminProfileUpdate(formdata);
@@ -91,6 +87,14 @@ export default function Profileindex() {
     }
   };
 
+
+  
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+    fetchData(signal);
+    return () => controller.abort();
+  }, []);
   return (
     <>
     <AdminLayout>

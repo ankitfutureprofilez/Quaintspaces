@@ -25,6 +25,8 @@ function Sidebar() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  
     return (
 <>
 <div className="nav-bar flex items-center">
