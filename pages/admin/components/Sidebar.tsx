@@ -119,15 +119,15 @@ function Sidebar() {
                            <div className='flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200' >
                              <div className='flex items-center gap-2'>
                                <Image
-                               src={auth?.auth?.admin_profile_url}
+                               src={auth?.admin_profile_url}
                                alt='User'
                                width={36}
                                height={36}
                               className='rounded-full'
                               />
                                 <div className=''>
-                                 <p className='text-sm font-semibold text-gray-800'>{auth?.auth?.name}</p>
-                                 <p className='text-xs font-medium text-gray-500'>{auth?.auth?.email}</p>
+                                 <p className='text-sm font-semibold text-gray-800'>{auth?.name}</p>
+                                 <p className='text-xs font-medium text-gray-500'>{auth?.email}</p>
                                 </div>
                                </div>
 

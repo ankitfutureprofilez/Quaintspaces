@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import AdminLayout from "../AdminLayout";
 import Listing from "../api/Listing";
 import Element from "../element";
-import LoadingSpinner from "../LoadingSpinner";
 import toast from 'react-hot-toast';
 import Link from 'next/link';
+import Loading from "../Loading/"
 import Image from "next/image";
 
 export default function Index() {
@@ -159,7 +159,9 @@ export default function Index() {
           </table>
         </div>
 
-        {loading && <LoadingSpinner />}
+        {loading && 
+        <p>Loading... </p>
+        }
         {!loading && hasmore && (
           <div className="flex justify-center">
             <div className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12" onClick={loadMore}>Load More</div>
