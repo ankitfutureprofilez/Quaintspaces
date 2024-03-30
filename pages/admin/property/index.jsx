@@ -6,11 +6,14 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import AdminLayout from "../AdminLayout";
 import Property from "./add/Property";
-import LoadingSpinner  from "../LoadingSpinner"
+import ListingLoading  from "../loading/ListingLoading"
 
 export default function index() {
   const [record, setRecord] = useState([]);
   const [isLoading, setIsLoading] = useState(true); 
+  const[showConfirmation ,setShowConfirmation]= useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedProperty, setSelectedProperty] = useState(null);
 
   useEffect(() => {
     const main = new Listing();
@@ -32,16 +35,16 @@ export default function index() {
       });
   }, []);
 
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [selectedProperty, setSelectedProperty] = useState(null);
-  console.log("selectedProperty",selectedProperty)
-  const handleDelete = (uuid) => {
-    deleteProperty(uuid);
-  };
 
-  const togglePopup = (uuid) => {
+  const handleDelete = (uuid) => {
     console.log("Toggling popup for UUID:", uuid);
     setSelectedProperty(uuid);
+    setShowConfirmation(true);
+  };
+
+  
+  const togglePopup = (uuid) => {
+    
     setIsPopupOpen(!isPopupOpen);
   };
   
@@ -51,9 +54,13 @@ export default function index() {
     main
       .propertydelete(uuid)
       .then((response) => {
-        console.log("Response:", response.data.message);
-        toast.success(response.data.message);
-        setRecord(record.filter((item) => item.uuid !== uuid));
+        if(response.data.status ===true){
+          console.log("Response:", response.data.message);
+          toast.success(response.data.message);
+          setRecord(record.filter((item) => item.uuid !== uuid));
+        }else{
+          toast.error(response.data.message)
+        }
       })
       .catch((error) => {
         console.error("Error deleting property:", error);
@@ -66,13 +73,16 @@ export default function index() {
     setShowConfirmation(false);
   };
   
+  const handleCancel = () => {
+    setShowConfirmation(false);
+  }
   return (
     <>
       <AdminLayout>
         <Element text={"Property List"} />
         {isLoading ? (
           <div className="flex justify-center items-center h-screen">
-         <LoadingSpinner/>
+         <ListingLoading/>
           </div>
         ) : (
           <div className="flex flex-wrap mt-5 px-4 py-5">
@@ -99,7 +109,7 @@ export default function index() {
                       <div>
                         <button
                           className="bg-red-600 text-white px-3 py-1 rounded-md mr-2 hover:bg-red-700"
-                          onClick={() => setShowConfirmation(true)}
+                          onClick={() => handleDelete(item?.uuid)}
                         >
                           Delete
                         </button>

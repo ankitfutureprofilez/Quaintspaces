@@ -58,7 +58,9 @@ export default function Login() {
 
   return (
     <>
-    <div className="bg-no-repeat mainadmin bg-cover bg-center relative" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1951&q=80)' }}><div className="absolute bg-gradient-to-b from-green-500 to-green-400 opacity-75 inset-0 z-0"></div>
+    <div className="bg-no-repeat mainadmin bg-cover bg-center relative" style={{ backgroundImage: 
+      'url(https://images.pexels.com/photos/5417293/pexels-photo-5417293.jpeg?auto=compress&cs=tinysrgb&w=400)'
+       }}>
   <div className="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
     
       <div className="flex justify-center self-center  z-10">
