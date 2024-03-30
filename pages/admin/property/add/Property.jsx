@@ -724,7 +724,6 @@ export default function Property({
                   />
                 </label>
               </div>
-
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 ">
                 {uuid ? (
                   property_image?.map((item, index) => (
