@@ -10,7 +10,7 @@ function getToken() {
   return null;
 }
 
-let ApiAdmin = axios.create({
+let Api = axios.create({
   baseURL: API_URL,
   headers: {
     'Accept': 'application/json',
