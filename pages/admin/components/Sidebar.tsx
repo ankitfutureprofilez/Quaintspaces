@@ -13,22 +13,23 @@ function Sidebar() {
     const pathname = usePathname();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
    
-    useEffect(() => {
-        function checkAdminProfile() {
-            const webtoken = LocalToken('Admintoken');
-            if (webtoken) {
-                const main = new Listing;
-                const response = main.Adminprofile();
-                response.then((res) => {
-                    if (res.data.status) {
-                        setAuth(res.data.data);
-                    }
-                }).catch((error) => {
-                    console.log("error", error);
-                });
+    async function checkAdminProfile() {
+        const webtoken = LocalToken('Admintoken');
+        if (webtoken) {
+            const main = new Listing();
+            try {
+                const res = await main.Adminprofile();
+                if (res.data.status) {
+                    setAuth(res.data.data);
+                }
+            } catch (error) {
+                console.log("error", error);
             }
         }
+    }
     
+
+        useEffect(() => {
         checkAdminProfile();
     }, []);
     
