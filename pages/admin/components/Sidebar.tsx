@@ -47,7 +47,7 @@ function Sidebar() {
             <div className={`w-full h-full bg-white border-r ${isMobileSidebarOpen ? 'block' : 'hidden md:block'}`}>
                 <div className='p-4 md:p-6 flex cursor-pointer group items-center gap-2 z-10' onClick={toggleSidebar}>
                     <div className='h-10 outline outline-violet-300 w-10 flex items-center bg-gradient-to-br justify-center rounded-full from-violet-500 to-violet-400 text-white'>
-                        <Triangle size={24} className='relative group-hover:scale-75 duration-200' />
+                        <Triangle size={24} className='relative group-hover:scale-85 duration-200' />
                     </div>
                     <div>
                         <h1 className='text-sm font-bold text-gray-800'>Admin</h1>
@@ -129,21 +129,21 @@ function Sidebar() {
                 </div>
             </div>
 
-            {/* Mobile Sidebar Toggle */}
             <div className="md:hidden fixed top-0 left-0 z-50 p-4">
                 <button onClick={toggleMobileSidebar}>
                     {isMobileSidebarOpen ? (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M21 19H3v-2h18v2zm0-7H3v-2h18v2zm0-7H3V3h18v2z"/>
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M18 6L6 18h12V6zm-6 10h2v-2h-2v2z"/>
                         </svg>
                     ) : (
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M18 6L6 18h12V6zm-6 10h2v-2h-2v2z"/>
+                            <path d="M21 19H3v-2h18v2zm0-7H3v-2h18v2zm0-7H3V3h18v2z"/>
                         </svg>
                     )}
                 </button>
             </div>
+           
         </div>
     )
 }
