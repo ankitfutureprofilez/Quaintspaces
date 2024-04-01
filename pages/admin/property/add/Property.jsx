@@ -180,9 +180,6 @@ export default function Property(props) {
 
   async function handleSubmit(e){
 
-    console.log("typeHere", typeHere);
-    return false;
-
     e.preventDefault();
     if (step === 5 && images?.length < 5) {
       toast.error("Please select at least five images.");
@@ -266,6 +263,7 @@ export default function Property(props) {
  
                 <div className="" >
                       <div onClick={(e)=>setTypeHere("single_room")} className={`${typeHere === "single_room" ? "bg-gray-500" : ''} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
+            
                         <House size="52" color="#dedede" /> 
                         <h2 className="text-xl mt-4 font-normal text-gray-400" >Single Room</h2>
                       </div>

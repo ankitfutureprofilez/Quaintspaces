@@ -98,7 +98,8 @@ export default function index() {
                     <h2 className="text-lg font-medium mb-2">{item.name}</h2>
                     <h3 className="text-sm font-medium desc-property ">{item.description}</h3>
                     <p className="text-sm text-gray-600 mt-3">
-                      {item.bedrooms} Bedrooms · {item.beds} Beds
+                      {item?.type ? `${item.type}Room. ` : ""} 
+                      {item.bedrooms} Bedrooms · {item.beds} Beds . 
                     </p>
                     <p  className="text-sm text-gray-600 mt-3">
                       {
@@ -107,7 +108,7 @@ export default function index() {
                     <div className="flex justify-between items-center mt-4">
                       <Link href={`/property/${item.uuid}`}>
                       <div
-                          className="text-sm  rounded text-gray-800 px-4 py-2 font-medium hover:text-black-300"
+                          className="text-xl  rounded text-gray-800 px-4 py-2 font-medium hover:text-black-300"
                          
                         >
                           View
