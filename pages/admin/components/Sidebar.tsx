@@ -23,6 +23,24 @@ function Sidebar() {
     const toggleMobileSidebar = () => {
         setIsMobileSidebarOpen(prevState => !prevState);
     };
+
+    async function getAuth () { 
+        if(webtoken){
+            const main = new Listing();
+           const response =  main.Adminprofile();
+          response.then((res) => {
+            if (res.data.status) {
+              setAuth(res.data.data);
+            } 
+          }).catch((error) => {
+            console.log("error", error);
+          });
+        }
+      }
+    
+    useEffect(() => {
+        getAuth();
+      }, []);
     
     return (
         <div className={`w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden ${isSidebarOpen ? '!fixed' : 'hidden'}`}>
