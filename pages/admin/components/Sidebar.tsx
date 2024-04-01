@@ -14,10 +14,10 @@ function Sidebar() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const webtoken = LocalToken('Admintoken');
     
-    async function getAuth (s) { 
+    async function getAuth () { 
         if(webtoken){
           const main = new Listing();
-          const response =  main.Adminprofile(s);
+          const response =  main.Adminprofile();
           response.then((res) => {
             if (res.data.status) {
               setAuth(res.data.data);
