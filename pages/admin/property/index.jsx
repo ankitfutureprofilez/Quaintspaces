@@ -98,7 +98,7 @@ export default function index() {
                     <h2 className="text-lg font-medium mb-2">{item.name}</h2>
                     <h3 className="text-sm font-medium desc-property ">{item.description}</h3>
                     <p className="text-sm text-gray-600 mt-3">
-                      {item?.type ? `${item.type}Room. ` : ""} 
+                      {item?.type ? `${item.type} Room. ` : ""} 
                       {item.bedrooms} Bedrooms · {item.beds} Beds . 
                     </p>
                     <p  className="text-sm text-gray-600 mt-3">
