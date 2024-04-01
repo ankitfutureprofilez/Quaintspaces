@@ -67,10 +67,10 @@ function Sidebar() {
                             Property List
                         </Link>
 
-                        <Link href={'/admin/integrations'} className={`flex ${pathname === '/admin/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
+                        {/* <Link href={'/admin/integrations'} className={`flex ${pathname === '/admin/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Setting4 size={16} />
                             Integrations
-                        </Link>
+                        </Link> */}
 
                         <Link href={'/admin/user'} className={`flex ${pathname === '/admin/user' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Setting4 size={16} />

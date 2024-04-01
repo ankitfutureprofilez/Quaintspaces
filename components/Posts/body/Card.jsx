@@ -21,8 +21,8 @@ const Card = ({ post }) => {
       <div className="flat-info">
         <h5>
           {/* {post.location} */}
-          {textResizer(
-            post.location.slice(0, 1).toUpperCase() +
+          {textResizer(post && 
+            post.location && post.location.slice(0, 1).toUpperCase() +
               post.location.slice(1, -1),
             30
           )}

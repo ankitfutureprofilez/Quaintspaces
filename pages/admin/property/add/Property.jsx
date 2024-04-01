@@ -30,7 +30,7 @@ export default function Property(props) {
   }
 
   const [images, setImages] = useState([]);
-  const [property_type, setproperty_type] = useState("");
+  const [property_type, setproperty_type] = useState("single_room");
   const [address, setAddress] = useState({ 
     street_address: "",
     flat_house: "",
@@ -49,10 +49,11 @@ export default function Property(props) {
     setAddress({ ...address, [name]: value });
   };
 
+  const [typeHere, setTypeHere] = useState('single_room');   
+
   const [item, setItem] = useState({
     name: name || "",
     about: description || "",
-    type: "single_room", // single_room, entire_place
     price: price || "",
     propertytype: property_type, 
     children: children || "1",
@@ -178,6 +179,10 @@ export default function Property(props) {
   };
 
   async function handleSubmit(e){
+
+    console.log("typeHere", typeHere);
+    return false;
+
     e.preventDefault();
     if (step === 5 && images?.length < 5) {
       toast.error("Please select at least five images.");
@@ -200,7 +205,7 @@ export default function Property(props) {
     formData.append("infants", "1");
     formData.append("free_cancel_time", "1");
     formData.append("amenities", item?.selectedAmenities);
-    formData.append("type", item?.type);
+    formData.append("type", typeHere);
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
@@ -255,19 +260,42 @@ export default function Property(props) {
               )}
 
             <div className={`${step === 0 ? "" : "display-none"} max-w-[600px] m-auto table w-full`}>
-              <h2 className="text-3xl text-center font-bold mb-8" >Which of these best describes your place?</h2>
-               <div className="grid grid-cols-3 gap-4  " >
-                  {propertyTypes && propertyTypes.map((p, i )=>{ 
-                    return <div className="" >
-                        <input onChange={(e)=>setproperty_type(e.target.value)} value={p.value} type="radio" name="property-type" className={"hidden property-type"} id={`property-type-${i}`} />
-                        <label htmlFor={`property-type-${i}`} className="block propety-type-wrap cursor-pointer p-4 border rounded-xl" >
-                          <House size="52" color="#dedede" /> 
-                          <h2 className="text-xl mt-4 font-normal text-gray-400" >{p.label}</h2>
-                        </label>
-                    </div>
-                  })}
+              <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
+               <div className="grid grid-cols-3 gap-4 m-auto table  " >
+               
+ 
+                <div className="" >
+                      <div onClick={(e)=>setTypeHere("single_room")} className={`${typeHere === "single_room" ? "bg-gray-500" : ''} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
+                        <House size="52" color="#dedede" /> 
+                        <h2 className="text-xl mt-4 font-normal text-gray-400" >Single Room</h2>
+                      </div>
+                  </div>
+
+                <div className="" >
+                      <label onClick={(e)=>setTypeHere("entire_place")}
+                      className={`${typeHere === "entire_place" ? "bg-gray-500" : ''} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
+                        <House size="52" color="#dedede" /> 
+                        <h2 className="text-xl mt-4 font-normal text-gray-400" >Entire Place</h2>
+                      </label>
+                  </div>
+                   
                </div>
-            </div>
+
+                  {typeHere === "entire_place" ?  <>
+                      <h2 className="text-xl text-start mt-4 font-bold mb-8" >Which of these best describes your place?</h2>
+                        <div className="grid grid-cols-3 gap-4  " >
+                          {propertyTypes && propertyTypes.map((p, i )=>{ 
+                            return <div className="" >
+                                <input onChange={(e)=>setproperty_type(e.target.value)} value={p.value} type="radio" name="property-type" className={"hidden property-type"} id={`property-type-${i}`} />
+                                <label htmlFor={`property-type-${i}`} className="block propety-type-wrap cursor-pointer p-4 border rounded-xl" >
+                                  <House size="52" color="#dedede" /> 
+                                  <h2 className="text-xl mt-4 font-normal text-gray-400" >{p.label}</h2>
+                                </label>
+                            </div>
+                          })}
+                        </div>
+                  </> : '' }
+                    </div> 
 
             <div className={`${step === 1 ? "" : "display-none"} max-w-[600px] m-auto table w-full`}>
               <h2 className="text-3xl text-center font-bold mb-8" >Describes your place?</h2>

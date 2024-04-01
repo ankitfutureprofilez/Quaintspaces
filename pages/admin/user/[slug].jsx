@@ -21,7 +21,7 @@ function index() {
   }, [slug]);
 
   return (
-    <AdminLayout  heading ={"User Details"}>
+    <AdminLayout >
       <div className="bg-gray-300 antialiased">
       <div className="container mx-auto my-20">
         <div>
