@@ -42,8 +42,7 @@ export default function index() {
     let url = "";
 
     if(selectedOption=="All Dates"){}
-    if(selectedOption=="Last 30 Days"){url+="booking_time=thirty-day&"}
-    else if(selectedOption=="Last 3 Months"){url+="booking_time=three_month&"}
+    else if(selectedOption=="Last 30 Days"){url+="booking_time=thirty-day&"}
     else if(selectedOption=="Last 3 Months"){url+="booking_time=three_month&"}
     else if(selectedOption=="Last 1 Year"){url+="booking_time=after_one_year&"}
     else {url+=`booking_year=${selectedOption}&`}

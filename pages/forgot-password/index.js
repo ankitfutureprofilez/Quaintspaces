@@ -41,7 +41,6 @@ const ForgotPassword = () => {
           toast.error(error?.response.data);
         })
   };
-
   
   // Form 2
   const [formData2, setformData2] = useState({
