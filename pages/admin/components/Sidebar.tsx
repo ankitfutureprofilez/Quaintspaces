@@ -13,20 +13,20 @@ function Sidebar() {
     const pathname = usePathname();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-    useEffect(() => {
-        const webtoken = LocalToken('Admintoken'); 
-        if (webtoken) { 
-            const main =new Listing(); 
-            const response = main.Adminprofile(); 
-            response.then((res) => { 
-                if (res.data.status) { 
-                    setAuth(res.data.data); 
-                }
-            }).catch((error) => { 
-                console.log("error", error); 
-            });
-        }
-    }, []);
+    // useEffect(() => {
+    //     const webtoken = LocalToken('Admintoken'); 
+    //     if (webtoken) { 
+    //         const main =new Listing(); 
+    //         const response = main.Adminprofile(); 
+    //         response.then((res) => { 
+    //             if (res.data.status) { 
+    //                 setAuth(res.data.data); 
+    //             }
+    //         }).catch((error) => { 
+    //             console.log("error", error); 
+    //         });
+    //     }
+    // }, []);
     
 
     return (
