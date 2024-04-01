@@ -23,26 +23,25 @@ const Card = ({ post }) => {
           {/* {post.location} */}
           {textResizer(post && 
             post.location && post.location.slice(0, 1).toUpperCase() +
-              post.location.slice(1, -1),
-            30
-          )}
+              post.location.slice(1, -1), ) } 
+          {/* {post?.location} */}
         </h5>
         <h3 className="line-limit">
-          {post.name}
+          {post?.name}
           {/* {textResizer(
-                post.name.slice(0, 1).toUpperCase() + post.name.slice(1, -1),
+                post?.name.slice(0, 1).toUpperCase() + post?.name.slice(1, -1),
                 30
               )} */}
         </h3>
         <p>
-          {post.bedrooms} Bedrooms · {post.beds} Bed
+          {post?.bedrooms} Bedrooms · {post?.beds} Bed
         </p>
         <h4>
-          From <span> {formatMultiPrice(post.price)}</span> /night
+          From <span> {formatMultiPrice(post?.price)}</span> /night
         </h4>
       </div>
       <div className="explor-btn">
-        <Link className="block" href={`/property/${post.uuid}`}>
+        <Link className="block" href={`/property/${post?.uuid}`}>
           Explore{" "}
           <svg
             width="13"

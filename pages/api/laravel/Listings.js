@@ -32,12 +32,9 @@ class Listings extends Component {
   async BookingHistory(data) {
     return Api.get("/user-booking-history?" + data);
   }
-  // async GetUser(data) {
-  //   return Api.post("/get-user-profile", data);
-  // }
-  // async UpdateProfile(data) {
-  //   return Api.post("/update-profile", data);
-  // }
+  async DeactivateAccount() {
+    return Api.get("/user-account-deactivate");
+  }
   async TopPropertyListing(data) {
     return Api.get("/top-places-Property-list", data);
   }
