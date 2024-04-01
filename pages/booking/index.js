@@ -22,10 +22,6 @@ export default function index() {
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
-    console.log(event.target.value)
-  };
-
-  const handleClick = (event) => {
     setFetch(!fetch);
     setIsOpen(false);
   };
@@ -168,12 +164,8 @@ export default function index() {
               Filter By Date
             </button>
             <Modal isOpen={isOpen} onClose={closeModal}>
-              {/* <form
-                onSubmit={handleSubmit}
-                className="max-w-md mx-auto mt-4 p-4"
-              > */}
               <div className="mb-4 mt-10">
-                <h1 className="listing-heading mb-2">Select an option</h1>
+                {/* <h1 className="listing-heading mb-2">Select an option</h1> */}
                 {[
                   "All Dates",
                   "Last 30 Days",
@@ -209,30 +201,21 @@ export default function index() {
                 ))}
               </div>
               <div className="mb-4 flex justify-center">
-                <button
+                {/* <button
                   type="submit"
                   className="filter btn"
                   onClick={handleClick}
                 >
                   Submit
-                </button>
+                </button> */}
               </div>
-              {/* </form> */}
             </Modal>
           </div>
         </div>
 
-        {/* {selectedButton === "upcoming" && ( */}
         <div className="container mx-auto">
           <BookingTable />
         </div>
-
-        {/* {selectedButton === "completed" && (
-        <div className="container mx-auto">2ccompleted</div>
-      )}
-      {selectedButton === "canceled" && (
-        <div className="container mx-auto">3</div>
-      )} */}
       </AuthLayout>
     </div>
   );
