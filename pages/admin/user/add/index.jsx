@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AdminLayout from "../../AdminLayout";
 import Element from "../../element"
 import toast, { Toaster } from 'react-hot-toast';
-import Listing from "../../api/Listing";
+import Listing from "../../app/laravel/Listing";
 
 export default function Index() {
 

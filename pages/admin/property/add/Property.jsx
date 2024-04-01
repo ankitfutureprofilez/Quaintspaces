@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import amenitiesList from "../../../../aminites.json";
-import Listing from "../../api/Listing";
+import Listing from "../../app/laravel/Listing";
 import Element from "../../element";
 import { useRouter } from "next/router";
 import toast, { Toaster } from "react-hot-toast";

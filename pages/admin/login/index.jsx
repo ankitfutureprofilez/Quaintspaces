@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import Listing from "../api/Listing";
+import Listing from "../app/laravel/Listing";
 import { useContext } from 'react';
 import { Context } from "../../_app";
 

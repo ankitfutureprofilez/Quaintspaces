@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { Reorder } from "framer-motion";
-import Listing from '../api/Listing';
+import Listing from '../app/laravel/Listing';
 import AdminLayout from "../AdminLayout";
 import Element from './../element';
 import Image from 'next/image'
