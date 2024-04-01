@@ -10,7 +10,7 @@ function getToken() {
   return null;
 }
 
-let Apiintergration = axios.create({
+let Api = axios.create({
   baseURL: API_URL,
   headers: {
     'Accept': 'application/json',
@@ -18,7 +18,7 @@ let Apiintergration = axios.create({
   }
 });
 
-Apiintergration.interceptors.request.use(
+Api.interceptors.request.use(
   async (config) => {
     const token = getToken();
     if (token !== null) {
@@ -31,4 +31,4 @@ Apiintergration.interceptors.request.use(
   }
 );
 
-export default Apiintergration;
+export default Api;
