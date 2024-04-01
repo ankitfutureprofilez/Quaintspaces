@@ -107,7 +107,7 @@ export default function index() {
                     <div className="flex justify-between items-center mt-4">
                       <Link href={`/property/${item.uuid}`}>
                       <div
-                          className=" text-sm font-medium  px-3 py-1 rounded-md mr-2 hover:text-indigo-700"
+                          className="text-sm  rounded text-gray-800 px-4 py-2 font-medium hover:text-black-300"
                          
                         >
                           View
@@ -138,12 +138,12 @@ export default function index() {
                             </div>
                           </div>
                         )}
-                        <div
-                          className=" text-sm font-medium  px-3 py-1 rounded-md hover:text-green-700"
+                        {/* <div
+                          className="text-sm  rounded text-gray-200 px-4 py-2 font-medium hover:bg-gray-300"
                           onClick={() => togglePopup(item?.uuid)}
                         >
                           edit
-                        </div>
+                        </div> */}
                         {isPopupOpen && selectedProperty === item.uuid && (
                           <>
                             <div className="fixed inset-0 z-50 bg-gray-900 bg-opacity-50"></div>

@@ -4,7 +4,7 @@ import Sidebar from "./components/Sidebar";
 import { useRouter } from "next/router";
 import Listing from "./api/Listing";
 import toast, { Toaster } from 'react-hot-toast';
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar';
 
 const AdminLayout = ({ children, heading }) => {
 

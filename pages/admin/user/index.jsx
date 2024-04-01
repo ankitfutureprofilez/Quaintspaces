@@ -181,6 +181,26 @@ export default function Index() {
                     ></path>
                   </svg>
                 </th>
+
+                {/* <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+                  Actions
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      strokeLinejoin="round"
+                      stroke-miterlimit="10"
+                      stroke-width="1.5"
+                      d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"
+                    ></path>
+                  </svg>
+                </th> */}
               </tr>
             </thead>
 
@@ -285,7 +305,7 @@ export default function Index() {
 
 
 
-                  <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+                  {/* <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
 
                     <Link href="#">
                     <svg
@@ -341,7 +361,7 @@ export default function Index() {
                         </g>
                       </svg>
               </Link>
-                  </td>
+                  </td> */}
                   <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
                     <Link href={`user/${item.id}`}>
                       <svg
