@@ -26,6 +26,9 @@ class Listings extends Component {
   async UpdateForgotPassword(data) {
     return Api.post("/reset-password", data);
   }
+  async ContactUs(data) {
+    return Api.post("/contact-us", data);
+  }
   async PropertyBooking(data) {
     return Api.post("/add-booking", data);
   }
