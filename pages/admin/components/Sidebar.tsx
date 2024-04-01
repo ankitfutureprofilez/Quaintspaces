@@ -12,7 +12,7 @@ function Sidebar() {
     const { auth, setAuth } = useContext(Context);
     const pathname = usePathname();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+    const webtoken = LocalToken('Admintoken');
     
     async function getAuth (s) { 
         if(webtoken){
