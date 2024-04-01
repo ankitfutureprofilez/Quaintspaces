@@ -20,7 +20,7 @@ function index() {
   }, [slug]);
 
   return (
-    <LinkdminLayout  heading ={"User Details"}>
+    <AdminLayout  heading ={"User Details"}>
       <div className="bg-white -300 antialiased">
       <div className="container mx-auto my-60">
         <div>
@@ -86,7 +86,7 @@ function index() {
         </div>
       </div>
     </div>
-    </LinkdminLayout>
+    </AdminLayout>
   );
 }
 
