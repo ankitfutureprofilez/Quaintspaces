@@ -135,7 +135,7 @@ export default function Property(props) {
 
   const fetchLocationData = async (manualLocation) => {
     console.log("manualLocation", manualLocation);
-    if (manualLocation) {
+    // if (manualLocation) {
       try {
         const response = await axios.get(
           `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
@@ -156,7 +156,7 @@ export default function Property(props) {
         console.log("Error fetching data for manual location:", error);
       }
     }
-  };
+  // };
 
   const handleLocationInputChange = (event) => {
     const { name, value } = event.target;
@@ -352,8 +352,9 @@ export default function Property(props) {
               <p className="text-normal text-center text-gray-500 mb-8" >Your address is only shared with guests after they’ve made a reservation.</p>
 
               <div class="table w-full m-auto max-w-[500px] space-y-4 text-center">
-                <div class="w-full mt-4">
-                    <button className="btn sort w-full"   onClick={() => fetchLocationData(item.location)} >Use Current Location</button>
+                <div class="w-full mt-4" onchange={handleLocationInputChange}>
+                <button className="btn sort w-full" onClick={() => fetchLocationData(item.location || "")}>Use Current Location</button>
+
                 </div>
                 <div class="flex items-center justify-center space-x-4">
                     <div class="font-semibold text-gray-400 py-3 text-center">OR</div>
