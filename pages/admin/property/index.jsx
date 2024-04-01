@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Element from "../element";
 import Layout from "../AdminLayout";
-import Listing from "../app/api/Listing";
+import Listing from "../api/Listing";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import AdminLayout from "../AdminLayout";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
-import Listing from "../app/api/Listing";
+import Listing from "../api/Listing";
 import AdminLayout from "./../AdminLayout";
 import Element from "./../element";
 import Link from 'next/link';
@@ -13,7 +13,7 @@ export default function Security() {
     current_password: "",
     new_password: "",
     confirm_password: "",
-    
+
   });
 
   const handleChange = (e) => {

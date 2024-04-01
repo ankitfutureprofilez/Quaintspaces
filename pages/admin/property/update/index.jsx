@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Add, Notification, SearchNormal1, Setting4 } from "iconsax-react";
 import amenitiesList from "../../../../aminites.json";
-import Listing from "../../app/api/Listing";
+import Listing from "../../api/Listing";
 import Element from "../../element";
 import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";

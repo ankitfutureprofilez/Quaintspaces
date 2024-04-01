@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../AdminLayout";
-import Listing from "../app/api/Listing";
+import Listing from "../api/Listing";
 import Spinner from "../hook/spinner"
 import Popup from "../hook/Popup"
 
