@@ -1,4 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
+
+import Listing from "../api/Listing";
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight2, Element3, Setting4, TextalignJustifycenter, Triangle } from 'iconsax-react';
@@ -6,34 +8,29 @@ import { Context } from "../../_app";
 import LocalToken from "../../../hooks/LocalToken";
 import { usePathname } from 'next/navigation';
 import Menu from "./menu";
-import Listing from "../api/Listing";
 
 function Sidebar() {
     const { auth, setAuth } = useContext(Context);
     const pathname = usePathname();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const webtoken = LocalToken('Admintoken');
+    // async function getAuth () { 
+    //     if(webtoken){
+    //         const main = new Listing();
+    //        const response =  main.Adminprofile();
+    //       response.then((res) => {
+    //         if (res.data.status) {
+    //           setAuth(res.data.data);
+    //         } 
+    //       }).catch((error) => {
+    //         console.log("error", error);
+    //       });
+    //     }
+    //   }
     
-    async function getAuth () { 
-        if(webtoken){
-          const main = new Listing();
-          const response =  main.Adminprofile();
-          response.then((res) => {
-            if (res.data.status) {
-              setAuth(res.data.data);
-            } 
-          }).catch((error) => {
-            console.log("error", error);
-          });
-        }
-      }
-    
-    useEffect(() => {
-        const controller = new AbortController();
-        const { signal } = controller;
-        getAuth(signal);
-        return () => controller.abort();
-      }, []);
+    // useEffect(() => {
+    //     getAuth();
+    //   }, []);
     
     
     return (

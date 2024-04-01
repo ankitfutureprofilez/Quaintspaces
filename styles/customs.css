@@ -6,6 +6,15 @@
 .logo img {
   max-width: 127px;
 }
+h3.text-sm.font-medium.desc-property {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 21px;
+  max-height: 48px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
 .login-signup-btn {
   border-left: 1px solid #404040  ;
   padding-left: 40px;

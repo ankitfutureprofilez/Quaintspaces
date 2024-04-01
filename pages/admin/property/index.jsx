@@ -96,7 +96,7 @@ export default function index() {
                   </button>
                   <div className="p-4">
                     <h2 className="text-lg font-medium mb-2">{item.name}</h2>
-                    <h3 className="text-sm font-medium ">{item.location}</h3>
+                    <h3 className="text-sm font-medium desc-property ">{item.description}</h3>
                     <p className="text-sm text-gray-600 mt-3">
                       {item.bedrooms} Bedrooms · {item.beds} Beds
                     </p>
