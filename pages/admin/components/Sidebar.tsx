@@ -12,26 +12,28 @@ function Sidebar() {
     const { auth, setAuth } = useContext(Context);
     const pathname = usePathname();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-   
-    async function checkAdminProfile() {
-        const webtoken = LocalToken('Admintoken');
-        if (webtoken) {
-            const main = new Listing();
-            try {
-                const res = await main.Adminprofile();
-                if (res.data.status) {
-                    setAuth(res.data.data);
-                }
-            } catch (error) {
-                console.log("error", error);
-            }
-        }
-    }
-    
 
-        useEffect(() => {
-        checkAdminProfile();
-    }, []);
+    
+    async function getAuth (s) { 
+        if(webtoken){
+          const main = new Listing();
+          const response =  main.Adminprofile(s);
+          response.then((res) => {
+            if (res.data.status) {
+              setAuth(res.data.data);
+            } 
+          }).catch((error) => {
+            console.log("error", error);
+          });
+        }
+      }
+    
+    useEffect(() => {
+        const controller = new AbortController();
+        const { signal } = controller;
+        getAuth(signal);
+        return () => controller.abort();
+      }, []);
     
     
     return (
