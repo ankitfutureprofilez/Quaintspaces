@@ -3,29 +3,62 @@ import Layout from "../layout/Layout.js";
 import Heading from "../elements/Heading.js";
 import Image from "next/image";
 import ContactUs from "../../public/images/ContactUs.png";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import Button from "../elements/Button.js";
+import toast from "react-hot-toast";
+import Listings from "../api/laravel/Listings.js";
 export default function index() {
-  const router=useRouter();
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your form submission logic here
-    console.log("Form submitted with data:", formData);
+    if (loading == true) {
+      return;
+    }
+    setLoading(true);
+    const main = new Listings();
+    const response = main.ContactUs({
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+    });
+    response
+      .then((res) => {
+        if (res && res.data && res.data.status) {
+          toast.success(res.data.message);
+          router.push("/");
+          setFormData({
+            name: "",
+            email: "",
+            message: "",
+          });
+        } else {
+          toast.error(res?.data.message);
+          console.log(res?.data.message);
+          setLoading(false);
+        }
+       
+      })
+      .catch((error) => {
+        toast.error(error?.response.data);
+        setLoading(false);
+      });
   };
+
   return (
     <Layout>
       <div className="container mx-auto">
@@ -161,7 +194,7 @@ export default function index() {
                 />
               </div>
               <button className="filter btn w-7/12">
-                Submit
+                {loading?"Submitting...":"Submit"}
                 </button>
             </form>
           </div>

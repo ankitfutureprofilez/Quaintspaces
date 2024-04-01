@@ -65,3 +65,6 @@ html {
   top: 39px;
   z-index: 1;
 }
+.profile-navbar{
+  padding:0px !important;
+}
