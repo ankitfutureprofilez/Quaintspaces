@@ -100,7 +100,7 @@ export default function LoginLogic({isPopup}) {
                 />
               </div>
               <h3 className="text-white text-md  font-medium mb-4">
-                <a href="/forgot-password">Forgot Password?</a>
+                <Link href="/forgot-password">Forgot Password?</Link>
               </h3>
               <button type="submit" className="submint-btn">
                 {loading ? "Logging in.." : "Log In"}
