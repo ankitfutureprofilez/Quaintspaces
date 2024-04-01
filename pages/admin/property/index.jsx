@@ -17,8 +17,7 @@ export default function index() {
 
   useEffect(() => {
     const main = new Listing();
-    main
-      .Adminproperty()
+    main.Adminproperty()
       .then((res) => {
         let properties = res?.data?.data;
         if (properties) {
@@ -37,7 +36,6 @@ export default function index() {
 
 
   const handleDelete = (uuid) => {
-    console.log("Toggling popup for UUID:", uuid);
     setSelectedProperty(uuid);
     setShowConfirmation(true);
   };
@@ -49,13 +47,11 @@ export default function index() {
   };
   
   const deleteProperty = (uuid) => {
-    console.log("Deleting property with UUID:", uuid);
     const main = new Listing();
     main
       .propertydelete(uuid)
       .then((response) => {
         if(response.data.status ===true){
-          console.log("Response:", response.data.message);
           toast.success(response.data.message);
           setRecord(record.filter((item) => item.uuid !== uuid));
         }else{
@@ -68,7 +64,6 @@ export default function index() {
   };
   
   const handleConfirmation = () => {
-    console.log("Confirming deletion for UUID:", selectedProperty);
     deleteProperty(selectedProperty);
     setShowConfirmation(false);
   };
@@ -78,14 +73,13 @@ export default function index() {
   }
   return (
     <>
-      <AdminLayout>
-        <Element text={"Property List"} />
+      <AdminLayout heading="Properties" >
         {isLoading ? (
           <div className="flex justify-center items-center h-screen">
          <ListingsLoading/>
           </div>
         ) : (
-          <div className="flex flex-wrap mt-5 px-4 py-5">
+          <div className="flex flex-wrap px-4 py-5 pt-0">
             {record.map((item, index) => (
               <div className="w-full sm:w-1/2 md:w-1/3 px-3 mt-4" key={index}>
                 <div className="border rounded-lg overflow-hidden shadow-md">
@@ -97,14 +91,21 @@ export default function index() {
                   <div className="p-4">
                     <h2 className="text-lg font-medium mb-2">{item.name}</h2>
                     <h3 className="text-sm font-medium ">{item.location}</h3>
-                    <p className="text-sm text-gray-600 mt-1">
+                    <p className="text-sm text-gray-600 mt-3">
                       {item.bedrooms} Bedrooms · {item.beds} Beds
                     </p>
-                    <div className="flex justify-between items-center">
+                    <p  className="text-sm text-gray-600 mt-3">
+                      {
+                      item?.price } as per night
+                      </p>
+                    <div className="flex justify-between items-center mt-4">
                       <Link href={`/property/${item.uuid}`}>
-                        <div className="text-blue-500 hover:text-blue-600">
+                      <button
+                          className="bg-indigo-600 text-white px-3 py-1 rounded-md mr-2 hover:bg-indigo-700"
+                         
+                        >
                           View
-                        </div>
+                        </button>
                       </Link>
                       <div>
                         <button

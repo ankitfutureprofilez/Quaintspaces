@@ -7,18 +7,14 @@ import Notes from '../components/Cards/Notes'
 import StatusTracker from '../components/Cards/StatusTracker'
 import TimeTracker from '../components/Cards/TimeTracker'
 import TraningAnalysis from '../components/Cards/TraningAnalysis'
-import Navbar from '../components/Navbar'
-import Sidebar from '../components/Sidebar'
+import Sidebar from '../components/Sidebar';
 import AdminLayout from "../AdminLayout"
-
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
-
 
 function Home() {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-
   const handleSidebarChange = (value) => {
     setIsSidebarOpen(value)
   }
@@ -27,10 +23,7 @@ function Home() {
     <AdminLayout>
 
     <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-      className={`${isSidebarOpen ? 'overflow-hidden' : ''} h-screen`}
-    >
-
-      {/* backdrop */}
+      className={`${isSidebarOpen ? 'overflow-hidden' : ''} h-screen`} >
       <AnimatePresence>
         {isSidebarOpen && (
           <motion.div
@@ -42,7 +35,6 @@ function Home() {
         )}
       </AnimatePresence>
 
-      {/* mobile sidebar */}
       <AnimatePresence>
         {isSidebarOpen && (
           <motion.div
@@ -60,8 +52,6 @@ function Home() {
       <div className='flex'>
 
         <div className='w-full '>
-          <Navbar isOpen={isSidebarOpen} sidebarChange={handleSidebarChange} />
-
           <div className='p-4 md:p-6 space-y-4 columns-1 sm:columns-2 lg:columns-3'>
             <div className='break-inside-avoid-column space-y-4'>
               <TraningAnalysis />

@@ -31,7 +31,6 @@ export default function Index() {
     const togglePopup = () => {
         setIsPopupOpen(!isPopupOpen);
     };
-    console.log("slug", slug)
     const [record, setRecord] = useState(null);
     const [selection, setSelection] = useState(null);
     const [guests, setGuests] = useState({
@@ -57,7 +56,6 @@ export default function Index() {
         const response = main.Adminpropertydetails(slug);
         response.then((res) => {
             setLoading(false);
-            console.log("res", res);
             setRecord(res);
         }).catch((error) => {
             setLoading(false);

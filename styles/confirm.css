@@ -68,6 +68,14 @@ p.item-pargraph {
     position: relative;
 }
 
+img.side-img {
+  border: 2px solid;
+  border-radius: 50%;
+  object-fit: cover;
+  height: 63px !important;
+  width: 80px !important;
+}
+
 .profile-image ul.dropdown-menu.text-black.border-3 {
     position: absolute;
     background: #fff;
