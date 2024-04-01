@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import ApiAdmin from "./Api"
+import ApiAdmin from "./api"
 class Listing extends Component {
     async adminlogin(data) {
         return ApiAdmin.post("/admin/login",data);
