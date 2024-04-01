@@ -28,7 +28,7 @@ const Date_GuestsPickerCard = React.forwardRef(
 // console.log("price",listing)
     const router = useRouter();
     const { auth, setOpenLogin } = useContext(Context);
-  console.log("auth",auth)
+  // console.log("auth",auth)
 
     return <>
         {loading ? <div className="sticky top-28 left-0 min-w-[25rem] min-h-[500px] bg-lightBorderColor rounded-md"></div>

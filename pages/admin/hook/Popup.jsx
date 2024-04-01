@@ -20,7 +20,7 @@ export default function Popup({
   };
 
   const handleMenuItemClick = (menuItem) => {
-    console.log("Clicked on", menuItem);
+    // console.log("Clicked on", menuItem);
   };
 
   return (

@@ -3,7 +3,7 @@ import Grid from "../../public/_svgs/Grid";
 import { v4 as uuidv4 } from "uuid";
 
 const Images = ({ setSelectedImage, listing, setImageViewer,loading }) => {
-  console.log("lisitng",listing)
+  // console.log("lisitng",listing)
   return (
     <div className="flex gap-2 w-full h-full">
       {loading ? (

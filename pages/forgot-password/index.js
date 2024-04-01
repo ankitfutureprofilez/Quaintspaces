@@ -20,7 +20,7 @@ const ForgotPassword = () => {
   };
   const handleSubmit1 = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData1);
+    // console.log("Form submitted:", formData1);
     const main = new Listings();
         const response = main.ForgotPassword({
             email: formData1.email,
@@ -56,7 +56,7 @@ const ForgotPassword = () => {
   };
   const handleSubmit2 = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData2);
+    // console.log("Form submitted:", formData2);
     const main = new Listings();
     const response = main.ForgotPasswordOTP({
         email: formData1.email,
@@ -94,7 +94,7 @@ const ForgotPassword = () => {
   };
   const handleSubmit3 = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData3);
+    // console.log("Form submitted:", formData3);
     const main = new Listings();
     const response = main.UpdateForgotPassword({
         email: formData1.email,
