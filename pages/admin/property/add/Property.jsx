@@ -18,6 +18,7 @@ const propertyTypes = [
     { value: "boutique_hotel", label: "Boutique Hotel" }
   ];
   
+
 export default function Property(props) {
 
   const {longitudes,latitude,children,adults,onClose,uuid,name,price,description,bedrooms,beds,bathrooms,amenities,property_image} = props;
@@ -71,6 +72,8 @@ export default function Property(props) {
     const { name, value } = e.target;
     setItem({ ...item, [name]: value });
   };
+
+  console.log("item", item?.address);
 
   const handleFileChange = async (e) => {
     let files = Array.from(e.target.files);
@@ -353,7 +356,7 @@ export default function Property(props) {
 
               <div class="table w-full m-auto max-w-[500px] space-y-4 text-center">
                 <div class="w-full mt-4" onchange={handleLocationInputChange}>
-                <button className="btn sort w-full" onClick={() => fetchLocationData(item.location || "")}>Use Current Location</button>
+                <button className="btn sort w-full" onClick={() => fetchLocationData(item?.address?.location || "")}>Use Current Location</button>
 
                 </div>
                 <div class="flex items-center justify-center space-x-4">
