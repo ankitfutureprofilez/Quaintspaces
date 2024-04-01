@@ -20,40 +20,73 @@ function index() {
   }, [slug]);
 
   return (
-    <AdminLayout>
-      <Element text={"User Details"} />
-      <div className="p-5 w-full flex flex-col lg:flex-row items-center justify-center lg:justify-start">
-        <img className="w-32 h-32 rounded-full mx-auto lg:mr-8 mb-6 lg:mb-0" src={record?.image_url ? record?.image_url : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"} alt="" />
-        <div className="text-sm text-gray-900 text-center mr-6  ">
-          <div className="font-medium leading-none mb-3">
-            {record?.name}
+    <LinkdminLayout  heading ={"User Details"}>
+      <div className="bg-white -300 antialiased">
+      <div className="container mx-auto my-60">
+        <div>
+          <div className=" relative shadow rounded-lg w-5/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto">
+            <div className="flex justify-center">
+              <img src={record?.image} alt="" className="rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110" />
+            </div>
+            
+            <div className="mt-16">
+              <h1 className="font-bold text-center text-3xl text-gray-900">Pantazi Software</h1>
+              <p className="text-center text-sm text-gray-400 font-medium">UI Components Factory</p>
+              <p>
+                <span>
+                  
+                </span>
+              </p>
+              <div className="my-5 px-6">
+                <Link href="#" className="text-gray-200 block rounded-lg text-center font-medium leading-6 px-6 py-3 bg-gray-900 hover:bg-black hover:text-white">Connect with <span className="font-bold">@pantazisoft</span></Link>
+              </div>
+              <div className="flex justify-between items-center my-5 px-6">
+                <Link href="" className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3">Facebook</Link>
+                <Link href="" className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3">Twitter</Link>
+                <Link href="" className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3">Instagram</Link>
+                <Link href="" className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3">Email</Link>
+              </div>
+
+              <div className="w-full">
+                <h3 className="font-medium text-gray-900 text-left px-6">Recent activites</h3>
+                <div className="mt-5 w-full flex flex-col items-center overflow-hidden text-sm">
+                  <Link href="#" className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150">
+                    <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt="" className="rounded-full h-6 shadow-md inline-block mr-2" />
+                    Updated his status
+                    <span className="text-gray-500 text-xs">24 min ago</span>
+                  </Link>
+
+                  <Link href="#" className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150">
+                    <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt="" className="rounded-full h-6 shadow-md inline-block mr-2" />
+                    Added new profile picture
+                    <span className="text-gray-500 text-xs">42 min ago</span>
+                  </Link>
+
+                  <Link href="#" className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150">
+                    <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt="" className="rounded-full h-6 shadow-md inline-block mr-2" />
+                    Posted new article in <span className="font-bold">#Web Dev</span>
+                    <span className="text-gray-500 text-xs">49 min ago</span>
+                  </Link>
+
+                  <Link href="#" className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150">
+                    <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt="" className="rounded-full h-6 shadow-md inline-block mr-2" />
+                    Edited website settings
+                    <span className="text-gray-500 text-xs">1 day ago</span>
+                  </Link>
+
+                  <Link href="#" className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150 overflow-hidden">
+                    <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt="" className="rounded-full h-6 shadow-md inline-block mr-2" />
+                    Added new rank
+                    <span className="text-gray-500 text-xs">5 days ago</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
-          <p className="text-sm font-medium mb-3">{record?.email}</p>
-          <p className="text-sm text-gray-900">{record?.phone_no}</p>
         </div>
-        <button className="mt-4 focus:outline-none">
-          {record?.status === 0 ? (
-            <>
-              <div className="flex items-center gap-1 border rounded-full p-1 bg-gray-100">
-                <p className="text-xs">Deactivate</p>{" "}
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
-                </svg>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="flex items-center gap-1 border rounded-full p-1 bg-gray-100">
-                <p className="text-xs">Activate</p>{" "}
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z" clipRule="evenodd" />
-                </svg>
-              </div>
-            </>
-          )}
-        </button>
       </div>
-    </AdminLayout>
+    </div>
+    </LinkdminLayout>
   );
 }
 

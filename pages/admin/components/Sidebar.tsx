@@ -14,19 +14,20 @@ function Sidebar() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     useEffect(() => {
-        const webtoken = LocalToken('Admintoken');
-        if (webtoken) {
-           const main = new Listing();
-           const response  = main.Adminprofile();
-            response.then((res) => {
-                if (res.data.status) {
-                    setAuth(res.data.data);
+        const webtoken = LocalToken('Admintoken'); 
+        if (webtoken) { 
+            const main =new Listing(); 
+            const response = main.Adminprofile(); 
+            response.then((res) => { 
+                if (res.data.status) { 
+                    setAuth(res.data.data); 
                 }
-            }).catch((error) => {
-                console.log("error", error);
+            }).catch((error) => { 
+                console.log("error", error); 
             });
         }
     }, []);
+    
 
     return (
         <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden !fixed'>
