@@ -8,6 +8,7 @@ import Link from "next/link";
 const ForgotPassword = () => {
   const router = useRouter();
   const [step, setStep] = useState(1);
+  const[loading,setLoading]=useState(false);
 
   // Form 1
   const [formData1, setformData1] = useState({
@@ -23,6 +24,8 @@ const ForgotPassword = () => {
   const handleSubmit1 = (e) => {
     e.preventDefault();
     // console.log("Form submitted:", formData1);
+    if(loading==true){return;}
+    setLoading(true);
     const main = new Listings();
     const response = main.ForgotPassword({
       email: formData1.email,
@@ -32,17 +35,20 @@ const ForgotPassword = () => {
         if (res && res.data && res.data.status) {
           toast.success(res.data.message);
           nextStep();
+          setLoading(false);
         } else {
           toast.error(res?.data.message);
           setformData1({
             email: "",
           });
+          setLoading(false);
         }
       })
       .catch((error) => {
         console.log("error", error);
         toast.error(error.message);
         toast.error(error?.response.data);
+        setLoading(false);
       });
   };
 
@@ -60,6 +66,8 @@ const ForgotPassword = () => {
   const handleSubmit2 = (e) => {
     e.preventDefault();
     // console.log("Form submitted:", formData2);
+    if(loading==true){return;}
+    setLoading(true);
     const main = new Listings();
     const response = main.ForgotPasswordOTP({
       email: formData1.email,
@@ -70,17 +78,20 @@ const ForgotPassword = () => {
         if (res && res.data && res.data.status) {
           toast.success(res.data.message);
           nextStep();
+          setLoading(false);
         } else {
           toast.error(res?.data.message);
           setformData2({
             otp: "",
           });
+          setLoading(false);
         }
       })
       .catch((error) => {
         console.log("error", error);
         toast.error(error.message);
         toast.error(error?.response.data);
+        setLoading(false);
       });
   };
 
@@ -100,6 +111,8 @@ const ForgotPassword = () => {
   const handleSubmit3 = (e) => {
     e.preventDefault();
     // console.log("Form submitted:", formData3);
+    if(loading==true){return;}
+    setLoading(true);
     const main = new Listings();
     const response = main.UpdateForgotPassword({
       email: formData1.email,
@@ -111,17 +124,20 @@ const ForgotPassword = () => {
         if (res && res.data && res.data.status) {
           toast.success(res.data.message);
           router.push("/");
+          setLoading(false);
         } else {
           toast.error(res?.data.message);
           setformData2({
             otp: "",
           });
+          setLoading(false);
         }
       })
       .catch((error) => {
         console.log("error", error);
         toast.error(error.message);
         toast.error(error?.response.data);
+        setLoading(false);
       });
   };
 
@@ -156,7 +172,7 @@ const ForgotPassword = () => {
                   />
                 </div>
                 <button type="submit" className="submint-btn">
-                  Next
+                 {loading?"Submitting...":"Submit"} 
                 </button>
               </form>
             </div>
@@ -187,7 +203,7 @@ const ForgotPassword = () => {
                   />
                 </div>
                 <button type="submit" className="submint-btn">
-                  Next
+                {loading?"Submitting...":"Submit"}
                 </button>
               </form>
             </div>
@@ -230,7 +246,7 @@ const ForgotPassword = () => {
                   />
                 </div>
                 <button type="submit" className="submint-btn">
-                  Submit
+                {loading?"Submitting...":"Submit"}
                 </button>
               </form>
             </div>

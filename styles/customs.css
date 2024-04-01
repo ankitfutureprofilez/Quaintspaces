@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 .logo img {
   max-width: 127px;
@@ -16,13 +14,18 @@ h3.text-sm.font-medium.desc-property {
   -webkit-box-orient: vertical;
 }
 .login-signup-btn {
-  border-left: 1px solid #404040  ;
+  border-left: 1px solid #404040;
   padding-left: 40px;
   margin-left: 20px;
   display: flex;
   align-items: center;
 }
-.banipark-box img { height: 250px !important; width: 100%; object-fit: cover; border-radius: 3%;}
+.banipark-box img {
+  height: 250px !important;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 3%;
+}
 .login-signup-btn a {
   padding: 8px 20px;
   margin: 0 7px;
@@ -118,7 +121,11 @@ h3.text-sm.font-medium.desc-property {
 .luxury-stay-img .img-box img {
   width: 100%;
 }
-h1.in-jaipur { margin-top: -115px; z-index: 1; position: relative; }
+h1.in-jaipur {
+  margin-top: -115px;
+  z-index: 1;
+  position: relative;
+}
 .luxury-stay p {
   font-size: 18px;
   font-weight: 400;
@@ -127,7 +134,8 @@ h1.in-jaipur { margin-top: -115px; z-index: 1; position: relative; }
   text-align: center;
   max-width: 888px;
   margin: auto;
-  margin-top: 15px; font-family: "Inter", sans-serif;
+  margin-top: 15px;
+  font-family: "Inter", sans-serif;
   color: #61554e;
 }
 .premium-location-slider {
@@ -379,77 +387,342 @@ footer {
   background-size: cover;
   background-repeat: no-repeat;
 }
-.account-btn .border.border-gray-400 { border: 1px solid #3F2A17; }
-.account-btn button { border: 2px solid #404040 !IMPORTANT; padding: 15px; width: 160px; }
+.account-btn .border.border-gray-400 {
+  border: 1px solid #3f2a17;
+}
+.account-btn button {
+  border: 2px solid #404040 !important;
+  padding: 15px;
+  width: 160px;
+}
 
-.left-logo-login img { width: 277px; margin-bottom: 30px; } .left-logo-login p { font-family: "Inter", sans-serif; font-size: 22px; font-weight: 400; line-height: 27px; letter-spacing: 0em; text-align: left; max-width: 585px; color: #FFFFFF; }
-.signup-form { max-width: 540px; background: linear-gradient(150.78deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%); position: relative; }
-.quainttay { padding: 40px; border-bottom: 1px #ffffff24; position: relative; z-index: 1; }
-.quainttay h2 { font-family: "NewYork"; font-size: 24px; font-weight: 400; line-height: 29px; letter-spacing: 0em; text-align: left; color: #FFFFFF; } 
-.quainttay h3 { font-family: "Inter", sans-serif; font-size: 16px; font-weight: 400; line-height: 19px; letter-spacing: 0em; text-align: left; color: #C5CED5;  margin-top: 8px; } 
-.quainttay h3 a { color: #e1ab7b; font-size: 600; }
-.signup-form form { padding: 40px; border-top: 1px solid #ffffff26; position: relative; z-index: 1; }
-.signup-form form label { font-family: "Inter", sans-serif; font-size: 16px; font-weight: 500; line-height: 19px; letter-spacing: 0em; text-align: left; color: #FFFFFF; margin-bottom: 12px !important; } 
-.signup-form form input { padding: 18px 25px; font-size: 16px; margin-top: 10px; border-radius: 50px; border: 1px solid #ffffff26; background: transparent; color: #fff; }
-.signup-form form input:focus{outline: none; box-shadow: none;}
-button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padding: 20px; font-family: "Inter", sans-serif; font-size: 16px; font-weight: 600; line-height: 19px; letter-spacing: 0em; text-align: center; color: #404040; }
-.formbgcolor { position: absolute; top: 0; left: 0; backdrop-filter: blur(5px); height: 100%; width: 100%; }
-.backtohome { position: absolute; top: 45px; left: 20px; } 
-.backtohome a { display: flex; align-items: center; font-family: "NewYork"; font-size: 40px; font-weight: 400; line-height: 49px; letter-spacing: 0em; text-align: left; color: #fff; } 
-.backtohome a svg { margin-right: 15px; }
-.booking-manage-box h1 { font-family: "Inter", sans-serif; font-size: 22px; font-weight: 400; line-height: 27px; letter-spacing: 0em; text-align: left; color: #3F2A17; margin-bottom: 8px; } 
-.booking-manage-box p { font-family: "Inter", sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: center; color: #666360; }
-.upcomming-box button.text-white { background: #dcac81; border: 1px solid #dcac81; } 
-.upcomming-box button { border: 1px solid #ECECEC; background: #ECECEC; }
-.upcomming-box { margin-bottom: 40px !important; }
-.booking-table tr,.booking-table { border: 1px solid #e7e7e7; }
-.booking-table th { padding: 18px; } 
-.booking-table td { padding: 30px; text-align: center; }
-.booking-table thead tr th:first-child, .booking-table tbody tr td:first-child { text-align: left; }
-.booking-table td { padding: 30px; text-align: center; font-family: "Inter", sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; color: #3F2A17; }
-.booking-table thead tr th { font-family: "Inter", sans-serif; font-size: 18px; font-weight: 500; line-height: 22px; letter-spacing: 0em; color: #47311d8f; }
-.booking-table td button { font-family: "Inter", sans-serif; font-size: 15px; font-weight: 400; line-height: 19px; letter-spacing: 0em; border: none; padding: 8px;}
-.booking-table td button.text-blue-700 { color: #2722EA; background: #efefff; }
-.booking-table td button.text-red-700 { border: 1px solid; color: #DB4632; background: none; }
-.edit-profile { background: #dcac81; height: 32px; width: 32px; display: flex; align-items: center; justify-content: center; border-radius: 30px; right: -10px; top: -8px; }
-.update-btn { background: #dcac81; font-family: "Inter", sans-serif; font-size: 16px; font-weight: 600; line-height: 19px; letter-spacing: 0em; text-align: center; }
-.profile-text h1 {font-family: "Inter", sans-serif; font-size: 22px; font-weight: 400; line-height: 27px; letter-spacing: 0em; color: #3F2A17; text-align: left; margin-bottom: 10px; } 
-.profile-text p {font-family: "Inter", sans-serif; font-size: 18px; font-weight: 400; line-height: 22px; letter-spacing: 0em; text-align: left; color: #666360; }
-.golden-border { border: 1px solid #DCAC81; }
-.confirm-total span {font-family: "Inter", sans-serif !important; font-size: 18px; font-weight: 600 !important; line-height: 27px; letter-spacing: 0em; text-align: left; color: #61554E; } 
-.heading-data { font-family: "Roboto", sans-serif !important; }
-.your-trip-sec h2 {  font-family: "Roboto", sans-serif; font-size: 22px; font-weight: 400; line-height: 26.69px; text-align: left; color: #3F2A17; }
-.bg-orange-300 { background: #DCAC81; }
-.edit-here h2 {margin-bottom: 6px; font-family: "Roboto", sans-serif; font-size: 22px; font-weight: 400; line-height: 26.69px; text-align: left; color: #3F2A17; } 
-.edit-here p { font-family: "Roboto", sans-serif; font-size: 18px; font-weight: 400; line-height: 21.6px; text-align: left; color: #666360; }
-.profile-border { padding-bottom: 50px; border-bottom: 1px solid #ebebeb; margin-bottom: 50px; }
-.pers-info { padding-bottom: 40px; } 
-.pers-info  h3 { font-family: "Inter", sans-serif; font-size: 22px; font-weight: 400; line-height: 26.69px; text-align: left; color: #3F2A17; margin-bottom: 6px; } 
-.pers-info p {font-family: "Inter", sans-serif; font-size: 18px; font-weight: 400; line-height: 21.6px; text-align: left; color: #666360; }
-.border-bottom-form { border-bottom: 1px solid #eaeaea; margin-top: -95px; margin-bottom: 100px; }
-.perso-form label { color: #666666 !important; }
-.booking-table { min-width: 990px; } 
-.table-responisve { overflow: auto; }
+.left-logo-login img {
+  width: 277px;
+  margin-bottom: 30px;
+}
+.left-logo-login p {
+  font-family: "Inter", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  max-width: 585px;
+  color: #ffffff;
+}
+.signup-form {
+  max-width: 540px;
+  background: linear-gradient(
+    150.78deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  position: relative;
+}
+.quainttay {
+  padding: 40px;
+  border-bottom: 1px #ffffff24;
+  position: relative;
+  z-index: 1;
+}
+.quainttay h2 {
+  font-family: "NewYork";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #ffffff;
+}
+.quainttay h3 {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #c5ced5;
+  margin-top: 8px;
+}
+.quainttay h3 a {
+  color: #e1ab7b;
+  font-size: 600;
+}
+.signup-form form {
+  padding: 40px;
+  border-top: 1px solid #ffffff26;
+  position: relative;
+  z-index: 1;
+}
+.signup-form form label {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #ffffff;
+  margin-bottom: 12px !important;
+}
+.signup-form form input {
+  padding: 18px 25px;
+  font-size: 16px;
+  margin-top: 10px;
+  border-radius: 50px;
+  border: 1px solid #ffffff26;
+  background: transparent;
+  color: #fff;
+}
+.signup-form form input:focus {
+  outline: none;
+  box-shadow: none;
+}
+button.submint-btn {
+  width: 100%;
+  background: #dcac81;
+  border-radius: 50px;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #404040;
+}
+.formbgcolor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(5px);
+  height: 100%;
+  width: 100%;
+}
+.backtohome {
+  position: absolute;
+  top: 45px;
+  left: 20px;
+}
+.backtohome a {
+  display: flex;
+  align-items: center;
+  font-family: "NewYork";
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 49px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #fff;
+}
+.backtohome a svg {
+  margin-right: 15px;
+}
+.booking-manage-box h1 {
+  font-family: "Inter", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #3f2a17;
+  margin-bottom: 8px;
+}
+.booking-manage-box p {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #666360;
+}
+.upcomming-box button.text-white {
+  background: #dcac81;
+  border: 1px solid #dcac81;
+}
+.upcomming-box button {
+  border: 1px solid #ececec;
+  background: #ececec;
+}
+.upcomming-box {
+  margin-bottom: 40px !important;
+}
+.booking-table tr,
+.booking-table {
+  border: 1px solid #e7e7e7;
+}
+.booking-table th {
+  padding: 18px;
+}
+.booking-table td {
+  padding: 30px;
+  text-align: center;
+}
+.booking-table thead tr th:first-child,
+.booking-table tbody tr td:first-child {
+  text-align: left;
+}
+.booking-table td {
+  padding: 30px;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  color: #3f2a17;
+}
+.booking-table thead tr th {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0em;
+  color: #47311d8f;
+}
+.booking-table td button {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  border: none;
+  padding: 8px;
+}
+.booking-table td button.text-blue-700 {
+  color: #2722ea;
+  background: #efefff;
+}
+.booking-table td button.text-red-700 {
+  border: 1px solid;
+  color: #db4632;
+  background: none;
+}
+.edit-profile {
+  background: #dcac81;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  right: -10px;
+  top: -8px;
+}
+.update-btn {
+  background: #dcac81;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.profile-text h1 {
+  font-family: "Inter", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  color: #3f2a17;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.security-text{
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #666360;
+}
+.golden-border {
+  border: 1px solid #dcac81;
+}
+.confirm-total span {
+  font-family: "Inter", sans-serif !important;
+  font-size: 18px;
+  font-weight: 600 !important;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #61554e;
+}
+.heading-data {
+  font-family: "Roboto", sans-serif !important;
+}
+.your-trip-sec h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 26.69px;
+  text-align: left;
+  color: #3f2a17;
+}
+.bg-orange-300 {
+  background: #dcac81;
+}
+.edit-here h2 {
+  margin-bottom: 6px;
+  font-family: "Roboto", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 26.69px;
+  text-align: left;
+  color: #3f2a17;
+}
+.edit-here p {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.6px;
+  text-align: left;
+  color: #666360;
+}
+.profile-border {
+  padding-bottom: 50px;
+  border-bottom: 1px solid #ebebeb;
+  margin-bottom: 50px;
+}
+.pers-info {
+  padding-bottom: 40px;
+}
+.pers-info h3 {
+  font-family: "Inter", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 26.69px;
+  text-align: left;
+  color: #3f2a17;
+  margin-bottom: 6px;
+}
+.pers-info p {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.6px;
+  text-align: left;
+  color: #666360;
+}
+.border-bottom-form {
+  border-bottom: 1px solid #eaeaea;
+  margin-top: -95px;
+  margin-bottom: 100px;
+}
+.perso-form label {
+  color: #666666 !important;
+}
+.booking-table {
+  min-width: 990px;
+}
+.table-responisve {
+  overflow: auto;
+}
 
-.property-popup { width: 680px; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.property-popup {
+  width: 680px;
+}
 
 @media (min-width: 1399px) {
   .container {
@@ -457,7 +730,6 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
     margin: auto;
     padding: 0 15px;
   }
-  
 }
 
 @media (max-width: 1199px) {
@@ -466,16 +738,40 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
     margin: auto;
     padding: 0 15px;
   }
-  .signup-form form input { padding: 14px 22px; margin-top: 7px; }
-  .signup-form form .mb-6 { margin-bottom: 12px; }
-  .quainttay { padding: 25px; }
-  .signup-form form { padding: 25px; }
-  button.submint-btn { padding: 17px;  }
-  .backtohome a { font-size: 32px;  }
-  .left-logo-login img { width: 228px; margin-bottom: 20px; }
-  .left-logo-login p {font-size: 18px; }
-  .listing-heading {font-size: 34px; }
-  .filter-box .listing-heading { font-size: 30px; line-height: 38px; margin-bottom: 0; }
+  .signup-form form input {
+    padding: 14px 22px;
+    margin-top: 7px;
+  }
+  .signup-form form .mb-6 {
+    margin-bottom: 12px;
+  }
+  .quainttay {
+    padding: 25px;
+  }
+  .signup-form form {
+    padding: 25px;
+  }
+  button.submint-btn {
+    padding: 17px;
+  }
+  .backtohome a {
+    font-size: 32px;
+  }
+  .left-logo-login img {
+    width: 228px;
+    margin-bottom: 20px;
+  }
+  .left-logo-login p {
+    font-size: 18px;
+  }
+  .listing-heading {
+    font-size: 34px;
+  }
+  .filter-box .listing-heading {
+    font-size: 30px;
+    line-height: 38px;
+    margin-bottom: 0;
+  }
 }
 @media (max-width: 991px) {
   .container {
@@ -483,36 +779,117 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
     margin: auto;
     padding: 0 15px;
   }
-  .hero-sec { padding: 150px 0 180px; }
-  .hero-sec h1 {font-size: 52px; line-height: 58px; margin-bottom: 18px; }
-  .hero-sec p { font-size: 20px; line-height: 24px; margin-bottom: 30px;     text-align: center;}
-  .hero-sec button {width: 330px;padding: 15px; }
-  .luxury-stay h1 {font-size: 95px; line-height: 160px;}
-  h1.in-jaipur { margin-top: -92px; }
-  .luxury-stay { padding: 20px 0 50px; }
-  .tip-top-sec { padding: 50px 0; }
-  .listing-heading { font-size: 30px; line-height: 38px;  margin-bottom: 29px; }
-  .flat-info { padding: 0 0px; }
-  .flat-info h5 { padding: 12px 10px 12px 10px;}
-  .flat-info h3 { font-size: 22px;  }
-  .explor-btn {  margin-top: 10px; }
-  .flat-info span {font-size: 16px;  }
-  .premium-location-slider { padding: 50px 0; }
-  .premium-location-slider h1 { font-size: 30px; line-height: 36px; margin-bottom: 18px;  }
-  .premium-location-slider button {padding: 12px; }
-  .nav-bar a { padding: 8px 10px;  font-size: 15px; line-height: 22px;  }
-  .login-signup-btn a { width: 102px; height: 43px; margin: 0 4px;}
-  .login-signup-btn { padding-left: 10px; margin-left: 5px; }
-  .logo img { max-width: 110px; }
-  .luxury-stay-img .img-box { padding: 0 5px; }
-  .smart-box .iteam h3 {font-size: 18px; line-height: 26px; }
-  .visit-us-sec { padding: 45px 0 120px;margin-bottom: 50px;  }
-  .visit-us-sec h2 {font-size: 34px;  line-height: 36px;  }
-  .footer-menu nav a { width: 40%; margin: 0 !important; padding: 5px 0; } 
-  .footer-menu nav { flex-flow: wrap; justify-content: end; }
-  .filter-box .listing-heading { font-size: 26px; line-height: 35px; }
-  .filter-box .button-group { margin: 0; padding: 0; }
-
+  .hero-sec {
+    padding: 150px 0 180px;
+  }
+  .hero-sec h1 {
+    font-size: 52px;
+    line-height: 58px;
+    margin-bottom: 18px;
+  }
+  .hero-sec p {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .hero-sec button {
+    width: 330px;
+    padding: 15px;
+  }
+  .luxury-stay h1 {
+    font-size: 95px;
+    line-height: 160px;
+  }
+  h1.in-jaipur {
+    margin-top: -92px;
+  }
+  .luxury-stay {
+    padding: 20px 0 50px;
+  }
+  .tip-top-sec {
+    padding: 50px 0;
+  }
+  .listing-heading {
+    font-size: 30px;
+    line-height: 38px;
+    margin-bottom: 29px;
+  }
+  .flat-info {
+    padding: 0 0px;
+  }
+  .flat-info h5 {
+    padding: 12px 10px 12px 10px;
+  }
+  .flat-info h3 {
+    font-size: 22px;
+  }
+  .explor-btn {
+    margin-top: 10px;
+  }
+  .flat-info span {
+    font-size: 16px;
+  }
+  .premium-location-slider {
+    padding: 50px 0;
+  }
+  .premium-location-slider h1 {
+    font-size: 30px;
+    line-height: 36px;
+    margin-bottom: 18px;
+  }
+  .premium-location-slider button {
+    padding: 12px;
+  }
+  .nav-bar a {
+    padding: 8px 10px;
+    font-size: 15px;
+    line-height: 22px;
+  }
+  .login-signup-btn a {
+    width: 102px;
+    height: 43px;
+    margin: 0 4px;
+  }
+  .login-signup-btn {
+    padding-left: 10px;
+    margin-left: 5px;
+  }
+  .logo img {
+    max-width: 110px;
+  }
+  .luxury-stay-img .img-box {
+    padding: 0 5px;
+  }
+  .smart-box .iteam h3 {
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .visit-us-sec {
+    padding: 45px 0 120px;
+    margin-bottom: 50px;
+  }
+  .visit-us-sec h2 {
+    font-size: 34px;
+    line-height: 36px;
+  }
+  .footer-menu nav a {
+    width: 40%;
+    margin: 0 !important;
+    padding: 5px 0;
+  }
+  .footer-menu nav {
+    flex-flow: wrap;
+    justify-content: end;
+  }
+  .filter-box .listing-heading {
+    font-size: 26px;
+    line-height: 35px;
+  }
+  .filter-box .button-group {
+    margin: 0;
+    padding: 0;
+  }
 }
 @media (max-width: 767px) {
   .container {
@@ -520,45 +897,135 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
     margin: auto;
     padding: 0 15px !important ;
   }
-  .footer-menu nav a { width: 47% ; }
-  .hero-sec p { font-size: 18px; margin-bottom: 25px; padding: 0 15px; }
-  .hero-sec { padding: 100px 0; }
-  .hero-sec h1 { font-size: 44px; line-height: 50px; margin-bottom: 10px; }
-  .hero-sec button { width: 274px; padding: 12px; font-size: 15px; }
-  .luxury-stay h1 { font-size: 62px; line-height: 80px; margin-bottom: 37px; }
-  h1.in-jaipur { margin-top: -48px; margin-bottom: 0; }
-  .luxury-stay p { font-size: 16px; line-height: 26px; }
-  .load-more-btn a {font-size: 15px; line-height: 16px; padding: 12px 38px; }
-  .load-more-btn { margin-top: 22px; }
-  .premium-location-slider { padding: 30px 0; }
-  .premium-location-slider button svg { width: 15px; height: 15px; }
-  .footer-menu { padding: 20px 0;  }
-  p.menu-footer { font-size: 16px;  }
-  .copy-right { padding: 20px 0; }
-  .copy-right span { font-size: 16px; }
-  .menu-items { position: absolute; top: 65px; right: 14px; background: #fff; padding: 16px; box-shadow: 0 0 26px -12px #000; border-radius: 5px; z-index: 3;}
-  .login-signup-btn { padding-left: 0; border: none; }
-  .signup-tab-sec { flex-flow: column; padding-top: 80px; }
-  .backtohome {  top: 15px; }
-  .backtohome a svg {  width: 30px; }
-  .backtohome a { font-size: 22px; }
-  .left-logo-login { width: 100%; }
-  .signup-tab-sec { flex-flow: column; padding-top: 80px; } 
-  .right-signup-form { width: 100%; margin-top: 20px;    margin-bottom: 50px;
-  } 
-  .signup-form { max-width: 100%; max-height: 100%; }
-  .tab-mob-height { height: 100%; }
-  .filter-box .listing-heading { margin-bottom: 15px; }
-  .filter-box { flex-flow: column; margin-bottom: 24px; }
-  .peora-title { font-size: 20px; }
-  .your-trip-sec .w-8\/12 { width: 100%; } 
-  .golden-border { width: 100%; } 
-  .your-trip-sec { flex-flow: column; }
-  .perso-form .p-4 { padding: 12px; }
-
-
- 
-
+  .footer-menu nav a {
+    width: 47%;
+  }
+  .hero-sec p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    padding: 0 15px;
+  }
+  .hero-sec {
+    padding: 100px 0;
+  }
+  .hero-sec h1 {
+    font-size: 44px;
+    line-height: 50px;
+    margin-bottom: 10px;
+  }
+  .hero-sec button {
+    width: 274px;
+    padding: 12px;
+    font-size: 15px;
+  }
+  .luxury-stay h1 {
+    font-size: 62px;
+    line-height: 80px;
+    margin-bottom: 37px;
+  }
+  h1.in-jaipur {
+    margin-top: -48px;
+    margin-bottom: 0;
+  }
+  .luxury-stay p {
+    font-size: 16px;
+    line-height: 26px;
+  }
+  .load-more-btn a {
+    font-size: 15px;
+    line-height: 16px;
+    padding: 12px 38px;
+  }
+  .load-more-btn {
+    margin-top: 22px;
+  }
+  .premium-location-slider {
+    padding: 30px 0;
+  }
+  .premium-location-slider button svg {
+    width: 15px;
+    height: 15px;
+  }
+  .footer-menu {
+    padding: 20px 0;
+  }
+  p.menu-footer {
+    font-size: 16px;
+  }
+  .copy-right {
+    padding: 20px 0;
+  }
+  .copy-right span {
+    font-size: 16px;
+  }
+  .menu-items {
+    position: absolute;
+    top: 65px;
+    right: 14px;
+    background: #fff;
+    padding: 16px;
+    box-shadow: 0 0 26px -12px #000;
+    border-radius: 5px;
+    z-index: 3;
+  }
+  .login-signup-btn {
+    padding-left: 0;
+    border: none;
+  }
+  .signup-tab-sec {
+    flex-flow: column;
+    padding-top: 80px;
+  }
+  .backtohome {
+    top: 15px;
+  }
+  .backtohome a svg {
+    width: 30px;
+  }
+  .backtohome a {
+    font-size: 22px;
+  }
+  .left-logo-login {
+    width: 100%;
+  }
+  .signup-tab-sec {
+    flex-flow: column;
+    padding-top: 80px;
+  }
+  .right-signup-form {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+  .signup-form {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .tab-mob-height {
+    height: 100%;
+  }
+  .filter-box .listing-heading {
+    margin-bottom: 15px;
+  }
+  .filter-box {
+    flex-flow: column;
+    margin-bottom: 24px;
+  }
+  .peora-title {
+    font-size: 20px;
+  }
+  .your-trip-sec .w-8\/12 {
+    width: 100%;
+  }
+  .golden-border {
+    width: 100%;
+  }
+  .your-trip-sec {
+    flex-flow: column;
+  }
+  .perso-form .p-4 {
+    padding: 12px;
+  }
 }
 @media (max-width: 575px) {
   .container {
@@ -566,67 +1033,154 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
     margin: auto;
     padding: 0 15px !important;
   }
-  .footer-menu nav { flex-flow: column !important; margin: 0; margin-top: 20px; width: 100% !important; } 
-  .footer-menu { flex-flow: column !important; } 
-  .footer-menu nav p.menu-footer { text-align: left; margin: 0; } 
-  .footer-menu nav a { margin: 0 !IMPORTANT; padding: 4px; } 
-  .footer-menu .flex.items-left.space-x-4 { width: 100% !important; }
-  .visit-us-sec h2 { font-size: 26px; line-height: 34px; }
-  .hero-sec { padding: 55px 0; }
-  .hero-sec h1 { font-size: 36px; line-height: 40px; margin-bottom: 10px; text-align: center; }
-  .hero-sec p { font-size: 16px; margin-bottom: 22px; padding: 0 15px; }
-  .luxury-stay h1 { font-size: 44px; line-height: 70px; margin-bottom: 42px; }
-  h1.in-jaipur { margin-top: -40px; margin-bottom: 0; }
-  .luxury-stay { padding: 20px 0 25px; }
-  .tip-top-sec { padding: 30px 0; }
-  .listing-heading { font-size: 28px; line-height: 38px; margin-bottom: 20px; }
-  .tip-top-sec ul.flex.flex-wrap.px-4 { padding: 0; }
-  .left-logo-login img { width: 180px !important; margin-bottom: 18px; }
-  .signup-form form input { padding: 11px 22px;  }
-  .left-logo-login { padding: 0; }
-  .right-signup-form { padding: 0; }
-  .backtohome { left: 0; }
-  .filter-btn-select button { padding: 5px 12px; font-size: 15px; }
-  footer { padding-top: 20px; }
-  .peora-title { font-size: 18px; }
-  .peora-title svg { margin: 0; }
-  .house-rule-text { flex-flow: column; }
-  footer { padding-top: 30px; }
-  .account-btn button {  padding: 11px !important; width: 130px !important; }
-  .booking-manage-box h1 {font-size: 18px; line-height: 22px;  margin-bottom: 5px; }
-  .booking-manage-box p { font-size: 16px;}
-  .booking-manage-box { margin-left: 10px; }
-  .booking-more { flex-flow: column !important; align-items: baseline; } 
-  .booking-more .px-1 { margin-top: 20px!important ; }
-  .upcomming-box button { font-size: 14px!important ; margin-left: 6px !important; }
-  .upcomming-box { margin-bottom: 20px !important; }
-  .profile-border { padding-bottom: 25px !important; margin-bottom: 25px !important; }
-  .footer-menu nav a { width: 100%  !important;  }
-  .security-box-form .p-4 { padding: 13px !important; }
-  .right-signup-form { width: 100% !important;  }
-  .left-logo-login { width: 100% !important; }
+  .footer-menu nav {
+    flex-flow: column !important;
+    margin: 0;
+    margin-top: 20px;
+    width: 100% !important;
+  }
+  .footer-menu {
+    flex-flow: column !important;
+  }
+  .footer-menu nav p.menu-footer {
+    text-align: left;
+    margin: 0;
+  }
+  .footer-menu nav a {
+    margin: 0 !important;
+    padding: 4px;
+  }
+  .footer-menu .flex.items-left.space-x-4 {
+    width: 100% !important;
+  }
+  .visit-us-sec h2 {
+    font-size: 26px;
+    line-height: 34px;
+  }
+  .hero-sec {
+    padding: 55px 0;
+  }
+  .hero-sec h1 {
+    font-size: 36px;
+    line-height: 40px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .hero-sec p {
+    font-size: 16px;
+    margin-bottom: 22px;
+    padding: 0 15px;
+  }
+  .luxury-stay h1 {
+    font-size: 44px;
+    line-height: 70px;
+    margin-bottom: 42px;
+  }
+  h1.in-jaipur {
+    margin-top: -40px;
+    margin-bottom: 0;
+  }
+  .luxury-stay {
+    padding: 20px 0 25px;
+  }
+  .tip-top-sec {
+    padding: 30px 0;
+  }
+  .listing-heading {
+    font-size: 28px;
+    line-height: 38px;
+    margin-bottom: 20px;
+  }
+  .tip-top-sec ul.flex.flex-wrap.px-4 {
+    padding: 0;
+  }
+  .left-logo-login img {
+    width: 180px !important;
+    margin-bottom: 18px;
+  }
+  .signup-form form input {
+    padding: 11px 22px;
+  }
+  .left-logo-login {
+    padding: 0;
+  }
+  .right-signup-form {
+    padding: 0;
+  }
+  .backtohome {
+    left: 0;
+  }
+  .filter-btn-select button {
+    padding: 5px 12px;
+    font-size: 15px;
+  }
+  footer {
+    padding-top: 20px;
+  }
+  .peora-title {
+    font-size: 18px;
+  }
+  .peora-title svg {
+    margin: 0;
+  }
+  .house-rule-text {
+    flex-flow: column;
+  }
+  footer {
+    padding-top: 30px;
+  }
+  .account-btn button {
+    padding: 11px !important;
+    width: 130px !important;
+  }
+  .booking-manage-box h1 {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 5px;
+  }
+  .booking-manage-box p {
+    font-size: 16px;
+  }
+  .booking-manage-box {
+    margin-left: 10px;
+  }
+  .booking-more {
+    flex-flow: column !important;
+    align-items: baseline;
+  }
+  .booking-more .px-1 {
+    margin-top: 20px !important ;
+  }
+  .upcomming-box button {
+    font-size: 14px !important ;
+    margin-left: 6px !important;
+  }
+  .upcomming-box {
+    margin-bottom: 20px !important;
+  }
+  .profile-border {
+    padding-bottom: 25px !important;
+    margin-bottom: 25px !important;
+  }
+  .footer-menu nav a {
+    width: 100% !important;
+  }
+  .security-box-form .p-4 {
+    padding: 13px !important;
+  }
+  .right-signup-form {
+    width: 100% !important;
+  }
+  .left-logo-login {
+    width: 100% !important;
+  }
   .tab-mob-height {
     height: 100% !important;
+  }
+  .signup-form {
+    max-height: 100% !important;
+  }
 }
-.signup-form {
-
-  max-height: 100% !important;
-}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Button Group in Apartment Page */
 .button-group {
@@ -644,7 +1198,7 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
   text-align: center;
   /* height: 46px; */
 }
- .sort {
+.sort {
   border: 2px solid #dcac81;
   color: #dcac81;
   font-size: 14px;
@@ -659,77 +1213,72 @@ button.submint-btn { width: 100%; background: #DCAC81; border-radius: 50px; padd
   width: 100px;
   height: 100px;
 }
-.image-data h4{
+.image-data h4 {
   font-family: Gilroy-Bold;
-font-size: 20px;
-font-weight: 400;
-line-height: 25px;
-letter-spacing: 0em;
-text-align: left;
-color: #3F2A17;
-
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #3f2a17;
 }
 
-.image-data p{
+.image-data p {
   font-family: "Inter", sans-serif;
-font-size: 18px;
-font-weight: 400;
-line-height: 22px;
-letter-spacing: 0em;
-text-align: left;
-color: #666360;
-
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #666360;
 }
 
-.image-data span{
+.image-data span {
   font-family: "Inter", sans-serif;
-font-size: 18px;
-font-weight: 400;
-line-height: 22px;
-letter-spacing: 0em;
-text-align: left;
-color: #666360;
-
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #666360;
 }
 
-
-.confirm-details h1{
+.confirm-details h1 {
   font-family: "Inter", sans-serif;
   font-size: 22px;
   font-weight: 400;
   line-height: 27px;
   letter-spacing: 0em;
   text-align: left;
-  color: #3F2A17;
+  color: #3f2a17;
 }
 
-.confirm-details span{
+.confirm-details span {
   font-family: "Inter", sans-serif;
-font-size: 18px;
-font-weight: 400;
-line-height: 27px;
-letter-spacing: 0em;
-text-align: left;
-color:#61554E
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #61554e;
 }
 
-.confirm-details .confirm-price{
-  color:#00860D;
+.confirm-details .confirm-price {
+  color: #00860d;
   font-family: "Inter", sans-serif;
-font-size: 18px;
-font-weight: 400;
-line-height: 27px;
-letter-spacing: 0em;
-text-align: right;
-
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: right;
 }
 
-.confirm-total span{
+.confirm-total span {
   font-family: Gilroy-Bold;
   font-size: 18px;
   font-weight: 400;
   line-height: 27px;
   letter-spacing: 0em;
   text-align: left;
-color:#61554E  
+  color: #61554e;
 }
