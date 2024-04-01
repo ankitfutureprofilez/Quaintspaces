@@ -13,6 +13,7 @@ export default function Security() {
     current_password: "",
     new_password: "",
     confirm_password: "",
+    
   });
 
   const handleChange = (e) => {
