@@ -327,7 +327,7 @@ export default function Property(props) {
 
               <div class="table w-full m-auto max-w-[500px] space-y-4 text-center">
                 <div class="w-full mt-4">
-                    <button className="btn sort w-full" onClick={() => fetchLocationData(item?.location)} >Use Current Location</button>
+                    <button className="btn sort w-full"   onClick={() => fetchLocationData(item.location)} >Use Current Location</button>
                 </div>
                 <div class="flex items-center justify-center space-x-4">
                     <div class="font-semibold text-gray-400 py-3 text-center">OR</div>

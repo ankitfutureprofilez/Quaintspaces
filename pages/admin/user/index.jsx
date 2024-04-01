@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../AdminLayout";
 import Listing from "../api/Listing";
+import Spinner from "../hook/spinner"
+import Popup from "../hook/Popup"
+
 import Element from "../element";
 import toast from 'react-hot-toast';
 import Link from 'next/link';
 import Image from "next/image";
 
 export default function Index() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
 
-  const togglePopup = (isOpen) => {
-    setIsDropdownOpen(isOpen);
+  const togglePopup = (popupOpen) => {
+    setPopupOpen(popupOpen);
   };
 
   const [record, setRecord] = useState([]);
@@ -263,6 +266,82 @@ export default function Index() {
                     </div>
                   </td>
 
+
+{popupOpen && (
+      <Popup
+        isOpen={popupOpen}
+        setisOpen={setPopupOpen}
+        text="Popup Title"
+        togglePopup={togglePopup}
+        space={4}
+        btnclass="bg-blue-500 text-white px-4 py-2 rounded-md"
+        buttontext="Open Popup"
+        footer={<button onClick={togglePopup}>Close</button>}
+      >
+        <div>This is the content of the popup</div>
+      </Popup>
+      )}
+
+
+
+
+                  <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+
+                    <Link href="#">
+                    <svg
+                        width="32px"
+                        height="32px"
+                        viewBox="0 0 24 24"
+                        id="three-dots"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          id="_20x20_three-dots--grey"
+                          data-name="20x20/three-dots--grey"
+                          transform="translate(24) rotate(90)"
+                        >
+                          <rect
+                            id="Rectangle"
+                            width="24"
+                            height="24"
+                            fill="none"
+                          />
+                          <circle
+                            id="Oval"
+                            cx="1"
+                            cy="1"
+                            r="1"
+                            transform="translate(5 11)"
+                            stroke="#000000"
+                            stroke-miterlimit="10"
+                            stroke-width="0.5"
+                          />
+                          <circle
+                            id="Oval-2"
+                            data-name="Oval"
+                            cx="1"
+                            cy="1"
+                            r="1"
+                            transform="translate(11 11)"
+                            stroke="#000000"
+                            stroke-miterlimit="10"
+                            stroke-width="0.5"
+                          />
+                          <circle
+                            id="Oval-3"
+                            data-name="Oval"
+                            cx="1"
+                            cy="1"
+                            r="1"
+                            transform="translate(17 11)"
+                            stroke="#000000"
+                            stroke-miterlimit="10"
+                            stroke-width="0.5"
+                          />
+                        </g>
+                      </svg>
+              </Link>
+                  </td>
                   <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
                     <Link href={`user/${item.id}`}>
                       <svg
@@ -325,7 +404,7 @@ export default function Index() {
           </table>
         </div>
 
-        {/* {loading && <LoadingSpinner />} */}
+        {loading && <Spinner />}
         {!loading && hasmore && (
           <div className="flex justify-center">
             <div

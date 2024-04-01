@@ -28,7 +28,6 @@ export default function Profileindex() {
           name: profiledata.name,
           phone: profiledata.phone_no,
           email: profiledata.email,
-          // image: profiledata.admin_profile_url,
         });
         setPreviewImgSrc(profiledata.admin_profile_url);
         setLoading(false);
@@ -51,10 +50,10 @@ export default function Profileindex() {
     setLoading(true);
     const main = new Listing();
     const formdata = new FormData();
-    formdata.append("email", record.email);
-    formdata.append("image", record.image );
-    formdata.append("name", record.name);
-    formdata.append("phone_no", record.phone);
+    formdata.append("email", record.email || "");
+    formdata.append("image", record.image|| "" );
+    formdata.append("name", record.name || "");
+    formdata.append("phone_no", record.phone || "");
     const response =  main.AdminProfileUpdate(formdata);
     response.then((res)=>{
       if (res?.data?.status ===true) {
