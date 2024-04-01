@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-
 import Listing from "../api/Listing";
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,31 +11,23 @@ import Menu from "./menu";
 function Sidebar() {
     const { auth, setAuth } = useContext(Context);
     const pathname = usePathname();
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true); // State to control sidebar visibility
+    const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false); // State to control mobile sidebar visibility
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to control dropdown visibility
     const webtoken = LocalToken('Admintoken');
-    // async function getAuth () { 
-    //     if(webtoken){
-    //         const main = new Listing();
-    //        const response =  main.Adminprofile();
-    //       response.then((res) => {
-    //         if (res.data.status) {
-    //           setAuth(res.data.data);
-    //         } 
-    //       }).catch((error) => {
-    //         console.log("error", error);
-    //       });
-    //     }
-    //   }
-    
-    // useEffect(() => {
-    //     getAuth();
-    //   }, []);
-    
+
+    const toggleSidebar = () => {
+        setIsSidebarOpen(prevState => !prevState);
+    };
+
+    const toggleMobileSidebar = () => {
+        setIsMobileSidebarOpen(prevState => !prevState);
+    };
     
     return (
-        <div className='w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden !fixed'>
-            <div className='w-full h-full bg-white border-r '>
-                <div className='p-4 md:p-6 flex cursor-pointer group items-center gap-2 z-10'>
+        <div className={`w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden ${isSidebarOpen ? '!fixed' : 'hidden'}`}>
+            <div className={`w-full h-full bg-white border-r ${isMobileSidebarOpen ? 'block' : 'hidden md:block'}`}>
+                <div className='p-4 md:p-6 flex cursor-pointer group items-center gap-2 z-10' onClick={toggleSidebar}>
                     <div className='h-10 outline outline-violet-300 w-10 flex items-center bg-gradient-to-br justify-center rounded-full from-violet-500 to-violet-400 text-white'>
                         <Triangle size={24} className='relative group-hover:scale-75 duration-200' />
                     </div>
@@ -66,11 +57,6 @@ function Sidebar() {
                             <TextalignJustifycenter size={16}/>
                             Property List
                         </Link>
-
-                        {/* <Link href={'/admin/integrations'} className={`flex ${pathname === '/admin/integrations' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
-                            <Setting4 size={16} />
-                            Integrations
-                        </Link> */}
 
                         <Link href={'/admin/user'} className={`flex ${pathname === '/admin/user' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
                             <Setting4 size={16} />
@@ -123,6 +109,22 @@ function Sidebar() {
                         ) }
                     </div>
                 </div>
+            </div>
+
+            {/* Mobile Sidebar Toggle */}
+            <div className="md:hidden fixed top-0 left-0 z-50 p-4">
+                <button onClick={toggleMobileSidebar}>
+                    {isMobileSidebarOpen ? (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M21 19H3v-2h18v2zm0-7H3v-2h18v2zm0-7H3V3h18v2z"/>
+                        </svg>
+                    ) : (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M18 6L6 18h12V6zm-6 10h2v-2h-2v2z"/>
+                        </svg>
+                    )}
+                </button>
             </div>
         </div>
     )

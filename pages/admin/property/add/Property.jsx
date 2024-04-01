@@ -31,7 +31,7 @@ export default function Property(props) {
   }
 
   const [images, setImages] = useState([]);
-  const [property_type, setproperty_type] = useState("single_room");
+  const [property_type, setproperty_type] = useState("entire_place");
   const [address, setAddress] = useState({ 
     street_address: "",
     flat_house: "",
@@ -260,7 +260,7 @@ export default function Property(props) {
               )}
 
             <div className={`${step === 0 ? "" : "display-none"} max-w-[600px] m-auto table w-full`}>
-              <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
+              {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
                <div className="grid grid-cols-3 gap-4 m-auto table  " >
                
  
@@ -280,10 +280,10 @@ export default function Property(props) {
                       </label>
                   </div>
                    
-               </div>
+               </div> */}
 
-                  {typeHere === "entire_place" ?  <>
-                      <h2 className="text-xl text-start mt-4 font-bold mb-8" >Which of these best describes your place?</h2>
+                  {/* {typeHere === "entire_place" ?  <> */}
+                      <h2 className="text-3xl text-center mt-4 font-bold mb-8" >Which of these best describes your place?</h2>
                         <div className="grid grid-cols-3 gap-4  " >
                           {propertyTypes && propertyTypes.map((p, i )=>{ 
                             return <div className="" >
@@ -295,7 +295,7 @@ export default function Property(props) {
                             </div>
                           })}
                         </div>
-                  </> : '' }
+                  {/* </> : '' } */}
                     </div> 
 
             <div className={`${step === 1 ? "" : "display-none"} max-w-[600px] m-auto table w-full`}>
