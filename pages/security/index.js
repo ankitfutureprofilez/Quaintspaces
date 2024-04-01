@@ -104,7 +104,7 @@ export default function index() {
         <div className="container mx-auto">
           <div className="my-3 sm:my-6 md:my-12 profile-text">
             <h1>Update Password</h1>
-            <p>
+            <p className="security-text">
               Increase the security of your account by updating password etc.
             </p>
           </div>
@@ -174,7 +174,7 @@ export default function index() {
             <div className="mt-12 profile-text">
               <h1 className="text-lg ">Deactivate Account</h1>
               <div className="flex flex-wrap justify-between">
-                <p>Deactivate your account here</p>
+                <p className="security-text">Deactivate your account here</p>
                 <button onClick={openModal} className="edit-color underline ">
                   Deactivate
                 </button>
@@ -187,8 +187,8 @@ export default function index() {
             <h2 className="sm:text-2xl text-md font-medium text-bold my-2">
               Deactivation Confirmation
             </h2>
-            <p>Are you sure you want to deactivate your account?</p>
-            <p>
+            <p className="security-text text-sm mb-2">Are you sure you want to deactivate your account?</p>
+            <p className="security-text text-base">
               Please note that deactivating your account is an irreversible
               change. Should you wish to restore your account in the future, you
               will need to contact our technical team for assistance.
