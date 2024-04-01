@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Listing from "../app/laravel/Listing";
+import Listing from "../app/api/Listing";
 import { useRouter } from "next/router";
 import AdminLayout from "../AdminLayout";
 import Element from "../element";

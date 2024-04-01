@@ -6,7 +6,7 @@ import { Context } from "../../_app";
 import LocalToken from "../../../hooks/LocalToken";
 import { usePathname } from 'next/navigation';
 import Menu from "./menu";
-import Listing from "../app/laravel/Listing";
+import Listing from "../app/api/Listing";
 
 function Sidebar() {
     const { auth, setAuth } = useContext(Context);

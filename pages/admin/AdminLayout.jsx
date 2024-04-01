@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Sidebar from "./components/Sidebar";
 import { useRouter } from "next/router";
-import Listing from "./app/laravel/Listing";
+import Listing from "./app/api/Listing";
 import toast, { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar'
 
