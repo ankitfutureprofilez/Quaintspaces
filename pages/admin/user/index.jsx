@@ -325,7 +325,7 @@ export default function Index() {
           </table>
         </div>
 
-        {loading && <LoadingSpinner />}
+        {/* {loading && <LoadingSpinner />} */}
         {!loading && hasmore && (
           <div className="flex justify-center">
             <div
