@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Element from "../element";
-import Listing from "../app/laravel/Listing";
+import Listing from "../app/api/Listing";
 import { useRouter } from "next/router";
 import { v4 as uuidv4 } from 'uuid';
 import Images from "../../../components/SingleListingComponents/Images";
