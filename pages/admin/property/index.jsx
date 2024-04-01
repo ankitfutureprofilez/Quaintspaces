@@ -98,8 +98,8 @@ export default function index() {
                     <h2 className="text-lg font-medium mb-2">{item.name}</h2>
                     <h3 className="text-sm font-medium desc-property ">{item.description}</h3>
                     <p className="text-sm text-gray-600 mt-3">
-                      {item?.type ? `${item.type} Room. ` : ""} 
-                      {item.bedrooms} Bedrooms · {item.beds} Beds . 
+                      {item?.type ? `${item?.type?.replace("_" ," ")} Room.` : ""} 
+                      {item.bedrooms} Bedrooms· {item.beds} Beds  
                     </p>
                     <p  className="text-sm text-gray-600 mt-3">
                       {
@@ -115,30 +115,30 @@ export default function index() {
                         </div>
                       </Link>
                       <div>
-                     
-                        {showConfirmation && (
-                          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50">
-                            <div className="bg-white p-6 rounded-lg">
-                              <p className="text-lg font-semibold mb-4">
-                                Are you sure you want to delete this property?
-                              </p>
-                              <div className="flex justify-center">
-                                <button
-                                  className="bg-red-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-red-700"
-                                  onClick={handleConfirmation}
-                                >
-                                  Delete
-                                </button>
-                                <button
-                                  className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400"
-                                  onClick={handleCancel}
-                                >
-                                  Cancel
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        )}
+                      {showConfirmation && (
+  <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50">
+    <div className="bg-white-800   bg-opacity-50 p-6 rounded-lg w-64 sm:w-auto">
+      <p className="text-lg font-semibold mb-4">
+        Are you sure you want to delete this property?
+      </p>
+      <div className="flex justify-center">
+        <button
+          className="bg-red-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-red-700"
+          onClick={handleConfirmation}
+        >
+          Delete
+        </button>
+        <button
+          className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400"
+          onClick={handleCancel}
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
                         {/* <div
                           className="text-sm  rounded text-gray-200 px-4 py-2 font-medium hover:bg-gray-300"
                           onClick={() => togglePopup(item?.uuid)}

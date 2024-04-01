@@ -36,6 +36,7 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
           ) : (
             <>
               <div className="flex items-center gap-1 text-md">
+              {listing?.data?.type? `${listing?.data?.type?.replace("_" ," ")} .`:" " }
                 {listing?.data?.guests} guests{" · "}
                 {listing?.data?.children > 0 &&
                   `${listing?.data?.guests} pets`}
