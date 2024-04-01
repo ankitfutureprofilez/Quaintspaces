@@ -82,12 +82,18 @@ export default function index() {
           <div className="flex flex-wrap px-4 py-5 pt-0">
             {record.map((item, index) => (
               <div className="w-full sm:w-1/2 md:w-1/3 px-3 mt-4" key={index}>
-                <div className="border rounded-lg overflow-hidden shadow-md">
+                 <div className="relative border rounded-lg overflow-hidden shadow-md">
                   <img
                     className="w-full h-48 object-cover object-center"
                     src={item?.property_image[0]?.image_url}
                     alt={item?.name}
                   />
+                  <button
+                    className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded-md hover:bg-red-700"
+                    onClick={() => handleDelete(item?.uuid)}
+                  >
+                  Delete
+                  </button>
                   <div className="p-4">
                     <h2 className="text-lg font-medium mb-2">{item.name}</h2>
                     <h3 className="text-sm font-medium ">{item.location}</h3>
@@ -108,12 +114,7 @@ export default function index() {
                         </button>
                       </Link>
                       <div>
-                        <button
-                          className="bg-red-600 text-white px-3 py-1 rounded-md mr-2 hover:bg-red-700"
-                          onClick={() => handleDelete(item?.uuid)}
-                        >
-                          Delete
-                        </button>
+                     
                         {showConfirmation && (
                           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50">
                             <div className="bg-white p-6 rounded-lg">
