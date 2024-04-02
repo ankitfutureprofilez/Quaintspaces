@@ -309,10 +309,10 @@ export default function Index() {
                     <Popup
                       isOpen={true}
                       setisOpen={togglePopup}
-                      text="User Details"
+                      // text="User Details"
                       togglePopup={() => togglePopup(item.id)}
-                      space={4}
-                      btnclass="bg-blue-500 text-white px-4 py-2 rounded-md"
+                      space={2}
+                      btnclass="bg-blue-500 text-white rounded-full"
                       buttontext="Open Popup"
                     >
                       <div className = "flex items-center justify-center border border-2 rounded-full mb-5  text-gray-700 block px-4 py-2 text-sm" >

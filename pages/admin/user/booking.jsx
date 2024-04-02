@@ -1,13 +1,16 @@
 import react,  { useState, useEffect } from "react";
 import Listing from "../api/Listing";
+import Image from "next/image";
 
 export default function booking({record}) {
 
+    const[content ,setContent] =useState("")
   useEffect(()=>{
     const main =  new Listing();
     const response = main.booking(record)
     response.then((res)=>{
       console.log("res",res)
+      setContent(res?.data?.data)
     }).catch((error)=>{
       console.log("error",error)
     })
@@ -15,60 +18,176 @@ export default function booking({record}) {
 
   return (
     <div>
-          <section className="container mx-auto">
-            <div className="flex flex-col">
-                <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                        <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
-                            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                                <thead className="bg-gray-50 dark:bg-gray-800">
-                                    <tr>
-                                        <th scope="col" className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                            <div className="flex items-center gap-x-3">
-                                                <input type="checkbox" className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700" />
-                                                <button className="flex items-center gap-x-2">
-                                                    <span>Invoice</span>
-                                                    <svg className="h-3" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M2.13347 0.0999756H2.98516L5.01902 4.79058H3.86226L3.45549 3.79907H1.63772L1.24366 4.79058H0.0996094L2.13347 0.0999756ZM2.54025 1.46012L1.96822 2.92196H3.11227L2.54025 1.46012Z" fill="currentColor" stroke="currentColor" strokeWidth="0.1" />
-                                                        <path d="M0.722656 9.60832L3.09974 6.78633H0.811638V5.87109H4.35819V6.78633L2.01925 9.60832H4.43446V10.5617H0.722656V9.60832Z" fill="currentColor" stroke="currentColor" strokeWidth="0.1" />
-                                                        <path d="M8.45558 7.25664V7.40664H8.60558H9.66065C9.72481 7.40664 9.74667 7.42274 9.75141 7.42691C9.75148 7.42808 9.75146 7.42993 9.75116 7.43262C9.75001 7.44265 9.74458 7.46304 9.72525 7.49314C9.72522 7.4932 9.72518 7.49326 9.72514 7.49332L7.86959 10.3529L7.86924 10.3534C7.83227 10.4109 7.79863 10.418 7.78568 10.418C7.77272 10.418 7.73908 10.4109 7.70211 10.3534L7.70177 10.3529L5.84621 7.49332C5.84617 7.49325 5.84612 7.49318 5.84608 7.49311C5.82677 7.46302 5.82135 7.44264 5.8202 7.43262C5.81989 7.42993 5.81987 7.42808 5.81994 7.42691C5.82469 7.42274 5.84655 7.40664 5.91071 7.40664H6.96578H7.11578V7.25664V0.633865C7.11578 0.42434 7.29014 0.249976 7.49967 0.249976H8.07169C8.28121 0.249976 8.45558 0.42434 8.45558 0.633865V7.25664Z" fill="currentColor" stroke="currentColor" strokeWidth="0.3" />
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </th>
+         <table className="w-full  text-sm rounded-md">
+            <thead>
+              <tr className="bg-gray-100 rounded-lg flex items-center justify-between text-gray-500">
+                <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+                  Name
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      strokeLinejoin="round"
+                      stroke-miterlimit="10"
+                      stroke-width="1.5"
+                      d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"
+                    ></path>
+                  </svg>
+                </th>
+                <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+                  Phone Number
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      strokeLinejoin="round"
+                      stroke-miterlimit="10"
+                      stroke-width="1.5"
+                      d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"
+                    ></path>
+                  </svg>
+                </th>
+                <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+                Status
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      strokeLinejoin="round"
+                      stroke-miterlimit="10"
+                      stroke-width="1.5"
+                      d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"
+                    ></path>
+                  </svg>
+                </th>
+                <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+                  Details
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      strokeLinejoin="round"
+                      stroke-miterlimit="10"
+                      stroke-width="1.5"
+                      d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"
+                    ></path>
+                  </svg>
+                </th>
+              </tr>
+            </thead>
 
-                                        <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                            Date
-                                        </th>
-
-                                        <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                            Status
-                                        </th>
-
-                                        <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                            Customer
-                                        </th>
-
-                                        <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                            Purchase
-                                        </th>
-
-                                        <th scope="col" className="relative py-3.5 px-4">
-                                            <span className="sr-only">Actions</span>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                                    {/* Table rows */}
-                                </tbody>
-                            </table>
+            <tbody className="space-y-2 divide-y">
+                <tr
+                  className="hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700"
+                >
+                  <td className="flex gap-2 items-center w-[300px] text-sm py-2 px-2">
+                  <Image
+                  width={30}
+                  height={30}
+                  className="rounded-full border border-2 "
+                  src={ "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"}
+                   alt={"0"}
+                  />
+                    <div>
+                      <div className="text-gray-800 font-medium">
+                        {/* {item.name} */}
+                      </div>
+                      <div className="text-sm">
+                        {/* {item.email} */}
                         </div>
                     </div>
-                </div>
-            </div>
+                  </td>
+                  <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+                    {/* {item.phone_no ? item.phone_no : ""} */}
+                  </td>
+                  <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+                  
+                  </td>
 
-            
-        </section>
+
+                  <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+                    <div  classname=" ">
+                      <svg
+                        width="32px"
+                        height="32px"
+                        viewBox="0 0 24 24"
+                        id="three-dots"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          id="_20x20_three-dots--grey"
+                          data-name="20x20/three-dots--grey"
+                          transform="translate(24) rotate(90)"
+                        >
+                          <rect
+                            id="Rectangle"
+                            width="24"
+                            height="24"
+                            fill="none"
+                          />
+                          <circle
+                            id="Oval"
+                            cx="1"
+                            cy="1"
+                            r="1"
+                            transform="translate(5 11)"
+                            stroke="#000000"
+                            stroke-miterlimit="10"
+                            stroke-width="0.5"
+                          />
+                          <circle
+                            id="Oval-2"
+                            data-name="Oval"
+                            cx="1"
+                            cy="1"
+                            r="1"
+                            transform="translate(11 11)"
+                            stroke="#000000"
+                            stroke-miterlimit="10"
+                            stroke-width="0.5"
+                          />
+                          <circle
+                            id="Oval-3"
+                            data-name="Oval"
+                            cx="1"
+                            cy="1"
+                            r="1"
+                            transform="translate(17 11)"
+                            stroke="#000000"
+                            stroke-miterlimit="10"
+                            stroke-width="0.5"
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
     </div>
   )
 }

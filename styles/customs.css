@@ -22,16 +22,40 @@ h3.text-sm.font-medium.desc-property {
 }
 
 .popup {
-  position: absolute;
+  position: fixed;
+  top: 40%;
+  left: 80%;
+  transform: translate(-50%, -50%);
   background-color: white;
-  padding: 10px;
-  top:0px;
-  left: 700px;
+  /* padding: 10px; */
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 999;
-  width: 200px;
+  max-width: 400px; }
+
+.popup .popup-content {
+  overflow-y: auto;
 }
+
+.popup .popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd; 
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.close {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .popup {
+    width: 90%; 
+    max-width: 90%; 
+  }
+}
+
 .explor-btn-link {
   padding: 18px;
   display: flex;
@@ -42,7 +66,7 @@ h3.text-sm.font-medium.desc-property {
 }
 .explor-btn-link a {
   display: flex;
-  align-items: center; /* font-family: 'NewYork'; */
+  align-items: center; 
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
@@ -55,17 +79,7 @@ h3.text-sm.font-medium.desc-property {
   margin-left: 10px;
 }
 
-.arrow {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 8px 10px 8px; 
-  border-color: transparent transparent white transparent;
-  z-index: 1000; 
-  top: -10px; 
-  left: calc(50% - 8px);
-}
+
 
 .login-signup-btn {
   border-left: 1px solid #404040;
