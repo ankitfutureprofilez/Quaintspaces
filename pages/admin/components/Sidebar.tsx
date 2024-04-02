@@ -24,19 +24,21 @@ function Sidebar() {
         setIsMobileSidebarOpen(prevState => !prevState);
     };
 
-    async function getAuth () { 
-        if(webtoken){
-            const main = new Listing();
-           const response =  main.Adminprofile();
-          response.then((res) => {
+    async function getAuth() {
+      if (webtoken) {
+        const main = new Listing();
+        const response = main.Adminprofile();
+        response
+          .then((res) => {
             if (res.data.status) {
               setAuth(res.data.data);
-            } 
-          }).catch((error) => {
+            }
+          })
+          .catch((error) => {
             console.log("error", error);
           });
-        }
       }
+    }
     
     useEffect(() => {
         getAuth();

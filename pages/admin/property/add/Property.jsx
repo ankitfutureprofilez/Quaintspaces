@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import amenitiesList from "../../../../aminites.json";
 import Listing from "../../api/Listing";
-import Element from "../../element";
 import { useRouter } from "next/router";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-import Image from "next/image";
 import { House, Add } from 'iconsax-react'
 
 const propertyTypes = [
@@ -18,10 +16,12 @@ const propertyTypes = [
   { value: "boutique_hotel", label: "Boutique Hotel" }
 ];
 
-
 export default function Property(props) {
 
-  const { longitudes, latitude, children, adults, onClose, uuid, name, price, description, bedrooms, beds, bathrooms, amenities, property_image } = props;
+  const {  isEdit, p  } = props;
+  const { uuid, location, children, adults, properties_type, name, price, description, bedrooms, beds, bathrooms, amenities, property_image } = p ? p : {};
+  console.log("p", props.p);
+
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [Loading, setLoading] = useState(false);
@@ -31,23 +31,23 @@ export default function Property(props) {
   }
 
   const [images, setImages] = useState([]);
-  const [property_type, setproperty_type] = useState("flat");
-  const[locationupdate ,setLocationupdate] =useState([])
-  console.log("locationupdate",locationupdate)
+  const [PType, setPType] = useState(properties_type || "flat");
+  const lstring = location ? JSON.parse(location.replace("/\\\"/g", '"')) : null;
+  const l = JSON.parse(lstring);
+
   const [address, setAddress] = useState({
-    street_address: "",
-    flat_house: "",
-    district: "",
-    nearby: "",
-    city: "",
-    state: "",
-    pin: "",
-    location: "",
-    latitude: '',
-    longitude: "",
+    street_address: l && l.street_address ? l.street_address : "",
+    flat_house: l && l.flat_house ? l.flat_house : "",
+    district: l && l.district ? l.district : "",
+    nearby: l && l.nearby ? l.nearby : "",
+    city: l && l.city ? l.city : "",
+    state: l && l.state ? l.state : "",
+    pin: l && l.pin ? l.pin : "",
+    location: l && l.location ? l.location : "",
+    latitude: l && l.latitude ? l.latitude : '',
+    longitude: l && l.longitude ? l.longitude : "",
   });
 
-  console.log()
   const handleAddress = (e) => {
     const { name, value } = e.target;
     setAddress({ ...address, [name]: value });
@@ -59,7 +59,7 @@ export default function Property(props) {
     name: name || "",
     about: description || "",
     price: price || "",
-    propertytype: property_type,
+    propertytype: PType,
     children: children || "1",
     adults: adults || "1",
     bedrooms: bedrooms || "1",
@@ -69,14 +69,11 @@ export default function Property(props) {
     selectedAmenities: amenities ? stringToArray(amenities) : [],
     free_cancel_time: ""
   });
-  console.log("item", { ...item, address, propertytype: property_type, images });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setItem({ ...item, [name]: value });
   };
-
-  console.log("item", address?.location);
 
   const handleFileChange = async (e) => {
     let files = Array.from(e.target.files);
@@ -85,7 +82,9 @@ export default function Property(props) {
       arr.push(element);
     });
     setImages([...images, ...arr]);
-    console.log("files", [...images, ...arr]);
+
+    console.log("[...images, ...arr]",[...images, ...arr])
+     
   };
 
   const removeImage = (f) => {
@@ -95,7 +94,7 @@ export default function Property(props) {
 
   const prevStep = () => setStep((prev) => prev - 1);
   const nextStep = async () => {
-    if (step === 0 && property_type == '') {
+    if (step === 0 && PType == '') {
       toast.error("Please choose a property type which one you want to list.");
     }
     if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
@@ -223,11 +222,14 @@ export default function Property(props) {
 
   async function handleSubmit(e) {
 
+    console.log("item", { ...item, address, propertytype: PType, images });
+
     e.preventDefault();
-    if (step === 5 && images?.length < 5) {
+    if (!isEdit && step === 5 && images?.length < 5) {
       toast.error("Please select at least five images.");
       return false;
     }
+
     setLoading(true);
     const main = new Listing();
     const formData = new FormData();
@@ -235,7 +237,7 @@ export default function Property(props) {
     formData.append("pets", item?.pets);
     formData.append("description", item?.about);
     formData.append("price", item?.price);
-    formData.append("properties_type", property_type);
+    formData.append("properties_type", PType);
     formData.append("bedrooms", item?.bedrooms);
     formData.append("beds", item?.beds);
     formData.append("bathrooms", item?.bathrooms);
@@ -249,7 +251,7 @@ export default function Property(props) {
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
-    const response = uuid ? main.propertyedit(uuid, formData) : main.addproperty(formData);
+    const response = isEdit ? main.propertyedit(uuid, formData) : main.addproperty(formData);
     response.then(res => {
       if (res?.data?.status === true) {
         toast.success(res.data.message);
@@ -262,48 +264,28 @@ export default function Property(props) {
       setLoading(false);
       console.log("error", error);
     });
-
-
   };
+
+  useEffect(()=>{
+    console.log("images",images)
+  },[images])
 
   return (
     <>
       <style >{`
-      .ammenties-checked-lists input:checked+ label { 
-        background: #006fc7;
-        color:#fff;
-      }
-      .property-type:checked + label { 
-        color :#000 !important;
-        border-color:#000 !important;
-      }
-      .property-type:checked + label h2 { 
-        color :#000 !important;
-        border-color:#000 !important;
-      }
+      .ammenties-checked-lists input:checked+ label { background: #006fc7;color:#fff;}
+      // .property-type:checked + label { color :#000 !important;border-color:#000 !important;}
+      // .property-type:checked + label h2 { color :#000 !important;border-color:#000 !important;}
     `}</style>
 
-
-      <div className={`flex items-center justify-center px-6 py-8 `} >
-        <div className="max-w-4xl w-full space-y-8">
+      <div className={`w-full  flex items-center justify-center px-6 py-8 `} >
+        <div className="max-w-4xl w-full space-y-8 w-full ">
           <div
             className={`pages-wrapper  ${uuid ? " max-w-[700px]" : ""} m-auto `} >
-            {uuid ? (
-              <div className="flex flex-wrap  justify-between">
-                <h2 className="text-xl font-bold mb-4 ">Add Property</h2>
-                <button onClick={onClose}>
-                  <h2 className="text-xl font-bold mb-4 ">X</h2>
-                </button>
-              </div>
-            ) : (
-              <></>
-            )}
 
             <div className={`${step === 0 ? "" : "display-none"} max-w-[600px] m-auto table w-full`}>
               {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
                <div className="grid grid-cols-3 gap-4 m-auto table  " >
-               
- 
                 <div className="" >
                       <div onClick={(e)=>setTypeHere("single_room")} className={`${typeHere === "single_room" ? "bg-gray-500" : ''} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
             
@@ -311,7 +293,6 @@ export default function Property(props) {
                         <h2 className="text-xl mt-4 font-normal text-gray-400" >Single Room</h2>
                       </div>
                   </div>
-
                 <div className="" >
                       <label onClick={(e)=>setTypeHere("entire_place")}
                       className={`${typeHere === "entire_place" ? "bg-gray-500" : ''} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
@@ -319,7 +300,6 @@ export default function Property(props) {
                         <h2 className="text-xl mt-4 font-normal text-gray-400" >Entire Place</h2>
                       </label>
                   </div>
-                   
                </div> */}
 
               {/* {typeHere === "entire_place" ?  <> */}
@@ -327,11 +307,10 @@ export default function Property(props) {
               <div className="grid grid-cols-3 gap-4  " >
                 {propertyTypes && propertyTypes.map((p, i) => {
                   return <div className="" >
-                    <input onChange={(e) => setproperty_type(e.target.value)} value={p.value} type="radio" name="property-type" className={"hidden property-type"} id={`property-type-${i}`} />
-                    <label htmlFor={`property-type-${i}`} className="block propety-type-wrap cursor-pointer p-4 border rounded-xl" >
-                      <House size="52" color="#dedede" />
-                      <h2 className="text-xl mt-4 font-normal text-gray-400" >{p.label}</h2>
-                    </label>
+                    <div onClick={() => setPType(p.value)}  className={`${p.value === PType ? "bg-indigo-500" : "" } block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
+                      <House size="52" color={p.value === PType ? "#ffffff" : "#dedede"} /> 
+                      <h2 className={`${p.value === PType ? "text-gray-100" : "text-gray-400"} text-xl mt-4 font-normal `} >{p.label}</h2>
+                    </div>
                   </div>
                 })}
               </div>
@@ -577,10 +556,53 @@ export default function Property(props) {
 
 
             <div className={`${step === 5 ? "" : "display-none"} max-w-[600px] m-auto`}>
-              <h2 className="text-3xl text-center font-bold mb-2" >Add some photos of your {property_type ? property_type.replace("_", ' ') : "house"}</h2>
+              <h2 className="text-3xl text-center font-bold mb-2" >Add some photos of your {PType ? PType.replace("_", ' ') : "house"}</h2>
               <p className="text-normal text-center text-gray-500 mb-8" >You'll need 5 photos to get started. You can add more or make changes later.</p>
 
-              <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
+             
+
+
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4  mt-16 ">
+
+                {isEdit ? (property_image?.map((item, index) => (
+                    <div key={index} className="relative isedits">
+                      <img
+                        className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
+                        src={item?.image_url}
+                        width={200}
+                        height={200}
+                        alt={`Preview ${index}`}
+                      /> 
+                      <button
+                        type="button"
+                        onClick={() => deletePropertyImage(uuid, item?.uuid)}
+                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1" >
+                        Remove
+                      </button>
+                    </div>
+                  ))
+                ) : ''}
+
+                {images && images.map((file, index) => (
+                   <div key={index} className="relative">
+                    <img 
+                      src={URL.createObjectURL(file)}
+                      width={200}
+                      height={200}
+                      alt={`Preview ${index}`}
+                      className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                      onLoad={() => URL.revokeObjectURL(file)}
+                    /> fsdfsdfsd
+                    <button type="button"
+                      onClick={() => removeImage(file)}
+                      className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1" >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              {isEdit ? "" : <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
                 <label
                   htmlFor="dropzone-file"
                   className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
@@ -608,49 +630,8 @@ export default function Property(props) {
                     multiple
                   />
                 </label>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 ">
-                {uuid ? (
-                  property_image?.map((item, index) => (
-                    <div key={index} className="relative">
-                      <img
-                        className="image-preview object-cover border min-h-[150px] h-full w-full max-w-full rounded-lg"
-                        src={item?.image_url}
-                        width={200}
-                        height={200}
-                        alt={`Preview ${index}`}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => deletePropertyImage(uuid, item?.uuid)}
-                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1" >
-                        Remove
-                      </button>
-                    </div>
-                  ))
-                ) : (
-                  <></>
-                )}
+              </div>}
 
-                {images && images.length && images?.map((file, index) => (
-                  <div key={index} className="relative">
-                    <img
-                      src={URL.createObjectURL(file)}
-                      width={200}
-                      height={200}
-                      alt={`Preview ${index}`}
-                      className="image-preview h-full object-cover border min-h-[150px] w-full max-w-full rounded-lg"
-                      onLoad={() => URL.revokeObjectURL(file)}
-                    />
-                    <button
-                      type="button"
-                      onClick={() => removeImage(file)}
-                      className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1" >
-                      Remove
-                    </button>
-                  </div>
-                )) || ''}
-              </div>
             </div>
 
 

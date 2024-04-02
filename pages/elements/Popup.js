@@ -30,8 +30,8 @@ export default function Popup({
 
   const closep = () => {
     setOpenLogin(false);
-    togglePopup (!isOpen);
-    setisOpen(false);
+    togglePopup  && togglePopup (!isOpen);
+    setisOpen && setisOpen(false);
   };
 
   return isClient ? (
