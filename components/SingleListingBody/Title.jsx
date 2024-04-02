@@ -16,7 +16,7 @@ const Title = ({ isSaved, listing, addWishlist,loading }) => {
       ) : (
         
         <>
-          <div className="text-2xl lg:text-3xl  flex font-medium mb-2 peora-title">
+          <div className="text-2xl lg:text-3xl mt-2.5 flex font-medium mb-2 peora-title">
             <div className={"backtag"} ></div>
               <Back />
               {/* {listing.data?.title.slice(0, 1).toUpperCase() +

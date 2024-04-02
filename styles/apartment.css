@@ -68,3 +68,7 @@ html {
 .profile-navbar{
   padding:0px !important;
 }
+.prose h2{
+  margin-top: 20px;
+  font-weight: 600;
+}

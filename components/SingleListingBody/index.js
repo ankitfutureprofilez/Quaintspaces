@@ -251,7 +251,7 @@ const [selectEnd, setSelectEnd] = useState(null);
           </div>
 
           <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
-            <Info listing={listing} ref={AmenitiesRef} />
+            <Info loading={loading} listing={listing} ref={AmenitiesRef} />
             <div className="hidden lg:block">
               <Date_GuestsPickerCard loading={loading}
                 selection={selection}

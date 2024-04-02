@@ -54,7 +54,7 @@ const Dates = ({
             setSelectedDay={setSelectedDay}
             selectEnd={selectEnd}
             setSelectEnd={setSelectEnd}
-            css={"bg-white"}
+            css={"bg-white border-2"}
             footer={true}
             datePickerFunction={() => setSelection(null)}
           />
