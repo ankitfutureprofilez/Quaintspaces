@@ -17,8 +17,8 @@ export default function Footer() {
       <nav className="ml-auto flex space-x-4">
         <Link href="/apartments"><p className="menu-footer">OUR APARTMENTS</p></Link>
         <Link href="/contact"><p className="menu-footer">CONTACT US</p></Link>
-        <Link href=""><p className="menu-footer">TERMS & CONDITION</p></Link>
-        <Link href=""><p className="menu-footer">PRIVACY POLICY</p></Link>
+        <Link href="/terms"><p className="menu-footer">TERMS & CONDITION</p></Link>
+        <Link href="/policy"><p className="menu-footer">PRIVACY POLICY</p></Link>
       </nav>
     </div>
 

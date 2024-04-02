@@ -114,9 +114,9 @@ export default function index() {
     );
   };
   return (
-    <div>
+    <div className="container mx-auto">
       <AuthLayout>
-        <div className="container mx-auto account-btn ">
+        <div className=" account-btn ">
           <div className=" pt-4 sm:pt-8 md:pt-12 pb-3 sm:pb-6 md:pb-10">
             <Heading
               text={"My Booking"}
@@ -126,8 +126,8 @@ export default function index() {
           </div>
         </div>
 
-        <div className="flex me-10">
-          <div className=" container mx-auto flex align-items-center my-4 mx-4 py-2 space-x-4 upcomming-box">
+        <div className="flex justify-between">
+          <div className="  flex align-items-center my-4 py-2 space-x-4 upcomming-box">
             <Button
               design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${
                 selectedButton === "upcoming"
@@ -205,7 +205,7 @@ export default function index() {
           </div>
         </div>
 
-        <div className="container mx-auto">
+        <div className="">
           <BookingTable />
         </div>
       </AuthLayout>
