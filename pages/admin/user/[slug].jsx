@@ -44,7 +44,7 @@ function index() {
       </div>
     </div>
 
-    <div className='flex text-xl font-medium relative bg-gray-100 p-4 rounded-lg py-2'>
+    <div className='flex text-xl font-medium relative p-4 rounded-lg py-2'>
                 <button onClick={() => setActiveTab('Booking')} className={`z-10 w-full px-4 py-2 ${activeTab === 'overview' ? '' : ''}`}>Booking</button>
                 <button onClick={() => setActiveTab('payment')} className={`z-10 w-full  px-4 py-3   rounded-lg ${activeTab === 'payment' ? '' : ''}`}>Payment </button>
                 <button onClick={() => setActiveTab('rewards')} className={`z-10 w-full px-2 py-2  ${activeTab === 'rewards' ? '' : ''}`}></button>

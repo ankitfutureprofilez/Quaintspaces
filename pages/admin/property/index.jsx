@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Listing from "../api/Listing";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import Modal  from  "../hook/Modal"
 import AdminLayout from "../AdminLayout"; // Assuming this is a custom layout component
 
 export default function Index() {
@@ -120,12 +121,30 @@ export default function Index() {
           </div>
         )}
         {showConfirmation && (
-          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50">
-            <div className="bg-white-800 bg-opacity-50 p-6 rounded-lg w-64 sm:w-auto">
-              <p className="text-lg font-semibold mb-4">
+
+<div className="fixed inset-0 z-50 flex items-center justify-center mt-6 mb-6">
+<div className="absolute inset-0 bg-gray-800 opacity-50"></div>
+<div className="bg-white px-8  rounded shadow-lg z-50 relative rounded-lg max-w-[33%]">
+  {/* <button onClick={onClose} className="absolute top-0 right-0 m-4 text-gray-600 hover:text-gray-800">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M6 18L18 6M6 6l12 12"
+      />
+    </svg>
+  </button> */}
+  <p className="text-lg font-semibold mb-4 mt-6">
                 Are you sure you want to delete this property?
               </p>
-              <div className="flex justify-center">
+              <div className="flex justify-center mb-5">
                 <button
                   className="bg-red-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-red-700"
                   onClick={handleConfirmation}
@@ -139,8 +158,8 @@ export default function Index() {
                   Cancel
                 </button>
               </div>
-            </div>
-          </div>
+</div>
+</div>
         )}
       </AdminLayout>
     </>
