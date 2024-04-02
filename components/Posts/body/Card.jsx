@@ -9,6 +9,31 @@ import { formatMultiPrice } from "../../../hooks/ValueData";
 const Card = ({ post }) => {
   const { wishlist } = useContext(Context);
   const [isSaved, changeWishlist] = useWishlist(post, wishlist);
+  let record
+
+  let jsonObject;
+  try {
+    record = JSON.parse(JSON.parse(post?.location));
+
+  } catch (error) {
+    console.error("Error parsing JSON:", error);
+  }
+
+
+  function capitalizeAndReplace(inputString) {
+    // Split the input string by underscores
+    let words = inputString.split("_");
+
+    // Capitalize the first character of each word
+    for (let i = 0; i < words.length; i++) {
+        words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+    }
+
+    // Join the words back together with spaces
+    let result = words.join(" ");
+    
+    return result;
+}
 
   return (
     <div className="banipark-box rounded-lg">
@@ -19,25 +44,29 @@ const Card = ({ post }) => {
         src={post?.property_image[0]?.image_url}
       />
       <div className="flat-info">
-        <h5>
-          {/* {post.location} */}
-          {textResizer(post && 
-            post.location && post.location.slice(0, 1).toUpperCase() +
-              post.location.slice(1, -1), ) } 
+        <h5 className="line-limit">
+          {/* {textResizer(
+            post &&
+              post.location &&
+              post.location.slice(0, 1).toUpperCase() +
+                post.location.slice(1, -1)
+          )} */}
+          {record.street_address}{record.city}
           {/* {post?.location} */}
         </h5>
         <h3 className="line-limit">
           {post?.name}
-          {/* {textResizer(
-                post?.name.slice(0, 1).toUpperCase() + post?.name.slice(1, -1),
-                30
-              )} */}
         </h3>
         <p>
           {post?.bedrooms} Bedrooms · {post?.beds} Bed
+          <span className=" ml-2 text-base text-red-500">
+            {capitalizeAndReplace(post?.type)}
+          </span>
         </p>
         <h4>
-          From <span> {formatMultiPrice(post?.price)}</span> /night
+          From{" "}
+          <span className="card-price"> {formatMultiPrice(post?.price)}</span>{" "}
+          /night
         </h4>
       </div>
       <div className="explor-btn">

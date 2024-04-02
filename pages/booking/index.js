@@ -200,13 +200,6 @@ export default function index() {
                 ))}
               </div>
               <div className="mb-4 flex justify-center">
-                {/* <button
-                  type="submit"
-                  className="filter btn"
-                  onClick={handleClick}
-                >
-                  Submit
-                </button> */}
               </div>
             </Modal>
           </div>

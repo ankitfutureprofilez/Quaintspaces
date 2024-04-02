@@ -62,7 +62,7 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
       </div>
       <div className="py-8 border-y border-darkBorderColor">
         {loading ? (
-          <div className="w-full h-7 bg-lightBorderColor rounded-md"></div>
+          <div className="w-full h-7  bg-lightBorderColor rounded-md"></div>
         ) : (
           <p className="text-md text-lightTextColor">{listing?.data?.description}</p>
         )}
