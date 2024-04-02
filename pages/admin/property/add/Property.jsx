@@ -8,20 +8,20 @@ import axios from "axios";
 import Image from "next/image";
 import { House, Add } from 'iconsax-react'
 
-const propertyTypes = [ 
-    { value: "flat", label: "Flat" },
-    { value: "house", label: "House" },
-    { value: "unique_space", label: "Unique Space" },
-    { value: "guest_house", label: "Guest House" },
-    { value: "hotel", label: "Hotel" },
-    { value: "single_room", label: "Single Room" },
-    { value: "boutique_hotel", label: "Boutique Hotel" }
-  ];
-  
+const propertyTypes = [
+  { value: "flat", label: "Flat" },
+  { value: "house", label: "House" },
+  { value: "unique_space", label: "Unique Space" },
+  { value: "guest_house", label: "Guest House" },
+  { value: "hotel", label: "Hotel" },
+  { value: "single_room", label: "Single Room" },
+  { value: "boutique_hotel", label: "Boutique Hotel" }
+];
+
 
 export default function Property(props) {
 
-  const {longitudes,latitude,children,adults,onClose,uuid,name,price,description,bedrooms,beds,bathrooms,amenities,property_image} = props;
+  const { longitudes, latitude, children, adults, onClose, uuid, name, price, description, bedrooms, beds, bathrooms, amenities, property_image } = props;
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [Loading, setLoading] = useState(false);
@@ -31,8 +31,8 @@ export default function Property(props) {
   }
 
   const [images, setImages] = useState([]);
-  const [property_type, setproperty_type] = useState("entire_place");
-  const [address, setAddress] = useState({ 
+  const [property_type, setproperty_type] = useState("flat");
+  const [address, setAddress] = useState({
     street_address: "",
     flat_house: "",
     district: "",
@@ -50,13 +50,13 @@ export default function Property(props) {
     setAddress({ ...address, [name]: value });
   };
 
-  const [typeHere, setTypeHere] = useState('single_room');   
+  const [typeHere, setTypeHere] = useState('entire_place');
 
   const [item, setItem] = useState({
     name: name || "",
     about: description || "",
     price: price || "",
-    propertytype: property_type, 
+    propertytype: property_type,
     children: children || "1",
     adults: adults || "1",
     bedrooms: bedrooms || "1",
@@ -64,22 +64,22 @@ export default function Property(props) {
     bathrooms: bathrooms || "1",
     pets: "1",
     selectedAmenities: amenities ? stringToArray(amenities) : [],
-    free_cancel_time : ""
+    free_cancel_time: ""
   });
-  console.log("item", {...item, address, propertytype:property_type, images});
+  console.log("item", { ...item, address, propertytype: property_type, images });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setItem({ ...item, [name]: value });
   };
 
-  console.log("item", item?.address);
+  console.log("item", address?.location);
 
   const handleFileChange = async (e) => {
     let files = Array.from(e.target.files);
     let arr = [];
     files.forEach(element => {
-       arr.push(element);
+      arr.push(element);
     });
     setImages([...images, ...arr]);
     console.log("files", [...images, ...arr]);
@@ -94,25 +94,25 @@ export default function Property(props) {
   const nextStep = async () => {
     if (step === 0 && property_type == '') {
       toast.error("Please choose a property type which one you want to list.");
-    } 
-    if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "") ) {
+    }
+    if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
       toast.error(`All fields are required.`);
       return false;
-    } 
+    }
     if (step === 1 && (!item?.about || item?.about.trim().length === 0 || item?.about.length < 100)) {
-      toast.error( "Property description is too short. Description should be a minimum of 100 words.");
+      toast.error("Property description is too short. Description should be a minimum of 100 words.");
       return false;
     }
-    if (step === 2 && ( 
-      address?.pin === "" || address?.pin.length < 5 ||  
-      address?.state === "" ||  
-      address?.city === "" || 
-      address?.street_address === "" || 
+    if (step === 2 && (
+      address?.pin === "" || address?.pin.length < 5 ||
+      address?.state === "" ||
+      address?.city === "" ||
+      address?.street_address === "" ||
       address?.district === "")) {
       toast.error(`Incomplete address. Please enter complete address.`);
       return false;
-    } 
-    if ( step == 4 && item?.selectedAmenities && item?.selectedAmenities.length < 4 ) {
+    }
+    if (step == 4 && item?.selectedAmenities && item?.selectedAmenities.length < 4) {
       toast.error("Please choose atleast 4 amenities.");
       return false;
     }
@@ -136,39 +136,75 @@ export default function Property(props) {
     }
   };
 
-  const fetchLocationData = async (manualLocation) => {
-    console.log("manualLocation", manualLocation);
-    // if (manualLocation) {
-      try {
-        const response = await axios.get(
-          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-            manualLocation
-          )}`
-        );
-        const locationData = response.data[0];
-        console.log("locationData", locationData);
-        if (locationData) {
-          setItem((prevProperty) => ({
-            ...prevProperty,
-            location: manualLocation,
-            latitude: locationData.lat.toString(),
-            longitude: locationData.lon.toString(),
-          }));
-        }
-      } catch (error) {
-        console.log("Error fetching data for manual location:", error);
-      }
-    }
+  // const fetchLocationData = async (navigator) => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(async (position) => {
+  //       const { latitude, longitude } = position.coords;
+  //       try {
+  //         const response = await axios.get(
+  //           `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+  //         );
+  //         const locationData = response.data;
+  //         console.log("location ", locationData)
+  //         setItem((prevProperty) => ({
+  //           ...prevProperty,
+  //           location: locationData.display_name,
+  //           latitude: latitude.toString(),
+  //           longitude: longitude.toString(),
+  //         }));
+  //       } catch (error) {
+  //         console.log('Error fetching data:', error);
+  //       }
+  //     }, () => {
+  //       console.log("Geolocation failed");
+  //     });
+  //   }
   // };
 
   const handleLocationInputChange = (event) => {
     const { name, value } = event.target;
-    setItem((prevProperty) => ({
-      ...prevProperty,
+    setAddress((address) => ({
+      ...address,
       [name]: value,
     }));
   };
-  
+
+  const getNavigator = () => {
+    if (typeof navigator !== 'undefined') {
+      return navigator;
+    } else {
+      console.error('navigator is not available');
+      return null;
+    }
+  };
+
+  // Modified fetchLocationData function
+  const fetchLocationData = async () => {
+    const navigatorObj = getNavigator();
+    if (navigatorObj && navigatorObj.geolocation) {
+      navigatorObj.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+        try {
+          const response = await axios.get(
+            `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+          );
+          const locationData = response.data;
+          console.log("location ", locationData);
+          setAddress((address) => ({
+            ...address,
+            location: locationData.display_name,
+            latitude: latitude.toString(),
+            longitude: longitude.toString(),
+          }));
+        } catch (error) {
+          console.log('Error fetching data:', error);
+        }
+      }, () => {
+        console.log("Geolocation failed");
+      });
+    }
+  };
+
   const deletePropertyImage = (recordUUID, itemUUID) => {
     const main = new Listing();
     main
@@ -181,7 +217,7 @@ export default function Property(props) {
       });
   };
 
-  async function handleSubmit(e){
+  async function handleSubmit(e) {
 
     e.preventDefault();
     if (step === 5 && images?.length < 5) {
@@ -195,13 +231,13 @@ export default function Property(props) {
     formData.append("pets", item?.pets);
     formData.append("description", item?.about);
     formData.append("price", item?.price);
-    formData.append("properties_type",property_type);
+    formData.append("properties_type", property_type);
     formData.append("bedrooms", item?.bedrooms);
     formData.append("beds", item?.beds);
     formData.append("bathrooms", item?.bathrooms);
     formData.append("adults", item?.adults);
     formData.append("children", item?.children);
-    formData.append("address", JSON.stringify(address) );
+    formData.append("address", JSON.stringify(address));
     formData.append("infants", "1");
     formData.append("free_cancel_time", "1");
     formData.append("amenities", item?.selectedAmenities);
@@ -210,7 +246,7 @@ export default function Property(props) {
       formData.append("property_image[]", image);
     });
     const response = uuid ? main.propertyedit(uuid, formData) : main.addproperty(formData);
-    response.then(res=>{
+    response.then(res => {
       if (res?.data?.status === true) {
         toast.success(res.data.message);
         router.push("/admin/property");
@@ -244,20 +280,20 @@ export default function Property(props) {
     `}</style>
 
 
-    <div className={`flex items-center justify-center px-6 py-8 `} >
+      <div className={`flex items-center justify-center px-6 py-8 `} >
         <div className="max-w-4xl w-full space-y-8">
-          <div 
+          <div
             className={`pages-wrapper  ${uuid ? " max-w-[700px]" : ""} m-auto `} >
-              {uuid ? (
-                <div className="flex flex-wrap  justify-between">
-                  <h2 className="text-xl font-bold mb-4 ">Add Property</h2>
-                    <button onClick={onClose}>
-                      <h2 className="text-xl font-bold mb-4 ">X</h2>
-                    </button>
-                </div>
-              ) : (
-                <></>
-              )}
+            {uuid ? (
+              <div className="flex flex-wrap  justify-between">
+                <h2 className="text-xl font-bold mb-4 ">Add Property</h2>
+                <button onClick={onClose}>
+                  <h2 className="text-xl font-bold mb-4 ">X</h2>
+                </button>
+              </div>
+            ) : (
+              <></>
+            )}
 
             <div className={`${step === 0 ? "" : "display-none"} max-w-[600px] m-auto table w-full`}>
               {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
@@ -282,21 +318,21 @@ export default function Property(props) {
                    
                </div> */}
 
-                  {/* {typeHere === "entire_place" ?  <> */}
-                      <h2 className="text-3xl text-center mt-4 font-bold mb-8" >Which of these best describes your place?</h2>
-                        <div className="grid grid-cols-3 gap-4  " >
-                          {propertyTypes && propertyTypes.map((p, i )=>{ 
-                            return <div className="" >
-                                <input onChange={(e)=>setproperty_type(e.target.value)} value={p.value} type="radio" name="property-type" className={"hidden property-type"} id={`property-type-${i}`} />
-                                <label htmlFor={`property-type-${i}`} className="block propety-type-wrap cursor-pointer p-4 border rounded-xl" >
-                                  <House size="52" color="#dedede" /> 
-                                  <h2 className="text-xl mt-4 font-normal text-gray-400" >{p.label}</h2>
-                                </label>
-                            </div>
-                          })}
-                        </div>
-                  {/* </> : '' } */}
-                    </div> 
+              {/* {typeHere === "entire_place" ?  <> */}
+              <h2 className="text-3xl text-center mt-4 font-bold mb-8" >Which of these best describes your place?</h2>
+              <div className="grid grid-cols-3 gap-4  " >
+                {propertyTypes && propertyTypes.map((p, i) => {
+                  return <div className="" >
+                    <input onChange={(e) => setproperty_type(e.target.value)} value={p.value} type="radio" name="property-type" className={"hidden property-type"} id={`property-type-${i}`} />
+                    <label htmlFor={`property-type-${i}`} className="block propety-type-wrap cursor-pointer p-4 border rounded-xl" >
+                      <House size="52" color="#dedede" />
+                      <h2 className="text-xl mt-4 font-normal text-gray-400" >{p.label}</h2>
+                    </label>
+                  </div>
+                })}
+              </div>
+              {/* </> : '' } */}
+            </div>
 
             <div className={`${step === 1 ? "" : "display-none"} max-w-[600px] m-auto table w-full`}>
               <h2 className="text-3xl text-center font-bold mb-8" >Describes your place?</h2>
@@ -311,7 +347,7 @@ export default function Property(props) {
                   onChange={handleInputChange}
                 />
               </div>
-               
+
               <div className="relative mt-4 text-sm font-medium text-gray-700">
                 <input
                   required
@@ -322,54 +358,55 @@ export default function Property(props) {
                   value={item?.price}
                   onChange={handleInputChange}
                 />
-              <div className="mt-4">
-                <textarea
-                  required
-                  id="about"
-                  name="about"
-                  minCol={"5"} 
-                  minRow={"5"}
-                  value={item?.about}
-                  onChange={handleInputChange}
-                  className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-xl shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
-                  placeholder="Tell more about your property..."
-                />
-                <div className="flex flex-wrap justify-between">
-                  <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
-                    {item?.about ? (
-                      <span>{item?.about.length}/100 characters</span>
-                    ) : (
-                      <span>0/100 characters</span>
-                    )}
-                  </label>
-                  <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
-                    Minimum 100 words.
-                  </label>
+                <div className="mt-4">
+                  <textarea
+                    required
+                    id="about"
+                    name="about"
+                    minCol={"5"}
+                    minRow={"5"}
+                    value={item?.about}
+                    onChange={handleInputChange}
+                    className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-xl shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
+                    placeholder="Tell more about your property..."
+                  />
+                  <div className="flex flex-wrap justify-between">
+                    <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
+                      {item?.about ? (
+                        <span>{item?.about.length}/100 characters</span>
+                      ) : (
+                        <span>0/100 characters</span>
+                      )}
+                    </label>
+                    <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
+                      Minimum 100 words.
+                    </label>
+                  </div>
                 </div>
               </div>
-              </div>
             </div>
-            
+
             <div className={`${step === 2 ? "" : "display-none"}`}>
               <h2 className="text-3xl text-center font-bold mb-2" >Where's your place located?</h2>
               <p className="text-normal text-center text-gray-500 mb-8" >Your address is only shared with guests after they’ve made a reservation.</p>
 
               <div class="table w-full m-auto max-w-[500px] space-y-4 text-center">
-                <div class="w-full mt-4" onchange={handleLocationInputChange}>
-                <button className="btn sort w-full" onClick={() => fetchLocationData(item?.address?.location || "")}>Use Current Location</button>
+                <p>{address?.location}</p>
+                <div class="w-full mt-4"   >
+                  <button className="btn sort w-full" onClick={fetchLocationData}>Use Current Location</button>
 
                 </div>
                 <div class="flex items-center justify-center space-x-4">
-                    <div class="font-semibold text-gray-400 py-3 text-center">OR</div>
+                  <div class="font-semibold text-gray-400 py-3 text-center">OR</div>
                 </div>
                 <div class="w-full  border border-gray-300 rounded-lg overflow-hidden">
-                    <input defaultValue={address.flat_house} name='flat_house' onChange={handleAddress} type="text" placeholder="Flat, house, etc. (if applicable)" className=" w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                    <input defaultValue={address.street_address} name="street_address" onChange={handleAddress} type="text" placeholder="Street Address" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                    <input defaultValue={address.nearby} name="nearby" onChange={handleAddress} type="text" placeholder="Nearby Landmark (if applicable)" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                    <input defaultValue={address.district} name="district" onChange={handleAddress} type="text" placeholder="District/Locality" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                    <input defaultValue={address.city} name="city" onChange={handleAddress} type="text" placeholder="City/Town" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                    <input defaultValue={address.state} name="state" onChange={handleAddress} type="text" placeholder="State" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                    <input defaultValue={address.pin} name="pin" onChange={handleAddress} type="text" placeholder="PIN Code" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={address.flat_house} name='flat_house' onChange={handleAddress} type="text" placeholder="Flat, house, etc. (if applicable)" className=" w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={address.street_address} name="street_address" onChange={handleAddress} type="text" placeholder="Street Address" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={address.nearby} name="nearby" onChange={handleAddress} type="text" placeholder="Nearby Landmark (if applicable)" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={address.district} name="district" onChange={handleAddress} type="text" placeholder="District/Locality" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={address.city} name="city" onChange={handleAddress} type="text" placeholder="City/Town" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={address.state} name="state" onChange={handleAddress} type="text" placeholder="State" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={address.pin} name="pin" onChange={handleAddress} type="text" placeholder="PIN Code" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
                 </div>
               </div>
             </div>
@@ -505,7 +542,7 @@ export default function Property(props) {
                     ))}
                   </select>
                 </div>
-            </div>
+              </div>
             </div>
 
 
@@ -516,30 +553,30 @@ export default function Property(props) {
               <p className="text-normal text-center text-gray-500 mb-8" >You can add more amenities after you publish your listing.</p>
 
               <div className="max-w-[600px] m-auto justify-center flex flex-wrap ammenties-checked-lists">
-                  {amenitiesList.map((amenity, index) => (
-                    <div key={index} className="flex items-center">
-                      <input
-                        id={amenity.value}
-                        name={amenity.value}
-                        type="checkbox"
-                        value={amenity.value}
-                        className="mr-2 rounded text-indigo-600 focus:ring-indigo-500 hidden"
-                        checked={item?.selectedAmenities.includes(amenity.value)}
-                        onChange={handleCheckboxChange}
-                      />
-                      <label
-                        htmlFor={amenity.value}
-                        className="me-2 mb-2 bg-gray-300 px-4 py-2 rounded-lg text-md text-gray-500 cursor-pointer" >
-                        {amenity.title}
-                      </label>
-                    </div>
-                  ))}
-                </div>
+                {amenitiesList.map((amenity, index) => (
+                  <div key={index} className="flex items-center">
+                    <input
+                      id={amenity.value}
+                      name={amenity.value}
+                      type="checkbox"
+                      value={amenity.value}
+                      className="mr-2 rounded text-indigo-600 focus:ring-indigo-500 hidden"
+                      checked={item?.selectedAmenities.includes(amenity.value)}
+                      onChange={handleCheckboxChange}
+                    />
+                    <label
+                      htmlFor={amenity.value}
+                      className="me-2 mb-2 bg-gray-300 px-4 py-2 rounded-lg text-md text-gray-500 cursor-pointer" >
+                      {amenity.title}
+                    </label>
+                  </div>
+                ))}
+              </div>
             </div>
 
 
             <div className={`${step === 5 ? "" : "display-none"} max-w-[600px] m-auto`}>
-              <h2 className="text-3xl text-center font-bold mb-2" >Add some photos of your { property_type ? property_type.replace("_", ' ') : "house"}</h2>
+              <h2 className="text-3xl text-center font-bold mb-2" >Add some photos of your {property_type ? property_type.replace("_", ' ') : "house"}</h2>
               <p className="text-normal text-center text-gray-500 mb-8" >You'll need 5 photos to get started. You can add more or make changes later.</p>
 
               <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
@@ -548,10 +585,10 @@ export default function Property(props) {
                   className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                  <Add
-                  size="100"
-                  color="#ccc"
-                  />
+                    <Add
+                      size="100"
+                      color="#ccc"
+                    />
                     <p className="mb-2 text-lg text-gray-500 text-gray-400">
                       <span className="font-semibold">Click to upload</span> or
                       drag and drop
@@ -598,7 +635,7 @@ export default function Property(props) {
                   <div key={index} className="relative">
                     <img
                       src={URL.createObjectURL(file)}
-                      width={200} 
+                      width={200}
                       height={200}
                       alt={`Preview ${index}`}
                       className="image-preview h-full object-cover border min-h-[150px] w-full max-w-full rounded-lg"
@@ -612,9 +649,9 @@ export default function Property(props) {
                     </button>
                   </div>
                 )) || ''}
-                </div>
+              </div>
             </div>
-             
+
 
             <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
               <button
@@ -623,7 +660,7 @@ export default function Property(props) {
                 onClick={prevStep}
                 className="inline-flex justify-center items-center h-10 py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" >
                 Back
-              </button> 
+              </button>
 
               {step < 5 ? (
                 <button
