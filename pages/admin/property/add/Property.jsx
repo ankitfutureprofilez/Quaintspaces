@@ -70,6 +70,7 @@ export default function Property(props) {
     free_cancel_time: ""
   });
 
+  console.log("item",item)
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setItem({ ...item, [name]: value });
@@ -179,6 +180,11 @@ export default function Property(props) {
       return null;
     }
   };
+  const[locationupdate,setlocationupdate] =useState([])
+
+
+  
+  console.log("locationupdate",locationupdate)
 
   // Modified fetchLocationData function
   const fetchLocationData = async () => {
@@ -191,13 +197,20 @@ export default function Property(props) {
             `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
           );
           const locationData = response.data;
+          setlocationupdate(locationData?.address)
           console.log("location ", locationData);
-          setLocationupdate(locationData?.address);
           setAddress((address) => ({
             ...address,
             location: locationData.display_name,
             latitude: latitude.toString(),
             longitude: longitude.toString(),
+            street_address:locationupdate?.road,
+            flat_house:locationupdate?.suburb ,
+            district: locationupdate?.state_district,
+            nearby: locationupdate?.suburb,
+            city: locationupdate?.city,
+            state: locationupdate?.state,
+            pin:locationupdate?.postcode
           }));
         } catch (error) {
           console.log('Error fetching data:', error);
