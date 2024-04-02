@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Button from "../elements/Button";
-import Heading from "../elements/Heading";
+import Heading from "../elements/Heading.js";
 import { useRouter } from "next/router";
 import Listings from "../api/laravel/Listings";
 import AuthLayout from "../layout/AuthLayout.js";
 import Modal from "../elements/Modal.js";
+import NoData from "../elements/NoData.js";
 
 export default function index() {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,15 +42,24 @@ export default function index() {
   useEffect(() => {
     let url = "";
 
-    if(selectedOption=="All Dates"){}
-    else if(selectedOption=="Last 30 Days"){url+="booking_time=thirty-day&"}
-    else if(selectedOption=="Last 3 Months"){url+="booking_time=three_month&"}
-    else if(selectedOption=="Last 1 Year"){url+="booking_time=after_one_year&"}
-    else {url+=`booking_year=${selectedOption}&`}
+    if (selectedOption == "All Dates") {
+    } else if (selectedOption == "Last 30 Days") {
+      url += "booking_time=thirty-day&";
+    } else if (selectedOption == "Last 3 Months") {
+      url += "booking_time=three_month&";
+    } else if (selectedOption == "Last 1 Year") {
+      url += "booking_time=after_one_year&";
+    } else {
+      url += `booking_year=${selectedOption}&`;
+    }
 
-    if (selectedButton === "upcoming") {url += "booking_event=upcoming&";} 
-    else if (selectedButton === "completed") {url += "booking_event=completed&";}
-    else {url += "booking_status=canceled&";}
+    if (selectedButton === "upcoming") {
+      url += "booking_event=upcoming&";
+    } else if (selectedButton === "completed") {
+      url += "booking_event=completed&";
+    } else {
+      url += "booking_status=canceled&";
+    }
     const main = new Listings();
     main
       .BookingHistory(url)
@@ -59,31 +69,39 @@ export default function index() {
       .catch((err) => {
         console.log(err);
       });
+    console.log("listings", listings);
   }, [selectedButton, fetch]);
 
   const BookingTable = () => {
     return (
       <div className="table-responisve">
-        <table className="table-fixed w-full booking-table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Check In</th>
-              <th>Check Out </th>
-              <th>Status </th>
-              <th>Price </th>
-              <th>Action </th>
-            </tr>
-          </thead>
-          {listings &&
-            listings.map((item) => (
-              <tbody>
-                <tr className="">
+        {!listings || listings.length === 0 ? (
+          <NoData
+            Heading={"No Bookings Found"}
+            content={
+              "You have not done any bookings yet. Click below to go to the home page"
+            }
+          />
+        ) : (
+          <table className="table-fixed w-full booking-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>Status</th>
+                <th>Price</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {listings.map((item, index) => (
+                <tr key={index} className="">
                   <td className="flex items-center">
-                    {/* <img src="image_source" alt="alt" /> */}
                     <div className="text ml-2">
-                      <div class="title">{item?.booking_property?.name}</div>
-                      {/* <div class="description">2bhk_description</div> */}
+                      <div className="title">
+                        {item?.booking_property?.name}
+                      </div>
                     </div>
                   </td>
                   <td className="px-4 py-2">{item?.check_in}</td>
@@ -91,25 +109,21 @@ export default function index() {
                   <td className="px-4 py-2">
                     <Button
                       text={`${item?.booking_status}`}
-                      design={
-                        "font-inter text-blue-700 font-medium leading-tight text-center w-32 p-3 rounded-full "
-                      }
+                      design="font-inter text-blue-700 font-medium leading-tight text-center w-32 p-3 rounded-full"
                     />
                   </td>
                   <td className="px-4 py-2">{item?.price}</td>
                   <td className="px-4 py-2">
-                    {" "}
                     <Button
-                      text={"Cancel"}
-                      design={
-                        "font-inter text-red-700 font-medium leading-tight text-center w-32  border-red-500 p-3 rounded-full "
-                      }
+                      text="Cancel"
+                      design="font-inter text-red-700 font-medium leading-tight text-center w-32 border-red-500 p-3 rounded-full"
                     />
                   </td>
                 </tr>
-              </tbody>
-            ))}
-        </table>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     );
   };
@@ -126,7 +140,7 @@ export default function index() {
           </div>
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex flex-col sm:flex-row justify-between">
           <div className="  flex align-items-center my-4 py-2 space-x-4 upcomming-box">
             <Button
               design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${
@@ -199,8 +213,7 @@ export default function index() {
                   </div>
                 ))}
               </div>
-              <div className="mb-4 flex justify-center">
-              </div>
+              <div className="mb-4 flex justify-center"></div>
             </Modal>
           </div>
         </div>
