@@ -8,7 +8,7 @@ import { Context } from "../_app";
 import Wishlist from "../../components/Wishlist";
 import Layout from "../layout/Layout";
 import ThingsToKnow from "./ThingsToKnow";
-import Listings from './../api/laravel/Listings';
+import Listings from '../api/laravel/Listings';
 
 const Listing = () => {
   const router = useRouter();
