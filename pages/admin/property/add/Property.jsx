@@ -32,6 +32,8 @@ export default function Property(props) {
 
   const [images, setImages] = useState([]);
   const [property_type, setproperty_type] = useState("flat");
+  const[locationupdate ,setLocationupdate] =useState([])
+  console.log("locationupdate",locationupdate)
   const [address, setAddress] = useState({
     street_address: "",
     flat_house: "",
@@ -45,6 +47,7 @@ export default function Property(props) {
     longitude: "",
   });
 
+  console.log()
   const handleAddress = (e) => {
     const { name, value } = e.target;
     setAddress({ ...address, [name]: value });
@@ -190,6 +193,7 @@ export default function Property(props) {
           );
           const locationData = response.data;
           console.log("location ", locationData);
+          setLocationupdate(locationData?.address);
           setAddress((address) => ({
             ...address,
             location: locationData.display_name,
@@ -400,19 +404,16 @@ export default function Property(props) {
                   <div class="font-semibold text-gray-400 py-3 text-center">OR</div>
                 </div>
                 <div class="w-full  border border-gray-300 rounded-lg overflow-hidden">
-                  <input defaultValue={address.flat_house} name='flat_house' onChange={handleAddress} type="text" placeholder="Flat, house, etc. (if applicable)" className=" w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={address.flat_house}  name='flat_house' onChange={handleAddress} type="text" placeholder="Flat, house, etc. (if applicable)" className=" w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
                   <input defaultValue={address.street_address} name="street_address" onChange={handleAddress} type="text" placeholder="Street Address" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
                   <input defaultValue={address.nearby} name="nearby" onChange={handleAddress} type="text" placeholder="Nearby Landmark (if applicable)" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                  <input defaultValue={address.district} name="district" onChange={handleAddress} type="text" placeholder="District/Locality" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={address.district} name="district" onChange={handleAddress} type="text"   placeholder="District/Locality" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
                   <input defaultValue={address.city} name="city" onChange={handleAddress} type="text" placeholder="City/Town" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                  <input defaultValue={address.state} name="state" onChange={handleAddress} type="text" placeholder="State" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                  <input defaultValue={address.pin} name="pin" onChange={handleAddress} type="text" placeholder="PIN Code" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={address.state} name="state" onChange={handleAddress}   type="text" placeholder="State" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={address.pin} name="pin"  onChange={handleAddress} type="text" placeholder="PIN Code" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
                 </div>
               </div>
             </div>
-
-
-
             <div className={`${step === 3 ? "" : "display-none"}`}>
               <h2 className="text-3xl text-center font-bold mb-8" >Let's start with the basics</h2>
               <h2 className="text-xl text-center font-bold mb-8" >How many people can stay here?</h2>
