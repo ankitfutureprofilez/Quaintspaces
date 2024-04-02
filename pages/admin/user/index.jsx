@@ -181,10 +181,11 @@ export default function Index() {
                   className="hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700"
                 >
                   <td className="flex gap-2 items-center w-[300px] text-sm py-2 px-2">
+                  
                   <Image
-                  width={30}
-                  height={30}
-                  className="rounded-full border border-2 "
+                  width={35}
+                  height={35}
+                  className=" top-2 right-2 p-1  rounded-full"
                   src={item.image_url ? item.image_url : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"}
                    alt={item.index ? item.index : "0"}
                   />
