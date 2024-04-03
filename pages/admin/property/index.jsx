@@ -44,9 +44,16 @@ export default function Index() {
   };
   
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const togglePopup = () => {
+  // const togglePopup = () => {
+  //   setIsPopupOpen(!isPopupOpen);
+  // };
+
+  console.log("selectedProperty",selectedProperty)
+  const togglePopup = (uuid) => {
+    setSelectedProperty(uuid);
     setIsPopupOpen(!isPopupOpen);
   };
+  
   
   const deleteProperty = (uuid) => {
     const main = new Listing();
@@ -77,6 +84,7 @@ export default function Index() {
         {isLoading ? (
           <div className="flex justify-center items-center h-screen">
               {/* <ListingsLoading /> */} ""
+              Loading.....
           </div>
         ) : (
           <div className="flex flex-wrap px-4 py-5 pt-0">
@@ -123,15 +131,16 @@ export default function Index() {
                             </div>
                           </div>
                         )}
-
-                        <button className="text-normal text-underline btn sort rounded text-gray-500 px-5 py-2 w-full mt-3 cursor-pointer font-medium 0" onClick={()=>togglePopup()} > Edit Property </button>
-                        {isPopupOpen && (
+                        <button className="text-normal text-underline btn sort rounded text-gray-500 px-5 py-2 w-full mt-3 cursor-pointer font-medium 0" onClick={() => togglePopup(item.uuid)}>Edit Property</button>
+                        {isPopupOpen && selectedProperty &&(
                           <>
                             <div className="fixed inset-0 z-50  bg-opacity-50"></div>
                             <div className="fixed updateproperty bg-white inset-0 flex justify-center items-center py-16  overflow-x-auto">
                               <div className="fixed top-4 right-4 p-2 cursor-pointer " onClick={()=>togglePopup()} >&times; Close </div>
                               <div className=" rounded-lg flex flex-col items-center justify-center p-8 property-popup">
-                                <Property isEdit={true} p={item}  />
+                              <Property isEdit={true} propertyUUID={selectedProperty} p={item} />
+
+                                {/* <Property isEdit={true} p={item}  /> */}
                               </div>
                             </div>
                           </>

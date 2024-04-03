@@ -18,8 +18,9 @@ const propertyTypes = [
 
 export default function Property(props) {
 
-  const {  isEdit, p  } = props;
+  const {  isEdit, p  , propertyUUID} = props;
   const { uuid, location, children, adults, properties_type, name, price, description, bedrooms, beds, bathrooms, amenities, property_image } = p ? p : {};
+  consoel.log("propertyUUID",props.propertyUUID)
   console.log("p", props.p);
 
   const router = useRouter();
@@ -205,7 +206,6 @@ export default function Property(props) {
             latitude: latitude.toString(),
             longitude: longitude.toString(),
             street_address:locationData?.address?.road,
-            flat_house:locationData?.address?.suburb ,
             district: locationData?.address?.state_district,
             nearby: locationData?.address?.suburb,
             city: locationData?.address?.city,
