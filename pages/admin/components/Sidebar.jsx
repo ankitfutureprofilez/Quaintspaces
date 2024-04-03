@@ -25,25 +25,25 @@ function Sidebar() {
     };
 
     async function getAuth() {
-          const main = new Listing();
-          const response = main.Adminprofile();
-          response
+        const main = new Listing();
+        const response = main.Adminprofile();
+        response
             .then((res) => {
-              if (res.data.status) {
-                setAuth(res.data.data);
-              }
+                if (res.data.status) {
+                    setAuth(res.data.data);
+                }
             })
             .catch((error) => {
-              console.log("error", error);
+                console.log("error", error);
             });
-        }
-      
+    }
     
     useEffect(() => {
         if(webtoken){
             getAuth();
         }
-      }, []);
+    }, []);
+    
     
       
     return (
