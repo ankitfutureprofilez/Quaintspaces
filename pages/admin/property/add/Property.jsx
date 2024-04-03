@@ -18,10 +18,9 @@ const propertyTypes = [
 
 export default function Property(props) {
 
-  const {  isEdit, p  , propertyUUID} = props;
+  const {  isEdit, p , onClose  } = props;
   const { uuid, location, children, adults, properties_type, name, price, description, bedrooms, beds, bathrooms, amenities, property_image } = p ? p : {};
-  consoel.log("propertyUUID",props.propertyUUID)
-  console.log("p", props.p);
+  console.log("p", props.onClose);
 
   const router = useRouter();
   const [step, setStep] = useState(0);
@@ -140,39 +139,6 @@ export default function Property(props) {
     }
   };
 
-  // const fetchLocationData = async (navigator) => {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(async (position) => {
-  //       const { latitude, longitude } = position.coords;
-  //       try {
-  //         const response = await axios.get(
-  //           `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-  //         );
-  //         const locationData = response.data;
-  //         console.log("location ", locationData)
-  //         setItem((prevProperty) => ({
-  //           ...prevProperty,
-  //           location: locationData.display_name,
-  //           latitude: latitude.toString(),
-  //           longitude: longitude.toString(),
-  //         }));
-  //       } catch (error) {
-  //         console.log('Error fetching data:', error);
-  //       }
-  //     }, () => {
-  //       console.log("Geolocation failed");
-  //     });
-  //   }
-  // };
-
-  const handleLocationInputChange = (event) => {
-    const { name, value } = event.target;
-    setAddress((address) => ({
-      ...address,
-      [name]: value,
-    }));
-  };
-
   const getNavigator = () => {
     if (typeof navigator !== 'undefined') {
       return navigator;
@@ -181,14 +147,9 @@ export default function Property(props) {
       return null;
     }
   };
-  const[locationupdate,setlocationupdate] =useState([])
 
-
-  
-  console.log("locationupdate",locationupdate)
-
-  // Modified fetchLocationData function
   const fetchLocationData = async () => {
+    setLoading(true);
     const navigatorObj = getNavigator();
     if (navigatorObj && navigatorObj.geolocation) {
       navigatorObj.geolocation.getCurrentPosition(async (position) => {
@@ -198,7 +159,6 @@ export default function Property(props) {
             `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
           );
           const locationData = response.data;
-          setlocationupdate(locationData?.address)
           console.log("location ", locationData);
           setAddress((address) => ({
             ...address,
@@ -212,10 +172,14 @@ export default function Property(props) {
             state: locationData?.address?.state,
             pin:locationData?.address?.postcode
           }));
+           setLoading(false);
+
         } catch (error) {
+          setLoading(false);
           console.log('Error fetching data:', error);
         }
       }, () => {
+        setLoading(false);
         console.log("Geolocation failed");
       });
     }
@@ -267,8 +231,14 @@ export default function Property(props) {
     const response = isEdit ? main.propertyedit(uuid, formData) : main.addproperty(formData);
     response.then(res => {
       if (res?.data?.status === true) {
-        toast.success(res.data.message);
-        router.push("/admin/property");
+        if(isEdit){
+          onClose();
+          toast.success(res.data.message);
+        }else{
+          router.push("/admin/property");
+          toast.success(res.data.message);
+
+        }
       } else {
         toast.error(res.data.message);
       }
@@ -389,7 +359,9 @@ export default function Property(props) {
               <div class="table w-full m-auto max-w-[500px] space-y-4 text-center">
                 <p>{address?.location}</p>
                 <div class="w-full mt-4"   >
-                  <button className="btn sort w-full" onClick={fetchLocationData}>Use Current Location</button>
+                  <button className="btn sort w-full" onClick={fetchLocationData}>
+                    {Loading ? "...." : "Use Current Location" }
+                  </button>
 
                 </div>
                 <div class="flex items-center justify-center space-x-4">
@@ -615,7 +587,38 @@ export default function Property(props) {
                 ))}
               </div>
 
-              {isEdit ? "" : <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
+              {isEdit ? 
+              
+              <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
+                <label
+                  htmlFor="dropzone-file"
+                  className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
+                >
+                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                    <Add
+                      size="100"
+                      color="#ccc"
+                    />
+                    <p className="mb-2 text-lg text-gray-500 text-gray-400">
+                      <span className="font-semibold">Click to upload</span> or
+                      drag and drop
+                    </p>
+                    <p className="text-normal text-gray-500 text-gray-400">
+                      Choose atleast 5 images
+                    </p>
+                  </div>
+                  <input
+                    id="dropzone-file"
+                    type="file"
+                    className="hidden"
+                    onChange={handleFileChange}
+                    name="images"
+                    required
+                    multiple
+                  />
+                </label>
+              </div>
+              : <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
                 <label
                   htmlFor="dropzone-file"
                   className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
