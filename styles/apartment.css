@@ -72,3 +72,13 @@ html {
   margin-top: 20px;
   font-weight: 600;
 }
+.star-div input{
+  display: none;
+}
+.star{
+  cursor: pointer;
+}
+.emoji-div{
+  font-size: 50px;
+  justify-content: center;
+}

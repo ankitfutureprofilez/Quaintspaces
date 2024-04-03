@@ -1,7 +1,6 @@
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
-function 
-Heading({ text ,value, handleClick}) {
+function Heading({ text, value, handleClick }) {
   const router = useRouter();
 
   // const record = value ? value:"/account"
@@ -21,7 +20,7 @@ Heading({ text ,value, handleClick}) {
             viewBox="0 0 32 32"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
-            style={{ color: '#3F2A17' }}
+            style={{ color: "#3F2A17" }}
             role="presentation"
             focusable="false"
             className="h-5 w-5 stroke-current"
@@ -31,7 +30,12 @@ Heading({ text ,value, handleClick}) {
             </g>
           </svg>
         </div>
-        <h2 className="sm:text-3xl text-lg font-medium ml-4 text-bold" style={{ color: '#3F2A17' }}>{text}</h2>
+        <h2
+          className="sm:text-3xl text-lg font-medium ml-4 text-bold"
+          style={{ color: "#3F2A17" }}
+        >
+          {text}
+        </h2>
       </div>
     </div>
   );

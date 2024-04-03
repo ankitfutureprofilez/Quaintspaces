@@ -8,7 +8,8 @@ import { Context } from "../_app";
 import Wishlist from "../../components/Wishlist";
 import Layout from "../layout/Layout";
 import ThingsToKnow from "./ThingsToKnow";
-import Listings from './../api/laravel/Listings';
+import Listings from "./../api/laravel/Listings";
+import Heading from "../elements/Heading.js";
 
 const Listing = () => {
   const router = useRouter();
@@ -31,21 +32,22 @@ const Listing = () => {
         data: {},
       });
       const main = new Listings();
-      main.PropertyDetail(slug || "").then((r) => {
-        setrecord({
-          loading: false,
-          data: r.data.data,
+      main
+        .PropertyDetail(slug || "")
+        .then((r) => {
+          setrecord({
+            loading: false,
+            data: r.data.data,
+          });
+          setLoading(false);
+        })
+        .catch((err) => {
+          setrecord({
+            loading: true,
+          });
+          console.log(err);
+          setLoading(false);
         });
-        setLoading(false);
-
-      }).catch((err) => {
-        setrecord({
-          loading: true,
-        });
-        console.log(err);
-        setLoading(false);
-
-      });
     }
   }, [slug]);
 
