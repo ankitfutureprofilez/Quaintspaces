@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import React, { useState } from "react";
 import Modal from "../../pages/elements/Modal";
 import RatingStar from "../../pages/elements/Star";
+import DropReview from "./DropReview";
 
 const Reviews = React.forwardRef(({ data }, ref) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +14,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
   };
 
   const closeModal = () => {
+    console.log("Hello");
     setIsOpen(false);
   };
   return (
@@ -101,37 +103,12 @@ const Reviews = React.forwardRef(({ data }, ref) => {
       </div>
       <div className="flex justify-between">
         <button className="btn-normal mt-8">Show all reviews</button>
+        {/* Add review option */}
         <button className="btn-normal mt-8" onClick={openModal}>
           Drop a review
         </button>
         <Modal isOpen={isOpen} onClose={closeModal}>
-          <div className="mt-10 flex flex-col align-center">
-            <h2
-              className="mb-4 align-center sm:text-3xl text-lg font-medium ml-4 text-bold"
-              style={{ color: "#3F2A17" }}
-            >
-              Your Rating
-            </h2>
-            <RatingStar />
-            <div className="my-10">
-              <label
-                htmlFor="review"
-                className="block text-lg font-medium text-gray-700"
-              >
-                Please drop your detailed review
-              </label>
-              <textarea
-                id="review"
-                name="review"
-                // value={formData.review}
-                // onChange={handleChange}
-                className="mt-1 p-4 border rounded-lg w-full"
-                required
-                rows={4} // Set the number of rows as needed
-              />
-            </div>
-            <button className="filter btn mb-4 mx-auto"> Submit</button>
-          </div>
+        <DropReview closeModal={closeModal}/>
         </Modal>
       </div>
     </section>
