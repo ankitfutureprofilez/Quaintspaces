@@ -48,6 +48,8 @@ export default function Property(props) {
     longitude: l && l.longitude ? l.longitude : "",
   });
 
+  console.log("address",address)
+
   const handleAddress = (e) => {
     const { name, value } = e.target;
     setAddress({ ...address, [name]: value });
@@ -138,7 +140,8 @@ export default function Property(props) {
       }));
     }
   };
-
+const[locationupdate,setLocationupdate] =useState([])
+console.log("locationupdate",locationupdate)
   const getNavigator = () => {
     if (typeof navigator !== 'undefined') {
       return navigator;
@@ -153,31 +156,59 @@ export default function Property(props) {
     const navigatorObj = getNavigator();
     if (navigatorObj && navigatorObj.geolocation) {
       navigatorObj.geolocation.getCurrentPosition(async (position) => {
-        const { latitude, longitude } = position.coords;
-        try {
-          const response = await axios.get(
-            `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-          );
-          const locationData = response.data;
-          console.log("location ", locationData);
-          setAddress((address) => ({
-            ...address,
-            location: locationData.display_name,
-            latitude: latitude.toString(),
-            longitude: longitude.toString(),
-            street_address:locationData?.address?.road,
-            district: locationData?.address?.state_district,
-            nearby: locationData?.address?.suburb,
-            city: locationData?.address?.city,
-            state: locationData?.address?.state,
-            pin:locationData?.address?.postcode
-          }));
-           setLoading(false);
-
-        } catch (error) {
-          setLoading(false);
-          console.log('Error fetching data:', error);
+        if(isEdit){
+          try {
+            const response = await axios.get(
+              `https://nominatim.openstreetmap.org/reverse?lat=${address?.latitude}&lon=${address?.longitude}&format=json`
+            );
+            const locationData = response.data;
+            console.log("locatxxxxxizzzzon ", locationData);
+            setLocationupdate(locationData?.address)
+            setAddress((address) => ({
+              ...address,
+              location: locationData?.display_name,
+              latitude: latitude?.toString(),
+              longitude: longitude.toString(),
+              street_address:locationData?.address?.road,
+              district: locationData?.address?.state_district,
+              nearby: locationData?.address?.suburb,
+              city: locationData?.address?.city,
+              state: locationData?.address?.state,
+              pin:locationData?.address?.postcode
+            }));
+             setLoading(false);
+  
+          } catch (error) {
+            setLoading(false);
+            console.log('Error fetching data:', error);
+          }
+        }else{
+          try {
+            const response = await axios.get(
+              `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+            );
+            const locationData = response.data;
+            console.log("location ", locationData);
+            setAddress((address) => ({
+              ...address,
+              location: locationData.display_name,
+              latitude: latitude.toString(),
+              longitude: longitude.toString(),
+              street_address:locationData?.address?.road,
+              district: locationData?.address?.state_district,
+              nearby: locationData?.address?.suburb,
+              city: locationData?.address?.city,
+              state: locationData?.address?.state,
+              pin:locationData?.address?.postcode
+            }));
+             setLoading(false);
+  
+          } catch (error) {
+            setLoading(false);
+            console.log('Error fetching data:', error);
+          }
         }
+        const { latitude, longitude } = position.coords;
       }, () => {
         setLoading(false);
         console.log("Geolocation failed");
@@ -198,15 +229,12 @@ export default function Property(props) {
   };
 
   async function handleSubmit(e) {
-
     console.log("item", { ...item, address, propertytype: PType, images });
-
     e.preventDefault();
     if (!isEdit && step === 5 && images?.length < 5) {
       toast.error("Please select at least five images.");
       return false;
     }
-
     setLoading(true);
     const main = new Listing();
     const formData = new FormData();
@@ -367,15 +395,26 @@ export default function Property(props) {
                 <div class="flex items-center justify-center space-x-4">
                   <div class="font-semibold text-gray-400 py-3 text-center">OR</div>
                 </div>
-                <div class="w-full  border border-gray-300 rounded-lg overflow-hidden">
-                  <input defaultValue={address.flat_house}  name='flat_house' onChange={handleAddress} type="text" placeholder="Flat, house, etc. (if applicable)" className=" w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                  <input defaultValue={address.street_address} name="street_address" onChange={handleAddress} type="text" placeholder="Street Address" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                  <input defaultValue={address.nearby} name="nearby" onChange={handleAddress} type="text" placeholder="Nearby Landmark (if applicable)" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                  <input defaultValue={address.district} name="district" onChange={handleAddress} type="text"   placeholder="District/Locality" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                  <input defaultValue={address.city} name="city" onChange={handleAddress} type="text" placeholder="City/Town" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                  <input defaultValue={address.state} name="state" onChange={handleAddress}   type="text" placeholder="State" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                  <input defaultValue={address.pin} name="pin"  onChange={handleAddress} type="text" placeholder="PIN Code" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                </div>
+                {isEdit ? (    <div class="w-full  border border-gray-300 rounded-lg overflow-hidden">
+                  <input defaultValue={locationupdate.flat_house}  name='flat_house' onChange={handleAddress} type="text" placeholder="Flat, house, etc. (if applicable)" className=" w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={locationupdate.street_address} name="street_address" onChange={handleAddress} type="text" placeholder="Street Address" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={locationupdate.nearby} name="nearby" onChange={handleAddress} type="text" placeholder="Nearby Landmark (if applicable)" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={locationupdate.district} name="district" onChange={handleAddress} type="text"   placeholder="District/Locality" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={locationupdate.city} name="city" onChange={handleAddress} type="text" placeholder="City/Town" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={locationupdate.state} name="state" onChange={handleAddress}   type="text" placeholder="State" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  <input defaultValue={locationupdate.pin} name="pin"  onChange={handleAddress} type="text" placeholder="PIN Code" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                </div>) : (
+                      <div class="w-full  border border-gray-300 rounded-lg overflow-hidden">
+                      <input defaultValue={address.flat_house}  name='flat_house' onChange={handleAddress} type="text" placeholder="Flat, house, etc. (if applicable)" className=" w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                      <input defaultValue={address.street_address} name="street_address" onChange={handleAddress} type="text" placeholder="Street Address" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                      <input defaultValue={address.nearby} name="nearby" onChange={handleAddress} type="text" placeholder="Nearby Landmark (if applicable)" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                      <input defaultValue={address.district} name="district" onChange={handleAddress} type="text"   placeholder="District/Locality" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                      <input defaultValue={address.city} name="city" onChange={handleAddress} type="text" placeholder="City/Town" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                      <input defaultValue={address.state} name="state" onChange={handleAddress}   type="text" placeholder="State" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                      <input defaultValue={address.pin} name="pin"  onChange={handleAddress} type="text" placeholder="PIN Code" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                    </div>
+                ) }
+            
               </div>
             </div>
             <div className={`${step === 3 ? "" : "display-none"}`}>
