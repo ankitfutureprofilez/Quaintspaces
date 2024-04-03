@@ -59,7 +59,8 @@ function index() {
         
             </div>
 
-          <div className="mt-5 container mx-auto ">
+          <div className="
+           container mx-auto ">
             {activeTab === 'Booking' && (
               <div className ="container mx-auto">
                 <Booking record = {record?.id}/>

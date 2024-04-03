@@ -1,193 +1,91 @@
-import react,  { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Listing from "../api/Listing";
 import Image from "next/image";
 
-export default function booking({record}) {
+export default function Booking({ record }) {
+  const [content, setContent] = useState("");
 
-    const[content ,setContent] =useState("")
-  useEffect(()=>{
-    const main =  new Listing();
-    const response = main.booking(record)
-    response.then((res)=>{
-      console.log("res",res)
-      setContent(res?.data?.data)
-    }).catch((error)=>{
-      console.log("error",error)
-    })
-  },[record])
+  useEffect(() => {
+    const main = new Listing();
+    const response = main.booking(record);
+    response
+      .then((res) => {
+        console.log("res", res);
+        setContent(res?.data?.data?.user_booking_history);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  }, [record]);
 
   return (
-    <div>
-         <table className="w-full  text-sm rounded-md">
-            <thead>
-              <tr className="bg-gray-100 rounded-lg flex items-center justify-between text-gray-500">
-                <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                  Name
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      strokeLinejoin="round"
-                      stroke-miterlimit="10"
-                      stroke-width="1.5"
-                      d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"
-                    ></path>
-                  </svg>
-                </th>
-                <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                  Phone Number
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      strokeLinejoin="round"
-                      stroke-miterlimit="10"
-                      stroke-width="1.5"
-                      d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"
-                    ></path>
-                  </svg>
-                </th>
-                <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                Status
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      strokeLinejoin="round"
-                      stroke-miterlimit="10"
-                      stroke-width="1.5"
-                      d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"
-                    ></path>
-                  </svg>
-                </th>
-                <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                  Details
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      strokeLinejoin="round"
-                      stroke-miterlimit="10"
-                      stroke-width="1.5"
-                      d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"
-                    ></path>
-                  </svg>
-                </th>
+    <div className="w-screen">
+      <div className="mx-auto mt-8 ">
+        <div className="sm:flex sm:items-center sm:justify-between flex-col sm:flex-row">
+          <p className="flex-1 text-base font-bold text-gray-900">Booking history </p>
+
+          <div className="mt-4 sm:mt-0">
+            <div className="flex items-center justify-start sm:justify-end">
+              <div className="flex items-center">
+                <label htmlFor="" className="mr-2 flex-shrink-0 text-sm font-medium text-gray-900"> Sort by: </label>
+                <select name="" className="sm: mr-4 block w-full whitespace-pre rounded-lg border p-1 pr-10 text-base outline-none focus:shadow sm:text-sm">
+                  <option className="whitespace-no-wrap text-sm">Recent</option>
+                </select>
+              </div>
+
+              <button type="button" className="inline-flex cursor-pointer items-center rounded-lg border border-gray-400 bg-white py-2 px-3 text-center text-sm font-medium text-gray-800 shadow hover:bg-gray-100 focus:shadow">
+                <svg className="mr-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" className=""></path>
+                </svg>
+                Export to CSV
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 overflow-hidden rounded-xl border shadow">
+          <table className="min-w-full border-separate border-spacing-y-2 border-spacing-x-2">
+            <thead className="hidden border-b lg:table-header-group">
+              <tr className="">
+                <td width="50%" className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Check in & checkout Time </td>
+
+                <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6"> booking Date</td>
+
+                <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Amount</td>
+
+                <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Status</td>
               </tr>
             </thead>
 
-            <tbody className="space-y-2 divide-y">
-                <tr
-                  className="hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700"
-                >
-                  <td className="flex gap-2 items-center w-[300px] text-sm py-2 px-2">
-                  <Image
-                  width={30}
-                  height={30}
-                  className="rounded-full border border-2 "
-                  src={ "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"}
-                   alt={"0"}
-                  />
-                    <div>
-                      <div className="text-gray-800 font-medium">
-                        {/* {item.name} */}
-                      </div>
-                      <div className="text-sm">
-                        {/* {item.email} */}
-                        </div>
+            <tbody className="lg:border-gray-300">
+              {content && content.map((item, index) => (
+                <tr className="" key={index}>
+                  <td width="50%" className="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6">
+                    {item?.check_in}
+                    <div className="mt-1 lg:hidden">
+                      <p className="font-normal text-gray-500">{item?.check_out}</p>
                     </div>
                   </td>
-                  <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                    {/* {item.phone_no ? item.phone_no : ""} */}
-                  </td>
-                  <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                  
-                  </td>
+
+                  <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">07 February, 2022</td>
+
+                  <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">{item?.booking_number}</td>
 
 
-                  <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                    <div  classname=" ">
-                      <svg
-                        width="32px"
-                        height="32px"
-                        viewBox="0 0 24 24"
-                        id="three-dots"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g
-                          id="_20x20_three-dots--grey"
-                          data-name="20x20/three-dots--grey"
-                          transform="translate(24) rotate(90)"
-                        >
-                          <rect
-                            id="Rectangle"
-                            width="24"
-                            height="24"
-                            fill="none"
-                          />
-                          <circle
-                            id="Oval"
-                            cx="1"
-                            cy="1"
-                            r="1"
-                            transform="translate(5 11)"
-                            stroke="#000000"
-                            stroke-miterlimit="10"
-                            stroke-width="0.5"
-                          />
-                          <circle
-                            id="Oval-2"
-                            data-name="Oval"
-                            cx="1"
-                            cy="1"
-                            r="1"
-                            transform="translate(11 11)"
-                            stroke="#000000"
-                            stroke-miterlimit="10"
-                            stroke-width="0.5"
-                          />
-                          <circle
-                            id="Oval-3"
-                            data-name="Oval"
-                            cx="1"
-                            cy="1"
-                            r="1"
-                            transform="translate(17 11)"
-                            stroke="#000000"
-                            stroke-miterlimit="10"
-                            stroke-width="0.5"
-                          />
-                        </g>
-                      </svg>
-                    </div>
+                  <td className="whitespace-no-wrap py-4 px-6 text-right text-sm text-gray-600 lg:text-left">
+                    {item?.price}
+                    <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-blue-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">{item?.booking_status}</div>
+                  </td>
+
+                  <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
+                    <div className="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">{item?.booking_status}</div>
                   </td>
                 </tr>
+              ))}
             </tbody>
           </table>
+        </div>
+      </div>
     </div>
-  )
+  );
 }

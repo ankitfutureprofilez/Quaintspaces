@@ -91,8 +91,8 @@ export default function Index() {
   return (
     <AdminLayout heading={"User List "}>
       <div className="p-4 w-full md:p-6 space-y-4">
-        <div className="w-full overflow-x-auto">
-          <table className="w-full overflow-x-auto text-sm rounded-md">
+        <div className="w-full ">
+          <table className="w-full  text-sm rounded-md">
             <thead>
               <tr className="bg-gray-100 rounded-lg flex items-center justify-between text-gray-500">
                 <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
@@ -134,7 +134,7 @@ export default function Index() {
                   </svg>
                 </th>
                 <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                Status
+                  Status
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="12"
@@ -181,14 +181,14 @@ export default function Index() {
                   className="hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700"
                 >
                   <td className="flex gap-2 items-center w-[300px] text-sm py-2 px-2">
-                  
-                  <Image
-                  width={35}
-                  height={35}
-                  className=" top-2 right-2 p-1  rounded-full"
-                  src={item.image_url ? item.image_url : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"}
-                   alt={item.index ? item.index : "0"}
-                  />
+
+                    <Image
+                      width={35}
+                      height={35}
+                      className=" top-2 right-2 p-1  rounded-full"
+                      src={item.image_url ? item.image_url : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"}
+                      alt={item.index ? item.index : "0"}
+                    />
                     <div>
                       <div className="text-gray-800 font-medium">
                         {item.name}
@@ -251,7 +251,10 @@ export default function Index() {
 
 
                   <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                    <div onClick={() => handleRowClick(item.id)} classname=" ">
+                    <div
+                      onClick={() => handleRowClick(item.id)}
+                      className="cursor-pointer flex items-center justify-center rounded-full p-2 hover:bg-gray-200"
+                    >
                       <svg
                         width="32px"
                         height="32px"
@@ -305,6 +308,7 @@ export default function Index() {
                         </g>
                       </svg>
                     </div>
+
                   </td>
                   {popupOpen === item.id && selectedRowData && (
                     <Popup
@@ -316,9 +320,9 @@ export default function Index() {
                       btnclass="bg-blue-500 text-white rounded-full"
                       buttontext="Open Popup"
                     >
-                      <div className = "flex items-center justify-center border border-2 rounded-full mb-5  text-gray-700 block px-4 py-2 text-sm" >
+                      <div className="flex items-center justify-center border border-2 rounded-full mb-5  text-gray-700 block px-4 py-2 text-sm" >
                         <Link href={`user/${item.id}`}>
-                        user details
+                          user details
                         </Link>
                       </div>
                       <div className="flex items-center justify-center gap-1  p-1 border border-2 rounded-full ">
