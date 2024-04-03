@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import Property  from  "./add/Property"
 import Modal  from  "../hook/Modal"
+import NoRecord from  "../hook/NoRecord"
 import AdminLayout from "../AdminLayout"; // Assuming this is a custom layout component
 // import ListingsLoading from "../components/Loading/ListingsLoading"; // Assuming this is a custom layout component
 
@@ -151,7 +152,7 @@ export default function Index() {
 
             ) : (
 
-              <p> No Rcecord Found !!</p>
+              <NoRecord heading ={"No Record Found !!"} />
             ) }
             {
               

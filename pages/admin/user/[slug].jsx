@@ -25,8 +25,9 @@ function index() {
   const [activeTab, setActiveTab] = useState('Booking')
 
   return (
-    <AdminLayout >
-      <div className="bg-gray-300 antialiased">
+    <AdminLayout heading ={"User Details  "}>
+
+      <div className="bg-gray-300 antialiased mt-40">
       <div className="container mx-auto my-20">
         <div>
           <div className=" relative shadow rounded-lg w-5/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto">
