@@ -1,0 +1,192 @@
+import React, { useState } from "react";
+import RatingStar from "../../pages/elements/Star";
+import toast from "react-hot-toast";
+import Listings from "../../pages/api/laravel/Listings";
+import { useRouter } from "next/router";
+
+const DropReview = ({closeModal}) => {
+  const [clean, setClean] = useState(0);
+  const [communcation, setCommuncation] = useState(0);
+  const [checkin, setCheckin] = useState(0);
+  const [accuracy, setAccuracy] = useState(0);
+  const [location, setlocation] = useState(0);
+  const [value, setValue] = useState(0);
+  const [mainRating, setMainRating] = useState(0);
+  const [reviewText, setReviewText] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
+  const id = router.query.slug;
+
+  const handleChange = (event) => {
+    setReviewText(event.target.value);
+  };
+
+  const handleSubmit = async () => {
+    if (loading) return;
+    setLoading(true);
+    try {
+      if (mainRating === 0 || reviewText.trim() === "") {
+        toast.error("Please fill in all the required fields.");
+        setLoading(false);
+        return;
+      }
+      const main = new Listings();
+      const response = await main.AddRating({
+        properties_uuId: id,
+        review_text: reviewText,
+        rating: mainRating,
+        cleaning: clean,
+        accuracy: accuracy,
+        check_in: checkin,
+        communication: communcation,
+        location: location,
+        value: value,
+      });
+      if (response && response.data && response.data.status) {
+        toast.success(response.data.message);
+        closeModal && closeModal();
+      } else {
+        toast.error(response?.data?.message || "Something went wrong.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("An error occurred. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="mt-6 flex flex-col align-center w-full">
+      <h1 className="mb-8 mx-auto align-center sm:text-2xl text-md font-medium text-bold">
+        Please drop your review
+      </h1>
+      <div className="flex items-center mb-4">
+        <h2
+          className="mr-4 w-1/2 align-center sm:text-xl text-base font-medium"
+          style={{ color: "#3F2A17" }}
+        >
+          Cleanliness
+        </h2>
+        <RatingStar
+          rating={clean}
+          setRating={setClean}
+          showemoji={false}
+          className="w-1/2"
+        />
+      </div>
+      <div className="flex items-center mb-4">
+        <div className="w-1/2">
+          <h2
+            className="mr-4 align-center sm:text-xl text-base font-medium"
+            style={{ color: "#3F2A17" }}
+          >
+            Communication
+          </h2>
+        </div>
+        <div className="w-1/2">
+          <RatingStar
+            rating={communcation}
+            setRating={setCommuncation}
+            showemoji={false}
+          />
+        </div>
+      </div>
+      <div className="flex items-center mb-4">
+        <h2
+          className="mr-4 w-1/2 align-center sm:text-xl text-base font-medium"
+          style={{ color: "#3F2A17" }}
+        >
+          Check-in
+        </h2>
+        <RatingStar
+          rating={checkin}
+          setRating={setCheckin}
+          showemoji={false}
+          className="w-1/2"
+        />
+      </div>
+      <div className="flex items-center mb-4">
+        <h2
+          className="mr-4 w-1/2 align-center sm:text-xl text-base font-medium"
+          style={{ color: "#3F2A17" }}
+        >
+          Accuracy
+        </h2>
+        <RatingStar
+          rating={accuracy}
+          setRating={setAccuracy}
+          showemoji={false}
+          className="w-1/2"
+        />
+      </div>
+      <div className="flex items-center mb-4">
+        <h2
+          className="mr-4 w-1/2 align-center sm:text-xl text-base font-medium"
+          style={{ color: "#3F2A17" }}
+        >
+          Location
+        </h2>
+        <RatingStar
+          rating={location}
+          setRating={setlocation}
+          showemoji={false}
+          className="w-1/2"
+        />
+      </div>
+      <div className="flex items-center mb-4">
+        <h2
+          className="mr-4 w-1/2 align-center sm:text-xl text-base font-medium"
+          style={{ color: "#3F2A17" }}
+        >
+          Value
+        </h2>
+        <RatingStar
+          rating={value}
+          setRating={setValue}
+          showemoji={false}
+          className="w-1/2"
+        />
+      </div>
+      <div className="flex items-end mb-4">
+        <h2
+          className="mr-4 w-1/2 align-center sm:text-xl text-base font-medium"
+          style={{ color: "#3F2A17" }}
+        >
+          Overall Rating
+        </h2>
+        <div className="flex flex-col">
+          <RatingStar
+            rating={mainRating}
+            setRating={setMainRating}
+            showemoji={true}
+            className="w-1/2"
+          />
+        </div>
+      </div>
+      <div className="my-10">
+        <label
+          htmlFor="review"
+          className="block text-lg font-medium text-gray-700"
+        >
+          Please drop your detailed review
+        </label>
+        <textarea
+          id="review"
+          name="review"
+          value={reviewText}
+          onChange={handleChange}
+          className="mt-1 p-4 border rounded-lg w-full"
+          required
+          rows={4} // Set the number of rows as needed
+        />
+      </div>
+      <button onClick={handleSubmit} className="filter btn mb-4 mx-auto">
+        {loading ? "Submitting..." :"Submit"}
+      </button>
+    </div>
+  );
+};
+
+export default DropReview;

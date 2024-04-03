@@ -1,14 +1,14 @@
-import { Header, SingleListingBody } from "../../components";
+import { Header, SingleListingBody } from "../../components/index.js";
 import { useContext, useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Footer from "../../components/Footer";
+import Footer from "../../components/Footer.jsx";
 import axios from "axios";
-import { Context } from "../_app";
-import Wishlist from "../../components/Wishlist";
-import Layout from "../layout/Layout";
-import ThingsToKnow from "./ThingsToKnow";
-import Listings from "./../api/laravel/Listings";
+import { Context } from "../_app.js";
+import Wishlist from "../../components/Wishlist.jsx";
+import Layout from "../layout/Layout.js";
+import ThingsToKnow from "./ThingsToKnow.js";
+import Listings from "../api/laravel/Listings.js";
 import Heading from "../elements/Heading.js";
 
 const Listing = () => {
