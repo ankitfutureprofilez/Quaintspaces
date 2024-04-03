@@ -53,8 +53,8 @@ class Listings extends Component {
   async GetUserReview(data) {
     return Api.get("/rating-Review-listing/"+ data);
   }
-  async AllReviews(data) {
-    return Api.get("/property-Rating"+ data);
+  async AllReviews(data, page =1) {
+    return Api.get(`/property-Rating/${data}?page=${page}`);
   }
 
   render() {
