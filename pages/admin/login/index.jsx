@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import Listing from "../api/Listing";
 import { useContext } from 'react';
 import { Context } from "../../_app";
+import Link  from  "next/link"
 
 export default function Login() {
 
@@ -103,11 +104,11 @@ export default function Login() {
                     Remember me
                   </label>
                 </div>
-                <div className="text-sm">
-                  <a href="#" className="text-indigo-400 hover:text-indigo-500">
+                {/* <div className="text-sm">
+                  <Link href="#" className="text-indigo-400 hover:text-indigo-500">
                     Forgot your password?
-                  </a>
-                </div>
+                  </Link>
+                </div> */}
             </div>
             </div>
             <div>

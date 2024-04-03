@@ -24,23 +24,26 @@ function Sidebar() {
         setIsMobileSidebarOpen(prevState => !prevState);
     };
 
-    async function getAuth () { 
-        if(webtoken){
-            const main = new Listing();
-           const response =  main.Adminprofile();
-          response.then((res) => {
-            if (res.data.status) {
-              setAuth(res.data.data);
-            } 
-          }).catch((error) => {
-            console.log("error", error);
-          });
-        }
-      }
+    async function getAuth() {
+        const main = new Listing();
+        const response = main.Adminprofile();
+        response
+            .then((res) => {
+                if (res.data.status) {
+                    setAuth(res.data.data);
+                }
+            })
+            .catch((error) => {
+                console.log("error", error);
+            });
+    }
     
     useEffect(() => {
-        getAuth();
-      }, []);
+        if(webtoken){
+            getAuth();
+        }
+    }, []);
+    
     
       
     return (
@@ -69,7 +72,7 @@ function Sidebar() {
                             <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M12 3.1875L21.4501 10.275L21.0001 11.625H20.25V20.25H3.75005V11.625H3.00005L2.55005 10.275L12 3.1875ZM5.25005 10.125V18.75H18.75V10.125L12 5.0625L5.25005 10.125Z" fill="#080341"/>
                             </svg>
-                            Property Add
+                             Add Property
                         </Link>
 
                         <Link href={'/admin/property'} className={`flex ${pathname === '/admin/property' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
@@ -78,7 +81,9 @@ function Sidebar() {
                         </Link>
 
                         <Link href={'/admin/user'} className={`flex ${pathname === '/admin/user' ? 'text-primary' : ''} hover:px-8 duration-200 px-6 py-2 items-center gap-2`}>
-                            <Setting4 size={16} />
+                        <svg fill="#000000" width="16px" height="16px" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+  <path d="M148,80a4.0002,4.0002,0,0,1,4-4h96a4,4,0,0,1,0,8H152A4.0002,4.0002,0,0,1,148,80Zm100,44H152a4,4,0,0,0,0,8h96a4,4,0,0,0,0-8Zm0,48H176a4,4,0,0,0,0,8h72a4,4,0,0,0,0-8ZM145.85742,191.00293a3.9998,3.9998,0,1,1-7.74707,1.99414,60.02112,60.02112,0,0,0-116.2207,0,3.9998,3.9998,0,1,1-7.74707-1.99414,67.92968,67.92968,0,0,1,45.65381-47.93555,44,44,0,1,1,40.40722,0A67.92968,67.92968,0,0,1,145.85742,191.00293ZM80,140a36,36,0,1,0-36-36A36.04061,36.04061,0,0,0,80,140Z"/>
+</svg>
                             User List
                         </Link>
                     </div>

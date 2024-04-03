@@ -13,7 +13,7 @@ import MoreIcon from '../assets/icons/more.svg';
 
 function MembersTable() {
     return (
-        <div className='w-full overflow-x-auto'>
+        <div className='w-full'>
        <table class="table-auto">
   <thead>
     <tr>

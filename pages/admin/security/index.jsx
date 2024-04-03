@@ -6,7 +6,7 @@ import AdminLayout from "../AdminLayout";
 import Element from "../element";
 import Link from 'next/link';
 
-export default function Security() {
+export default function index() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({

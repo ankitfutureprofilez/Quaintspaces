@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import AdminLayout from "../AdminLayout";
 import Element from "../element";
 import Link from "next/link"
+import Booking from "./booking"
+import { motion } from 'framer-motion'
 
 function index() {
   const Router = useRouter();
@@ -20,6 +22,8 @@ function index() {
     });
   }, [slug]);
 
+  const [activeTab, setActiveTab] = useState('Booking')
+
   return (
     <AdminLayout >
       <div className="bg-gray-300 antialiased">
@@ -34,55 +38,43 @@ function index() {
               <h1 className="font-bold text-center  text-3xl text-white-900"> {record?.name}</h1>
               <p className="text-center text-sm text-white-400 font-medium">{record?.email}</p>
               <p className="text-center text-sm text-white-400 font-medium">{record?.phone_no}</p>
-              {/* <div className="my-5 px-6">
-                <Link href="#" className="text-gray-200 block rounded-lg text-center font-medium leading-6 px-6 py-3 bg-gray-900 hover:bg-black hover:text-white">Connect with <span className="font-bold">@pantazisoft</span></Link>
-              </div> */}
-              {/* <div className="flex justify-between items-center my-5 px-6">
-                <Link href="" className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3">Facebook</Link>
-                <Link href="" className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3">Twitter</Link>
-                <Link href="" className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3">Instagram</Link>
-                <Link href="" className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded transition duration-150 ease-in font-medium text-sm text-center w-full py-3">Email</Link>
-              </div> */}
-
-              {/* <div className="w-full">
-                <h3 className="font-medium text-gray-900 text-left px-6">Recent activites</h3>
-                <div className="mt-5 w-full flex flex-col items-center overflow-hidden text-sm">
-                  <Link href="#" className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150">
-                    <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt="" className="rounded-full h-6 shadow-md inline-block mr-2" />
-                    Updated his status
-                    <span className="text-gray-500 text-xs">24 min ago</span>
-                  </Link>
-
-                  <Link href="#" className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150">
-                    <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt="" className="rounded-full h-6 shadow-md inline-block mr-2" />
-                    Added new profile picture
-                    <span className="text-gray-500 text-xs">42 min ago</span>
-                  </Link>
-
-                  <Link href="#" className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150">
-                    <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt="" className="rounded-full h-6 shadow-md inline-block mr-2" />
-                    Posted new article in <span className="font-bold">#Web Dev</span>
-                    <span className="text-gray-500 text-xs">49 min ago</span>
-                  </Link>
-
-                  <Link href="#" className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150">
-                    <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt="" className="rounded-full h-6 shadow-md inline-block mr-2" />
-                    Edited website settings
-                    <span className="text-gray-500 text-xs">1 day ago</span>
-                  </Link>
-
-                  <Link href="#" className="w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150 overflow-hidden">
-                    <img src="https://avatars0.githubusercontent.com/u/35900628?v=4" alt="" className="rounded-full h-6 shadow-md inline-block mr-2" />
-                    Added new rank
-                    <span className="text-gray-500 text-xs">5 days ago</span>
-                  </Link>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div className='flex text-xl font-medium relative p-4 rounded-lg py-2'>
+                <button onClick={() => setActiveTab('Booking')} className={`z-10 w-full px-4 py-2 ${activeTab === 'overview' ? '' : ''}`}>Booking</button>
+                <button onClick={() => setActiveTab('payment')} className={`z-10 w-full  px-4 py-3   rounded-lg ${activeTab === 'payment' ? '' : ''}`}>Payment </button>
+                <button onClick={() => setActiveTab('rewards')} className={`z-10 w-full px-2 py-2  ${activeTab === 'rewards' ? '' : ''}`}></button>
+
+                <div className='absolute items-center px-1 top-0 left-0 w-full h-full flex'>
+                    <motion.div
+                        animate={{ x: activeTab === 'Booking' ? 0 : activeTab === 'rewards' ? '200%' : '100%' }}
+                        className='w-1/3 bg-white border h-7 rounded-lg transform'
+                    />
+                </div>
+
+        
+            </div>
+
+          <div className="
+           container mx-auto ">
+            {activeTab === 'Booking' && (
+              <div className ="container mx-auto">
+                <Booking record = {record?.id}/>
+              </div>
+            )}
+            {activeTab === 'Payment' && (
+              <div>
+              </div>
+            )}
+            {activeTab === 'Rewards' && (
+              <div>
+              </div>
+            )}
+          </div>
     </AdminLayout>
   );
 }

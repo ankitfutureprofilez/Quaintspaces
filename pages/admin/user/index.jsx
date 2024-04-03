@@ -3,8 +3,6 @@ import AdminLayout from "../AdminLayout";
 import Listing from "../api/Listing";
 import Spinner from "../hook/spinner";
 import Popup from "../hook/Popup";
-
-import Element from "../element";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import Image from "next/image";
@@ -93,8 +91,8 @@ export default function Index() {
   return (
     <AdminLayout heading={"User List "}>
       <div className="p-4 w-full md:p-6 space-y-4">
-        <div className="w-full overflow-x-auto">
-          <table className="w-full overflow-x-auto text-sm rounded-md">
+        <div className="w-full ">
+          <table className="w-full  text-sm rounded-md">
             <thead>
               <tr className="bg-gray-100 rounded-lg flex items-center justify-between text-gray-500">
                 <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
@@ -155,46 +153,7 @@ export default function Index() {
                   </svg>
                 </th>
                 <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                  Action
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      strokeLinejoin="round"
-                      stroke-miterlimit="10"
-                      stroke-width="1.5"
-                      d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"
-                    ></path>
-                  </svg>
-                </th>
-                <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
                   Details
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      strokeLinejoin="round"
-                      stroke-miterlimit="10"
-                      stroke-width="1.5"
-                      d="M9.01 20.5l-5.02-5.01M9.01 3.5v17M14.99 3.5l5.02 5.01M14.99 20.5v-17"
-                    ></path>
-                  </svg>
-                </th>
-
-                <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                  Actions
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="12"
@@ -221,32 +180,25 @@ export default function Index() {
                   key={index}
                   className="hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700"
                 >
-                  <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+                  <td className="flex gap-2 items-center w-[300px] text-sm py-2 px-2">
+
                     <Image
-                      width={80}
-                      height={80}
-                      className="w-8 rounded-full"
-                      src={
-                        item.image_url
-                          ? item.image_url
-                          : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"
-                      }
+                      width={35}
+                      height={35}
+                      className=" top-2 right-2 p-1  rounded-full"
+                      src={item.image_url ? item.image_url : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"}
                       alt={item.index ? item.index : "0"}
                     />
                     <div>
                       <div className="text-gray-800 font-medium">
                         {item.name}
                       </div>
-                      <div className="text-xs">{item.email}</div>
+                      <div className="text-sm">{item.email}</div>
                     </div>
                   </td>
                   <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
                     {item.phone_no ? item.phone_no : ""}
                   </td>
-                  <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                    {item.status === 0 ? "DeActivate " : "Activate"}
-                  </td>
-
                   <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
                     <div className="flex items-center gap-1  p-1">
                       <button
@@ -255,7 +207,7 @@ export default function Index() {
                         }
                       >
                         {item.status === 0 ? (
-                          <div className="flex items-center gap-1 border rounded-full p-1">
+                          <div className="flex items-center gap-2 border rounded-full p-2">
                             <p className="text-xs">Deactivate</p>{" "}
                             <svg
                               class="text-gray-400"
@@ -299,7 +251,10 @@ export default function Index() {
 
 
                   <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                    <div onClick={() => handleRowClick(item.id)}>
+                    <div
+                      onClick={() => handleRowClick(item.id)}
+                      className="cursor-pointer flex items-center justify-center rounded-full p-2 hover:bg-gray-200"
+                    >
                       <svg
                         width="32px"
                         height="32px"
@@ -359,27 +314,26 @@ export default function Index() {
                     <Popup
                       isOpen={true}
                       setisOpen={togglePopup}
-                      text="User Details"
+                      // text="User Details"
                       togglePopup={() => togglePopup(item.id)}
-                      space={4}
-                      btnclass="bg-blue-500 text-white px-4 py-2 rounded-md"
+                      space={2}
+                      btnclass="bg-blue-500 text-white rounded-full"
                       buttontext="Open Popup"
-                      footer={<button onClick={() => togglePopup(item.id)}>Close</button>}
                     >
-                      <div>
+                      <div className="flex items-center justify-center border border-2 rounded-full mb-5  text-gray-700 block px-4 py-2 text-sm" >
                         <Link href={`user/${item.id}`}>
-                          user detilas
+                          user details
                         </Link>
                       </div>
-                      <div className="flex items-center gap-1  p-1">
+                      <div className="flex items-center justify-center gap-1  p-1 border border-2 rounded-full ">
                         <button
                           onClick={() =>
                             statusUpdate(item.id, item.status === 0 ? 1 : 0)
                           }
                         >
                           {item.status === 0 ? (
-                            <div className="flex items-center gap-1 border rounded-full p-1">
-                              <p className="text-xs">Deactivate</p>{" "}
+                            <div className="flex items-center gap-1  p-1 hover:bg-black-500">
+                              <p className="text-xs ">Deactivate</p>{" "}
                               <svg
                                 class="text-gray-400"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -399,7 +353,7 @@ export default function Index() {
                               </svg>
                             </div>
                           ) : (
-                            <div className="flex items-center gap-1 border rounded-full p-1">
+                            <div className="flex items-center gap-1  p-1">
                               <p className="text-xs">Activate</p>{" "}
                               <svg
                                 className="text-emerald-500"
@@ -420,13 +374,6 @@ export default function Index() {
                       </div>
                     </Popup>
                   )}
-
-
-                  <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                    <Link href={`user/${item.id}`}>
-                      user detilas
-                    </Link>
-                  </td>
                 </tr>
               ))}
             </tbody>

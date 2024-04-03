@@ -18,6 +18,10 @@ class Listing extends Component {
         return Api.get("/admin/admin-profile")
     }
 
+    async booking(id){
+        return Api.get(`/admin/user-booking-detail/${id}`)
+    }
+
     async Adminproperty(){
         return Api.get("/admin/property-list")
     }
