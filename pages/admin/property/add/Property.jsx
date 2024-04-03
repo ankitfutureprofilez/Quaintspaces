@@ -204,13 +204,13 @@ export default function Property(props) {
             location: locationData.display_name,
             latitude: latitude.toString(),
             longitude: longitude.toString(),
-            street_address:locationupdate?.road,
-            flat_house:locationupdate?.suburb ,
-            district: locationupdate?.state_district,
-            nearby: locationupdate?.suburb,
-            city: locationupdate?.city,
-            state: locationupdate?.state,
-            pin:locationupdate?.postcode
+            street_address:locationData?.address?.road,
+            flat_house:locationData?.address?.suburb ,
+            district: locationData?.address?.state_district,
+            nearby: locationData?.address?.suburb,
+            city: locationData?.address?.city,
+            state: locationData?.address?.state,
+            pin:locationData?.address?.postcode
           }));
         } catch (error) {
           console.log('Error fetching data:', error);
