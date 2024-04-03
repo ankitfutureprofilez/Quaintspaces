@@ -1,12 +1,31 @@
 import Star from "../../public/_svgs/star";
 import ReviewCard from "./ReviewCard";
 import { v4 as uuidv4 } from "uuid";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "../../pages/elements/Modal";
 import RatingStar from "../../pages/elements/Star";
 import DropReview from "./DropReview";
+import { useRouter } from "next/router";
+import Listings from "../../pages/api/laravel/Listings";
 
 const Reviews = React.forwardRef(({ data }, ref) => {
+
+  const router=useRouter();
+  const id = router.query.slug;
+  const [listings, setListings] = useState([]);
+
+  useEffect(() => {
+    const main = new Listings();
+    main
+      .GetUserReview(id)
+      .then((r) => {
+        setListings(r.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -14,7 +33,6 @@ const Reviews = React.forwardRef(({ data }, ref) => {
   };
 
   const closeModal = () => {
-    console.log("Hello");
     setIsOpen(false);
   };
   return (
@@ -105,10 +123,10 @@ const Reviews = React.forwardRef(({ data }, ref) => {
         <button className="btn-normal mt-8">Show all reviews</button>
         {/* Add review option */}
         <button className="btn-normal mt-8" onClick={openModal}>
-          Drop a review
+          {listings?"Edit your review":"Drop a review"}
         </button>
         <Modal isOpen={isOpen} onClose={closeModal}>
-        <DropReview closeModal={closeModal}/>
+        <DropReview listing={listings} closeModal={closeModal}/>
         </Modal>
       </div>
     </section>

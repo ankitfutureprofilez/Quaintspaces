@@ -5,7 +5,6 @@ import Upload from "../../public/_svgs/upload";
 import Back from "../common/Back";
 
 const Title = ({ isSaved, listing, addWishlist,loading }) => {
-  console.log("titt",listing)
   return (
     <>
       {loading ? (

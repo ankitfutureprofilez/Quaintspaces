@@ -4,15 +4,15 @@ import toast from "react-hot-toast";
 import Listings from "../../pages/api/laravel/Listings";
 import { useRouter } from "next/router";
 
-const DropReview = ({closeModal}) => {
-  const [clean, setClean] = useState(0);
-  const [communcation, setCommuncation] = useState(0);
-  const [checkin, setCheckin] = useState(0);
-  const [accuracy, setAccuracy] = useState(0);
-  const [location, setlocation] = useState(0);
-  const [value, setValue] = useState(0);
-  const [mainRating, setMainRating] = useState(0);
-  const [reviewText, setReviewText] = useState("");
+const DropReview = ({closeModal, listing}) => {
+  const [clean, setClean] = useState(listing?.cleaning || 0);
+  const [communcation, setCommuncation] = useState(listing?.communication || 0);
+  const [checkin, setCheckin] = useState(listing?.check_in || 0);
+  const [accuracy, setAccuracy] = useState(listing?.accuracy || 0);
+  const [location, setlocation] = useState(listing?.location || 0);
+  const [value, setValue] = useState(listing?.value || 0);
+  const [mainRating, setMainRating] = useState(listing?.rating || 0);
+  const [reviewText, setReviewText] = useState(listing?.review_text || "");
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();

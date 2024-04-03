@@ -50,6 +50,12 @@ class Listings extends Component {
   async AddRating(data) {
     return Api.post("/add-rating", data);
   }
+  async GetUserReview(data) {
+    return Api.get("/rating-Review-listing/"+ data);
+  }
+  async AllReviews(data) {
+    return Api.get("/property-Rating"+ data);
+  }
 
   render() {
     return (
