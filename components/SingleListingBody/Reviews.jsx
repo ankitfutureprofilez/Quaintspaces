@@ -1,9 +1,20 @@
 import Star from "../../public/_svgs/star";
 import ReviewCard from "./ReviewCard";
 import { v4 as uuidv4 } from "uuid";
-import React from "react";
+import React, { useState } from "react";
+import Modal from "../../pages/elements/Modal";
+import RatingStar from "../../pages/elements/Star";
 
 const Reviews = React.forwardRef(({ data }, ref) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
   return (
     <section
       ref={ref}
@@ -88,7 +99,41 @@ const Reviews = React.forwardRef(({ data }, ref) => {
           );
         })}
       </div>
-      <button className="btn-normal mt-8">Show all reviews</button>
+      <div className="flex justify-between">
+        <button className="btn-normal mt-8">Show all reviews</button>
+        <button className="btn-normal mt-8" onClick={openModal}>
+          Drop a review
+        </button>
+        <Modal isOpen={isOpen} onClose={closeModal}>
+          <div className="mt-10 flex flex-col align-center">
+            <h2
+              className="mb-4 align-center sm:text-3xl text-lg font-medium ml-4 text-bold"
+              style={{ color: "#3F2A17" }}
+            >
+              Your Rating
+            </h2>
+            <RatingStar />
+            <div className="my-10">
+              <label
+                htmlFor="review"
+                className="block text-lg font-medium text-gray-700"
+              >
+                Please drop your detailed review
+              </label>
+              <textarea
+                id="review"
+                name="review"
+                // value={formData.review}
+                // onChange={handleChange}
+                className="mt-1 p-4 border rounded-lg w-full"
+                required
+                rows={4} // Set the number of rows as needed
+              />
+            </div>
+            <button className="filter btn mb-4 mx-auto"> Submit</button>
+          </div>
+        </Modal>
+      </div>
     </section>
   );
 });
