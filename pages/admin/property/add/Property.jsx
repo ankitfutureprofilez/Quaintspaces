@@ -464,7 +464,7 @@ export default function Property(props) {
     className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
   />
   <input
-    defaultValue={isEdit ? (locationupdate?.road || address.nearby) : address.nearby}
+    defaultValue={isEdit ? (locationupdate?.road || address.nearby) : (locationupdate?.road || address.nearby) }
     name="nearby"
     onChange={handleAddress}
     type="text"
