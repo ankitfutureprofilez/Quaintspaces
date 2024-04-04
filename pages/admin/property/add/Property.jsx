@@ -33,9 +33,7 @@ export default function Property(props) {
   const [images, setImages] = useState([]);
   const [PType, setPType] = useState(properties_type || "flat");
 
-  
-  // const l = parseLocationString(location);
-  // console.log("l", l);
+
   
  const lstring = location ? JSON.parse(location.replace("/\\\"/g", '"')) : null;
    const l = JSON.parse(lstring);
