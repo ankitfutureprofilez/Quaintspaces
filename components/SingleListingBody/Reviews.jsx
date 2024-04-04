@@ -1,12 +1,65 @@
 import Star from "../../public/_svgs/star";
 import ReviewCard from "./ReviewCard";
 import { v4 as uuidv4 } from "uuid";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "../../pages/elements/Modal";
 import RatingStar from "../../pages/elements/Star";
 import DropReview from "./DropReview";
+import { useRouter } from "next/router";
+import Listings from "../../pages/api/laravel/Listings";
 
 const Reviews = React.forwardRef(({ data }, ref) => {
+
+
+  const router = useRouter();
+  const id = router.query.slug;
+
+  const [page, setPage] = useState(1);
+  const [listings, setListings] = useState([]);
+  const [reviewData, setReviewData] = useState([]);
+  const[addReview,setAddReview]=useState(true);
+  console.log("listings",listings);
+
+  useEffect(() => {
+    const main = new Listings();
+    main
+      .GetUserReview(id)
+      .then((r) => {
+        setListings(r.data.data);
+        setAddReview(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+
+
+  const [hasMore, setHasmore] = useState(true);
+  const [lists, setLists] = useState([])
+  const fetchReviews = async (p) => { 
+    if(id){
+      const main = new Listings();
+      main.AllReviews(id, p)
+        .then((r) => {
+          if(r.data.status){
+            setReviewData(r.data.data);
+            setLists(prev=> [...prev, ...r.data.data.data]);
+            setPage(p);
+          }  
+          if(r.data.data.current_page ==  r.data.data.last_page){ 
+            setHasmore(false);
+          }
+          // false loading
+        }).catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+
+  useEffect(() => {
+    fetchReviews(page);
+  }, [id]);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -14,7 +67,6 @@ const Reviews = React.forwardRef(({ data }, ref) => {
   };
 
   const closeModal = () => {
-    console.log("Hello");
     setIsOpen(false);
   };
   return (
@@ -90,7 +142,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
         </div>
       </div>
       <div className="flex flex-wrap gap-8">
-        {data?.reviews?.map((review) => {
+        {lists?.map((review) => {
           return (
             <div
               className="my-6 md:my-0 w-full md:w-[calc(100%/2-1.5rem)]"
@@ -102,13 +154,15 @@ const Reviews = React.forwardRef(({ data }, ref) => {
         })}
       </div>
       <div className="flex justify-between">
-        <button className="btn-normal mt-8">Show all reviews</button>
+        {hasMore ? <button
+          onClick={() => fetchReviews(page+1)}
+          className="btn-normal mt-8"> Show more </button> : '0'}
         {/* Add review option */}
         <button className="btn-normal mt-8" onClick={openModal}>
-          Drop a review
+          {addReview ? "Drop a review" : "Edit your review" }
         </button>
         <Modal isOpen={isOpen} onClose={closeModal}>
-        <DropReview closeModal={closeModal}/>
+          <DropReview listing={listings} closeModal={closeModal} />
         </Modal>
       </div>
     </section>
