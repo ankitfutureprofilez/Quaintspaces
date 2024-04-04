@@ -21,16 +21,20 @@ const Reviews = React.forwardRef(({ data }, ref) => {
   console.log("listings",listings);
 
   useEffect(() => {
-    const main = new Listings();
-    main
-      .GetUserReview(id)
-      .then((r) => {
-        setListings(r.data.data);
-        setAddReview(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if(id){
+      const main = new Listings();
+      main
+        .GetUserReview(id)
+        .then((r) => {
+          setListings(r.data.data);
+          if(r.data.data){
+            setAddReview(false);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [id]);
 
 
@@ -43,7 +47,11 @@ const Reviews = React.forwardRef(({ data }, ref) => {
         .then((r) => {
           if(r.data.status){
             setReviewData(r.data.data);
-            setLists(prev=> [...prev, ...r.data.data.data]);
+            if(p == 1){
+              setLists(r.data.data.data);
+            } else { 
+              setLists(prev=> [...prev, ...r.data.data.data]);
+            }
             setPage(p);
           }  
           if(r.data.data.current_page ==  r.data.data.last_page){ 
