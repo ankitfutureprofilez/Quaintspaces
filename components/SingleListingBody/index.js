@@ -18,6 +18,7 @@ import { Context } from "../../pages/_app";
 import useWishlist from "../../hooks/useWishlist";
 import { addDays } from "date-fns";
 import { formatMultiPrice } from "../../hooks/ValueData";
+import toast from "react-hot-toast";
 
 const SingleListingBody = ({ listing, loading }) => {
   const router = useRouter();
@@ -176,14 +177,17 @@ const SingleListingBody = ({ listing, loading }) => {
                 </span>
                 <span> ·</span>
                 <span className="text-xs underline text-lightTextColor">
-                {listing?.data?.review} reviews
+                  {listing?.data?.review} reviews
                 </span>
               </div>
             </div>
             <button
               className="filter mx-2 btn w-full"
-              // style={{ fontSize: "1rem", width: "fit-content" }}
-              onClick={() =>
+              onClick={() => {
+                if (selectedDay == null || selectEnd == null) {
+                  toast.error("Date not selected");
+                  return;
+                }
                 router.push(
                   `/book/${listing?.data._id}?numberOfAdults=${
                     guests.adults.value || 0
@@ -194,8 +198,8 @@ const SingleListingBody = ({ listing, loading }) => {
                   }&checkin=${
                     selectedDay && format(selectedDay, "yyyy-MM-dd")
                   }&checkout=${selectEnd && format(selectEnd, "yyyy-MM-dd")}`
-                )
-              }
+                );
+              }}
             >
               Book
             </button>

@@ -19,7 +19,7 @@ const propertyTypes = [
 export default function Property(props) {
 
   const { isEdit, p, onClose, fetchProperties } = props;
-  const { uuid, location, children, adults, properties_type, name, price, description, bedrooms, beds, bathrooms, amenities, property_image } = p ? p : {};
+  const { uuid, location, children, adults, properties_type, name,no_of_pet_allowed, price, description, bedrooms, beds, bathrooms, amenities, property_image } = p ? p : {};
   console.log("p", props.p);
 
   const router = useRouter();
@@ -56,7 +56,6 @@ export default function Property(props) {
   const handleAddress = (e) => {
     const { name, value } = e.target;
     setAddress({ ...address, [name]: value });
-    setLocationupdate({...locationupdate, [name]: value})
   };
 
   const [typeHere, setTypeHere] = useState('entire_place');
@@ -71,7 +70,7 @@ export default function Property(props) {
     bedrooms: bedrooms || "1",
     beds: beds || "1",
     bathrooms: bathrooms || "1",
-    pets: "1",
+    pets: no_of_pet_allowed || "1",
     selectedAmenities: amenities ? stringToArray(amenities) : [],
     free_cancel_time: ""
   });
@@ -179,8 +178,7 @@ export default function Property(props) {
             locationData = response.data;
             setLocationupdate(locationData?.address);
           }
-          setAddress((address) => ({
-            ...address,
+          setAddress({
             location: locationData.display_name,
             latitude: latitude.toString(),
             longitude: longitude.toString(),
@@ -190,7 +188,7 @@ export default function Property(props) {
             city: locationData?.address?.city || locationupdate?.city,
             state: locationData?.address?.state ||locationupdate?.state  ,
             pin: locationData?.address?.postcode || locationupdate?.postcode
-          }));
+        });
           setLoading(false);
   
         } catch (error) {
@@ -237,28 +235,28 @@ export default function Property(props) {
   console.log("locationupdate", locationupdate)
 
 
-  useEffect(() => {
-    const fetchLocationData = async () => {
-      setLoading(true);
-      const { latitude, longitude } = address;
-      try {
-        const response = await axios.get(
-          `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-        );
-        const locationData = response.data;
-        console.log("location ", locationData);
+  // useEffect(() => {
+  //   const fetchLocationData = async () => {
+  //     setLoading(true);
+  //     const { latitude, longitude } = address;
+  //     try {
+  //       const response = await axios.get(
+  //         `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+  //       );
+  //       const locationData = response.data;
+  //       console.log("location ", locationData);
 
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error('Error fetching data:', error);
-      }
-    };
+  //       setLoading(false);
+  //     } catch (error) {
+  //       setLoading(false);
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
 
-    if (isEdit) {
-      fetchLocationData();
-    }
-  }, [isEdit, address]);
+  //   if (isEdit) {
+  //     fetchLocationData();
+  //   }
+  // }, [isEdit]);
 
   const [imageproperty, setImagesproperty] = useState(property_image);
 
@@ -287,7 +285,7 @@ export default function Property(props) {
     const main = new Listing();
     const formData = new FormData();
     formData.append("name", item?.name);
-    formData.append("pets", item?.pets);
+    formData.append("no_of_pet_allowed", item?.pets);
     formData.append("description", item?.about);
     formData.append("price", item?.price);
     formData.append("properties_type", PType);
@@ -446,7 +444,7 @@ export default function Property(props) {
                 </div>
                 <div className="w-full border border-gray-300 rounded-lg overflow-hidden">
   <input
-    defaultValue={isEdit ? address.flat_house : ""}
+    value={address.flat_house}
     name='flat_house'
     onChange={handleAddress}
     type="text"
@@ -454,7 +452,7 @@ export default function Property(props) {
     className="w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
   />
   <input
-    defaultValue={isEdit ? (locationupdate?.suburb || address.street_address) : address.street_address}
+    value={address.street_address}
     name="street_address"
     onChange={handleAddress}
     type="text"
@@ -462,7 +460,7 @@ export default function Property(props) {
     className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
   />
   <input
-    defaultValue={isEdit ? (locationupdate?.road || address.nearby) : (locationupdate?.road || address.nearby) }
+    value={ address.nearby}
     name="nearby"
     onChange={handleAddress}
     type="text"
@@ -471,7 +469,7 @@ export default function Property(props) {
     className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
   />
   <input
-    defaultValue={isEdit ? (locationupdate?.state_district || address.district) : address.district}
+    value={address.district}
     name="district"
     onChange={handleAddress}
     type="text"
@@ -479,7 +477,7 @@ export default function Property(props) {
     className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
   />
   <input
-    defaultValue={isEdit ? (locationupdate?.city || address.city) : address.city}
+    value={address.city}
     name="city"
     onChange={handleAddress}
     type="text"
@@ -487,7 +485,7 @@ export default function Property(props) {
     className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
   />
   <input
-    defaultValue={isEdit ? (locationupdate?.state || address.state) : address.state}
+    value={address.state}
     name="state"
     onChange={handleAddress}
     type="text"
@@ -495,7 +493,7 @@ export default function Property(props) {
     className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
   />
   <input
-    defaultValue={isEdit ? (locationupdate?.postcode || address.pin) : address.pin}
+    value={address.pin}
     name="pin"
     onChange={handleAddress}
     type="text"
