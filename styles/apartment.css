@@ -13,6 +13,16 @@
   background-color: #f8f1eb;
 }
 
+h2.text-lg.font-medium.mb-2.heading-property {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 21px;
+  max-height: 48px;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
 /* Page Transition CSS */
 .page-transition-container {
   position: relative;

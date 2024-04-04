@@ -104,7 +104,7 @@ export default function Index() {
            <button className="absolute text-xs top-3 right-3 bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-700" onClick={() => handleDelete(item?.uuid)}>Remove</button>
 
            <div className="p-4">
-           <h2 className="text-lg font-medium mb-2">{item.name}</h2>
+           <h2 className="text-lg font-medium mb-2 heading-property">{item.name}</h2>
             <h3 className="text-sm font-medium desc-property">
             {item.description}
            </h3>
