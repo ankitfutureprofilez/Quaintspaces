@@ -71,7 +71,7 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
         <h1 className="text-2xl mb-4 font-semibold">What this place offers?</h1>
         <ul className="block md:flex flex-wrap">
           {listing?.data?.amenities &&
-            listing?.data.amenities.split(',').map((amenity) => (
+            listing?.data?.amenities.split(',').map((amenity) => (
               <li
                 className="w-[calc(100%/2-10px)] flex gap-2 my-2 py-2 md:py-0"
                 key={amenity.trim()}

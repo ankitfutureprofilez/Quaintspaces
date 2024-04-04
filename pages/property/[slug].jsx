@@ -56,7 +56,7 @@ const Listing = () => {
       <Layout>
         <Head>
           <title>
-            House rent in {record.loading ? "..." : record.data?.title} - Aribnb
+            House rent in {record?.loading ? "..." : record?.data?.title} - Aribnb
             Clone
           </title>
         </Head>

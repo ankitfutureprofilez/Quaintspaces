@@ -26,8 +26,8 @@ const Reviews = React.forwardRef(({ data }, ref) => {
       main
         .GetUserReview(id)
         .then((r) => {
-          setListings(r.data.data);
-          if(r.data.data){
+          setListings(r?.data?.data);
+          if(r?.data?.data){
             setAddReview(false);
           }
         })
@@ -46,11 +46,11 @@ const Reviews = React.forwardRef(({ data }, ref) => {
       main.AllReviews(id, p)
         .then((r) => {
           if(r.data.status){
-            setReviewData(r.data.data);
+            setReviewData(r?.data?.data);
             if(p == 1){
               setLists(r.data.data.data);
             } else { 
-              setLists(prev=> [...prev, ...r.data.data.data]);
+              setLists(prev=> [...prev, ...r?.data?.data?.data]);
             }
             setPage(p);
           }  

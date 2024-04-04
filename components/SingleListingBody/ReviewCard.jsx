@@ -23,7 +23,7 @@ reviewtime+=" ,"+ date.getFullYear();
       </header>
       <div className="mt-4">
         <p className="text-blackColor text-md leading-7">
-          {textResizer(data.review_text, 210)}
+          {textResizer(data?.review_text, 210)}
         </p>
       </div>
     </div>
