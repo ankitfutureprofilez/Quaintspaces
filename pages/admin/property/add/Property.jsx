@@ -18,7 +18,7 @@ const propertyTypes = [
 
 export default function Property(props) {
 
-  const { isEdit, p, onClose } = props;
+  const { isEdit, p, onClose, fetchProperties } = props;
   const { uuid, location, children, adults, properties_type, name, price, description, bedrooms, beds, bathrooms, amenities, property_image } = p ? p : {};
   console.log("p", props.p);
 
@@ -56,6 +56,7 @@ export default function Property(props) {
   const handleAddress = (e) => {
     const { name, value } = e.target;
     setAddress({ ...address, [name]: value });
+    setLocationupdate({...locationupdate, [name]: value})
   };
 
   const [typeHere, setTypeHere] = useState('entire_place');
@@ -178,8 +179,6 @@ export default function Property(props) {
             locationData = response.data;
             setLocationupdate(locationData?.address);
           }
-  
-          console.log("location ", locationData);
           setAddress((address) => ({
             ...address,
             location: locationData.display_name,
@@ -232,8 +231,6 @@ export default function Property(props) {
   //     });
   //   }
   // };
-
-
 
 
 
@@ -313,6 +310,7 @@ export default function Property(props) {
         if (isEdit) {
           onClose();
           toast.success(res.data.message);
+          fetchProperties&&fetchProperties();
         } else {
           router.push("/admin/property");
           toast.success(res.data.message);
@@ -683,7 +681,7 @@ export default function Property(props) {
                     <div key={index} className="relative isedits">
                       <img
                         className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
-                        src={item?.image_url}
+                        src={item?.image_url || ''}
                         width={200}
                         height={200}
                         alt={`Preview ${index}`}
@@ -707,7 +705,7 @@ export default function Property(props) {
                       alt={`Preview ${index}`}
                       className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
                       onLoad={() => URL.revokeObjectURL(file)}
-                    /> fsdfsdfsd
+                    />  
                     <button type="button"
                       onClick={() => removeImage(file)}
                       className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1" >
@@ -718,7 +716,6 @@ export default function Property(props) {
               </div>
 
               {isEdit ?
-
                 <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
                   <label
                     htmlFor="dropzone-file"
@@ -748,7 +745,8 @@ export default function Property(props) {
                     />
                   </label>
                 </div>
-                : <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
+                : 
+                <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
                   <label
                     htmlFor="dropzone-file"
                     className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
@@ -777,7 +775,6 @@ export default function Property(props) {
                     />
                   </label>
                 </div>}
-
             </div>
 
 

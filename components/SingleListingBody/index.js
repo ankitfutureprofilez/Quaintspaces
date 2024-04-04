@@ -16,7 +16,7 @@ import LeftArrow from "../../public/_svgs/LeftArrow";
 import Heart from "../../public/_svgs/Heart";
 import { Context } from "../../pages/_app";
 import useWishlist from "../../hooks/useWishlist";
-import { addDays } from 'date-fns';
+import { addDays } from "date-fns";
 import { formatMultiPrice } from "../../hooks/ValueData";
 
 const SingleListingBody = ({ listing, loading }) => {
@@ -32,7 +32,7 @@ const SingleListingBody = ({ listing, loading }) => {
   const result = useLabeling(guests);
 
   const [selectedDay, setSelectedDay] = useState(null);
-const [selectEnd, setSelectEnd] = useState(null);
+  const [selectEnd, setSelectEnd] = useState(null);
 
   const ImagesRef = useRef(null);
   const AmenitiesRef = useRef(null);
@@ -103,7 +103,7 @@ const [selectEnd, setSelectEnd] = useState(null);
     if (ImagesRef.current) {
       const { bottom } = ImagesRef.current?.getBoundingClientRect();
       window.addEventListener("scroll", () => {
-        if (window.scrollY > bottom+300) {
+        if (window.scrollY > bottom + 300) {
           setShowHeader(true);
         } else {
           setShowHeader(false);
@@ -111,9 +111,6 @@ const [selectEnd, setSelectEnd] = useState(null);
       });
     }
   }, [ImagesRef.current]);
-
-
-
 
   return (
     <>
@@ -128,9 +125,7 @@ const [selectEnd, setSelectEnd] = useState(null);
       <header
         className={`w-full bg-white fixed bottom-0 lg:top-0 lg:bottom-auto left-0 z-30 border-t 
         lg:border-b border-borderColor shadow-top 
-        ${
-          showHeader ? "showHeader" : "hideHeader"
-        }`}
+        ${showHeader ? "showHeader" : "hideHeader"}`}
       >
         <div className="max-w-[1120px] px-4 mx-auto flex items-center justify-between">
           <ul className="hidden md:flex gap-4">
@@ -177,17 +172,16 @@ const [selectEnd, setSelectEnd] = useState(null);
                   <Star />
                 </span>
                 <span className="text-xs font-medium">
-                  {/* {listing?.data.rating} */}
-                  5 
+                  {listing?.data?.rating}
                 </span>
                 <span> ·</span>
                 <span className="text-xs underline text-lightTextColor">
-                  20 reviews
+                {listing?.data?.review} reviews
                 </span>
               </div>
             </div>
             <button
-            className="filter mx-2 btn w-full"
+              className="filter mx-2 btn w-full"
               // style={{ fontSize: "1rem", width: "fit-content" }}
               onClick={() =>
                 router.push(
@@ -202,7 +196,7 @@ const [selectEnd, setSelectEnd] = useState(null);
                   }&checkout=${selectEnd && format(selectEnd, "yyyy-MM-dd")}`
                 )
               }
->
+            >
               Book
             </button>
           </div>
@@ -225,7 +219,7 @@ const [selectEnd, setSelectEnd] = useState(null);
             <Heart
               css={`h-[20px] w-[20px] stroke-white stroke-[3] ${
                 isSaved ? "fill-[#ff385c]" : "fill-[rgba(0, 0, 0, 0.5)]"
-              }`} 
+              }`}
             />
           </button>
         </nav>
@@ -238,7 +232,7 @@ const [selectEnd, setSelectEnd] = useState(null);
             isSaved={isSaved}
             listing={listing}
             addWishlist={changeWishlist}
-          />  
+          />
           <div
             ref={ImagesRef}
             className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] max-h-[40vh]"
@@ -253,7 +247,8 @@ const [selectEnd, setSelectEnd] = useState(null);
           <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
             <Info loading={loading} listing={listing} ref={AmenitiesRef} />
             <div className="hidden lg:block">
-              <Date_GuestsPickerCard loading={loading}
+              <Date_GuestsPickerCard
+                loading={loading}
                 selection={selection}
                 setSelection={setSelection}
                 selectedDay={selectedDay}

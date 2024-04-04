@@ -49,11 +49,11 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
                   <span>
                     <Star />
                   </span>
-                  {listing.data?.rating}
+                  {parseFloat(listing?.data?.rating?.toFixed(2))}
                 </span>
                 <div className="hidden">·</div>
                 <span className="underline text-md font-medium">
-                  { listing && listing?.data && listing?.data?.reviews &&  listing?.data?.reviews?.length || 0} review
+                  { listing && listing?.data && listing?.data?.review || 0} review
                 </span>
               </div>
             </>

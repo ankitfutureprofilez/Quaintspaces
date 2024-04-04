@@ -8,9 +8,12 @@ import Modal  from  "../hook/Modal"
 import NoRecord from  "../hook/NoRecord"
 import AdminLayout from "../AdminLayout"; 
 import Loading from  "../hook/loading"
+import { useRouter } from "next/router";
 // Assuming this is a custom layout component
 
 export default function Index() {
+
+  const router = useRouter();
   const [record, setRecord] = useState([]);
   const [isLoading, setIsLoading] = useState(true); 
   const [isPropertyLoading, setIsPropertyLoading] = useState(false); // New state to track loading of Property component
@@ -37,10 +40,9 @@ export default function Index() {
       });
   }
 
-
   useEffect(() => {
     fetchProperties();
-  }, []);
+  }, [router && router.pathname]);
 
   const handleDelete = (uuid) => {
     setSelectedProperty(uuid);
@@ -144,7 +146,7 @@ export default function Index() {
                     {isPropertyLoading ? (
                             <Loading />
                           ) : (
-                            <Property isEdit={true} p={item} onClose={() => togglePopup(null)} />
+                            <Property fetchProperties={fetchProperties} isEdit={true} p={item} onClose={() => togglePopup(null)} />
                           )}
                      {/* { selectedProperty ? (<Property isEdit={true} p={item} onClose={()=>togglePopup(null)} />) : (<> </>)}  */}
                     </div>
