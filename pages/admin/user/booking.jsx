@@ -21,7 +21,7 @@ export default function Booking({ record }) {
   return (
     <div className="w-screen">
       <div className="mx-auto mt-8 ">
-        <div className="sm:flex sm:items-center sm:justify-between flex-col sm:flex-row">
+        {/* <div className="sm:flex sm:items-center sm:justify-between flex-col sm:flex-row">
           <p className="flex-1 text-base font-bold text-gray-900">Booking history </p>
 
           <div className="mt-4 sm:mt-0">
@@ -41,44 +41,42 @@ export default function Booking({ record }) {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="mt-6 overflow-hidden rounded-xl border shadow">
           <table className="min-w-full border-separate border-spacing-y-2 border-spacing-x-2">
             <thead className="hidden border-b lg:table-header-group">
               <tr className="">
-                <td width="50%" className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Check in & checkout Time </td>
-
                 <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6"> booking Date</td>
-
+                <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">booking Number </td>
+                <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Check In & Checkout Time </td>
                 <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Amount</td>
-
                 <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Status</td>
+                <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Document Image and Type </td>
               </tr>
             </thead>
 
             <tbody className="lg:border-gray-300">
               {content && content.map((item, index) => (
                 <tr className="" key={index}>
-                  <td width="50%" className="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6">
-                    {item?.check_in}
-                    <div className="mt-1 lg:hidden">
-                      <p className="font-normal text-gray-500">{item?.check_out}</p>
-                    </div>
-                  </td>
 
-                  <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">07 February, 2022</td>
-
+                  <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">{item?.booking_date}</td>
                   <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">{item?.booking_number}</td>
 
+                  <td  className="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6">
+                    {item?.check_in} & {item?.check_out}
+                  </td>
 
                   <td className="whitespace-no-wrap py-4 px-6 text-right text-sm text-gray-600 lg:text-left">
                     {item?.price}
                     <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-blue-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">{item?.booking_status}</div>
                   </td>
-
                   <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
                     <div className="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">{item?.booking_status}</div>
+                  </td>
+                  <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
+                      <Image  width={40} height={40 } className= "inline-flex items-center rounded-full " src={item?.front_url}/>
+                  <div className="inline-flex items-center rounded-full">{item?.doc_type}</div>
                   </td>
                 </tr>
               ))}
