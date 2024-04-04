@@ -45,8 +45,8 @@ export default function Index() {
             return [...prevData, ...newdata];
           }
         });
-        setPage(response.data.current_page);
-        setHasMore(response.data.current_page < response.data.last_page);
+        setPage(response.data && response.data.current_page);
+        setHasMore(response.data && response.data.current_page < response.data && response.data.last_page);
       } else {
         setRecord([]);
       }

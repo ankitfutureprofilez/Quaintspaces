@@ -54,7 +54,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
             }
             setPage(p);
           }  
-          if(r.data.data.current_page ==  r.data.data.last_page){ 
+          if(r.data.data && r.data.data.current_page ==  r.data.data && r.data.data.last_page){ 
             setHasmore(false);
           }
           // false loading
