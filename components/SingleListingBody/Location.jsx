@@ -8,7 +8,7 @@ const Location = React.forwardRef(({ listing }, ref) => {
   };
   let record;
   try {
-    record = JSON.parse(JSON.parse(listing?.location));
+    record = JSON?.parse(JSON?.parse(listing?.location));
   } catch (error) {
     console.error("Error parsing JSON:", error);
   }
