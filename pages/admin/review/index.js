@@ -23,13 +23,13 @@ export default function Index() {
 
 
      
-  const deleteProperty = (uuid) => {
+  const acceptreview = (uuid ,id , status ) => {
     const main = new Listing();
-    main.reviewaccept(uuid).then((response) => {
+    main.reviewaccept(uuid ,id , status).then((response) => {
       if(response.data.status ===true){
-        toast.success(response.data.message);
+        // toast.success(response.data.message);
       } else {
-        toast.error(response.data.message);
+        // toast.error(response.data.message);
       }
     }).catch((error) => {
       console.error("Error deleting property:", error);
@@ -132,7 +132,9 @@ export default function Index() {
                                                             </td>
 
                                                             <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                                                {item?.status === 1 ? 'Accept ' : 'Decline '}
+                                                                <div onClick={acceptreview(item?.user_id ,item?.properties_id ,item?.status)}>
+                                                                    review 
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     );

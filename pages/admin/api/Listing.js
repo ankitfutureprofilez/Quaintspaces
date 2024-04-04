@@ -67,8 +67,8 @@ class Listing extends Component {
         return Api.get("/admin/get-all-rating")
     }
 
-    async reviewaccept(user_id,proerty_id, status) {
-        return  Api.get(`reject-approve-ratings/${user_id}/${property_id}/${status}`)
+    async reviewaccept(user_id,property_id, status) {
+        return  Api.get(`admin/reject-approve-ratings/${user_id}/${property_id}/${status}`)
     } 
 
     
