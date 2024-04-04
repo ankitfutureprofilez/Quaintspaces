@@ -469,6 +469,7 @@ export default function Property(props) {
     onChange={handleAddress}
     type="text"
     placeholder="Nearby Landmark (if applicable)"
+    
     className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
   />
   <input
