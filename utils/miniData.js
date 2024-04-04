@@ -1,7 +1,7 @@
 export const guestsData = {
   adults: {
     value: 0,
-    max: 16,
+    max: 5,
     min: 0,
   },
   children: {

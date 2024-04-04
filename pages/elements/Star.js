@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Star1 } from "iconsax-react";
 
-const RatingStar = ({ showemoji,rating, setRating }) => {
+const RatingStar = ({ showemoji,rating, setRating, size }) => {
   const [hover, setHover] = useState(null);
   const getEmoji = () => {
     switch (rating) {
@@ -39,7 +39,7 @@ const RatingStar = ({ showemoji,rating, setRating }) => {
               <label>
                 <Star1
                   className="star"
-                  size="40"
+                  size={size || "20"}
                   // color="black"
                   value={currentRating}
                   variant="Bold"

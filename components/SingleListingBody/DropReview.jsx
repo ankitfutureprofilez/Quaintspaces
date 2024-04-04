@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import Listings from "../../pages/api/laravel/Listings";
 import { useRouter } from "next/router";
 
-const DropReview = ({closeModal, listing}) => {
+const DropReview = ({ closeModal, listing }) => {
   const [clean, setClean] = useState(listing?.cleaning || 0);
   const [communcation, setCommuncation] = useState(listing?.communication || 0);
   const [checkin, setCheckin] = useState(listing?.check_in || 0);
@@ -59,12 +59,43 @@ const DropReview = ({closeModal, listing}) => {
 
   return (
     <div className="mt-6 flex flex-col align-center w-full">
-      <h1 className="mb-8 mx-auto align-center sm:text-2xl text-md font-medium text-bold">
+      {/* <h1 className="mb-8 mx-auto align-center sm:text-2xl text-md font-medium text-bold">
         Please drop your review
-      </h1>
+      </h1> */}
+
+      <h2
+        className="mr-4 w-full align-center pt-8 text-lg text-center text-base font-medium"
+        style={{ color: "#3F2A17" }}
+      >
+        Overall Rating
+      </h2>
+
+      <div className="flex flex-col">
+        <RatingStar
+          size="40"
+          rating={mainRating}
+          setRating={setMainRating}
+          showemoji={true}
+          className="w-1/2"
+        />
+      </div>
+
+      <div className="my-10">
+        <textarea
+          id="review"
+          name="review"
+          placeholder="Please drop your detailed review"
+          value={reviewText}
+          onChange={handleChange}
+          className="mt-1 p-4 border rounded-lg w-full h-full"
+          required
+          rows={4} // Set the number of rows as needed
+        />
+      </div>
+
       <div className="flex items-center mb-4">
         <h2
-          className="mr-4 w-1/2 align-center sm:text-xl text-base font-medium"
+          className="mr-4 w-1/2 align-center text-md text-base font-medium"
           style={{ color: "#3F2A17" }}
         >
           Cleanliness
@@ -79,7 +110,7 @@ const DropReview = ({closeModal, listing}) => {
       <div className="flex items-center mb-4">
         <div className="w-1/2">
           <h2
-            className="mr-4 align-center sm:text-xl text-base font-medium"
+            className="mr-4 align-center text-md text-base font-medium"
             style={{ color: "#3F2A17" }}
           >
             Communication
@@ -95,7 +126,7 @@ const DropReview = ({closeModal, listing}) => {
       </div>
       <div className="flex items-center mb-4">
         <h2
-          className="mr-4 w-1/2 align-center sm:text-xl text-base font-medium"
+          className="mr-4 w-1/2 align-center text-md text-base font-medium"
           style={{ color: "#3F2A17" }}
         >
           Check-in
@@ -109,7 +140,7 @@ const DropReview = ({closeModal, listing}) => {
       </div>
       <div className="flex items-center mb-4">
         <h2
-          className="mr-4 w-1/2 align-center sm:text-xl text-base font-medium"
+          className="mr-4 w-1/2 align-center text-md text-base font-medium"
           style={{ color: "#3F2A17" }}
         >
           Accuracy
@@ -123,7 +154,7 @@ const DropReview = ({closeModal, listing}) => {
       </div>
       <div className="flex items-center mb-4">
         <h2
-          className="mr-4 w-1/2 align-center sm:text-xl text-base font-medium"
+          className="mr-4 w-1/2 align-center text-md text-base font-medium"
           style={{ color: "#3F2A17" }}
         >
           Location
@@ -137,7 +168,7 @@ const DropReview = ({closeModal, listing}) => {
       </div>
       <div className="flex items-center mb-4">
         <h2
-          className="mr-4 w-1/2 align-center sm:text-xl text-base font-medium"
+          className="mr-4 w-1/2 align-center text-md text-base font-medium"
           style={{ color: "#3F2A17" }}
         >
           Value
@@ -149,41 +180,9 @@ const DropReview = ({closeModal, listing}) => {
           className="w-1/2"
         />
       </div>
-      <div className="flex items-end mb-4">
-        <h2
-          className="mr-4 w-1/2 align-center sm:text-xl text-base font-medium"
-          style={{ color: "#3F2A17" }}
-        >
-          Overall Rating
-        </h2>
-        <div className="flex flex-col">
-          <RatingStar
-            rating={mainRating}
-            setRating={setMainRating}
-            showemoji={true}
-            className="w-1/2"
-          />
-        </div>
-      </div>
-      <div className="my-10">
-        <label
-          htmlFor="review"
-          className="block text-lg font-medium text-gray-700"
-        >
-          Please drop your detailed review
-        </label>
-        <textarea
-          id="review"
-          name="review"
-          value={reviewText}
-          onChange={handleChange}
-          className="mt-1 p-4 border rounded-lg w-full"
-          required
-          rows={4} // Set the number of rows as needed
-        />
-      </div>
+
       <button onClick={handleSubmit} className="filter btn mb-4 mx-auto">
-        {loading ? "Submitting..." :"Submit"}
+        {loading ? "Submitting..." : "Submit"}
       </button>
     </div>
   );

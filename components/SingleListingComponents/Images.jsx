@@ -47,7 +47,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer,loading }) => {
             >
               {listing?.data?.property_image?.length > 0 && (
                 <img
-                  src={e.image_url}
+                  src={e?.image_url}
                   className="h-full w-full object-cover"
                   alt=""
                 />
@@ -87,7 +87,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer,loading }) => {
             >
               {listing?.data?.property_image?.length > 0 && (
                 <img
-                  src={e.image_url}
+                  src={e?.image_url}
                   className="h-full w-full object-cover"
                   alt=""
                 />

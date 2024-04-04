@@ -11,9 +11,9 @@ const GuestCard = ({ guestsHandler, operation, type, guests, setGuests }) => {
       }
     });
 
-    if (total >= 16 && operation === "add") {
-      return true;
-    } else {
+    // if (total >= 16 && operation === "add") {
+    //   return true;
+    // } else {
       if (operation === "add") {
         if (guests[type].value <= guests[type].max - 1) {
           return false;
@@ -27,7 +27,7 @@ const GuestCard = ({ guestsHandler, operation, type, guests, setGuests }) => {
           return true;
         }
       }
-    }
+    // }
   };
 
   return (

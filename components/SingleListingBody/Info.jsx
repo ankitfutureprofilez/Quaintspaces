@@ -37,19 +37,19 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
             <>
               <div className="flex items-center gap-1 text-md">
               {listing?.data?.type? `${listing?.data?.type?.replace("_" ," ")} .`:" " }
-                {listing?.data?.guests} guests{" · "}
-                {listing?.data?.children > 0 &&
-                  `${listing?.data?.guests} pets`}
-                {" · "}
-                {listing?.data?.bedrooms} bedrooms {" · "} {listing?.data?.beds}{" "}
-                beds
+                {listing?.data?.guests} Guests{" · "}
+                {listing?.data?.adults} Adults{" · "}
+                {listing?.data?.children} Children{" · "}
+                {listing?.data?.no_of_pet_allowed} Pets{" · "}
+                {listing?.data?.bedrooms} Bedrooms {" · "} {listing?.data?.beds}{" "}
+                Beds
               </div>
               <div className="flex items-center gap-2 text-md">
                 <span className="flex gap-1 items-center text-md font-medium">
                   <span>
                     <Star />
                   </span>
-                  {parseFloat(listing?.data?.rating?.toFixed(2))}
+                  {parseFloat(listing?.data?.rating && listing?.data?.rating?.toFixed(2))}
                 </span>
                 <div className="hidden">·</div>
                 <span className="underline text-md font-medium">

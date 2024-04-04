@@ -47,7 +47,7 @@ const Date_GuestsPickerCard = React.forwardRef(
                 <span className="flex items-center gap-2">
                   <span className="flex items-center gap-1">
                     <Star />
-                    {parseFloat(listing?.rating?.toFixed(2))}
+                    {parseFloat( listing?.rating && listing?.rating?.toFixed(2))}
                   </span>
                   <span>·</span>
                   <span className="underline">
