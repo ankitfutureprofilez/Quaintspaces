@@ -6,12 +6,26 @@ const Location = React.forwardRef(({ listing }, ref) => {
     width: "100%",
     height: "400px",
   };
-
-  const center = listing?.geolocation || {
-    lat: 26.8534541, //listing.data?.latitude
-    lng: 75.8049509, ////listing.data?.longitudes
+  let record;
+  try {
+    record = JSON.parse(JSON.parse(listing?.location));
+  } catch (error) {
+    console.error("Error parsing JSON:", error);
+  }
+  
+  
+  // const center = {
+  //   lat: parseFloat(record?.latitude),
+  //   lng: parseFloat(record?.longitude),
+  // };
+ 
+  const center =  {
+    lat:26.9372,
+    lng:75.7993,
   };
 
+
+  console.log("center",center)
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY,

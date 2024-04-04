@@ -11,7 +11,6 @@ const Card = ({ post }) => {
   const [isSaved, changeWishlist] = useWishlist(post, wishlist);
   let record
 
-  let jsonObject;
   try {
     record = JSON.parse(JSON.parse(post?.location));
 

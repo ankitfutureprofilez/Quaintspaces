@@ -14,7 +14,7 @@ const Guests = ({ selection, setSelection, result, guests, setGuests }) => {
       </div>
       {selection === "guests" && (
         <div className="absolute top-full left-0 w-full">
-          <GuestsPicker
+          <GuestsPicker 
             css={
               "rounded-lg border border-lightBorderColor shadow px-5 bg-white"
             }

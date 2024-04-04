@@ -135,7 +135,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
               <div className="w-36 h-1 rounded-full bg-borderColor">
                 <span className="w-11/12 bg-blackColor h-1 block rounded-full"></span>
               </div>
-              <span>{parseFloat(data?.location?.toFixed(1))}</span>
+              <span>{parseFloat(data?.locations?.toFixed(1))}</span>
             </div>
           </div>
           <div className="mb-3 flex items-center justify-between">
@@ -169,7 +169,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
         <button className="btn-normal mt-8" onClick={openModal}>
           {addReview ? "Drop a review" : "Edit your review" }
         </button>
-        <Modal isOpen={isOpen} onClose={closeModal}>
+        <Modal width="lg" isOpen={isOpen} onClose={closeModal} >
           <DropReview listing={listings} closeModal={closeModal} />
         </Modal>
       </div>

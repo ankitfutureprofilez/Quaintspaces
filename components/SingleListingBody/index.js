@@ -25,9 +25,29 @@ const SingleListingBody = ({ listing, loading }) => {
   const [selection, setSelection] = useState(null); // 'guests', 'dates', null
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageViewer, setImageViewer] = useState(false);
+
+  // Guests max limit is selected here 
   const [guests, setGuests] = useState({
-    ...guestsData,
-    adults: { ...guestsData.adults, value: 1 },
+    adults: {
+      value: 0 ,
+      max: listing?.data?.adults || 20,
+      min: 0,
+    },
+    children: {
+      value: 0,
+      max: listing?.data?.children || 20,
+      min: 0,
+    },
+    infants: {
+      value: 0,
+      max: listing?.data?.infants || 20,
+      min: 0,
+    },
+    pets: {
+      value: 0,
+      max: listing?.data?.no_of_pet_allowed || 20,
+      min: 0,
+    },
   });
 
   const result = useLabeling(guests);
@@ -268,7 +288,7 @@ const SingleListingBody = ({ listing, loading }) => {
             </div>
           </div>
           <Reviews data={listing.data} ref={ReviewsRef} />
-          <Location listing={listing} ref={LocationRef} />
+          <Location listing={listing.data} ref={LocationRef} />
         </div>
       </section>
     </>
