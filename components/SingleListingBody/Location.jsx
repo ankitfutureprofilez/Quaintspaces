@@ -14,15 +14,15 @@ const Location = React.forwardRef(({ listing }, ref) => {
   }
   
   
-  // const center = {
-  //   lat: parseFloat(record?.latitude),
-  //   lng: parseFloat(record?.longitude),
-  // };
- 
-  const center =  {
-    lat:26.9372,
-    lng:75.7993,
+  const center = {
+    lat: parseFloat(record?.latitude),
+    lng: parseFloat(record?.longitude),
   };
+ 
+  // const center =  {
+  //   lat:26.9372,
+  //   lng:75.7993,
+  // };
 
 
   console.log("center",center)
