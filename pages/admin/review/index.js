@@ -21,20 +21,20 @@ export default function Index() {
 
     console.log('content', content);
 
-
-     
-  const acceptreview = (uuid ,id , status ) => {
-    const main = new Listing();
-    main.reviewaccept(uuid ,id , status).then((response) => {
-      if(response.data.status ===true){
-        // toast.success(response.data.message);
-      } else {
-        // toast.error(response.data.message);
-      }
-    }).catch((error) => {
-      console.error("Error deleting property:", error);
-    });
-  };
+    const acceptReview = (uuid, id, status) => {
+        const main = new Listing();
+        main.reviewaccept(uuid, id, status)
+            .then((response) => {
+                if (response.data.status === true) {
+                    // toast.success(response.data.message);
+                } else {
+                    // toast.error(response.data.message);
+                }
+            })
+            .catch((error) => {
+                console.error("Error deleting property:", error);
+            });
+    };
 
     return (
         <>
@@ -47,38 +47,26 @@ export default function Index() {
                                     <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                         <thead className="bg-gray-50 dark:bg-gray-800">
                                             <tr>
-                                                <th
-                                                    scope="col"
-                                                    className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                                                >
+                                                <th 
+                                                
+                                                scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                     Review Date
                                                 </th>
-                                                <th
-                                                    scope="col"
-                                                    className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                                                >
-                                                    user
+                                                <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                    User
                                                 </th>
-                                                <th
-                                                    scope="col"
-                                                    className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                                                >
+                                                <th 
+                                                scope="col" className="min-w-50 px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                     Description
                                                 </th>
                                                 <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                     Property
                                                 </th>
-                                                <th
-                                                    scope="col"
-                                                    className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                                                >
+                                                <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                     Status
                                                 </th>
-                                                <th
-                                                    scope="col"
-                                                    className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
-                                                >
-                                                   Actions
+                                                <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                    Actions
                                                 </th>
                                             </tr>
                                         </thead>
@@ -128,12 +116,11 @@ export default function Index() {
                                                                 </div>
                                                             </td>
                                                             <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                                                {item?.status === 1 ? 'Accept ' : 'Decline '}
+                                                                {item?.status === 1 ? 'Accepted' : 'Declined'}
                                                             </td>
-
                                                             <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                                                <div onClick={acceptreview(item?.user_id ,item?.properties_id ,item?.status)}>
-                                                                    review 
+                                                                <div onClick={() => acceptReview(item?.user_id, item?.properties_id, item.status === 0 ? 1 : 0)} className="cursor-pointer text-blue-500">
+                                                                {item?.status === 1 ? 'Accepted' : 'Declined'}
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -150,7 +137,3 @@ export default function Index() {
         </>
     );
 }
-
-
-
-  
