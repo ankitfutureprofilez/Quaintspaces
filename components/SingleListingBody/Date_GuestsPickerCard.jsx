@@ -88,12 +88,12 @@ const Date_GuestsPickerCard = React.forwardRef(
                         `/book/${encodeURIComponent(
                           listing?.uuid
                         )}?numberOfAdults=${
-                          guests.adults.value
+                          guests?.adults?.value
                         }&numberOfChildren=${
-                          guests.children.value
+                          guests?.children?.value
                         }&numberOfInfants=${
-                          guests.infants.value
-                        }&numberOfPets=${guests.pets.value}&checkin=${format(
+                          guests?.infants?.value
+                        }&numberOfPets=${guests?.pets?.value}&checkin=${format(
                           selectedDay,
                           "yyyy-MM-dd"
                         )}&checkout=${format(selectEnd, "yyyy-MM-dd")}`
