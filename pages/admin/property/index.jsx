@@ -6,12 +6,15 @@ import Link from "next/link";
 import Property  from  "./add/Property"
 import Modal  from  "../hook/Modal"
 import NoRecord from  "../hook/NoRecord"
-import AdminLayout from "../AdminLayout"; // Assuming this is a custom layout component
-// import ListingsLoading from "../components/Loading/ListingsLoading"; // Assuming this is a custom layout component
+import AdminLayout from "../AdminLayout"; 
+import Loading from  "../hook/loading"
+// Assuming this is a custom layout component
 
 export default function Index() {
   const [record, setRecord] = useState([]);
   const [isLoading, setIsLoading] = useState(true); 
+  const [isPropertyLoading, setIsPropertyLoading] = useState(false); // New state to track loading of Property component
+
   const[showConfirmation ,setShowConfirmation]= useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
 
@@ -82,8 +85,7 @@ export default function Index() {
       <AdminLayout heading="Properties">
         {isLoading ? (
           <div className="flex justify-center items-center h-screen">
-              {/* <ListingsLoading /> */} ""
-              Loading.....
+          <Loading/> 
           </div>
         ) : (
           <div className="flex flex-wrap px-4 py-5 pt-0">
@@ -139,7 +141,12 @@ export default function Index() {
                   <div className="fixed updateproperty bg-white inset-0 flex justify-center items-center py-16  overflow-x-auto">
                     <div className="fixed top-4 right-4 p-2 cursor-pointer "  onClick={() => togglePopup(null)} >&times; Close </div>
                     <div className=" rounded-lg flex flex-col items-center justify-center p-8 property-popup">
-                     { selectedProperty ? (<Property isEdit={true} p={item} onClose={()=>togglePopup(null)} />) : (<> </>)} 
+                    {isPropertyLoading ? (
+                            <Loading />
+                          ) : (
+                            <Property isEdit={true} p={item} onClose={() => togglePopup(null)} />
+                          )}
+                     {/* { selectedProperty ? (<Property isEdit={true} p={item} onClose={()=>togglePopup(null)} />) : (<> </>)}  */}
                     </div>
                   </div>
                 </>

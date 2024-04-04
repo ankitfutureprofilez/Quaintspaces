@@ -18,9 +18,9 @@ const propertyTypes = [
 
 export default function Property(props) {
 
-  const {  isEdit, p , onClose  } = props;
+  const { isEdit, p, onClose } = props;
   const { uuid, location, children, adults, properties_type, name, price, description, bedrooms, beds, bathrooms, amenities, property_image } = p ? p : {};
-  console.log("p", props.onClose);
+  console.log("p", props.p);
 
   const router = useRouter();
   const [step, setStep] = useState(0);
@@ -32,8 +32,13 @@ export default function Property(props) {
 
   const [images, setImages] = useState([]);
   const [PType, setPType] = useState(properties_type || "flat");
-  const lstring = location ? JSON.parse(location.replace("/\\\"/g", '"')) : null;
-  const l = JSON.parse(lstring);
+
+  
+  // const l = parseLocationString(location);
+  // console.log("l", l);
+  
+ const lstring = location ? JSON.parse(location.replace("/\\\"/g", '"')) : null;
+   const l = JSON.parse(lstring);
 
   const [address, setAddress] = useState({
     street_address: l && l.street_address ? l.street_address : "",
@@ -48,7 +53,7 @@ export default function Property(props) {
     longitude: l && l.longitude ? l.longitude : "",
   });
 
-  console.log("address",address)
+  console.log("address", address)
 
   const handleAddress = (e) => {
     const { name, value } = e.target;
@@ -72,7 +77,7 @@ export default function Property(props) {
     free_cancel_time: ""
   });
 
-  console.log("item",item)
+  console.log("item", item)
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setItem({ ...item, [name]: value });
@@ -86,8 +91,8 @@ export default function Property(props) {
     });
     setImages([...images, ...arr]);
 
-    console.log("[...images, ...arr]",[...images, ...arr])
-     
+    console.log("[...images, ...arr]", [...images, ...arr])
+
   };
 
   const removeImage = (f) => {
@@ -104,12 +109,12 @@ export default function Property(props) {
       toast.error(`All fields are required.`);
       return false;
     }
-    if (step === 1 && (!item?.about || item?.about.trim().length === 0 || item?.about.length < 100)) {
+    if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
       toast.error("Property description is too short. Description should be a minimum of 100 words.");
       return false;
     }
     if (step === 2 && (
-      address?.pin === "" || address?.pin.length < 5 ||
+      address?.pin === "" || address?.pin?.length < 5 ||
       address?.state === "" ||
       address?.city === "" ||
       address?.street_address === "" ||
@@ -117,7 +122,7 @@ export default function Property(props) {
       toast.error(`Incomplete address. Please enter complete address.`);
       return false;
     }
-    if (step == 4 && item?.selectedAmenities && item?.selectedAmenities.length < 4) {
+    if (step == 4 && item?.selectedAmenities && item?.selectedAmenities?.length < 4) {
       toast.error("Please choose atleast 4 amenities.");
       return false;
     }
@@ -140,8 +145,7 @@ export default function Property(props) {
       }));
     }
   };
-const[locationupdate,setLocationupdate] =useState([])
-console.log("locationupdate",locationupdate)
+  const [locationupdate, setLocationupdate] = useState([])
   const getNavigator = () => {
     if (typeof navigator !== 'undefined') {
       return navigator;
@@ -156,7 +160,7 @@ console.log("locationupdate",locationupdate)
     const navigatorObj = getNavigator();
     if (navigatorObj && navigatorObj.geolocation) {
       navigatorObj.geolocation.getCurrentPosition(async (position) => {
-        if(isEdit){
+        if (isEdit) {
           try {
             const response = await axios.get(
               `https://nominatim.openstreetmap.org/reverse?lat=${address?.latitude}&lon=${address?.longitude}&format=json`
@@ -169,20 +173,20 @@ console.log("locationupdate",locationupdate)
               location: locationData?.display_name,
               latitude: latitude?.toString(),
               longitude: longitude.toString(),
-              street_address:locationData?.address?.road,
-              district: locationData?.address?.state_district,
-              nearby: locationData?.address?.suburb,
-              city: locationData?.address?.city,
-              state: locationData?.address?.state,
-              pin:locationData?.address?.postcode
+              street_address: locationupdate?.road,
+              district: locationupdate?.state_district,
+              nearby: locationupdate?.suburb,
+              city: locationupdate?.city,
+              state: locationupdate?.state,
+              pin: locationupdate?.postcode
             }));
-             setLoading(false);
-  
+            setLoading(false);
+
           } catch (error) {
             setLoading(false);
             console.log('Error fetching data:', error);
           }
-        }else{
+        } else {
           try {
             const response = await axios.get(
               `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
@@ -194,15 +198,15 @@ console.log("locationupdate",locationupdate)
               location: locationData.display_name,
               latitude: latitude.toString(),
               longitude: longitude.toString(),
-              street_address:locationData?.address?.road,
+              street_address: locationData?.address?.road,
               district: locationData?.address?.state_district,
               nearby: locationData?.address?.suburb,
               city: locationData?.address?.city,
               state: locationData?.address?.state,
-              pin:locationData?.address?.postcode
+              pin: locationData?.address?.postcode
             }));
-             setLoading(false);
-  
+            setLoading(false);
+
           } catch (error) {
             setLoading(false);
             console.log('Error fetching data:', error);
@@ -216,17 +220,53 @@ console.log("locationupdate",locationupdate)
     }
   };
 
+
+
+
+
+
+
+  console.log("locationupdate", locationupdate)
+
+
+  useEffect(() => {
+    const fetchLocationData = async () => {
+      setLoading(true);
+      const { latitude, longitude } = address;
+      try {
+        const response = await axios.get(
+          `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+        );
+        const locationData = response.data;
+        console.log("location ", locationData);
+
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    if (isEdit) {
+      fetchLocationData();
+    }
+  }, [isEdit, address]);
+
+  const [imageproperty, setImagesproperty] = useState(property_image);
+
   const deletePropertyImage = (recordUUID, itemUUID) => {
     const main = new Listing();
-    main
-      .propertyImagedelete(recordUUID, itemUUID)
+    main.propertyImagedelete(recordUUID, itemUUID)
       .then((response) => {
-        toast.success(response.data.message)
+        toast.success(response.data.message);
+        setImagesproperty(imageproperty.filter(item => item.uuid !== itemUUID));
+        (property_image.filter(item => item.uuid !== itemUUID));
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   };
+
 
   async function handleSubmit(e) {
     console.log("item", { ...item, address, propertytype: PType, images });
@@ -259,10 +299,10 @@ console.log("locationupdate",locationupdate)
     const response = isEdit ? main.propertyedit(uuid, formData) : main.addproperty(formData);
     response.then(res => {
       if (res?.data?.status === true) {
-        if(isEdit){
+        if (isEdit) {
           onClose();
           toast.success(res.data.message);
-        }else{
+        } else {
           router.push("/admin/property");
           toast.success(res.data.message);
 
@@ -277,9 +317,9 @@ console.log("locationupdate",locationupdate)
     });
   };
 
-  useEffect(()=>{
-    console.log("images",images)
-  },[images])
+  useEffect(() => {
+    console.log("images", images)
+  }, [images])
 
   return (
     <>
@@ -318,8 +358,8 @@ console.log("locationupdate",locationupdate)
               <div className="grid grid-cols-3 gap-4  " >
                 {propertyTypes && propertyTypes.map((p, i) => {
                   return <div className="" >
-                    <div onClick={() => setPType(p.value)}  className={`${p.value === PType ? "bg-indigo-500" : "" } block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
-                      <House size="52" color={p.value === PType ? "#ffffff" : "#dedede"} /> 
+                    <div onClick={() => setPType(p.value)} className={`${p.value === PType ? "bg-indigo-500" : ""} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
+                      <House size="52" color={p.value === PType ? "#ffffff" : "#dedede"} />
                       <h2 className={`${p.value === PType ? "text-gray-100" : "text-gray-400"} text-xl mt-4 font-normal `} >{p.label}</h2>
                     </div>
                   </div>
@@ -388,33 +428,84 @@ console.log("locationupdate",locationupdate)
                 <p>{address?.location}</p>
                 <div class="w-full mt-4"   >
                   <button className="btn sort w-full" onClick={fetchLocationData}>
-                    {Loading ? "...." : "Use Current Location" }
+                    {Loading ? "...." : "Use Current Location"}
                   </button>
 
                 </div>
                 <div class="flex items-center justify-center space-x-4">
                   <div class="font-semibold text-gray-400 py-3 text-center">OR</div>
                 </div>
-                {isEdit ? (    <div class="w-full  border border-gray-300 rounded-lg overflow-hidden">
-                  <input defaultValue={address.flat_house  }  name='flat_house' onChange={handleAddress} type="text" placeholder="Flat, house, etc. (if applicable)" className=" w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                  <input defaultValue={locationupdate?.suburb ?  locationupdate?.suburb : address.street_address } name="street_address" onChange={handleAddress} type="text" placeholder="Street Address" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                  <input defaultValue={locationupdate.road ?  locationupdate.road  :address.nearby  } name="nearby" onChange={handleAddress} type="text" placeholder="Nearby Landmark (if applicable)" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                  <input defaultValue={locationupdate.state_district ? locationupdate.state_district : address.district} name="district" onChange={handleAddress} type="text"   placeholder="District/Locality" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                  <input defaultValue={locationupdate.city ? locationupdate.city:  address.city} name="city" onChange={handleAddress} type="text" placeholder="City/Town" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                  <input defaultValue={locationupdate.state ? locationupdate.state  : address.state} name="state" onChange={handleAddress}   type="text" placeholder="State" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                  <input defaultValue={locationupdate.postcode ? locationupdate.postcode : address.pin} name="pin"  onChange={handleAddress} type="text" placeholder="PIN Code" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                </div>) : (
-                      <div class="w-full  border border-gray-300 rounded-lg overflow-hidden">
-                      <input defaultValue={address.flat_house}  name='flat_house' onChange={handleAddress} type="text" placeholder="Flat, house, etc. (if applicable)" className=" w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                      <input defaultValue={address.street_address} name="street_address" onChange={handleAddress} type="text" placeholder="Street Address" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                      <input defaultValue={address.nearby} name="nearby" onChange={handleAddress} type="text" placeholder="Nearby Landmark (if applicable)" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                      <input defaultValue={address.district} name="district" onChange={handleAddress} type="text"   placeholder="District/Locality" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                      <input defaultValue={address.city} name="city" onChange={handleAddress} type="text" placeholder="City/Town" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                      <input defaultValue={address.state} name="state" onChange={handleAddress}   type="text" placeholder="State" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                      <input defaultValue={address.pin} name="pin"  onChange={handleAddress} type="text" placeholder="PIN Code" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
-                    </div>
-                ) }
-            
+                {isEdit ? (
+                  <div class="w-full  border border-gray-300 rounded-lg overflow-hidden">
+                    <input
+                      defaultValue={address.flat_house}
+                      name='flat_house'
+                      onChange={handleAddress}
+                      type="text"
+                      placeholder="Flat, house, etc. (if applicable)"
+                      className="w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                    />
+                    <input
+                      defaultValue={locationupdate?.suburb ? locationupdate?.suburb : address.street_address}
+                      name="street_address"
+                      onChange={handleAddress}
+                      type="text"
+                      placeholder="Street Address"
+                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                    />
+                    <input
+                      defaultValue={locationupdate.road ? locationupdate.road : address.nearby}
+                      name="nearby"
+                      onChange={handleAddress}
+                      type="text"
+                      placeholder="Nearby Landmark (if applicable)"
+                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                    />
+                    <input
+                      defaultValue={locationupdate.state_district ? locationupdate.state_district : address.district}
+                      name="district"
+                      onChange={handleAddress}
+                      type="text"
+                      placeholder="District/Locality"
+                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                    />
+                    <input
+                      defaultValue={locationupdate.city ? locationupdate.city : address.city}
+                      name="city"
+                      onChange={handleAddress}
+                      type="text"
+                      placeholder="City/Town"
+                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                    />
+                    <input
+                      defaultValue={locationupdate.state ? locationupdate.state : address.state}
+                      name="state"
+                      onChange={handleAddress}
+                      type="text"
+                      placeholder="State"
+                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                    />
+                    <input
+                      defaultValue={locationupdate.postcode ? locationupdate.postcode : address.pin}
+                      name="pin"
+                      onChange={handleAddress}
+                      type="text"
+                      placeholder="PIN Code"
+                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                    />
+                  </div>
+                ) : (
+                  <div class="w-full  border border-gray-300 rounded-lg overflow-hidden">
+                    <input defaultValue={address.flat_house} name='flat_house' onChange={handleAddress} type="text" placeholder="Flat, house, etc. (if applicable)" className=" w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                    <input defaultValue={address.street_address} name="street_address" onChange={handleAddress} type="text" placeholder="Street Address" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                    <input defaultValue={address.nearby} name="nearby" onChange={handleAddress} type="text" placeholder="Nearby Landmark (if applicable)" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                    <input defaultValue={address.district} name="district" onChange={handleAddress} type="text" placeholder="District/Locality" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                    <input defaultValue={address.city} name="city" onChange={handleAddress} type="text" placeholder="City/Town" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                    <input defaultValue={address.state} name="state" onChange={handleAddress} type="text" placeholder="State" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                    <input defaultValue={address.pin} name="pin" onChange={handleAddress} type="text" placeholder="PIN Code" className=" w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none " />
+                  </div>
+                )}
+
               </div>
             </div>
             <div className={`${step === 3 ? "" : "display-none"}`}>
@@ -583,12 +674,13 @@ console.log("locationupdate",locationupdate)
               <h2 className="text-3xl text-center font-bold mb-2" >Add some photos of your {PType ? PType.replace("_", ' ') : "house"}</h2>
               <p className="text-normal text-center text-gray-500 mb-8" >You'll need 5 photos to get started. You can add more or make changes later.</p>
 
-             
+
 
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4  mt-16 ">
 
-                {isEdit ? (property_image?.map((item, index) => (
+                {isEdit ? (
+                  imageproperty?.map((item, index) => (
                     <div key={index} className="relative isedits">
                       <img
                         className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
@@ -596,7 +688,7 @@ console.log("locationupdate",locationupdate)
                         width={200}
                         height={200}
                         alt={`Preview ${index}`}
-                      /> 
+                      />
                       <button
                         type="button"
                         onClick={() => deletePropertyImage(uuid, item?.uuid)}
@@ -608,8 +700,8 @@ console.log("locationupdate",locationupdate)
                 ) : ''}
 
                 {images && images.map((file, index) => (
-                   <div key={index} className="relative">
-                    <img 
+                  <div key={index} className="relative">
+                    <img
                       src={URL.createObjectURL(file)}
                       width={200}
                       height={200}
@@ -626,66 +718,66 @@ console.log("locationupdate",locationupdate)
                 ))}
               </div>
 
-              {isEdit ? 
-              
-              <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
-                <label
-                  htmlFor="dropzone-file"
-                  className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
-                >
-                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                    <Add
-                      size="100"
-                      color="#ccc"
+              {isEdit ?
+
+                <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
+                  <label
+                    htmlFor="dropzone-file"
+                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
+                  >
+                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                      <Add
+                        size="100"
+                        color="#ccc"
+                      />
+                      <p className="mb-2 text-lg text-gray-500 text-gray-400">
+                        <span className="font-semibold">Click to upload</span> or
+                        drag and drop
+                      </p>
+                      <p className="text-normal text-gray-500 text-gray-400">
+                        Choose atleast 5 images
+                      </p>
+                    </div>
+                    <input
+                      id="dropzone-file"
+                      type="file"
+                      className="hidden"
+                      onChange={handleFileChange}
+                      name="images"
+                      required
+                      multiple
                     />
-                    <p className="mb-2 text-lg text-gray-500 text-gray-400">
-                      <span className="font-semibold">Click to upload</span> or
-                      drag and drop
-                    </p>
-                    <p className="text-normal text-gray-500 text-gray-400">
-                      Choose atleast 5 images
-                    </p>
-                  </div>
-                  <input
-                    id="dropzone-file"
-                    type="file"
-                    className="hidden"
-                    onChange={handleFileChange}
-                    name="images"
-                    required
-                    multiple
-                  />
-                </label>
-              </div>
-              : <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
-                <label
-                  htmlFor="dropzone-file"
-                  className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
-                >
-                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                    <Add
-                      size="100"
-                      color="#ccc"
+                  </label>
+                </div>
+                : <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
+                  <label
+                    htmlFor="dropzone-file"
+                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
+                  >
+                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                      <Add
+                        size="100"
+                        color="#ccc"
+                      />
+                      <p className="mb-2 text-lg text-gray-500 text-gray-400">
+                        <span className="font-semibold">Click to upload</span> or
+                        drag and drop
+                      </p>
+                      <p className="text-normal text-gray-500 text-gray-400">
+                        Choose atleast 5 images
+                      </p>
+                    </div>
+                    <input
+                      id="dropzone-file"
+                      type="file"
+                      className="hidden"
+                      onChange={handleFileChange}
+                      name="images"
+                      required
+                      multiple
                     />
-                    <p className="mb-2 text-lg text-gray-500 text-gray-400">
-                      <span className="font-semibold">Click to upload</span> or
-                      drag and drop
-                    </p>
-                    <p className="text-normal text-gray-500 text-gray-400">
-                      Choose atleast 5 images
-                    </p>
-                  </div>
-                  <input
-                    id="dropzone-file"
-                    type="file"
-                    className="hidden"
-                    onChange={handleFileChange}
-                    name="images"
-                    required
-                    multiple
-                  />
-                </label>
-              </div>}
+                  </label>
+                </div>}
 
             </div>
 
