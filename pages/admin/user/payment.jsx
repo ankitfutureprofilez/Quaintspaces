@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Listing from "../api/Listing";
 import Image from "next/image";
-export default function payment({record}) {
+export default function payment() {
 
   const[content ,setcontent] =useState([])
 

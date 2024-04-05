@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import Listing from "../api/Listing";
 import Image from "next/image";
 
-export default function Booking({ record }) {
+export default function Booking(props) {
+  const {record } = props;
+  console.log("record",record)
+
   const [content, setContent] = useState("");
 
   useEffect(() => {
