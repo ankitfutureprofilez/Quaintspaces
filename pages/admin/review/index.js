@@ -64,7 +64,7 @@ export default function Index() {
                 <section className="container px-4 mx-auto">
                     <div className="flex flex-col">
                         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                            <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                            <div className="inline-block py-2 align-middle md:px-6 lg:px-8">
                                 <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
                                     {loading ? (
                                         <Loading />
@@ -118,11 +118,12 @@ export default function Index() {
                                                                         </div>
                                                                     </div>
                                                                 </td>
-                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                                                <td  style={{ width: '25%' }} className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                                     {item?.review_text}
                                                                 </td>
                                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                                     <div className="flex items-center gap-x-2">
+                                                                    <Link href={`/property/${item?.get_property_review?.uuid}`} className="flex items-center gap-x-2">
                                                                         <img
                                                                             className="object-cover w-8 h-8 rounded-full"
                                                                             src={item?.get_property_review?.property_image[0]?.image_url}
@@ -136,6 +137,7 @@ export default function Index() {
                                                                                 {item?.get_property_review?.price}
                                                                             </p>
                                                                         </div>
+                                                                    </Link>
                                                                     </div>
                                                                 </td>
                                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
