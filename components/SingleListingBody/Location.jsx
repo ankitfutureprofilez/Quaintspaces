@@ -25,7 +25,6 @@ const Location = React.forwardRef(({ listing }, ref) => {
   // };
 
 
-  console.log("center",center)
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY,
