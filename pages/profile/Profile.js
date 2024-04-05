@@ -149,7 +149,7 @@ export default function Profile() {
             <div className="shrink-0">
               <img
                 id="preview_img"
-                className="h-16 w-16 object-cover rounded-full"
+                className="h-16 border-solid border w-16 object-cover rounded-full"
                 src={previewImgSrc}
                 alt="Current profile photo"
               />

@@ -56,10 +56,8 @@ const Reviews = React.forwardRef(({ data }, ref) => {
             setPage(p);
           }
           if (r?.data?.current_page == r?.data?.last_page) {
-            console.log("Inside Condition");
             setHasmore(false);
           } else {
-            console.log("Hello");
             setHasmore(true);
           }
           // false loading

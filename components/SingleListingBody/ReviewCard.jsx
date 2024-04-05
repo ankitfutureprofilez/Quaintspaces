@@ -1,10 +1,10 @@
 import { textResizer } from "../../utils/handlers";
 
 const ReviewCard = ({ data }) => {
-const date = new Date(data?.created_at);
-let reviewtime=""
-reviewtime+= date.getMonth() + 1; // getMonth() returns zero-based month (0-11), so we add 1
-reviewtime+=" ,"+ date.getFullYear();
+// const date = new Date(data?.created_at);
+// let reviewtime=""
+// reviewtime+= date.getMonth() + 1; // getMonth() returns zero-based month (0-11), so we add 1
+// reviewtime+=" ,"+ date.getFullYear();
 
   return (
     <div>
@@ -18,7 +18,7 @@ reviewtime+=" ,"+ date.getFullYear();
         </div>
         <div>
           <h1 className="text-md font-medium">{data?.rating_user?.name} </h1>
-          <h1 className="text-sm text-lightTextColor">{reviewtime}</h1>
+          <h1 className="text-sm text-lightTextColor">{data?.created_at}</h1>
         </div>
       </header>
       <div className="mt-4">
