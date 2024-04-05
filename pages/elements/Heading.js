@@ -12,15 +12,15 @@ function Heading({ text, value, handleClick }) {
     <div className="flex flex-wrap items-center">
       <div className="flex items-center ">
         <div
-          className="flex justify-center items-center h-10 w-10 rounded-full border border-gray-400"
-          style={{ color: "#3F2A17" }}
+          className="flex justify-center items-center h-10 w-10 rounded-full border border-gray-800"
+          style={{ color: "#000" }}
           onClick={handleClick}
         >
           <svg
             viewBox="0 0 32 32"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
-            style={{ color: "#3F2A17" }}
+            style={{ color: "#000" }}
             role="presentation"
             focusable="false"
             className="h-5 w-5 stroke-current"
