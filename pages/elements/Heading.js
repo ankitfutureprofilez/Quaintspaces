@@ -12,7 +12,7 @@ function Heading({ text, value, handleClick }) {
     <div className="flex flex-wrap items-center">
       <div className="flex items-center ">
         <div
-          className="flex justify-center items-center h-10 w-10 rounded-full border border-gray-400"
+          className="flex cursor-pointer justify-center items-center h-10 w-10 rounded-full border border-gray-400"
           style={{ color: "#3F2A17" }}
           onClick={handleClick}
         >

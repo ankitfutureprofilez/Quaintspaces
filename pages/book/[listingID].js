@@ -352,7 +352,9 @@ const Book = () => {
                     <p className="item-pargraph">
                       This reservation is non-refundable.
                     </p>
+                    <Link href="/terms">
                     <p className="underline edit-color font-bold">Learn More</p>
+                    </Link>
                   </div>
                 </div>
               </div>

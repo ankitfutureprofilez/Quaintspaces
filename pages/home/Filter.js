@@ -33,11 +33,11 @@ export default function Filter({
         />
       </div>
       <div className="flex flex-col mt-4">
-        <h2 className="text-xl font-semibold mb-2">Price Range</h2>
+        <h2 className="text-xl font-semibold my-2">Price Range</h2>
         <p>Nightly prices before fees and taxes</p>
       </div>
       <RangeSlider min={min} max={max} onChange={onChange} />
-      <button className="btn filter w-1/2 mx-auto mt-10 mb-0" onClick={onClick}>
+      <button className="btn filter w-1/2 mx-auto " onClick={onClick}>
         Apply
       </button>
     </div>

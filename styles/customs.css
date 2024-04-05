@@ -305,7 +305,7 @@ footer {
   font-family: "Inter", sans-serif;
   font-size: 13px;
   font-weight: 400;
-  line-height: 16px;
+  line-height: 20px;
   letter-spacing: 0em;
   color: #95908d;
   padding: 20px 10px 15px 10px;
@@ -338,7 +338,7 @@ footer {
   border-top: 1px solid #dcac81;
   margin-top: 25px;
 }
-.explor-btn a {
+.explor-btn .explore {
   display: flex;
   align-items: center; /* font-family: 'NewYork'; */
   font-size: 16px;
@@ -349,7 +349,7 @@ footer {
   color: #dcac81;
   text-transform: uppercase;
 }
-.explor-btn a svg {
+.explor-btn .explore svg {
   margin-left: 10px;
 }
 .banipark-box {

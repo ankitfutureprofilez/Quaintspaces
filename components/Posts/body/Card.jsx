@@ -36,6 +36,7 @@ const Card = ({ post }) => {
 
   return (
     <div className="banipark-box rounded-lg">
+        <Link className="block" href={`/property/${post?.uuid}`}>
       <Image
         width={100}
         height={300}
@@ -50,7 +51,7 @@ const Card = ({ post }) => {
               post.location.slice(0, 1).toUpperCase() +
                 post.location.slice(1, -1)
           )} */}
-          {record.street_address}{record.city}
+          {record.location}
           {/* {post?.location} */}
         </h5>
         <h3 className="line-limit">
@@ -58,18 +59,18 @@ const Card = ({ post }) => {
         </h3>
         <p>
           {post?.bedrooms} Bedrooms · {post?.beds} Bed
-          <span className=" ml-2 text-base text-red-500">
+          <span className="ml-2">
             {capitalizeAndReplace(post?.type)}
           </span>
         </p>
         <h4>
-          From{" "}
+          {/* From{" "} */}
           <span className="card-price"> {formatMultiPrice(post?.price)}</span>{" "}
           /night
         </h4>
       </div>
       <div className="explor-btn">
-        <Link className="block" href={`/property/${post?.uuid}`}>
+      <div className="explore block">
           Explore{" "}
           <svg
             width="13"
@@ -83,8 +84,9 @@ const Card = ({ post }) => {
               fill="#DCAC81"
             />
           </svg>
-        </Link>
+        </div>
       </div>
+        </Link>
     </div>
   );
 };

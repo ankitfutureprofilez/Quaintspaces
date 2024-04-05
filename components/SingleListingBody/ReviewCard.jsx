@@ -17,7 +17,7 @@ reviewtime+=" ,"+ date.getFullYear();
           />
         </div>
         <div>
-          <h1 className="text-md font-medium">{data?.rating_user?.name}</h1>
+          <h1 className="text-md font-medium">{data?.rating_user?.name} </h1>
           <h1 className="text-sm text-lightTextColor">{reviewtime}</h1>
         </div>
       </header>
@@ -25,6 +25,7 @@ reviewtime+=" ,"+ date.getFullYear();
         <p className="text-blackColor text-md leading-7">
           {textResizer(data?.review_text, 210)}
         </p>
+        <span className="text-red-500 text-xs" >{data&& data.status == 0 ? "Your review is not approved yet. Currently only you can see this." : ""}</span> 
       </div>
     </div>
   );
