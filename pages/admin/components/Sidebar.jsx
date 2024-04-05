@@ -86,7 +86,7 @@ function Sidebar() {
               href={"/admin"}
               className={`flex ${
                 pathname === "/admin" ? "text-primary" : ""
-              } hover:px-8 duration-200 rounded-md w-full py-2 px-6 items-center gap-2`}
+              } hover:px-8 duration-200 rounded-md w-full py-2 px-6 items-center gap-2 focus:text-indigo-400`}
             >
               <Element3 variant="Outline" size={16} />
               Dashboard
@@ -96,7 +96,7 @@ function Sidebar() {
               href={"/admin/property/add"}
               className={`flex ${
                 pathname === "/admin/property/add" ? "text-primary" : ""
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2`}
+              } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
             >
               <svg
                 width="16px"
@@ -119,17 +119,17 @@ function Sidebar() {
               href={"/admin/property"}
               className={`flex ${
                 pathname === "/admin/property" ? "text-primary" : ""
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2`}
+              } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
             >
               <TextalignJustifycenter size={16} />
-              Property List
+             Properties
             </Link>
 
             <Link
               href={"/admin/user"}
               className={`flex ${
                 pathname === "/admin/user" ? "text-primary" : ""
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2`}
+              } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
             >
              <TextalignJustifycenter size={16} />
               Users
@@ -139,9 +139,10 @@ function Sidebar() {
               href={"/admin/review"}
               className={`flex ${
                 pathname === "/admin/review" ? "text-primary" : ""
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2`}
+              } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
             >
-            <TextalignJustifycenter size={16} />
+             <TextalignJustifycenter size={16} />
+
               Reviews 
             </Link>
           </div>

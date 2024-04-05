@@ -27,7 +27,7 @@ function index() {
 
   return (
     <AdminLayout heading ={"User Details  "}>
-      <div className="antialiased mt-36">
+      <div className="antialiased mt-36 mt-5">
       <div className="container mx-auto my-20">
         <div>
           <div className=" relative bg-indigo-300 pb-6 shadow rounded-lg w-5/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto">
@@ -48,7 +48,7 @@ function index() {
         </div>
       </div>
     </div>
-    <div className='flex text-xl font-medium relative  rounded-lg py-0'>
+    <div className='flex text-xl font-medium relative  rounded-lg py-0 mt-4'>
                 <button onClick={() => setActiveTab('Booking')} className={`z-10 w-32 px-4 py-2 ${activeTab === 'overview' ? '' : ''}`}>Booking</button>
                 <button onClick={() => setActiveTab('payment')} className={`z-10 w-32  px-4 py-3   rounded-lg ${activeTab === 'payment' ? '' : ''}`}>Payment </button>
                 <button onClick={() => setActiveTab('rewards')} className={`z-10 w-32 px-2 py-2  ${activeTab === 'rewards' ? '' : ''}`}></button>

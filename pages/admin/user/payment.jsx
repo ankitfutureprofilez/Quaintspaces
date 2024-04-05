@@ -5,10 +5,7 @@ export default function payment({record}) {
 
   const[content ,setcontent] =useState([])
 
-  useEffect(()=>{
-    const main =  new Listing();
-    const response =  main.Paymentuser({record}) 
-  },[])
+ 
   return (
     <>
       <div className="mx-auto mt-8 ">
@@ -25,7 +22,7 @@ export default function payment({record}) {
               </tr>
             </thead>
 
-            <tbody className="lg:border-gray-300">
+            {/* <tbody className="lg:border-gray-300">
               {content && content.map((item, index) => (
                 <tr className="" key={index}>
 
@@ -49,7 +46,7 @@ export default function payment({record}) {
                   </td>
                 </tr>
               ))}
-            </tbody>
+            </tbody> */}
           </table>
         </div>
       </div>
