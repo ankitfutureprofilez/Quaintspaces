@@ -5,6 +5,8 @@ import AdminLayout from "../AdminLayout";
 import Element from "../element";
 import Link from "next/link"
 import Booking from "./booking"
+import Payment from "./payment"
+
 import { motion } from 'framer-motion'
 
 function index() {
@@ -26,7 +28,6 @@ function index() {
 
   return (
     <AdminLayout heading ={"User Details  "}>
-
       <div className="antialiased mt-36">
       <div className="container mx-auto my-20">
         <div>
@@ -34,7 +35,6 @@ function index() {
             <div className="flex justify-center">
               <img src={record?.image_url ? record?.image_url : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"} alt="" className="rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110" />
             </div>
-            
             <div className="mt-16">
               <h1 className="font-bold text-center  text-3xl text-white-900"> {record?.name}</h1>
               {record?.status === 1 ? (
@@ -49,22 +49,17 @@ function index() {
         </div>
       </div>
     </div>
-
     <div className='flex text-xl font-medium relative  rounded-lg py-0'>
                 <button onClick={() => setActiveTab('Booking')} className={`z-10 w-32 px-4 py-2 ${activeTab === 'overview' ? '' : ''}`}>Booking</button>
                 <button onClick={() => setActiveTab('payment')} className={`z-10 w-32  px-4 py-3   rounded-lg ${activeTab === 'payment' ? '' : ''}`}>Payment </button>
                 <button onClick={() => setActiveTab('rewards')} className={`z-10 w-32 px-2 py-2  ${activeTab === 'rewards' ? '' : ''}`}></button>
-
                 <div className='absolute items-center top-0 left-0 w-32 h-full flex'>
                     <motion.div
                         animate={{ x: activeTab === 'Booking' ? 0 : activeTab === 'rewards' ? '200%' : '100%' }}
                         className='w-full h-full bg-white border bg-indigo-300 h-7 rounded-lg transform'
                     />
                 </div>
-
-        
             </div>
-
           <div className=" ">
             {activeTab === 'Booking' && (
               <div className =" ">
@@ -73,6 +68,7 @@ function index() {
             )}
             {activeTab === 'Payment' && (
               <div>
+                {/* <Payment record = {record?.id}/> */}
               </div>
             )}
             {activeTab === 'Rewards' && (

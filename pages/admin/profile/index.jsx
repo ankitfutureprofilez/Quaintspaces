@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import { Reorder } from "framer-motion";
 import Listing from '../api/Listing';
 import AdminLayout from "../AdminLayout";
-import Element from './../element';
-import Image from 'next/image'
+import userProfile  from "../"
+
 
 export default function Profileindex() {
   const[Loading ,setLoading] =useState(false);
@@ -96,8 +95,7 @@ export default function Profileindex() {
   }, []);
   return (
     <>
-    <AdminLayout>
-      {/* <Element text= {"profile Management"} /> */}
+    <AdminLayout  heading= {"profile Management"}>
       <div className="container mx-auto mt-5">
         <div className="flex items-center profile-border">
           <div className="relative mt-5">
