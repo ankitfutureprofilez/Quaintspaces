@@ -70,7 +70,10 @@ export default function Index() {
                                         <Loading />
                                     ) : (
 
-                                        <table className=" table-fixed  divide-y divide-gray-200 dark:divide-gray-700">
+                                        <table className=" table-auto\
+                                        
+                                        
+                                        divide-y divide-gray-200 dark:divide-gray-700">
                                             <thead className="bg-gray-50 dark:bg-gray-800">
                                                 <tr>
                                                     <th style={{ width: '15%' }} scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -93,7 +96,7 @@ export default function Index() {
                                                     </th>
                                                 </tr>
                                             </thead>
-                                            <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                                            <tbody className=" bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                                 {content &&
                                                     content.map((item, index) => {
                                                         return (
