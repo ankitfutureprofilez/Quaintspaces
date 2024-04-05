@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import Link from "next/link";
 import Listing from "../api/Listing";
 import Image from 'next/image';
 import { useRouter } from "next/router";
@@ -103,7 +104,11 @@ export default function Index() {
                         <div className="p-12 bg-white mx-auto rounded-2xl w-100 ">
                             <div className="mb-4">
                                 <h3 className="font-semibold text-2xl text-gray-800">Forget Password</h3>
-                                <p className="text-gray-500"> Remember your password? Login here</p>
+                                <p className="text-gray-500"> Remember your password? 
+                                <Link href= "/admin/login" className="text-indigo-800">
+                                &nbsp;  Login here
+                                </Link>
+                                </p>
                             </div>
 
                             {status ? (
