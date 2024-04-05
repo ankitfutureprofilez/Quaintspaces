@@ -183,7 +183,7 @@ export default function index() {
       {/* Render the modal component conditionally */}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
+          <div className="bg-white p-6 rounded-lg shadow-lg filter-popup">
             <div className="relative ">
               <h2 className="listing-heading  text-center">Filter</h2>
               <div className="absolute top-0 right-0">

@@ -54,6 +54,7 @@
   .slider__left-value {
     left: 6px;
   }
+  .slider__left-value, .slider__right-value { text-align: center; padding: 5px; }
   
   .slider__right-value {
     right: -4px;
