@@ -193,7 +193,7 @@ const SingleListingBody = ({ listing, loading }) => {
                   <Star />
                 </span>
                 <span className="text-xs font-medium">
-                  {listing?.data?.rating.toFixed(2)}
+                  {listing?.data?.rating && listing?.data?.rating.toFixed(2)}
                 </span>
                 <span> ·</span>
                 <span className="text-xs underline text-lightTextColor">
