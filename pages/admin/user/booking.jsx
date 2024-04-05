@@ -19,7 +19,7 @@ export default function Booking({ record }) {
   }, [record]);
 
   return (
-    <div className="w-screen">
+    <div className="">
       <div className="mx-auto mt-8 ">
         {/* <div className="sm:flex sm:items-center sm:justify-between flex-col sm:flex-row">
           <p className="flex-1 text-base font-bold text-gray-900">Booking history </p>
@@ -44,7 +44,7 @@ export default function Booking({ record }) {
         </div> */}
 
         <div className="mt-6 overflow-hidden rounded-xl border shadow">
-          <table className="min-w-full border-separate border-spacing-y-2 border-spacing-x-2">
+          <table className="min-w-[1200px] w-full border-separate border-spacing-y-2 border-spacing-x-2">
             <thead className="hidden border-b lg:table-header-group">
               <tr className="">
                 <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6"> booking Date</td>

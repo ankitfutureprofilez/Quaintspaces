@@ -341,9 +341,9 @@ export default function Property(props) {
       <div className={`w-full  flex items-center justify-center px-6 py-8 `} >
         <div className="max-w-4xl w-full space-y-8 w-full ">
           <div
-            className={`pages-wrapper  ${uuid ? " max-w-[700px]" : ""} m-auto `} >
+            className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `} >
 
-            <div className={`${step === 0 ? "" : "display-none"} max-w-[600px] m-auto table w-full`}>
+            <div className={`${step === 0 ? "" : "display-none"} max-w-[100%] m-auto table w-full`}>
               {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
                <div className="grid grid-cols-3 gap-4 m-auto table  " >
                 <div className="" >
@@ -377,7 +377,7 @@ export default function Property(props) {
               {/* </> : '' } */}
             </div>
 
-            <div className={`${step === 1 ? "" : "display-none"} max-w-[600px] m-auto table w-full`}>
+            <div className={`${step === 1 ? "" : "display-none"} max-w-[100%] m-auto table w-full`}>
               <h2 className="text-3xl text-center font-bold mb-8" >Describes your place?</h2>
               <div className="mt-4">
                 <input

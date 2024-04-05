@@ -61,7 +61,7 @@ function Sidebar() {
         }`}
       >
         <div
-          className="p-4 md:p-6 flex cursor-pointer group items-center gap-2 z-10"
+          className="p-4 md:p-6 flex cursor-pointer group items-center gap-2 z-10 h-24"
           onClick={toggleSidebar}
         >
           <div className="h-10 outline outline-violet-300 w-10 flex items-center bg-gradient-to-br justify-center rounded-full from-violet-500 to-violet-400 text-white">
@@ -206,7 +206,7 @@ function Sidebar() {
         </div>
       </div>
 
-      <div className="md:hidden fixed top-0 left-0 z-50 p-4">
+      <div className="md:hidden fixed top-5 left-0 z-50 p-4">
         <button onClick={toggleMobileSidebar}>
           {isMobileSidebarOpen ? (
             <svg
@@ -215,8 +215,7 @@ function Sidebar() {
               height="24"
               viewBox="0 0 24 24"
             >
-              <path d="M0 0h24v24H0z" fill="none" />
-              <path d="M18 6L6 18h12V6zm-6 10h2v-2h-2v2z" />
+              
             </svg>
           ) : (
             <svg

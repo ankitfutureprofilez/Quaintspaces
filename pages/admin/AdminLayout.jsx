@@ -36,7 +36,7 @@ const AdminLayout = ({ children, heading }) => {
                     animate={{ x: 0 }}
                     exit={{ x: "-100%" }}
                     transition={{ duration: 0.3, type: 'spring', bounce: 0.25 }}
-                    className='absolute md:hidden z-30 top-0 left-0'>
+                    className='fixed md:hidden z-30 top-0 left-0'>
                     <Sidebar />
                 </motion.div>
             
@@ -48,7 +48,7 @@ const AdminLayout = ({ children, heading }) => {
                 </div>
                 <div className='w-full overflow-x-auto '>
                     <Navbar heading={heading} />
-                    <div className="pt-24" >{children}</div>
+                    <div className="pt-24 px-4" >{children}</div>
                 </div>
             </div>
         </motion.div>

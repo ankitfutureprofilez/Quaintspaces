@@ -16,8 +16,8 @@ function Navbar({ isOpen, sidebarChange, heading }) {
 
     return (
         <>
-            <div className='bg-white border w-full fixed top-0 flex p-6 justify-between items-center'>
-                <div className='flex items-center justify-between gap-2'>
+            <div className='bg-white border w-full fixed top-0 flex p-6 justify-between items-center h-24 z-10'>
+                <div className='flex items-center justify-between gap-2 ml-7'>
                     <p className='text-xl font-bold text-black'>{heading ? heading : 'Welcome'}</p>
                 </div>
                
