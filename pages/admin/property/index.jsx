@@ -94,7 +94,7 @@ export default function Index() {
 
             {record ? (
             record.map((item, index) => (
-           <div className="w-full sm:w-1/2 md:w-1/3 px-3 mt-4" key={index}>
+           <div className="w-full sm:w-1/2 md:w-1/3 xl:w-1/4 px-3 mt-4" key={index}>
             <div className="relative border rounded-lg overflow-hidden shadow-md">
             <img
             className="w-full h-48 object-cover object-center"

@@ -104,11 +104,11 @@ export default function Login() {
                     Remember me
                   </label>
                 </div>
-                {/* <div className="text-sm">
-                  <Link href="#" className="text-indigo-400 hover:text-indigo-500">
+                <div className="text-sm">
+                  <Link href="/admin/forget-password" className="text-indigo-400 hover:text-indigo-500">
                     Forgot your password?
                   </Link>
-                </div> */}
+                </div>
             </div>
             </div>
             <div>

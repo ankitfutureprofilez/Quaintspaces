@@ -66,8 +66,10 @@ export default function index() {
           <Heading text={"Contact "} handleClick={() => router.back()} />
         </div>
       </div>
-      <div className="bg-orange-300 flex items-center justify-between w-full px-24 py-8 my-12">
-        <div className="flex items-center">
+      <div className="bg-orange-300 justify-between w-full py-6 md:py-12 my-6 md:my-12">
+      <div className="container mx-auto">
+        <div className="flex justify-between flex-wrap sm:flex-nowrap">
+        <div className="flex items-center w-full mb-3 sm:mb-0">
           <svg
             width="50"
             height="50"
@@ -81,9 +83,9 @@ export default function index() {
               fill="white"
             />
           </svg>
-          <span className="ml-2">+98-9745678912</span>
+          <span className="ml-2 font-medium">+98-9745678912</span>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center w-full mb-3 sm:mb-0">
           <svg
             width="50"
             height="50"
@@ -97,9 +99,9 @@ export default function index() {
               fill="white"
             />
           </svg>
-          <span className="ml-2">quientstay@gmail.com</span>
+          <span className="ml-2 font-medium">quientstay@gmail.com</span>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center w-full mb-3 sm:mb-0">
           <svg
             width="50"
             height="50"
@@ -126,26 +128,28 @@ export default function index() {
               />
             </g>
           </svg>
-          <span className="ml-2">+98-9745678912</span>
+          <span className="ml-2 font-medium">+98-9745678912</span>
+        </div>
+        </div>
         </div>
       </div>
-      <div className="container flex mx-auto w-full space-x-7">
-        <div className="w-6/12">
-          <Image src={ContactUs} alt="QS Jaipur Logo" />
+      <div className="container flex mx-auto w-full flex-wrap md:flex-nowrap space-x-7">
+        <div className="md:w-6/12 w-full">
+          <Image className="w-full" src={ContactUs} alt="QS Jaipur Logo" />
         </div>
-        <div className="w-6/12">
+        <div className="md:w-6/12 w-full !ml-0 md:!ml-8 mt-4 md:mt-0">
           <h2
-            className="sm:text-3xl text-lg font-medium text-bold mb-11 mt-2.5"
+            className="text-xl sm:text-3xl text-lg font-semibold mb-4 lg:mb-8 mt-2.5 border-b pb-3 lg:pb-6"
             style={{ color: "#3F2A17" }}
           >
             Write to Us
           </h2>
           <div className="w-full security-box-form">
             <form onSubmit={handleSubmit}>
-              <div className="mb-10">
+              <div className="mb-3 lg:mb-6">
                 <label
                   htmlFor="name"
-                  className="block text-lg font-medium text-gray-700 "
+                  className="block text-lg font-medium text-gray-600 "
                 >
                   Your Name
                 </label>
@@ -155,14 +159,14 @@ export default function index() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="mt-1 p-4 border rounded-full w-full"
+                  className="mt-3 p-3 lg:p-4 border rounded-full w-full"
                   required
                 />
               </div>
-              <div className="mb-10">
+              <div className="mb-3 lg:mb-6">
                 <label
                   htmlFor="email"
-                  className="block text-lg font-medium text-gray-700"
+                  className="block text-lg font-medium text-gray-600"
                 >
                   Your Email
                 </label>
@@ -172,14 +176,14 @@ export default function index() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="mt-1 p-4 border rounded-full w-full"
+                  className="mt-3 p-3 lg:p-4 border rounded-full w-full"
                   required
                 />
               </div>
-              <div className="mb-10">
+              <div className="mb-3 lg:mb-6">
                 <label
                   htmlFor="message"
-                  className="block text-lg font-medium text-gray-700"
+                  className="block text-lg font-medium text-gray-600"
                 >
                   Message
                 </label>
@@ -188,12 +192,12 @@ export default function index() {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  className="mt-1 p-4 border rounded-lg w-full"
+                  className="mt-3 p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52  w-full"
                   required
                   rows={4} // Set the number of rows as needed
                 />
               </div>
-              <button className="filter btn w-7/12">
+              <button className="filter btn w-7/12 !py-2 lg:!py-3">
                 {loading?"Submitting...":"Submit"}
                 </button>
             </form>

@@ -5,6 +5,8 @@ import AdminLayout from "../AdminLayout";
 import Element from "../element";
 import Link from "next/link"
 import Booking from "./booking"
+import Payment from "./payment"
+
 import { motion } from 'framer-motion'
 
 function index() {
@@ -26,17 +28,20 @@ function index() {
 
   return (
     <AdminLayout heading ={"User Details  "}>
-
-      <div className="bg-gray-300 antialiased mt-40">
+      <div className="antialiased mt-36">
       <div className="container mx-auto my-20">
         <div>
-          <div className=" relative shadow rounded-lg w-5/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto">
+          <div className=" relative bg-indigo-300 pb-6 shadow rounded-lg w-5/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto">
             <div className="flex justify-center">
               <img src={record?.image_url ? record?.image_url : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"} alt="" className="rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110" />
             </div>
-            
             <div className="mt-16">
               <h1 className="font-bold text-center  text-3xl text-white-900"> {record?.name}</h1>
+              {record?.status === 1 ? (
+                <div className="flex justify-center my-2">
+                  <div class="flex w-fit items-center gap-1 border rounded-full p-1 px-4"><p class="text-xs">Activate</p> <svg class="text-emerald-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z" fill="currentColor"></path></svg></div>
+                </div>
+              ) : (<></>)}
               <p className="text-center text-sm text-white-400 font-medium">{record?.email}</p>
               <p className="text-center text-sm text-white-400 font-medium">{record?.phone_no}</p>
             </div>
@@ -44,31 +49,26 @@ function index() {
         </div>
       </div>
     </div>
-
-    <div className='flex text-xl font-medium relative p-4 rounded-lg py-2'>
-                <button onClick={() => setActiveTab('Booking')} className={`z-10 w-full px-4 py-2 ${activeTab === 'overview' ? '' : ''}`}>Booking</button>
-                <button onClick={() => setActiveTab('payment')} className={`z-10 w-full  px-4 py-3   rounded-lg ${activeTab === 'payment' ? '' : ''}`}>Payment </button>
-                <button onClick={() => setActiveTab('rewards')} className={`z-10 w-full px-2 py-2  ${activeTab === 'rewards' ? '' : ''}`}></button>
-
-                <div className='absolute items-center px-1 top-0 left-0 w-full h-full flex'>
+    <div className='flex text-xl font-medium relative  rounded-lg py-0'>
+                <button onClick={() => setActiveTab('Booking')} className={`z-10 w-32 px-4 py-2 ${activeTab === 'overview' ? '' : ''}`}>Booking</button>
+                <button onClick={() => setActiveTab('payment')} className={`z-10 w-32  px-4 py-3   rounded-lg ${activeTab === 'payment' ? '' : ''}`}>Payment </button>
+                <button onClick={() => setActiveTab('rewards')} className={`z-10 w-32 px-2 py-2  ${activeTab === 'rewards' ? '' : ''}`}></button>
+                <div className='absolute items-center top-0 left-0 w-32 h-full flex'>
                     <motion.div
                         animate={{ x: activeTab === 'Booking' ? 0 : activeTab === 'rewards' ? '200%' : '100%' }}
-                        className='w-1/3 bg-white border h-7 rounded-lg transform'
+                        className='w-full h-full bg-white border bg-indigo-300 h-7 rounded-lg transform'
                     />
                 </div>
-
-        
             </div>
-
-          <div className="
-           container mx-auto ">
+          <div className=" ">
             {activeTab === 'Booking' && (
-              <div className ="container mx-auto">
+              <div className =" ">
                 <Booking record = {record?.id}/>
               </div>
             )}
             {activeTab === 'Payment' && (
               <div>
+                {/* <Payment record = {record?.id}/> */}
               </div>
             )}
             {activeTab === 'Rewards' && (

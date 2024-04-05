@@ -90,17 +90,17 @@ export default function Index() {
           <table className="w-full text-sm rounded-md">
             <thead>
               <tr className="bg-gray-100 rounded-lg flex items-center justify-between text-gray-500">
-                <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                  Name
+                <th className="flex gap-2  w-1/4 text-sm p-4">
+                  <p>Name</p>
                 </th>
-                <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                  Phone Number
+                <th className="flex gap-2 flex justify-center w-1/4 text-sm p-4">
+                  <p>Phone Number</p>
                 </th>
-                <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                  Status
+                <th className="flex gap-2 flex justify-center w-1/4 text-sm p-4">
+                  <p>Status</p>
                 </th>
-                <th className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
-                  Details
+                <th className="flex gap-2 flex justify-center w-1/4 text-sm p-4">
+                  <p>Details</p>
                 </th>
               </tr>
             </thead>
@@ -109,9 +109,9 @@ export default function Index() {
               {record.map((item, index) => (
                 <tr
                   key={index}
-                  className="hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700"
+                  className="hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700 !mt-0"
                 >
-                  <td className="flex gap-2 items-center w-[300px] text-sm py-2 px-2">
+                  <td className="flex gap-2 items-center w-1/4 text-sm p-2 ">
                     <Image
                       width={35}
                       height={35}
@@ -126,10 +126,10 @@ export default function Index() {
                       <div className="text-sm">{item.email}</div>
                     </div>
                   </td>
-                  <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+                  <td className="flex gap-2 items-center flex justify-center w-1/4 text-sm p-2  ">
                     {item.phone_no ? item.phone_no : ""}
                   </td>
-                  <td className="flex gap-2 items-center w-[220px] text-sm py-1.5 px-2">
+                  <td className="flex gap-2 items-center flex justify-center w-1/4 text-sm p-2  ">
                     <div className="flex items-center gap-1 p-1">
                       <button
                         onClick={() =>
@@ -161,28 +161,28 @@ export default function Index() {
                           <div className="flex items-center gap-1 border rounded-full p-1">
                             <p className="text-xs">Activate</p>{" "}
                             <svg
-                              className="text-emerald-500"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                            >
-                              <path
-                                d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2ZM4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z"
-                                fill="currentColor"
-                              ></path>
-                            </svg>
+                                      className="text-emerald-500"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                    >
+                                      <path
+                                        d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z"
+                                        fill="currentColor"
+                                      ></path>
+                                    </svg>
                           </div>
                         )}
                       </button>
                     </div>
                   </td>
-                  <td>
+                  <td className="w-1/4  p-2 flex justify-center">
                     <div className="relative">
                       <div
                         onClick={() => handleRowClick(item.id)}
-                        className="cursor-pointer flex items-center justify-center rounded-full p-2 hover:bg-gray-200"
+                        className="cursor-pointer w-12 rounded p-2 hover:bg-gray-200"
                       >
                         <svg
                           width="32px"
@@ -241,7 +241,7 @@ export default function Index() {
 
                       {/* Dropdown menu */}
                       {popupOpen === item.id && selectedRowData && (
-                        <div className="z-10 absolute top-full left-0 mt-1 w-44 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
+                        <div className="z-10 absolute top-full right-0 mt-1 w-44 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
                           <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                             <li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                               <button

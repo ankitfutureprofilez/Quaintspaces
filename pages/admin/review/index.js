@@ -3,7 +3,10 @@ import AdminLayout from '../AdminLayout';
 import Listing from '../api/Listing';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import toast from "react-hot-toast";
 import Loading from "../hook/spinner"
+import Moment from 'moment';
+import  Dateformat from "../hook/Dateformat";
 
 export default function Index() {
 
@@ -27,31 +30,29 @@ export default function Index() {
 
     useEffect(() => {
         fetchData();
-    }, [router.asPath]);
+    }, []);
 
     console.log('content', content);
-    const acceptReview = (uuid, id, status) => {
+    const acceptReview = (uuid, id, newStatus) => {
+        setLoading(true); 
         const main = new Listing();
-        main.reviewaccept(uuid, id, status)
+        main.reviewaccept(uuid, id, newStatus)
             .then((response) => {
-                if (response.data.status === true) {
-                    // Update status locally
-                    setContent(prevContent => {
-                        return prevContent.map(item => {
-                            if (item.id === id) {
-                                return { ...item, status: status };
-                            }
-                            return item;
-                        });
-                    });
-                    // Show toast message
+                setLoading(false); // Set loading state to false after the API call is completed
+                if (response && response.data && response.data.status === true) {
+                    // Update UI state after successful API call
+                    setContent(prevContent =>
+                        prevContent.map(item =>
+                            item.id === id ? { ...item, status: newStatus } : item
+                        )
+                    );
                     toast.success(response.data.message);
                 } else {
-                    // Show error toast message
                     toast.error(response.data.message);
                 }
             })
             .catch((error) => {
+                setLoading(false); 
                 console.error("Error updating review status:", error);
             });
     };
@@ -61,16 +62,18 @@ export default function Index() {
     return (
         <>
             <AdminLayout>
-                <section className="container px-4 mx-auto">
+                <section className=" p-4 ">
                     <div className="flex flex-col">
-                        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                            <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                                <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
                                     {loading ? (
+                                        <div className = "flex flex-wrap justify-center">
                                         <Loading />
+                                        </div>
                                     ) : (
+                        <div className=" overflow-x-auto ">
+                            <div className="inline-block  align-middle ">
+                                <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
 
-                                        <table className=" table-fixed  divide-y divide-gray-200 dark:divide-gray-700">
+                                        <table className="min-w-[1200px] table-auto divide-y divide-gray-200 dark:divide-gray-700">
                                             <thead className="bg-gray-50 dark:bg-gray-800">
                                                 <tr>
                                                     <th style={{ width: '15%' }} scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -79,29 +82,29 @@ export default function Index() {
                                                     <th style={{ width: '15%' }} scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                         User
                                                     </th>
-                                                    <th style={{ width: '25%' }} scope="col" className="min-w-50 px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                    <th style={{ width: '35%' }} scope="col" className="min-w-50 px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                         Description
                                                     </th>
                                                     <th style={{ width: '15%' }} scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                         Property
                                                     </th>
-                                                    <th style={{ width: '15%' }} scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                    <th style={{ width: '10%' }} scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                         Status
                                                     </th>
-                                                    <th style={{ width: '15%' }} scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                    <th style={{ width: '10%' }} scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                         Actions
                                                     </th>
                                                 </tr>
                                             </thead>
-                                            <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                                            <tbody className=" bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                                 {content &&
                                                     content.map((item, index) => {
                                                         return (
                                                             <tr key={index}>
-                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                                                    {item?.createdAt}
+                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+                                                                <Dateformat item={item?.createdAt} />
                                                                 </td>
-                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                                                                     <div className="flex items-center gap-x-2">
                                                                         <img
                                                                             className="object-cover w-8 h-8 rounded-full"
@@ -118,11 +121,12 @@ export default function Index() {
                                                                         </div>
                                                                     </div>
                                                                 </td>
-                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                                                <td  style={{ width: '25%' }} className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                                                                     {item?.review_text}
                                                                 </td>
-                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                                                                     <div className="flex items-center gap-x-2">
+                                                                    <Link href={`/property/${item?.get_property_review?.uuid}`} className="flex items-center gap-x-2">
                                                                         <img
                                                                             className="object-cover w-8 h-8 rounded-full"
                                                                             src={item?.get_property_review?.property_image[0]?.image_url}
@@ -136,14 +140,18 @@ export default function Index() {
                                                                                 {item?.get_property_review?.price}
                                                                             </p>
                                                                         </div>
+                                                                    </Link>
                                                                     </div>
                                                                 </td>
-                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                                                    {item?.status === 1 ? 'Accepted' : 'Declined'}
+                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+                                                                    {item?.status === 1 ? 'Accepted' : 'Rejected'}
                                                                 </td>
-                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                                                                    <div onClick={() => acceptReview(item?.user_id, item?.properties_id, item.status === 0 ? 1 : 0)} className="cursor-pointer text-blue-500">
-                                                                        {item?.status === 1 ? 'Accepted' : 'Declined'}
+                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+                                                                    <div onClick={() => acceptReview(item?.user_id, item?.properties_id, item.status === 0 ? 1 : 0)} className="cursor-pointer text-blue-500 flex items-center gap-2 border rounded-full p-2 mb-2">
+                                                                         Accepted
+                                                                    </div>
+                                                                    <div onClick={() => acceptReview(item?.user_id, item?.properties_id, item.status === 1 ? 0 : 1)} className="cursor-pointer text-blue-500 flex items-center gap-2 border rounded-full p-2">
+                                                                        Rejected
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -151,11 +159,11 @@ export default function Index() {
                                                     })}
                                             </tbody>
                                         </table>
-                                    )}
 
                                 </div>
                             </div>
                         </div>
+                                    )}
                     </div>
                 </section>
             </AdminLayout>
