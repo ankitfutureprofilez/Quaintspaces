@@ -6,6 +6,7 @@ import Listings from "../api/laravel/Listings";
 import AuthLayout from "../layout/AuthLayout.js";
 import Modal from "../elements/Modal.js";
 import NoData from "../elements/NoData.js";
+import { formatMultiPrice } from "../../hooks/ValueData.js";
 
 export default function index() {
   const [isOpen, setIsOpen] = useState(false);
@@ -112,7 +113,7 @@ export default function index() {
                       design="font-inter text-blue-700 font-medium leading-tight text-center w-32 p-3 rounded-full"
                     />
                   </td>
-                  <td className="px-4 py-2">{item?.price}</td>
+                  <td className="px-4 py-2">{formatMultiPrice(item?.price)}</td>
                   <td className="px-4 py-2">
                     <Button
                       text="Cancel"
@@ -128,8 +129,8 @@ export default function index() {
     );
   };
   return (
-    <div className="container mx-auto">
-      <AuthLayout>
+    <AuthLayout>
+      <div className="container mx-auto">
         <div className=" account-btn ">
           <div className=" pt-4 sm:pt-8 md:pt-12 pb-3 sm:pb-6 md:pb-10">
             <Heading
@@ -221,7 +222,7 @@ export default function index() {
         <div className="">
           <BookingTable />
         </div>
-      </AuthLayout>
-    </div>
+      </div>
+    </AuthLayout>
   );
 }

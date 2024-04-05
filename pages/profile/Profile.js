@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Heading from "../elements/Heading";
 import Button from "../elements/Button";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { Reorder } from "framer-motion";
 import Listings from "./../api/laravel/Listings";
+import { Context } from "../_app";
+
 export default function Profile() {
   const [loading, setLoading] = useState(false);
   const [ImageUploaded, setImageUploaded] = useState(false);
+  const { auth, setAuth } = useContext(Context);
+  console.log("auth",auth);
   const [data, setData] = useState({
     email: "",
     phone_no: "",
@@ -83,8 +87,12 @@ export default function Profile() {
     if (loading) {
       return;
     }
+    if(record.phone.length!=10)
+    {
+      toast.error("Phone Number must be of 10 digits")
+      return;
+    }
     setLoading(true);
-    // console.log("record", record);
     const main = new Listings();
     const formdata = new FormData();
     formdata.append("email", record.email);
@@ -106,6 +114,7 @@ export default function Profile() {
             first: res?.data?.data?.first_name,
             last: res?.data?.data?.last_name,
           });
+          setAuth(res?.data?.data);
           setImageUploaded(false);
         } else {
           toast.error(res?.data.message);
@@ -130,9 +139,7 @@ export default function Profile() {
     <>
       <div className="container mx-auto  ">
         <div className="py-6 sm:py-12">
-          <Heading text={"My Profile"}
-          handleClick={() => router.back()}
-           />
+          <Heading text={"My Profile"} handleClick={() => router.back()} />
         </div>
       </div>
       <div className="container mx-auto mt-5">

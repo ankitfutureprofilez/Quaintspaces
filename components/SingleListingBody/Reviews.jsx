@@ -1,68 +1,74 @@
 import Star from "../../public/_svgs/star";
 import ReviewCard from "./ReviewCard";
 import { v4 as uuidv4 } from "uuid";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Modal from "../../pages/elements/Modal";
 import RatingStar from "../../pages/elements/Star";
 import DropReview from "./DropReview";
 import { useRouter } from "next/router";
 import Listings from "../../pages/api/laravel/Listings";
+import { Context } from "../../pages/_app";
 
 const Reviews = React.forwardRef(({ data }, ref) => {
-
+  const { auth } = useContext(Context);
 
   const router = useRouter();
   const id = router.query.slug;
 
   const [page, setPage] = useState(1);
-  const [listings, setListings] = useState([]);
+  const [selfReview, setselfReview] = useState([]);
   const [reviewData, setReviewData] = useState([]);
-  const[addReview,setAddReview]=useState(true);
-  console.log("listings",listings);
 
-  useEffect(() => {
-    if(id){
+  const getSelfreview = () => {
+    if (id) {
       const main = new Listings();
       main
         .GetUserReview(id)
         .then((r) => {
-          setListings(r?.data?.data);
-          if(r?.data?.data){
-            setAddReview(false);
-          }
+          let a = r?.data?.data;
+          a.rating_user = auth;
+          setselfReview(a);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [id]);
+  };
+  useEffect(() => {
+    getSelfreview();
+  }, [id, auth]);
 
-
-  const [hasMore, setHasmore] = useState(true);
-  const [lists, setLists] = useState([])
-  const fetchReviews = async (p) => { 
-    if(id){
+  const [hasMore, setHasmore] = useState(false);
+  const [lists, setLists] = useState([]);
+  const fetchReviews = async (p) => {
+    if (id) {
       const main = new Listings();
-      main.AllReviews(id, p)
+      main
+        .AllReviews(id, p)
         .then((r) => {
-          if(r.data.status){
+          if (r.data.status) {
             setReviewData(r?.data?.data);
-            if(p == 1){
+            if (p == 1) {
               setLists(r.data.data.data);
-            } else { 
-              setLists(prev=> [...prev, ...r?.data?.data?.data]);
+            } else {
+              setLists((prev) => [...prev, ...r?.data?.data?.data]);
             }
             setPage(p);
-          }  
-          if(r.data.data && r.data.data.current_page ==  r.data.data && r.data.data.last_page){ 
+          }
+          if (r?.data?.current_page == r?.data?.last_page) {
+            console.log("Inside Condition");
             setHasmore(false);
+          } else {
+            console.log("Hello");
+            setHasmore(true);
           }
           // false loading
-        }).catch((err) => {
+        })
+        .catch((err) => {
           console.log(err);
         });
     }
-  }
+  };
 
   useEffect(() => {
     fetchReviews(page);
@@ -77,6 +83,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
   const closeModal = () => {
     setIsOpen(false);
   };
+
   return (
     <section
       ref={ref}
@@ -84,7 +91,9 @@ const Reviews = React.forwardRef(({ data }, ref) => {
     >
       <h1 className="text-xl md:text-2xl mb-4 font-semibold flex items-center gap-1">
         <Star />
-        <span>{parseFloat(data && data?.rating && data?.rating?.toFixed(2))}</span>
+        <span>
+          {parseFloat(data && data?.rating && data?.rating?.toFixed(2))}
+        </span>
         <span> · </span>
         <span>{data?.review} reviews</span>
       </h1>
@@ -97,7 +106,11 @@ const Reviews = React.forwardRef(({ data }, ref) => {
               <div className="w-36 h-1 rounded-full bg-borderColor">
                 <span className="w-11/12 bg-blackColor h-1 block rounded-full"></span>
               </div>
-              <span>{parseFloat(data && data?.cleaning && data?.cleaning?.toFixed(1))}</span>
+              <span>
+                {parseFloat(
+                  data && data?.cleaning && data?.cleaning?.toFixed(1)
+                )}
+              </span>
             </div>
           </div>
           <div className="mb-3 flex items-center justify-between">
@@ -106,7 +119,11 @@ const Reviews = React.forwardRef(({ data }, ref) => {
               <div className="w-36 h-1 rounded-full bg-borderColor">
                 <span className="w-11/12 bg-blackColor h-1 block rounded-full"></span>
               </div>
-              <span>{parseFloat(data && data?.communication && data?.communication?.toFixed(1))}</span>
+              <span>
+                {parseFloat(
+                  data && data?.communication && data?.communication?.toFixed(1)
+                )}
+              </span>
             </div>
           </div>
           <div className="mb-3 flex items-center justify-between">
@@ -115,7 +132,11 @@ const Reviews = React.forwardRef(({ data }, ref) => {
               <div className="w-36 h-1 rounded-full bg-borderColor">
                 <span className="w-11/12 bg-blackColor h-1 block rounded-full"></span>
               </div>
-              <span>{parseFloat( data && data?.check_in && data?.check_in?.toFixed(1))}</span>
+              <span>
+                {parseFloat(
+                  data && data?.check_in && data?.check_in?.toFixed(1)
+                )}
+              </span>
             </div>
           </div>
         </div>
@@ -126,7 +147,11 @@ const Reviews = React.forwardRef(({ data }, ref) => {
               <div className="w-36 h-1 rounded-full bg-borderColor">
                 <span className="w-10/12 bg-blackColor h-1 block rounded-full"></span>
               </div>
-              <span>{parseFloat( data && data?.accuracy &&  data?.accuracy?.toFixed(1))}</span>
+              <span>
+                {parseFloat(
+                  data && data?.accuracy && data?.accuracy?.toFixed(1)
+                )}
+              </span>
             </div>
           </div>
           <div className="mb-3 flex items-center justify-between">
@@ -135,7 +160,11 @@ const Reviews = React.forwardRef(({ data }, ref) => {
               <div className="w-36 h-1 rounded-full bg-borderColor">
                 <span className="w-11/12 bg-blackColor h-1 block rounded-full"></span>
               </div>
-              <span>{parseFloat( data && data?.locations && data?.locations?.toFixed(1))}</span>
+              <span>
+                {parseFloat(
+                  data && data?.locations && data?.locations?.toFixed(1)
+                )}
+              </span>
             </div>
           </div>
           <div className="mb-3 flex items-center justify-between">
@@ -144,16 +173,28 @@ const Reviews = React.forwardRef(({ data }, ref) => {
               <div className="w-36 h-1 rounded-full bg-borderColor">
                 <span className="w-full bg-blackColor h-1 block rounded-full"></span>
               </div>
-              <span>{parseFloat(  data && data?.value && data?.value?.toFixed(1))}</span>
+              <span>
+                {parseFloat(data && data?.value && data?.value?.toFixed(1))}
+              </span>
             </div>
           </div>
         </div>
       </div>
       <div className="flex flex-wrap gap-8">
+        {selfReview && selfReview.id ? (
+          <div className="my-6 md:my-0 w-full md:w-[calc(100%/2-1.5rem)]">
+            <ReviewCard data={selfReview} />
+          </div>
+        ) : (
+          ""
+        )}
+
         {lists?.map((review) => {
           return (
             <div
-              className="my-6 md:my-0 w-full md:w-[calc(100%/2-1.5rem)]"
+              className={`${
+                auth?.id == review.user_id ? "display-none" : ""
+              } my-6 md:my-0 w-full md:w-[calc(100%/2-1.5rem)]`}
               key={uuidv4()}
             >
               <ReviewCard data={review} />
@@ -162,15 +203,27 @@ const Reviews = React.forwardRef(({ data }, ref) => {
         })}
       </div>
       <div className="flex justify-between">
-        {hasMore ? <button
-          onClick={() => fetchReviews(page+1)}
-          className="btn-normal mt-8"> Show more </button> : '0'}
+        {hasMore ? (
+          <button
+            onClick={() => fetchReviews(page + 1)}
+            className="btn-normal mt-8"
+          >
+            {" "}
+            Show more{" "}
+          </button>
+        ) : null}
+
         {/* Add review option */}
         <button className="btn-normal mt-8" onClick={openModal}>
-          {addReview ? "Drop a review" : "Edit your review" }
+          {selfReview && selfReview.id ? "Edit your review" : "Drop a review"}
         </button>
-        <Modal width="lg" isOpen={isOpen} onClose={closeModal} >
-          <DropReview listing={listings} closeModal={closeModal} />
+
+        <Modal width="lg" isOpen={isOpen} onClose={closeModal}>
+          <DropReview
+            getSelfreview={getSelfreview}
+            listing={selfReview}
+            closeModal={closeModal}
+          />
         </Modal>
       </div>
     </section>

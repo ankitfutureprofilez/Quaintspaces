@@ -78,9 +78,9 @@ export default function Header() {
             <Link href="/#premium">
               <p>Place in Jaipur</p>
             </Link>
-            <Link href="/contact">
+            {/* <Link href="/contact">
               <p>Contact</p>
-            </Link>
+            </Link> */}
             {auth?.auth?.email ? (
               <div className="profile-image" >
                 <div

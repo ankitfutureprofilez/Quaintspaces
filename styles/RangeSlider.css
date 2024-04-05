@@ -43,20 +43,19 @@
   .slider__right-value {
     color: #262626;
     font-size: 16px;
-    margin-top: 45px;
+    margin-top: 18px;
     display: flex;
     flex-direction: column;
-    border: solid 2px #CCCCCC;
     border-radius: 45px;
     /* padding: 5px 10px; */
   }
   
   .slider__left-value {
-    left: 6px;
+    left: -11px;
   }
   
   .slider__right-value {
-    right: -4px;
+    right: -15px;
   }
   
   /* Removing the default appearance */

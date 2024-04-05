@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import Listings from "../../pages/api/laravel/Listings";
 import { useRouter } from "next/router";
 
-const DropReview = ({ closeModal, listing }) => {
+const DropReview = ({ closeModal, listing, getSelfreview }) => {
   const [clean, setClean] = useState(listing?.cleaning || 0);
   const [communcation, setCommuncation] = useState(listing?.communication || 0);
   const [checkin, setCheckin] = useState(listing?.check_in || 0);
@@ -46,6 +46,7 @@ const DropReview = ({ closeModal, listing }) => {
       if (response && response.data && response.data.status) {
         toast.success(response.data.message);
         closeModal && closeModal();
+        getSelfreview && getSelfreview();
       } else {
         toast.error(response?.data?.message || "Something went wrong.");
       }

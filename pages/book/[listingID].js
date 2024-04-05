@@ -29,7 +29,9 @@ const Book = () => {
   const [guestsModel, setGuestsModel] = useState(false);
   const [loading, setLoading] = useState(false);
   const [numberField, setNumberField] = useState(false);
+  const [hasAddedNumber, setHasAddedNumber] = useState(false);
   const [messageField, setMessageField] = useState(false);
+  const [hasAddedMessage, setHasAddedMessage] = useState(false);
 
   // console.log("infos",infos)
   const [guests, setGuests] = useState({
@@ -94,13 +96,13 @@ const Book = () => {
       },
     });
   }, [router.asPath]);
-  console.log("infos",infos)
+  console.log("infos", infos);
 
   const [formData, setFormData] = useState({
     selectOption: "",
     fornt: null,
     message: "",
-    phone:"",
+    phone: "",
   });
   0;
   const handleChange = (e) => {
@@ -119,24 +121,29 @@ const Book = () => {
     }));
   };
 
-  
-
-  const [pricerate, setPriceRate] = useState(0); 
+  const [pricerate, setPriceRate] = useState(0);
 
   useEffect(() => {
     if (infos.checkout && infos.checkin && listing) {
-      const calculatedPriceRate = +listing.price * differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
+      const calculatedPriceRate =
+        +listing.price *
+        differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
       setPriceRate(formatMultiPrice(calculatedPriceRate));
     } else {
-      setPriceRate(0); 
+      setPriceRate(0);
     }
-  }, [infos.checkout, infos.checkin, listing]); 
-  
-  console.log("pricerate",pricerate)
+  }, [infos.checkout, infos.checkin, listing]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log("Form Data",formData);
+    if (formData.phone.length === 0) {
+      toast.error("Phone Number is required");
+      return;
+    }
+    if (formData.phone.length != 10) {
+      toast.error("Invalid Phone Number");
+      return;
+    }
     if (loading == true) {
       return;
     }
@@ -152,14 +159,16 @@ const Book = () => {
     record.append("doc_type", formData.selectOption);
     record.append("front_doc", formData.fornt);
     record.append("no_of_pet", infos.numberOfPets);
-    record.append("price", infos.checkout &&
-    infos.checkin &&
-    +listing?.price *
-      differenceInDays(
-        new Date(infos.checkout),
-        new Date(infos.checkin)
-      ));
-    formData.message.length !=0 ? record.append("message", formData.message) : null;
+    record.append(
+      "price",
+      infos.checkout &&
+        infos.checkin &&
+        +listing?.price *
+          differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
+    );
+    formData.message.length != 0
+      ? record.append("message", formData.message)
+      : null;
     record.append("phone_no", formData.phone);
     const response = main.PropertyBooking(record);
     response
@@ -288,7 +297,7 @@ const Book = () => {
                       onClick={() => setMessageField(true)}
                       className="edit-color underline font-bold"
                     >
-                      ADD
+                      {hasAddedMessage ? "Edit" : "ADD"}
                     </button>
                   </div>
                   {messageField ? (
@@ -301,7 +310,13 @@ const Book = () => {
                         className="mt-1 mr-1 p-4 border rounded w-5/6"
                       ></textarea>
                       <button
-                        onClick={() => setMessageField(false)}
+                        onClick={() => {
+                          if (formData.message.length === 0) {
+                            toast.error("Mesage field is empty");
+                            setHasAddedMessage(false);
+                          } else {setHasAddedMessage(true);}
+                          setMessageField(false);
+                        }}
                         className="w-1/6 sort btn"
                       >
                         Confirm
@@ -318,7 +333,7 @@ const Book = () => {
                       onClick={() => setNumberField(true)}
                       className="edit-color underline font-bold"
                     >
-                      ADD
+                      {hasAddedNumber ? "Edit" : "ADD"}
                     </button>
                   </div>
                   {numberField ? (
@@ -334,7 +349,14 @@ const Book = () => {
                         required
                       />
                       <button
-                        onClick={() => setNumberField(false)}
+                        onClick={() => {
+                          if (formData.phone.length != 10) {
+                            toast.error("Invalid Phone Number");
+                            return;
+                          }
+                          setHasAddedNumber(true);
+                          setNumberField(false);
+                        }}
                         className="w-1/6 sort btn"
                       >
                         Confirm
@@ -352,7 +374,11 @@ const Book = () => {
                     <p className="item-pargraph">
                       This reservation is non-refundable.
                     </p>
-                    <p className="underline edit-color font-bold">Learn More</p>
+                    <Link href="/terms">
+                      <p className="underline edit-color font-bold">
+                        Learn More
+                      </p>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -416,9 +442,7 @@ const Book = () => {
               </div>
               <div className="pt-4 flex items-center justify-between confirm-total">
                 <span className="font-bold">Total(INR)</span>
-                <span className="text-md font-medium">
-                {pricerate}
-                </span>
+                <span className="text-md font-medium">{pricerate}</span>
               </div>
             </div>
           </div>

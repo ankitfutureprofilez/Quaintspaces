@@ -20,7 +20,7 @@ export default function Menu() {
   return (
     <>
       <div className="menutoggle flex items-center absolute shadow-md rounded-lg bg-gray-200 justify-center right-0">
-        <div className="w-full min-w-[250px]  p-3 drop-shadow-xl divide-y divide-gray-300 profile-navbar">
+        <div className="w-full min-w-[250px]  p-3 divide-y divide-gray-300 profile-navbar">
           <div aria-label="header" className="flex space-x-4 items-center p-2">
             <Link href="/profile">
               <div
@@ -31,7 +31,7 @@ export default function Menu() {
                   src={
                     auth?.image_url
                       ? auth?.image_url
-                      : "https://quaintstays.laraveldevelopmentcompany.com/public/storage/user/profile-images/1710928138.jpg"
+                      : "https://w7.pngwing.com/pngs/812/572/png-transparent-computer-icons-user-name-heroes-monochrome-black-thumbnail.png"
                   }
                   alt="profile"
                   width={100}
@@ -54,7 +54,7 @@ export default function Menu() {
             </Link>
           </div>
           <div aria-label="navigation" className="py-2">
-            <nav className="grid gap-1">
+            <nav className="grid gap-1 px-1">
               <Link
                 href="/booking"
                 className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"

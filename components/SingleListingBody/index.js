@@ -29,7 +29,7 @@ const SingleListingBody = ({ listing, loading }) => {
   // Guests max limit is selected here 
   const [guests, setGuests] = useState({
     adults: {
-      value: 0 ,
+      value: 1,
       max: listing?.data?.adults || 20,
       min: 0,
     },
