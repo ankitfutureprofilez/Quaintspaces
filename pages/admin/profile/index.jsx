@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import Listing from '../api/Listing';
 import AdminLayout from "../AdminLayout";
-import userProfile  from "../"
+import { Context } from "../../_app";
 
 
 export default function Profileindex() {
+  const { auth, setAuth } = useContext(Context);
+  // console.log("auth",auth);
   const[Loading ,setLoading] =useState(false);
   const [record, setRecord] = useState({
     email: "",
@@ -16,13 +18,13 @@ export default function Profileindex() {
   });
   const [previewImgSrc, setPreviewImgSrc] = useState("");
 
-  const router = useRouter();
 
     const fetchData = async () => {
       try {
         const main = new Listing();
         const response = await main.Adminprofile();
-        const profiledata = response.data.data;
+        const profiledata = response?.data?.data;
+        setAuth(response?.data?.data)
         setRecord({
           name: profiledata.name,
           phone: profiledata.phone_no,

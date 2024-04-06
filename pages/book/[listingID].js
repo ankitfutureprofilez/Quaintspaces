@@ -96,7 +96,7 @@ const Book = () => {
       },
     });
   }, [router.asPath]);
-  console.log("infos", infos);
+  // console.log("infos", infos);
 
   const [formData, setFormData] = useState({
     selectOption: "",
@@ -177,7 +177,7 @@ const Book = () => {
         if (res && res.data && res.data.status) {
           toast.success(res.data.message);
           router.push("/");
-          console.log(res.data.message);
+          // console.log(res.data.message);/
         } else {
           toast.error(res?.data.message);
           // console.log(res?.data.message)

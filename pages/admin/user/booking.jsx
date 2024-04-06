@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Booking(props) {
   const {record } = props;
-  console.log("record",record)
+  // console.log("record",record)
 
   const [content, setContent] = useState("");
 
@@ -13,7 +13,7 @@ export default function Booking(props) {
     const response = main.booking(record);
     response
       .then((res) => {
-        console.log("res", res);
+        // console.log("res", res);
         setContent(res?.data?.data?.user_booking_history);
       })
       .catch((error) => {

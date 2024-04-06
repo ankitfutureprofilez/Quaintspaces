@@ -70,7 +70,7 @@ export default function index() {
       .catch((err) => {
         console.log(err);
       });
-    console.log("listings", listings);
+    // console.log("listings", listings);
   }, [selectedButton, fetch]);
 
   const BookingTable = () => {

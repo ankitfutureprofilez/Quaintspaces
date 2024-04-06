@@ -126,5 +126,5 @@ const json = JSON.stringify(
 
 fs.writeFile("data.json", JSON.stringify(json), "utf8", function (err) {
   if (err) throw err;
-  console.log("complete");
+  // console.log("complete");
 });

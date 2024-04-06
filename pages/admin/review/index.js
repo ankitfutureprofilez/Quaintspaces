@@ -19,7 +19,7 @@ export default function Index() {
         try {
             const Main = new Listing();
             const response = await Main.getrating();
-            console.log('res', response);
+            // console.log('res', response);
             setContent(response?.data?.data);
             setLoading(false);
         } catch (error) {
@@ -32,7 +32,7 @@ export default function Index() {
         fetchData();
     }, []);
 
-    console.log('content', content);
+    // console.log('content', content);
     const acceptReview = (uuid, id, newStatus) => {
         setLoading(true);
         const main = new Listing();

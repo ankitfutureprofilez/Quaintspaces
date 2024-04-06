@@ -33,7 +33,7 @@ export default function Index() {
       image_url: file,
     }));
   };
-  console.log("record", record);
+  // console.log("record", record);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

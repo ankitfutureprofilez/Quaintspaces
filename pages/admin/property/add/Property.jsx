@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import amenitiesList from "../../../../aminites.json";
 import Listing from "../../api/Listing";
 import { useRouter } from "next/router";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import axios from "axios";
 import { House, Add } from 'iconsax-react'
 
@@ -19,8 +19,8 @@ const propertyTypes = [
 export default function Property(props) {
 
   const { isEdit, p, onClose, fetchProperties } = props;
-  const { uuid, location, children, adults, properties_type, name,no_of_pet_allowed, price, description, bedrooms, beds, bathrooms, amenities, property_image } = p ? p : {};
-  console.log("p", props.p);
+  const { uuid, location, children, adults, properties_type, name, no_of_pet_allowed, price, description, bedrooms, beds, bathrooms, amenities, property_image } = p ? p : {};
+  // console.log("p", props.p);
 
   const router = useRouter();
   const [step, setStep] = useState(0);
@@ -34,9 +34,9 @@ export default function Property(props) {
   const [PType, setPType] = useState(properties_type || "flat");
 
 
-  
- const lstring = location ? JSON.parse(location.replace("/\\\"/g", '"')) : null;
-   const l = JSON.parse(lstring);
+
+  const lstring = location ? JSON.parse(location.replace("/\\\"/g", '"')) : null;
+  const l = JSON.parse(lstring);
 
   const [address, setAddress] = useState({
     street_address: l && l.street_address ? l.street_address : "",
@@ -51,7 +51,7 @@ export default function Property(props) {
     longitude: l && l.longitude ? l.longitude : "",
   });
 
-  console.log("address", address)
+  // console.log("address", address)
 
   const handleAddress = (e) => {
     const { name, value } = e.target;
@@ -75,11 +75,13 @@ export default function Property(props) {
     free_cancel_time: ""
   });
 
-  console.log("item", item)
+  // console.log("item", item)
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setItem({ ...item, [name]: value });
   };
+
+  
 
   const handleFileChange = async (e) => {
     let files = Array.from(e.target.files);
@@ -89,7 +91,7 @@ export default function Property(props) {
     });
     setImages([...images, ...arr]);
 
-    console.log("[...images, ...arr]", [...images, ...arr])
+    // console.log("[...images, ...arr]", [...images, ...arr])
 
   };
 
@@ -153,17 +155,17 @@ export default function Property(props) {
     }
   };
 
- console.log("locationupdate",locationupdate)
- 
- 
+  // console.log("locationupdate", locationupdate)
+
+
   const fetchLocationData = async () => {
     setLoading(true);
     const navigatorObj = getNavigator();
-    
+
     if (navigatorObj && navigatorObj.geolocation) {
       navigatorObj.geolocation.getCurrentPosition(async (position) => {
         const { latitude, longitude } = position.coords;
-  
+
         try {
           let locationData;
           if (!isEdit) {
@@ -186,11 +188,11 @@ export default function Property(props) {
             district: locationData?.address?.state_district || locationupdate?.state_district,
             nearby: locationData?.address?.suburb || locationupdate?.suburb,
             city: locationData?.address?.city || locationupdate?.city,
-            state: locationData?.address?.state ||locationupdate?.state  ,
+            state: locationData?.address?.state || locationupdate?.state,
             pin: locationData?.address?.postcode || locationupdate?.postcode
-        });
+          });
           setLoading(false);
-  
+
         } catch (error) {
           setLoading(false);
           console.log('Error fetching data:', error);
@@ -201,62 +203,9 @@ export default function Property(props) {
       });
     }
   };
-  
 
 
-  // const fetchLocationData = async () => {
-  //   const navigatorObj = getNavigator();
-  //   if (navigatorObj && navigatorObj.geolocation) {
-  //     navigatorObj.geolocation.getCurrentPosition(async (position) => {
-  //       const { latitude, longitude } = position.coords;
-  //       try {
-  //         const response = await axios.get(
-  //           `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-  //         );
-  //         const locationData = response.data;
-  //         console.log("location ", locationData);
-  //         setAddress((address) => ({
-  //           ...address,
-  //           location: locationData.display_name,
-  //           latitude: latitude.toString(),
-  //           longitude: longitude.toString(),
-  //         }));
-  //       } catch (error) {
-  //         console.log('Error fetching data:', error);
-  //       }
-  //     }, () => {
-  //       console.log("Geolocation failed");
-  //     });
-  //   }
-  // };
-
-
-
-  console.log("locationupdate", locationupdate)
-
-
-  // useEffect(() => {
-  //   const fetchLocationData = async () => {
-  //     setLoading(true);
-  //     const { latitude, longitude } = address;
-  //     try {
-  //       const response = await axios.get(
-  //         `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-  //       );
-  //       const locationData = response.data;
-  //       console.log("location ", locationData);
-
-  //       setLoading(false);
-  //     } catch (error) {
-  //       setLoading(false);
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-
-  //   if (isEdit) {
-  //     fetchLocationData();
-  //   }
-  // }, [isEdit]);
+  // console.log("locationupdate", locationupdate)
 
   const [imageproperty, setImagesproperty] = useState(property_image);
 
@@ -275,7 +224,7 @@ export default function Property(props) {
 
 
   async function handleSubmit(e) {
-    console.log("item", { ...item, address, propertytype: PType, images });
+    // console.log("item", { ...item, address, propertytype: PType, images });
     e.preventDefault();
     if (!isEdit && step === 5 && images?.length < 5) {
       toast.error("Please select at least five images.");
@@ -310,7 +259,7 @@ export default function Property(props) {
         if (isEdit) {
           onClose();
           toast.success(res.data.message);
-          fetchProperties&&fetchProperties();
+          fetchProperties && fetchProperties();
         } else {
           router.push("/admin/property");
           toast.success(res.data.message);
@@ -327,7 +276,7 @@ export default function Property(props) {
   };
 
   useEffect(() => {
-    console.log("images", images)
+    // console.log("images", images)
   }, [images])
 
   return (
@@ -445,64 +394,64 @@ export default function Property(props) {
                   <div class="font-semibold text-gray-400 py-3 text-center">OR</div>
                 </div>
                 <div className="w-full border border-gray-300 rounded-lg overflow-hidden">
-  <input
-    value={address.flat_house}
-    name='flat_house'
-    onChange={handleAddress}
-    type="text"
-    placeholder="Flat, house, etc. (if applicable)"
-    className="w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-  />
-  <input
-    value={address.street_address}
-    name="street_address"
-    onChange={handleAddress}
-    type="text"
-    placeholder="Street Address"
-    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-  />
-  <input
-    value={ address.nearby}
-    name="nearby"
-    onChange={handleAddress}
-    type="text"
-    placeholder="Nearby Landmark (if applicable)"
-    
-    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-  />
-  <input
-    value={address.district}
-    name="district"
-    onChange={handleAddress}
-    type="text"
-    placeholder="District/Locality"
-    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-  />
-  <input
-    value={address.city}
-    name="city"
-    onChange={handleAddress}
-    type="text"
-    placeholder="City/Town"
-    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-  />
-  <input
-    value={address.state}
-    name="state"
-    onChange={handleAddress}
-    type="text"
-    placeholder="State"
-    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-  />
-  <input
-    value={address.pin}
-    name="pin"
-    onChange={handleAddress}
-    type="text"
-    placeholder="PIN Code"
-    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-  />
-</div>
+                  <input
+                    value={address.flat_house}
+                    name='flat_house'
+                    onChange={handleAddress}
+                    type="text"
+                    placeholder="Flat, house, etc. (if applicable)"
+                    className="w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                  />
+                  <input
+                    value={address.street_address}
+                    name="street_address"
+                    onChange={handleAddress}
+                    type="text"
+                    placeholder="Street Address"
+                    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                  />
+                  <input
+                    value={address.nearby}
+                    name="nearby"
+                    onChange={handleAddress}
+                    type="text"
+                    placeholder="Nearby Landmark (if applicable)"
+
+                    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                  />
+                  <input
+                    value={address.district}
+                    name="district"
+                    onChange={handleAddress}
+                    type="text"
+                    placeholder="District/Locality"
+                    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                  />
+                  <input
+                    value={address.city}
+                    name="city"
+                    onChange={handleAddress}
+                    type="text"
+                    placeholder="City/Town"
+                    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                  />
+                  <input
+                    value={address.state}
+                    name="state"
+                    onChange={handleAddress}
+                    type="text"
+                    placeholder="State"
+                    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                  />
+                  <input
+                    value={address.pin}
+                    name="pin"
+                    onChange={handleAddress}
+                    type="text"
+                    placeholder="PIN Code"
+                    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                  />
+                </div>
               </div>
             </div>
             <div className={`${step === 3 ? "" : "display-none"}`}>
@@ -705,7 +654,7 @@ export default function Property(props) {
                       alt={`Preview ${index}`}
                       className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
                       onLoad={() => URL.revokeObjectURL(file)}
-                    />  
+                    />
                     <button type="button"
                       onClick={() => removeImage(file)}
                       className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1" >
@@ -745,7 +694,7 @@ export default function Property(props) {
                     />
                   </label>
                 </div>
-                : 
+                :
                 <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
                   <label
                     htmlFor="dropzone-file"
