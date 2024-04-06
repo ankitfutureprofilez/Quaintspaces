@@ -157,6 +157,7 @@ export default function Property(props) {
 
   // console.log("locationupdate", locationupdate)
 
+  
 
   const fetchLocationData = async () => {
     setLoading(true);

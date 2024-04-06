@@ -48,7 +48,7 @@ export default function index() {
           });
         } else {
           toast.error(res?.data.message);
-          console.log(res?.data.message);
+          // console.log(res?.data.message);
           setLoading(false);
         }
        
