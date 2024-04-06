@@ -36,6 +36,8 @@ export default function Index() {
     const acceptReview = (uuid, id, newStatus) => {
         setLoading(true);
         const main = new Listing();
+
+        
         main.reviewaccept(uuid, id, newStatus)
             .then((response) => {
                 setLoading(false); // Set loading state to false after the API call is completed
