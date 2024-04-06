@@ -56,10 +56,8 @@ const Reviews = React.forwardRef(({ data }, ref) => {
             setPage(p);
           }
           if (r?.data?.current_page == r?.data?.last_page) {
-            console.log("Inside Condition");
             setHasmore(false);
           } else {
-            console.log("Hello");
             setHasmore(true);
           }
           // false loading
@@ -103,8 +101,11 @@ const Reviews = React.forwardRef(({ data }, ref) => {
           <div className="mb-3 flex items-center justify-between">
             <span>Cleanliness</span>
             <div className="flex gap-2 items-center">
-              <div className="w-36 h-1 rounded-full bg-borderColor">
-                <span className="w-11/12 bg-blackColor h-1 block rounded-full"></span>
+            <div className="w-36 h-1 rounded-full bg-borderColor">
+                <span
+                  className={`block h-1 rounded-full bg-blackColor`}
+                  style={{ width: `${(data?.cleaning / 5) * 100}%` }}
+                ></span>
               </div>
               <span>
                 {parseFloat(
@@ -116,8 +117,11 @@ const Reviews = React.forwardRef(({ data }, ref) => {
           <div className="mb-3 flex items-center justify-between">
             <span>Communication</span>
             <div className="flex gap-2 items-center">
-              <div className="w-36 h-1 rounded-full bg-borderColor">
-                <span className="w-11/12 bg-blackColor h-1 block rounded-full"></span>
+            <div className="w-36 h-1 rounded-full bg-borderColor">
+                <span
+                  className={`block h-1 rounded-full bg-blackColor`}
+                  style={{ width: `${(data?.communication / 5) * 100}%` }}
+                ></span>
               </div>
               <span>
                 {parseFloat(
@@ -130,7 +134,10 @@ const Reviews = React.forwardRef(({ data }, ref) => {
             <span>Check-in</span>
             <div className="flex gap-2 items-center">
               <div className="w-36 h-1 rounded-full bg-borderColor">
-                <span className="w-11/12 bg-blackColor h-1 block rounded-full"></span>
+                <span
+                  className={`block h-1 rounded-full bg-blackColor`}
+                  style={{ width: `${(data?.check_in / 5) * 100}%` }}
+                ></span>
               </div>
               <span>
                 {parseFloat(
@@ -144,8 +151,11 @@ const Reviews = React.forwardRef(({ data }, ref) => {
           <div className="mb-3 flex items-center justify-between">
             <span>Accuracy</span>
             <div className="flex gap-2 items-center">
-              <div className="w-36 h-1 rounded-full bg-borderColor">
-                <span className="w-10/12 bg-blackColor h-1 block rounded-full"></span>
+            <div className="w-36 h-1 rounded-full bg-borderColor">
+                <span
+                  className={`block h-1 rounded-full bg-blackColor`}
+                  style={{ width: `${(data?.accuracy / 5) * 100}%` }}
+                ></span>
               </div>
               <span>
                 {parseFloat(
@@ -157,8 +167,11 @@ const Reviews = React.forwardRef(({ data }, ref) => {
           <div className="mb-3 flex items-center justify-between">
             <span>Location</span>
             <div className="flex gap-2 items-center">
-              <div className="w-36 h-1 rounded-full bg-borderColor">
-                <span className="w-11/12 bg-blackColor h-1 block rounded-full"></span>
+            <div className="w-36 h-1 rounded-full bg-borderColor">
+                <span
+                  className={`block h-1 rounded-full bg-blackColor`}
+                  style={{ width: `${(data?.locations / 5) * 100}%` }}
+                ></span>
               </div>
               <span>
                 {parseFloat(
@@ -170,8 +183,11 @@ const Reviews = React.forwardRef(({ data }, ref) => {
           <div className="mb-3 flex items-center justify-between">
             <span>Value</span>
             <div className="flex gap-2 items-center">
-              <div className="w-36 h-1 rounded-full bg-borderColor">
-                <span className="w-full bg-blackColor h-1 block rounded-full"></span>
+            <div className="w-36 h-1 rounded-full bg-borderColor">
+                <span
+                  className={`block h-1 rounded-full bg-blackColor`}
+                  style={{ width: `${(data?.value / 5) * 100}%` }}
+                ></span>
               </div>
               <span>
                 {parseFloat(data && data?.value && data?.value?.toFixed(1))}
