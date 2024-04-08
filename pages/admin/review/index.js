@@ -12,14 +12,12 @@ export default function Index() {
 
     const [loading, setLoading] = useState(true);
     const [content, setContent] = useState();
-    const router = useRouter();
 
     const fetchData = async () => {
         setLoading(true);
         try {
             const Main = new Listing();
             const response = await Main.getrating();
-            // console.log('res', response);
             setContent(response?.data?.data);
             setLoading(false);
         } catch (error) {
@@ -32,17 +30,11 @@ export default function Index() {
         fetchData();
     }, []);
 
-    // console.log('content', content);
     const acceptReview = (uuid, id, newStatus) => {
-        setLoading(true);
         const main = new Listing();
-
-        
         main.reviewaccept(uuid, id, newStatus)
             .then((response) => {
-                setLoading(false); // Set loading state to false after the API call is completed
                 if (response && response.data && response.data.status === true) {
-                    // Update UI state after successful API call
                     setContent(prevContent =>
                         prevContent.map(item =>
                             item.id === id ? { ...item, status: newStatus } : item
@@ -54,10 +46,11 @@ export default function Index() {
                 }
             })
             .catch((error) => {
-                setLoading(false);
                 console.error("Error updating review status:", error);
             });
     };
+    
+    
 
 
 
@@ -200,7 +193,7 @@ export default function Index() {
                                                                    }
                                                                 </td>
                                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
-                                                                    <div onClick={() => acceptReview(item?.user_id, item?.properties_id, item.status === 0 ? 1 : 0)} className="cursor-pointer text-green-500 flex items-center gap-2 border rounded-full p-2 mb-2">
+                                                                    <div onClick={() => acceptReview(item?.user_id, item?.properties_id, item.status === 0 ? 1 : "")} className="cursor-pointer text-green-500 flex items-center gap-2 border rounded-full p-2 mb-2">
                                                                         Accepted
                                                                         <svg
                                                                             className="text-emerald-500"
@@ -216,7 +209,7 @@ export default function Index() {
                                                                             ></path>
                                                                         </svg>
                                                                     </div>
-                                                                    <div onClick={() => acceptReview(item?.user_id, item?.properties_id, item.status === 1 ? 0 : 1)} className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-2">
+                                                                    <div onClick={() => acceptReview(item?.user_id, item?.properties_id, item.status === 1 ? 0 : "")} className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-2">
 
                                                                         <svg
                                                                             className="text-red-400"

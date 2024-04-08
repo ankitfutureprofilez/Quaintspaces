@@ -24,7 +24,7 @@ export default function Profileindex() {
         const main = new Listing();
         const response = await main.Adminprofile();
         const profiledata = response?.data?.data;
-        setAuth(response?.data?.data)
+        setAuth(response?.data?.data);
         setRecord({
           name: profiledata.name,
           phone: profiledata.phone_no,
