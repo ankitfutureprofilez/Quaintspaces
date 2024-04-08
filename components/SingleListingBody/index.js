@@ -26,7 +26,7 @@ const SingleListingBody = ({ listing, loading }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageViewer, setImageViewer] = useState(false);
 
-  // Guests max limit is selected here 
+  // Guests max limit is selected here
   const [guests, setGuests] = useState({
     adults: {
       value: 1,
@@ -268,9 +268,9 @@ const SingleListingBody = ({ listing, loading }) => {
             />
           </div>
 
-          <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
+          <div className="flex flex-col gap-16 relative mb-8 mt-8 lg:mt-0 lg:flex-row">
             <Info loading={loading} listing={listing} ref={AmenitiesRef} />
-            <div className="hidden lg:block">
+            <div className="block">
               <Date_GuestsPickerCard
                 loading={loading}
                 selection={selection}
@@ -287,6 +287,7 @@ const SingleListingBody = ({ listing, loading }) => {
               />
             </div>
           </div>
+
           <Reviews data={listing.data} ref={ReviewsRef} />
           <Location listing={listing.data} ref={LocationRef} />
         </div>
