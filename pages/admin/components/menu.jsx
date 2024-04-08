@@ -20,7 +20,7 @@ export default function menu({ isOpen, record }) {
         <div className="w-full min-w-[250px]  p-3 drop-shadow-xl divide-y divide-gray-300">
           <div className="flex mr-auto items-center space-x-4 mr-4">
             <Image
-              src={record?.admin_profile_url}
+              src={record?.image_url              }
               alt="avatar Evan You"
               className="rounded-full"
               width={35}

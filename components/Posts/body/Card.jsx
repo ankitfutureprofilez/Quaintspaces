@@ -10,27 +10,17 @@ const Card = ({ post }) => {
   const { wishlist } = useContext(Context);
   const [isSaved, changeWishlist] = useWishlist(post, wishlist);
   let record
-
   try {
     record = JSON.parse(JSON.parse(post?.location));
-
   } catch (error) {
     console.error("Error parsing JSON:", error);
   }
-
-
   function capitalizeAndReplace(inputString) {
-    // Split the input string by underscores
-    let words = inputString.split("_");
-
-    // Capitalize the first character of each word
-    for (let i = 0; i < words.length; i++) {
-        words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+    let words = inputString?.split("_");
+    for (let i = 0; i < words?.length; i++) {
+        words[i] = words[i]?.charAt(0)?.toUpperCase() + words[i]?.slice(1);
     }
-
-    // Join the words back together with spaces
-    let result = words.join(" ");
-    
+    let result = words?.join(" ");
     return result;
 }
 
@@ -51,7 +41,7 @@ const Card = ({ post }) => {
               post.location.slice(0, 1).toUpperCase() +
                 post.location.slice(1, -1)
           )} */}
-          {record.location}
+          {record?.location}
           {/* {post?.location} */}
         </h5>
         <h3 className="line-limit">

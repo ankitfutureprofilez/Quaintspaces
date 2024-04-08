@@ -8,9 +8,11 @@ import StatusTracker from '../components/Cards/StatusTracker'
 import TimeTracker from '../components/Cards/TimeTracker'
 import TraningAnalysis from '../components/Cards/TraningAnalysis'
 import Sidebar from '../components/Sidebar';
+import Listing from '../api/Listing';
+
 import AdminLayout from "../AdminLayout"
 import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState ,useEffect } from 'react'
 
 function Home() {
 
@@ -18,6 +20,20 @@ function Home() {
   const handleSidebarChange = (value) => {
     setIsSidebarOpen(value)
   }
+
+  const [record ,setRecord] =useState([])
+
+  useEffect(()=>{
+    const main =  new Listing();
+    const response =  main.statistics();
+    response.then((res)=>{
+      console.log("res",res)
+      setRecord(res?.data)
+    }
+    ).catch((error)=>{
+      console.log("eroro",erorr)
+    })
+  },[])
 
   return (
     <AdminLayout>
@@ -54,7 +70,7 @@ function Home() {
         <div className='w-full '>
           <div className='p-4 md:p-6 space-y-4 columns-1 sm:columns-2 lg:columns-3'>
             <div className='break-inside-avoid-column space-y-4'>
-              <TraningAnalysis />
+              <TraningAnalysis data={record?.user} />
             </div>
 
             <div className='break-inside-avoid-column space-y-4'>

@@ -30,7 +30,7 @@ export default function Profileindex() {
           phone: profiledata.phone_no,
           email: profiledata.email,
         });
-        setPreviewImgSrc(profiledata.admin_profile_url);
+        setPreviewImgSrc(profiledata.image_url);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching profile data:", error);

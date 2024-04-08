@@ -42,7 +42,6 @@ export default function index() {
 
   useEffect(() => {
     let url = "";
-
     if (selectedOption == "All Dates") {
     } else if (selectedOption == "Last 30 Days") {
       url += "booking_time=thirty-day&";

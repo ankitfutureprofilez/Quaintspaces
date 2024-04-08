@@ -70,17 +70,19 @@ export default function index() {
                         </div>
                       </td>
                       <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
+                      {item?.booking_status}
+{/*                      
                         <div
                           className={`inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${
                             item?.booking_status === "success"
                               ? "bg-green-600"
-                              : item?.booking_status === "cancel"
+                              : item?.booking_status === "canceled"
                               ? "bg-red-600"
                               : "bg-blue-600"
                           }`}
                         >
                           {item?.booking_status}
-                        </div>
+                        </div> */}
                       </td>
 
                       <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">

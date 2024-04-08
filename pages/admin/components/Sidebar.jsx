@@ -13,6 +13,7 @@ import { Context } from "../../_app";
 import LocalToken from "../../../hooks/LocalToken";
 import { usePathname } from "next/navigation";
 import Menu from "./menu";
+import { useRouter } from "next/router";
 
 function Sidebar() {
   const { auth, setAuth } = useContext(Context);
@@ -21,8 +22,10 @@ function Sidebar() {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false); // State to control mobile sidebar visibility
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to control dropdown visibility
   const webtoken = LocalToken("Admintoken");
+  const router = useRouter();
 
   const toggleSidebar = () => {
+    router.push("/admin")
     setIsSidebarOpen((prevState) => !prevState);
   };
 
@@ -177,7 +180,7 @@ function Sidebar() {
               >
                 <div className="flex items-center gap-2">
                   <Image
-                    src={auth?.admin_profile_url}
+                    src={auth?.image_url                    }
                     alt="User"
                     width={36}
                     height={36}

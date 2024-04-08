@@ -95,6 +95,10 @@ async forgetopt(data) {
 async bookinghist(){
     return Api.get("admin/booking-history")
 }
+
+async statistics(){
+    return Api.get("admin/statistics")
+}
   render() {
     return (
       <div>
