@@ -19,6 +19,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
   const [selfReview, setselfReview] = useState([]);
   const [reviewData, setReviewData] = useState([]);
 
+  
   const getSelfreview = () => {
     if (id) {
       const main = new Listings();

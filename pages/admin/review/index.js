@@ -27,7 +27,9 @@ export default function Index() {
     };
 
     useEffect(() => {
-        fetchData();
+        if(loading){
+            fetchData();
+        }
     }, []);
 
     const acceptReview = (uuid, id, newStatus) => {
@@ -50,6 +52,9 @@ export default function Index() {
             });
     };
     
+    
+
+    console.log("content",content)
     
 
 
