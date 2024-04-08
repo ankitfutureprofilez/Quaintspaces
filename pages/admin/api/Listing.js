@@ -92,7 +92,9 @@ async forgetopt(data) {
     return  Api.post("admin/verify-reset-password-otp" ,data)
 } 
 
-
+async bookinghist(){
+    return Api.get("admin/booking-history")
+}
   render() {
     return (
       <div>
