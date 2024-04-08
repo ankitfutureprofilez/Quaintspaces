@@ -14,6 +14,9 @@ async city_list(id){
 async area_list(id){
     return Api.get(`/admin/area-list/${id}`)
 }
+async UserMessages(){
+    return Api.get(`/admin/contact-list`)
+}
 
 async Adminprofile(){
     return Api.get("/admin/admin-profile")
