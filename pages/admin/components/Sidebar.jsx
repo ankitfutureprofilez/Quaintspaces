@@ -6,6 +6,7 @@ import {
   ArrowRight2,
   Element3,
   TextalignJustifycenter,
+  Message,
   Triangle,
 } from "iconsax-react";
 import { Context } from "../../_app";
@@ -144,6 +145,15 @@ function Sidebar() {
              <TextalignJustifycenter size={16} />
 
               Reviews 
+            </Link>
+            <Link
+              href={"/admin/messages"}
+              className={`flex ${
+                pathname === "/admin/user" ? "text-primary" : ""
+              } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
+            >
+            <Message size="16"/>
+              User Messages
             </Link>
           </div>
 
