@@ -32,6 +32,7 @@ const Book = () => {
   const [hasAddedNumber, setHasAddedNumber] = useState(false);
   const [messageField, setMessageField] = useState(false);
   const [hasAddedMessage, setHasAddedMessage] = useState(false);
+  const [orderId, setOrderId] = useState('');
 
   // console.log("infos",infos)
   const [guests, setGuests] = useState({
@@ -134,31 +135,91 @@ const Book = () => {
     }
   }, [infos.checkout, infos.checkin, listing]);
 
+  
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (formData.phone.length === 0) {
+  //     toast.error("Phone Number is required");
+  //     return;
+  //   }
+  //   if (formData.phone.length != 10) {
+  //     toast.error("Invalid Phone Number");
+  //     return;
+  //   }
+  //   if (loading == true) {
+  //     return;
+  //   }
+  //   setLoading(true);
+  //   const main = new Listings();
+  //   const record = new FormData();
+  //   record.append("property_uid", listingID);
+  //   record.append("check_in", infos.checkin);
+  //   record.append("check_out", infos.checkout);
+  //   record.append("adults", infos.numberOfAdults);
+  //   record.append("infants", infos.numberOfInfants);
+  //   record.append("children", infos.numberOfChildren);
+  //   record.append("doc_type", formData.selectOption);
+  //   record.append("front_doc", formData.fornt);
+  //   record.append("no_of_pet", infos.numberOfPets);
+  //   record.append(
+  //     "price",
+  //     infos.checkout &&
+  //       infos.checkin &&
+  //       +listing?.price *
+  //         differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
+  //   );
+  //   formData.message.length != 0
+  //     ? record.append("message", formData.message)
+  //     : null;
+  //   record.append("phone_no", formData.phone);
+  //   const response = main.PropertyBooking(record);
+  //   response
+  //     .then((res) => {
+  //       console.log("res", res);
+  //       if (res && res.data && res.data.status) {
+  //         toast.success(res.data.message);
+  //         router.push("/");
+  //         // console.log(res.data.message);/
+  //       } else {
+  //         toast.error(res?.data.message);
+  //         // console.log(res?.data.message)
+  //         setLoading(false);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log("error", error);
+  //       toast.error(error.message);
+  //       setLoading(false);
+  //     });
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.phone.length === 0) {
-      toast.error("Phone Number is required");
-      return;
-    }
-    if (formData.phone.length != 10) {
-      toast.error("Invalid Phone Number");
-      return;
-    }
+    // if (formData.phone.length === 0) {
+    //   toast.error("Phone Number is required");
+    //   return;
+    // }
+    // if (formData.phone.length != 10) {
+    //   toast.error("Invalid Phone Number");
+    //   return;
+    // }
     if (loading == true) {
       return;
     }
     setLoading(true);
     const main = new Listings();
     const record = new FormData();
-    record.append("property_uid", listingID);
-    record.append("check_in", infos.checkin);
-    record.append("check_out", infos.checkout);
-    record.append("adults", infos.numberOfAdults);
-    record.append("infants", infos.numberOfInfants);
-    record.append("children", infos.numberOfChildren);
-    record.append("doc_type", formData.selectOption);
-    record.append("front_doc", formData.fornt);
-    record.append("no_of_pet", infos.numberOfPets);
+    record.append("currency", "INR");
+    // record.append("property_uid", listingID);
+    // record.append("check_in", infos.checkin);
+    // record.append("check_out", infos.checkout);
+    // record.append("adults", infos.numberOfAdults);
+    // record.append("infants", infos.numberOfInfants);
+    // record.append("children", infos.numberOfChildren);
+    // record.append("doc_type", formData.selectOption);
+    // record.append("front_doc", formData.fornt);
+    // record.append("no_of_pet", infos.numberOfPets);
     record.append(
       "price",
       infos.checkout &&
@@ -166,15 +227,17 @@ const Book = () => {
         +listing?.price *
           differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
     );
-    formData.message.length != 0
-      ? record.append("message", formData.message)
-      : null;
-    record.append("phone_no", formData.phone);
+    // formData.message.length != 0
+    //   ? record.append("message", formData.message)
+    //   : null;
+    // record.append("phone_no", formData.phone);
     const response = main.PropertyBooking(record);
     response
       .then((res) => {
         console.log("res", res);
         if (res && res.data && res.data.status) {
+          if (res && res.data && data.orderId) {
+            setOrderId(data.orderId);}
           toast.success(res.data.message);
           router.push("/");
           // console.log(res.data.message);/
