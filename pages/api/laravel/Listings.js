@@ -30,7 +30,8 @@ class Listings extends Component {
     return Api.post("/contact-us", data);
   }
   async PropertyBooking(data) {
-    return Api.post("/add-booking", data);
+    // return Api.post("/add-booking", data);
+    return Api.post("/booking", data);
   }
   async BookingHistory(data) {
     return Api.get("/user-booking-history?" + data);
