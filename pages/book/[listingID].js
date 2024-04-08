@@ -18,6 +18,7 @@ import Listings from "../api/laravel/Listings";
 import AuthLayout from "../layout/AuthLayout";
 import toast from "react-hot-toast";
 import { formatMultiPrice } from "../../hooks/ValueData";
+ import Razorpay from 'razorpay';
 
 const Book = () => {
   const router = useRouter();
@@ -32,7 +33,6 @@ const Book = () => {
   const [hasAddedNumber, setHasAddedNumber] = useState(false);
   const [messageField, setMessageField] = useState(false);
   const [hasAddedMessage, setHasAddedMessage] = useState(false);
-  const [orderId, setOrderId] = useState('');
 
   // console.log("infos",infos)
   const [guests, setGuests] = useState({
@@ -135,65 +135,9 @@ const Book = () => {
     }
   }, [infos.checkout, infos.checkin, listing]);
 
-  
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (formData.phone.length === 0) {
-  //     toast.error("Phone Number is required");
-  //     return;
-  //   }
-  //   if (formData.phone.length != 10) {
-  //     toast.error("Invalid Phone Number");
-  //     return;
-  //   }
-  //   if (loading == true) {
-  //     return;
-  //   }
-  //   setLoading(true);
-  //   const main = new Listings();
-  //   const record = new FormData();
-  //   record.append("property_uid", listingID);
-  //   record.append("check_in", infos.checkin);
-  //   record.append("check_out", infos.checkout);
-  //   record.append("adults", infos.numberOfAdults);
-  //   record.append("infants", infos.numberOfInfants);
-  //   record.append("children", infos.numberOfChildren);
-  //   record.append("doc_type", formData.selectOption);
-  //   record.append("front_doc", formData.fornt);
-  //   record.append("no_of_pet", infos.numberOfPets);
-  //   record.append(
-  //     "price",
-  //     infos.checkout &&
-  //       infos.checkin &&
-  //       +listing?.price *
-  //         differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
-  //   );
-  //   formData.message.length != 0
-  //     ? record.append("message", formData.message)
-  //     : null;
-  //   record.append("phone_no", formData.phone);
-  //   const response = main.PropertyBooking(record);
-  //   response
-  //     .then((res) => {
-  //       console.log("res", res);
-  //       if (res && res.data && res.data.status) {
-  //         toast.success(res.data.message);
-  //         router.push("/");
-  //         // console.log(res.data.message);/
-  //       } else {
-  //         toast.error(res?.data.message);
-  //         // console.log(res?.data.message)
-  //         setLoading(false);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log("error", error);
-  //       toast.error(error.message);
-  //       setLoading(false);
-  //     });
-  // };
-
+  const [orderId, setOrderId] = useState('');
+  console.log("orderId",orderId)
   const handleSubmit = (e) => {
     e.preventDefault();
     // if (formData.phone.length === 0) {
@@ -210,7 +154,6 @@ const Book = () => {
     setLoading(true);
     const main = new Listings();
     const record = new FormData();
-    record.append("currency", "INR");
     // record.append("property_uid", listingID);
     // record.append("check_in", infos.checkin);
     // record.append("check_out", infos.checkout);
@@ -220,6 +163,10 @@ const Book = () => {
     // record.append("doc_type", formData.selectOption);
     // record.append("front_doc", formData.fornt);
     // record.append("no_of_pet", infos.numberOfPets);
+    // formData.message.length != 0
+    //   ? record.append("message", formData.message)
+    //   : null;
+    // record.append("phone_no", formData.phone);
     record.append(
       "price",
       infos.checkout &&
@@ -227,19 +174,44 @@ const Book = () => {
         +listing?.price *
           differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
     );
-    // formData.message.length != 0
-    //   ? record.append("message", formData.message)
-    //   : null;
-    // record.append("phone_no", formData.phone);
+    record.append(
+      "currency",
+     "INR"
+    );
     const response = main.PropertyBooking(record);
     response
       .then((res) => {
-        console.log("res", res);
-        if (res && res.data && res.data.status) {
-          if (res && res.data && data.orderId) {
-            setOrderId(data.orderId);}
+      
+        if (res && res.data) {
+          setOrderId(res?.data?.orderId)
           toast.success(res.data.message);
-          router.push("/");
+          if (res.data && res.data.orderId) {
+            setOrderId(res.data.orderIdd);
+            const options = {
+                key: 'rzp_test_9D45c0ttcrwNii',
+                amount: 1000, 
+                currency: 'INR',
+                name: 'Your Company Name',
+                description: 'Payment for services',
+                order_id: orderId,
+                handler: function (response) {
+                    console.log("response",response);
+                    alert('Payment Successful');
+                },
+                prefill: {
+                    name: 'Customer Name',
+                    email: 'customer@example.com',
+                    contact: '9999999999'
+                },
+                theme: {
+                    color: '#F37254'
+                }
+            };
+
+            const razorpay = new Razorpay(options);
+            razorpay.open();
+        }
+          // router.push("/");
           // console.log(res.data.message);/
         } else {
           toast.error(res?.data.message);
