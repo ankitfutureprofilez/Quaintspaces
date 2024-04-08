@@ -34,7 +34,7 @@ export default function index() {
                     booking Number{" "}
                   </td>
                   <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
-                    Check In & Checkout Time{" "}
+                   Stay{" "}
                   </td>
                   <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
                     Amount
@@ -60,7 +60,7 @@ export default function index() {
                       </td>
 
                       <td className="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6">
-                        {item?.check_in} & {item?.check_out}
+                        {item?.check_in} & {item?.check_out} <br/> {item?.adults} adults {item?.children} children  {item?.no_of_pet} pet
                       </td>
 
                       <td className="whitespace-no-wrap py-4 px-6 text-right text-sm text-gray-600 lg:text-left">
