@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Listing from "../api/Listing";
 import Image from "next/image";
 import AdminLayout from "../AdminLayout";
+import Dateformat from "../hook/Dateformat"
 
 export default function index() {
   const [content, setContent] = useState("");
@@ -51,9 +52,11 @@ export default function index() {
               <tbody className="lg:border-gray-300">
                 {content &&
                   content.map((item, index) => (
-                    <tr className="" key={index}>
+                    <tr  key={index}>
                       <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                        {item?.booking_date}
+                        {
+                        Dateformat(item?.booking_date)
+                        }
                       </td>
                       <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
                         {item?.booking_number}
