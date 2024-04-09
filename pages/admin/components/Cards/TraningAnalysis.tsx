@@ -7,8 +7,6 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 function TraningAnalysis({data}) {
-    console.log("")
-    console.log("data",data)
     return (
         <div className='border text-gray-500 w-full p-3 rounded-2xl'>
             {/* header */}
