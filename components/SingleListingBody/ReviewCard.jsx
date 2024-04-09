@@ -10,7 +10,7 @@ const date = new Date(data?.created_at);
 
 // Stars
 let stars = '';
-for (let i = 0; i < data.rating; i++) {
+for (let i = 0; i < data?.rating; i++) {
     stars += '⭐'; // Add a star for each rating value
 }
   return (
@@ -33,7 +33,7 @@ for (let i = 0; i < data.rating; i++) {
         <p className="text-blackColor text-md leading-7">
           {textResizer(data?.review_text, 210)}
         </p>
-        <span className="text-red-500 text-xs" >{data&& data.status == 0 ? "Your review is not approved yet. Currently only you can see this." : ""}</span> 
+        <span className="text-red-500 text-xs" >{data&& data?.status == 0 ? "Your review is not approved yet. Currently only you can see this." : ""}</span> 
       </div>
     </div>
   );

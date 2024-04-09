@@ -76,7 +76,7 @@ const Date_GuestsPickerCard = React.forwardRef(
               </div>
 
               <div ref={ref}>
-                {auth && auth.name ? (
+                {auth && auth?.name ? (
                   <button
                     className="filter mx-2 btn w-full "
                     onClick={() => {

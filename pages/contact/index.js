@@ -17,7 +17,7 @@ export default function index() {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e?.target;
     setFormData({
       ...formData,
       [name]: value,
@@ -32,14 +32,14 @@ export default function index() {
     setLoading(true);
     const main = new Listings();
     const response = main.ContactUs({
-      name: formData.name,
-      email: formData.email,
-      message: formData.message,
+      name: formData?.name,
+      email: formData?.email,
+      message: formData?.message,
     });
     response
       .then((res) => {
-        if (res && res.data && res.data.status) {
-          toast.success(res.data.message);
+        if (res && res?.data && res?.data?.status) {
+          toast.success(res?.data?.message);
           router.push("/");
           setFormData({
             name: "",
@@ -47,14 +47,14 @@ export default function index() {
             message: "",
           });
         } else {
-          toast.error(res?.data.message);
+          toast.error(res?.data?.message);
           // console.log(res?.data.message);
           setLoading(false);
         }
        
       })
       .catch((error) => {
-        toast.error(error?.response.data);
+        toast.error(error?.response?.data);
         setLoading(false);
       });
   };
@@ -157,7 +157,7 @@ export default function index() {
                   type="text"
                   id="name"
                   name="name"
-                  value={formData.name}
+                  value={formData?.name}
                   onChange={handleChange}
                   className="mt-3 p-3 lg:p-4 border rounded-full w-full"
                   required
@@ -174,7 +174,7 @@ export default function index() {
                   type="email"
                   id="email"
                   name="email"
-                  value={formData.email}
+                  value={formData?.email}
                   onChange={handleChange}
                   className="mt-3 p-3 lg:p-4 border rounded-full w-full"
                   required
@@ -190,7 +190,7 @@ export default function index() {
                 <textarea
                   id="message"
                   name="message"
-                  value={formData.message}
+                  value={formData?.message}
                   onChange={handleChange}
                   className="mt-3 p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52  w-full"
                   required

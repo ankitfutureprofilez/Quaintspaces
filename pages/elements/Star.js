@@ -25,7 +25,7 @@ const RatingStar = ({ showemoji,rating, setRating, size }) => {
         <div className="emoji-div mx-auto">{rating && getEmoji()}</div>
       ) : null}
       <div className="flex mx-auto items-center justify-center">
-        {[...Array(5)].map((star, index) => {
+        {[...Array(5)]?.map((star, index) => {
           const currentRating = index + 1;
           return (
             <div className="star-div flex items-center" key={index}>

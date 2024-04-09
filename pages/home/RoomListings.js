@@ -11,7 +11,7 @@ export default function RoomListings() {
     const main = new Listings();
     main.TopPropertyListing().then((r) => {
       setloading(false)
-      setListings(r.data.data);
+      setListings(r?.data?.data);
     }).catch((err) => {
       setloading(false);
       console.log(err);

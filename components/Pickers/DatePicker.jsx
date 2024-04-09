@@ -90,12 +90,12 @@ const DatePicker = ({
             </h2>
           </div>
           <div className="grid grid-cols-7 mt-10 text-xs leading-6 font-semibold text-center text-gray-500">
-            {Days.map((day) => (
+            {Days?.map((day) => (
               <div key={uuidv4()}>{day}</div>
             ))}
           </div>
           <div className="grid grid-cols-7 mt-2 text-sm">
-            {days.map((day, dayIdx) => {
+            {days?.map((day, dayIdx) => {
               return (
                 <Button
                   key={uuidv4()}
@@ -139,12 +139,12 @@ const DatePicker = ({
             </button>
           </div>
           <div className="grid grid-cols-7 mt-10 text-xs leading-6 font-semibold text-center text-gray-500">
-            {Days.map((day) => (
+            {Days?.map((day) => (
               <div key={uuidv4()}>{day}</div>
             ))}
           </div>
           <div className="grid grid-cols-7 mt-2 text-sm">
-            {nextMonthDays.map((day, dayIdx) => {
+            {nextMonthDays?.map((day, dayIdx) => {
               return (
                 <Button
                   selectedDay={selectedDay}

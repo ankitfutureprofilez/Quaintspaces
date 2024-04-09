@@ -47,10 +47,10 @@ const Reviews = React.forwardRef(({ data }, ref) => {
       main
         .AllReviews(id, p)
         .then((r) => {
-          if (r.data.status) {
+          if (r?.data?.status) {
             setReviewData(r?.data?.data);
             if (p == 1) {
-              setLists(r.data.data.data);
+              setLists(r?.data?.data?.data);
             } else {
               setLists((prev) => [...prev, ...r?.data?.data?.data]);
             }
@@ -198,7 +198,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
         </div>
       </div>
       <div className="flex flex-wrap gap-8">
-        {selfReview && selfReview.id ? (
+        {selfReview && selfReview?.id ? (
           <div className="my-6 md:my-0 w-full md:w-[calc(100%/2-1.5rem)]">
             <ReviewCard data={selfReview} />
           </div>
@@ -232,7 +232,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
 
         {/* Add review option */}
         <button className="btn-normal mt-8" onClick={openModal}>
-          {selfReview && selfReview.id ? "Edit your review" : "Drop a review"}
+          {selfReview && selfReview?.id ? "Edit your review" : "Drop a review"}
         </button>
 
         <Modal width="lg" isOpen={isOpen} onClose={closeModal}>

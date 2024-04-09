@@ -23,19 +23,19 @@ export default function index() {
     const response = main.DeactivateAccount();
     response
       .then((res) => {
-        if (res && res.data && res.data.status) {
+        if (res && res?.data && res?.data?.status) {
           localStorage && localStorage.removeItem("token");
           setAuth(null);
-          toast.success(res.data.message);
+          toast.success(res?.data?.message);
           router.push("/");
         } else {
-          toast.error(res?.data.message);
+          toast.error(res?.data?.message);
         }
       })
       .catch((error) => {
         console.log("error", error);
-        toast.error(error.message);
-        toast.error(error?.response.data);
+        toast.error(error?.message);
+        toast.error(error?.response?.data);
       });
   };
 
@@ -48,7 +48,7 @@ export default function index() {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e?.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -64,14 +64,14 @@ export default function index() {
     setLoading(true);
     const main = new Listings();
     const response = main.ResetPassword({
-      old_password: formData.current_password,
-      password: formData.new_password,
-      confirm_password: formData.confirm_password,
+      old_password: formData?.current_password,
+      password: formData?.new_password,
+      confirm_password: formData?.confirm_password,
     });
     response
       .then((res) => {
-        if (res && res.data && res.data.status) {
-          toast.success(res.data.message);
+        if (res && res?.data && res?.data?.status) {
+          toast.success(res?.data?.message);
           // console.log("res",res)
           router.push("/");
           // console.log(res.data.message)
@@ -81,15 +81,15 @@ export default function index() {
             current_password: "",
           });
         } else {
-          toast.error(res?.data.message);
+          toast.error(res?.data?.message);
           // console.log(res?.data.message)
           setLoading(false);
         }
       })
       .catch((error) => {
         console.log("error", error);
-        toast.error(error.message);
-        toast.error(error?.response.data);
+        toast.error(error?.message);
+        toast.error(error?.response?.data);
         setLoading(false);
       });
   };
@@ -123,7 +123,7 @@ export default function index() {
                   type="password"
                   id="email"
                   name="current_password"
-                  value={formData.current_password}
+                  value={formData?.current_password}
                   onChange={handleChange}
                   className="mt-1 p-4 border rounded-full w-full"
                   required
@@ -140,7 +140,7 @@ export default function index() {
                   type="password"
                   id="email"
                   name="new_password"
-                  value={formData.new_password}
+                  value={formData?.new_password}
                   onChange={handleChange}
                   className="mt-1 p-4 border rounded-full w-full"
                   required
@@ -157,7 +157,7 @@ export default function index() {
                   type="password"
                   id="email"
                   name="confirm_password"
-                  value={formData.confirm_password}
+                  value={formData?.confirm_password}
                   onChange={handleChange}
                   className="mt-1 p-4 border rounded-full w-full"
                   required

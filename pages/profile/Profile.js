@@ -36,7 +36,7 @@ export default function Profile() {
   );
 
   const loadFile = (event) => {
-    const file = event.target.files[0];
+    const file = event?.target?.files[0];
     setImageUploaded(true);
     const output = document.getElementById("preview_img");
     setRecord((prevData) => ({
@@ -58,15 +58,15 @@ export default function Profile() {
       .GetUserProfile()
       .then((r) => {
         // console.log("r.data.data", r.data.data);
-        const profiledata = r.data.data;
+        const profiledata = r?.data?.data;
         setRecord({
-          first: profiledata.first_name,
-          last: profiledata.last_name,
-          phone: profiledata.phone_no,
-          image: profiledata.image_url,
-          email: profiledata.email,
+          first: profiledata?.first_name,
+          last: profiledata?.last_name,
+          phone: profiledata?.phone_no,
+          image: profiledata?.image_url,
+          email: profiledata?.email,
         });
-        setPreviewImgSrc(profiledata.image_url);
+        setPreviewImgSrc(profiledata?.image_url);
       })
       .catch((err) => {
         console.log(err);
@@ -74,7 +74,7 @@ export default function Profile() {
   }, []);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e?.target;
     setRecord((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -87,7 +87,7 @@ export default function Profile() {
     if (loading) {
       return;
     }
-    if(record.phone.length!=10)
+    if(record?.phone?.length!=10)
     {
       toast.error("Phone Number must be of 10 digits")
       return;
@@ -95,17 +95,17 @@ export default function Profile() {
     setLoading(true);
     const main = new Listings();
     const formdata = new FormData();
-    formdata.append("email", record.email);
-    ImageUploaded === true ? formdata.append("image", record.image) : null;
-    formdata.append("first_name", record.first);
-    formdata.append("last_name", record.last);
-    formdata.append("phone_no", record.phone);
+    formdata.append("email", record?.email);
+    ImageUploaded === true ? formdata.append("image", record?.image) : null;
+    formdata.append("first_name", record?.first);
+    formdata.append("last_name", record?.last);
+    formdata.append("phone_no", record?.phone);
     const response = main.UpdateUserProfile(formdata);
     response
       .then((res) => {
         // console.log("res", res);
-        if (res && res.data && res.data.status) {
-          toast.success(res.data.message);
+        if (res && res?.data && res?.data?.status) {
+          toast.success(res?.data?.message);
           // console.log(res.data.message);
           setRecord({
             email: res?.data?.data?.email,
@@ -117,7 +117,7 @@ export default function Profile() {
           setAuth(res?.data?.data);
           setImageUploaded(false);
         } else {
-          toast.error(res?.data.message);
+          toast.error(res?.data?.message);
           setImageUploaded(false);
           // console.log(res?.data.message);
         }
@@ -126,8 +126,8 @@ export default function Profile() {
       })
       .catch((error) => {
         console.log("error", error);
-        toast.error(error.message);
-        toast.error(error?.response.data);
+        toast.error(error?.message);
+        toast.error(error?.response?.data);
         setLoading(false);
         setImageUploaded(false);
       });
@@ -213,7 +213,7 @@ export default function Profile() {
                 type="text"
                 id="email"
                 name="first"
-                value={record.first}
+                value={record?.first}
                 onChange={handleChange}
                 className="mt-1 p-4 border rounded-full w-full"
                 required
@@ -231,7 +231,7 @@ export default function Profile() {
                 type="text"
                 id="email"
                 name="last"
-                value={record.last}
+                value={record?.last}
                 onChange={handleChange}
                 className="mt-1 p-4 border rounded-full w-full"
                 required
@@ -248,7 +248,7 @@ export default function Profile() {
                 type="email"
                 id="email"
                 name="email"
-                value={record.email}
+                value={record?.email}
                 onChange={handleChange}
                 className="mt-1 p-4 border rounded-full w-full"
                 required
@@ -266,7 +266,7 @@ export default function Profile() {
                 id="phone"
                 name="phone"
                 maxlength="10"
-                value={record.phone}
+                value={record?.phone}
                 onChange={handleChange}
                 className="mt-1 p-4 border rounded-full w-full"
                 required

@@ -37,17 +37,17 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
       >
         <span className="block text-xs font-semibold">CHECK IN</span>
         <span className="block font-medium mt-1">
-          {dates.selectedDay ? (
+          {dates?.selectedDay ? (
             <div className="text-sm font-semibold mt-2">
               <span>
-                {dates.selectedDay.toLocaleString("en-US", { weekday: "long" })}
+                {dates?.selectedDay?.toLocaleString("en-US", { weekday: "long" })}
               </span>
               <div>
-                <span>{dates.selectedDay.getDate()}{" "}</span>
+                <span>{dates?.selectedDay?.getDate()}{" "}</span>
                 <span>
-                  {dates.selectedDay.toLocaleString("en-US", { month: "long" })}
+                  {dates?.selectedDay?.toLocaleString("en-US", { month: "long" })}
                 </span>
-                <span>{","}{dates.selectedDay.getFullYear()}</span>
+                <span>{","}{dates?.selectedDay?.getFullYear()}</span>
               </div>
             </div>
           ) : (
@@ -63,17 +63,17 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
       >
         <span className="block text-xs font-semibold">CHECK OUT</span>
         <span className="block font-medium mt-1">
-          {dates.selectEnd ? (
+          {dates?.selectEnd ? (
              <div className="text-sm font-semibold mt-2">
               <span>
-                {dates.selectEnd.toLocaleString("en-US", { weekday: "long" })}
+                {dates?.selectEnd?.toLocaleString("en-US", { weekday: "long" })}
               </span>
               <div>
-                <span>{dates.selectEnd.getDate()}{" "}</span>
+                <span>{dates?.selectEnd?.getDate()}{" "}</span>
                 <span>
-                  {dates.selectEnd.toLocaleString("en-US", { month: "long" })}
+                  {dates?.selectEnd?.toLocaleString("en-US", { month: "long" })}
                 </span>
-                <span>{","}{dates.selectEnd.getFullYear()}</span>
+                <span>{","}{dates?.selectEnd?.getFullYear()}</span>
               </div>
             </div>
           ) : (

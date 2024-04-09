@@ -8,7 +8,7 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
 
   const stringToArray= (str) => {
     // Split the string by commas and trim each element to remove any leading or trailing spaces
-    return str.split(',').map(item => item.trim());
+    return str?.split(',')?.map(item => item?.trim());
 }
 
   useEffect(() => {
@@ -71,16 +71,16 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
         <h1 className="text-2xl mb-4 font-semibold">What this place offers?</h1>
         <ul className="block md:flex flex-wrap">
           {listing?.data?.amenities &&
-            listing?.data?.amenities.split(',').map((amenity) => (
+            listing?.data?.amenities?.split(',')?.map((amenity) => (
               <li
                 className="w-[calc(100%/2-10px)] flex gap-2 my-2 py-2 md:py-0"
-                key={amenity.trim()}
+                key={amenity?.trim()}
               >
                 <img
                   src={`/icons/${amenity
-                    .toLowerCase()
-                    .trim()
-                    .replaceAll(" ", "_")}.png`}
+                    ?.toLowerCase()
+                    ?.trim()
+                    ?.replaceAll(" ", "_")}.png`}
                   className="w-6 h-6 mt-1"
                   alt=""
                 />
@@ -109,15 +109,15 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
 export default React.memo(Info);
 function formatAmenities(input) {
   // Replace underscores with spaces and split by commas or hyphens
-  const words = input.replace(/_/g, ' ').split(/,|-/);
+  const words = input?.replace(/_/g, ' ')?.split(/,|-/);
   
   // Capitalize the first letter of each word
-  const formattedWords = words.map(word => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
+  const formattedWords = words?.map(word => {
+    return word?.charAt(0)?.toUpperCase() + word?.slice(1);
   });
   
   // Join the words back together with commas and return the formatted string
-  return formattedWords.join(', ');
+  return formattedWords?.join(', ');
 }
 
 
@@ -144,9 +144,9 @@ const AmenitiesModal = ({ amenities, setAmenitiesModal }) => {
               >
                 <img
                   src={`/icons/${e
-                    .toLowerCase()
-                    .trim()
-                    .replaceAll(" ", "_")
+                    ?.toLowerCase()
+                    ?.trim()
+                    ?.replaceAll(" ", "_")
                   }.png`
                   }
                   className="w-6 h-6"

@@ -34,7 +34,7 @@ export default function ReasonToVisit() {
                 },
               }}
             >
-              {reasons.map((reason, index) => (
+              {reasons && reasons.map((reason, index) => (
                 <SwiperSlide key={index} >
                   <div className="iteam">
                     <h3>{reason}</h3>
