@@ -21,6 +21,7 @@ function TraningAnalysis({data}) {
                 <button className='border px-2 py-1 rounded-lg text-xs'>
                     Details
                 </button>
+                
             </div>
 
             <hr className='bg-gray-400 my-4' />
