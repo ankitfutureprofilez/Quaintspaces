@@ -177,7 +177,7 @@ function Sidebar() {
               >
                 <div className="flex items-center gap-2">
                   <Image
-                    src={auth?.admin_profile_url}
+                    src={auth?.image_url}
                     alt="User"
                     width={36}
                     height={36}
