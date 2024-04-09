@@ -25,7 +25,6 @@ const Book = () => {
   const router = useRouter();
   const [Razorpay] = useRazorpay();
 const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
-  console.log("NEXT_PUBLIC_RAZOPAY_KEY",RAZOPAY_KEY)
   const { listingID } = router.query;
   // console.log("listingID", listingID);
   const [listing, setListing] = useState([]);
@@ -141,6 +140,7 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
 
 
   const [orderId, setOrderId] = useState('');
+  console.log("orderId",orderId)
   const handleSubmit = (e) => {
     e.preventDefault();
     if (loading) return;
@@ -148,7 +148,7 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
     setLoading(true);
     const main = new Listings();
     const record = new FormData();
-      record.append("property_uid", listingID);
+    record.append("property_uid", listingID);
     record.append("check_in", infos.checkin);
     record.append("check_out", infos.checkout);
     record.append("adults", infos.numberOfAdults);
@@ -169,8 +169,8 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
         if (res && res.data && res.data.orderId) {
           setOrderId(res.data.orderId);
           const options = {
-            key: 'rzp_test_9D45c0ttcrwNii',
-            amount: 1000, 
+            key: RAZOPAY_KEY,
+            amount: 1000,
             currency: 'INR',
             name: 'Your Company Name',
             description: 'Payment for services',
@@ -190,7 +190,7 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
           };
   
           const rzp = new Razorpay(options);
-          console.log("djdd",rzp)
+          console.log("rzp",rzp)
           rzp.on("payment.failed", function (response) {
             console.log("response",response)
             console.error("Payment failed:", response.error);

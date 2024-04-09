@@ -9,6 +9,7 @@ import NoData from "../elements/NoData.js";
 import { formatMultiPrice } from "../../hooks/ValueData.js";
 
 export default function index() {
+  const[loading ,setLoading ] =useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedButton, setSelectedButton] = useState("upcoming");
   const [listings, setListings] = useState([]);
@@ -41,6 +42,7 @@ export default function index() {
   };
 
   useEffect(() => {
+    setLoading(true);
     let url = "";
     if (selectedOption == "All Dates") {
     } else if (selectedOption == "Last 30 Days") {
@@ -64,9 +66,11 @@ export default function index() {
     main
       .BookingHistory(url)
       .then((r) => {
-        setListings(r.data.data);
+        setLoading(false);
+        setListings(r?.data?.data);
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err);
       });
     // console.log("listings", listings);
@@ -74,15 +78,13 @@ export default function index() {
 
   const BookingTable = () => {
     return (
-      <div className="table-responisve">
-        {!listings || listings.length === 0 ? (
-          <NoData
-            Heading={"No Bookings Found"}
-            content={
-              "You have not done any bookings yet. Click below to go to the home page"
-            }
-          />
+      <>
+        {loading ? (
+          <p>loading...
+            
+            </p>
         ) : (
+      <div className="table-responisve">
           <table className="table-fixed w-full booking-table">
             <thead>
               <tr>
@@ -95,36 +97,48 @@ export default function index() {
               </tr>
             </thead>
             <tbody>
-              {listings.map((item, index) => (
-                <tr key={index} className="">
-                  <td className="flex items-center">
-                    <div className="text ml-2">
-                      <div className="title">
-                        {item?.booking_property?.name}
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-4 py-2">{item?.check_in}</td>
-                  <td className="px-4 py-2">{item?.check_out}</td>
-                  <td className="px-4 py-2">
-                    <Button
-                      text={`${item?.booking_status}`}
-                      design="font-inter text-blue-700 font-medium leading-tight text-center w-32 p-3 rounded-full"
-                    />
-                  </td>
-                  <td className="px-4 py-2">{formatMultiPrice(item?.price)}</td>
-                  <td className="px-4 py-2">
-                    <Button
-                      text="Cancel"
-                      design="font-inter text-red-700 font-medium leading-tight text-center w-32 border-red-500 p-3 rounded-full"
-                    />
-                  </td>
-                </tr>
-              ))}
+              {listings && listings.length >0 ? (
+                  listings.map((item, index) => (
+                    <tr key={index} className="">
+                      <td className="flex items-center">
+                        <div className="text ml-2">
+                          <div className="title">
+                            {item?.booking_property?.name}
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-2">{item?.check_in}</td>
+                      <td className="px-4 py-2">{item?.check_out}</td>
+                      <td className="px-4 py-2">
+                        <Button
+                          text={`${item?.booking_status}`}
+                          design="font-inter text-blue-700 font-medium leading-tight text-center w-32 p-3 rounded-full"
+                        />
+                      </td>
+                      <td className="px-4 py-2">{formatMultiPrice(item?.price)}</td>
+                      <td className="px-4 py-2">
+                        <Button
+                          text="Cancel"
+                          design="font-inter text-red-700 font-medium leading-tight text-center w-32 border-red-500 p-3 rounded-full"
+                        />
+                      </td>
+                    </tr>
+                  ))
+              ) : (
+                <NoData
+            Heading={"No Bookings Found"}
+            content={
+              "You have not done any bookings yet. Click below to go to the home page"
+            }
+          />
+              ) }
             </tbody>
           </table>
-        )}
       </div>
+        )}
+
+      </>
+
     );
   };
   return (
