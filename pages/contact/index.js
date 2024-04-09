@@ -83,7 +83,9 @@ export default function index() {
               fill="white"
             />
           </svg>
+          <a href="tel:+98-9745678912">
           <span className="ml-2 font-medium">+98-9745678912</span>
+          </a>
         </div>
         <div className="flex items-center w-full mb-3 sm:mb-0">
           <svg
@@ -99,7 +101,9 @@ export default function index() {
               fill="white"
             />
           </svg>
-          <span className="ml-2 font-medium">quientstay@gmail.com</span>
+          <a href="mailto:quaintstay@gmail.com">
+          <span className="ml-2 font-medium">quaintstay@gmail.com</span>
+          </a>
         </div>
         <div className="flex items-center w-full mb-3 sm:mb-0">
           <svg
@@ -128,7 +132,9 @@ export default function index() {
               />
             </g>
           </svg>
+          <a href="https://wa.me/989745678912">
           <span className="ml-2 font-medium">+98-9745678912</span>
+          </a>
         </div>
         </div>
         </div>
