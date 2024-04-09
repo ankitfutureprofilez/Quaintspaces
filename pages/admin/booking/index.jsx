@@ -5,8 +5,7 @@ import AdminLayout from "../AdminLayout";
 import Dateformat from "../hook/Dateformat"
 
 export default function index() {
-  const [content, setContent] = useState("");
-
+  const [content, setContent] = useState([]);
   useEffect(() => {
     const main = new Listing();
     const response = main.bookinghist();
@@ -19,7 +18,6 @@ export default function index() {
       });
   }, []);
 
-  
   return (
     <AdminLayout heading={"Booking Management"}>
       <div className="">
