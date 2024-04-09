@@ -19,6 +19,7 @@ export default function index() {
       });
   }, []);
 
+  
   return (
     <AdminLayout heading={"Booking Management"}>
       <div className="">
