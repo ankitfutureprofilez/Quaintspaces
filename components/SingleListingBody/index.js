@@ -177,9 +177,7 @@ const SingleListingBody = ({ listing, loading }) => {
           </ul>
 
           <div
-            className={`gap-4 w-full justify-between md:w-fit md:justify-start py-3 md:py-0 flex md:${
-              rightSectionHeader ? "flex" : "hidden"
-            }`}
+            className={`gap-4 w-full justify-between md:w-fit md:justify-start py-3 md:py-0 flex`}
           >
             <div className="whitespace-nowrap">
               <span>
@@ -268,7 +266,7 @@ const SingleListingBody = ({ listing, loading }) => {
             />
           </div>
 
-          <div className="flex flex-col gap-16 relative mb-8 mt-8 lg:mt-0 lg:flex-row">
+          <div className="flex flex-col gap-4 sm:gap-16 relative mb-8 mt-8 lg:mt-0 lg:flex-row">
             <Info loading={loading} listing={listing} ref={AmenitiesRef} />
             <div className="block">
               <Date_GuestsPickerCard

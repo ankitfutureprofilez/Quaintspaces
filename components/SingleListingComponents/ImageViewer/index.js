@@ -15,6 +15,12 @@ const ImageViewer = ({ selectedImage, isSaved, images, setImageViewer }) => {
   return (
     <section className="fixed top-0 left-0 w-full h-full z-40 bg-black p-10 select-none">
       <header className="flex items-center justify-between">
+      <p className="text-md text-white font-medium">
+          {/* Images */}
+        </p>
+        <p className="text-md text-white font-medium">
+          {counter + 1} / { images && images?.length}
+        </p>
         <button
           onClick={() => setImageViewer(false)}
           className="bg-black text-white hover:bg-gray-600 flex items-center justify-center gap-2 font-semibold px-4 py-2 rounded-md"
@@ -22,9 +28,6 @@ const ImageViewer = ({ selectedImage, isSaved, images, setImageViewer }) => {
           <Times />
           <span className="tracking-2">Close</span>
         </button>
-        <p className="text-md text-white font-medium">
-          {counter + 1} / { images && images?.length}
-        </p>
         {/* <button
           type="button"
           className="bg-black text-white hover:bg-gray-600 flex items-center justify-center gap-2 font-semibold px-4 py-2 rounded-md"

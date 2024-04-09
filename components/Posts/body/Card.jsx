@@ -23,6 +23,9 @@ const Card = ({ post }) => {
     let result = words?.join(" ");
     return result;
 }
+const capitalizeFirstLetter = (string) => {
+  return string?.charAt(0)?.toUpperCase() + string?.slice(1);
+};
 
   return (
     <div className="banipark-box rounded-lg">
@@ -45,7 +48,7 @@ const Card = ({ post }) => {
           {/* {post?.location} */}
         </h5>
         <h3 className="line-limit">
-          {post?.name}
+          {capitalizeFirstLetter(post?.name)}
         </h3>
         <p>
           {post?.bedrooms} Bedrooms · {post?.beds} Bed
