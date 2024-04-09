@@ -24,7 +24,7 @@ import useRazorpay from "react-razorpay";
 const Book = () => {
   const router = useRouter();
   const [Razorpay] = useRazorpay();
-const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
+  const RAZOPAY_KEY = process.env.NEXT_PUBLIC_RAZOPAY_KEY
   const { listingID } = router.query;
   // console.log("listingID", listingID);
   const [listing, setListing] = useState([]);
@@ -36,6 +36,8 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
   const [hasAddedNumber, setHasAddedNumber] = useState(false);
   const [messageField, setMessageField] = useState(false);
   const [hasAddedMessage, setHasAddedMessage] = useState(false);
+  const [pricerate, setPriceRate] = useState(0);
+  const [razorpays, setRazorpay] = useState("");
 
   // console.log("infos",infos)
   const [guests, setGuests] = useState({
@@ -107,8 +109,9 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
     fornt: null,
     message: "",
     phone: "",
+    razorpay_order_id: razorpays
   });
-  0;
+  console.log("formData", formData)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -125,10 +128,9 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
     }));
   };
 
-  const [pricerate, setPriceRate] = useState(0);
-  const [razorpays, setRazorpay] = useState([]);
 
-  console.log("razorpays",razorpays)
+
+  console.log("razorpays", razorpays)
 
   useEffect(() => {
     if (infos.checkout && infos.checkin && listing) {
@@ -143,11 +145,19 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
 
 
   const [orderId, setOrderId] = useState('');
-  console.log("orderId",orderId)
+  console.log("orderId", orderId);
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (formData.phone.length === 0) {
+      toast.error("Phone Number is required");
+      return;
+    }
+    if (formData.phone.length != 10) {
+      toast.error("Invalid Phone Number");
+      return;
+    }
     if (loading) return;
-  
+
     setLoading(true);
     const main = new Listings();
     const record = new FormData();
@@ -166,7 +176,7 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
       +listing?.price * differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
     );
     record.append("currency", "INR");
-  
+
     main.PropertyBooking(record)
       .then((res) => {
         if (res && res?.data && res?.data?.orderId) {
@@ -179,8 +189,10 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
             description: 'Payment for services',
             order_id: res?.data?.orderId,
             handler: function (response) {
+              setRazorpay(response?.razorpay_order_id);
               console.log("Payment successful:", response);
               toast.success('Payment Successful');
+              paymentsubmit();
             },
             prefill: {
               name: 'Customer Name',
@@ -194,14 +206,15 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
               color: '#F37254'
             }
           };
-  
+
           const rzp = new Razorpay(options);
-          console.log("rzp",rzp)
+          console.log("rzp", rzp)
           rzp.on("payment.failed", function (response) {
-            setRazorpay(response);
-            console.log("response",response)
+            setRazorpay(response?.metadata?.order_id);
+            console.log("responsedajkj", response?.metadata?.order_id)
             console.error("Payment failed:", response.error);
-            toast.error('Payment Failed');
+              paymentsubmit();
+              toast.error('Payment Failed');
           });
           rzp.open();
         } else {
@@ -214,8 +227,43 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
       })
       .finally(() => setLoading(false));
   };
-  
 
+  const paymentsubmit = (e) => {
+    // e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+    const main = new Listings();
+    const record = new FormData();
+    record.append("property_uid", listingID);
+    record.append("check_in", infos.checkin);
+    record.append("check_out", infos.checkout);
+    record.append("adults", infos.numberOfAdults);
+    record.append("infants", infos.numberOfInfants);
+    record.append("children", infos.numberOfChildren);
+    record.append("doc_type", formData.selectOption);
+    record.append("front_doc", formData.fornt);
+    record.append("no_of_pet", infos.numberOfPets);
+    record.append("phone_no", formData.phone);
+    record.append("razorpay_order_id", razorpays);
+    record.append(
+      "price",
+      infos.checkout && infos.checkin &&
+      +listing?.price * differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
+    );
+    main.bookingpayment(record, razorpays)
+      .then((res) => {
+        if (res && res?.data && res?.data?.status == true) {
+          toast.success(res?.data?.message);
+        } else {
+          toast.error(res?.data?.message);
+
+        }
+      })
+      .catch((error) => {
+        console.log("error", error)
+      })
+      .finally(() => setLoading(false));
+  };
   return (
     <AuthLayout>
       <div>
@@ -232,12 +280,10 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
               <div className="flex items-center justify-between w-full py-2">
                 <div>
                   <h3 className="text-lg  font-medium item-heading ">Dates</h3>
-                  <p className="text-md item-paragraph">{`${
-                    infos?.checkin && format(new Date(infos.checkin), "MMM dd")
-                  } - ${
-                    infos?.checkout &&
+                  <p className="text-md item-paragraph">{`${infos?.checkin && format(new Date(infos.checkin), "MMM dd")
+                    } - ${infos?.checkout &&
                     format(new Date(infos.checkout), "MMM dd")
-                  }`}</p>
+                    }`}</p>
                 </div>
                 <button
                   onClick={() => setDateModel(true)}
@@ -250,17 +296,14 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
                 <div>
                   <h5 className="text-lg font-medium item-heading">Guests</h5>
                   <p className="text-md item-paragrapg">
-                    {`${
-                      +infos.numberOfAdults + +infos.numberOfChildren
-                    } guests ${
-                      +infos.numberOfInfants
+                    {`${+infos.numberOfAdults + +infos.numberOfChildren
+                      } guests ${+infos.numberOfInfants
                         ? ", " + infos.numberOfInfants + " infants"
                         : ""
-                    } ${
-                      +infos.numberOfPets
+                      } ${+infos.numberOfPets
                         ? ", " + infos.numberOfPets + " pets"
                         : ""
-                    }`}
+                      }`}
                   </p>
                 </div>
                 <button
@@ -339,7 +382,7 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
                           if (formData.message.length === 0) {
                             toast.error("Mesage field is empty");
                             setHasAddedMessage(false);
-                          } else {setHasAddedMessage(true);}
+                          } else { setHasAddedMessage(true); }
                           setMessageField(false);
                         }}
                         className="w-1/6 sort btn"
@@ -408,13 +451,27 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
                 </div>
               </div>
               <div className="mt-11">
-                <Button
-                  text={"Confirm & Pay"}
-                  design={
-                    "font-inter  font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 p-4 rounded-full"
-                  }
-                  onClick={handleSubmit}
-                />
+                {loading ? (
+                  <Button
+
+                    text={"Loading..."}
+                    design={
+                      "font-inter  font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 p-4 rounded-full"
+                    }
+                    onClick={handleSubmit}
+                  />
+                ) : (
+                  <Button
+
+                    text={"Confirm & Pay"}
+                    design={
+                      "font-inter  font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 p-4 rounded-full"
+                    }
+                    onClick={handleSubmit}
+                  />
+                )}
+
+
               </div>
             </div>
             <div className="w-5/12  rounded-xl shadow py-8 px-5 h-fit golden-border">

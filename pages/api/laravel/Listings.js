@@ -36,6 +36,11 @@ class Listings extends Component {
   async BookingHistory(data) {
     return Api.get("/user-booking-history?" + data);
   }
+
+  
+  async bookingpayment(data) {
+    return Api.post("/payment" , data);
+  }
   async DeactivateAccount() {
     return Api.get("/user-account-deactivate");
   }
