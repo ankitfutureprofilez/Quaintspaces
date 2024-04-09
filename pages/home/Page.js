@@ -17,6 +17,7 @@ export default function MainPage() {
           style={{ backgroundImage: `url(/images/HeaderImg.png)` }}
         >
           <HeroBanner />
+          
         </div>
         <LuxuryStay />
         <HomeRoomsLists />
