@@ -67,7 +67,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer,loading }) => {
             }}
           >
             <img
-              src={listing.data?.property_image[1].image_url}
+              src={listing?.data?.property_image[1]?.image_url}
               className="h-full w-full object-cover"
               alt=""
             />

@@ -28,8 +28,8 @@ export default function Header() {
       const main = new Listings();
       const response =  main.GetUserProfile(s);
       response.then((res) => {
-        if (res.data.status) {
-          setAuth(res.data.data);
+        if (res?.data?.status) {
+          setAuth(res?.data?.data);
         } 
       }).catch((error) => {
         console.log("error", error);

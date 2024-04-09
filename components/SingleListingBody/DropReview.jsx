@@ -19,14 +19,14 @@ const DropReview = ({ closeModal, listing, getSelfreview }) => {
   const id = router.query.slug;
 
   const handleChange = (event) => {
-    setReviewText(event.target.value);
+    setReviewText(event?.target?.value);
   };
 
   const handleSubmit = async () => {
     if (loading) return;
     setLoading(true);
     try {
-      if (mainRating === 0 || reviewText.trim() === "") {
+      if (mainRating === 0 || reviewText?.trim() === "") {
         toast.error("Please fill in all the required fields.");
         setLoading(false);
         return;
@@ -43,8 +43,8 @@ const DropReview = ({ closeModal, listing, getSelfreview }) => {
         location: location,
         value: value,
       });
-      if (response && response.data && response.data.status) {
-        toast.success(response.data.message);
+      if (response && response?.data && response?.data?.status) {
+        toast.success(response?.data?.message);
         closeModal && closeModal();
         getSelfreview && getSelfreview();
       } else {

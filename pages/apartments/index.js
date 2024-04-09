@@ -142,7 +142,7 @@ export default function index() {
       .PropertyListing(url)
       .then((r) => {
         setloading(false);
-        setListings(r.data.data);
+        setListings(r?.data?.data);
       })
       .catch((err) => {
         setloading(false);

@@ -26,7 +26,7 @@ const SingleListingBody = ({ listing, loading }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageViewer, setImageViewer] = useState(false);
 
-  // Guests max limit is selected here 
+  // Guests max limit is selected here
   const [guests, setGuests] = useState({
     adults: {
       value: 1,
@@ -72,7 +72,7 @@ const SingleListingBody = ({ listing, loading }) => {
       const { x } = CardRef.current?.getBoundingClientRect();
 
       window.addEventListener("scroll", () => {
-        if (window.scrollY > x) {
+        if (window?.scrollY > x) {
           setRightSectionHeader(true);
         } else {
           setRightSectionHeader(false);
@@ -87,25 +87,25 @@ const SingleListingBody = ({ listing, loading }) => {
         case "photos":
           window.scrollBy(
             0,
-            ImagesRef.current?.getBoundingClientRect().top - 80
+            ImagesRef?.current?.getBoundingClientRect().top - 80
           );
           break;
         case "amenities":
           window.scrollBy(
             0,
-            AmenitiesRef.current?.getBoundingClientRect().top - 80
+            AmenitiesRef?.current?.getBoundingClientRect().top - 80
           );
           break;
         case "reviews":
           window.scrollBy(
             0,
-            ReviewsRef.current?.getBoundingClientRect().top - 80
+            ReviewsRef?.current?.getBoundingClientRect().top - 80
           );
           break;
         case "location":
           window.scrollBy(
             0,
-            LocationRef.current?.getBoundingClientRect().top - 80
+            LocationRef?.current?.getBoundingClientRect().top - 80
           );
           break;
       }
@@ -122,16 +122,16 @@ const SingleListingBody = ({ listing, loading }) => {
 
   useEffect(() => {
     if (ImagesRef.current) {
-      const { bottom } = ImagesRef.current?.getBoundingClientRect();
+      const { bottom } = ImagesRef?.current?.getBoundingClientRect();
       window.addEventListener("scroll", () => {
-        if (window.scrollY > bottom + 300) {
+        if (window?.scrollY > bottom + 300) {
           setShowHeader(true);
         } else {
           setShowHeader(false);
         }
       });
     }
-  }, [ImagesRef.current]);
+  }, [ImagesRef?.current]);
 
   return (
     <>
@@ -184,7 +184,7 @@ const SingleListingBody = ({ listing, loading }) => {
             <div className="whitespace-nowrap">
               <span>
                 <span className="font-medium text-lg">
-                  {formatMultiPrice(listing.data.price)}
+                  {formatMultiPrice(listing?.data?.price)}
                 </span>
                 <span className="text-md"> night</span>
               </span>
@@ -193,7 +193,7 @@ const SingleListingBody = ({ listing, loading }) => {
                   <Star />
                 </span>
                 <span className="text-xs font-medium">
-                  {listing?.data?.rating && listing?.data?.rating.toFixed(2)}
+                  {listing?.data?.rating && listing?.data?.rating?.toFixed(2)}
                 </span>
                 <span> ·</span>
                 <span className="text-xs underline text-lightTextColor">
@@ -210,11 +210,11 @@ const SingleListingBody = ({ listing, loading }) => {
                 }
                 router.push(
                   `/book/${listing?.data._id}?numberOfAdults=${
-                    guests.adults.value || 0
+                    guests?.adults?.value || 0
                   }&numberOfChildren=${
-                    guests.children.value || 0
-                  }&numberOfInfants=${guests.infants.value || 0}&numberOfPets=${
-                    guests.pets.value || 0
+                    guests?.children?.value || 0
+                  }&numberOfInfants=${guests?.infants?.value || 0}&numberOfPets=${
+                    guests?.pets?.value || 0
                   }&checkin=${
                     selectedDay && format(selectedDay, "yyyy-MM-dd")
                   }&checkout=${selectEnd && format(selectEnd, "yyyy-MM-dd")}`
@@ -268,9 +268,9 @@ const SingleListingBody = ({ listing, loading }) => {
             />
           </div>
 
-          <div className="flex gap-16 relative mb-8 mt-8 lg:mt-0">
+          <div className="flex flex-col gap-16 relative mb-8 mt-8 lg:mt-0 lg:flex-row">
             <Info loading={loading} listing={listing} ref={AmenitiesRef} />
-            <div className="hidden lg:block">
+            <div className="block">
               <Date_GuestsPickerCard
                 loading={loading}
                 selection={selection}
@@ -287,8 +287,9 @@ const SingleListingBody = ({ listing, loading }) => {
               />
             </div>
           </div>
-          <Reviews data={listing.data} ref={ReviewsRef} />
-          <Location listing={listing.data} ref={LocationRef} />
+
+          <Reviews data={listing?.data} ref={ReviewsRef} />
+          <Location listing={listing?.data} ref={LocationRef} />
         </div>
       </section>
     </>
@@ -301,9 +302,9 @@ const ImageSlider = ({ listing }) => {
   // console.log("Image slider re-rendered");
   return (
     <div className="w-full min-h-[30vh]">
-      {listing.data?.images && (
+      {listing?.data?.images && (
         <img
-          src={listing.data.images[0]?.url}
+          src={listing?.data?.images[0]?.url}
           className="w-full object-cover"
           alt=""
         />

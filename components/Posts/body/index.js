@@ -16,7 +16,7 @@ const PostBody = ({ listings, loading }) => {
 
         
         tl.fromTo(
-          child.current,
+          child?.current,
           {
             opacity: 0,
           },
@@ -34,7 +34,7 @@ const PostBody = ({ listings, loading }) => {
         {loading ? Array(6).fill("_").map(() => <ListingsLoading key={uuidv4()} />)
         :  listings && listings.map((post, i) => (
             <li
-              key={post.id}
+              key={post?.id}
               className=" w-full sm:w-3/6 md:w-2/6 sm:px-3 "
               ref={(el) => (child.current[i] = el)} >
               <Card post={post} />

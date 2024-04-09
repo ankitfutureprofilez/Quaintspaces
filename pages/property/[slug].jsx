@@ -37,7 +37,7 @@ const Listing = () => {
         .then((r) => {
           setrecord({
             loading: false,
-            data: r.data.data,
+            data: r?.data?.data,
           });
           setLoading(false);
         })
