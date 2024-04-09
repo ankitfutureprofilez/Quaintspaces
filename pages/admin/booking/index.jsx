@@ -93,8 +93,8 @@ export default function index() {
                         </td>
                         <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
                           <Image
-                            width={40}
-                            height={40}
+                            width={50}
+                            height={50}
                             className="inline-flex items-center rounded-full "
                             src={item?.front_url}
                           />
