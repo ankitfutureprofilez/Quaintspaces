@@ -1,9 +1,9 @@
-import { useRouter } from "next/router";
 import React from "react";
 import Layout from "./layout/Layout";
+import { useRouter } from "next/router";
 
 export default function error() {
-  const router=useRouter();
+    const router=useRouter();
   return (
     <Layout>
         <body className="bg-404 mt-8">

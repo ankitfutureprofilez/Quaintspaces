@@ -35,7 +35,7 @@ const Date_GuestsPickerCard = React.forwardRef(
         {loading ? (
           <div className="sticky top-28 left-0 min-w-[25rem] min-h-[500px] bg-lightBorderColor rounded-md"></div>
         ) : (
-          <div className="sticky top-28 left-0 min-w-[25rem]">
+          <div className="sticky top-28 left-0 sm:min-w-[25rem]">
             <div className="rounded-xl shadow border border-orange-300 p-5">
               <div className="flex items-center justify-between mb-6">
                 <h1 className="text-md font-normal">

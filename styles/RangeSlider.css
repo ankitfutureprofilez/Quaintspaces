@@ -8,6 +8,11 @@
     margin-top: 0px;
     padding-top: 0px;
   }
+  @media (max-width: 520px) {
+    .slider-container {
+      width: 300px;
+    }
+  }
   
   .slider {
     position: relative;
@@ -72,6 +77,11 @@
     height: 0;
     width: 400px;
     outline: none;
+  }
+  @media (max-width: 520px) {
+    .thumb {
+      width: 300px;
+    }
   }
   
   .thumb--left {

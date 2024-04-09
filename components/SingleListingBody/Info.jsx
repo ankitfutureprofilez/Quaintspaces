@@ -6,6 +6,14 @@ import Star from "../../public/_svgs/star";
 const Info = React.forwardRef(({ listing ,loading }, ref) => {
   const [amenitiesModal, setAmenitiesModal] = useState(false);
 
+  function capitalizeAndReplace(inputString) {
+    let words = inputString?.split("_");
+    for (let i = 0; i < words?.length; i++) {
+        words[i] = words[i]?.charAt(0)?.toUpperCase() + words[i]?.slice(1);
+    }
+    let result = words?.join(" ");
+    return result;
+}
   const stringToArray= (str) => {
     // Split the string by commas and trim each element to remove any leading or trailing spaces
     return str?.split(',')?.map(item => item?.trim());
@@ -36,7 +44,7 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
           ) : (
             <>
               <div className="flex items-center gap-1 text-md">
-              {listing?.data?.type? `${listing?.data?.type?.replace("_" ," ")} .`:" " }
+              {capitalizeAndReplace(listing?.data?.type)}{" . "}
                 {listing?.data?.guests} Guests{" · "}
                 {listing?.data?.adults} Adults{" · "}
                 {listing?.data?.children} Children{" · "}
