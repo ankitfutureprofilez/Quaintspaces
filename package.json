@@ -41,6 +41,7 @@
     "react-hot-toast": "^2.4.1",
     "react-leaflet": "^4.1.0",
     "react-places-autocomplete": "^7.3.0",
+    "react-razorpay": "^2.0.1",
     "recompose": "^0.30.0",
     "sharp": "^0.33.2",
     "swiper": "^11.0.7",

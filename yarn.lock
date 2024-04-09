@@ -6167,6 +6167,11 @@ react-places-autocomplete@^7.3.0:
     lodash.debounce "^4.0.8"
     prop-types "^15.5.8"
 
+react-razorpay@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npmjs.org/react-razorpay/-/react-razorpay-2.0.1.tgz"
+  integrity sha512-eCVTqtAo3Ew6Ie9hjp3+a0BCJ7ZssSF4r2XNeikzXlk8WOD4W58wSSX7x/6R3OhL+yUkhCvW5zOSE8awDIGpAw==
+
 react-remove-scroll-bar@^2.3.6:
   version "2.3.6"
   resolved "https://registry.npmjs.org/react-remove-scroll-bar/-/react-remove-scroll-bar-2.3.6.tgz"

@@ -4,6 +4,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import Loading from "../hook/spinner";
 import Dateformat from "../hook/Dateformat";
+import Nodata from "../hook/NoRecord";
 import Listing from "../api/Listing";
 
 export default function Index() {
@@ -67,13 +68,13 @@ export default function Index() {
                         </tr>
                       </thead>
                       <tbody className=" bg-white divide-y divide-gray-200">
-                        {content &&
+                        {content && content?.length > 0 ? ( content &&
                           content.map((item, index) => {
                             return (
                               <tr key={index}>
                                 <td className="px-4 py-4 text-sm text-gray-500 ">
-                                  {/* <Dateformat item={item?.createdAt} /> */}
-                                  {item?.createdAt}
+                                  <Dateformat item={item?.createdAt} />
+                                  {/* {item?.createdAt} */}
                                 </td>
                                 <td className="px-4 py-4 text-sm text-gray-500 ">
                                   <div className="flex items-center gap-x-2">
@@ -95,7 +96,9 @@ export default function Index() {
                                 </td>
                               </tr>
                             );
-                          })}
+                          })) : (
+                            <Nodata heading ={"No Requeest"}/>
+                          ) }
                       </tbody>
                     </table>
                   </div>
