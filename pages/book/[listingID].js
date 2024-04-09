@@ -126,6 +126,9 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
   };
 
   const [pricerate, setPriceRate] = useState(0);
+  const [razorpays, setRazorpay] = useState([]);
+
+  console.log("razorpays",razorpays)
 
   useEffect(() => {
     if (infos.checkout && infos.checkin && listing) {
@@ -166,8 +169,8 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
   
     main.PropertyBooking(record)
       .then((res) => {
-        if (res && res.data && res.data.orderId) {
-          setOrderId(res.data.orderId);
+        if (res && res?.data && res?.data?.orderId) {
+          setOrderId(res?.data?.orderId);
           const options = {
             key: RAZOPAY_KEY,
             amount: 1000,
@@ -184,6 +187,9 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
               email: 'customer@example.com',
               contact: '8824744976'
             },
+            notes: {
+              address: "Razorpay Corporate Office",
+            },
             theme: {
               color: '#F37254'
             }
@@ -191,10 +197,18 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
   
           const rzp = new Razorpay(options);
           console.log("rzp",rzp)
+          setRazorpay(response);
           rzp.on("payment.failed", function (response) {
             console.log("response",response)
             console.error("Payment failed:", response.error);
             toast.error('Payment Failed');
+            alert(response.error.code);
+    alert(response.error.description);
+    alert(response.error.source);
+    alert(response.error.step);
+    alert(response.error.reason);
+    alert(response.error.metadata.order_id);
+    alert(response.error.metadata.payment_id);
           });
           rzp.open();
         } else {
