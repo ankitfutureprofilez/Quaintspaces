@@ -18,7 +18,6 @@ import Listings from "../api/laravel/Listings";
 import AuthLayout from "../layout/AuthLayout";
 import toast from "react-hot-toast";
 import { formatMultiPrice } from "../../hooks/ValueData";
- import Razorpay from 'razorpay';
 
 const Book = () => {
   const router = useRouter();
@@ -208,8 +207,6 @@ const Book = () => {
                 }
             };
 
-            const razorpay = new Razorpay(options);
-            razorpay.open();
         }
           // router.push("/");
           // console.log(res.data.message);/
