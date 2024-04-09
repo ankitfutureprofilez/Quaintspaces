@@ -103,6 +103,8 @@ export default function Index() {
                                                 </tr>
                                             </thead>
                                             <tbody className=" bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                        {conte}
+                                              
                                                 {content &&
                                                     content.map((item, index) => {
                                                         return (
