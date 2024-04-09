@@ -202,6 +202,7 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
             console.log("response",response)
             console.error("Payment failed:", response.error);
             toast.error('Payment Failed');
+            
             alert(response.error.code);
     alert(response.error.description);
     alert(response.error.source);
