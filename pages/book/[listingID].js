@@ -210,8 +210,8 @@ const Book = () => {
           const rzp = new Razorpay(options);
           console.log("rzp", rzp)
           rzp.on("payment.failed", function (response) {
-            setRazorpay(response?.metadata?.order_id);
-            console.log("responsedajkj", response?.metadata?.order_id)
+            setRazorpay(response?.error?.metadata?.order_id);
+            console.log("responsedajkj", response.error?.metadata?.order_id)
             console.error("Payment failed:", response.error);
               paymentsubmit();
               toast.error('Payment Failed');
