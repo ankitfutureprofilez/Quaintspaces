@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-    {/* <PullToRefresh> */}
+    <PullToRefresh>
       <Head>
         <link rel="manifest" href="/manifest.json" />
       </Head>
@@ -65,7 +65,7 @@ function MyApp({ Component, pageProps }) {
         />
         <NotLogin openLogin={openLogin} />
       </Context.Provider>
-      {/* </PullToRefresh> */}
+      </PullToRefresh>
     </>
   );
 }
