@@ -4,6 +4,7 @@
 .logo img {
   max-width: 127px;
 }
+.user-img { height: revert-layer; }
 h3.text-sm.font-medium.desc-property {
   overflow: hidden;
   text-overflow: ellipsis;

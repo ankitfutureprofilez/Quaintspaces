@@ -185,7 +185,7 @@ function Sidebar() {
                     alt="User"
                     width={36}
                     height={36}
-                    className="rounded-full"
+                    className="rounded-full user-img"
                   />
                   <div className="">
                     <p className="text-sm font-semibold text-gray-800">
@@ -211,7 +211,7 @@ function Sidebar() {
                     alt="User"
                     width={36}
                     height={36}
-                    className="rounded-full"
+                    className="rounded-full user-img"
                   />
                   <div className="">
                     <p className="text-sm font-semibold text-gray-800">
