@@ -56,9 +56,7 @@ export default function index() {
                   content.map((item, index) => (
                     <tr  key={index}>
                       <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                        {
-                        Dateformat(item?.booking_date)
-                        }
+                      <Dateformat item={item?.booking_date}/>
                       </td>
                       <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
                         {item?.booking_number}
