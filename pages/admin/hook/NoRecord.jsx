@@ -11,11 +11,9 @@ const NoRecord = ({heading, content}) => {
               <div className="absolute">
                 <div className="">
                   <h1 className="my-2 text-gray-800 font-bold text-2xl">
-                    {/* Looks like you've found the doorway to the great nothing */}
                     {heading}
                   </h1>
                   <p className="my-2 text-gray-800">
-                    {/* Sorry about that! Please visit our homepage to get where you need to go. */}
                     {content}
                     </p>
                   <button
