@@ -197,19 +197,11 @@ const RAZOPAY_KEY= process.env.NEXT_PUBLIC_RAZOPAY_KEY
   
           const rzp = new Razorpay(options);
           console.log("rzp",rzp)
-          setRazorpay(response);
           rzp.on("payment.failed", function (response) {
+            setRazorpay(response);
             console.log("response",response)
             console.error("Payment failed:", response.error);
             toast.error('Payment Failed');
-            
-            alert(response.error.code);
-    alert(response.error.description);
-    alert(response.error.source);
-    alert(response.error.step);
-    alert(response.error.reason);
-    alert(response.error.metadata.order_id);
-    alert(response.error.metadata.payment_id);
           });
           rzp.open();
         } else {

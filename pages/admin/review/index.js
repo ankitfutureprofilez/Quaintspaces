@@ -40,7 +40,7 @@ export default function Index() {
                 if (response && response.data && response?.data?.status === true) {
                     setContent(prevContent =>
                         prevContent.map(item =>
-                            item.user_id === id ? {
+                            item.id === id ? {
                                 ...item,
                                 status
                                     : newStatus
