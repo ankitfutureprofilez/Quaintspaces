@@ -6,6 +6,7 @@ import Dateformat from "../hook/Dateformat"
 
 export default function index() {
   const [content, setContent] = useState([]);
+  console.log("content",content)
   useEffect(() => {
     const main = new Listing();
     const response = main.bookinghist();
@@ -18,7 +19,7 @@ export default function index() {
       });
   }, []);
 
-  
+
 
   return (
     <AdminLayout heading={"Booking Management"}>
