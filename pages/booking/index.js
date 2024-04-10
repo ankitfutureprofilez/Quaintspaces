@@ -9,7 +9,7 @@ import NoData from "../elements/NoData.js";
 import { formatMultiPrice } from "../../hooks/ValueData.js";
 
 export default function index() {
-  const[loading ,setLoading ] =useState(false);
+  const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedButton, setSelectedButton] = useState("upcoming");
   const [listings, setListings] = useState([]);
@@ -80,25 +80,23 @@ export default function index() {
     return (
       <>
         {loading ? (
-          <p>loading...
-            
-            </p>
+          <p>loading...</p>
         ) : (
-      <div className="table-responisve">
-          <table className="table-fixed w-full booking-table">
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Check In</th>
-                <th>Check Out</th>
-                <th>Status</th>
-                <th>Price</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {listings && listings.length >0 ? (
-                  listings.map((item, index) => (
+          <div className="table-responisve">
+            {listings && listings.length > 0 ? (
+              listings.map((item, index) => (
+                <table className="table-fixed w-full booking-table">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Check In</th>
+                      <th>Check Out</th>
+                      <th>Status</th>
+                      <th>Price</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
                     <tr key={index} className="">
                       <td className="flex items-center">
                         <div className="text ml-2">
@@ -115,7 +113,9 @@ export default function index() {
                           design="font-inter text-blue-700 font-medium leading-tight text-center w-32 p-3 rounded-full"
                         />
                       </td>
-                      <td className="px-4 py-2">{formatMultiPrice(item?.price)}</td>
+                      <td className="px-4 py-2">
+                        {formatMultiPrice(item?.price)}
+                      </td>
                       <td className="px-4 py-2">
                         <Button
                           text="Cancel"
@@ -123,22 +123,20 @@ export default function index() {
                         />
                       </td>
                     </tr>
-                  ))
-              ) : (
-                <NoData
-            Heading={"No Bookings Found"}
-            content={
-              "You have not done any bookings yet. Click below to go to the home page"
-            }
-          />
-              ) }
-            </tbody>
-          </table>
-      </div>
+                  </tbody>
+                </table>
+              ))
+            ) : (
+              <NoData
+                Heading={"No Bookings Found"}
+                content={
+                  "You have not done any bookings yet. Click below to go to the home page"
+                }
+              />
+            )}
+          </div>
         )}
-
       </>
-
     );
   };
   return (

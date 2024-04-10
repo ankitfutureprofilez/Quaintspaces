@@ -52,7 +52,7 @@ export default function Login() {
               city has to offer 
             </p>
           </div>
-          <div className="w-6/12 px-3">
+          <div className="sm:w-6/12 px-3">
           <LoginLogic/>
           </div>
         </div>

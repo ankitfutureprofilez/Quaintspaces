@@ -3,21 +3,21 @@ import { v4 as uuidv4 } from "uuid";
 import Times from "../../public/_svgs/Times";
 import Star from "../../public/_svgs/star";
 
-const Info = React.forwardRef(({ listing ,loading }, ref) => {
+const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
   const [amenitiesModal, setAmenitiesModal] = useState(false);
 
   function capitalizeAndReplace(inputString) {
     let words = inputString?.split("_");
     for (let i = 0; i < words?.length; i++) {
-        words[i] = words[i]?.charAt(0)?.toUpperCase() + words[i]?.slice(1);
+      words[i] = words[i]?.charAt(0)?.toUpperCase() + words[i]?.slice(1);
     }
     let result = words?.join(" ");
     return result;
-}
-  const stringToArray= (str) => {
+  }
+  const stringToArray = (str) => {
     // Split the string by commas and trim each element to remove any leading or trailing spaces
-    return str?.split(',')?.map(item => item?.trim());
-}
+    return str?.split(",")?.map((item) => item?.trim());
+  };
 
   useEffect(() => {
     if (amenitiesModal) {
@@ -44,24 +44,39 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
           ) : (
             <>
               <div className="flex items-center gap-1 text-md">
-              {capitalizeAndReplace(listing?.data?.type)}{" . "}
-                {listing?.data?.guests} Guests{" · "}
-                {listing?.data?.adults} Adults{" · "}
-                {listing?.data?.children} Children{" · "}
-                {listing?.data?.no_of_pet_allowed} Pets{" · "}
-                {listing?.data?.bedrooms} Bedrooms {" · "} {listing?.data?.beds}{" "}
-                Beds
+                {capitalizeAndReplace(listing?.data?.type)}
+                {" . "}
+                {listing?.data?.guests > 0 &&
+                  `${listing?.data?.guests} Guests`}
+                {" · "}
+                {listing?.data?.adults > 0 &&
+                  `${listing?.data?.adults} Adults`}
+                {" · "}
+                {listing?.data?.children > 0 &&
+                  `${listing?.data?.children} Children`}
+                {" · "}
+                {listing?.data?.no_of_pet_allowed > 0 &&
+                  `${listing?.data?.no_of_pet_allowed} Pets`}
+                {" · "}
+                {listing?.data?.bedrooms > 0 &&
+                  `${listing?.data?.bedrooms} Bedrooms`}
+                {" · "}
+                {listing?.data?.beds > 0 && `${listing?.data?.beds} Beds`}
               </div>
+
               <div className="flex items-center gap-2 text-md">
                 <span className="flex gap-1 items-center text-md font-medium">
                   <span>
                     <Star />
                   </span>
-                  {parseFloat(listing?.data?.rating && listing?.data?.rating?.toFixed(2))}
+                  {parseFloat(
+                    listing?.data?.rating && listing?.data?.rating?.toFixed(2)
+                  )}
                 </span>
                 <div className="hidden">·</div>
-                <span className="underline text-md font-medium">
-                  { listing && listing?.data && listing?.data?.review || 0} review
+                <span className="underline text-md font-medium cursor-pointer" onClick={handleClick}>
+                  {(listing && listing?.data && listing?.data?.review) || 0}{" "}
+                  review
                 </span>
               </div>
             </>
@@ -72,14 +87,16 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
         {loading ? (
           <div className="w-full h-7  bg-lightBorderColor rounded-md"></div>
         ) : (
-          <p className="text-md text-lightTextColor">{listing?.data?.description}</p>
+          <p className="text-md text-lightTextColor">
+            {listing?.data?.description}
+          </p>
         )}
       </div>
       <div className="py-8" ref={ref}>
         <h1 className="text-2xl mb-4 font-semibold">What this place offers?</h1>
         <ul className="block md:flex flex-wrap">
           {listing?.data?.amenities &&
-            listing?.data?.amenities?.split(',')?.map((amenity) => (
+            listing?.data?.amenities?.split(",")?.map((amenity) => (
               <li
                 className="w-[calc(100%/2-10px)] flex gap-2 my-2 py-2 md:py-0"
                 key={amenity?.trim()}
@@ -97,11 +114,17 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
             ))}
         </ul>
         <button
-  className="btn-normal mt-8"
-  onClick={() => setAmenitiesModal(true)}
->
-  See all {stringToArray( listing && listing?.data && listing?.data?.amenities || '')?.length} amenities
-</button>
+          className="btn-normal mt-8"
+          onClick={() => setAmenitiesModal(true)}
+        >
+          See all{" "}
+          {
+            stringToArray(
+              (listing && listing?.data && listing?.data?.amenities) || ""
+            )?.length
+          }{" "}
+          amenities
+        </button>
         {amenitiesModal && (
           <AmenitiesModal
             amenities={stringToArray(listing?.data?.amenities)}
@@ -111,23 +134,21 @@ const Info = React.forwardRef(({ listing ,loading }, ref) => {
       </div>
     </div>
   );
-  
 });
 
 export default React.memo(Info);
 function formatAmenities(input) {
   // Replace underscores with spaces and split by commas or hyphens
-  const words = input?.replace(/_/g, ' ')?.split(/,|-/);
-  
+  const words = input?.replace(/_/g, " ")?.split(/,|-/);
+
   // Capitalize the first letter of each word
-  const formattedWords = words?.map(word => {
+  const formattedWords = words?.map((word) => {
     return word?.charAt(0)?.toUpperCase() + word?.slice(1);
   });
-  
-  // Join the words back together with commas and return the formatted string
-  return formattedWords?.join(', ');
-}
 
+  // Join the words back together with commas and return the formatted string
+  return formattedWords?.join(", ");
+}
 
 const AmenitiesModal = ({ amenities, setAmenitiesModal }) => {
   return (
@@ -154,9 +175,7 @@ const AmenitiesModal = ({ amenities, setAmenitiesModal }) => {
                   src={`/icons/${e
                     ?.toLowerCase()
                     ?.trim()
-                    ?.replaceAll(" ", "_")
-                  }.png`
-                  }
+                    ?.replaceAll(" ", "_")}.png`}
                   className="w-6 h-6"
                   alt=""
                 />

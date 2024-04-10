@@ -112,9 +112,7 @@ export default function index() {
 
   async function fetchLists() {
     setloading(true);
-    // console.log("sortBy",sortBy);
     let url = "";
-    // let url = `min_price=${lowPrice}&max_price=${highPrice}&`;
     if(lowPrice!=null){
       url+=`min_price=${lowPrice}+&`;
     }
