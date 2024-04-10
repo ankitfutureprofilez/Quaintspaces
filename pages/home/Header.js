@@ -88,7 +88,7 @@ export default function Header() {
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   style={{ cursor: 'pointer' }} >
                   <Image
-                    src={auth?.auth?.image_url ? auth?.auth?.image_url : "https://quaintstays.laraveldevelopmentcompany.com/public/storage/user/profile-images/1710928138.jpg"}
+                    src={auth?.auth?.image_url ? auth?.auth?.image_url : "https://w7.pngwing.com/pngs/812/572/png-transparent-computer-icons-user-name-heroes-monochrome-black-thumbnail.png"}
                     alt="profile"
                     width={100}
                     height={100}

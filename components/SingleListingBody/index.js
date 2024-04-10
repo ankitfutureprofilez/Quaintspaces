@@ -145,12 +145,12 @@ const SingleListingBody = ({ listing, loading }) => {
         />
       )}
       <header
-        className={`w-full bg-white fixed bottom-0 lg:top-0 lg:bottom-auto left-0 z-30 border-t 
+        className={`sm:hidden w-full bg-white fixed bottom-0 lg:top-0 lg:bottom-auto left-0 z-30 border-t 
         lg:border-b border-borderColor shadow-top 
         ${showHeader ? "showHeader" : "hideHeader"}`}
       >
         <div className="max-w-[1120px] px-4 mx-auto flex items-center justify-between">
-          <ul className="hidden md:flex gap-4">
+          {/* <ul className="hidden md:flex gap-4">
             <li
               onClick={() => setScroll("photos")}
               className="text-md font-medium py-6 px-2 border-b-4 border-transparent transition duration-200 cursor-pointer hover:border-blackColor"
@@ -175,7 +175,7 @@ const SingleListingBody = ({ listing, loading }) => {
             >
               Location
             </li>
-          </ul>
+          </ul> */}
 
           <div
             className={`gap-4 w-full justify-between md:w-fit md:justify-start py-3 md:py-0 flex`}
@@ -258,7 +258,7 @@ const SingleListingBody = ({ listing, loading }) => {
           />
           <div
             ref={ImagesRef}
-            className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] max-h-[40vh]"
+            className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] sm:max-h-[40vh]"
           >
             <Images
               setSelectedImage={setSelectedImage}
@@ -311,11 +311,13 @@ const ImageSlider = ({ listing }) => {
   return (
     <div className="w-full min-h-[30vh]">
       {listing?.data?.images && (
-        <img
-          src={listing?.data?.images[0]?.url}
-          className="w-full object-cover"
-          alt=""
-        />
+        <Image
+        src={listing?.data?.images[0]?.url}
+        alt=""
+        layout="fill"
+        objectFit="cover"
+        className="w-full object-cover"
+      />
       )}
     </div>
   );
