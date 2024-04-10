@@ -8,6 +8,7 @@ import DropReview from "./DropReview";
 import { useRouter } from "next/router";
 import Listings from "../../pages/api/laravel/Listings";
 import { Context } from "../../pages/_app";
+import toast from "react-hot-toast";
 
 const Reviews = React.forwardRef(({ data }, ref) => {
   const { auth } = useContext(Context);
@@ -19,7 +20,6 @@ const Reviews = React.forwardRef(({ data }, ref) => {
   const [selfReview, setselfReview] = useState([]);
   const [reviewData, setReviewData] = useState([]);
 
-  
   const getSelfreview = () => {
     if (id) {
       const main = new Listings();
@@ -102,7 +102,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
           <div className="mb-3 flex items-center justify-between">
             <span>Cleanliness</span>
             <div className="flex gap-2 items-center">
-            <div className="w-36 h-1 rounded-full bg-borderColor">
+              <div className="w-36 h-1 rounded-full bg-borderColor">
                 <span
                   className={`block h-1 rounded-full bg-blackColor`}
                   style={{ width: `${(data?.cleaning / 5) * 100}%` }}
@@ -118,7 +118,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
           <div className="mb-3 flex items-center justify-between">
             <span>Communication</span>
             <div className="flex gap-2 items-center">
-            <div className="w-36 h-1 rounded-full bg-borderColor">
+              <div className="w-36 h-1 rounded-full bg-borderColor">
                 <span
                   className={`block h-1 rounded-full bg-blackColor`}
                   style={{ width: `${(data?.communication / 5) * 100}%` }}
@@ -152,7 +152,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
           <div className="mb-3 flex items-center justify-between">
             <span>Accuracy</span>
             <div className="flex gap-2 items-center">
-            <div className="w-36 h-1 rounded-full bg-borderColor">
+              <div className="w-36 h-1 rounded-full bg-borderColor">
                 <span
                   className={`block h-1 rounded-full bg-blackColor`}
                   style={{ width: `${(data?.accuracy / 5) * 100}%` }}
@@ -168,7 +168,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
           <div className="mb-3 flex items-center justify-between">
             <span>Location</span>
             <div className="flex gap-2 items-center">
-            <div className="w-36 h-1 rounded-full bg-borderColor">
+              <div className="w-36 h-1 rounded-full bg-borderColor">
                 <span
                   className={`block h-1 rounded-full bg-blackColor`}
                   style={{ width: `${(data?.locations / 5) * 100}%` }}
@@ -184,7 +184,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
           <div className="mb-3 flex items-center justify-between">
             <span>Value</span>
             <div className="flex gap-2 items-center">
-            <div className="w-36 h-1 rounded-full bg-borderColor">
+              <div className="w-36 h-1 rounded-full bg-borderColor">
                 <span
                   className={`block h-1 rounded-full bg-blackColor`}
                   style={{ width: `${(data?.value / 5) * 100}%` }}
@@ -231,7 +231,17 @@ const Reviews = React.forwardRef(({ data }, ref) => {
         ) : null}
 
         {/* Add review option */}
-        <button className="btn-normal mt-8" onClick={openModal}>
+        <button
+          className="btn-normal mt-8"
+          onClick={() => {
+            if (auth) {
+              openModal();
+            } else {
+              toast.error("You are not logged in!");
+              router.push("/login");
+            }
+          }}
+        >
           {selfReview && selfReview?.id ? "Edit your review" : "Drop a review"}
         </button>
 

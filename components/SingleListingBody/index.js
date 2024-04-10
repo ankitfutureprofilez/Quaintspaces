@@ -5,8 +5,9 @@ import { guestsData } from "../../utils/miniData";
 import Images from "../SingleListingComponents/Images";
 import ImageViewer from "../SingleListingComponents/ImageViewer";
 import Date_GuestsPickerCard from "./Date_GuestsPickerCard";
-import Reviews from "./Reviews";
-import Location from "./Location";
+import dynamic from "next/dynamic";
+const Reviews = dynamic(import("./Reviews"));
+const Location = dynamic(import("./Location"));
 import Info from "./Info";
 import Title from "./Title";
 import Star from "../../public/_svgs/star";
@@ -211,9 +212,9 @@ const SingleListingBody = ({ listing, loading }) => {
                     guests?.adults?.value || 0
                   }&numberOfChildren=${
                     guests?.children?.value || 0
-                  }&numberOfInfants=${guests?.infants?.value || 0}&numberOfPets=${
-                    guests?.pets?.value || 0
-                  }&checkin=${
+                  }&numberOfInfants=${
+                    guests?.infants?.value || 0
+                  }&numberOfPets=${guests?.pets?.value || 0}&checkin=${
                     selectedDay && format(selectedDay, "yyyy-MM-dd")
                   }&checkout=${selectEnd && format(selectEnd, "yyyy-MM-dd")}`
                 );
@@ -267,7 +268,14 @@ const SingleListingBody = ({ listing, loading }) => {
           </div>
 
           <div className="flex flex-col gap-4 sm:gap-16 relative mb-8 mt-8 lg:mt-0 lg:flex-row">
-            <Info loading={loading} listing={listing} ref={AmenitiesRef} />
+            <Info
+              loading={loading}
+              listing={listing}
+              ref={AmenitiesRef}
+              handleClick={() => {
+                router.push("#reviews");
+              }}
+            />
             <div className="block">
               <Date_GuestsPickerCard
                 loading={loading}
@@ -286,7 +294,9 @@ const SingleListingBody = ({ listing, loading }) => {
             </div>
           </div>
 
-          <Reviews data={listing?.data} ref={ReviewsRef} />
+          <div id="reviews">
+            <Reviews data={listing?.data} ref={ReviewsRef} />
+          </div>
           <Location listing={listing?.data} ref={LocationRef} />
         </div>
       </section>
