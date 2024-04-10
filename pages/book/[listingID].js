@@ -190,7 +190,6 @@ const Book = () => {
             order_id: res?.data?.orderId,
             handler: function (response) {
               setRazorpay(response?.razorpay_order_id);
-              console.log("Payment successful:", response);
               toast.success('Payment Successful');
               paymentsubmit();
             },
@@ -211,7 +210,6 @@ const Book = () => {
           console.log("rzp", rzp)
           rzp.on("payment.failed", function (response) {
             setRazorpay(response?.error?.metadata?.order_id);
-            console.log("responsedajkj", response.error?.metadata?.order_id)
             console.error("Payment failed:", response.error);
               paymentsubmit();
               toast.error('Payment Failed');
@@ -256,6 +254,7 @@ const Book = () => {
         if (res && res?.data && res?.data?.status == true) {
           toast.success(res?.data?.message);
         } else {
+          console.log("res?.data?.message",res?.data?.message)
           toast.error(res?.data?.message);
 
         }

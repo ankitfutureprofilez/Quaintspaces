@@ -146,17 +146,25 @@ function Sidebar() {
               } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
             >
              <TextalignJustifycenter size={16} />
-
               Reviews 
             </Link>
             <Link
-              href={"/admin/booking"}
+              href={"/admin/booking-history"}
               className={`flex ${
-                pathname === "/admin/booking" ? "text-primary" : ""
+                pathname === "/admin/booking-history" ? "text-primary" : ""
               } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
             >
               <TextalignJustifycenter size={16} />
               Booking 
+            </Link>
+            <Link
+              href={"/admin/payment-history"}
+              className={`flex ${
+                pathname === "/admin/payment-history" ? "text-primary" : ""
+              } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
+            >
+              <TextalignJustifycenter size={16} />
+              Payment History  
             </Link>
             <Link
               href={"/admin/messages"}
