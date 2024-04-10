@@ -6,12 +6,13 @@ import toast from "react-hot-toast";
 import { Reorder } from "framer-motion";
 import Listings from "./../api/laravel/Listings";
 import { Context } from "../_app";
+import Image from "next/image";
 
 export default function Profile() {
   const [loading, setLoading] = useState(false);
   const [ImageUploaded, setImageUploaded] = useState(false);
   const { auth, setAuth } = useContext(Context);
-  console.log("auth",auth);
+  console.log("auth", auth);
   const [data, setData] = useState({
     email: "",
     phone_no: "",
@@ -66,7 +67,10 @@ export default function Profile() {
           image: profiledata?.image_url,
           email: profiledata?.email,
         });
-        setPreviewImgSrc(profiledata?.image_url || "https://w7.pngwing.com/pngs/812/572/png-transparent-computer-icons-user-name-heroes-monochrome-black-thumbnail.png");
+        setPreviewImgSrc(
+          profiledata?.image_url ||
+            "https://w7.pngwing.com/pngs/812/572/png-transparent-computer-icons-user-name-heroes-monochrome-black-thumbnail.png"
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -87,9 +91,8 @@ export default function Profile() {
     if (loading) {
       return;
     }
-    if(record?.phone?.length!=10)
-    {
-      toast.error("Phone Number must be of 10 digits")
+    if (record?.phone?.length != 10) {
+      toast.error("Phone Number must be of 10 digits");
       return;
     }
     setLoading(true);
@@ -147,11 +150,13 @@ export default function Profile() {
         <div className="flex items-center profile-border">
           <div className="relative">
             <div className="shrink-0">
-              <img
+              <Image
                 id="preview_img"
-                className="h-16 border-solid border w-16 object-cover rounded-full"
                 src={previewImgSrc}
                 alt="Current profile photo"
+                width={64} // Set width as per your requirement
+                height={64} // Set height as per your requirement
+                className="h-16 border-solid border w-16 object-cover rounded-full"
               />
             </div>
             <label className="block">

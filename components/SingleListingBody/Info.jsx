@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Times from "../../public/_svgs/Times";
 import Star from "../../public/_svgs/star";
+import Image from "next/image";
 
 const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
   const [amenitiesModal, setAmenitiesModal] = useState(false);
@@ -46,11 +47,9 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
               <div className="flex items-center gap-1 text-md">
                 {capitalizeAndReplace(listing?.data?.type)}
                 {" . "}
-                {listing?.data?.guests > 0 &&
-                  `${listing?.data?.guests} Guests`}
+                {listing?.data?.guests > 0 && `${listing?.data?.guests} Guests`}
                 {" · "}
-                {listing?.data?.adults > 0 &&
-                  `${listing?.data?.adults} Adults`}
+                {listing?.data?.adults > 0 && `${listing?.data?.adults} Adults`}
                 {" · "}
                 {listing?.data?.children > 0 &&
                   `${listing?.data?.children} Children`}
@@ -74,7 +73,10 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                   )}
                 </span>
                 <div className="hidden">·</div>
-                <span className="underline text-md font-medium cursor-pointer" onClick={handleClick}>
+                <span
+                  className="underline text-md font-medium cursor-pointer"
+                  onClick={handleClick}
+                >
                   {(listing && listing?.data && listing?.data?.review) || 0}{" "}
                   review
                 </span>
@@ -101,13 +103,15 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                 className="w-[calc(100%/2-10px)] flex gap-2 my-2 py-2 md:py-0"
                 key={amenity?.trim()}
               >
-                <img
-                  src={`/icons/${amenity
+                <Image
+                   src={`/icons/${amenity
                     ?.toLowerCase()
                     ?.trim()
                     ?.replaceAll(" ", "_")}.png`}
-                  className="w-6 h-6 mt-1"
                   alt=""
+                  width={24} // adjust width as needed
+                  height={24} // adjust height as needed
+                  className="w-6 h-6 mt-1"
                 />
                 {formatAmenities(amenity)}
               </li>
@@ -171,13 +175,15 @@ const AmenitiesModal = ({ amenities, setAmenitiesModal }) => {
                 className="w-full py-4 md:py-6 border-b border-borderColor flex gap-2 items-center my-2"
                 key={uuidv4()}
               >
-                <img
-                  src={`/icons/${e
+                <Image
+                   src={`/icons/${e
                     ?.toLowerCase()
                     ?.trim()
                     ?.replaceAll(" ", "_")}.png`}
-                  className="w-6 h-6"
                   alt=""
+                  width={24} // adjust width as needed
+                  height={24} // adjust height as needed
+                  className="w-6 h-6 mt-1"
                 />
                 {formatAmenities(e)}
               </li>

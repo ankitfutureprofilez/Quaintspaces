@@ -1,20 +1,23 @@
 import React from "react";
 import Grid from "../../public/_svgs/Grid";
 import { v4 as uuidv4 } from "uuid";
+import Image from "next/image";
 
-const Images = ({ setSelectedImage, listing, setImageViewer,loading }) => {
+const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
   // console.log("lisitng",listing)
   return (
     <div className="flex flex-wrap sm:flex-nowrap gap-2 w-full h-full">
       {loading ? (
         <>
-        <div className="w-1/2 h-[calc(35vh)] min-h-[500px] bg-lightBorderColor rounded-md"></div>
-        <div className="w-1/2 h-[calc(35vh)] min-h-[500px] bg-lightBorderColor rounded-md"></div>
+          <div className="w-1/2 h-[calc(35vh)] min-h-[500px] bg-lightBorderColor rounded-md"></div>
+          <div className="w-1/2 h-[calc(35vh)] min-h-[500px] bg-lightBorderColor rounded-md"></div>
         </>
       ) : (
         <div
           className={`${
-            listing?.data?.property_image?.length >= 4 ? "w-full sm:w-6/12" : "w-8/12"
+            listing?.data?.property_image?.length >= 4
+              ? "w-full sm:w-6/12"
+              : "w-8/12"
           } `}
         >
           <div
@@ -25,10 +28,12 @@ const Images = ({ setSelectedImage, listing, setImageViewer,loading }) => {
             }}
           >
             {listing?.data?.property_image?.length > 0 && (
-              <img
+              <Image  placeholder="blur" blurDataURL={`${listing?.data?.property_image[0]?.image_url}?q=1`}
                 src={listing?.data?.property_image[0]?.image_url}
-                className="h-full w-full object-cover"
                 alt=""
+                layout="fill"
+                objectFit="cover"
+                loading="lazy"
               />
             )}
           </div>
@@ -46,10 +51,12 @@ const Images = ({ setSelectedImage, listing, setImageViewer,loading }) => {
               }}
             >
               {listing?.data?.property_image?.length > 0 && (
-                <img
+                <Image  blurDataURL={`${e?.image_url}?q=1`}
                   src={e?.image_url}
-                  className="h-full w-full object-cover"
                   alt=""
+                  layout="fill"
+                  objectFit="cover"
+                  loading="lazy"
                 />
               )}
             </div>
@@ -66,11 +73,13 @@ const Images = ({ setSelectedImage, listing, setImageViewer,loading }) => {
               setSelectedImage(i++);
             }}
           >
-            <img
-              src={listing?.data?.property_image[1]?.image_url}
-              className="h-full w-full object-cover"
-              alt=""
-            />
+             <Image  blurDataURL={`${listing?.data?.property_image[1]?.image_url}?q=1`}
+                  src={listing?.data?.property_image[1]?.image_url}
+                  alt=""
+                  layout="fill"
+                  objectFit="cover"
+                  loading="lazy"
+                />
           </div>
         )
       )}
@@ -86,10 +95,12 @@ const Images = ({ setSelectedImage, listing, setImageViewer,loading }) => {
               }}
             >
               {listing?.data?.property_image?.length > 0 && (
-                <img
-                  src={e?.image_url}
-                  className="h-full w-full object-cover"
+                <Image   blurDataURL={`${e?.image_url}?q=1`}
+                src={e?.image_url}
                   alt=""
+                  layout="fill"
+                  objectFit="cover"
+                  loading="lazy"
                 />
               )}
             </div>

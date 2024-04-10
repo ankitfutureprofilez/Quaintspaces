@@ -1,27 +1,38 @@
 import DateComponent from "../../pages/admin/hook/Dateformat";
 import { textResizer } from "../../utils/handlers";
+import Image from "next/image";
 
 const ReviewCard = ({ data }) => {
-const date = new Date(data?.created_at);
-// console.log("date",date)
-// let reviewtime=""
-// reviewtime+= date.getMonth() + 1; // getMonth() returns zero-based month (0-11), so we add 1
-// reviewtime+=" ,"+ date.getFullYear();
+  const date = new Date(data?.created_at);
+  // console.log("date",date)
+  // let reviewtime=""
+  // reviewtime+= date.getMonth() + 1; // getMonth() returns zero-based month (0-11), so we add 1
+  // reviewtime+=" ,"+ date.getFullYear();
 
-// Stars
-let stars = '';
-for (let i = 0; i < data?.rating; i++) {
-    stars += '⭐'; // Add a star for each rating value
-}
+  // Stars
+  let stars = "";
+  for (let i = 0; i < data?.rating; i++) {
+    stars += "⭐"; // Add a star for each rating value
+  }
   return (
     <div>
       <header className="flex gap-2 items-center">
         <div className="w-12 h-12 bg-borderColor rounded-full">
-          <img
+          <Image
+            src={data?.rating_user?.image_url}
+            alt=""
+            // layout="fill"
+            width={100}
+            height={100}
+            objectFit="cover"
+            className="rounded-full w-full h-full object-cover"
+            loading="lazy"
+          />
+          {/* <img
             src={data?.rating_user?.image_url}
             className="rounded-full w-full h-full object-cover"
             alt=""
-          />
+          /> */}
         </div>
         <div>
           <h1 className="text-md font-medium">{data?.rating_user?.name} </h1>
@@ -33,7 +44,11 @@ for (let i = 0; i < data?.rating; i++) {
         <p className="text-blackColor text-md leading-7">
           {textResizer(data?.review_text, 210)}
         </p>
-        <span className="text-red-500 text-xs" >{data&& data?.status == 0 ? "Your review is not approved yet. Currently only you can see this." : ""}</span> 
+        <span className="text-red-500 text-xs">
+          {data && data?.status == 0
+            ? "Your review is not approved yet. Currently only you can see this."
+            : ""}
+        </span>
       </div>
     </div>
   );
