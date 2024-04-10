@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 
 const Cancel = () => {
     const router=useRouter();
+
+    console.log("router",router)
   return (
     <AuthLayout>
       <div className="container mx-auto flex flex-col justify-center items-center">

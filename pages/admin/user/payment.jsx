@@ -6,18 +6,14 @@ import Nodata from "../hook/NoRecord"
 import Spinner from "../hook/spinner"
 
 export default function payment({record}) {
- 
-console.log("record",record)
   const [content, setContent] = useState([]);
   const[loading ,setLoading] =useState(false);
-
   useEffect(() => {
     setLoading(true);
     const main = new Listing();
     const response = main.user_payment_history(record);
     response
       .then((res) => {
-        console.log("res",res)
         setLoading(false);
         setContent(res?.data?.data);
       })

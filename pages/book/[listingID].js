@@ -26,7 +26,7 @@ const Book = () => {
   const [Razorpay] = useRazorpay();
   const RAZOPAY_KEY = process.env.NEXT_PUBLIC_RAZOPAY_KEY
   const { listingID } = router.query;
-  // console.log("listingID", listingID);
+   console.log("listingID", listingID);
   const [listing, setListing] = useState([]);
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
@@ -190,6 +190,8 @@ const Book = () => {
             order_id: res?.data?.orderId,
             handler: function (response) {
               setRazorpay(response?.razorpay_order_id);
+              router.push(`/success/${listingID}`)
+
               toast.success('Payment Successful');
               paymentsubmit();
             },
@@ -212,6 +214,7 @@ const Book = () => {
             setRazorpay(response?.error?.metadata?.order_id);
             console.error("Payment failed:", response.error);
               paymentsubmit();
+              router.push(`/cancel/${listingID}`)
               toast.error('Payment Failed');
           });
           rzp.open();
