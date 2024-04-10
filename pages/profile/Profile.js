@@ -32,6 +32,7 @@ export default function Profile() {
   const router = useRouter();
 
   const [previewImgSrc, setPreviewImgSrc] = useState(
+    "https://w7.pngwing.com/pngs/812/572/png-transparent-computer-icons-user-name-heroes-monochrome-black-thumbnail.png"
   );
 
   const loadFile = (event) => {
