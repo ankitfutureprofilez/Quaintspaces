@@ -31,13 +31,12 @@ function Home() {
       setRecord(res?.data)
     }
     ).catch((error)=>{
-      console.log("eroro",erorr)
+      console.log("error",error)
     })
   },[])
 
   return (
     <AdminLayout>
-
     <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
       className={`${isSidebarOpen ? 'overflow-hidden' : ''} h-screen`} >
       <AnimatePresence>

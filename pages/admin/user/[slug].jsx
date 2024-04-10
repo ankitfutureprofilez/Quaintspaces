@@ -5,6 +5,8 @@ import AdminLayout from "../AdminLayout";
 import Element from "../element";
 import Link from "next/link"
 import Booking from "./booking"
+import Payment from "./payment"
+
 
 import { motion } from 'framer-motion'
 
@@ -71,6 +73,7 @@ function index() {
             )}
             {activeTab === 'Payment' && (
               <div>
+                 <Payment record = {record?.id}/>
               </div>
             )}
             {activeTab === 'Rewards' && (

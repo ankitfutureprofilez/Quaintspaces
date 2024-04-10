@@ -66,7 +66,7 @@ export default function Profile() {
           image: profiledata?.image_url,
           email: profiledata?.email,
         });
-        setPreviewImgSrc(profiledata?.image_url);
+        setPreviewImgSrc(profiledata?.image_url || "https://w7.pngwing.com/pngs/812/572/png-transparent-computer-icons-user-name-heroes-monochrome-black-thumbnail.png");
       })
       .catch((err) => {
         console.log(err);

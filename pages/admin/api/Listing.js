@@ -92,13 +92,29 @@ async forgetopt(data) {
     return  Api.post("admin/verify-reset-password-otp" ,data)
 } 
 
-async bookinghist(){
+async bookinghistory(){
     return Api.get("admin/booking-history")
 }
 
 async statistics(){
     return Api.get("admin/statistics")
 }
+
+async booking_confirm_cancelled(user_id,booking_id,booking_status) {
+
+    return Api.post(`admin/booking-confirm-cancelled/${user_id}/${booking_id}` , booking_status)
+}
+
+async all_user_payment_history(){
+    return Api.get("admin/all-user-payment-history")
+}
+
+async user_payment_history(user_id){
+    return Api.get(`admin/all-user-payment-history/${user_id}`)
+    
+}
+
+// user-payment-history/4
   render() {
     return (
       <div>

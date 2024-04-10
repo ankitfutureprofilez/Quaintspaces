@@ -121,7 +121,7 @@ export default function Index() {
                     />
                     <div>
                       <div className="text-gray-800 font-medium">
-                        {item.name}
+                        {item.name} {item.id}
                       </div>
                       <div className="text-sm">{item.email}</div>
                     </div>
