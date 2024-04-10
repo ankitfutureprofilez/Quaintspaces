@@ -1,8 +1,13 @@
 import React from "react";
 import AuthLayout from "../layout/AuthLayout";
 import { formatMultiPrice } from "../../hooks/ValueData";
+import { useRouter } from "next/router";
+
 
 const success = () => {
+  const router=useRouter();
+
+    console.log("router",router)
   return (
     <AuthLayout>
       <div className=" container mx-auto">

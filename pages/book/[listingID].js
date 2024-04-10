@@ -109,7 +109,8 @@ const Book = () => {
     fornt: null,
     message: "",
     phone: "",
-    razorpay_order_id: razorpays
+    razorpay_order_id: ""
+    // razorpay_order_id: razorpays
   });
   console.log("formData", formData)
   const handleChange = (e) => {
@@ -190,6 +191,12 @@ const Book = () => {
             order_id: res?.data?.orderId,
             handler: function (response) {
               setRazorpay(response?.razorpay_order_id);
+              setOrderId(res?.data?.orderId);
+setFormData(prevState => ({
+  ...prevState,
+  razorpay_order_id: res?.data?.orderId
+}));
+
               router.push(`/success/${listingID}`)
 
               toast.success('Payment Successful');
@@ -211,7 +218,14 @@ const Book = () => {
           const rzp = new Razorpay(options);
           console.log("rzp", rzp)
           rzp.on("payment.failed", function (response) {
+            console.log("response?.error?.metadata?.order_id",)
             setRazorpay(response?.error?.metadata?.order_id);
+            setOrderId(res?.data?.orderId);
+setFormData(prevState => ({
+  ...prevState,
+  razorpay_order_id: res?.data?.orderId
+}));
+
             console.error("Payment failed:", response.error);
               paymentsubmit();
               router.push(`/cancel/${listingID}`)
@@ -246,7 +260,7 @@ const Book = () => {
     record.append("front_doc", formData.fornt);
     record.append("no_of_pet", infos.numberOfPets);
     record.append("phone_no", formData.phone);
-    record.append("razorpay_order_id", razorpays);
+    record.append("razorpay_order_id", formData.razorpay_order_id);
     record.append(
       "price",
       infos.checkout && infos.checkin &&
