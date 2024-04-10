@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 const Images = ({ setSelectedImage, listing, setImageViewer,loading }) => {
   // console.log("lisitng",listing)
   return (
-    <div className="flex gap-2 w-full h-full">
+    <div className="flex flex-wrap sm:flex-nowrap gap-2 w-full h-full">
       {loading ? (
         <>
         <div className="w-1/2 h-[calc(35vh)] min-h-[500px] bg-lightBorderColor rounded-md"></div>
@@ -14,7 +14,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer,loading }) => {
       ) : (
         <div
           className={`${
-            listing?.data?.property_image?.length >= 4 ? "w-6/12" : "w-8/12"
+            listing?.data?.property_image?.length >= 4 ? "w-full sm:w-6/12" : "w-8/12"
           } `}
         >
           <div
