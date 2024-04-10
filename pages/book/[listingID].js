@@ -197,7 +197,7 @@ setFormData(prevState => ({
   razorpay_order_id: res?.data?.orderId
 }));
 
-              router.push(`/success/${listingID}`)
+              router.push(`/success/${razorpays}`)
 
               toast.success('Payment Successful');
               paymentsubmit();
@@ -228,7 +228,7 @@ setFormData(prevState => ({
 
             console.error("Payment failed:", response.error);
               paymentsubmit();
-              router.push(`/cancel/${listingID}`)
+              router.push(`/cancel/${razorpays}`)
               toast.error('Payment Failed');
           });
           rzp.open();
