@@ -32,7 +32,6 @@ export default function Profile() {
   const router = useRouter();
 
   const [previewImgSrc, setPreviewImgSrc] = useState(
-    "https://w7.pngwing.com/pngs/812/572/png-transparent-computer-icons-user-name-heroes-monochrome-black-thumbnail.png"
   );
 
   const loadFile = (event) => {
@@ -66,7 +65,7 @@ export default function Profile() {
           image: profiledata?.image_url,
           email: profiledata?.email,
         });
-        setPreviewImgSrc(profiledata?.image_url);
+        setPreviewImgSrc(profiledata?.image_url || "https://w7.pngwing.com/pngs/812/572/png-transparent-computer-icons-user-name-heroes-monochrome-black-thumbnail.png");
       })
       .catch((err) => {
         console.log(err);
