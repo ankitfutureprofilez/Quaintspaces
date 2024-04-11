@@ -66,7 +66,7 @@ const SingleListingBody = ({ listing, loading }) => {
   const [showHeader, setShowHeader] = useState(false);
   const [rightSectionHeader, setRightSectionHeader] = useState(false);
   const { wishlist } = useContext(Context);
-  const [isSaved, changeWishlist] = useWishlist(listing.data, wishlist);
+  const [isSaved, changeWishlist] = useWishlist(listing?.data, wishlist);
 
   useEffect(() => {
     if (CardRef.current) {
@@ -139,7 +139,7 @@ const SingleListingBody = ({ listing, loading }) => {
       {imageViewer && (
         <ImageViewer
           selectedImage={selectedImage}
-          images={listing.data?.property_image}
+          images={listing?.data?.property_image}
           isSaved={isSaved}
           setImageViewer={setImageViewer}
         />
@@ -208,7 +208,7 @@ const SingleListingBody = ({ listing, loading }) => {
                   return;
                 }
                 router.push(
-                  `/book/${listing?.data._id}?numberOfAdults=${
+                  `/book/${listing?.data?._id}?numberOfAdults=${
                     guests?.adults?.value || 0
                   }&numberOfChildren=${
                     guests?.children?.value || 0
@@ -288,7 +288,7 @@ const SingleListingBody = ({ listing, loading }) => {
                 result={result}
                 guests={guests}
                 setGuests={setGuests}
-                listing={listing.data}
+                listing={listing?.data}
                 ref={CardRef}
               />
             </div>
