@@ -88,8 +88,8 @@ export default function index() {
 
   const sortingOptions = [
     { key: "popularity", label: "Popularity" },
-    { key: "priceLow", label: "Price: Low to High" },
-    { key: "priceHigh", label: "Price: High to Low" },
+    { key: "priceLow", label: "Low to High" },
+    { key: "priceHigh", label: "High to Low" },
     { key: "rating", label: "Rating" },
   ];
 
