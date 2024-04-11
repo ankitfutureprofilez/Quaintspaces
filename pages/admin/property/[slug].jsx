@@ -118,9 +118,9 @@ export default function Index() {
 
     useEffect(() => {
         if (imageViewer) {
-            document.querySelector("body").style = "overflow:hidden";
+            document.querySelector("body")?.style = "overflow:hidden";
         } else {
-            document.querySelector("body").style = "overflow:visible";
+            document.querySelector("body")?.style = "overflow:visible";
         }
     }, [imageViewer]);
 

@@ -8,7 +8,7 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
   const [amenitiesModal, setAmenitiesModal] = useState(false);
 
   function capitalizeAndReplace(inputString) {
-    let words = inputString?.split("_");
+    let words =inputString &&  inputString?.split("_");
     for (let i = 0; i < words?.length; i++) {
       words[i] = words[i]?.charAt(0)?.toUpperCase() + words[i]?.slice(1);
     }
@@ -17,7 +17,7 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
   }
   const stringToArray = (str) => {
     // Split the string by commas and trim each element to remove any leading or trailing spaces
-    return str?.split(",")?.map((item) => item?.trim());
+    return str && str?.split(",")?.map((item) => item?.trim());
   };
 
   useEffect(() => {

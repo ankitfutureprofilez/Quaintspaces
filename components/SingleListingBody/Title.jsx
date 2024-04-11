@@ -7,13 +7,13 @@ import Back from "../common/Back";
 const Title = ({ isSaved, listing, addWishlist,loading }) => {
   function capitalizeFirstLetter(str) {
     // Split the string into words
-    const words = str.split(" ");
+    const words =str && str?.split(" ");
     
     // Capitalize the first letter of each word
-    const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+    const capitalizedWords = words?.map(word => word?.charAt(0)?.toUpperCase() + word?.slice(1));
   
     // Join the words back together
-    return capitalizedWords.join(" ");
+    return capitalizedWords?.join(" ");
   }
   return (
     <>
