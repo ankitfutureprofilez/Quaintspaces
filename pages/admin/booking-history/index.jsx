@@ -6,8 +6,6 @@ import Dateformat from "../hook/Dateformat";
 import Nodata from "../hook/NoRecord";
 import Spinner from "../hook/spinner";
 import toast from "react-hot-toast";
-
-
 export default function index() {
 
   const [content, setContent] = useState([]);
