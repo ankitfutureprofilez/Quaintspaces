@@ -26,7 +26,7 @@ const Book = () => {
   const [Razorpay] = useRazorpay();
   const RAZOPAY_KEY = process.env.NEXT_PUBLIC_RAZOPAY_KEY
   const { listingID } = router.query;
-   console.log("listingID", listingID);
+  //  console.log("listingID", listingID);
   const [listing, setListing] = useState([]);
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
@@ -62,6 +62,25 @@ const Book = () => {
       min: 0,
     },
   });
+
+  function Errors (error) { 
+    console.log("error",error)
+    const errors = error && error.response && error.response.data && error.response.data.message;
+    if (errors !== undefined ) {
+        console.log("error", errors);
+        Object.keys(errors).map((key) => {
+            let err = errors[key];
+            err&&err?.map((m, i) => { 
+                toast.error(m); 
+            });
+        });
+    } else {
+       console.log("error else", error);
+        if(error && error?.response){ 
+           toast.error(error.response.data.message);
+        } 
+    }
+}
 
   useEffect(() => {
     const url = router.query;
@@ -103,16 +122,16 @@ const Book = () => {
     });
   }, [router.asPath]);
   // console.log("infos", infos);
+  const [orderId, setOrderId] = useState('');
 
   const [formData, setFormData] = useState({
     selectOption: "",
     fornt: null,
     message: "",
     phone: "",
-    razorpay_order_id: ""
-    // razorpay_order_id: razorpays
+    razorpay_order_id:orderId
   });
-  console.log("formData", formData)
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -131,7 +150,7 @@ const Book = () => {
 
 
 
-  console.log("razorpays", razorpays)
+  // console.log("razorpays", razorpays)
 
   useEffect(() => {
     if (infos.checkout && infos.checkin && listing) {
@@ -145,10 +164,8 @@ const Book = () => {
   }, [infos.checkout, infos.checkin, listing]);
 
 
-  const [orderId, setOrderId] = useState('');
-  console.log("orderId", orderId);
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // console.log("orderId", orderId);
+  const handleSubmit = () => {
     if (formData.phone.length === 0) {
       toast.error("Phone Number is required");
       return;
@@ -162,15 +179,6 @@ const Book = () => {
     setLoading(true);
     const main = new Listings();
     const record = new FormData();
-    record.append("property_uid", listingID);
-    record.append("check_in", infos.checkin);
-    record.append("check_out", infos.checkout);
-    record.append("adults", infos.numberOfAdults);
-    record.append("infants", infos.numberOfInfants);
-    record.append("children", infos.numberOfChildren);
-    record.append("doc_type", formData.selectOption);
-    record.append("front_doc", formData.fornt);
-    record.append("no_of_pet", infos.numberOfPets);
     record.append(
       "price",
       infos.checkout && infos.checkin &&
@@ -190,17 +198,16 @@ const Book = () => {
             description: 'Payment for services',
             order_id: res?.data?.orderId,
             handler: function (response) {
+              console.log("response",response)
+              toast.success('Payment Successful');
               setRazorpay(response?.razorpay_order_id);
               setOrderId(res?.data?.orderId);
-setFormData(prevState => ({
-  ...prevState,
-  razorpay_order_id: res?.data?.orderId
-}));
-
-              router.push(`/success/${razorpays}`)
-
-              toast.success('Payment Successful');
+              setFormData(prevState => ({
+              ...prevState,
+              razorpay_order_id: response?.razorpay_order_id
+              }));
               paymentsubmit();
+                router.push(`/success/${listingID}`)
             },
             prefill: {
               name: 'Customer Name',
@@ -214,18 +221,16 @@ setFormData(prevState => ({
               color: '#F37254'
             }
           };
-
           const rzp = new Razorpay(options);
           console.log("rzp", rzp)
           rzp.on("payment.failed", function (response) {
-            console.log("response?.error?.metadata?.order_id",)
+            console.log("response?.error?.metadata?.order_id",response?.error?.metadata?.order_id)
             setRazorpay(response?.error?.metadata?.order_id);
-            setOrderId(res?.data?.orderId);
-setFormData(prevState => ({
-  ...prevState,
-  razorpay_order_id: res?.data?.orderId
-}));
-
+            setOrderId(response?.error?.metadata?.order_id);
+            setFormData(prevState => ({
+            ...prevState,
+            razorpay_order_id: response?.razorpay_order_id
+            }));
             console.error("Payment failed:", response.error);
               paymentsubmit();
               router.push(`/cancel/${razorpays}`)
@@ -238,16 +243,16 @@ setFormData(prevState => ({
         
       })
       .catch((error) => {
+        Errors(error)
         console.error("Error creating order:", error);
         toast.error('Error creating order');
       })
       .finally(() => setLoading(false));
   };
 
-  const paymentsubmit = (e) => {
-    // e.preventDefault();
-    if (loading) return;
-    setLoading(true);
+  console.log("formData", formData)
+
+  const paymentsubmit = () => {
     const main = new Listings();
     const record = new FormData();
     record.append("property_uid", listingID);
@@ -260,15 +265,17 @@ setFormData(prevState => ({
     record.append("front_doc", formData.fornt);
     record.append("no_of_pet", infos.numberOfPets);
     record.append("phone_no", formData.phone);
-    record.append("razorpay_order_id", formData.razorpay_order_id);
+    record.append("razorpay_order_id", orderId);
     record.append(
       "price",
       infos.checkout && infos.checkin &&
       +listing?.price * differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
     );
-    main.bookingpayment(record, razorpays)
+    main.bookingpayment(record)
       .then((res) => {
-        if (res && res?.data && res?.data?.status == true) {
+        console.log("res",res)
+        if (res ) {
+          console.log("res?.data?.message",res?.data?.message)
           toast.success(res?.data?.message);
         } else {
           console.log("res?.data?.message",res?.data?.message)
@@ -277,6 +284,7 @@ setFormData(prevState => ({
         }
       })
       .catch((error) => {
+        Errors(error)
         console.log("error", error)
       })
       .finally(() => setLoading(false));

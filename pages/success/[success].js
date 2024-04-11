@@ -8,6 +8,8 @@ const success = () => {
   const router=useRouter();
 
     console.log("router",router)
+    console.log("datat",router?.components?.property?.[slug]?.props?.pageProps?.record?.data)
+
   return (
     <AuthLayout>
       <div className=" container mx-auto">
