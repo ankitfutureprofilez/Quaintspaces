@@ -32,7 +32,6 @@ const Title = ({ isSaved, listing, addWishlist,loading }) => {
               listing.data?.title.slice(1, listing.data?.title.length)} */}
               {capitalizeFirstLetter(listing?.data?.name)}
           </div>
-          
           <div className="flex items-center justify-between  md:my-0">
             {/* <div className="flex flex-col md:flex-row gap-2 items-start md:items-center">
               <span className="flex gap-1 items-center text-md font-medium">
