@@ -26,7 +26,7 @@ const Listing = ({ record , failed}) => {
           </title>
         </Head>
         <SingleListingBody loading={record.loading} listing={record} />
-        <ThingsToKnow />
+        <ThingsToKnow guests={record?.data?.guests}/>
         {overlay && (
           <div
             className="overlayFixed fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-40"

@@ -313,14 +313,13 @@ footer {
   border-bottom: 1px solid #dcdcdc;
 }
 .flat-info h3 {
-  font-family: NewYork;
-  font-size: 24px;
-  font-weight: 400;
+  /* font-family: NewYork; */
+  font-size: 21px;
   line-height: 29px;
-  letter-spacing: 0em;
   text-align: left;
-  color: #3f2a17;
+  color: #464646;
   padding: 10px;
+  font-weight: 600;
 }
 .flat-info p {
   font-family: "Inter", sans-serif;
@@ -889,9 +888,6 @@ button.submint-btn {
   }
   .flat-info h5 {
     padding: 12px 10px 12px 10px;
-  }
-  .flat-info h3 {
-    font-size: 22px;
   }
   .explor-btn {
     margin-top: 10px;

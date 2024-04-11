@@ -300,3 +300,6 @@ html, body {
     font-size: 6vh;
   }
 }
+.container{
+  max-width: 1465px !important;
+}

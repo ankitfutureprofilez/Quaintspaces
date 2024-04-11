@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ThingsToKnow() {
+export default function ThingsToKnow({guests}) {
   return (
     <div className="container mx-auto">
       <h1 className="listing-heading text-left !mb-0">Things to know</h1>
@@ -9,7 +9,7 @@ export default function ThingsToKnow() {
           <h2 className="font-semibold mb-2">House Rules</h2>
           <p className="mb-2 text-gray-500">Check-in after 02:00 pm</p>
           <p className="mb-2 text-gray-500">Checkout before 10:00 am</p>
-          <p className="mb-2 text-gray-500">6 Guests Maximum</p>
+          <p className="mb-2 text-gray-500">{guests} Guests Maximum</p>
         </div>
         <div className="flex flex-col mt-3 sm:mt-2 mr-4">
           <h2 className="font-semibold mb-2">Safety & Property </h2>
