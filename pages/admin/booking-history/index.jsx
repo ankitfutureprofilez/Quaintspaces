@@ -107,19 +107,17 @@ export default function index() {
                           {item?.price}
                         </td>
                         <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                          {item?.booking_status}
-                          {/*                      
-                      <div
+                      <td
                       className={`inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${
-                      item?.booking_status === "success"
+                      item?.booking_status === "completed"
                       ? "bg-green-600"
-                      : item?.booking_status === "canceled"
+                      : item?.booking_status === "cancelled"
                       ? "bg-red-600"
-                      : "bg-blue-600"
+                      : item?.booking_status === "confirm" ? "bg-green-600" : "bg-blue-600"
                       }`}
                       >
                       {item?.booking_status}
-                      </div> */}
+                      </td>
                         </td>
                         <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
                           <Image
@@ -134,7 +132,7 @@ export default function index() {
                         </td>
 
                         <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
-                <div onClick={() =>
+                <td onClick={() =>
                                 bookingaccept(
                                   item.user_id,
                                   item.id,
@@ -154,8 +152,8 @@ export default function index() {
                             fill="currentColor"
                         ></path>
                     </svg>
-                </div>
-                <div  onClick={() =>
+                </td>
+                <td  onClick={() =>
                                 bookingaccept(
                                   item.user_id,
                                   item.id,
@@ -182,7 +180,7 @@ export default function index() {
                     {loading ? "loading.." :"Cancelled"}
 
                     
-                </div>
+                </td>
             </td>
                       </tr>
                     ))
