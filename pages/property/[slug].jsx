@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router.js";
 import { Header, SingleListingBody } from "../../components/index.js";
 import Head from "next/head";
 import Footer from "../../components/Footer.jsx";
@@ -8,24 +10,46 @@ import Layout from "../layout/Layout.js";
 import ThingsToKnow from "./ThingsToKnow.js";
 import Listings from "../api/laravel/Listings.js";
 import Heading from "../elements/Heading.js";
-import { useState } from "react";
-import { useRouter } from "next/router.js";
 
-const Listing = ({ record , failed}) => {
-  const router=useRouter();
+const Listing = (props) => {
+  const { record, failed } = props;
+  console.log("props",props)
+  const router = useRouter();
   const [overlay, setOverlay] = useState(false);
   const [selection, setSelection] = useState(null);
   const [headerSearch, setHeaderSearch] = useState(false);
+
+  useEffect(() => {
+    if (!record && !failed) {
+      fetchData();
+    }
+  }, []);
+
+  const [fetchedRecord, setFetchedRecord] = useState(record);
+  const [fetchFailed, setFetchFailed] = useState(failed);
+
+  const fetchData = async () => {
+    try {
+      const main = new Listings();
+      const response = await main.PropertyDetail(router.query.slug || "");
+      setFetchedRecord({
+        loading: false,
+        data: response?.data?.data || {},
+      });
+    } catch (error) {
+      console.error("Error fetching property detail:", error);
+      setFetchFailed(error.message);
+    }
+  };
+
   return (
     <>
       <Layout>
         <Head>
-          <title>
-           {record?.loading ? "..." : record?.data?.name}
-          </title>
+          <title>{fetchedRecord?.loading ? "..." : fetchedRecord?.data?.name}</title>
         </Head>
-        <SingleListingBody loading={record?.loading} listing={record} />
-        <ThingsToKnow guests={record?.data?.guests}/>
+        <SingleListingBody loading={fetchedRecord?.loading} listing={fetchedRecord} />
+        <ThingsToKnow guests={fetchedRecord?.data?.guests} />
         {overlay && (
           <div
             className="overlayFixed fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-40"
@@ -43,28 +67,29 @@ const Listing = ({ record , failed}) => {
 
 export async function getServerSideProps(context) {
   const { slug } = context.query;
-  let failed=null;
-  let record = {
-    loading: true,
-    data: {},
-  };
-  try {
-    const main = new Listings();
-    const response = await main.PropertyDetail(slug || "");
-    record = {
+  const main = new Listings();
+  const response = main.PropertyDetail(slug || "");
+  const data = response.then((res)=>{
+    let record = {
       loading: false,
-      data: response?.data?.data || {},
+      data: res?.data?.data || {},
     };
-  } catch (error) {
-    console.error("Error fetching property detail:", error);
-    failed=error.message;
-  }
+    return {
+      props: {
+        props_status :true,
+        entries : record
+      },
+    };
 
-  return {
-    props: {
-      record,failed
-    },
-  };
+  }).catch(()=>{
+    return {
+      props: {
+        props_status :false,
+        entries : null
+      },
+    }
+  });
+  return data
 }
 
 export default Listing;
