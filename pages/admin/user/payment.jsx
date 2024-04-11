@@ -4,7 +4,6 @@ import Image from "next/image";
 import AdminLayout from "../AdminLayout";
 import Nodata from "../hook/NoRecord";
 import Spinner from "../hook/spinner";
-import Image from 'next/image';
 
 export default function payment({ record }) {
   const [content, setContent] = useState([]);
