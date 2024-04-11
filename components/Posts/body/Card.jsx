@@ -23,9 +23,16 @@ const Card = ({ post }) => {
     let result = words?.join(" ");
     return result;
   }
-  const capitalizeFirstLetter = (string) => {
-    return string?.charAt(0)?.toUpperCase() + string?.slice(1);
-  };
+  function capitalizeFirstLetter(str) {
+    // Split the string into words
+    const words = str.split(" ");
+    
+    // Capitalize the first letter of each word
+    const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+  
+    // Join the words back together
+    return capitalizedWords.join(" ");
+  }
 
   return (
     <div className="banipark-box rounded-lg">

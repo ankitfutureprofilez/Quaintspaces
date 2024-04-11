@@ -98,25 +98,29 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
         <h1 className="text-2xl mb-4 font-semibold">What this place offers?</h1>
         <ul className="block md:flex flex-wrap">
           {listing?.data?.amenities &&
-            listing?.data?.amenities?.split(",")?.map((amenity) => (
-              <li
-                className="w-[calc(100%/2-10px)] flex gap-2 my-2 py-2 md:py-0"
-                key={amenity?.trim()}
-              >
-                <Image
-                   src={`/icons/${amenity
-                    ?.toLowerCase()
-                    ?.trim()
-                    ?.replaceAll(" ", "_")}.png`}
-                  alt=""
-                  width={24} // adjust width as needed
-                  height={24} // adjust height as needed
-                  className="w-6 h-6 mt-1"
-                />
-                {formatAmenities(amenity)}
-              </li>
-            ))}
+            listing?.data?.amenities
+              ?.split(",")
+              ?.slice(0, 4) // Limit to first 4 elements
+              ?.map((amenity) => (
+                <li
+                  className="w-[calc(100%/2-10px)] flex gap-2 my-2 py-2 md:py-0"
+                  key={amenity?.trim()}
+                >
+                  <Image
+                    src={`/icons/${amenity
+                      ?.toLowerCase()
+                      ?.trim()
+                      ?.replaceAll(" ", "_")}.png`}
+                    alt=""
+                    width={24} // adjust width as needed
+                    height={24} // adjust height as needed
+                    className="w-6 h-6 mt-1"
+                  />
+                  {formatAmenities(amenity)}
+                </li>
+              ))}
         </ul>
+
         <button
           className="btn-normal mt-8"
           onClick={() => setAmenitiesModal(true)}
@@ -176,7 +180,7 @@ const AmenitiesModal = ({ amenities, setAmenitiesModal }) => {
                 key={uuidv4()}
               >
                 <Image
-                   src={`/icons/${e
+                  src={`/icons/${e
                     ?.toLowerCase()
                     ?.trim()
                     ?.replaceAll(" ", "_")}.png`}
