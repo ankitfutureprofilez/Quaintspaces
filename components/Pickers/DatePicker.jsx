@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import {
   add,
@@ -13,6 +13,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import { days as Days } from "../../utils/datePickerUtils";
 import Button from "../Button";
+import useWidthCount from "../../pages/elements/useWidthCount";
 
 const DatePicker = ({
   selectedDay,
@@ -42,19 +43,44 @@ const DatePicker = ({
   });
 
   function previousMonth() {
-    let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 });
-    setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
+    if (width < 767) {
+      let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 });
+      setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
 
-    let firstDayNextNextMonth = add(nextMonthState, { months: -2 });
-    setNextMonth(firstDayNextNextMonth);
+      let firstDayNextNextMonth = add(nextMonthState, { months: -1 });
+      setNextMonth(firstDayNextNextMonth);
+    } else {
+      let firstDayNextMonth = add(firstDayCurrentMonth, { months: -2 });
+      setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
+
+      let firstDayNextNextMonth = add(nextMonthState, { months: -2 });
+      setNextMonth(firstDayNextNextMonth);
+    }
   }
 
-  function nextMonth() {
-    let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 });
-    setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
+  const [width, setWidth] = useState();
+  function setWid() {
+    setWidth(window && window.innerWidth);
+  }
+  useEffect(() => {
+    window && window.addEventListener("resize", setWid);
+    setWid();
+  }, []);
 
-    let firstDayNextNextMonth = add(nextMonthState, { months: 2 });
-    setNextMonth(firstDayNextNextMonth);
+  function nextMonth() {
+    console.log("w", width);
+    if (width < 767) {
+      let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 });
+      setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
+      let firstDayNextNextMonth = add(nextMonthState, { months: 1 });
+      setNextMonth(firstDayNextNextMonth);
+    } else {
+      let firstDayNextMonth = add(firstDayCurrentMonth, { months: 2 });
+      setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
+
+      let firstDayNextNextMonth = add(nextMonthState, { months: 2 });
+      setNextMonth(firstDayNextNextMonth);
+    }
   }
 
   // const [buttonClicked, setButtonClicked] = useState(0);
@@ -83,7 +109,7 @@ const DatePicker = ({
       {/* </h1> */}
       {/* </div> */}
       <div className="flex gap-6">
-        <div className="w-full">
+        <div className="hidden sm:block w-full">
           <div className="flex items-center">
             <h2 className="flex-auto font-semibold text-gray-900 text-center">
               {format(firstDayCurrentMonth, "MMMM yyyy")}
@@ -118,7 +144,9 @@ const DatePicker = ({
         <div className="w-full">
           <div className="flex items-center">
             <h2 className="flex-auto font-semibold text-gray-900 text-center">
-              {format(nextMonthState, "MMM-yyyy")}
+              {width < 767
+                ? format(firstDayCurrentMonth, "MMMM yyyy")
+                : format(nextMonthState, "MMM-yyyy")}
             </h2>
 
             <button

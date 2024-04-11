@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { House, Add } from 'iconsax-react'
+import Image from 'next/image';
 
 const propertyTypes = [
   { value: "flat", label: "Flat" },
@@ -629,7 +630,7 @@ export default function Property(props) {
                 {isEdit ? (
                   imageproperty?.map((item, index) => (
                     <div key={index} className="relative isedits">
-                      <img
+                      <Image
                         className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
                         src={item?.image_url || ''}
                         width={200}
@@ -648,7 +649,7 @@ export default function Property(props) {
 
                 {images && images.map((file, index) => (
                   <div key={index} className="relative">
-                    <img
+                    <Image
                       src={URL.createObjectURL(file)}
                       width={200}
                       height={200}

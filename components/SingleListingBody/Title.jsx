@@ -5,6 +5,16 @@ import Upload from "../../public/_svgs/upload";
 import Back from "../common/Back";
 
 const Title = ({ isSaved, listing, addWishlist,loading }) => {
+  function capitalizeFirstLetter(str) {
+    // Split the string into words
+    const words = str.split(" ");
+    
+    // Capitalize the first letter of each word
+    const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+  
+    // Join the words back together
+    return capitalizedWords.join(" ");
+  }
   return (
     <>
       {loading ? (
@@ -20,7 +30,7 @@ const Title = ({ isSaved, listing, addWishlist,loading }) => {
               <Back />
               {/* {listing.data?.title.slice(0, 1).toUpperCase() +
               listing.data?.title.slice(1, listing.data?.title.length)} */}
-              {listing?.data?.name}
+              {capitalizeFirstLetter(listing?.data?.name)}
           </div>
           <div className="flex items-center justify-between  md:my-0">
             {/* <div className="flex flex-col md:flex-row gap-2 items-start md:items-center">

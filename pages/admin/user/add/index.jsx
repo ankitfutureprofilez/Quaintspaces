@@ -3,6 +3,7 @@ import AdminLayout from "../../AdminLayout";
 import Element from "../../element";
 import toast, { Toaster } from "react-hot-toast";
 import Listing from "../../api/Listing";
+import Image from 'next/image';
 
 export default function Index() {
   const [record, setRecord] = useState({
@@ -76,11 +77,13 @@ export default function Index() {
           <div className="flex items-center ">
             <div className="relative">
               <div className="shrink-0">
-                <img
+                <Image
                   id="preview_img"
                   className="h-16 w-16 object-cover rounded-full"
                   src={previewImgSrc}
                   alt="Current profile photo"
+                  width={64}
+                  height={64}
                 />
               </div>
               <label className="block">

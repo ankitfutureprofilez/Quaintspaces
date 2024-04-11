@@ -5,6 +5,8 @@ import Listing from "../../api/Listing";
 import Element from "../../element";
 import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";
+import Image from 'next/image';
+
 export default function Property() {
   const [step, setStep] = useState(1);
   const [Loading, setLoading] = useState(false);
@@ -599,7 +601,7 @@ export default function Property() {
                     >
                       &times;
                     </button>
-                    <img
+                    <Image
                       src={URL.createObjectURL(file)}
                       alt={`Preview ${index}`}
                       className="max-w-xs max-h-44 w-full h-auto gap-5 mr-4"
