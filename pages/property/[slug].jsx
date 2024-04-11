@@ -16,7 +16,6 @@ const Listing = ({ record , failed}) => {
   const [overlay, setOverlay] = useState(false);
   const [selection, setSelection] = useState(null);
   const [headerSearch, setHeaderSearch] = useState(false);
- 
   return (
     <>
       <Layout>
@@ -25,7 +24,7 @@ const Listing = ({ record , failed}) => {
            {record?.loading ? "..." : record?.data?.name}
           </title>
         </Head>
-        <SingleListingBody loading={record.loading} listing={record} />
+        <SingleListingBody loading={record?.loading} listing={record} />
         <ThingsToKnow guests={record?.data?.guests}/>
         {overlay && (
           <div

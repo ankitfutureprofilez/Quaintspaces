@@ -75,57 +75,61 @@ export default function index() {
       });
     // console.log("listings", listings);
   }, [selectedButton, fetch]);
-
+  // {listings && listings.length > 0 ? ():()
   const BookingTable = () => {
     return (
       <>
         {loading ? (
           <p>loading...</p>
         ) : (
-          <div className="table-responisve">
+          <>
             {listings && listings.length > 0 ? (
-              listings.map((item, index) => (
-                <table className="table-fixed w-full booking-table">
-                  <thead>
-                    <tr>
-                      <th>Title</th>
-                      <th>Check In</th>
-                      <th>Check Out</th>
-                      <th>Status</th>
-                      <th>Price</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr key={index} className="">
-                      <td className="flex items-center">
-                        <div className="text ml-2">
-                          <div className="title">
-                            {item?.booking_property?.name}
+              <div className="table-responsive">
+                {listings.map((item, index) => (
+                  <table key={index} className="table-fixed w-full booking-table">
+                    <thead>
+                      <tr>
+                        <th>Title</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Status</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="px-4 py-2">
+                          <div className="flex items-center">
+                            <div className="text ml-2">
+                              <div className="title">
+                                {item?.booking_property?.name}
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                      <td className="px-4 py-2">{item?.check_in}</td>
-                      <td className="px-4 py-2">{item?.check_out}</td>
-                      <td className="px-4 py-2">
-                        <Button
-                          text={`${item?.booking_status}`}
-                          design="font-inter text-blue-700 font-medium leading-tight text-center w-32 p-3 rounded-full"
-                        />
-                      </td>
-                      <td className="px-4 py-2">
-                        {formatMultiPrice(item?.price)}
-                      </td>
-                      <td className="px-4 py-2">
-                        <Button
-                          text="Cancel"
-                          design="font-inter text-red-700 font-medium leading-tight text-center w-32 border-red-500 p-3 rounded-full"
-                        />
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              ))
+                        </td>
+                        <td className="px-4 py-2">{item?.check_in}</td>
+                        <td className="px-4 py-2">{item?.check_out}</td>
+                        <td className="px-4 py-2">
+                          <Button
+                            text={`${item?.booking_status}`}
+                            design="font-inter text-blue-700 font-medium leading-tight text-center w-32 p-3 rounded-full"
+                          />
+                        </td>
+                        <td className="px-4 py-2">
+                          {formatMultiPrice(item?.price)}
+                        </td>
+                        <td className="px-4 py-2">
+                          <Button
+                            text="Cancel"
+                            design="font-inter text-red-700 font-medium leading-tight text-center w-32 border-red-500 p-3 rounded-full"
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                ))}
+              </div>
             ) : (
               <NoData
                 Heading={"No Bookings Found"}
@@ -134,11 +138,12 @@ export default function index() {
                 }
               />
             )}
-          </div>
+          </>
         )}
       </>
     );
   };
+  
   return (
     <AuthLayout>
       <div className="container mx-auto">
