@@ -1,77 +1,4 @@
-import React, { useEffect, useState } from "react";
-import AdminLayout from "../AdminLayout";
-import Listing from "../api/Listing";
-import Link from "next/link";
-import toast from "react-hot-toast";
-import Loading from "../hook/spinner";
-import Moment from "moment";
-import Dateformat from "../hook/Dateformat";
-import Nodata from "../hook/NoRecord";
-import Image from 'next/image';
-
-export default function Index() {
-    const [loading, setLoading] = useState(true);
-    const [content, setContent] = useState();
-
-    const fetchData = async () => {
-        setLoading(true);
-        try {
-            const Main = new Listing();
-            const response = await Main.getrating();
-            setContent(response?.data?.data);
-            setLoading(false);
-        } catch (error) {
-            console.log("errr", error);
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        if (loading) {
-            fetchData();
-        }
-    }, []);
-
-    const acceptReview = (uuid, id, newStatus) => {
-        const main = new Listing();
-        main
-            .reviewaccept(uuid, id, newStatus)
-            .then((response) => {
-                if (response && response.data && response?.data?.status === true) {
-                    setContent((prevContent) =>
-                        prevContent.map((item) =>
-                            item.id === id
-                                ? {
-                                    ...item,
-                                    status: newStatus,
-                                }
-                                : item
-                        )
-                    );
-                    toast.success(response.data.message);
-                    fetchData();
-                } else {
-                    toast.error(response.data.message);
-                }
-            })
-            .catch((error) => {
-                console.error("Error updating review status:", error);
-            });
-    };
-
-    console.log("content", content);
-
-    return (
-        <>
-            <AdminLayout>
-                <section className=" p-4 ">
-                    <div className="flex flex-col">
-                        {loading ? (
-                            <div className="flex flex-wrap justify-center">
-                                <Loading />
-                            </div>
-                        ) : (
-                            <div className="overflow-x-auto">
+ <div className="overflow-x-auto">
                                 <div className="inline-block align-middle">
                                     <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
                                         <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
@@ -279,10 +206,3 @@ export default function Index() {
                                     </div>
                                 </div>
                             </div>
-                        )}
-                    </div>
-                </section>
-            </AdminLayout>
-        </>
-    );
-}
