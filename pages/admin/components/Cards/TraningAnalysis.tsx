@@ -4,6 +4,8 @@ import Avatar1 from '../assets/avatars/avatar1.png';
 import Avatar2 from '../assets/avatars/avatar2.png';
 import Avatar3 from '../assets/avatars/avatar3.png';
 import Image from 'next/image';
+import Link from 'next/link';
+
 import { motion } from 'framer-motion';
 
 function TraningAnalysis({data}) {
@@ -17,7 +19,10 @@ function TraningAnalysis({data}) {
                     <p className='text-gray-800 font-medium'>Users </p>
                 </div>
                 <button className='border px-2 py-1 rounded-lg text-xs'>
+                    <Link href="/admin/user-history">
+
                     Details
+                    </Link>
                 </button>
             </div>
             <hr className='bg-gray-400 my-4' />
@@ -26,18 +31,15 @@ function TraningAnalysis({data}) {
                 <div className='space-y-4'>
                     <div className="flex justify-between mr-3">
                         <div className="mr-2 text-center">
-                        <Profile size="32" color="#FF8A65"/>
                             <p className='text-sm text-gray-800 font-medium'>All User </p>
                             <p className='text-xs '>{data?.total_user}</p>
                         </div>
                         <div className="mr-2 text-center">
-                        <Profile size="32" color="#FF8A65"/>
                             <p className='text-sm text-gray-800 font-medium'>Active  User</p>
                             <p className='text-xs'>{data?.activate}</p>
 
                         </div>
                         <div className="mr-2 text-center">
-                        <Profile size="32" color="#FF8A65"/>
                             <p className='text-sm text-gray-800 font-medium'>DeActived User </p>
                             <p className='text-xs'>{data?.deactivate}</p>
 

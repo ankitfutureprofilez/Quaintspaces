@@ -6,7 +6,9 @@ import Nodata from "../hook/NoRecord";
 import Spinner from "../hook/spinner";
 
 export default function payment({ record }) {
-  const [content, setContent] = useState([]);
+
+  const [content, setContent] = useState("");
+
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
@@ -24,7 +26,7 @@ export default function payment({ record }) {
   }, []);
 
   return (
-    <AdminLayout heading={"Booking Management"}>
+   
       <>
         {loading ? (
           <Spinner />
@@ -136,9 +138,8 @@ export default function payment({ record }) {
             </div>
           </div>
         ) : (
-          <Nodata heading={"payment History"} />
+          <Nodata heading={"Payment History"} />
         )}
       </>
-    </AdminLayout>
   );
 }

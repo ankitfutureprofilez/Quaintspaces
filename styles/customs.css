@@ -1348,3 +1348,25 @@ button.submint-btn {
   text-align: left;
   color: #61554e;
 }
+
+
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.empty-state__content {
+  text-align: center;
+}
+
+.empty-state__icon {
+  margin-bottom: 20px;
+}
+
+.empty-state__message {
+  font-size: 18px;
+  color: #555;
+}
+

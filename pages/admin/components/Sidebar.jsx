@@ -130,9 +130,9 @@ function Sidebar() {
             </Link>
 
             <Link
-              href={"/admin/user"}
+              href={"/admin/user-history"}
               className={`flex ${
-                pathname === "/admin/user" ? "text-primary" : ""
+                pathname === "/admin/user-history" ? "text-primary" : ""
               } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
             >
              <TextalignJustifycenter size={16} />

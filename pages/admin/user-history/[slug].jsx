@@ -131,7 +131,7 @@ function index() {
               <Booking record={record?.id} />
             </div>
           )}
-          {activeTab === "Payment" && (
+          {activeTab === "payment" && (
             <div>
               <Payment record={record?.id} />
             </div>
