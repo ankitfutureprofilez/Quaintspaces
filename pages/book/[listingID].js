@@ -24,9 +24,9 @@ import useRazorpay from "react-razorpay";
 const Book = () => {
   const router = useRouter();
   const [Razorpay] = useRazorpay();
-  const RAZOPAY_KEY = process.env.NEXT_PUBLIC_RAZOPAY_KEY
+  const RAZOPAY_KEY = process.env.NEXT_PUBLIC_RAZOPAY_KEY;
   const { listingID } = router.query;
-  //  console.log("listingID", listingID);
+
   const [listing, setListing] = useState([]);
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
@@ -37,67 +37,45 @@ const Book = () => {
   const [messageField, setMessageField] = useState(false);
   const [hasAddedMessage, setHasAddedMessage] = useState(false);
   const [pricerate, setPriceRate] = useState(0);
-  const [razorpays, setRazorpay] = useState("");
+  const [orderId, setOrderId] = useState('');
 
-  // console.log("infos",infos)
-  const [guests, setGuests] = useState({
-    adults: {
-      value: +infos.adults || 0,
-      max: 16,
-      min: 0,
-    },
-    children: {
-      value: +infos.children || 0,
-      max: 15,
-      min: 0,
-    },
-    infants: {
-      value: +infos.infants || 0,
-      max: 5,
-      min: 0,
-    },
-    pets: {
-      value: +infos.pets || 0,
-      max: 5,
-      min: 0,
-    },
+  const [formData, setFormData] = useState({
+    selectOption: "",
+    fornt: null,
+    message: "",
+    phone: "",
+    razorpay_order_id: orderId
   });
 
-  function Errors (error) { 
-    console.log("error",error)
-    const errors = error && error.response && error.response.data && error.response.data.message;
-    if (errors !== undefined ) {
-        console.log("error", errors);
-        Object.keys(errors).map((key) => {
-            let err = errors[key];
-            err&&err?.map((m, i) => { 
-                toast.error(m); 
-            });
-        });
-    } else {
-       console.log("error else", error);
-        if(error && error?.response){ 
-           toast.error(error.response.data.message);
-        } 
-    }
-}
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e) => {
+    const formData = e.target.files[0];
+    setFormData((prevState) => ({
+      ...prevState,
+      fornt: formData,
+    }));
+  };
 
   useEffect(() => {
     const url = router.query;
     setInfos(url);
-    // console.log("router query", url);
     const main = new Listings();
     main
       .PropertyDetail(url.listingID)
       .then((r) => {
-        // console.log("Data",r.data.data);
         setListing(r?.data?.data);
       })
       .catch((err) => {
         console.error(err);
       });
 
-    // console.log("liiitn",listing)
     setGuests({
       adults: {
         value: +url.numberOfAdults || 0,
@@ -121,36 +99,6 @@ const Book = () => {
       },
     });
   }, [router.asPath]);
-  // console.log("infos", infos);
-  const [orderId, setOrderId] = useState('');
-
-  const [formData, setFormData] = useState({
-    selectOption: "",
-    fornt: null,
-    message: "",
-    phone: "",
-    razorpay_order_id:orderId
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleFileChange = (e) => {
-    const formData = e.target.files[0];
-    setFormData((prevState) => ({
-      ...prevState,
-      fornt: formData,
-    }));
-  };
-
-
-
-  // console.log("razorpays", razorpays)
 
   useEffect(() => {
     if (infos.checkout && infos.checkin && listing) {
@@ -163,14 +111,12 @@ const Book = () => {
     }
   }, [infos.checkout, infos.checkin, listing]);
 
-
-  // console.log("orderId", orderId);
   const handleSubmit = () => {
     if (formData.phone.length === 0) {
       toast.error("Phone Number is required");
       return;
     }
-    if (formData.phone.length != 10) {
+    if (formData.phone.length !== 10) {
       toast.error("Invalid Phone Number");
       return;
     }
@@ -198,16 +144,14 @@ const Book = () => {
             description: 'Payment for services',
             order_id: res?.data?.orderId,
             handler: function (response) {
-              console.log("response",response)
               toast.success('Payment Successful');
-              setRazorpay(response?.razorpay_order_id);
-              setOrderId(res?.data?.orderId);
+              setOrderId(response?.razorpay_order_id);
               setFormData(prevState => ({
-              ...prevState,
-              razorpay_order_id: response?.razorpay_order_id
+                ...prevState,
+                razorpay_order_id: response?.razorpay_order_id
               }));
               paymentsubmit();
-                router.push(`/success/${listingID}`)
+              router.push(`/success/${listingID}`)
             },
             prefill: {
               name: 'Customer Name',
@@ -222,35 +166,28 @@ const Book = () => {
             }
           };
           const rzp = new Razorpay(options);
-          console.log("rzp", rzp)
           rzp.on("payment.failed", function (response) {
-            console.log("response?.error?.metadata?.order_id",response?.error?.metadata?.order_id)
-            setRazorpay(response?.error?.metadata?.order_id);
             setOrderId(response?.error?.metadata?.order_id);
             setFormData(prevState => ({
-            ...prevState,
-            razorpay_order_id: response?.razorpay_order_id
+              ...prevState,
+              razorpay_order_id: response?.razorpay_order_id
             }));
-            console.error("Payment failed:", response.error);
-              paymentsubmit();
-              router.push(`/cancel/${razorpays}`)
-              toast.error('Payment Failed');
+            paymentsubmit();
+            router.push(`/cancel/${razorpays}`);
+            toast.error('Payment Failed');
           });
           rzp.open();
         } else {
           toast.error(res?.data?.message || "Failed to create order");
         }
-        
+
       })
       .catch((error) => {
-        Errors(error)
-        console.error("Error creating order:", error);
+        Errors(error);
         toast.error('Error creating order');
       })
       .finally(() => setLoading(false));
   };
-
-  console.log("formData", formData)
 
   const paymentsubmit = () => {
     const main = new Listings();
@@ -273,19 +210,14 @@ const Book = () => {
     );
     main.bookingpayment(record)
       .then((res) => {
-        console.log("res",res)
-        if (res ) {
-          console.log("res?.data?.message",res?.data?.message)
+        if (res) {
           toast.success(res?.data?.message);
         } else {
-          console.log("res?.data?.message",res?.data?.message)
           toast.error(res?.data?.message);
-
         }
       })
       .catch((error) => {
-        Errors(error)
-        console.log("error", error)
+        Errors(error);
       })
       .finally(() => setLoading(false));
   };

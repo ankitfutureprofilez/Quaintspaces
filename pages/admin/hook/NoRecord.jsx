@@ -17,7 +17,7 @@ const NoRecord = ({heading, content}) => {
                     {content}
                     </p>
                   <button
-                  onClick={()=>{router.back(-1)}} 
+                  onClick={()=>{router.push("/admin")}} 
                   className="sm:w-full lg:w-auto my-2 filter btn">
                     Take me there!
                     </button>
