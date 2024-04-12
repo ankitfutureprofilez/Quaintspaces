@@ -197,7 +197,14 @@ const Book = () => {
   }, [infos.checkout, infos.checkin, listing]);
 
   const handleSubmit = () => {
-    if(formData.fornt)
+    if(!formData.selectOption){
+      toast.error("Document type is required");
+      return;
+    }
+    if(!formData.fornt){
+      toast.error("Document is required");
+      return;
+    }
     if (formData.phone.length === 0) {
       toast.error("Phone Number is required");
       return;
