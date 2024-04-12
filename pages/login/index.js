@@ -46,7 +46,7 @@ export default function Login() {
                 Back to home
               </Link>
             </div>
-            <Image src={logologin} alt="logo" />
+            <Image src={logologin} alt="QUAINTSPACES JAIPUR logo" />
             <p>
               Book the most luxuries and aesthetically pleasing place, Jaipur
               city has to offer 

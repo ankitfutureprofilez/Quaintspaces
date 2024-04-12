@@ -20,7 +20,7 @@ const ReviewCard = ({ data }) => {
         <div className="w-12 h-12 bg-borderColor rounded-full">
           <Image
             src={data?.rating_user?.image_url}
-            alt=""
+            alt="User Image"
             // layout="fill"
             width={100}
             height={100}

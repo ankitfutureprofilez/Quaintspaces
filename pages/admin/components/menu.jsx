@@ -21,7 +21,7 @@ export default function menu({ isOpen, record }) {
           <div className="flex mr-auto items-center space-x-4 mr-4">
             <Image
               src={record?.image_url}
-              alt="avatar Evan You"
+              alt="Admin Image"
               className="rounded-full"
               width={35}
               height={35}

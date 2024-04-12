@@ -123,7 +123,7 @@ export default function Index() {
                                                                         <Image
                                                                             className="object-cover w-8 h-8 rounded-full"
                                                                             src={item?.rating_user?.image_url}
-                                                                            alt=""
+                                                                            alt="User"
                                                                             width={32}
                                                                             height={32}
                                                                         />
@@ -154,7 +154,7 @@ export default function Index() {
                                                                                     item?.get_property_review
                                                                                         ?.property_image[0]?.image_url
                                                                                 }
-                                                                                alt=""
+                                                                                alt="Property Cover"
                                                                                 width={32}
                                                                                 height={32}
                                                                             />

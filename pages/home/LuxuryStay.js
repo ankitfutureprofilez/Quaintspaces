@@ -12,16 +12,16 @@ export default function LuxuryStay() {
         <h1>Luxury Stay</h1>
         <div className="luxury-stay-img">
           <div className="img-box">
-            <Image src={Luxury1} />
+            <Image src={Luxury1} alt="QUAINTSPACES JAIPUR" />
           </div>
          <div className="img-box" id="hero" >
             <Image
             src={Luxury2}
-            alt="Luxury Stay Image"
+            alt="QUAINTSPACES JAIPUR"
             />
           </div>
           <div className="img-box">
-            <Image src={Luxury3} />
+            <Image src={Luxury3} alt="QUAINTSPACES JAIPUR"/>
           </div>
         </div>
         <h1 className="in-jaipur">In Jaipur</h1>

@@ -42,6 +42,7 @@ const Card = ({ post }) => {
           height={300}
           layout="responsive"
           src={post?.property_image[0]?.image_url}
+          alt="Property cover image"
         />
         <div className="flat-info">
           <h5 className="line-limit">

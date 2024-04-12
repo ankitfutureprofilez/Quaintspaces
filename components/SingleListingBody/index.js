@@ -313,10 +313,10 @@ const ImageSlider = ({ listing }) => {
       {listing?.data?.images && (
         <Image
         src={listing?.data?.images[0]?.url}
-        alt=""
         layout="fill"
         objectFit="cover"
         className="w-full object-cover"
+        alt="Property Image"
       />
       )}
     </div>
