@@ -51,7 +51,7 @@ export default function Header() {
       <div className="container flex items-center justify-between">
         <div className="logo">
           <Link href="/">
-            <Image src={logo} alt="logo" />
+            <Image src={logo} alt="QS Jaipur Logo" />
           </Link>
         </div>
         <div className="nav-bar flex items-center">

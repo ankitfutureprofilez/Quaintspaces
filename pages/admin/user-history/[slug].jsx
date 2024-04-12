@@ -43,7 +43,7 @@ function index() {
                       ? record?.image_url
                       : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"
                   }
-                  alt=""
+                  alt="User"
                   className="rounded-full mx-auto absolute -top-20 w-32 h-32 shadow-md border-4 border-white transition duration-200 transform hover:scale-110"
                   width={128}
                   height={128}

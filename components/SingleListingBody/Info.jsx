@@ -111,7 +111,7 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                       ?.toLowerCase()
                       ?.trim()
                       ?.replaceAll(" ", "_")}.png`}
-                    alt=""
+                    alt="amenity icon"
                     width={24} // adjust width as needed
                     height={24} // adjust height as needed
                     className="w-6 h-6 mt-1"
@@ -184,7 +184,7 @@ const AmenitiesModal = ({ amenities, setAmenitiesModal }) => {
                     ?.toLowerCase()
                     ?.trim()
                     ?.replaceAll(" ", "_")}.png`}
-                  alt=""
+                  alt="amenity icon"
                   width={24} // adjust width as needed
                   height={24} // adjust height as needed
                   className="w-6 h-6 mt-1"

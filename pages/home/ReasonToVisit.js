@@ -19,7 +19,7 @@ export default function ReasonToVisit() {
       <Image
       blurDataURL="/images/visitbg.jpg?q=1"
         src="/images/visitbg.jpg"
-        alt=""
+        alt="QUAINTSPACES JAIPUR Reason to visit"
         layout="fill"
         objectFit="cover"
         style={{ zIndex: -1 }}
