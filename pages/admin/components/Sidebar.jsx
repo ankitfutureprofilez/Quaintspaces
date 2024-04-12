@@ -196,7 +196,7 @@ function Sidebar() {
                     className="rounded-full user-img"
                   />
                   <div className="">
-                    <p className="text-sm font-semibold text-gray-800">
+                    <p className="text-sm font-semibold text-gray-800 capitalize	">
                       {auth?.name}
                     </p>
                     <p className="text-xs font-medium text-gray-500">

@@ -54,54 +54,56 @@ export default function index() {
           {loading ? (
             <Spinner />
           ) : content && content.length > 0 ? (
-            <div className="mt-6 overflow-hidden rounded-xl border shadow">
-            <table className="min-w-[1200px] w-full border-separate border-spacing-y-2 border-spacing-x-2">
-              <thead className="hidden border-b lg:table-header-group">
+            <div className="overflow-x-auto">
+            <div className="inline-block align-middle">
+                <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+            <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
+              <thead className="bg-gray-50 dark:bg-gray-800">
                 <tr className="">
-                  <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
+                  <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     {" "}
                     booking Date
                   </td>
-                  <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
+                  <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     booking Number{" "}
                   </td>
-                  <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
+                  <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     Stay{" "}
                   </td>
-                  <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
+                  <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     Amount
                   </td>
-                  <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
+                  <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     Status
                   </td>
-                  <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
+                  <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     Document Image and Type{" "}
                   </td>
-                  <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
+                  <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     Action
                   </td>
                 </tr>
               </thead>
 
-              <tbody className="lg:border-gray-300">
+              <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                 {content.map((item, index) => (
                   <tr key={index}>
-                    <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
+                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       <Dateformat item={item?.booking_date} />
                     </td>
-                    <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
+                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       {item?.booking_number}
                     </td>
 
-                    <td className="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6">
+                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       {item?.check_in} & {item?.check_out} <br />{" "}
                       {item?.adults} adults {item?.children} children{" "}
                       {item?.no_of_pet} pet
                     </td>
-                    <td className="whitespace-no-wrap py-4 px-6 text-right text-sm text-gray-600 lg:text-left">
+                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       {item?.price}
                     </td>
-                    <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
+                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       <td
                         className={`inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${item?.booking_status === "completed"
                           ? "bg-green-600"
@@ -115,7 +117,7 @@ export default function index() {
                         {item?.booking_status}
                       </td>
                     </td>
-                    <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
+                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       <Image
                         width={50}
                         height={50}
@@ -180,6 +182,8 @@ export default function index() {
                 ))}
               </tbody>
             </table>
+        </div>
+        </div>
         </div>
           ) : (
             <Nodata text={"No Booking "} />
