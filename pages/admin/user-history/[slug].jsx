@@ -31,11 +31,23 @@ function index() {
 
   return (
     <AdminLayout heading={"User Details  "}>
-      <div className="antialiased mt-36 mt-24">
-        <div className="container mx-auto my-20">
-          <div className="h-60 w-full  rounded-lg"></div>
-          <div>
-            <div className=" relative bg-indigo-300 pb-6 shadow rounded-lg w-5/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto">
+
+
+      <div className="antialiased mt-16">
+        <div className="container mx-auto profile-payment">
+          <div className="h-60 w-full profile-cover" >
+          <Image
+          blurDataURL="/images/profile-cover-img.jpg?q=1"
+            src="/images/profile-cover-img.jpg"
+            alt="Description of image"
+         className="profile-cover-image"
+            loading="lazy"
+            width={10000}
+            height={1000}
+          />
+          </div>
+          <div >
+            <div className=" relative  pb-6 rounded-lg  mx-auto">
               <div className="flex justify-center">
                 <Image
                   src={
