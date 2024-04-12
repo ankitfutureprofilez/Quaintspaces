@@ -17,6 +17,8 @@ const propertyTypes = [
   { value: "boutique_hotel", label: "Boutique Hotel" }
 ];
 
+
+
 export default function Property(props) {
 
   const { isEdit, p, onClose, fetchProperties } = props;
@@ -316,14 +318,15 @@ export default function Property(props) {
               {/* {typeHere === "entire_place" ?  <> */}
               <h2 className="text-3xl text-center mt-4 font-bold mb-8" >Which of these best describes your place?</h2>
               <div className="grid grid-cols-3 gap-4  " >
-                {propertyTypes && propertyTypes.map((p, i) => {
-                  return <div className="" >
-                    <div onClick={() => setPType(p.value)} className={`${p.value === PType ? "bg-indigo-500" : ""} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
-                      <House size="52" color={p.value === PType ? "#ffffff" : "#dedede"} />
-                      <h2 className={`${p.value === PType ? "text-gray-100" : "text-gray-400"} text-xl mt-4 font-normal `} >{p.label}</h2>
-                    </div>
-                  </div>
-                })}
+              {propertyTypes && propertyTypes.map((p, i) => (
+              <div key={i} className="">
+              <div onClick={() => setPType(p.value)} className={`${p.value === PType ? "bg-indigo-500" : ""} block property-type-wrap cursor-pointer p-4 border rounded-xl`}>
+               {p.icon}
+              <h2 className={`${p.value === PType ? "text-gray-100" : "text-gray-400"} text-xl mt-4 font-normal`}>{p.label}</h2>
+               </div>
+               </div>
+                   ))}
+
               </div>
               {/* </> : '' } */}
             </div>
