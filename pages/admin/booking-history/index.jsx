@@ -96,10 +96,13 @@ export default function index() {
                     </td>
 
                     <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
-                      {item?.check_in} & {item?.check_out} <br />{" "}
-                      {item?.adults} adults {item?.children} children{" "}
-                      {item?.no_of_pet} pet
-                    </td>
+  <div className ="flex flex-wrap justify-center-between" >
+    <Dateformat item={item?.check_in} />&nbsp;&ndash;&nbsp;<Dateformat item={item?.check_out} />
+  </div>
+    <br />
+    {item?.adults} adults {item?.children} children {item?.no_of_pet} pet
+</td>
+
                     <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       {item?.price}
                     </td>
@@ -118,17 +121,20 @@ export default function index() {
                       </td>
                     </td>
                     <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
-                      <Image
-                        width={50}
-                        height={50}
-                        className="inline-flex items-center rounded-full "
-                        src={item?.front_url}
-                        alt="Document Image"
-                      />
-                      <div className="inline-flex items-center rounded-full">
-                        {item?.doc_type}
-                      </div>
-                    </td>
+  <div className="flex items-center">
+    <Image
+      width={50}
+      height={50}
+      className="inline-flex items-center rounded-full ml-2"
+      src={item?.front_url}
+      alt="Document Image"
+    />
+    <div className="inline-flex items-center rounded-full ml-2">
+      {item?.doc_type}
+    </div>
+  </div>
+</td>
+
 
                     <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                       <td
