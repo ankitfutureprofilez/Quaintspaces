@@ -45,7 +45,7 @@ const Card = ({ post }) => {
           alt="Property cover image"
         />
         <div className="flat-info">
-          <h5 className="line-limit">
+          <h2 className="line-limit">
             {/* {textResizer(
             post &&
               post.location &&
@@ -54,7 +54,7 @@ const Card = ({ post }) => {
           )} */}
             {record?.location}
             {/* {post?.location} */}
-          </h5>
+          </h2>
           <h3 className="line-limit" style={{ WebkitLineClamp: 1 }}>
             {capitalizeFirstLetter(post?.name)}
           </h3>
