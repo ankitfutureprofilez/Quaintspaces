@@ -12,6 +12,7 @@ import Footer from "../../components/Footer";
 import { getParams } from "../../utils/handlers";
 import postsData from "../../bot/data.json";
 import Heading from "../elements/Heading";
+import Moment from 'moment';
 import Image from "next/image";
 import Button from "../elements/Button";
 import Listings from "../api/laravel/Listings";
@@ -40,14 +41,16 @@ const Book = () => {
   const [pricerate, setPriceRate] = useState(0);
   const [orderId, setOrderId] = useState('');
 
+  const recorddate =  Moment(new Date())?.format("DD-MM-YYYY");
   const [formData, setFormData] = useState({
     selectOption: "",
     fornt: null,
     message: "",
     phone: "",
-    date: new Date(),
-    razorpay_order_id: orderId
+    date: recorddate,
   });
+
+  console.log("formData",formData)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -114,6 +117,7 @@ const Book = () => {
   }, [infos.checkout, infos.checkin, listing]);
 
   const handleSubmit = () => {
+    if(formData.fornt)
     if (formData.phone.length === 0) {
       toast.error("Phone Number is required");
       return;
@@ -205,7 +209,7 @@ const Book = () => {
     record.append("front_doc", formData.fornt);
     record.append("no_of_pet", infos.numberOfPets);
     record.append("phone_no", formData.phone);
-    record.append("razorpay_order_id", orderId);
+    record.append("razorpay_order_id", formData.razorpay_order_id);
     record.append(
       "price",
       infos.checkout && infos.checkin &&
