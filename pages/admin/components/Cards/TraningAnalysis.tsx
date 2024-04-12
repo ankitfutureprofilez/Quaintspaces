@@ -16,11 +16,10 @@ function TraningAnalysis({data}) {
                 <div className='flex items-center text-sm gap-2'>
                     {/* <Diagram size={18} /> */}
                     <Profile2User size="18" color="#FF8A65"/>
-                    <p className='text-gray-800 font-medium'>Users </p>
+                    <p className='text-gray-800 font-medium'>Users {{data?.total_user}}</p>
                 </div>
                 <button className='border px-2 py-1 rounded-lg text-xs'>
                     <Link href="/admin/user-history">
-
                     Details
                     </Link>
                 </button>
@@ -31,29 +30,29 @@ function TraningAnalysis({data}) {
                 <div className='space-y-4'>
                     <div className="flex justify-between mr-3">
                         <div className="mr-2 text-center">
-                            <p className='text-sm text-gray-800 font-medium'>All User </p>
                             <p className='text-xs '>{data?.total_user}</p>
+                            <p className='text-sm text-gray-800 font-medium'>All User </p>
                         </div>
                         <div className="mr-2 text-center">
-                            <p className='text-sm text-gray-800 font-medium'>Active  User</p>
                             <p className='text-xs'>{data?.activate}</p>
+                            <p className='text-sm text-gray-800 font-medium'>Active  User</p>
 
                         </div>
                         <div className="mr-2 text-center">
-                            <p className='text-sm text-gray-800 font-medium'>DeActived User </p>
                             <p className='text-xs'>{data?.deactivate}</p>
+                            <p className='text-sm text-gray-800 font-medium'>DeActived User </p>
 
                         </div>
                     </div>
                     {/* attendees */}
-                    <div className='flex items-center gap-1'>
+                    {/* <div className='flex items-center gap-1'>
                         <div className='flex group'>
                             <Image src={Avatar1} alt='user1' height={20} width={20} className='outline outline-white rounded-full -ml-0.5 group-hover:ml-0 duration-200' />
                             <Image src={Avatar2} alt='user2' height={20} width={20} className='outline outline-white rounded-full -ml-0.5 group-hover:ml-0 duration-200' />
                             <Image src={Avatar3} alt='user3' height={20} width={20} className='outline outline-white rounded-full -ml-0.5 group-hover:ml-0 duration-200' />
                         </div>
                         <p className='text-xxs'>26 Attended</p>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* graph */}
