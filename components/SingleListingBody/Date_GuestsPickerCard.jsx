@@ -49,10 +49,10 @@ const Date_GuestsPickerCard = React.forwardRef(
                     <Star />
                     {parseFloat( listing?.rating && listing?.rating?.toFixed(2))}
                   </span>
-                  <span>·</span>
+                  {/* <span>·</span>
                   <span className="underline">
                     {listing?.review || 0} reviews
-                  </span>
+                  </span> */}
                 </span>
               </div>
 
