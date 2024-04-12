@@ -622,11 +622,7 @@ export default function Property(props) {
               <h2 className="text-3xl text-center font-bold mb-2" >Add some photos of your {PType ? PType.replace("_", ' ') : "house"}</h2>
               <p className="text-normal text-center text-gray-500 mb-8" >You'll need 5 photos to get started. You can add more or make changes later.</p>
 
-
-
-
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4  mt-16 ">
-
                 {isEdit ? (
                   imageproperty?.map((item, index) => (
                     <div key={index} className="relative isedits">
