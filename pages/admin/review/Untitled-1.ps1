@@ -39,6 +39,7 @@
                                             <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                                 {content && content.length > 0 ? (
                                                     content &&
+                                                    
                                                     content.map((item, index) => {
                                                         return (
                                                             <tr key={index}>
