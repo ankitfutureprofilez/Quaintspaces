@@ -30,7 +30,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
             {listing?.data?.property_image?.length > 0 && (
               <Image  placeholder="blur" blurDataURL={`${listing?.data?.property_image[0]?.image_url}?q=1`}
                 src={listing?.data?.property_image[0]?.image_url}
-                alt=""
+                alt="Property Image"
                 layout="fill"
                 objectFit="cover"
                 loading="lazy"
@@ -53,7 +53,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
               {listing?.data?.property_image?.length > 0 && (
                 <Image  blurDataURL={`${e?.image_url}?q=1`}
                   src={e?.image_url}
-                  alt=""
+                  alt="Property Image"
                   layout="fill"
                   objectFit="cover"
                   loading="lazy"
@@ -75,7 +75,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
           >
              <Image  blurDataURL={`${listing?.data?.property_image[1]?.image_url}?q=1`}
                   src={listing?.data?.property_image[1]?.image_url}
-                  alt=""
+                  alt="Property Image"
                   layout="fill"
                   objectFit="cover"
                   loading="lazy"
@@ -97,7 +97,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
               {listing?.data?.property_image?.length > 0 && (
                 <Image   blurDataURL={`${e?.image_url}?q=1`}
                 src={e?.image_url}
-                  alt=""
+                  alt="Property Image"
                   layout="fill"
                   objectFit="cover"
                   loading="lazy"

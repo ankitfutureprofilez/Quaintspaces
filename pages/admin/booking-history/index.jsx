@@ -122,6 +122,7 @@ export default function index() {
                         height={50}
                         className="inline-flex items-center rounded-full "
                         src={item?.front_url}
+                        alt="Document Image"
                       />
                       <div className="inline-flex items-center rounded-full">
                         {item?.doc_type}

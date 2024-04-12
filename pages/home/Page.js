@@ -19,11 +19,11 @@ export default function MainPage() {
           <Image
           blurDataURL="/images/HeaderImg.png?q=1"
             src="/images/HeaderImg.png"
-            alt="Description of image"
+            alt="QUAINTSPACES JAIPUR Background"
             layout="fill"
             objectFit="cover"
             style={{ zIndex: -1 }}
-            loading="lazy"
+            priority="true"
           />
           <HeroBanner />
         </div>

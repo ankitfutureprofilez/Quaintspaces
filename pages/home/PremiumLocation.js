@@ -86,11 +86,13 @@ export default function PremiumLocation() {
           <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19.0941 13.5428H0.314991V10.4572L19.0941 10.4572L10.8185 2.18154L13 0L25 12L13 24L10.8185 21.8185L19.0941 13.5428Z" fill="white"/>
         </svg>
+        <span className='hidden'>Next Button</span>
           </button>
           <button className="absolute -left-5 z-10 transform -translate-y-1/2 bg-gray-900 bg-opacity-50 text-white px-2 py-1 rounded-r" onClick={slidePrev}>
         <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M5.90589 13.5428H24.685V10.4572L5.90589 10.4572L14.1815 2.18154L12 0L0 12L12 24L14.1815 21.8185L5.90589 13.5428Z" fill="white"/>
         </svg>
+        <span className='hidden'>Previous Button</span>
           </button>
         </div>
       </div>

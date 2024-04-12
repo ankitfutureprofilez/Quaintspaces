@@ -105,7 +105,7 @@ export default function payment({ record }) {
                             <Image
                               className="object-cover w-8 h-8 rounded-full"
                               src={item?.booking_user?.image_url}
-                              alt=""
+                              alt="User"
                               width={32}
                               height={32}
                             />
@@ -125,6 +125,7 @@ export default function payment({ record }) {
                             width={40}
                             height={40}
                             className="inline-flex items-center rounded-full "
+                            alt="Document"
                             src={item?.front_url}
                           />
                           <div className="inline-flex items-center rounded-full">

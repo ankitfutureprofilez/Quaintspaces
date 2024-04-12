@@ -59,7 +59,7 @@ export default function Index() {
             height={35}
             className="top-2 right-2 p-1 rounded-full"
             src={item?.booking_history?.booking_user[0]?.image_url}
-            alt={"0"}
+            alt="User Image"
           />
           <div>
             <div className="text-gray-800 font-medium">{item?.booking_history?.booking_user[0]?.name}</div>
@@ -75,7 +75,7 @@ export default function Index() {
             height={35}
             className="top-2 right-2 p-1 rounded-full"
             src={item?.booking_history?.booking_property?.property_image[0]?.image_url}
-            alt={"0"}
+            alt="Property"
           />
           <div>
             <div className="text-gray-800 font-medium">{item?.booking_history?.booking_property?.name}</div>

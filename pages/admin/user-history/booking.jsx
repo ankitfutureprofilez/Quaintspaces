@@ -66,7 +66,7 @@ export default function Booking(props) {
                  <div className="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">{item?.booking_status}</div>
                </td>
                <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                   <Image  width={40} height={40 } className= "inline-flex items-center rounded-full " src={item?.front_url}/>
+                   <Image  width={40} height={40 } alt="Document" className= "inline-flex items-center rounded-full " src={item?.front_url}/>
                <div className="inline-flex items-center rounded-full">{item?.doc_type}</div>
                </td>
              </tr>
