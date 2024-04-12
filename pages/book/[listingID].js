@@ -142,6 +142,7 @@ const Book = () => {
     main.PropertyBooking(record)
       .then((res) => {
         if (res && res?.data && res?.data?.orderId) {
+          console.log("res?.data?.orderId",res?.data?.orderId)
           setOrderId(res?.data?.orderId);
           const options = {
             key: RAZOPAY_KEY,
@@ -151,8 +152,10 @@ const Book = () => {
             description: 'Payment for services',
             order_id: res?.data?.orderId,
             handler: function (response) {
+              console.log("response?",response)
+              console.log("response?.razorpay_order_id",response?.razorpay_order_id)
               toast.success('Payment Successful');
-              setOrderId(response?.razorpay_order_id);
+              // setOrderId(response?.razorpay_order_id);
               setFormData(prevState => ({
                 ...prevState,
                 razorpay_order_id: response?.razorpay_order_id
@@ -174,13 +177,15 @@ const Book = () => {
           };
           const rzp = new Razorpay(options);
           rzp.on("payment.failed", function (response) {
-            setOrderId(response?.error?.metadata?.order_id);
+            console.log("response?",response)
+            console.log("response?.razorpay_order_id",response?.razorpay_order_id)
+            // setOrderId(response?.error?.metadata?.order_id);
             setFormData(prevState => ({
               ...prevState,
               razorpay_order_id: response?.razorpay_order_id
             }));
             paymentsubmit();
-            router.push(`/cancel/${razorpays}`);
+            router.push(`/cancel/${listingID}`);
             toast.error('Payment Failed');
           });
           rzp.open();
