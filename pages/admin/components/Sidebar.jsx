@@ -167,13 +167,13 @@ function Sidebar() {
               Payment History  
             </Link>
             <Link
-              href={"/admin/messages"}
+              href={"/admin/enquiry"}
               className={`flex ${
-                pathname === "/admin/user" ? "text-primary" : ""
+                pathname === "/admin/enquiry" ? "text-primary" : ""
               } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
             >
             <Message size="16"/>
-              User Messages
+              Enquiry
             </Link>
 
           

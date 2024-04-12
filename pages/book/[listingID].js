@@ -31,6 +31,7 @@ const Book = () => {
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
   const [guestsModel, setGuestsModel] = useState(false);
+  const[guests , setGuests ] =useState()
   const [loading, setLoading] = useState(false);
   const [numberField, setNumberField] = useState(false);
   const [hasAddedNumber, setHasAddedNumber] = useState(false);
@@ -44,6 +45,7 @@ const Book = () => {
     fornt: null,
     message: "",
     phone: "",
+    date: new Date(),
     razorpay_order_id: orderId
   });
 
@@ -131,6 +133,7 @@ const Book = () => {
       +listing?.price * differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
     );
     record.append("currency", "INR");
+    record.append("payment_date" ,formData?.date)
 
     main.PropertyBooking(record)
       .then((res) => {
@@ -183,7 +186,7 @@ const Book = () => {
 
       })
       .catch((error) => {
-        Errors(error);
+        // Errors(error);
         toast.error('Error creating order');
       })
       .finally(() => setLoading(false));
@@ -217,7 +220,7 @@ const Book = () => {
         }
       })
       .catch((error) => {
-        Errors(error);
+        // Errors(error);
       })
       .finally(() => setLoading(false));
   };
