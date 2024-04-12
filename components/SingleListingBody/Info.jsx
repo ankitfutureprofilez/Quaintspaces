@@ -8,7 +8,7 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
   const [amenitiesModal, setAmenitiesModal] = useState(false);
 
   function capitalizeAndReplace(inputString) {
-    let words =inputString &&  inputString?.split("_");
+    let words = inputString && inputString?.split("_");
     for (let i = 0; i < words?.length; i++) {
       words[i] = words[i]?.charAt(0)?.toUpperCase() + words[i]?.slice(1);
     }
@@ -77,8 +77,9 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                   className="underline text-md font-medium cursor-pointer"
                   onClick={handleClick}
                 >
-                  {(listing && listing?.data && listing?.data?.review) || 0}{" "}
-                  review
+                  {listing && listing.data && listing.data.review > 0 ? (
+                    <>{listing.data.review} review</>
+                  ) : null}
                 </span>
               </div>
             </>
@@ -96,30 +97,32 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
       </div>
       <div className="py-8" ref={ref}>
         <h1 className="text-2xl mb-4 font-semibold">What this place offers?</h1>
-        <ul className="block md:flex flex-wrap">
+        {/* <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="flex">
+            01
+            </div>
+        </div> */}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {listing?.data?.amenities &&
             listing?.data?.amenities
               ?.split(",")
-              ?.slice(0, 4) // Limit to first 4 elements
+              ?.slice(0, 6) // Limit to first 6 elements
               ?.map((amenity) => (
-                <li
-                  className="w-[calc(100%/2-10px)] flex gap-2 my-2 py-2 md:py-0"
-                  key={amenity?.trim()}
-                >
+                <div className="flex items-center mt-4" key={amenity?.trim()}>
                   <Image
                     src={`/icons/${amenity
                       ?.toLowerCase()
                       ?.trim()
                       ?.replaceAll(" ", "_")}.png`}
                     alt="amenity icon"
-                    width={24} // adjust width as needed
-                    height={24} // adjust height as needed
-                    className="w-6 h-6 mt-1"
+                    width={24}
+                    height={24}
+                    className="w-6 h-6"
                   />
-                  {formatAmenities(amenity)}
-                </li>
+                  <span className="ms-1">{formatAmenities(amenity)}</span>
+                </div>
               ))}
-        </ul>
+        </div>
 
         <button
           className="btn-normal mt-8"

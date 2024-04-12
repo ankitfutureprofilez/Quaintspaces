@@ -1,6 +1,7 @@
 import DateComponent from "../../pages/admin/hook/Dateformat";
 import { textResizer } from "../../utils/handlers";
 import Image from "next/image";
+import StartRating from "../../pages/elements/StartRating";
 
 const ReviewCard = ({ data }) => {
   const date = new Date(data?.created_at);
@@ -10,22 +11,25 @@ const ReviewCard = ({ data }) => {
   // reviewtime+=" ,"+ date.getFullYear();
 
   // Stars
-  let stars = "";
-  for (let i = 0; i < data?.rating; i++) {
-    stars += "⭐"; // Add a star for each rating value
-  }
+  // let stars = [];
+  // for (let i = 0; i < data?.rating; i++) {
+  //   stars.push(<Star1 size="16" color="#ffc107" variant="Bold"/>);
+  // }
+  // for (let i = 0; i < 5-data?.rating; i++) {
+  //   stars.push(<Star1 key={i} size="16" color="#000000" />);
+  // }
   return (
     <div>
       <header className="flex gap-2 items-center">
-        <div className="w-12 h-12 bg-borderColor rounded-full">
+        <div className="w-12 h-12 bg-borderColor overflow-hidden bg-gray-200 rounded-[50%] border border-gray-300">
           <Image
-            src={data?.rating_user?.image_url}
+            src={data?.rating_user?.image_url || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
             alt="User Image"
             // layout="fill"
             width={100}
             height={100}
             objectFit="cover"
-            className="rounded-full w-full h-full object-cover"
+            className=" w-full h-full object-cover"
             loading="lazy"
           />
           {/* <img
@@ -35,15 +39,18 @@ const ReviewCard = ({ data }) => {
           /> */}
         </div>
         <div>
-          <h1 className="text-md font-medium">{data?.rating_user?.name} </h1>
-          <h1 className="text-sm text-lightTextColor">{data?.createdAt}</h1>
-          <h1 className="text-sm text-lightTextColor">{stars}</h1>
+          <p className="text-md font-medium">{data?.rating_user?.name} </p>
+          <p className="text-sm text-lightTextColor">{data?.createdAt}</p>
+          
         </div>
       </header>
       <div className="mt-4">
         <p className="text-blackColor text-md leading-7">
           {textResizer(data?.review_text, 210)}
         </p>
+      <p className="text-sm text-lightTextColor flex">
+            <StartRating size={15} value={data?.rating} />
+          </p>
         <span className="text-red-500 text-xs">
           {data && data?.status == 0
             ? "Your review is not approved yet. Currently only you can see this."
