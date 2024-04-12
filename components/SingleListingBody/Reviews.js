@@ -93,8 +93,9 @@ const Reviews = React.forwardRef(({ data }, ref) => {
         <span>
           {parseFloat(data && data?.rating && data?.rating?.toFixed(2))}
         </span>
-        <span> · </span>
-        <span>{data?.review} reviews</span>
+          <span>
+            {data?.review ? <>· <span>{data?.review} reviews</span></> : ''}
+          </span>
       </h1>
 
       <div className="flex flex-wrap gap-0 md:gap-10 mb-10">
