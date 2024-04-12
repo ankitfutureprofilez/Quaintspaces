@@ -205,7 +205,6 @@ const Book = () => {
     record.append("adults", infos.numberOfAdults);
     record.append("infants", infos.numberOfInfants);
     record.append("children", infos.numberOfChildren);
-    
     record.append("doc_type", formData.selectOption);
     record.append("front_doc", formData.fornt);
     record.append("no_of_pet", infos.numberOfPets);

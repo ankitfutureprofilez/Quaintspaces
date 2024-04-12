@@ -51,11 +51,10 @@ export default function index() {
 
   return (
     <AdminLayout heading={"Booking Management"}>
-      <div className="mx-auto mt-8 ">
-        <div className="mt-6 overflow-hidden rounded-xl border shadow">
           {loading ? (
             <Spinner />
           ) : content && content.length > 0 ? (
+            <div className="mt-6 overflow-hidden rounded-xl border shadow">
             <table className="min-w-[1200px] w-full border-separate border-spacing-y-2 border-spacing-x-2">
               <thead className="hidden border-b lg:table-header-group">
                 <tr className="">
@@ -181,11 +180,10 @@ export default function index() {
                 ))}
               </tbody>
             </table>
+        </div>
           ) : (
             <Nodata text={"No Booking "} />
           )}
-        </div>
-      </div>
     </AdminLayout>
   );
 }
