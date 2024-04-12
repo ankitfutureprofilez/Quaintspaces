@@ -16,7 +16,7 @@ function TraningAnalysis({data}) {
                 <div className='flex items-center text-sm gap-2'>
                     {/* <Diagram size={18} /> */}
                     <Profile2User size="18" color="#FF8A65"/>
-                    <p className='text-gray-800 font-medium'>Users {{data?.total_user}}</p>
+                    <p className='text-gray-800 font-medium'>Users {data?.total_user}</p>
                 </div>
                 <button className='border px-2 py-1 rounded-lg text-xs'>
                     <Link href="/admin/user-history">
