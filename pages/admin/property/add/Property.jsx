@@ -209,8 +209,34 @@ export default function Property(props) {
   };
 
 
-  // console.log("locationupdate", locationupdate)
+  const fetchLocation = async () => {
+    const formattedAddress = `${address.street_address}, ${address.nearby}, ${address.district}, ${address.city}, ${address.state}, ${address.pin}`;
+    try {
+      const response = await axios.get(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(formattedAddress)}&key=AIzaSyDzPG91wtUKY3vd_iD3QWorkUCSdofTS58`
+      );
+      const { results } = response.data;
+      if (results && results.length > 0) {
+        setAddress({ ...address, location:results[0]?.formatted_address, latitude: results[0]?.geometry?.location?.lat, longitude: results[0]?.geometry?.location?.lng });
+      }
+    } catch (error) {
+      console.error("Error fetching location:", error);
+    }
+  };
 
+  useEffect(() => {
+    const isAddressComplete =
+      address.street_address &&
+      address.nearby &&
+      address.district &&
+      address.city &&
+      address.state &&
+      address.pin;
+
+    if (isAddressComplete) {
+      fetchLocation();
+    }
+  }, [address.street_address, address.nearby, address.district, address.city, address.state, address.pin]);
   const [imageproperty, setImagesproperty] = useState(property_image);
 
   const deletePropertyImage = (recordUUID, itemUUID) => {
@@ -733,16 +759,16 @@ export default function Property(props) {
 
 
             <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
-              {step==1?
-              <button
-              type="button"
-              onClick={prevStep}
-              className="inline-flex justify-center items-center h-10 py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" >
-              Back
-            </button>
-              :
-              null
-              }
+            {step === 1 && (
+  <button
+    type="button"
+    onClick={prevStep}
+    className="inline-flex justify-center items-center h-10 py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+  >
+    Back
+  </button>
+)}
+
               {step < 5 ? (
                 <button
                   type="button"

@@ -40,6 +40,7 @@ const Book = () => {
   const [pricerate, setPriceRate] = useState(0);
   const [orderId, setOrderId] = useState('');
 
+  console.log("orderId",orderId)
   const recorddate =  Moment(new Date())?.format("DD-MM-YYYY");
   const [formData, setFormData] = useState({
     selectOption: "",
@@ -196,12 +197,36 @@ const Book = () => {
     }
   }, [infos.checkout, infos.checkin, listing]);
 
+  //   record.append("front_doc", formData.fornt);
+  //   record.append("no_of_pet", infos.numberOfPets);
+  //   record.append("phone_no", formData.phone);
+  //   record.append("razorpay_order_id", orderId); 
+  //   record.append(
+  //     "price",
+  //     infos.checkout && infos.checkin &&
+  //     +listing?.price * differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
+  //   );
+  //   main.bookingpayment(record)
+  //     .then((res) => {
+  //       if (res) {
+  //         toast.success(res?.data?.message);
+  //       } else {
+  //         toast.error(res?.data?.message);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       // Errors(error);
+  //     })
+  //     .finally(() => setLoading(false));
+  // };
+
+
   const handleSubmit = () => {
-    if(!formData.selectOption){
+    if (!formData.selectOption) {
       toast.error("Document type is required");
       return;
     }
-    if(!formData.fornt){
+    if (!formData.fornt) {
       toast.error("Document is required");
       return;
     }
@@ -214,7 +239,7 @@ const Book = () => {
       return;
     }
     if (loading) return;
-
+  
     setLoading(true);
     const main = new Listings();
     const record = new FormData();
@@ -224,13 +249,11 @@ const Book = () => {
       +listing?.price * differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
     );
     record.append("currency", "INR");
-    record.append("payment_date" ,formData?.date)
-
+    record.append("payment_date", formData?.date);
+  
     main.PropertyBooking(record)
       .then((res) => {
         if (res && res?.data && res?.data?.orderId) {
-          console.log("res?.data?.orderId",res?.data?.orderId)
-          setOrderId(res?.data?.orderId);
           const options = {
             key: RAZOPAY_KEY,
             amount: 1000,
@@ -239,16 +262,10 @@ const Book = () => {
             description: 'Payment for services',
             order_id: res?.data?.orderId,
             handler: function (response) {
-              console.log("response?",response)
-              console.log("response?.razorpay_order_id",response?.razorpay_order_id)
               toast.success('Payment Successful');
-              // setOrderId(response?.razorpay_order_id);
-              setFormData(prevState => ({
-                ...prevState,
-                razorpay_order_id: response?.razorpay_order_id
-              }));
-              paymentsubmit();
-              router.push(`/success/${listingID}`)
+              setOrderId(res?.data?.orderId); 
+              paymentsubmit(res?.data?.orderId);
+              router.push(`/success/${listingID}`);
             },
             prefill: {
               name: 'Customer Name',
@@ -264,14 +281,7 @@ const Book = () => {
           };
           const rzp = new Razorpay(options);
           rzp.on("payment.failed", function (response) {
-            console.log("response?",response)
-            console.log("response?.razorpay_order_id",response?.razorpay_order_id)
-            // setOrderId(response?.error?.metadata?.order_id);
-            setFormData(prevState => ({
-              ...prevState,
-              razorpay_order_id: response?.razorpay_order_id
-            }));
-            paymentsubmit();
+            paymentsubmit(res?.data?.orderId); 
             router.push(`/cancel/${listingID}`);
             toast.error('Payment Failed');
           });
@@ -279,7 +289,6 @@ const Book = () => {
         } else {
           toast.error(res?.data?.message || "Failed to create order");
         }
-
       })
       .catch((error) => {
         // Errors(error);
@@ -287,8 +296,8 @@ const Book = () => {
       })
       .finally(() => setLoading(false));
   };
-
-  const paymentsubmit = () => {
+  
+  const paymentsubmit = (orderId) => { // Receive orderId as a parameter
     const main = new Listings();
     const record = new FormData();
     record.append("property_uid", listingID);
@@ -301,7 +310,7 @@ const Book = () => {
     record.append("front_doc", formData.fornt);
     record.append("no_of_pet", infos.numberOfPets);
     record.append("phone_no", formData.phone);
-    record.append("razorpay_order_id", formData.razorpay_order_id);
+    record.append("razorpay_order_id", orderId); 
     record.append(
       "price",
       infos.checkout && infos.checkin &&
@@ -320,6 +329,7 @@ const Book = () => {
       })
       .finally(() => setLoading(false));
   };
+  
   return (
     <AuthLayout>
     <div>
