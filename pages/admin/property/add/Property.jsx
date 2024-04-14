@@ -785,9 +785,6 @@ export default function Property(props) {
                 </button>
               )}
             </div>
-
-
-
           </div>
         </div>
       </div>
