@@ -259,8 +259,11 @@ const Book = () => {
             description: "Payment for services",
             order_id: res?.data?.orderId,
             handler: function (response) {
+              console.log("response",response)
               toast.success("Payment Successful");
               setOrderId(res?.data?.orderId);
+              // return false;
+              localStorage && localStorage.setItem("response",  JSON.stringify(response))
               paymentsubmit(res?.data?.orderId);
               router.push(`/success/${listingID}`);
             },

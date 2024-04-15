@@ -66,6 +66,10 @@ class Listings extends Component {
     return Api.get("/user-payment-history");
   }
 
+  async user_success_payment(data) {
+    return Api.post("/user-success-payment",data);
+  }
+
   render() {
     return (
       <div>
