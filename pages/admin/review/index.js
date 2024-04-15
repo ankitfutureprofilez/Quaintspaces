@@ -59,11 +59,10 @@ export default function Index() {
             });
     };
 
-    console.log("content", content);
 
     return (
         <>
-            <AdminLayout>
+            <AdminLayout heading ={"Review "}>
                 <section className=" p-4 ">
                     <div className="flex flex-col">
                         {loading ? (
@@ -74,16 +73,16 @@ export default function Index() {
                             <div className="overflow-x-auto">
                                 <div className="inline-block align-middle">
                                     <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
-                                        <table className="min-w-full table-auto divide-y divide-gray-200 dark:divide-gray-700">
+                                        <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
                                             <thead className="bg-gray-50 dark:bg-gray-800">
                                                 <tr>
                                                     <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400 "
                                                     >
                                                         Review Date
                                                     </th>
                                                     <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400 "
                                                     >
                                                         User
                                                     </th>
@@ -93,17 +92,17 @@ export default function Index() {
                                                         Description
                                                     </th>
                                                     <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400 "
                                                     >
                                                         Property
                                                     </th>
                                                     <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400 "
                                                     >
                                                         Status
                                                     </th>
                                                     <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400 "
                                                     >
                                                         Actions
                                                     </th>
@@ -123,7 +122,7 @@ export default function Index() {
                                                                         <Image
                                                                             className="object-cover w-8 h-8 rounded-full"
                                                                             src={item?.rating_user?.image_url}
-                                                                            alt="User"
+                                                                            alt=""
                                                                             width={32}
                                                                             height={32}
                                                                         />
@@ -138,7 +137,7 @@ export default function Index() {
                                                                         </div>
                                                                     </div>
                                                                 </td>
-                                                                <td className="break-after-auto px-4 py-4 text-sm text-gray-500 dark:text-gray-300 w-[25%] truncate">
+                                                                <td className="break-after-auto px-4 py-4 text-sm text-gray-500 dark:text-gray-300 w-[25%] ">
                                                                     {item?.review_text}
                                                                 </td>
 
@@ -154,7 +153,7 @@ export default function Index() {
                                                                                     item?.get_property_review
                                                                                         ?.property_image[0]?.image_url
                                                                                 }
-                                                                                alt="Property Cover"
+                                                                                alt=""
                                                                                 width={32}
                                                                                 height={32}
                                                                             />
@@ -172,7 +171,7 @@ export default function Index() {
                                                                 </td>
                                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                                                                     {item?.status === 1 ? (
-                                                                        <div className="flex flex-wrap">
+                                                                        <div className="flex flex-wrap w-24">
                                                                             <svg
                                                                                 className="text-emerald-500"
                                                                                 xmlns="http://www.w3.org/2000/svg"
@@ -189,7 +188,7 @@ export default function Index() {
                                                                             <p>Accepted </p>
                                                                         </div>
                                                                     ) : (
-                                                                        <div className="flex flex-wrap">
+                                                                        <div className="flex flex-wrap w-20">
                                                                             <p>Rejected</p>
 
                                                                             <svg
@@ -212,7 +211,7 @@ export default function Index() {
                                                                         </div>
                                                                     )}
                                                                 </td>
-                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 w-28 ">
                                                                     <div
                                                                         onClick={() =>
                                                                             acceptReview(
@@ -221,7 +220,7 @@ export default function Index() {
                                                                                 item.status === 0 ? 1 : ""
                                                                             )
                                                                         }
-                                                                        className="cursor-pointer text-green-500 flex items-center gap-2 border rounded-full p-2 mb-2"
+                                                                        className="cursor-pointer text-green-500 flex items-center gap-2 w-28 border rounded-full p-2 mb-2 flex justify-center"
                                                                     >
                                                                         Accepted
                                                                         <svg
@@ -246,7 +245,7 @@ export default function Index() {
                                                                                 item.status === 1 ? 0 : ""
                                                                             )
                                                                         }
-                                                                        className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-2"
+                                                                        className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-2 flex justify-center w-28"
                                                                     >
                                                                         <svg
                                                                             className="text-red-400"

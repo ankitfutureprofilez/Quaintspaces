@@ -30,7 +30,7 @@ export default function Index() {
 
   return (
     <>
-      <AdminLayout heading="User Messages">
+      <AdminLayout heading="Enquiry ">
         <section className=" p-4 ">
           <div className="flex flex-col">
             {loading ? (
@@ -38,28 +38,24 @@ export default function Index() {
                 <Loading />
               </div>
             ) : (
-              <div className=" overflow-x-auto ">
-                <div className="inline-block  align-middle ">
+              <div className="w-full  overflow-x-auto ">
                   <div className="overflow-hidden border border-gray-200 md:rounded-lg">
                     <table className="min-w-[1200px] table-auto divide-y divide-gray-200">
                       <thead className="bg-gray-50">
                         <tr>
                           <th
-                            style={{ width: "20%" }}
                             scope="col"
                             className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
                           >
                             Message Date
                           </th>
                           <th
-                            style={{ width: "20%" }}
                             scope="col"
                             className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 "
                           >
                             User
                           </th>
                           <th
-                            style={{ width: "60%" }}
                             scope="col"
                             className="min-w-50 px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
                           >
@@ -103,7 +99,6 @@ export default function Index() {
                     </table>
                   </div>
                 </div>
-              </div>
             )}
           </div>
         </section>

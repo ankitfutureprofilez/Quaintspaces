@@ -32,28 +32,28 @@ export default function Index() {
         <Spinner/>
       ) : (
 
-<div className="">
-<div className="mx-auto mt-8 ">
-  <div className="mt-6 overflow-hidden rounded-xl border shadow">
+<div className="overflow-x-auto">
+                                <div className="inline-block align-middle">
+                                    <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
     {content && content.length > 0 ? (
 
-<table className="min-w-[1200px] w-full border-separate border-spacing-y-2 border-spacing-x-2">
-<thead className="hidden border-b lg:table-header-group">
+<table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
+<thead className="bg-gray-50 dark:bg-gray-800">
   <tr >
-    <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Payment Id </td>
-    <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Customer</td>
-    <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Purchase</td>
-    <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Method</td>
-    <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Status</td>
-    <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Amount</td>
+    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Payment Id </td>
+    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Customer</td>
+    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Purchase</td>
+    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Method</td>
+    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Status</td>
+    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Amount</td>
   </tr>
 </thead>
-<tbody className="lg:border-gray-300">
+<tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
   {content && content.map((item, index) => (
-    <tr className="" key={index}>
-      <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">{item?.payment_id}</td>
-      <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell ">
-        <div className="flex gap-2 items-center w-1/4 text-sm p-2 ">
+    <tr key={index}>
+      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">{item?.payment_id}</td>
+      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+        <div className="flex gap-2 items-center  text-sm p-2 ">
           <Image
             width={35}
             height={35}
@@ -68,8 +68,8 @@ export default function Index() {
         </div>
       </td>
 
-      <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell ">
-        <div className="flex gap-2 items-center w-1/4 text-sm p-2 ">
+      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+        <div className="items-center flex gap-2 text-sm p-2 ">
           <Image
             width={35}
             height={35}
@@ -83,8 +83,24 @@ export default function Index() {
           </div>
         </div>
       </td>
-      <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">{item?.method}</td>
-      <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">{item?.payment_status}</td>
+      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">{item?.method}</td>
+      <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
+        
+      <td
+                        className={`inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${item?.payment_status === "success"
+                          ? "bg-green-600"
+                          : item?.payment_status === "cancelled"
+                            ? "bg-red-600"
+                            : item?.payment_status === "confirm"
+                              ? "bg-green-600"
+                              : "bg-blue-600"
+                          }`}
+                      >
+        {item?.payment_status}
+                      </td>
+        
+        
+        </td>
      
       <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">{item?.price}</td>
      

@@ -1362,6 +1362,9 @@ button.submint-btn {
 }
 
 .empty-state__icon {
+  margin-top : 20px;
+  display :flex ;
+  justify-content: center;
   margin-bottom: 20px;
 }
 
@@ -1370,3 +1373,5 @@ button.submint-btn {
   color: #555;
 }
 
+img.profile-cover-image { width: 100%; height: 100%; object-fit: cover;     border-radius: 25px 25px 0 0; }
+.profile-payment { box-shadow: 0 0 25px -10px #ccc; padding: 0; border-radius: 30px; }

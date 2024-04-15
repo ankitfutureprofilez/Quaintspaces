@@ -5,7 +5,10 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { House, Add } from 'iconsax-react'
+import { FaBuilding, FaHome, FaBuildingO, FaDoorOpen, FaHotel, FaBed, FaCouch } from 'react-icons/fa';
+
 import Image from 'next/image';
+
 
 const propertyTypes = [
   { value: "flat", label: "Flat" },
@@ -22,6 +25,7 @@ export default function Property(props) {
   const { isEdit, p, onClose, fetchProperties } = props;
   const { uuid, location, children, adults, properties_type, name, no_of_pet_allowed, price, description, bedrooms, beds, bathrooms, amenities, property_image } = p ? p : {};
   // console.log("p", props.p);
+
 
   const router = useRouter();
   const [step, setStep] = useState(0);
@@ -82,7 +86,7 @@ export default function Property(props) {
     setItem({ ...item, [name]: value });
   };
 
-  
+
 
   const handleFileChange = async (e) => {
     let files = Array.from(e.target.files);
@@ -158,7 +162,7 @@ export default function Property(props) {
 
   // console.log("locationupdate", locationupdate)
 
-  
+
 
   const fetchLocationData = async () => {
     setLoading(true);
@@ -207,8 +211,34 @@ export default function Property(props) {
   };
 
 
-  // console.log("locationupdate", locationupdate)
+  const fetchLocation = async () => {
+    const formattedAddress = `${address.street_address}, ${address.nearby}, ${address.district}, ${address.city}, ${address.state}, ${address.pin}`;
+    try {
+      const response = await axios.get(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(formattedAddress)}&key=AIzaSyDzPG91wtUKY3vd_iD3QWorkUCSdofTS58`
+      );
+      const { results } = response.data;
+      if (results && results.length > 0) {
+        setAddress({ ...address, location: results[0]?.formatted_address, latitude: results[0]?.geometry?.location?.lat, longitude: results[0]?.geometry?.location?.lng });
+      }
+    } catch (error) {
+      console.error("Error fetching location:", error);
+    }
+  };
 
+  useEffect(() => {
+    const isAddressComplete =
+      address.street_address &&
+      address.nearby &&
+      address.district &&
+      address.city &&
+      address.state &&
+      address.pin;
+
+    if (isAddressComplete) {
+      fetchLocation();
+    }
+  }, [address.street_address, address.nearby, address.district, address.city, address.state, address.pin]);
   const [imageproperty, setImagesproperty] = useState(property_image);
 
   const deletePropertyImage = (recordUUID, itemUUID) => {
@@ -315,16 +345,25 @@ export default function Property(props) {
 
               {/* {typeHere === "entire_place" ?  <> */}
               <h2 className="text-3xl text-center mt-4 font-bold mb-8" >Which of these best describes your place?</h2>
-              <div className="grid grid-cols-3 gap-4  " >
-                {propertyTypes && propertyTypes.map((p, i) => {
-                  return <div className="" >
-                    <div onClick={() => setPType(p.value)} className={`${p.value === PType ? "bg-indigo-500" : ""} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
-                      <House size="52" color={p.value === PType ? "#ffffff" : "#dedede"} />
-                      <h2 className={`${p.value === PType ? "text-gray-100" : "text-gray-400"} text-xl mt-4 font-normal `} >{p.label}</h2>
+              <div className="grid grid-cols-3 gap-4">
+                {propertyTypes && propertyTypes.map((p, i) => (
+                  <div key={i} className="">
+                    <div onClick={() => setPType(p.value)} className={`${p.value === PType ? "bg-indigo-500" : ""} block property-type-wrap cursor-pointer p-4 border rounded-xl`}>
+                 
+                          {p.value === "flat" && <FaBuilding style={{ color: 'black', fontSize: '40px' }} />}
+                          {p.value === "house" && <FaHome style={{ color: 'black', fontSize: '40px' }} />}
+                          {p.value === "unique_space" && <House size={40} />}
+                          {p.value === "guest_house" && <FaDoorOpen style={{ color: 'black', fontSize: '40px' }} />}
+                          {p.value === "hotel" && <FaHotel style={{ color: 'black', fontSize: '40px' }} />}
+                          {p.value === "single_room" && <FaBed style={{ color: 'black', fontSize: '40px' }} />}
+                          {p.value === "boutique_hotel" && <FaCouch style={{ color: 'black', fontSize: '40px' }} />}
+                      <h2 className={`${p.value === PType ? "text-gray-100" : "text-gray-400"} text-xl mt-4 font-normal`}>{p.label}</h2>
                     </div>
                   </div>
-                })}
+                ))}
               </div>
+
+
               {/* </> : '' } */}
             </div>
 
@@ -730,16 +769,16 @@ export default function Property(props) {
 
 
             <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
-              {step==1?
-              <button
-              type="button"
-              onClick={prevStep}
-              className="inline-flex justify-center items-center h-10 py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" >
-              Back
-            </button>
-              :
-              null
-              }
+              {step === 1 && (
+                <button
+                  type="button"
+                  onClick={prevStep}
+                  className="inline-flex justify-center items-center h-10 py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                >
+                  Back
+                </button>
+              )}
+
               {step < 5 ? (
                 <button
                   type="button"
@@ -756,9 +795,6 @@ export default function Property(props) {
                 </button>
               )}
             </div>
-
-
-
           </div>
         </div>
       </div>
