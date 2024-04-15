@@ -48,6 +48,7 @@ function MyApp({ Component, pageProps }) {
     <>
     <PullToRefresh>
       <Head>
+        <html lang="en" />
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <Context.Provider value={values}>

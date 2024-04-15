@@ -7,12 +7,15 @@ import { toast } from "react-hot-toast";
 import Listings from './../api/laravel/Listings';
 import { Context } from "../_app";
 import LoginLogic from "./LoginLogic";
+import Head from "next/head";
 
 export default function Login() {
 
   return (
-
     <>
+    <Head>
+          <title>Login - QS Jaipur</title>
+        </Head>
     <div
       className="h-screen tab-mob-height"
       style={{ backgroundImage: `url(/images/login-bg.jpg)` }}

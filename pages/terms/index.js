@@ -1,9 +1,13 @@
 import React from "react";
 import Layout from "../layout/Layout";
+import Head from "next/head";
 
 function index() {
   return (
     <Layout>
+       <Head>
+          <title>Terms & Conditions - QS Jaipur</title>
+        </Head>
       <div className="bg-gray-100 min-h-screen">
       <div className="max-w-4xl mx-auto py-12 px-4">
         <h1 className="text-3xl font-bold mb-6">Terms and Conditions</h1>

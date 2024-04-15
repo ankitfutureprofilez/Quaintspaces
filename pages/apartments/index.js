@@ -6,6 +6,7 @@ import Filter from "../home/Filter";
 import { PostBody } from "../../components";
 import Listings from "../api/laravel/Listings";
 import format from "date-fns/format";
+import Head from "next/head";
 
 export default function index() {
   // Sort By Button Logic
@@ -20,6 +21,9 @@ export default function index() {
 
     return (
       <div className="relative inline-block text-left">
+        <Head>
+          <title>Apartments | Best Properties in Town - QS Jaipur</title>
+        </Head>
         <div>
           <span className="rounded-md shadow-sm">
             <button
