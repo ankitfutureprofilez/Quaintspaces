@@ -104,7 +104,7 @@ export default function index() {
                 </svg>
                 <div className="ml-5 booking-manage-box">
                   <h1>My Profile</h1>
-                  <p>Manage all your bookings here</p>
+                  <p>Manage your profile here</p>
                 </div>
               </div>
               <div className="px-1">
@@ -152,7 +152,7 @@ export default function index() {
                 </svg>
                 <div className="ml-5 booking-manage-box">
                   <h1> Security </h1>
-                  <p>Manage all your bookings here</p>
+                  <p>Manage your passwords here</p>
                 </div>
               </div>
               <div className="px-1">

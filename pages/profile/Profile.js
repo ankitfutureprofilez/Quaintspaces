@@ -33,7 +33,7 @@ export default function Profile() {
   const router = useRouter();
 
   const [previewImgSrc, setPreviewImgSrc] = useState(
-    "https://w7.pngwing.com/pngs/812/572/png-transparent-computer-icons-user-name-heroes-monochrome-black-thumbnail.png"
+    "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
   );
 
   const loadFile = (event) => {
@@ -69,7 +69,7 @@ export default function Profile() {
         });
         setPreviewImgSrc(
           profiledata?.image_url ||
-            "https://w7.pngwing.com/pngs/812/572/png-transparent-computer-icons-user-name-heroes-monochrome-black-thumbnail.png"
+            "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
         );
       })
       .catch((err) => {
