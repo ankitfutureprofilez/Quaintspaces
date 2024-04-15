@@ -1,12 +1,6 @@
 import React from 'react';
 import { Diagram,Profile2User ,Profile } from 'iconsax-react';
-import Avatar1 from '../assets/avatars/avatar1.png';
-import Avatar2 from '../assets/avatars/avatar2.png';
-import Avatar3 from '../assets/avatars/avatar3.png';
-import Image from 'next/image';
 import Link from 'next/link';
-
-import { motion } from 'framer-motion';
 
 function TraningAnalysis({data}) {
     return (
@@ -28,22 +22,21 @@ function TraningAnalysis({data}) {
             {/* content */}
             <div className='flex justify-between'>
                 <div className='space-y-4'>
-                    <div className="flex justify-between mr-3">
-                        <div className="mr-2 text-center">
-                            <p className='text-xs '>{data?.total_user}</p>
-                            <p className='text-sm text-gray-800 font-medium'>All User </p>
-                        </div>
-                        <div className="mr-2 text-center">
-                            <p className='text-xs'>{data?.activate}</p>
-                            <p className='text-sm text-gray-800 font-medium'>Active  User</p>
+                <div className="flex justify-between mr-3">
+    <div className="mr-2 text-center">
+        <p className='text-xs'>{data?.total_user}</p>
+        <p className='text-sm text-gray-800 font-medium mr-2'>User</p>
+    </div>
+    <div className="mr-2 text-center">
+        <p className='text-xs'>{data?.activate}</p>
+        <p className='text-sm text-gray-800 font-medium'>Active User</p>
+    </div>
+    <div className="mr-2 text-center">
+        <p className='text-xs'>{data?.deactivate}</p>
+        <p className='text-sm text-gray-800 font-medium'>Deactivated User</p>
+    </div>
+</div>
 
-                        </div>
-                        <div className="mr-2 text-center">
-                            <p className='text-xs'>{data?.deactivate}</p>
-                            <p className='text-sm text-gray-800 font-medium'>DeActived User </p>
-
-                        </div>
-                    </div>
                     {/* attendees */}
                     {/* <div className='flex items-center gap-1'>
                         <div className='flex group'>
