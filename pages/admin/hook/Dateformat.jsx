@@ -8,9 +8,9 @@ const DateComponent = ({ item }) => {
 
   return (
     <div>
-      {day} &nbsp;
+      {day}&nbsp;
       {month}&nbsp;
-   {year}&nbsp;
+   {year}
     </div>
   );
 };

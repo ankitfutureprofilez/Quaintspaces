@@ -79,7 +79,7 @@ export default function Index() {
                                                     <th
                                                         className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400 "
                                                     >
-                                                        Review Date
+                                                         Date
                                                     </th>
                                                     <th
                                                         className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400 "
@@ -153,7 +153,7 @@ export default function Index() {
                                                                                     item?.get_property_review
                                                                                         ?.property_image[0]?.image_url
                                                                                 }
-                                                                                alt=""
+                                                                                alt={item?.get_property_review?.name}
                                                                                 width={32}
                                                                                 height={32}
                                                                             />

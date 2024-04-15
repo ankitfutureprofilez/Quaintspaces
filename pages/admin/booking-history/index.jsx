@@ -11,7 +11,7 @@ export default function index() {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  function fetchData() {
     setLoading(true);
     const main = new Listing();
     const response = main.bookinghistory();
@@ -24,7 +24,12 @@ export default function index() {
         console.log("error", error);
         setLoading(false);
       });
+  }
+  
+  useEffect(() => {
+    fetchData();
   }, []);
+  
 
   const bookingaccept = (uuid, id, bookingStatus) => {
     setLoading(true);
@@ -39,6 +44,7 @@ export default function index() {
         if (response && response.data && response?.data?.status === true) {
           toast.success(response.data.message);
           setLoading(false);
+          fetchData();
         } else {
           setLoading(false);
           toast.error(response.data.message);
