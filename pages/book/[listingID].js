@@ -432,23 +432,17 @@ const Book = () => {
                     Share why you're travelling, who's coming with you and
                     what you love about the space.
                   </p>
-                  <button
-                    onClick={() => setMessageField(true)}
-                    className="edit-color underline font-bold"
-                  >
-                    {hasAddedMessage ? "Edit" : "ADD"}
-                  </button>
                 </div>
-                {messageField ? (
                   <div className="mt-2 mb-2 sm:mb-4 flex">
                     <textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      className="mt-1 mr-1 p-4 border rounded w-5/6"
+                      className="mt-1 mr-1 p-4 border rounded w-full"
+                      placeholder="Enter a message for your host"
                     ></textarea>
-                    <button
+                    {/* <button
                       onClick={() => {
                         if (formData.message.length === 0) {
                           toast.error("Mesage field is empty");
@@ -459,23 +453,15 @@ const Book = () => {
                       className="w-1/6 sort btn"
                     >
                       Confirm
-                    </button>
+                    </button> */}
                   </div>
-                ) : null}
 
-                <h1 className="text-lg item-heading mb-2">Phone number</h1>
+                <h1 className="text-lg item-heading mb-2">Phone number*</h1>
                 <div className="flex flex-wrap justify-between">
                   <p className="item-pargraph">
                     Add and confirm your phone number to get trip updates.
                   </p>
-                  <button
-                    onClick={() => setNumberField(true)}
-                    className="edit-color underline font-bold"
-                  >
-                    {hasAddedNumber ? "Edit" : "ADD"}
-                  </button>
                 </div>
-                {numberField ? (
                   <div className="mt-2 mb-2 sm:mb-4 flex">
                     <input
                       type="tel"
@@ -484,10 +470,11 @@ const Book = () => {
                       maxlength="10"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="mt-1 mr-1 p-4 border rounded-full w-5/6"
+                      className="mt-1 mr-1 p-4 border rounded-full w-full"
+                      placeholder="Enter your mobile number"
                       required
                     />
-                    <button
+                    {/* <button
                       onClick={() => {
                         if (formData.phone.length != 10) {
                           toast.error("Invalid Phone Number");
@@ -499,21 +486,20 @@ const Book = () => {
                       className="w-1/6 sort btn"
                     >
                       Confirm
-                    </button>
+                    </button> */}
                   </div>
-                ) : null}
               </div>
             </div>
             <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
-              <div className="ml-3 mt-4">
+              <div className="ml-3 mt-4 w-full">
                 <h1 className="text-lg heading-data mb-4">
                   Cancellation policy
                 </h1>
-                <div className="flex flex-wrap ">
+                <div className="flex flex-wrap justify-between">
                   <p className="item-pargraph">
                     This reservation is non-refundable.
                   </p>
-                  <Link href="/terms">
+                  <Link href="/terms" target="blank">
                     <p className="underline edit-color font-bold">
                       Learn More
                     </p>
