@@ -118,10 +118,10 @@ export default function index() {
     setloading(true);
     let url = "";
     if(lowPrice!=null){
-      url+=`min_price=${lowPrice}+&`;
+      url+=`min_price=${lowPrice}` + `&`;
     }
     if(highPrice!=null){
-      url+=`max_price=${highPrice}+&`;
+      url+=`max_price=${highPrice}`+ `&`;
     }
     if (selectedDay != null) {
       url +="check_in="+ format(selectedDay, "yyyy-MM-dd")+"&";
@@ -138,6 +138,7 @@ export default function index() {
     } else {
       url += "price_sort=desc";
     }
+    console.log("url",url)
 
     const main = new Listings();
     main
