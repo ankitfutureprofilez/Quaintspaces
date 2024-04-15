@@ -74,7 +74,7 @@ export default function PremiumLocation() {
             {images.map((reason, index) => (
               <SwiperSlide key={index}>
                 <div className="item flex-shrink-0 mx-2 relative transition-transform duration-500 ease-in-out transform" key={index}>
-                  <Image src={reason?.src} alt={reason?.alt} className="" />
+                  <Image src={reason?.src} alt={reason?.alt} className="" loading="lazy"/>
                   <div className="w-full py-4">
                     <h2 className="location-name">{reason?.text}</h2>
                   </div>

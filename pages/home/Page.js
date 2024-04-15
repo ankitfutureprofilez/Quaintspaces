@@ -5,8 +5,7 @@ import LuxuryStay from "./LuxuryStay.js";
 import dynamic from "next/dynamic";
 const PremiumLocation = dynamic(import("./PremiumLocation.js"));
 const ReasonToVisit = dynamic(import("./ReasonToVisit.js"));
-import Footer from "./Footer.js";
-import HomeRoomsLists from "./HomeRoomsLists.js";
+const HomeRoomsLists = dynamic(import("./HomeRoomsLists.js"));
 import Layout from "../layout/Layout.js";
 import Image from "next/image";
 

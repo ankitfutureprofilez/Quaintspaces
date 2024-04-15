@@ -85,7 +85,6 @@ export default function index() {
           <>
             {listings && listings.length > 0 ? (
               <div className="table-responsive">
-                {listings.map((item, index) => (
                   <table key={index} className="table-fixed w-full booking-table">
                     <thead>
                       <tr>
@@ -97,6 +96,7 @@ export default function index() {
                         <th>Action</th>
                       </tr>
                     </thead>
+                {listings.map((item, index) => (
                     <tbody>
                       <tr>
                         <td className="px-4 py-2">
@@ -127,8 +127,8 @@ export default function index() {
                         </td>
                       </tr>
                     </tbody>
-                  </table>
                 ))}
+                </table>
               </div>
             ) : (
               <NoData
