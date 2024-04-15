@@ -33,7 +33,7 @@ export default function Index() {
       ) : (
 
 <div className="overflow-x-auto">
-                                <div className="inline-block align-middle">
+                                <div className="inline-block align-middle w-full">
                                     <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
     {content && content.length > 0 ? (
 
@@ -73,7 +73,7 @@ export default function Index() {
           <Image
             width={35}
             height={35}
-            className="top-2 right-2 p-1 rounded-full"
+            className="top-2 right-2 p-1 rounded-full user-profile-img"
             src={item?.booking_history?.booking_property?.property_image[0]?.image_url}
             alt="Property"
           />
