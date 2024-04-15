@@ -55,7 +55,6 @@ export default function menu({ isOpen, record }) {
                     stroke="#292D32"
                     strokeWidth="1.5"
                     strokeLinejoin="round"
-                    strokeLinejoin="round"
                   />
                   <path
                     d="M12 12.5C13.1046 12.5 14 11.6046 14 10.5C14 9.39543 13.1046 8.5 12 8.5C10.8954 8.5 10 9.39543 10 10.5C10 11.6046 10.8954 12.5 12 12.5Z"
@@ -63,14 +62,12 @@ export default function menu({ isOpen, record }) {
                     strokeWidth="1.5"
                     strokeMiterlimit="10"
                     strokeLinejoin="round"
-                    strokeLinejoin="round"
                   />
                   <path
                     d="M12 12.5V15.5"
                     stroke="#292D32"
                     strokeWidth="1.5"
                     strokeMiterlimit="10"
-                    strokeLinejoin="round"
                     strokeLinejoin="round"
                   />
                 </svg>
@@ -91,7 +88,6 @@ export default function menu({ isOpen, record }) {
                   strokeWidth="2"
                   stroke="currentColor"
                   fill="none"
-                  strokeLinejoin="round"
                   strokeLinejoin="round"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -115,7 +111,6 @@ export default function menu({ isOpen, record }) {
                   strokeWidth="2"
                   stroke="currentColor"
                   fill="none"
-                  strokeLinejoin="round"
                   strokeLinejoin="round"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
