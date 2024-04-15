@@ -5,7 +5,10 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { House, Add } from 'iconsax-react'
+import { FaBuilding, FaHome, FaBuildingO, FaDoorOpen, FaHotel, FaBed, FaCouch } from 'react-icons/fa';
+
 import Image from 'next/image';
+
 
 const propertyTypes = [
   { value: "flat", label: "Flat" },
@@ -17,13 +20,12 @@ const propertyTypes = [
   { value: "boutique_hotel", label: "Boutique Hotel" }
 ];
 
-
-
 export default function Property(props) {
 
   const { isEdit, p, onClose, fetchProperties } = props;
   const { uuid, location, children, adults, properties_type, name, no_of_pet_allowed, price, description, bedrooms, beds, bathrooms, amenities, property_image } = p ? p : {};
   // console.log("p", props.p);
+
 
   const router = useRouter();
   const [step, setStep] = useState(0);
@@ -343,17 +345,25 @@ export default function Property(props) {
 
               {/* {typeHere === "entire_place" ?  <> */}
               <h2 className="text-3xl text-center mt-4 font-bold mb-8" >Which of these best describes your place?</h2>
-              <div className="grid grid-cols-3 gap-4  " >
+              <div className="grid grid-cols-3 gap-4">
                 {propertyTypes && propertyTypes.map((p, i) => (
                   <div key={i} className="">
                     <div onClick={() => setPType(p.value)} className={`${p.value === PType ? "bg-indigo-500" : ""} block property-type-wrap cursor-pointer p-4 border rounded-xl`}>
-                      {p.icon}
+                 
+                          {p.value === "flat" && <FaBuilding style={{ color: 'black', fontSize: '40px' }} />}
+                          {p.value === "house" && <FaHome style={{ color: 'black', fontSize: '40px' }} />}
+                          {p.value === "unique_space" && <House size={40} />}
+                          {p.value === "guest_house" && <FaDoorOpen style={{ color: 'black', fontSize: '40px' }} />}
+                          {p.value === "hotel" && <FaHotel style={{ color: 'black', fontSize: '40px' }} />}
+                          {p.value === "single_room" && <FaBed style={{ color: 'black', fontSize: '40px' }} />}
+                          {p.value === "boutique_hotel" && <FaCouch style={{ color: 'black', fontSize: '40px' }} />}
                       <h2 className={`${p.value === PType ? "text-gray-100" : "text-gray-400"} text-xl mt-4 font-normal`}>{p.label}</h2>
                     </div>
                   </div>
                 ))}
-
               </div>
+
+
               {/* </> : '' } */}
             </div>
 
