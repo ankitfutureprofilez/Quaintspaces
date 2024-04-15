@@ -7,6 +7,7 @@ import { Reorder } from "framer-motion";
 import Listings from "./../api/laravel/Listings";
 import { Context } from "../_app";
 import Image from "next/image";
+import Head from "next/head";
 
 export default function Profile() {
   const [loading, setLoading] = useState(false);
@@ -140,6 +141,9 @@ export default function Profile() {
 
   return (
     <>
+      <Head>
+        <title>Profile - QS Jaipur</title>
+      </Head>
       <div className="container mx-auto  ">
         <div className="py-6 sm:py-12">
           <Heading text={"My Profile"} handleClick={() => router.back()} />

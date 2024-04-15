@@ -9,6 +9,7 @@ import NoData from "./elements/NoData.js";
 import { formatMultiPrice } from "../hooks/ValueData.js";
 import Image from "next/image";
 import DateComponent from "./admin/hook/Dateformat.jsx";
+import Head from "next/head";
 
 export default function paymentHistory() {
   const [loading, setLoading] = useState(false);
@@ -36,7 +37,7 @@ export default function paymentHistory() {
       <>
         {/* {listings && listings.length > 0 ? ( */}
         <div className="table-responsive">
-          <table className="table-fixed w-full booking-table">
+          <table className=" w-full booking-table">
             <thead>
               <tr>
                 <th>Payment ID</th>
@@ -104,6 +105,9 @@ export default function paymentHistory() {
 
   return (
     <AuthLayout>
+      <Head>
+        <title>Payment History - QS Jaipur</title>
+      </Head>
       <div className="container mx-auto">
         <div className=" account-btn ">
           <div className=" pt-4 sm:pt-8 md:pt-12 pb-3 sm:pb-6 md:pb-10">

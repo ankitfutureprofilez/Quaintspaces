@@ -8,11 +8,15 @@ const ReasonToVisit = dynamic(import("./ReasonToVisit.js"));
 const HomeRoomsLists = dynamic(import("./HomeRoomsLists.js"));
 import Layout from "../layout/Layout.js";
 import Image from "next/image";
+import Head from "next/head";
 
 export default function MainPage() {
   return (
     <Layout>
       <div>
+        <Head>
+          <title>QS Jaipur</title>
+        </Head>
         <div className="bg-cover bg-center nav-header-sec relative">
           {/* Render the image using next/image */}
           <Image

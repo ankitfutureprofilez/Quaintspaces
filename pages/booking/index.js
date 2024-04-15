@@ -7,6 +7,7 @@ import AuthLayout from "../layout/AuthLayout.js";
 import Modal from "../elements/Modal.js";
 import NoData from "../elements/NoData.js";
 import { formatMultiPrice } from "../../hooks/ValueData.js";
+import Head from "next/head";
 
 export default function index() {
   const [loading, setLoading] = useState(false);
@@ -85,18 +86,18 @@ export default function index() {
           <>
             {listings && listings.length > 0 ? (
               <div className="table-responsive">
-                  <table key={index} className="table-fixed w-full booking-table">
-                    <thead>
-                      <tr>
-                        <th>Title</th>
-                        <th>Check In</th>
-                        <th>Check Out</th>
-                        <th>Status</th>
-                        <th>Price</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                {listings.map((item, index) => (
+                <table key={index} className="table-fixed w-full booking-table">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Check In</th>
+                      <th>Check Out</th>
+                      <th>Status</th>
+                      <th>Price</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  {listings.map((item, index) => (
                     <tbody>
                       <tr>
                         <td className="px-4 py-2">
@@ -127,7 +128,7 @@ export default function index() {
                         </td>
                       </tr>
                     </tbody>
-                ))}
+                  ))}
                 </table>
               </div>
             ) : (
@@ -143,9 +144,12 @@ export default function index() {
       </>
     );
   };
-  
+
   return (
     <AuthLayout>
+      <Head>
+        <title>Bookings - QS Jaipur</title>
+      </Head>
       <div className="container mx-auto">
         <div className=" account-btn ">
           <div className=" pt-4 sm:pt-8 md:pt-12 pb-3 sm:pb-6 md:pb-10">

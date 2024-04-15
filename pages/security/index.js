@@ -7,6 +7,7 @@ import Listings from "../api/laravel/Listings";
 import AuthLayout from "../layout/AuthLayout";
 import Modal from "../elements/Modal.js";
 import { Context } from "../_app.js";
+import Head from "next/head";
 export default function index() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
@@ -95,6 +96,9 @@ export default function index() {
   };
   return (
     <AuthLayout>
+      <Head>
+        <title>Security - QS Jaipur</title>
+      </Head>
       <div>
         <div className="container mx-auto">
           <div className="pt-3 sm:pt-6 md:pt-12">

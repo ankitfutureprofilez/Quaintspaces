@@ -52,8 +52,8 @@ const Listing = () => {
       <Layout>
         <Head>
           <title>
-            House rent in {record?.loading ? "..." : record?.data?.title} -
-            Aribnb Clone
+            House rent in {record?.loading ? "..." : record?.data?.name} -
+            QS Jaipur
           </title>
         </Head>
         {/* <Header
