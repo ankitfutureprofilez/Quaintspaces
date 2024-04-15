@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 import Listing from "../api/Listing";
 import { useContext } from 'react';
 import { Context } from "../../_app";
+import Head from 'next/head';
+
 import Link  from  "next/link"
 
 export default function Login() {
