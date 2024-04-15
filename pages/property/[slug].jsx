@@ -19,15 +19,20 @@ const Listing = () => {
   const [selection, setSelection] = useState(null);
   const [headerSearch, setHeaderSearch] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [record, setrecord] = useState({
+  const [record, setRecord] = useState({
     loading: true,
     data: {},
   });
 
   useEffect(() => {
+    const storedWishlist = localStorage.getItem('wishlist');
+    if (storedWishlist) {
+      setWishlist(JSON.parse(storedWishlist));
+    }
+
     if (slug) {
       setLoading(true);
-      setrecord({
+      setRecord({
         loading: true,
         data: {},
       });
@@ -35,14 +40,14 @@ const Listing = () => {
       main
         .PropertyDetail(slug || "")
         .then((r) => {
-          setrecord({
+          setRecord({
             loading: false,
             data: r?.data?.data,
           });
           setLoading(false);
         })
         .catch((err) => {
-          setrecord({
+          setRecord({
             loading: true,
           });
           console.log(err);
@@ -50,6 +55,10 @@ const Listing = () => {
         });
     }
   }, [slug]);
+
+  useEffect(() => {
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  }, [wishlist]);
 
   return (
     <>
