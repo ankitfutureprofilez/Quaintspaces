@@ -59,6 +59,19 @@ export default function Login() {
 
   return (
     <>
+     <Head>
+        <title>Quant Stay Login </title>
+        <meta name="description" content="Quant Stay Login " key="Login " />
+        <meta property="og:title" content="Admin Login " />
+        <meta
+          property="og:description"
+          content="Quant Stay  Admin Login"
+        />
+        <meta
+          property="og:image"
+          content="https://example.com/images/cool-page.jpg"
+        />
+      </Head>
     <div className="bg-no-repeat mainadmin bg-cover bg-center relative object-cover" style={{ backgroundImage: 
       'url(https://get.pxhere.com/photo/villa-mansion-house-floor-interior-home-construction-residence-property-living-room-room-lighting-interior-design-hardwood-resort-windows-estate-lobby-suite-condominium-real-estate-wood-flooring-family-room-1196622.jpg)'
        }}>

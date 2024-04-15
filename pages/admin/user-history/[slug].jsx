@@ -103,7 +103,7 @@ function index() {
         <div className="flex text-xl font-medium relative  rounded-lg py-0 mt-4">
           <button
             onClick={() => setActiveTab("Booking")}
-            className={`z-10 w-32 px-4 py-2 ${
+            className={`z-10 w-32 px-4 py-2  ${
               activeTab === "overview" ? "" : ""
             }`}
           >

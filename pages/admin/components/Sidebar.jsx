@@ -145,9 +145,9 @@ function Sidebar() {
               } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
             >
               <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="3" y="6" width="18" height="13" rx="2" stroke="#080341" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3 10H20.5" stroke="#080341" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7 15H9" stroke="#080341" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="3" y="6" width="18" height="13" rx="2" stroke="#080341" strokeWidth="2" strokeLinejoin="round" strokeLinejoin="round"/>
+<path d="M3 10H20.5" stroke="#080341" strokeWidth="2" strokeLinejoin="round" strokeLinejoin="round"/>
+<path d="M7 15H9" stroke="#080341" strokeWidth="2" strokeLinejoin="round" strokeLinejoin="round"/>
 </svg>
               Payment History 
             </Link>
@@ -175,7 +175,7 @@ function Sidebar() {
             >
              <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="User / Users_Group">
-<path id="Vector" d="M17 20C17 18.3431 14.7614 17 12 17C9.23858 17 7 18.3431 7 20M21 17.0004C21 15.7702 19.7659 14.7129 18 14.25M3 17.0004C3 15.7702 4.2341 14.7129 6 14.25M18 10.2361C18.6137 9.68679 19 8.8885 19 8C19 6.34315 17.6569 5 16 5C15.2316 5 14.5308 5.28885 14 5.76389M6 10.2361C5.38625 9.68679 5 8.8885 5 8C5 6.34315 6.34315 5 8 5C8.76835 5 9.46924 5.28885 10 5.76389M12 14C10.3431 14 9 12.6569 9 11C9 9.34315 10.3431 8 12 8C13.6569 8 15 9.34315 15 11C15 12.6569 13.6569 14 12 14Z" stroke="#080341" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector" d="M17 20C17 18.3431 14.7614 17 12 17C9.23858 17 7 18.3431 7 20M21 17.0004C21 15.7702 19.7659 14.7129 18 14.25M3 17.0004C3 15.7702 4.2341 14.7129 6 14.25M18 10.2361C18.6137 9.68679 19 8.8885 19 8C19 6.34315 17.6569 5 16 5C15.2316 5 14.5308 5.28885 14 5.76389M6 10.2361C5.38625 9.68679 5 8.8885 5 8C5 6.34315 6.34315 5 8 5C8.76835 5 9.46924 5.28885 10 5.76389M12 14C10.3431 14 9 12.6569 9 11C9 9.34315 10.3431 8 12 8C13.6569 8 15 9.34315 15 11C15 12.6569 13.6569 14 12 14Z" stroke="#080341" strokeWidth="2" strokeLinejoin="round" strokeLinejoin="round"/>
 </g>
 </svg>
               User History
@@ -190,7 +190,7 @@ function Sidebar() {
               } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
             >
             <svg width="16px" height="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-  <path fill="#080341" fill-rule="evenodd" d="M8,0 C8.55228,0 9,0.447715 9,1 L11,1 L11,2 L13,2 C13.5523,2 14,2.44772 14,3 L14,15 C14,15.5523 13.5523,16 13,16 L3,16 C2.44772,16 2,15.5523 2,15 L2,3 C2,2.44772 2.44772,2 3,2 L5,2 L5,1 L7,1 C7,0.447715 7.44772,0 8,0 Z M5,4 L4,4 L4,14 L12,14 L12,4 L11,4 L11,5 L5,5 L5,4 Z M6,10 L10,10 C10.5523,10 11,10.4477 11,11 C11,11.51285 10.613973,11.9355092 10.1166239,11.9932725 L10,12 L6,12 C5.44772,12 5,11.5523 5,11 C5,10.48715 5.38604429,10.0644908 5.88337975,10.0067275 L6,10 Z M10,7 C10.5523,7 11,7.44772 11,8 C11,8.55228 10.5523,9 10,9 L6,9 C5.44772,9 5,8.55228 5,8 C5,7.44772 5.44772,7 6,7 L10,7 Z M8,2 C7.44772,2 7,2.44772 7,3 C7,3.55228 7.44772,4 8,4 C8.55228,4 9,3.55228 9,3 C9,2.44772 8.55228,2 8,2 Z"/>
+  <path fill="#080341" fillRule="evenodd" d="M8,0 C8.55228,0 9,0.447715 9,1 L11,1 L11,2 L13,2 C13.5523,2 14,2.44772 14,3 L14,15 C14,15.5523 13.5523,16 13,16 L3,16 C2.44772,16 2,15.5523 2,15 L2,3 C2,2.44772 2.44772,2 3,2 L5,2 L5,1 L7,1 C7,0.447715 7.44772,0 8,0 Z M5,4 L4,4 L4,14 L12,14 L12,4 L11,4 L11,5 L5,5 L5,4 Z M6,10 L10,10 C10.5523,10 11,10.4477 11,11 C11,11.51285 10.613973,11.9355092 10.1166239,11.9932725 L10,12 L6,12 C5.44772,12 5,11.5523 5,11 C5,10.48715 5.38604429,10.0644908 5.88337975,10.0067275 L6,10 Z M10,7 C10.5523,7 11,7.44772 11,8 C11,8.55228 10.5523,9 10,9 L6,9 C5.44772,9 5,8.55228 5,8 C5,7.44772 5.44772,7 6,7 L10,7 Z M8,2 C7.44772,2 7,2.44772 7,3 C7,3.55228 7.44772,4 8,4 C8.55228,4 9,3.55228 9,3 C9,2.44772 8.55228,2 8,2 Z"/>
 </svg>
               Reviews
             </Link>
@@ -235,8 +235,8 @@ function Sidebar() {
                     </p>
                   </div>
                 </div>
-                <button className="text-gray-500">
-                  <ArrowRight2 size={16} />
+                <button className="text-gray-500" aria-label="button">
+                  <ArrowRight2 size={24}  color="#4B0082" />
                   <Menu isOpen={isDropdownOpen} record={auth} />
                 </button>
               </div>
@@ -261,8 +261,8 @@ function Sidebar() {
                     </p>
                   </div>
                 </div>
-                <button className="text-gray-500">
-                  <ArrowRight2 size={16} />
+                <button className="text-gray-500"  aria-label="ss">
+                <ArrowRight2 size={24}  color="#4B0082" />
                 </button>
               </div>
             )}

@@ -21,7 +21,7 @@ function Notes() {
             <div className='space-y-3'>
                 {/* note 1 */}
                 <div className='flex items-start gap-3 w-full'>
-                    <button className='w-4 shrink-0 mt-1 h-4 border-2 border-gray-300 rounded-full' />
+                    {/* <button className='w-4 shrink-0 mt-1 h-4 border-2 border-gray-300 rounded-full' /> */}
                     <div className='w-full space-y-1'>
                         <p className='text-sm text-gray-800 font-medium'>Landing page</p>
                         <p className='text-xs'>Search for inspiration to create landing page for AI startup.</p>
