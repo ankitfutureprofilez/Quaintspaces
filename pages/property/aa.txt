@@ -19,20 +19,15 @@ const Listing = () => {
   const [selection, setSelection] = useState(null);
   const [headerSearch, setHeaderSearch] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [record, setRecord] = useState({
+  const [record, setrecord] = useState({
     loading: true,
     data: {},
   });
 
   useEffect(() => {
-    const storedWishlist = localStorage.getItem('wishlist');
-    if (storedWishlist) {
-      setWishlist(JSON.parse(storedWishlist));
-    }
-
     if (slug) {
       setLoading(true);
-      setRecord({
+      setrecord({
         loading: true,
         data: {},
       });
@@ -40,14 +35,14 @@ const Listing = () => {
       main
         .PropertyDetail(slug || "")
         .then((r) => {
-          setRecord({
+          setrecord({
             loading: false,
             data: r?.data?.data,
           });
           setLoading(false);
         })
         .catch((err) => {
-          setRecord({
+          setrecord({
             loading: true,
           });
           console.log(err);
@@ -56,17 +51,13 @@ const Listing = () => {
     }
   }, [slug]);
 
-  useEffect(() => {
-    localStorage.setItem('wishlist', JSON.stringify(wishlist));
-  }, [wishlist]);
-
   return (
     <>
       <Layout>
         <Head>
           <title>
-            House rent in {record?.loading ? "..." : record?.data?.title} -
-            Aribnb Clone
+            House rent in {record?.loading ? "..." : record?.data?.name} -
+            QS Jaipur
           </title>
         </Head>
         {/* <Header
