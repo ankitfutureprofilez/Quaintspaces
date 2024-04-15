@@ -1,6 +1,8 @@
 import { Header, SingleListingBody } from "../../components/index.js";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import Footer from "../../components/Footer.jsx";
 import axios from "axios";
 import { Context } from "../_app.js";
 import Wishlist from "../../components/Wishlist.jsx";
@@ -9,24 +11,53 @@ import ThingsToKnow from "./ThingsToKnow.js";
 import Listings from "../api/laravel/Listings.js";
 import Heading from "../elements/Heading.js";
 
-const Listing = ({ record }) => {
+const Listing = () => {
+  const router = useRouter();
+  const { slug } = router.query;
   const { wishlist, setWishlist } = useContext(Context);
   const [overlay, setOverlay] = useState(false);
   const [selection, setSelection] = useState(null);
   const [headerSearch, setHeaderSearch] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [record, setrecord] = useState({
+    loading: true,
+    data: {},
+  });
 
   useEffect(() => {
-    setLoading(record.loading);
-  }, [record.loading]);
+    if (slug) {
+      setLoading(true);
+      setrecord({
+        loading: true,
+        data: {},
+      });
+      const main = new Listings();
+      main
+        .PropertyDetail(slug || "")
+        .then((r) => {
+          setrecord({
+            loading: false,
+            data: r?.data?.data,
+          });
+          setLoading(false);
+        })
+        .catch((err) => {
+          setrecord({
+            loading: true,
+          });
+          console.log(err);
+          setLoading(false);
+        });
+    }
+  }, [slug]);
 
   return (
     <>
       <Layout>
         <Head>
           <title>
-            House rent in {loading ? "..." : record?.data?.title} -
-            Airbnb Clone
+            House rent in {record?.loading ? "..." : record?.data?.title} -
+            Aribnb Clone
           </title>
         </Head>
         {/* <Header
@@ -56,32 +87,5 @@ const Listing = ({ record }) => {
     </>
   );
 };
-
-export async function getServerSideProps({ params }) {
-  const { slug } = params;
-  let record = {
-    loading: true,
-    data: {},
-  };
-
-  if (slug) {
-    try {
-      const main = new Listings();
-      const response = await main.PropertyDetail(slug);
-      record = {
-        loading: false,
-        data: response?.data?.data,
-      };
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  return {
-    props: {
-      record,
-    },
-  };
-}
 
 export default Listing;

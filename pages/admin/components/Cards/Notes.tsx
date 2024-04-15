@@ -23,14 +23,14 @@ function Notes() {
                 <div className='flex items-start gap-3 w-full'>
                     {/* <button className='w-4 shrink-0 mt-1 h-4 border-2 border-gray-300 rounded-full' /> */}
                     <div className='w-full space-y-1'>
-                        <p className='text-sm text-gray-800 font-medium'>Landing page</p>
+                        <p className='text-sm text-black font-medium'>Landing page</p>
                         <p className='text-xs'>Search for inspiration to create landing page for AI startup.</p>
                         <div className='flex justify-between items-end'>
                             <div className='space-x-2 font-medium'>
-                                <button className='text-xxs px-2 py-0.5 rounded-full bg-red-100 text-red-500'>Today</button>
-                                <button className='text-xxs px-2 py-0.5 rounded-full bg-orange-100 text-orange-500'>To-do</button>
+                                <button className='text-xxs px-2 py-0.5 rounded-full bg-white-100 text-black'>Today</button>
+                                <button className='text-xxs px-2 py-0.5 rounded-full bg-white-100 text-black'>To-do</button>
                             </div>
-                            <p className='flex items-center gap-1 text-xxs'>
+                            <p className='flex items-center gap-1 text-xxs text-black'>
                                 <Calendar2 size={12} />
                                 26 Oct
                             </p>
@@ -45,14 +45,14 @@ function Notes() {
                     {/* <button className='w-4 shrink-0 mt-1 h-4 border-2 border-gray-300 rounded-full' /> */}
                     <TickCircle size={22} variant='Bold' className='text-green-500' />
                     <div className='w-full space-y-1'>
-                        <p className='text-sm text-gray-800 font-medium'>Meeting with CTO</p>
-                        <p className='text-xs'>Discuss about application architecture and approach.</p>
+                        <p className='text-sm text-black font-medium'>Meeting with CTO</p>
+                        <p className='text-xs text-black'>Discuss about application architecture and approach.</p>
                         <div className='flex justify-between items-end'>
                             <div className='space-x-2 font-medium'>
-                                <button className='text-xxs px-2 py-0.5 rounded-full bg-red-100 text-red-500'>Today</button>
-                                <button className='text-xxs px-2 py-0.5 rounded-full bg-orange-100 text-orange-500'>Meeting</button>
+                                <button className='text-xxs px-2 py-0.5 rounded-full bg-white-100 text-black'>Today</button>
+                                <button className='text-xxs px-2 py-0.5 rounded-full bg-white-100 text-black'>Meeting</button>
                             </div>
-                            <p className='flex items-center gap-1 text-xxs'>
+                            <p className='flex items-center gap-1 text-xxs text-black'>
                                 <Calendar2 size={12} />
                                 26 Oct
                             </p>
@@ -67,14 +67,14 @@ function Notes() {
                     {/* <button className='w-4 shrink-0 mt-1 h-4 border-2 border-gray-300 rounded-full' /> */}
                     <TickCircle size={22} variant='Bold' className='text-green-500' />
                     <div className='w-full space-y-1'>
-                        <p className='text-sm text-gray-800 font-medium'>Team meeting</p>
-                        <p className='text-xs'>Discuss about client requirements and deadline.</p>
+                        <p className='text-sm text-black font-medium'>Team meeting</p>
+                        <p className='text-xs text-black'>Discuss about client requirements and deadline.</p>
                         <div className='flex justify-between items-end'>
                             <div className='space-x-2 font-medium'>
-                                <button className='text-xxs px-2 py-0.5 rounded-full bg-violet-100 text-violet-500'>Team</button>
-                                <button className='text-xxs px-2 py-0.5 rounded-full bg-orange-100 text-orange-500'>Meeting</button>
+                                <button className='text-xxs px-2 py-0.5 rounded-full bg-white-100 text-black'>Team</button>
+                                <button className='text-xxs px-2 py-0.5 rounded-full bg-white-100 text-black'>Meeting</button>
                             </div>
-                            <p className='flex items-center gap-1 text-xxs'>
+                            <p className='flex items-center gap-1 text-xxs text-black'>
                                 <Calendar2 size={12} />
                                 25 Oct
                             </p>

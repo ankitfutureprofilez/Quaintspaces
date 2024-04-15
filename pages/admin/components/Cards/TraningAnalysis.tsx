@@ -22,16 +22,16 @@ function TraningAnalysis({data}) {
             {/* content */}
           
                 <div className="flex justify-between w-full mr-3">
-    <div className="mr-2 items-center flex p-1.5 bg-blue-100 rounded-md w-full">
-        <p className='text-2xl mr-2'>{data?.total_user}</p>
+    <div className="mr-2 items-center  p-1.5  rounded-md ">
+        <p className='text-sm mr-2'>{data?.total_user}</p>
         <p className='text-sm text-gray-800 font-medium mr-2'>User</p>
     </div>
-    <div className="mr-2 items-center flex p-1.5 bg-blue-100 rounded-md w-full">
-        <p className='text-2xl mr-2'>{data?.activate}</p>
+    <div className="mr-2 items-center  p-1.5  rounded-md ">
+        <p className='text-sm mr-2'>{data?.activate}</p>
         <p className='text-sm text-gray-800 font-medium'>Active User</p>
     </div>
-    <div className="mr-2 items-center flex p-1.5 bg-blue-100 rounded-md w-full">
-        <p className='text-2xl mr-2'>{data?.deactivate}</p>
+    <div className="mr-2 items-center  p-1.5  rounded-md ">
+        <p className='text-sm mr-2'>{data?.deactivate}</p>
         <p className='text-sm text-gray-800 font-medium'>Deactivated User</p>
     </div>
 </div>
