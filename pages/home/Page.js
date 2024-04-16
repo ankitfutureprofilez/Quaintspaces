@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header.js";
 import HeroBanner from "./HeroBanner.js";
 import LuxuryStay from "./LuxuryStay.js";
@@ -12,6 +12,14 @@ import Head from "next/head";
 import PwaFooter from "../elements/PwaFooter.js";
 
 export default function MainPage() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check if the user is on a mobile device
+    const isMobileDevice = window.matchMedia('(max-width: 768px)').matches;
+    setIsMobile(isMobileDevice);
+  }, []);
+
   return (
     <Layout>
       <div>
@@ -20,7 +28,6 @@ export default function MainPage() {
         </Head>
         <PwaFooter />
         <div className="bg-cover bg-center nav-header-sec relative">
-          {/* Render the image using next/image */}
           <Image
             blurDataURL="/images/HeaderImg.png?q=1"
             src="/images/HeaderImg.png"
@@ -29,6 +36,7 @@ export default function MainPage() {
             objectFit="cover"
             style={{ zIndex: -1 }}
             priority="true"
+            quality={isMobile ? 70 : 100}
           />
           <HeroBanner />
         </div>

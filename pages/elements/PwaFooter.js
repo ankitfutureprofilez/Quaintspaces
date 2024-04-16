@@ -15,7 +15,7 @@ const PwaFooter = () => {
         (window.scrollY /
           (document.documentElement.scrollHeight - window.innerHeight)) *
         100;
-      setShowPWA(scrollPercentage >= 10);
+      setShowPWA(showPWA && scrollPercentage >= 10);
     };
 
     window.addEventListener("scroll", handleScroll);
