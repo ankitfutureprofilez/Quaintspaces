@@ -17,6 +17,8 @@ const success = () => {
     }
   }, []);
 
+  console.log("record",record)
+
   const handleSubmit = (main, data) => {
     const parsedData = JSON.parse(data);
     const { razorpay_payment_id, razorpay_order_id } = parsedData;
@@ -28,7 +30,7 @@ const success = () => {
         console.log("response", res);
         if (res && res.data && res.data.status) {
           toast.success(res.data.message);
-          setRecord(res);
+          setRecord(res?.data);
         } else {
           toast.error(res?.data.message);
           console.log(res?.data.message);
