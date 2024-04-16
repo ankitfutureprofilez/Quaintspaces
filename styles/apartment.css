@@ -76,6 +76,23 @@ html {
     left: -38px;
   }
 }
+
+@media (max-width:768px){
+  img.rounded-md.w-full.h-full.object-cover {
+    width: auto;
+    height: auto;
+}
+
+button.hover\:bg-gray-400.hover\:bg-opacity-40.rounded-full.absolute.top-1\/2.-translate-y-1\/2.right-6.flex.items-center.justify-center.w-10.h-10.border.border-borderColor {
+  position: absolute;
+  top: 200px;
+}
+
+button.hover\:bg-gray-400.hover\:bg-opacity-40.rounded-full.absolute.top-1\/2.-translate-y-1\/2.left-6.flex.items-center.justify-center.w-10.h-10.border.border-borderColor {
+  position: absolute;
+  top: 200px;
+}
+}
 /* Pop-up Close button */
 .popup-button {
   right: 10px;
