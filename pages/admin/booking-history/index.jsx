@@ -144,6 +144,21 @@ export default function index() {
                           {item?.booking_status}
                         </td>
                       </td>
+
+                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                        <div className="flex items-center">
+                          <Image
+                            width={50}
+                            height={50}
+                            className="inline-flex items-center rounded-full ml-2 user-profile-img"
+                            src={item?.booking_user[0]?.image_url}
+                            alt="Document Image"
+                          />
+                          <div className="inline-flex items-center rounded-full ml-2">
+                            {item?.booking_user[0]?.name}
+                          </div>
+                        </div>
+                      </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <div className="flex items-center">
                           <Image
