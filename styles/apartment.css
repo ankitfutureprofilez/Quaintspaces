@@ -70,6 +70,12 @@ html {
   top: 131px;
   right: 113px;
 }
+@media (max-width: 768px) {
+  .filter-calendar-position{
+    top: 31px; 
+    left: -38px;
+  }
+}
 /* Pop-up Close button */
 .popup-button {
   right: 10px;
