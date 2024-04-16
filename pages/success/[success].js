@@ -6,6 +6,15 @@ import Listings from "../api/laravel/Listings";
 import toast from "react-hot-toast";
 
 
+function calculateTotalDays(checkInDate, checkOutDate) {
+  const checkIn = new Date(checkInDate);
+  const checkOut = new Date(checkOutDate);
+  const differenceMs = checkOut - checkIn;
+  const days = differenceMs / (1000 * 60 * 60 * 24);
+  return Math.round(days);
+}
+
+
 const success = () => {
   const [record, setRecord] = useState("")
 
@@ -30,7 +39,7 @@ const success = () => {
         console.log("response", res);
         if (res && res.data && res.data.status) {
           toast.success(res.data.message);
-          setRecord(res?.data);
+          setRecord(res?.data?.data);
         } else {
           toast.error(res?.data.message);
           console.log(res?.data.message);
@@ -40,6 +49,9 @@ const success = () => {
         toast.error(error?.response?.data);
       });
   };
+
+const totalStay = calculateTotalDays(record?.booking_history?.check_in, record?.booking_history?.check_out);
+
 
 
   return (
@@ -95,29 +107,29 @@ const success = () => {
           flex flex-wrap justify-center m-auto max-w-[600px]">
             <div className="w-full flex justify-between mb-4 flex-wrap  ">
               <p className="text-gray-400">Booking ID</p>
-              <p className="text-start text-gray-400 font-semibold">BJ0000435</p>
+              <p className="text-start text-gray-400 font-semibold">{record?.booking_id}</p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
-              <p className="text-gray-400">Date & Time:</p>
+              <p className="text-gray-400">Date :</p>
               <p className="text-start text-gray-400 font-semibold">
-                December 29, 2021 | 9:00 AM
+                {record?.payment_date}
               </p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
               <p className="text-gray-400">Customer Name:</p>
-              <p className="text-start text-gray-400 font-semibold">Mary Christy</p>
+              <p className="text-start text-gray-400 font-semibold">{record?.booking_history?.booking_user[0]?.name}</p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
               <p className="text-gray-400">Amount Paid</p>
-              <p className="text-start text-gray-400 font-semibold">{formatMultiPrice(10000)}</p>
+              <p className="text-start text-gray-400 font-semibold">{formatMultiPrice(record?.price)}</p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
               <p className="text-gray-400">Total Members</p>
-              <p className="text-start text-gray-400 font-semibold">6</p>
+              <p className="text-start text-gray-400 font-semibold">{record?.booking_history?.booking_property?.guests}</p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
               <p className="text-gray-400">Total stay</p>
-              <p className="text-start text-gray-400 font-semibold">6 Days</p>
+              <p className="text-start text-gray-400 font-semibold">{totalStay} days</p>
             </div>
           </div>
         </div>

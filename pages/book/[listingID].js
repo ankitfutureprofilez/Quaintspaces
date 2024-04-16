@@ -265,7 +265,8 @@ const Book = () => {
               // return false;
               localStorage && localStorage.setItem("response",  JSON.stringify(response))
               paymentsubmit(res?.data?.orderId);
-              router.push(`/success/${listingID}`);
+
+              
             },
             prefill: {
               name: "Customer Name",
@@ -282,7 +283,6 @@ const Book = () => {
           const rzp = new Razorpay(options);
           rzp.on("payment.failed", function (response) {
             paymentsubmit(res?.data?.orderId);
-            router.push(`/cancel/${listingID}`);
             toast.error("Payment Failed");
           });
           rzp.open();
@@ -324,8 +324,10 @@ const Book = () => {
       .then((res) => {
         if (res) {
           toast.success(res?.data?.message);
+          router.push(`/success/${listingID}`);
         } else {
           toast.error(res?.data?.message);
+          router.push(`/cancel/${listingID}`);
         }
       })
       .catch((error) => {

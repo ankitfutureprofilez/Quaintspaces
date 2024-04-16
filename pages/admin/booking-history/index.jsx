@@ -6,7 +6,7 @@ import Dateformat from "../hook/Dateformat";
 import Nodata from "../hook/NoRecord";
 import Spinner from "../hook/spinner";
 import toast from "react-hot-toast";
-import Modal from "../../elements/Modal";
+import Modal from "../hook/Modal";
 
 export default function index() {
   const [content, setContent] = useState([]);
@@ -31,6 +31,7 @@ export default function index() {
     const response = main.bookinghistory();
     response
       .then((res) => {
+        console.log("res?.data?.data",res?.data?.data)
         setContent(res?.data?.data);
         setLoading(false);
       })
@@ -45,8 +46,7 @@ export default function index() {
   }, []);
 
   const bookingaccept = (uuid, id, bookingStatus) => {
-    setLoading(true);
-    if(message.length==0){
+    if(message?.length == 0){
       toast.error("Message can't be empty!")
       return;
     }
@@ -54,17 +54,14 @@ export default function index() {
     const formdata = new FormData();
     formdata.append("booking_status", bookingStatus);
     formdata.append("message",message);
-
     main
       .booking_confirm_cancelled(uuid, id, formdata)
       .then((response) => {
         console.log("response", response);
         if (response && response.data && response?.data?.status === true) {
-          toast.success(response.data.message);
-          setLoading(false);
           fetchData();
+          toast.success(response.data.message);
         } else {
-          setLoading(false);
           toast.error(response.data.message);
         }
       })
@@ -101,6 +98,9 @@ export default function index() {
                       Status
                     </td>
                     <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                      user
+                    </td>
+                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                       Document Image and Type{" "}
                     </td>
                     <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -121,13 +121,9 @@ export default function index() {
 
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <div className="flex flex-wrap justify-center-between">
-                          <Dateformat item={item?.check_in} />
-                          &nbsp;&ndash;&nbsp;
-                          <Dateformat item={item?.check_out} />
-                        </div>
-                        <br />
                         {item?.adults} adults {item?.children} children{" "}
                         {item?.no_of_pet} pet
+                        </div>
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
@@ -148,6 +144,21 @@ export default function index() {
                           {item?.booking_status}
                         </td>
                       </td>
+
+                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                        <div className="flex items-center">
+                          <Image
+                            width={50}
+                            height={50}
+                            className="inline-flex items-center rounded-full ml-2 user-profile-img"
+                            src={item?.booking_user[0]?.image_url}
+                            alt="Document Image"
+                          />
+                          <div className="inline-flex items-center rounded-full ml-2">
+                            {item?.booking_user[0]?.name}
+                          </div>
+                        </div>
+                      </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <div className="flex items-center">
                           <Image
@@ -166,7 +177,7 @@ export default function index() {
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                         <td
                           onClick={() =>
-                            bookingaccept(item.user_id, item.id, "confirm")
+                            bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
                           }
                           className="cursor-pointer text-green-500 flex items-center gap-2 border rounded-full p-2 mb-2"
                         >
@@ -187,8 +198,8 @@ export default function index() {
                         </td>
                         <td
                           onClick={() =>
-                            // bookingaccept(item.user_id, item.id, "cancelled")
-                            setIsOpen(true)
+                           //bookingaccept(item.booking_user[0]?.id, item.id, "cancelled")
+                          setIsOpen(true)
                           }
                           className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-2"
                         >
@@ -210,7 +221,6 @@ export default function index() {
                             ></path>
                           </svg>
                           {loading ? "loading.." : "Cancelled"}
-                        </td>
                         <Modal isOpen={isOpen} onClose={closeModal}>
                           <div className="my-3 lg:my-6 flex flex-col">
                             <label
@@ -231,13 +241,14 @@ export default function index() {
                             />
                             <button className="btn filter mt-8 w-2/4 mx-auto"
                             onClick={()=>{
-                              bookingaccept(item.user_id, item.id, "cancelled")
+                              bookingaccept(item.booking_user[0]?.id, item.id, "cancelled")
                             }}
                             >
                               Proceed
                               </button>
                           </div>
                         </Modal>
+                        </td>
                       </td>
                     </tr>
                   ))}
