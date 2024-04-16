@@ -11,7 +11,7 @@ export default function index() {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  function fetchData() {
     setLoading(true);
     const main = new Listing();
     const response = main.bookinghistory();
@@ -24,7 +24,12 @@ export default function index() {
         console.log("error", error);
         setLoading(false);
       });
+  }
+  
+  useEffect(() => {
+    fetchData();
   }, []);
+  
 
   const bookingaccept = (uuid, id, bookingStatus) => {
     setLoading(true);
@@ -39,6 +44,7 @@ export default function index() {
         if (response && response.data && response?.data?.status === true) {
           toast.success(response.data.message);
           setLoading(false);
+          fetchData();
         } else {
           setLoading(false);
           toast.error(response.data.message);
@@ -55,7 +61,7 @@ export default function index() {
             <Spinner />
           ) : content && content.length > 0 ? (
             <div className="overflow-x-auto">
-            <div className="inline-block align-middle">
+            <div className="inline-block align-middle w-full">
                 <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
             <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
               <thead className="bg-gray-50 dark:bg-gray-800">
@@ -125,7 +131,7 @@ export default function index() {
     <Image
       width={50}
       height={50}
-      className="inline-flex items-center rounded-full ml-2"
+      className="inline-flex items-center rounded-full ml-2 user-profile-img"
       src={item?.front_url}
       alt="Document Image"
     />

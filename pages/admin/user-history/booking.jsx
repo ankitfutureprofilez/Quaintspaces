@@ -33,8 +33,8 @@ export default function Booking(props) {
         <Spinner />
       ) : content && content.length > 0 ? (
         <div className="overflow-x-auto">
-          <div className="inline-block align-middle">
-            <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+          <div className="inline-block align-middle w-full">
+            <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg ">
               <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
                 <thead className="bg-gray-50 dark:bg-gray-800">
                   <tr className="">
@@ -90,7 +90,7 @@ export default function Booking(props) {
                             width={40}
                             height={40}
                             alt="Document"
-                            className="inline-flex items-center rounded-full "
+                            className="inline-flex items-center rounded-full user-profile-img"
                             src={item?.front_url}
                           />
                           <div className="inline-flex items-center rounded-full">

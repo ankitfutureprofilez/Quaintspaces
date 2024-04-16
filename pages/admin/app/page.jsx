@@ -9,6 +9,7 @@ import TimeTracker from '../components/Cards/TimeTracker'
 import TraningAnalysis from '../components/Cards/TraningAnalysis'
 import Sidebar from '../components/Sidebar';
 import Listing from '../api/Listing';
+import MetaTag  from "../hook/Metatag"
 
 import AdminLayout from "../AdminLayout"
 import { AnimatePresence, motion } from 'framer-motion'
@@ -35,7 +36,8 @@ function Home() {
     })
   },[])
 
-  return (
+  return (<>
+  <MetaTag/>
     <AdminLayout>
     <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
       className={`${isSidebarOpen ? 'overflow-hidden' : ''} h-screen`} >
@@ -102,6 +104,8 @@ function Home() {
 
     </motion.div>
     </AdminLayout>
+  </>
+
   )
 }
 

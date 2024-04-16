@@ -20,19 +20,18 @@ function TraningAnalysis({data}) {
             </div>
             <hr className='bg-gray-400 my-4' />
             {/* content */}
-            <div className='flex justify-between'>
-                <div className='space-y-4'>
-                <div className="flex justify-between mr-3">
-    <div className="mr-2 text-center">
-        <p className='text-xs'>{data?.total_user}</p>
+          
+                <div className="flex justify-between w-full mr-3">
+    <div className="mr-2 items-center  p-1.5  rounded-md ">
+        <p className='text-sm mr-2'>{data?.total_user}</p>
         <p className='text-sm text-gray-800 font-medium mr-2'>User</p>
     </div>
-    <div className="mr-2 text-center">
-        <p className='text-xs'>{data?.activate}</p>
+    <div className="mr-2 items-center  p-1.5  rounded-md ">
+        <p className='text-sm mr-2'>{data?.activate}</p>
         <p className='text-sm text-gray-800 font-medium'>Active User</p>
     </div>
-    <div className="mr-2 text-center">
-        <p className='text-xs'>{data?.deactivate}</p>
+    <div className="mr-2 items-center  p-1.5  rounded-md ">
+        <p className='text-sm mr-2'>{data?.deactivate}</p>
         <p className='text-sm text-gray-800 font-medium'>Deactivated User</p>
     </div>
 </div>
@@ -46,7 +45,7 @@ function TraningAnalysis({data}) {
                         </div>
                         <p className='text-xxs'>26 Attended</p>
                     </div> */}
-                </div>
+              
 
                 {/* graph */}
                 {/* <div className='flex gap-1.5 items-end h-20'>
@@ -58,7 +57,7 @@ function TraningAnalysis({data}) {
                     <motion.div initial={{ height: 0 }} animate={{ height: '' }} transition={{ duration: 0.2 + 0.11 }} className='w-3 h-20 rounded-sm duration-200 bg-primary' />
                     <motion.div initial={{ height: 0 }} animate={{ height: '' }} transition={{ duration: 0.2 + 0.13 }} className='w-3 h-12 rounded-sm duration-200 bg-primary/60' />
                 </div> */}
-            </div>
+           
         </div>
     );
 }

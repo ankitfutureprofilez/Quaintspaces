@@ -27,13 +27,13 @@ function CurrentProject() {
             {/* content */}
             <div className='space-y-4'>
                 <div className='space-y-2'>
-                    <p className='text-xs text-gray-400'>Project name</p>
+                    <p className='text-xs text-black'>Project name</p>
 
                     {/* header */}
                     <div className='flex items-center gap-2'>
                         <Image src={AtlassianLogo} alt='company' height={18} width={18} />
                         <p className='text-sm text-gray-800 font-medium'>Atlassian docs</p>
-                        <div className='flex text-xxs font-medium items-center gap-1 pr-1.5 bg-orange-100 px-1 py-0.5 rounded-full text-orange-400'>
+                        <div className='flex text-xxs font-medium items-center gap-1 pr-1.5 bg-black-100 px-1 py-0.5 rounded-full text-white-400'>
                             <Clock size={14} variant='Bold' />
                             <span>In progress</span>
                         </div>
@@ -43,7 +43,7 @@ function CurrentProject() {
                 {/* project leads */}
                 <div className='flex gap-12'>
                     <div className='space-y-1'>
-                        <p className='text-xs text-gray-400'>Project manager</p>
+                        <p className='text-xs text-black'>Project manager</p>
                         <div className='flex items-center gap-2'>
                             <Image src={Avatar4} alt='Steve J.' width={20} height={20} className='rounded-full' />
                             <p className='text-sm text-gray-800 font-medium'>Steve J.</p>
@@ -51,7 +51,7 @@ function CurrentProject() {
                     </div>
 
                     <div className='space-y-1'>
-                        <p className='text-xs text-gray-400'>Tech lead</p>
+                        <p className='text-xs text-black'>Tech lead</p>
                         <div className='flex items-center gap-2'>
                             <Image src={Avatar2} alt='Steve J.' width={20} height={20} className='rounded-full' />
                             <p className='text-sm text-gray-800 font-medium'>Andrew M.</p>
@@ -61,7 +61,7 @@ function CurrentProject() {
 
                 {/* team */}
                 <div className='space-y-1'>
-                    <p className='text-xs text-gray-400'>Team</p>
+                    <p className='text-xs text-black'>Team</p>
                     <div className='flex items-center gap-1'>
                         <div className='flex group'>
                             <Image src={Avatar1} alt='user1' height={20} width={20} className='outline outline-white rounded-full -ml-0.5 group-hover:ml-0 duration-200' />
@@ -74,7 +74,7 @@ function CurrentProject() {
 
                 {/* timeline */}
                 <div className='space-y-1 font-medium'>
-                    <p className='text-xs text-gray-400'>Timeline</p>
+                    <p className='text-xs text-black'>Timeline</p>
                     <div className='text-sm flex items-center gap-2'>
                         <Calendar size={18} />
                         <p className='text-gray-800'>12/10/2023 - 12/2/2024</p>
@@ -83,7 +83,7 @@ function CurrentProject() {
 
                 {/* description */}
                 <div className='space-y-1 font-medium'>
-                    <p className='text-xs text-gray-400'>Description</p>
+                    <p className='text-xs text-black'>Description</p>
                     <div className='text-sm flex items-center gap-2'>
                         <DocumentText size={18} />
                         <p className='text-gray-800'>Frontend website for AI app</p>

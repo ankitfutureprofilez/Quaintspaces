@@ -1,14 +1,46 @@
-import React from "react";
+import React, { useState ,useEffect} from "react";
 import AuthLayout from "../layout/AuthLayout";
 import { formatMultiPrice } from "../../hooks/ValueData";
 import { useRouter } from "next/router";
+import Listings from "../api/laravel/Listings";
+import toast from "react-hot-toast";
 
 
 const success = () => {
-  const router=useRouter();
+  const [record, setRecord] = useState("")
 
-    console.log("router",router)
-    console.log("datat",router?.components?.property?.[slug]?.props?.pageProps?.record?.data)
+  useEffect(() => {
+    const data = localStorage.getItem('response');
+    if (data) {
+      const main = new Listings();
+      handleSubmit(main, data);
+    }
+  }, []);
+
+  console.log("record",record)
+
+  const handleSubmit = (main, data) => {
+    const parsedData = JSON.parse(data);
+    const { razorpay_payment_id, razorpay_order_id } = parsedData;
+    main.user_success_payment({
+      "payment_id": razorpay_payment_id,
+      "order_id": razorpay_order_id
+    })
+      .then((res) => {
+        console.log("response", res);
+        if (res && res.data && res.data.status) {
+          toast.success(res.data.message);
+          setRecord(res?.data);
+        } else {
+          toast.error(res?.data.message);
+          console.log(res?.data.message);
+        }
+      })
+      .catch((error) => {
+        toast.error(error?.response?.data);
+      });
+  };
+
 
   return (
     <AuthLayout>
@@ -76,17 +108,17 @@ const success = () => {
               <p className="text-start text-gray-400 font-semibold">Mary Christy</p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-gray-400">Amount Paid</p>
-                <p className="text-start text-gray-400 font-semibold">{formatMultiPrice(10000)}</p>
-              </div>
-              <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-gray-400">Total Members</p>
-                <p className="text-start text-gray-400 font-semibold">6</p>
-              </div>
-              <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-gray-400">Total stay</p>
-                <p className="text-start text-gray-400 font-semibold">6 Days</p>
-              </div>
+              <p className="text-gray-400">Amount Paid</p>
+              <p className="text-start text-gray-400 font-semibold">{formatMultiPrice(10000)}</p>
+            </div>
+            <div className="w-full flex justify-between mb-4 flex-wrap ">
+              <p className="text-gray-400">Total Members</p>
+              <p className="text-start text-gray-400 font-semibold">6</p>
+            </div>
+            <div className="w-full flex justify-between mb-4 flex-wrap ">
+              <p className="text-gray-400">Total stay</p>
+              <p className="text-start text-gray-400 font-semibold">6 Days</p>
+            </div>
           </div>
         </div>
       </div>

@@ -262,6 +262,10 @@ export default function Property(props) {
       toast.error("Please select at least five images.");
       return false;
     }
+    if (isEdit && step === 5 && images?.length  + imageproperty?.length < 5) {
+      toast.error("Please select at least five images.");
+      return false;
+    }
     setLoading(true);
     const main = new Listing();
     const formData = new FormData();
