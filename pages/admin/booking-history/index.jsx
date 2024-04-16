@@ -196,8 +196,8 @@ const closeCancelModal = () => {
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                         <td
                           onClick={() =>
-                           // openConfirmModal(item)
-                            bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
+                          openConfirmModal(item)
+                           // bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
                           }
                           className="cursor-pointer text-green-500 flex items-center gap-2 border rounded-full p-2 mb-2"
                         >
