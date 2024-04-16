@@ -31,6 +31,7 @@ export default function index() {
     const response = main.bookinghistory();
     response
       .then((res) => {
+        console.log("res?.data?.data",res?.data?.data)
         setContent(res?.data?.data);
         setLoading(false);
       })
@@ -58,8 +59,8 @@ export default function index() {
       .then((response) => {
         console.log("response", response);
         if (response && response.data && response?.data?.status === true) {
-          toast.success(response.data.message);
           fetchData();
+          toast.success(response.data.message);
         } else {
           toast.error(response.data.message);
         }
@@ -161,7 +162,7 @@ export default function index() {
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                         <td
                           onClick={() =>
-                            bookingaccept(item.user_id, item.id, "confirm")
+                            bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
                           }
                           className="cursor-pointer text-green-500 flex items-center gap-2 border rounded-full p-2 mb-2"
                         >
@@ -182,8 +183,8 @@ export default function index() {
                         </td>
                         <td
                           onClick={() =>
-                            // bookingaccept(item.user_id, item.id, "cancelled")
-                            setIsOpen(true)
+                           //bookingaccept(item.booking_user[0]?.id, item.id, "cancelled")
+                          setIsOpen(true)
                           }
                           className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-2"
                         >
@@ -205,7 +206,6 @@ export default function index() {
                             ></path>
                           </svg>
                           {loading ? "loading.." : "Cancelled"}
-                        </td>
                         <Modal isOpen={isOpen} onClose={closeModal}>
                           <div className="my-3 lg:my-6 flex flex-col">
                             <label
@@ -226,13 +226,14 @@ export default function index() {
                             />
                             <button className="btn filter mt-8 w-2/4 mx-auto"
                             onClick={()=>{
-                              bookingaccept(item.user_id, item.id, "cancelled")
+                              bookingaccept(item.booking_user[0]?.id, item.id, "cancelled")
                             }}
                             >
                               Proceed
                               </button>
                           </div>
                         </Modal>
+                        </td>
                       </td>
                     </tr>
                   ))}
