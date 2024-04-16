@@ -1,14 +1,26 @@
-// Modal.js
-
-import React from 'react';
+import React, { useEffect } from 'react';
 
 function Modal({ isOpen, onClose, children, width }) {
+  useEffect(() => {
+    // Add event listener to close modal when clicking outside
+    const handleOutsideClick = (e) => {
+      if (isOpen && e.target.classList.contains('modal-backdrop')) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      {/* <div className="absolute inset-0 bg-gray-800 opacity-50"></div> */}
-      <div className={` bg-white max-h-[90vh] overflow-y-auto px-8 w-full rounded shadow-lg z-50 relative rounded-lg max-w-${width||'md' }`}>
+      <div className="modal-backdrop absolute inset-0 bg-gray-800 opacity-50"></div>
+      <div className={`modal-content bg-white max-h-[90vh] overflow-y-auto px-8 w-full rounded shadow-lg z-50 relative rounded-lg max-w-${width || 'md'}`}>
         <button onClick={onClose} className="absolute top-0 right-0 m-4 text-gray-600 hover:text-gray-800">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +41,6 @@ function Modal({ isOpen, onClose, children, width }) {
       </div>
     </div>
   );
-  
 }
 
 export default Modal;
