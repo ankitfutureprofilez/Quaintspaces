@@ -107,6 +107,7 @@ export default function index() {
               </svg>
               <div className="ml-5 booking-manage-box">
                 <h1>My Profile</h1>
+                
                 <p>Manage your profile here</p>
               </div>
             </div>
