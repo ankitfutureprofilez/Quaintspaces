@@ -9,6 +9,7 @@ const HomeRoomsLists = dynamic(import("./HomeRoomsLists.js"));
 import Layout from "../layout/Layout.js";
 import Image from "next/image";
 import Head from "next/head";
+import PwaFooter from "../elements/PwaFooter.js";
 
 export default function MainPage() {
   return (
@@ -17,10 +18,11 @@ export default function MainPage() {
         <Head>
           <title>QS Jaipur</title>
         </Head>
+        <PwaFooter />
         <div className="bg-cover bg-center nav-header-sec relative">
           {/* Render the image using next/image */}
           <Image
-          blurDataURL="/images/HeaderImg.png?q=1"
+            blurDataURL="/images/HeaderImg.png?q=1"
             src="/images/HeaderImg.png"
             alt="QUAINTSPACES JAIPUR Background"
             layout="fill"
