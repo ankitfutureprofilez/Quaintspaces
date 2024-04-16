@@ -13,13 +13,29 @@ export default function index() {
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const openModal = () => {
-    setIsOpen(true);
-  };
+  const [selectedBooking, setSelectedBooking] = useState(null); // New state to store selected booking
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false); // State for confirm modal
+const [isCancelOpen, setIsCancelOpen] = useState(false); // State for cancel modal
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+const openConfirmModal = (booking) => {
+  setSelectedBooking(booking);
+  setIsConfirmOpen(true);
+};
+
+const openCancelModal = (booking) => {
+  setSelectedBooking(booking);
+  setIsCancelOpen(true);
+};
+
+const closeConfirmModal = () => {
+  setIsConfirmOpen(false);
+};
+
+const closeCancelModal = () => {
+  setIsCancelOpen(false);
+};
+
+  
 
   const handleChange = (e) => {
      setMessage(e?.target?.value);
@@ -60,6 +76,9 @@ export default function index() {
         console.log("response", response);
         if (response && response.data && response?.data?.status === true) {
           fetchData();
+          closeConfirmModal();
+          closeCancelModal();
+          setMessage("")
           toast.success(response.data.message);
         } else {
           toast.error(response.data.message);
@@ -97,9 +116,9 @@ export default function index() {
                     <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                       Status
                     </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    {/* <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                       user
-                    </td>
+                    </td> */}
                     <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                       Document Image and Type{" "}
                     </td>
@@ -145,7 +164,7 @@ export default function index() {
                         </td>
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                      {/* <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <div className="flex items-center">
                           <Image
                             width={50}
@@ -158,7 +177,7 @@ export default function index() {
                             {item?.booking_user[0]?.name}
                           </div>
                         </div>
-                      </td>
+                      </td> */}
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <div className="flex items-center">
                           <Image
@@ -177,6 +196,7 @@ export default function index() {
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                         <td
                           onClick={() =>
+                           // openConfirmModal(item)
                             bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
                           }
                           className="cursor-pointer text-green-500 flex items-center gap-2 border rounded-full p-2 mb-2"
@@ -196,10 +216,11 @@ export default function index() {
                             ></path>
                           </svg>
                         </td>
+
                         <td
                           onClick={() =>
                            //bookingaccept(item.booking_user[0]?.id, item.id, "cancelled")
-                          setIsOpen(true)
+                           openCancelModal(item)
                           }
                           className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-2"
                         >
@@ -221,33 +242,8 @@ export default function index() {
                             ></path>
                           </svg>
                           {loading ? "loading.." : "Cancelled"}
-                        <Modal isOpen={isOpen} onClose={closeModal}>
-                          <div className="my-3 lg:my-6 flex flex-col">
-                            <label
-                              htmlFor="message"
-                              className="mx-auto mb-8 block text-lg font-medium text-gray-600"
-                            >
-                              Message
-                            </label>
-                            <textarea
-                              id="message"
-                              name="message"
-                              value={message}
-                              onChange={handleChange}
-                              className="mt-3 p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
-                              required
-                              placeholder="Type your cancellation message for the user here"
-                              rows={4} // Set the number of rows as needed
-                            />
-                            <button className="btn filter mt-8 w-2/4 mx-auto"
-                            onClick={()=>{
-                              bookingaccept(item.booking_user[0]?.id, item.id, "cancelled")
-                            }}
-                            >
-                              Proceed
-                              </button>
-                          </div>
-                        </Modal>
+                      
+
                         </td>
                       </td>
                     </tr>
@@ -260,6 +256,80 @@ export default function index() {
       ) : (
         <Nodata text={"No Booking "} />
       )}
+
+
+{selectedBooking && (
+        <Modal isOpen={isConfirmOpen} onClose={closeConfirmModal}>
+          <div className="my-3 lg:my-6 flex flex-col">
+            <label
+              htmlFor="message"
+              className="mx-auto mb-8 block text-lg font-medium text-gray-600"
+            >
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={message}
+              onChange={handleChange}
+              className="mt-3 p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
+              required
+              placeholder="Type your cancellation message for the user here"
+              rows={4} // Set the number of rows as needed
+            />
+            <button
+              className="btn filter mt-8 w-2/4 mx-auto"
+              onClick={() =>
+                bookingaccept(
+                  selectedBooking.booking_user[0].id,
+                  selectedBooking.id,
+                  "confirm"
+                )
+              }
+            >
+              {loading ? "loading..." :"proceed"}
+            </button>
+          </div>
+        </Modal>
+      )}
+
+
+
+{selectedBooking && (
+        <Modal isOpen={isCancelOpen} onClose={closeCancelModal}>
+          <div className="my-3 lg:my-6 flex flex-col">
+            <label
+              htmlFor="message"
+              className="mx-auto mb-8 block text-lg font-medium text-gray-600"
+            >
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={message}
+              onChange={handleChange}
+              className="mt-3 p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
+              required
+              placeholder="Type your cancellation message for the user here"
+              rows={4} // Set the number of rows as needed
+            />
+            <button
+              className="btn filter mt-8 w-2/4 mx-auto"
+              onClick={() =>
+                bookingaccept(
+                  selectedBooking.booking_user[0].id,
+                  selectedBooking.id,
+                  "cancelled"
+                )
+              }
+            >
+              {loading ? "loading..." :"proceed"}
+            </button>
+          </div>
+        </Modal>
+      )}
+
     </AdminLayout>
   );
 }

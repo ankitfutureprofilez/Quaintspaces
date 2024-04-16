@@ -38,19 +38,17 @@ const Popup = ({
                     d="M7 17L16.8995 7.10051"
                     stroke="#000000"
                     strokeLinejoin="round"
-                    strokeLinejoin="round"
                   />
                   <path
                     d="M7 7.00001L16.8995 16.8995"
                     stroke="#000000"
-                    strokeLinejoin="round"
                     strokeLinejoin="round"
                   />
                 </svg>
               </span>
             </div>
             <div className="popup-body">{children}</div>
-            <div className="popup-footer">{footer}</div>
+            {/* <div className="popup-footer">{footer}</div> */}
           </div>
         </div>
       </div>
