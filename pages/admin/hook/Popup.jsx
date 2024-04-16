@@ -50,7 +50,7 @@ const Popup = ({
               </span>
             </div>
             <div className="popup-body">{children}</div>
-            <div className="popup-footer">{footer}</div>
+            {/* <div className="popup-footer">{footer}</div> */}
           </div>
         </div>
       </div>
