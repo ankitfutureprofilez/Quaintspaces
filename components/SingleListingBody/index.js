@@ -178,7 +178,7 @@ const SingleListingBody = ({ listing, loading }) => {
           </ul> */}
 
           <div
-            className={`gap-4 w-full justify-between md:w-fit md:justify-start py-3 md:py-0 flex`}
+            className={`gap-4 w-full justify-between md:w-fit md:justify-start px-3 py-3 md:py-0 flex`}
           >
             <div className="whitespace-nowrap">
               <span>

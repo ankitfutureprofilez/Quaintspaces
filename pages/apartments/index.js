@@ -7,6 +7,7 @@ import { PostBody } from "../../components";
 import Listings from "../api/laravel/Listings";
 import format from "date-fns/format";
 import Head from "next/head";
+import PwaFooter from "../elements/PwaFooter.js"
 
 export default function index() {
   // Sort By Button Logic
@@ -138,7 +139,6 @@ export default function index() {
     } else {
       url += "price_sort=desc";
     }
-    console.log("url",url)
 
     const main = new Listings();
     main
@@ -162,6 +162,7 @@ export default function index() {
 
   return (
     <Layout>
+      <PwaFooter />
       <div className="container mx-auto ">
         <div className="mt-6 sm:mt-10">
           <div className="flex justify-between mb-10 filter-box px-[15px]">
