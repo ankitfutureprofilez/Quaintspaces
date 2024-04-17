@@ -139,7 +139,7 @@ export default function payment({ record }) {
             </div>
           </div>
         ) : (
-          <Nodata heading={"Payment History"} />
+          <Nodata heading={"Payment Not Found "} />
         )}
       </>
   );

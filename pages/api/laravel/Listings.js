@@ -62,6 +62,13 @@ class Listings extends Component {
   async AllReviews(data, page =1) {
     return Api.get(`/property-Rating/${data}?page=${page}`);
   }
+  async PaymentHistory() {
+    return Api.get("/user-payment-history");
+  }
+
+  async user_success_payment(data) {
+    return Api.post("/user-success-payment",data);
+  }
 
   render() {
     return (

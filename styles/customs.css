@@ -302,11 +302,11 @@ footer {
 .flat-info {
   padding: 0 20px;
 }
-.flat-info h5 {
+.flat-info h2 {
   font-family: "Inter", sans-serif;
   font-size: 13px;
   font-weight: 400;
-  line-height: 25px;
+  line-height: 23px;
   letter-spacing: 0em;
   color: #95908d;
   padding: 20px 10px 15px 10px;
@@ -356,6 +356,7 @@ footer {
   background: #fff;
   margin-bottom: 20px;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  border: 1px solid #dcac81;
 }
 .banipark-box {
   background: #fff;
@@ -886,7 +887,7 @@ button.submint-btn {
   .flat-info {
     padding: 0 0px;
   }
-  .flat-info h5 {
+  .flat-info h2 {
     padding: 12px 10px 12px 10px;
   }
   .explor-btn {
@@ -1362,6 +1363,9 @@ button.submint-btn {
 }
 
 .empty-state__icon {
+  margin-top : 20px;
+  display :flex ;
+  justify-content: center;
   margin-bottom: 20px;
 }
 
@@ -1370,3 +1374,6 @@ button.submint-btn {
   color: #555;
 }
 
+img.profile-cover-image { width: 100%; height: 100%; object-fit: cover;     border-radius: 25px 25px 0 0; }
+.profile-payment { box-shadow: 0 0 25px -10px #ccc; padding: 0; border-radius: 30px; }
+.user-profile-img { height: 50px; width: 50px; object-fit: cover; }

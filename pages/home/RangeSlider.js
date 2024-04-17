@@ -82,6 +82,8 @@ const RangeSlider = ({ min, max, onChange }) => {
         </div>
       </div>
     </div>
+
+    
   );
 };
 

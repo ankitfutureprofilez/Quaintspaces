@@ -6,6 +6,8 @@ import Filter from "../home/Filter";
 import { PostBody } from "../../components";
 import Listings from "../api/laravel/Listings";
 import format from "date-fns/format";
+import Head from "next/head";
+import PwaFooter from "../elements/PwaFooter.js"
 
 export default function index() {
   // Sort By Button Logic
@@ -20,6 +22,9 @@ export default function index() {
 
     return (
       <div className="relative inline-block text-left">
+        <Head>
+          <title>Apartments | Best Properties in Town - QS Jaipur</title>
+        </Head>
         <div>
           <span className="rounded-md shadow-sm">
             <button
@@ -114,10 +119,10 @@ export default function index() {
     setloading(true);
     let url = "";
     if(lowPrice!=null){
-      url+=`min_price=${lowPrice}+&`;
+      url+=`min_price=${lowPrice}` + `&`;
     }
     if(highPrice!=null){
-      url+=`max_price=${highPrice}+&`;
+      url+=`max_price=${highPrice}`+ `&`;
     }
     if (selectedDay != null) {
       url +="check_in="+ format(selectedDay, "yyyy-MM-dd")+"&";
@@ -157,6 +162,7 @@ export default function index() {
 
   return (
     <Layout>
+      <PwaFooter />
       <div className="container mx-auto ">
         <div className="mt-6 sm:mt-10">
           <div className="flex justify-between mb-10 filter-box px-[15px]">
@@ -213,8 +219,8 @@ export default function index() {
               selectEnd={selectEnd}
               setSelectedDay={setSelectedDay}
               setSelectEnd={setSelectEnd}
-              min={0}
-              max={20000}
+              min={1}
+              max={20001}
               onClick={handleClick}
               onChange={({ min, max }) => {
                 minVal = min;

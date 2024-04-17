@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import Listings from "../../pages/api/laravel/Listings";
 import { Context } from "../../pages/_app";
 import toast from "react-hot-toast";
+import StartRating from "../../pages/elements/StartRating";
 
 const Reviews = React.forwardRef(({ data }, ref) => {
   const { auth } = useContext(Context);
@@ -87,9 +88,10 @@ const Reviews = React.forwardRef(({ data }, ref) => {
     <section ref={ref}
       className="min-h-[50vh] border-y border-darkBorderColor py-8">
       <h1 className="text-xl md:text-2xl mb-4 font-semibold flex items-center gap-1">
-        <Star />
-        <span>
-          {parseFloat(data && data?.rating && data?.rating?.toFixed(2))}
+        <span className="flex" >
+        <p className="pe-2" >{parseFloat(data && data?.rating && data?.rating?.toFixed(0))}.0</p>
+        <StartRating size={26} value={parseFloat(data && data?.rating && data?.rating?.toFixed(2))} /> 
+        
         </span>
           <span>
             {data?.review ? <>· <span>{data?.review} reviews</span></> : ''}

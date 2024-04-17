@@ -27,6 +27,10 @@ const Listing = () => {
   useEffect(() => {
     if (slug) {
       setLoading(true);
+      setrecord({
+        loading: true,
+        data: {},
+      });
       const main = new Listings();
       main
         .PropertyDetail(slug || "")

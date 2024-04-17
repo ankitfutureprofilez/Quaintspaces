@@ -24,7 +24,7 @@ function StatusTracker() {
             <div className='space-y-3'>
                 {/* absent */}
                 <div className='space-y-3'>
-                    <p className='text-xs text-gray-400'>Absent</p>
+                    <p className='text-xs text-black'>Absent</p>
                     <div className='flex items-center justify-between'>
                         <div>
                             <div className='flex items-center gap-2'>
@@ -46,7 +46,7 @@ function StatusTracker() {
 
                 {/* away */}
                 <div className='space-y-3'>
-                    <p className='text-xs text-gray-400'>Away</p>
+                    <p className='text-xs text-black'>Away</p>
 
                     <div className='flex items-center justify-between'>
                         <div>
@@ -58,7 +58,7 @@ function StatusTracker() {
                                 </div>
                             </div>
                         </div>
-                        <div className='flex text-xxs font-medium items-center gap-1 pr-1.5 bg-orange-100 px-1 py-0.5 rounded-full text-orange-400'>
+                        <div className='flex text-xxs font-medium items-center gap-1 pr-1.5 bg-black-100 px-1 py-0.5 rounded-full text-white-400'>
                             <Clock size={14} variant='Bold' />
                             <span>25m</span>
                         </div>
@@ -74,7 +74,7 @@ function StatusTracker() {
                                 </div>
                             </div>
                         </div>
-                        <div className='flex text-xxs font-medium items-center gap-1 pr-1.5 bg-orange-100 px-1 py-0.5 rounded-full text-orange-400'>
+                        <div className='flex text-xxs font-medium items-center gap-1 pr-1.5 bg-black-100 px-1 py-0.5 rounded-full text-white-400'>
                             <Clock size={14} variant='Bold' />
                             <span>12m</span>
                         </div>

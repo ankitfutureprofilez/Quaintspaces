@@ -31,7 +31,7 @@ function TimeTracker() {
                     <div className='bg-gray-100 py-1 px-2 flex items-center justify-between'>
                         <div className='flex items-center gap-1'>
                             <Image src={AtlassianLogo} alt='company' height={18} width={18} />
-                            <p className='text-sm'>App Design</p>
+                            <p className='text-sm text-black'>App Design</p>
                         </div>
                         <ArrowDown2 size={16} />
                     </div>
@@ -41,7 +41,7 @@ function TimeTracker() {
 
                 {/* previous tasks */}
                 <div className='pt-3 space-y-3'>
-                    <p className='text-xs text-gray-400'>Previous Tasks</p>
+                    <p className='text-xs text-black-400'>Previous Tasks</p>
                     {/* tasks */}
                     <div className='space-y-3'>
                         {/* loom */}

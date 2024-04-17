@@ -45,7 +45,7 @@ const Card = ({ post }) => {
           alt="Property cover image"
         />
         <div className="flat-info">
-          <h5 className="line-limit">
+          <h2 className="line-limit">
             {/* {textResizer(
             post &&
               post.location &&
@@ -54,7 +54,7 @@ const Card = ({ post }) => {
           )} */}
             {record?.location}
             {/* {post?.location} */}
-          </h5>
+          </h2>
           <h3 className="line-limit" style={{ WebkitLineClamp: 1 }}>
             {capitalizeFirstLetter(post?.name)}
           </h3>
@@ -74,7 +74,7 @@ const Card = ({ post }) => {
         <div className="explor-btn">
           <div className="explore block">
             Explore{" "}
-            <svg
+            {/* <svg
               width="13"
               height="13"
               viewBox="0 0 13 13"
@@ -85,7 +85,7 @@ const Card = ({ post }) => {
                 d="M8.6069 1.9997L0 10.6066L1.41421 12.0208L10.0211 3.41391V10.9998H12.0208V0H1.02106L1.02106 1.9997H8.6069Z"
                 fill="#DCAC81"
               />
-            </svg>
+            </svg> */}
           </div>
         </div>
       </Link>
