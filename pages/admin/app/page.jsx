@@ -3,9 +3,9 @@
 import CourseProgress from '../components/Cards/CourseProgress'
 import CurrentProject from '../components/Cards/CurrentProject'
 import EmployeeSpotlight from '../components/Cards/EmployeeSpotlight'
-import Notes from '../components/Cards/Notes'
+import Reviews from '../components/Cards/Reviews.jsx'
 import StatusTracker from '../components/Cards/StatusTracker'
-import TimeTracker from '../components/Cards/TimeTracker'
+import UserList from '../components/Cards/UserList.jsx'
 import TraningAnalysis from '../components/Cards/TraningAnalysis'
 import Sidebar from '../components/Sidebar';
 import Listing from '../api/Listing';
@@ -83,11 +83,11 @@ function Home() {
             </div>
 
             <div className='break-inside-avoid-column space-y-4'>
-              <TimeTracker />
+              <UserList />
             </div>
 
             <div className='break-inside-avoid-column space-y-4'>
-              <Notes />
+              <Reviews />
             </div>
 
             <div className='break-inside-avoid-column space-y-4'>
