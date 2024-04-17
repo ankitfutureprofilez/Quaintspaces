@@ -2,12 +2,13 @@ import Head from 'next/head';
 const Metatag = () => {
     return (
         <Head>
-        <title>Quant Stay Admin </title>
-        <meta name="description" content="Quant Stay  Admin" key="Quant Stay " />
-        <meta property="og:title" content="Quant Stay  Admin" />
+        <title>QS Admin </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <meta name="description" content="QS  Admin Jaipur " key="Quant Stay Jaipur  " />
+        <meta property="og:title" content="Quant Stay  Admin Jaipur " />
         <meta
           property="og:description"
-          content="Quant Stay Admin "
+          content="Quant Stay Admin ,QS ADMIN "
         />
         <meta
           property="og:image"

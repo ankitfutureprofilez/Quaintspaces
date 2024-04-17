@@ -22,9 +22,9 @@ function CourseProgress() {
                 <div className='flex items-center gap-4'>
                     <RadialProgress />
                     <div className='space-y-1'>
-                        <p className='text-sm text-gray-800 font-semibold'>User experience Training</p>
-                        <p className='text-xs'>Designed for frontend developer to understand user behaviour.</p>
-                        <p className='text-xs text-primary underline font-semibold underline-offset-2'>Resume Course</p>
+                        <p className='text-sm text-gray-800   text-black font-semibold'>User experience Training</p>
+                        <p className='text-xs  text-black'>Designed for frontend developer to understand user behaviour.</p>
+                        <p className='text-xs  text-black text-primary underline font-semibold underline-offset-2'>Resume Course</p>
                     </div>
                 </div>
             </div>
