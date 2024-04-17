@@ -4,6 +4,7 @@ import { Edit2, Heart, MagicStar, Send2 } from 'iconsax-react'
 import { motion } from 'framer-motion'
 import Avatar2 from '../assets/avatars/avatar2.png'
 import Avatar3 from '../assets/avatars/avatar3.png'
+import Link from 'next/link'
 
 function EmployeeSpotlight() {
 
@@ -17,25 +18,25 @@ function EmployeeSpotlight() {
             <div className='flex items-center justify-between'>
                 <div className='flex items-center text-sm gap-2'>
                     <MagicStar size={18} />
-                    <p className='text-gray-800 font-medium'>Employee Spotlight</p>
+                    <p className='text-gray-800 font-medium'>Bookings</p>
                 </div>
-                <button className='border flex items-center gap-1 px-2 py-1 rounded-lg text-xs'>
+                <Link href="/admin/booking-history" className='border flex items-center gap-1 px-2 py-1 rounded-lg text-xs'>
                     <Send2 size={14} />
-                    share
-                </button>
+                    All
+                </Link>
             </div>
 
             {/* <hr className='bg-gray-400 my-4' /> */}
 
             {/* tabs */}
             <div className='flex text-xs font-medium relative bg-gray-100 p-2 rounded-lg py-1'>
-                <button onClick={() => setActiveTab('overview')} className={`z-10 w-full px-2 py-1  text-black ${activeTab === 'overview' ? '' : ''}`}>Overview</button>
-                <button onClick={() => setActiveTab('comments')} className={`z-10 w-full px-2 py-1.5 rounded-lg  text-black ${activeTab === 'comments' ? '' : ''}`}>Comments</button>
-                <button onClick={() => setActiveTab('rewards')} className={`z-10 w-full px-2 py-1   text-black ${activeTab === 'rewards' ? '' : ''}`}>Rewards</button>
+                <button onClick={() => setActiveTab('upcoming')} className={`z-10 w-full px-2 py-1  text-black ${activeTab === 'upcoming' ? '' : ''}`}>Upcoming</button>
+                <button onClick={() => setActiveTab('completed')} className={`z-10 w-full px-2 py-1.5 rounded-lg  text-black ${activeTab === 'completed' ? '' : ''}`}>Completed</button>
+                <button onClick={() => setActiveTab('cancelled')} className={`z-10 w-full px-2 py-1   text-black ${activeTab === 'cancelled' ? '' : ''}`}>Cancelled</button>
 
                 <div className='absolute items-center px-1 top-0 left-0 w-full h-full flex'>
                     <motion.div
-                        animate={{ x: activeTab === 'overview' ? 0 : activeTab === 'rewards' ? '200%' : '100%' }}
+                        animate={{ x: activeTab === 'upcoming' ? 0 : activeTab === 'cancelled' ? '200%' : '100%' }}
                         className='w-1/3 bg-white border h-7 rounded-lg transform'
                     />
                 </div>
@@ -81,10 +82,10 @@ function EmployeeSpotlight() {
                 </div>
 
                 {/* comment button */}
-                <button className='border flex items-center justify-center w-full gap-2 p-2 text-gray-600 font-medium rounded-lg text-xs'>
+                <Link  href="/admin/booking-history" className='border flex items-center justify-center w-full gap-2 p-2 text-gray-600 font-medium rounded-lg text-xs'>
                     <Edit2 size={14} />
-                    Comment
-                </button>
+                    Show All
+                </Link>
             </div>
         </div>
     )

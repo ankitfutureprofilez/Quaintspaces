@@ -28,7 +28,7 @@ function Home() {
     const main =  new Listing();
     const response =  main.statistics();
     response.then((res)=>{
-      console.log("res",res)
+      console.log("res",res?.data)
       setRecord(res?.data)
     }
     ).catch((error)=>{
@@ -91,7 +91,7 @@ function Home() {
             </div>
 
             <div className='break-inside-avoid-column space-y-4'>
-              <StatusTracker />
+              <StatusTracker properties={record?.property}/>
             </div>
 
             <div className='break-inside-avoid-column space-y-4'>

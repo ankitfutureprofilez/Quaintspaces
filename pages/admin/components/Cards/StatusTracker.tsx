@@ -3,19 +3,20 @@ import { Clock, MinusCirlce, Monitor } from 'iconsax-react'
 import Avatar1 from '../assets/avatars/avatar1.png'
 import Avatar2 from '../assets/avatars/avatar2.png'
 import Avatar3 from '../assets/avatars/avatar3.png'
+import Link from 'next/link'
 
-function StatusTracker() {
+function StatusTracker({properties}) {
     return (
         <div className='border text-gray-500 w-full p-3 rounded-2xl'>
             {/* header */}
             <div className='flex items-center justify-between'>
                 <div className='flex items-center text-sm gap-2'>
                     <Monitor size={18} />
-                    <p className='text-gray-800 font-medium'>Status Tracker</p>
+                    <p className='text-gray-800 font-medium'>Total Properties - {properties}</p>
                 </div>
-                <button className='border px-2 py-1 rounded-lg text-xs'>
+                <Link href="/admin/property" className='border px-2 py-1 rounded-lg text-xs'>
                     See all
-                </button>
+                </Link>
             </div>
 
             <hr className='bg-gray-400 my-4' />
