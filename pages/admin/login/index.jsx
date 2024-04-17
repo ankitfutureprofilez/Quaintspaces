@@ -62,9 +62,9 @@ export default function Login() {
   return (
     <>
      <Head>
-        <title>Quant Stay Login </title>
-        <meta name="description" content="Quant Stay Login " key="Login " />
-        <meta property="og:title" content="Admin Login " />
+        <title>QS Admin Login </title>
+        <meta name="description" content="Quant Stay Admin Login " key="Quant Stay Admin " />
+        <meta property="og:title" content="Quant Stay Admin Login " />
         <meta
           property="og:description"
           content="Quant Stay  Admin Login"
@@ -120,7 +120,7 @@ export default function Login() {
                   </label>
                 </div> */}
                 <div className="text-sm">
-                  <Link href="/admin/forget-password" className="text-indigo-400 hover:text-indigo-500">
+                  <Link href="/admin/forget-password" className="text-black text-l hover:text-indigo-500">
                     Forgot your password?
                   </Link>
                 </div>
@@ -132,10 +132,8 @@ export default function Login() {
               </button>
             </div>
             </form>
-            <div className="pt-5 text-center text-gray-400 text-xs">
-              <span>
+            <div className="pt-5 text-center text-black-400 text-xs  ">
                 Copyright © 2023-2024
-                <a href="https://codepen.io/uidesignhub" rel="" target="_blank" title="Ajimon" className="text-green hover:text-green-500 ">Quant Stay</a></span>
             </div>
         </div>
       </div>
