@@ -28,7 +28,7 @@ function Home() {
     const main =  new Listing();
     const response =  main.statistics();
     response.then((res)=>{
-      console.log("res",res?.data)
+      // console.log("res",res?.data)
       setRecord(res?.data)
     }
     ).catch((error)=>{

@@ -2,6 +2,9 @@ import { Add, Calendar2, NoteText, TickCircle } from "iconsax-react";
 import Link from "next/link";
 import Listing from "../../api/Listing";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import Dateformat from "../../hook/Dateformat";
+import StartRating from "../../../elements/StartRating"
 
 function Reviews() {
   const [record, setRecord] = useState("");
@@ -64,30 +67,27 @@ function Reviews() {
             <>
               <div className="flex items-start gap-3 w-full opacity-70">
                 {/* <button className='w-4 shrink-0 mt-1 h-4 border-2 border-gray-300 rounded-full' /> */}
-                <TickCircle
-                  size={22}
-                  variant="Bold"
-                  className="text-green-500"
-                />
+                <Image src={item?.rating_user?.image_url} alt='company' height={32} width={32} />
                 <div className="w-full space-y-1">
                   <p className="text-sm text-black font-medium">
-                    Meeting with CTO
+                    {item?.rating_user?.name}
                   </p>
-                  <p className="text-xs text-black">
-                    Discuss about application architecture and approach.
+                  <p className="text-xs text-black line-limit leading-relaxed">
+                    {item?.review_text}
                   </p>
                   <div className="flex justify-between items-end">
                     <div className="space-x-2 font-medium">
-                      <button className="text-xxs px-2 py-0.5 rounded-full bg-white-100 text-black">
+                      {/* <button className="text-xxs px-2 py-0.5 rounded-full bg-white-100 text-black">
                         Today
-                      </button>
-                      <button className="text-xxs px-2 py-0.5 rounded-full bg-white-100 text-black">
-                        Meeting
-                      </button>
+                      </button> */}
+                      <div className="flex text-xs px-2 py-0.5 rounded-full bg-white-100 text-black">
+                      <StartRating value={parseFloat(item && item?.rating && item?.rating?.toFixed(2))} />
+                        {item?.rating}
+                      </div>
                     </div>
-                    <p className="flex items-center gap-1 text-xxs text-black">
+                    <p className="flex items-center gap-1 text-xs text-black">
                       <Calendar2 size={12} />
-                      26 Oct
+                      <Dateformat item={item?.createdAt} />
                     </p>
                   </div>
                 </div>

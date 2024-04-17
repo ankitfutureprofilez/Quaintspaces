@@ -45,7 +45,7 @@ function UserList() {
       <div className="space-y-3">
         {/* comment 1 */}
         {record &&
-          record?.slice(0, 3)?.map((item) => (
+          record?.slice(4,7)?.map((item) => (
             <div className="flex items-center justify-between w-full select-none cursor-pointer">
               <div className="flex items-center gap-2">
                 <Image
