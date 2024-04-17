@@ -84,10 +84,8 @@ const Reviews = React.forwardRef(({ data }, ref) => {
   };
 
   return (
-    <section
-      ref={ref}
-      className="min-h-[50vh] border-y border-darkBorderColor py-8"
-    >
+    <section ref={ref}
+      className="min-h-[50vh] border-y border-darkBorderColor py-8">
       <h1 className="text-xl md:text-2xl mb-4 font-semibold flex items-center gap-1">
         <Star />
         <span>
