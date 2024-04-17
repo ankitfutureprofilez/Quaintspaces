@@ -109,8 +109,8 @@ h3.text-sm.font-medium.desc-property {
   color: #404040;
 }
 .login-signup-btn a.signup {
-  background: #dcac81;
-  border: 2px solid #dcac81;
+  background: #c48b58;
+  border: 2px solid #c48b58;
 }
 .navbar {
   padding: 20px 0;
@@ -232,7 +232,7 @@ h1.in-jaipur {
   width: 100%;
 }
 .premium-location-slider button {
-  background: #dcac81;
+  background: #c48b58;
   padding: 20px;
   border-radius: 50px;
 }
@@ -254,8 +254,8 @@ h2.loction-name {
   justify-content: space-between;
   width: 100%;
   padding: 40px 0;
-  border-top: 1px solid #dcac81;
-  border-bottom: 1px solid #dcac81;
+  border-top: 1px solid #c48b58;
+  border-bottom: 1px solid #c48b58;
 }
 .footer-menu img {
   width: 127px;
@@ -335,7 +335,7 @@ footer {
   display: flex;
   text-align: center;
   justify-content: center;
-  border-top: 1px solid #dcac81;
+  border-top: 1px solid #c48b58;
   margin-top: 25px;
 }
 .explor-btn .explore {
@@ -346,7 +346,7 @@ footer {
   line-height: 19px;
   letter-spacing: 0em;
   text-align: center;
-  color: #dcac81;
+  color: #c48b58;
   text-transform: uppercase;
 }
 .explor-btn .explore svg {
@@ -356,7 +356,7 @@ footer {
   background: #fff;
   margin-bottom: 20px;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-  border: 1px solid #dcac81;
+  border: 1px solid #c48b58;
 }
 .banipark-box {
   background: #fff;
@@ -384,7 +384,7 @@ footer {
   line-height: 22px;
   letter-spacing: 0em;
   text-align: center;
-  color: #dcac81;
+  color: #c48b58;
 }
 .load-more-btn {
   text-align: center;
@@ -397,7 +397,7 @@ footer {
   line-height: 19px;
   letter-spacing: 0em;
   text-align: center;
-  color: #dcac81;
+  color: #c48b58;
   text-transform: uppercase;
   padding: 15px 50px;
   border: 1px solid;
@@ -548,7 +548,7 @@ footer {
 }
 button.submint-btn {
   width: 100%;
-  background: #dcac81;
+  background: #c48b58;
   border-radius: 50px;
   padding: 20px;
   font-family: "Inter", sans-serif;
@@ -606,8 +606,8 @@ button.submint-btn {
   color: #666360;
 }
 .upcomming-box button.text-white {
-  background: #dcac81;
-  border: 1px solid #dcac81;
+  background: #c48b58;
+  border: 1px solid #c48b58;
 }
 .upcomming-box button {
   border: 1px solid #ececec;
@@ -668,7 +668,7 @@ button.submint-btn {
   background: none;
 }
 .edit-profile {
-  background: #dcac81;
+  background: #c48b58;
   height: 32px;
   width: 32px;
   display: flex;
@@ -679,7 +679,7 @@ button.submint-btn {
   top: -8px;
 }
 .update-btn {
-  background: #dcac81;
+  background: #c48b58;
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 600;
@@ -707,7 +707,7 @@ button.submint-btn {
   color: #666360;
 }
 .golden-border {
-  border: 1px solid #dcac81;
+  border: 1px solid #c48b58;
 }
 .confirm-total span {
   font-family: "Inter", sans-serif !important;
@@ -730,7 +730,7 @@ button.submint-btn {
   color: #3f2a17;
 }
 .bg-orange-300 {
-  background: #dcac81;
+  background: #c48b58;
 }
 .edit-here h2 {
   margin-bottom: 6px;
@@ -1266,13 +1266,13 @@ button.submint-btn {
   /* height: 46px; */
 }
 .sort {
-  border: 2px solid #dcac81;
-  color: #dcac81;
+  border: 2px solid #c48b58;
+  color: #c48b58;
   font-size: 14px;
 }
 .filter {
-  background: #dcac81;
-  border: 2px solid #dcac81;
+  background: #c48b58;
+  border: 2px solid #c48b58;
   color: #fff;
 }
 

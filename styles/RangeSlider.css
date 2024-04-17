@@ -40,7 +40,7 @@
   }
   
   .slider__range {
-    background-color: #DCAC81;
+    background-color: #c48b58;
     z-index: 2;
   }
   
@@ -94,10 +94,10 @@
   
   /* For Chrome browsers */
   .thumb::-webkit-slider-thumb {
-    background-color: #DCAC81;
+    background-color: #c48b58;
     border: none;
     border-radius: 50%;
-    box-shadow: 0 0 1px 1px #DCAC81;
+    box-shadow: 0 0 1px 1px #c48b58;
     cursor: pointer;
     height: 18px;
     width: 18px;
@@ -108,10 +108,10 @@
   
   /* For Firefox browsers */
   .thumb::-moz-range-thumb {
-    background-color: #DCAC81;
+    background-color: #c48b58;
     border: none;
     border-radius: 50%;
-    box-shadow: 0 0 1px 1px #DCAC81;
+    box-shadow: 0 0 1px 1px #c48b58;
     cursor: pointer;
     height: 18px;
     width: 18px;
