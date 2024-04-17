@@ -139,12 +139,12 @@ button.hover\:bg-gray-400.hover\:bg-opacity-40.rounded-full.absolute.top-1\/2.-t
   fill: #16a24a!important;
 }
 
-@media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) {
   .refreshing {
     position: absolute;
     top: 0;
   }
-}
+} */
 
 /* Error Page */
 html {
