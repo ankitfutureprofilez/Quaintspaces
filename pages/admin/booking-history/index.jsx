@@ -274,7 +274,7 @@ const closeCancelModal = () => {
               onChange={handleChange}
               className="mt-3 p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
               required
-              placeholder="Type your cancellation message for the user here"
+              placeholder="Type your  message for the user here"
               rows={4} // Set the number of rows as needed
             />
             <button
