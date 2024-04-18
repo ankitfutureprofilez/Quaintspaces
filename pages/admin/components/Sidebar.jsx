@@ -5,8 +5,6 @@ import Link from "next/link";
 import {
   ArrowRight2,
   Element3,
-  TextalignJustifycenter,
-  Message,
   Triangle,
   Add,
 } from "iconsax-react";
@@ -58,12 +56,12 @@ function Sidebar() {
 
   return (
     <div
-      className={`w-60 shrink-0 md:block h-screen sticky top-0 overflow-hidden ${
+      className={`shrink-0 md:block h-screen sticky top-0 overflow-hidden ${
         isSidebarOpen ? "!fixed" : "hidden"
       }`}
     >
       <div
-        className={`w-full h-full bg-white border-r ${
+        className={`w-60 h-full bg-white border-r ${
           isMobileSidebarOpen ? "block" : "hidden md:block"
         }`}
       >
