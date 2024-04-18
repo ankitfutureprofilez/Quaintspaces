@@ -32,7 +32,7 @@ export default function Index() {
         <Spinner/>
       ) : (
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto mt-3">
         <div className="w-full">
           <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg">
     {content && content.length > 0 ? (
@@ -40,12 +40,12 @@ export default function Index() {
 <table className="min-w-[1200px] w-full break-all divide-gray-200 dark:divide-gray-700">
 <thead className="bg-gray-50 dark:bg-gray-800">
   <tr >
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Payment Id </td>
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Customer</td>
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Purchase</td>
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Method</td>
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Status</td>
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">Amount</td>
+    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">Payment Id </td>
+    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">Customer</td>
+    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">Purchase</td>
+    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">Method</td>
+    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">Status</td>
+    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">Amount</td>
   </tr>
 </thead>
 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">

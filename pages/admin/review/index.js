@@ -70,39 +70,33 @@ export default function Index() {
                                 <Loading />
                             </div>
                         ) : (
-                            <div className="overflow-x-auto">
+                            <div className="overflow-x-auto mt-3">
                                 <div className="inline-block align-middle w-full">
                                     <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg">
                                         <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
                                             <thead className="bg-gray-50 dark:bg-gray-800">
                                                 <tr>
-                                                    <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400 "
+                                                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 "
                                                     >
                                                          Date
                                                     </th>
-                                                    <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400 "
+                                                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 "
                                                     >
                                                         User
                                                     </th>
-                                                    <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400"
                                                     >
                                                         Description
                                                     </th>
-                                                    <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400 "
+                                                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 "
                                                     >
                                                         Property
                                                     </th>
-                                                    <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400 "
+                                                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 "
                                                     >
                                                         Status
                                                     </th>
-                                                    <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400 "
+                                                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 "
                                                     >
                                                         Actions
                                                     </th>
