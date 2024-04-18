@@ -13,7 +13,7 @@ export default function Profile() {
   const [loading, setLoading] = useState(false);
   const [ImageUploaded, setImageUploaded] = useState(false);
   const { auth, setAuth } = useContext(Context);
-  console.log("auth", auth);
+  // console.log("auth", auth);
   const [data, setData] = useState({
     email: "",
     phone_no: "",

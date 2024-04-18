@@ -14,7 +14,7 @@ function Reviews() {
     main
       .getrating()
       .then((r) => {
-        console.log("data", r?.data?.data);
+        // console.log("data", r?.data?.data);
         setRecord(r?.data?.data);
       })
       .catch((err) => {

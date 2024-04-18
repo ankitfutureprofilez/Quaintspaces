@@ -45,7 +45,7 @@ export default function index() {
     const response = main.bookinghistory();
     response
       .then((res) => {
-        console.log("res?.data?.data", res?.data?.data);
+        // console.log("res?.data?.data", res?.data?.data);
         setContent(res?.data?.data);
         setLoading(false);
       })
@@ -71,7 +71,7 @@ export default function index() {
     main
       .booking_confirm_cancelled(uuid, id, formdata)
       .then((response) => {
-        console.log("response", response);
+        // console.log("response", response);
         if (response && response.data && response?.data?.status === true) {
           fetchData();
           closeConfirmModal();

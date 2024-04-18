@@ -51,7 +51,7 @@ export default function Index() {
   
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  console.log("selectedProperty",selectedProperty)
+  // console.log("selectedProperty",selectedProperty)
 
   const togglePopup = (uuid) => {
     setSelectedProperty(uuid);

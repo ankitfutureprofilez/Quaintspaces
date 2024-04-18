@@ -68,7 +68,7 @@ const DatePicker = ({
   }, []);
 
   function nextMonth() {
-    console.log("w", width);
+    // console.log("w", width);
     if (width < 767) {
       let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 });
       setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
