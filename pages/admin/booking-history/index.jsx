@@ -95,9 +95,9 @@ const closeCancelModal = () => {
         <Spinner />
       ) : content && content.length > 0 ? (
         <div className="overflow-x-auto">
-          <div className="inline-block align-middle w-full">
-            <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg">
-              <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
+  <div className="w-full">
+    <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg">
+      <table className="min-w-[1200px] w-full break-all divide-gray-200 dark:divide-gray-700">
                 <thead className="bg-gray-50 dark:bg-gray-800">
                   <tr className="">
                     <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
