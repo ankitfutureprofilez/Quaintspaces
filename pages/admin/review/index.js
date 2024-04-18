@@ -72,39 +72,10 @@ export default function Index() {
                         ) : (
                             <div className="overflow-x-auto mt-3">
                                 <div className="inline-block align-middle w-full">
-                                    <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
-                                        <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200">
-                                            <thead className="bg-gray-50 ">
+                                    <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg">
+                                        <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
+                                            <thead className="bg-gray-50 dark:bg-gray-800">
                                                 <tr>
-<<<<<<< HEAD
-                                                    <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500"
-                                                    >
-                                                         Date
-                                                    </th>
-                                                    <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500"
-                                                    >
-                                                        User
-                                                    </th>
-                                                    <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500"
-                                                    >
-                                                        Description
-                                                    </th>
-                                                    <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 "
-                                                    >
-                                                        Property
-                                                    </th>
-                                                    <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 "
-                                                    >
-                                                        Status
-                                                    </th>
-                                                    <th
-                                                        className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 "
-=======
                                                     <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 "
                                                     >
                                                          Date
@@ -126,22 +97,21 @@ export default function Index() {
                                                         Status
                                                     </th>
                                                     <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 "
->>>>>>> 0410ff4ccab4e689aabbfc960cfd4d143a1ecbe4
                                                     >
                                                         Actions
                                                     </th>
                                                 </tr>
                                             </thead>
-                                            <tbody className="bg-white divide-y divide-gray-200">
+                                            <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                                 {content && content.length > 0 ? (
                                                     content &&
                                                     content.map((item, index) => {
                                                         return (
                                                             <tr key={index}>
-                                                                <td className="px-4 py-4 text-sm text-gray-500">
+                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                                                                     <Dateformat item={item?.createdAt} />
                                                                 </td>
-                                                                <td className="px-4 py-4 text-sm text-gray-500">
+                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                                                                     <div className="flex items-center gap-x-2">
                                                                         <Image
                                                                             className="object-cover w-8 h-8 rounded-full user-profile-img"
@@ -152,20 +122,20 @@ export default function Index() {
                                                                         />
 
                                                                         <div>
-                                                                            <h2 className="text-sm font-medium text-gray-800">
+                                                                            <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
                                                                                 {item?.rating_user?.name}
                                                                             </h2>
-                                                                            <p className="text-xs font-normal text-gray-600">
+                                                                            <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
                                                                                 {item?.rating_user?.email}
                                                                             </p>
                                                                         </div>
                                                                     </div>
                                                                 </td>
-                                                                <td className="break-after-auto px-4 py-4 text-sm text-gray-500 w-[25%] ">
+                                                                <td className="break-after-auto px-4 py-4 text-sm text-gray-500 dark:text-gray-300 w-[25%] ">
                                                                     {item?.review_text}
                                                                 </td>
 
-                                                                <td className="px-4 py-4 text-sm text-gray-500">
+                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                                                                     <div className="flex items-center gap-x-2">
                                                                         <Link
                                                                             href={`/property/${item?.get_property_review?.uuid}`}
@@ -183,17 +153,17 @@ export default function Index() {
                                                                             />
 
                                                                             <div>
-                                                                                <h2 className="text-sm font-medium text-gray-800">
+                                                                                <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
                                                                                     {item?.get_property_review?.name}
                                                                                 </h2>
-                                                                                <p className="text-xs font-normal text-gray-600">
+                                                                                <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
                                                                                     {item?.get_property_review?.price}
                                                                                 </p>
                                                                             </div>
                                                                         </Link>
                                                                     </div>
                                                                 </td>
-                                                                <td className="px-4 py-4 text-sm text-gray-500">
+                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                                                                     {item?.status === 1 ? (
                                                                         <div className="flex flex-wrap w-24">
                                                                             <svg
@@ -235,7 +205,7 @@ export default function Index() {
                                                                         </div>
                                                                     )}
                                                                 </td>
-                                                                <td className="px-4 py-4 text-sm text-gray-500 w-28">
+                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 w-28 ">
                                                                     <div
                                                                         onClick={() =>
                                                                             acceptReview(

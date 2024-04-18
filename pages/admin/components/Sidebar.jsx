@@ -5,6 +5,8 @@ import Link from "next/link";
 import {
   ArrowRight2,
   Element3,
+  TextalignJustifycenter,
+  Message,
   Triangle,
   Add,
 } from "iconsax-react";
@@ -56,11 +58,7 @@ function Sidebar() {
 
   return (
     <div
-<<<<<<< HEAD
-      className={`shrink-0 md:block h-screen sticky top-0 overflow-hidden ${
-=======
       className={` shrink-0 md:block h-screen sticky top-0 overflow-hidden ${
->>>>>>> 0410ff4ccab4e689aabbfc960cfd4d143a1ecbe4
         isSidebarOpen ? "!fixed" : "hidden"
       }`}
     >

@@ -51,29 +51,10 @@ export default function Booking(props) {
       ) : content && content.length > 0 ? (
         <div className="overflow-x-auto">
           <div className="inline-block align-middle w-full">
-            <div className="overflow-hidden border border-gray-200 md:rounded-lg ">
-              <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+            <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg ">
+              <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
+                <thead className="bg-gray-50 dark:bg-gray-800">
                   <tr className="">
-<<<<<<< HEAD
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">
-                      {" "}
-                      booking Date
-                    </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">
-                      booking Number{" "}
-                    </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">
-                      Check In & Checkout Time{" "}
-                    </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">
-                      Amount
-                    </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">
-                      Status
-                    </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">
-=======
                     <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">
                       {" "}
                       booking Date
@@ -91,7 +72,6 @@ export default function Booking(props) {
                       Status
                     </td>
                     <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">
->>>>>>> 0410ff4ccab4e689aabbfc960cfd4d143a1ecbe4
                       Document Image and Type{" "}
                     </td>
                   </tr>
@@ -100,10 +80,10 @@ export default function Booking(props) {
                   {content &&
                     content.map((item, index) => (
                       <tr className="" key={index}>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                           {item?.booking_date}
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                           {item?.booking_number}
                         </td>
 
@@ -111,18 +91,18 @@ export default function Booking(props) {
                           {item?.check_in} & {item?.check_out}
                         </td>
 
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                           {item?.price}
                           <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-blue-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
                             {item?.booking_status}
                           </div>
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                           <div className="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">
                             {item?.booking_status}
                           </div>
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                           <Image
                             width={40}
                             height={40}

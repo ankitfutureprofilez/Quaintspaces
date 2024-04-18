@@ -34,34 +34,25 @@ export default function Index() {
 
         <div className="overflow-x-auto mt-3">
         <div className="w-full">
-          <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
+          <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg">
     {content && content.length > 0 ? (
 
-<table className="min-w-[1200px] w-full break-all divide-gray-200">
-<thead className="bg-gray-50">
+<table className="min-w-[1200px] w-full break-all divide-gray-200 dark:divide-gray-700">
+<thead className="bg-gray-50 dark:bg-gray-800">
   <tr >
-<<<<<<< HEAD
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 ">Payment Id </td>
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 ">Customer</td>
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">Purchase</td>
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">Method</td>
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">Status</td>
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">Amount</td>
-=======
     <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">Payment Id </td>
     <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">Customer</td>
     <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">Purchase</td>
     <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">Method</td>
     <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">Status</td>
     <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">Amount</td>
->>>>>>> 0410ff4ccab4e689aabbfc960cfd4d143a1ecbe4
   </tr>
 </thead>
-<tbody className="bg-white divide-y divide-gray-200">
+<tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
   {content && content.map((item, index) => (
     <tr key={index}>
-      <td className="px-4 py-4 text-sm text-gray-500">{item?.payment_id}</td>
-      <td className="px-4 py-4 text-sm text-gray-500">
+      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">{item?.payment_id}</td>
+      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
         <div className="flex gap-2 items-center  text-sm p-2 ">
           <Image
             width={35}
@@ -77,7 +68,7 @@ export default function Index() {
         </div>
       </td>
 
-      <td className="px-4 py-4 text-sm text-gray-500">
+      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
         <div className="items-center flex gap-2 text-sm p-2 ">
           <Image
             width={35}
@@ -92,7 +83,7 @@ export default function Index() {
           </div>
         </div>
       </td>
-      <td className="px-4 py-4 text-sm text-gray-500">{item?.method}</td>
+      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">{item?.method}</td>
       <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
         
       <td
