@@ -703,6 +703,7 @@ export default function Property(props) {
                     </button>
                   </div>
                 ))}
+
               </div>
 
               {isEdit ?
