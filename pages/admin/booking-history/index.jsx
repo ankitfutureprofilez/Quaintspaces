@@ -15,30 +15,28 @@ export default function index() {
   const [message, setMessage] = useState("");
   const [selectedBooking, setSelectedBooking] = useState(null); // New state to store selected booking
   const [isConfirmOpen, setIsConfirmOpen] = useState(false); // State for confirm modal
-const [isCancelOpen, setIsCancelOpen] = useState(false); // State for cancel modal
+  const [isCancelOpen, setIsCancelOpen] = useState(false); // State for cancel modal
 
-const openConfirmModal = (booking) => {
-  setSelectedBooking(booking);
-  setIsConfirmOpen(true);
-};
+  const openConfirmModal = (booking) => {
+    setSelectedBooking(booking);
+    setIsConfirmOpen(true);
+  };
 
-const openCancelModal = (booking) => {
-  setSelectedBooking(booking);
-  setIsCancelOpen(true);
-};
+  const openCancelModal = (booking) => {
+    setSelectedBooking(booking);
+    setIsCancelOpen(true);
+  };
 
-const closeConfirmModal = () => {
-  setIsConfirmOpen(false);
-};
+  const closeConfirmModal = () => {
+    setIsConfirmOpen(false);
+  };
 
-const closeCancelModal = () => {
-  setIsCancelOpen(false);
-};
-
-  
+  const closeCancelModal = () => {
+    setIsCancelOpen(false);
+  };
 
   const handleChange = (e) => {
-     setMessage(e?.target?.value);
+    setMessage(e?.target?.value);
   };
 
   function fetchData() {
@@ -47,7 +45,7 @@ const closeCancelModal = () => {
     const response = main.bookinghistory();
     response
       .then((res) => {
-        console.log("res?.data?.data",res?.data?.data)
+        console.log("res?.data?.data", res?.data?.data);
         setContent(res?.data?.data);
         setLoading(false);
       })
@@ -62,14 +60,14 @@ const closeCancelModal = () => {
   }, []);
 
   const bookingaccept = (uuid, id, bookingStatus) => {
-    if(message?.length == 0){
-      toast.error("Message can't be empty!")
+    if (message?.length == 0) {
+      toast.error("Message can't be empty!");
       return;
     }
     const main = new Listing();
     const formdata = new FormData();
     formdata.append("booking_status", bookingStatus);
-    formdata.append("message",message);
+    formdata.append("message", message);
     main
       .booking_confirm_cancelled(uuid, id, formdata)
       .then((response) => {
@@ -78,7 +76,7 @@ const closeCancelModal = () => {
           fetchData();
           closeConfirmModal();
           closeCancelModal();
-          setMessage("")
+          setMessage("");
           toast.success(response.data.message);
         } else {
           toast.error(response.data.message);
@@ -95,9 +93,9 @@ const closeCancelModal = () => {
         <Spinner />
       ) : content && content.length > 0 ? (
         <div className="overflow-x-auto">
-          <div className="inline-block align-middle w-full">
+          <div className="w-full">
             <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg">
-              <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
+              <table className="min-w-[1200px] w-full break-all divide-gray-200 dark:divide-gray-700">
                 <thead className="bg-gray-50 dark:bg-gray-800">
                   <tr className="">
                     <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -140,8 +138,8 @@ const closeCancelModal = () => {
 
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <div className="flex flex-wrap justify-center-between">
-                        {item?.adults} adults {item?.children} children{" "}
-                        {item?.no_of_pet} pet
+                          {item?.adults} adults {item?.children} children{" "}
+                          {item?.no_of_pet} pet
                         </div>
                       </td>
 
@@ -195,9 +193,9 @@ const closeCancelModal = () => {
 
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                         <td
-                          onClick={() =>
-                          openConfirmModal(item)
-                           // bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
+                          onClick={
+                            () => openConfirmModal(item)
+                            // bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
                           }
                           className="cursor-pointer text-green-500 flex items-center gap-2 border rounded-full p-2 mb-2"
                         >
@@ -219,8 +217,8 @@ const closeCancelModal = () => {
 
                         <td
                           onClick={() =>
-                           //bookingaccept(item.booking_user[0]?.id, item.id, "cancelled")
-                           openCancelModal(item)
+                            //bookingaccept(item.booking_user[0]?.id, item.id, "cancelled")
+                            openCancelModal(item)
                           }
                           className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-2"
                         >
@@ -242,8 +240,6 @@ const closeCancelModal = () => {
                             ></path>
                           </svg>
                           {loading ? "loading.." : "Cancelled"}
-                      
-
                         </td>
                       </td>
                     </tr>
@@ -257,8 +253,7 @@ const closeCancelModal = () => {
         <Nodata text={"No Booking "} />
       )}
 
-
-{selectedBooking && (
+      {selectedBooking && (
         <Modal isOpen={isConfirmOpen} onClose={closeConfirmModal}>
           <div className="my-3 lg:my-6 flex flex-col">
             <label
@@ -275,7 +270,7 @@ const closeCancelModal = () => {
               className="mt-3 p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
               required
               placeholder="Type your  message for the user here"
-              rows={4} // Set the number of rows as needed
+              rows={2} // Set the number of rows as needed
             />
             <button
               className="btn filter mt-8 w-2/4 mx-auto"
@@ -287,15 +282,13 @@ const closeCancelModal = () => {
                 )
               }
             >
-              {loading ? "loading..." :"proceed"}
+              {loading ? "loading..." : "proceed"}
             </button>
           </div>
         </Modal>
       )}
 
-
-
-{selectedBooking && (
+      {selectedBooking && (
         <Modal isOpen={isCancelOpen} onClose={closeCancelModal}>
           <div className="my-3 lg:my-6 flex flex-col">
             <label
@@ -312,7 +305,7 @@ const closeCancelModal = () => {
               className="mt-3 p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
               required
               placeholder="Type your cancellation message for the user here"
-              rows={4} // Set the number of rows as needed
+              rows={2} // Set the number of rows as needed
             />
             <button
               className="btn filter mt-8 w-2/4 mx-auto"
@@ -324,12 +317,11 @@ const closeCancelModal = () => {
                 )
               }
             >
-              {loading ? "loading..." :"proceed"}
+              {loading ? "loading..." : "proceed"}
             </button>
           </div>
         </Modal>
       )}
-
     </AdminLayout>
   );
 }

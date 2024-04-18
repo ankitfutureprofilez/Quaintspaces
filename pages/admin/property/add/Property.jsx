@@ -769,15 +769,17 @@ export default function Property(props) {
 
 
             <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
-              {step === 1 && (
+              {step == 0 ?  (
+               <> </>
+              ) : ( 
                 <button
-                  type="button"
-                  onClick={prevStep}
-                  className="inline-flex justify-center items-center h-10 py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                >
-                  Back
-                </button>
-              )}
+                type="button"
+                onClick={prevStep}
+                className="inline-flex justify-center items-center h-10 py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+              >
+                Back
+              </button>
+              ) }
 
               {step < 5 ? (
                 <button
