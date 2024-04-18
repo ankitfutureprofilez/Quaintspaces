@@ -72,7 +72,7 @@ export default function Index() {
                         ) : (
                             <div className="overflow-x-auto">
                                 <div className="inline-block align-middle w-full">
-                                    <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+                                    <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg">
                                         <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
                                             <thead className="bg-gray-50 dark:bg-gray-800">
                                                 <tr>
