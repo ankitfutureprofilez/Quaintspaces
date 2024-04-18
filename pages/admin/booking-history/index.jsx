@@ -94,59 +94,59 @@ export default function index() {
       ) : content && content.length > 0 ? (
         <div className="overflow-x-auto">
           <div className="w-full">
-            <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg">
-              <table className="min-w-[1200px] w-full break-all divide-gray-200 dark:divide-gray-700">
-                <thead className="bg-gray-50 dark:bg-gray-800">
+            <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
+              <table className="min-w-[1200px] w-full break-all divide-gray-200">
+                <thead className="bg-gray-50">
                   <tr className="">
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">
                       {" "}
                       booking Date
                     </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">
                       booking Number{" "}
                     </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 ">
                       Stay{" "}
                     </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">
                       Amount
                     </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">
                       Status
                     </td>
                     {/* <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                       user
                     </td> */}
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 ">
                       Document Image and Type{" "}
                     </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 ">
                       Action
                     </td>
                   </tr>
                 </thead>
 
-                <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                <tbody className="bg-white divide-y divide-gray-200">
                   {content.map((item, index) => (
                     <tr key={index}>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                      <td className="px-4 py-4 text-sm text-gray-500">
                         <Dateformat item={item?.booking_date} />
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                      <td className="px-4 py-4 text-sm text-gray-500">
                         {item?.booking_number}
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                      <td className="px-4 py-4 text-sm text-gray-500">
                         <div className="flex flex-wrap justify-center-between">
                           {item?.adults} adults {item?.children} children{" "}
                           {item?.no_of_pet} pet
                         </div>
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                      <td className="px-4 py-4 text-sm text-gray-500">
                         {item?.price}
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                      <td className="px-4 py-4 text-sm text-gray-500">
                         <td
                           className={`inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${
                             item?.booking_status === "completed"
@@ -176,7 +176,7 @@ export default function index() {
                           </div>
                         </div>
                       </td> */}
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                      <td className="px-4 py-4 text-sm text-gray-500">
                         <div className="flex items-center">
                           <Image
                             width={50}
@@ -191,7 +191,7 @@ export default function index() {
                         </div>
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+                      <td className="px-4 py-4 text-sm text-gray-500">
                         <td
                           onClick={
                             () => openConfirmModal(item)

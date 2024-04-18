@@ -241,9 +241,9 @@ export default function Index() {
 
                       {/* Dropdown menu */}
                       {popupOpen === item.id && selectedRowData && (
-                        <div className="z-10 absolute top-full right-0 mt-1 w-44 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
-                          <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                            <li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                        <div className="z-10 absolute top-full right-0 mt-1 w-44 bg-white divide-y divide-gray-100 rounded-lg shadow">
+                          <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
+                            <li className="block px-4 py-2 hover:bg-gray-100">
                               <button
                                 onClick={() =>
                                   statusUpdate(item.id, item.status === 0 ? 1 : 0)
@@ -291,7 +291,7 @@ export default function Index() {
                               </button>
                             </li>
                             <li>
-                              <Link href={`user-history/${item.id}`} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">User Details </Link>
+                              <Link href={`user-history/${item.id}`} className="block px-4 py-2 hover:bg-gray-100">User Details </Link>
                             </li>
                             {/* <li>
                               <Link href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</Link>
