@@ -31,16 +31,16 @@ export default function Index() {
   return (
     <>
       <AdminLayout heading="Enquiry ">
-        <section className=" p-4 ">
+        <section className="p-2 sm:p-4 ">
           <div className="flex flex-col">
             {loading ? (
               <div className="flex flex-wrap justify-center">
                 <Loading />
               </div>
             ) : (
-              <div className="w-full  overflow-x-auto ">
-                  <div className="overflow-hidden border border-gray-200 md:rounded-lg">
-                    <table className="min-w-[1200px] table-auto divide-y divide-gray-200">
+              <div className="w-full overflow-x-auto">
+                  <div className="border border-gray-200 md:rounded-lg">
+                    <table className="min-w-[1200px] overflow-x-auto table-auto divide-y divide-gray-200">
                       <thead className="bg-gray-50">
                         <tr>
                           <th

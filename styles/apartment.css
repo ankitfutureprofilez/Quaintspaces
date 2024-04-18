@@ -95,9 +95,9 @@ html {
 }
 /* Pop-up Close button */
 .popup-button {
-  right: 10px;
-  top: 39px;
-  z-index: 1;
+  right: 23px;
+  top: 44px;
+  z-index: 10;
 }
 .profile-navbar {
   padding: 0px !important;
