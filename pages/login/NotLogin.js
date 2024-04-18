@@ -24,7 +24,7 @@ export default function NotLogin({openLogin}) {
 
   return (
      <Popup isOpen={open} >
-      <LoginLogic isPopup={true}  />
+      <LoginLogic isPopup={true} color={"!text-white"}  />
      </Popup>
   );
 }

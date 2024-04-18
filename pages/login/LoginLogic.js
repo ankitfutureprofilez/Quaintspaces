@@ -5,7 +5,7 @@ import { Context } from "../_app";
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 
-export default function LoginLogic({isPopup}) {
+export default function LoginLogic({isPopup,color}) {
 
   const { setAuth, setOpenLogin } = useContext(Context);
   const router = useRouter();
@@ -70,8 +70,14 @@ export default function LoginLogic({isPopup}) {
             <div className="formbgcolor"></div>
             <div className="quainttay">
               <h2>Welcome to Quaint Stay Jaipur </h2>
-              <h3>
-                Don't have an account? <Link href="/signup">Sign up</Link>
+              <h3 className={`${color}`}>
+                Don't have an account? <button href="/signup"
+                onClick={()=>{
+                  router.push("/signup");
+                  setOpenLogin(false);
+                }}
+                >
+                  Sign up</button>
               </h3>
             </div>
             <form onSubmit={handleSubmit}>

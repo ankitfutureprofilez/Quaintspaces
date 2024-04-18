@@ -72,7 +72,7 @@ export default function Popup({
             >
               <div className="relative bg-transparent bg-opacity-0 rounded-lg p-6 max-w-md mx-auto">
                 <button
-                  className="px-4 py-2 popup-button absolute text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="px-2 py-2 popup-button absolute text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   onClick={closep}
                   ref={cancelButtonRef}
                 >
