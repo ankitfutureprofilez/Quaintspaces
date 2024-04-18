@@ -82,7 +82,6 @@ function Reviews() {
                       </button> */}
                       <div className="flex text-xs px-2 py-0.5 rounded-full bg-white-100 text-black">
                       <StartRating value={parseFloat(item && item?.rating && item?.rating?.toFixed(2))} />
-                        {item?.rating}
                       </div>
                     </div>
                     <p className="flex items-center gap-1 text-xs text-black">

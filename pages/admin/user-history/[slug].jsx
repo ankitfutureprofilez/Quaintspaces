@@ -62,7 +62,7 @@ function index() {
                 />
               </div>
               <div className="mt-16">
-                <h1 className="font-bold text-center  text-3xl text-white-900">
+                <h1 className="font-bold text-center text-capitalize text-3xl text-white-900">
                   {" "}
                   {record?.name}
                 </h1>
