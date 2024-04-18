@@ -56,7 +56,11 @@ function Sidebar() {
 
   return (
     <div
+<<<<<<< HEAD
       className={`shrink-0 md:block h-screen sticky top-0 overflow-hidden ${
+=======
+      className={` shrink-0 md:block h-screen sticky top-0 overflow-hidden ${
+>>>>>>> 0410ff4ccab4e689aabbfc960cfd4d143a1ecbe4
         isSidebarOpen ? "!fixed" : "hidden"
       }`}
     >
@@ -284,7 +288,6 @@ function Sidebar() {
                   </div>
                 </div>
                 <button className="text-gray-500" aria-label="button">
-                  <ArrowRight2 size={24} color="#4B0082" />
                   <Menu isOpen={isDropdownOpen} record={auth} />
                 </button>
               </div>

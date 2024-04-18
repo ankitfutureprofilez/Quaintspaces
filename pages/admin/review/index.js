@@ -70,12 +70,13 @@ export default function Index() {
                                 <Loading />
                             </div>
                         ) : (
-                            <div className="overflow-x-auto">
+                            <div className="overflow-x-auto mt-3">
                                 <div className="inline-block align-middle w-full">
                                     <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
                                         <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200">
                                             <thead className="bg-gray-50 ">
                                                 <tr>
+<<<<<<< HEAD
                                                     <th
                                                         className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500"
                                                     >
@@ -103,6 +104,29 @@ export default function Index() {
                                                     </th>
                                                     <th
                                                         className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 "
+=======
+                                                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 "
+                                                    >
+                                                         Date
+                                                    </th>
+                                                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 "
+                                                    >
+                                                        User
+                                                    </th>
+                                                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400"
+                                                    >
+                                                        Description
+                                                    </th>
+                                                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 "
+                                                    >
+                                                        Property
+                                                    </th>
+                                                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 "
+                                                    >
+                                                        Status
+                                                    </th>
+                                                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 "
+>>>>>>> 0410ff4ccab4e689aabbfc960cfd4d143a1ecbe4
                                                     >
                                                         Actions
                                                     </th>

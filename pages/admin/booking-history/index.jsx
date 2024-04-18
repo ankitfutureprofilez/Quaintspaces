@@ -92,8 +92,9 @@ export default function index() {
       {loading ? (
         <Spinner />
       ) : content && content.length > 0 ? (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto mt-3">
           <div className="w-full">
+<<<<<<< HEAD
             <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
               <table className="min-w-[1200px] w-full break-all divide-gray-200">
                 <thead className="bg-gray-50">
@@ -112,15 +113,42 @@ export default function index() {
                       Amount
                     </td>
                     <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">
+=======
+            <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg mt-2">
+              <table className="min-w-[1200px] w-full break-all divide-gray-200 dark:divide-gray-700">
+                <thead className="bg-gray-50 dark:bg-gray-800">
+                  <tr className="">
+                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                      {" "}
+                      booking Date
+                    </td>
+                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                      booking Number{" "}
+                    </td>
+                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                      Stay{" "}
+                    </td>
+                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                      Amount
+                    </td>
+                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+>>>>>>> 0410ff4ccab4e689aabbfc960cfd4d143a1ecbe4
                       Status
                     </td>
-                    {/* <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    {/* <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400">
                       user
                     </td> */}
+<<<<<<< HEAD
                     <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 ">
                       Document Image and Type{" "}
                     </td>
                     <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 ">
+=======
+                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                      Document Image and Type{" "}
+                    </td>
+                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+>>>>>>> 0410ff4ccab4e689aabbfc960cfd4d143a1ecbe4
                       Action
                     </td>
                   </tr>
@@ -191,14 +219,18 @@ export default function index() {
                         </div>
                       </td>
 
+<<<<<<< HEAD
                       <td className="px-4 py-4 text-sm text-gray-500">
                         <td
                           onClick={
+=======
+                      <td className="px-4 py-2 text-sm text-gray-500 dark:text-gray-300 ">
+                      
+                          <div onClick={
+>>>>>>> 0410ff4ccab4e689aabbfc960cfd4d143a1ecbe4
                             () => openConfirmModal(item)
                             // bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
-                          }
-                          className="cursor-pointer text-green-500 flex items-center gap-2 border rounded-full p-2 mb-2"
-                        >
+                          } className="cursor-pointer text-green-500 flex items-center gap-2 border w-fit rounded-full p-1 px-4 mb-2">
                           {loading ? "loading.." : "confirmed"}
                           <svg
                             className="text-emerald-500"
@@ -213,15 +245,14 @@ export default function index() {
                               fill="currentColor"
                             ></path>
                           </svg>
-                        </td>
+                          </div>
+                        
 
-                        <td
-                          onClick={() =>
+                       
+                        <div onClick={() =>
                             //bookingaccept(item.booking_user[0]?.id, item.id, "cancelled")
                             openCancelModal(item)
-                          }
-                          className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-2"
-                        >
+                          } className="cursor-pointer text-red-500 flex items-center w-fit gap-2 border rounded-full p-1 px-4">
                           <svg
                             className="text-red-400"
                             xmlns="http://www.w3.org/2000/svg"
@@ -240,7 +271,7 @@ export default function index() {
                             ></path>
                           </svg>
                           {loading ? "loading.." : "Cancelled"}
-                        </td>
+                        </div>
                       </td>
                     </tr>
                   ))}

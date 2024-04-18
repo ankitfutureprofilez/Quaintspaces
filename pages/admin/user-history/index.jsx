@@ -89,17 +89,17 @@ export default function Index() {
         <div className="w-full ">
           <table className="w-full text-sm rounded-md">
             <thead>
-              <tr className="bg-gray-100 rounded-lg flex items-center justify-between text-gray-500">
-                <th className="flex gap-2  w-1/4 text-sm p-4">
+              <tr className="bg-gray-100 rounded-lg flex items-center bg-black text-white justify-between text-gray-500">
+                <th className="flex gap-2 bg-black text-white  w-1/4 text-sm p-4">
                   <p>Name</p>
                 </th>
-                <th className="flex gap-2 flex justify-center w-1/4 text-sm p-4">
+                <th className="flex gap-2 flex justify-center bg-black text-white w-1/4 text-sm p-4">
                   <p>Phone Number</p>
                 </th>
-                <th className="flex gap-2 flex justify-center w-1/4 text-sm p-4">
+                <th className="flex gap-2 flex justify-center bg-black text-white w-1/4 text-sm p-4">
                   <p>Status</p>
                 </th>
-                <th className="flex gap-2 flex justify-center w-1/4 text-sm p-4">
+                <th className="flex gap-2 flex justify-center bg-black text-white w-1/4 text-sm p-4">
                   <p>Details</p>
                 </th>
               </tr>
