@@ -168,7 +168,7 @@ h3.text-sm.font-medium.desc-property {
 .luxury-stay h1 {
   font-family: "NewYork";
   font-size: 150px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 183px;
   letter-spacing: 0em;
   text-align: center;
@@ -275,11 +275,11 @@ p.menu-footer {
 .copy-right span {
   /* font-family: "Inter", sans-serif; */
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
-  color: #a38b77;
+  color: #b57541;
 }
 footer {
   padding-top: 100px;
@@ -345,25 +345,23 @@ footer {
 }
 .explor-btn .explore {
   display: flex;
-  align-items: center; /* font-family: 'NewYork'; */
+  align-items: center;
+  /* font-family: 'NewYork'; */
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 19px;
   letter-spacing: 0em;
   text-align: center;
-  color: #c48b58;
+  color: #c78c58;
   text-transform: uppercase;
 }
 .explor-btn .explore svg {
   margin-left: 10px;
 }
 .banipark-box {
-  background: #fff;
   margin-bottom: 20px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-  border: 1px solid #c48b58;
-}
-.banipark-box {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  border: 2px solid #c48b58;
   background: #fff;
   transition: transform 0.3s !important;
 }
@@ -398,7 +396,7 @@ footer {
 .load-more-btn a {
   font-family: "Inter", sans-serif;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 19px;
   letter-spacing: 0em;
   text-align: center;
