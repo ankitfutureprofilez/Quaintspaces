@@ -302,13 +302,18 @@ footer {
 .flat-info {
   padding: 0 20px;
 }
+
+.signup p {
+  color: white;
+}
+
 .flat-info h2 {
   font-family: "Inter", sans-serif;
   font-size: 13px;
   font-weight: 400;
   line-height: 23px;
   letter-spacing: 0em;
-  color: #95908d;
+  color: #2b2420;
   padding: 20px 10px 15px 10px;
   border-bottom: 1px solid #dcdcdc;
 }
@@ -327,7 +332,7 @@ footer {
   font-weight: 400;
   line-height: 16px;
   letter-spacing: 0em;
-  color: #95908d;
+  color: #231812;
   padding: 0 10px;
 }
 .explor-btn {
@@ -342,7 +347,7 @@ footer {
   display: flex;
   align-items: center; /* font-family: 'NewYork'; */
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 19px;
   letter-spacing: 0em;
   text-align: center;
@@ -369,22 +374,22 @@ footer {
 .flat-info h4 {
   font-family: "Inter", sans-serif;
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 16px;
   letter-spacing: 0em;
   padding: 10px;
   border-top: 1px solid #dedede;
   margin-top: 10px;
-  color: #95908d;
+  color: #756a63;
 }
 .card-price {
   font-family: "Inter", sans-serif;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 22px;
   letter-spacing: 0em;
   text-align: center;
-  color: #c48b58;
+  color: #ad6422;
 }
 .load-more-btn {
   text-align: center;
