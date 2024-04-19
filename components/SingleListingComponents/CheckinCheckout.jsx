@@ -9,7 +9,6 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
     selectEnd: null,
   });
 
-  console.log("dates", dates)
   useEffect(() => {
       setDates({
         selectedDay: selectedDay,
