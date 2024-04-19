@@ -5,7 +5,6 @@ import Listing from "../api/Listing";
 import { useContext } from 'react';
 import { Context } from "../../_app";
 import Head from 'next/head';
- import { checkAuthentication } from '../middleware';
 import Link from "next/link";
 
 export default function Login() {
