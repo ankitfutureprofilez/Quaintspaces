@@ -39,7 +39,7 @@ export default function Footer() {
 
         <div className="text-center copy-right">
           {/* Copyright Notice */}
-          <span className="text-gray-500">&copy; QUAINTSPACES JAIPUR 2024</span>
+          <span >&copy; QUAINTSPACES JAIPUR 2024</span>
         </div>
       </div>
     </footer>

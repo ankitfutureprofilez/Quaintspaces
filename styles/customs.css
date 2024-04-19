@@ -117,11 +117,8 @@ h3.text-sm.font-medium.desc-property {
   border-bottom: 1px solid #e1e1e1;
 }
 .nav-bar a {
-  padding: 8px 20px;
   font-family: "Inter", sans-serif;
-  font-size: 16px;
   font-weight: 600;
-  line-height: 25px;
   letter-spacing: 0em;
   text-align: center;
   color: #404040;
@@ -167,9 +164,7 @@ h3.text-sm.font-medium.desc-property {
 }
 .luxury-stay h1 {
   font-family: "NewYork";
-  font-size: 150px;
   font-weight: 500;
-  line-height: 183px;
   letter-spacing: 0em;
   text-align: center;
   color: #b29584;
@@ -396,14 +391,14 @@ footer {
 .load-more-btn a {
   font-family: "Inter", sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 19px;
   letter-spacing: 0em;
   text-align: center;
   color: #c48b58;
   text-transform: uppercase;
   padding: 15px 50px;
-  border: 1px solid;
+  border: 2px solid;
   border-radius: 30px;
 }
 .listing-heading {
