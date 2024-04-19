@@ -7,6 +7,7 @@ import Nodata from "../hook/NoRecord";
 import Spinner from "../hook/spinner";
 import toast from "react-hot-toast";
 import Modal from "../hook/Modal";
+import Link from "next/link";
 
 export default function index() {
   const [content, setContent] = useState([]);
@@ -45,7 +46,6 @@ export default function index() {
     const response = main.bookinghistory();
     response
       .then((res) => {
-        console.log("res?.data?.data", res?.data?.data);
         setContent(res?.data?.data);
         setLoading(false);
       })
@@ -137,26 +137,41 @@ export default function index() {
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
-                        <div className="flex flex-wrap justify-center-between">
-                          {item?.adults} adults {item?.children} children{" "}
-                          {item?.no_of_pet} pet
-                        </div>
+                        <Link href={`/property/${item?.booking_property?.uuid}`}>
+                          <div className="items-center flex gap-2 text-sm p-2 ">
+                            <Image
+                              width={35}
+                              height={35}
+                              className="top-2 right-2 p-1 rounded-full user-profile-img"
+                              src={item?.booking_property?.property_image[0]?.image_url}
+                              alt={item?.booking_property?.property_image[0]?.properties_id}
+
+                            />
+                            <div>
+                              <div className="text-gray-800 font-medium">                             {item?.booking_property?.name.split(' ').slice(0, 7).join(' ')}
+                                {item?.booking_property?.name.split(' ').length > 7 ? '...' : ''}
+                              </div>
+                              <div className="text-sm">{item?.adults} adults  || {item?.children} children || {item?.no_of_pet} pet </div>
+                            </div>
+                          </div>
+
+                        </Link>
                       </td>
+
 
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         {item?.price}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <td
-                          className={`inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${
-                            item?.booking_status === "completed"
-                              ? "bg-green-600"
-                              : item?.booking_status === "cancelled"
+                          className={`inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${item?.booking_status === "completed"
+                            ? "bg-slate-600"
+                            : item?.booking_status === "cancelled"
                               ? "bg-red-600"
                               : item?.booking_status === "confirm"
-                              ? "bg-green-600"
-                              : "bg-blue-600"
-                          }`}
+                                ? "bg-green-600"
+                                : "bg-blue-600"
+                            }`}
                         >
                           {item?.booking_status}
                         </td>
@@ -192,11 +207,11 @@ export default function index() {
                       </td>
 
                       <td className="px-4 py-2 text-sm text-gray-500 dark:text-gray-300 ">
-                      
-                          <div onClick={
-                            () => openConfirmModal(item)
-                            // bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
-                          } className="cursor-pointer text-green-500 flex items-center gap-2 border w-fit rounded-full p-1 px-4 mb-2">
+
+                        <div onClick={
+                          () => openConfirmModal(item)
+                          // bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
+                        } className="cursor-pointer text-green-500 flex items-center gap-2 border w-fit rounded-full p-1 px-4 mb-2">
                           {loading ? "loading.." : "confirmed"}
                           <svg
                             className="text-emerald-500"
@@ -211,14 +226,14 @@ export default function index() {
                               fill="currentColor"
                             ></path>
                           </svg>
-                          </div>
-                        
+                        </div>
 
-                       
+
+
                         <div onClick={() =>
-                            //bookingaccept(item.booking_user[0]?.id, item.id, "cancelled")
-                            openCancelModal(item)
-                          } className="cursor-pointer text-red-500 flex items-center w-fit gap-2 border rounded-full p-1 px-4">
+                          //bookingaccept(item.booking_user[0]?.id, item.id, "cancelled")
+                          openCancelModal(item)
+                        } className="cursor-pointer text-red-500 flex items-center w-fit gap-2 border rounded-full p-1 px-4">
                           <svg
                             className="text-red-400"
                             xmlns="http://www.w3.org/2000/svg"

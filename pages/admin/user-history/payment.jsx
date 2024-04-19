@@ -128,10 +128,10 @@ export default function payment({ record }) {
                             />
 
                             <div>
-                              <h2 className="text-sm font-medium text-gray-800">
+                              <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
                                 {item?.booking_user?.name}
                               </h2>
-                              <p className="text-xs font-normal text-gray-600">
+                              <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
                                 {item?.booking_user?.email}
                               </p>
                             </div>

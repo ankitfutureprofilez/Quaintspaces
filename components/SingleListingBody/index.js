@@ -307,7 +307,6 @@ const SingleListingBody = ({ listing, loading }) => {
 export default SingleListingBody;
 
 const ImageSlider = ({ listing }) => {
-  // console.log("Image slider re-rendered");
   return (
     <div className="w-full min-h-[30vh]">
       {listing?.data?.images && (
