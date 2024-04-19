@@ -343,7 +343,7 @@ footer {
   border-top: 1px solid #c48b58;
   margin-top: 25px;
 }
-.explor-btn .explore {
+.explor-btn  {
   display: flex;
   align-items: center;
   /* font-family: 'NewYork'; */
@@ -355,7 +355,7 @@ footer {
   color: #c78c58;
   text-transform: uppercase;
 }
-.explor-btn .explore svg {
+.explor-btn  svg {
   margin-left: 10px;
 }
 .banipark-box {

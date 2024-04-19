@@ -72,7 +72,6 @@ const Card = ({ post }) => {
           </h4>
         </div>
         <div className="explor-btn">
-          <div className="explore block">
             Explore{" "}
             {/* <svg
               width="13"
@@ -86,7 +85,6 @@ const Card = ({ post }) => {
                 fill="#c48b58"
               />
             </svg> */}
-          </div>
         </div>
       </Link>
     </div>
