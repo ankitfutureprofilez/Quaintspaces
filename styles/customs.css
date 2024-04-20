@@ -117,8 +117,11 @@ h3.text-sm.font-medium.desc-property {
   border-bottom: 1px solid #e1e1e1;
 }
 .nav-bar a {
+  padding: 8px 20px;
   font-family: "Inter", sans-serif;
+  font-size: 16px;
   font-weight: 600;
+  line-height: 25px;
   letter-spacing: 0em;
   text-align: center;
   color: #404040;
@@ -164,7 +167,9 @@ h3.text-sm.font-medium.desc-property {
 }
 .luxury-stay h1 {
   font-family: "NewYork";
-  font-weight: 500;
+  font-size: 150px;
+  font-weight: 400;
+  line-height: 183px;
   letter-spacing: 0em;
   text-align: center;
   color: #b29584;
@@ -270,11 +275,11 @@ p.menu-footer {
 .copy-right span {
   /* font-family: "Inter", sans-serif; */
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
-  color: #b57541;
+  color: #a38b77;
 }
 footer {
   padding-top: 100px;
@@ -297,18 +302,13 @@ footer {
 .flat-info {
   padding: 0 20px;
 }
-
-.signup p {
-  color: white;
-}
-
 .flat-info h2 {
   font-family: "Inter", sans-serif;
   font-size: 13px;
   font-weight: 400;
   line-height: 23px;
   letter-spacing: 0em;
-  color: #2b2420;
+  color: #95908d;
   padding: 20px 10px 15px 10px;
   border-bottom: 1px solid #dcdcdc;
 }
@@ -327,7 +327,7 @@ footer {
   font-weight: 400;
   line-height: 16px;
   letter-spacing: 0em;
-  color: #231812;
+  color: #95908d;
   padding: 0 10px;
 }
 .explor-btn {
@@ -338,25 +338,27 @@ footer {
   border-top: 1px solid #c48b58;
   margin-top: 25px;
 }
-.explor-btn  {
+.explor-btn .explore {
   display: flex;
-  align-items: center;
-  /* font-family: 'NewYork'; */
+  align-items: center; /* font-family: 'NewYork'; */
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 19px;
   letter-spacing: 0em;
   text-align: center;
-  color: #c78c58;
+  color: #c48b58;
   text-transform: uppercase;
 }
-.explor-btn  svg {
+.explor-btn .explore svg {
   margin-left: 10px;
 }
 .banipark-box {
+  background: #fff;
   margin-bottom: 20px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-  border: 2px solid #c48b58;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  border: 1px solid #c48b58;
+}
+.banipark-box {
   background: #fff;
   transition: transform 0.3s !important;
 }
@@ -367,22 +369,22 @@ footer {
 .flat-info h4 {
   font-family: "Inter", sans-serif;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 16px;
   letter-spacing: 0em;
   padding: 10px;
   border-top: 1px solid #dedede;
   margin-top: 10px;
-  color: #756a63;
+  color: #95908d;
 }
 .card-price {
   font-family: "Inter", sans-serif;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 400;
   line-height: 22px;
   letter-spacing: 0em;
   text-align: center;
-  color: #ad6422;
+  color: #c48b58;
 }
 .load-more-btn {
   text-align: center;
@@ -391,14 +393,14 @@ footer {
 .load-more-btn a {
   font-family: "Inter", sans-serif;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 19px;
   letter-spacing: 0em;
   text-align: center;
   color: #c48b58;
   text-transform: uppercase;
   padding: 15px 50px;
-  border: 2px solid;
+  border: 1px solid;
   border-radius: 30px;
 }
 .listing-heading {

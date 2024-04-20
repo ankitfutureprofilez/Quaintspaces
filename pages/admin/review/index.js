@@ -153,7 +153,7 @@ export default function Index() {
                                                                             />
 
                                                                             <div>
-                                                                                <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
+                                                                                <h2 className="capitalize text-sm font-medium text-gray-800 dark:text-white ">
                                                                                     {item?.get_property_review?.name}
                                                                                 </h2>
                                                                                 <p className="text-xs font-normal text-gray-600 dark:text-gray-400">

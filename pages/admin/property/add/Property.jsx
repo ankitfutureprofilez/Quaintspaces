@@ -665,46 +665,6 @@ export default function Property(props) {
               <h2 className="text-3xl text-center font-bold mb-2" >Add some photos of your {PType ? PType.replace("_", ' ') : "house"}</h2>
               <p className="text-normal text-center text-gray-500 mb-8" >You'll need 5 photos to get started. You can add more or make changes later.</p>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4  mt-16 ">
-                {isEdit ? (
-                  imageproperty?.map((item, index) => (
-                    <div key={index} className="relative isedits">
-                      <Image
-                        className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
-                        src={item?.image_url || ''}
-                        width={200}
-                        height={200}
-                        alt={`Preview ${index}`}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => deletePropertyImage(uuid, item?.uuid)}
-                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1" >
-                        Remove
-                      </button>
-                    </div>
-                  ))
-                ) : ''}
-
-                {images && images.map((file, index) => (
-                  <div key={index} className="relative">
-                    <Image
-                      src={URL.createObjectURL(file)}
-                      width={200}
-                      height={200}
-                      alt={`Preview ${index}`}
-                      className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
-                      onLoad={() => URL.revokeObjectURL(file)}
-                    />
-                    <button type="button"
-                      onClick={() => removeImage(file)}
-                      className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1" >
-                      Remove
-                    </button>
-                  </div>
-                ))}
-
-              </div>
 
               {isEdit ?
                 <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
@@ -765,7 +725,50 @@ export default function Property(props) {
                       multiple
                     />
                   </label>
-                </div>}
+                </div>} 
+                
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4  mt-16 ">
+                {isEdit ? (
+                  imageproperty?.map((item, index) => (
+                    <div key={index} className="relative isedits">
+                      <Image
+                        className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
+                        src={item?.image_url || ''}
+                        width={200}
+                        height={200}
+                        alt={`Preview ${index}`}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => deletePropertyImage(uuid, item?.uuid)}
+                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1" >
+                        Remove
+                      </button>
+                    </div>
+                  ))
+                ) : ''}
+
+                {images && images.map((file, index) => (
+                  <div key={index} className="relative">
+                    <Image
+                      src={URL.createObjectURL(file)}
+                      width={200}
+                      height={200}
+                      alt={`Preview ${index}`}
+                      className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                      onLoad={() => URL.revokeObjectURL(file)}
+                    />
+                    <button type="button"
+                      onClick={() => removeImage(file)}
+                      className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1" >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+
+              </div>
+
+             
             </div>
 
 

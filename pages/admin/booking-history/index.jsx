@@ -30,9 +30,12 @@ export default function index() {
 
   const closeConfirmModal = () => {
     setIsConfirmOpen(false);
+    setMessage("");
+
   };
 
   const closeCancelModal = () => {
+    setMessage("");
     setIsCancelOpen(false);
   };
 
@@ -40,6 +43,7 @@ export default function index() {
     setMessage(e?.target?.value);
   };
 
+  console.log("content",content )
   function fetchData() {
     setLoading(true);
     const main = new Listing();
@@ -60,6 +64,7 @@ export default function index() {
   }, []);
 
   const bookingaccept = (uuid, id, bookingStatus) => {
+    setLoading(true);
     if (message?.length == 0) {
       toast.error("Message can't be empty!");
       return;
@@ -77,9 +82,12 @@ export default function index() {
           closeConfirmModal();
           closeCancelModal();
           setMessage("");
+          setLoading(false)
           toast.success(response.data.message);
         } else {
           toast.error(response.data.message);
+          setLoading(false)
+
         }
       })
       .catch((error) => {
@@ -151,7 +159,7 @@ export default function index() {
                               <div className="text-gray-800 font-medium">                             {item?.booking_property?.name.split(' ').slice(0, 7).join(' ')}
                                 {item?.booking_property?.name.split(' ').length > 7 ? '...' : ''}
                               </div>
-                              <div className="text-sm">{item?.adults} adults  || {item?.children} children || {item?.no_of_pet} pet </div>
+                              <div className="text-sm">{item?.booking_property?.adults} adults  || {item?.booking_property?.children} children || {item?.booking_property?.no_of_pet_allowed} pet </div>
                             </div>
                           </div>
 
@@ -164,7 +172,7 @@ export default function index() {
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <td
-                          className={`inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${item?.booking_status === "completed"
+                          className={`capitalize inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${item?.booking_status === "completed"
                             ? "bg-slate-600"
                             : item?.booking_status === "cancelled"
                               ? "bg-red-600"
@@ -192,15 +200,16 @@ export default function index() {
                         </div>
                       </td> */}
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                        
                         <div className="flex items-center">
                           <Image
                             width={50}
                             height={50}
-                            className="inline-flex items-center rounded-full ml-2 user-profile-img"
+                            className="capitalize inline-flex items-center rounded-full ml-2 user-profile-img"
                             src={item?.front_url}
                             alt="Document Image"
                           />
-                          <div className="inline-flex items-center rounded-full ml-2">
+                          <div className="capitalize inline-flex items-center rounded-full ml-2">
                             {item?.doc_type}
                           </div>
                         </div>
@@ -211,7 +220,7 @@ export default function index() {
                         <div onClick={
                           () => openConfirmModal(item)
                           // bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
-                        } className="cursor-pointer text-green-500 flex items-center gap-2 border w-fit rounded-full p-1 px-4 mb-2">
+                        } className="capitalize  cursor-pointer text-green-500 flex items-center gap-2 border w-fit rounded-full p-1 px-4 mb-2">
                           {loading ? "loading.." : "confirmed"}
                           <svg
                             className="text-emerald-500"
@@ -233,7 +242,7 @@ export default function index() {
                         <div onClick={() =>
                           //bookingaccept(item.booking_user[0]?.id, item.id, "cancelled")
                           openCancelModal(item)
-                        } className="cursor-pointer text-red-500 flex items-center w-fit gap-2 border rounded-full p-1 px-4">
+                        } className="capitalize cursor-pointer text-red-500 flex items-center w-fit gap-2 border rounded-full p-1 px-4">
                           <svg
                             className="text-red-400"
                             xmlns="http://www.w3.org/2000/svg"
@@ -294,7 +303,7 @@ export default function index() {
                 )
               }
             >
-              {loading ? "loading..." : "proceed"}
+              {loading ? "loading..." : "Processed"}
             </button>
           </div>
         </Modal>
@@ -329,7 +338,7 @@ export default function index() {
                 )
               }
             >
-              {loading ? "loading..." : "proceed"}
+              {loading ? "loading..." : "Processed"}
             </button>
           </div>
         </Modal>

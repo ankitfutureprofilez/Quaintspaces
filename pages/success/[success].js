@@ -99,37 +99,37 @@ const totalStay = calculateTotalDays(record?.booking_history?.check_in, record?.
           <h2 className="text-2xl font-semibold text-center mt-4">
             Your Appointment Booked Successfully!
           </h2>
-          <p className="text-gray-400 text-2xl text-center mt-2">
+          <p className="text-black-400 font-bold text-2xl text-center mt-2">
             We have sent your booking information to your email address.
           </p>
 
           <div className=" pt-16 sm:text-xl text-sm 
           flex flex-wrap justify-center m-auto max-w-[600px]">
             <div className="w-full flex justify-between mb-4 flex-wrap  ">
-              <p className="text-gray-400">Booking ID</p>
-              <p className="text-start text-gray-400 font-semibold">{record?.booking_id}</p>
+              <p className="text-black-400 font-bold ">Booking ID</p>
+              <p className="text-start text-black-400 font-bold font-semibold">{record?.booking_id}</p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
-              <p className="text-gray-400">Date :</p>
-              <p className="text-start text-gray-400 font-semibold">
+              <p className="text-black-400 font-bold">Date :</p>
+              <p className="text-start text-black-400 font-bold font-semibold">
                 {record?.payment_date}
               </p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
-              <p className="text-gray-400">Customer Name:</p>
-              <p className="text-start text-gray-400 font-semibold">{record?.booking_history?.booking_user[0]?.name}</p>
+              <p className="text-black-400 font-bold">Customer Name:</p>
+              <p className="text-start text-black-400 font-bold font-semibold">{record?.booking_history?.booking_user[0]?.name}</p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
-              <p className="text-gray-400">Amount Paid</p>
-              <p className="text-start text-gray-400 font-semibold">{formatMultiPrice(record?.price)}</p>
+              <p className="text-black-400 font-bold">Amount Paid</p>
+              <p className="text-start text-black-400 font-bold font-semibold">{formatMultiPrice(record?.price)}</p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
-              <p className="text-gray-400">Total Members</p>
-              <p className="text-start text-gray-400 font-semibold">{record?.booking_history?.booking_property?.guests}</p>
+              <p className="text-black-400 font-bold">Total Members</p>
+              <p className="text-start text-black-400 font-bold font-semibold">{record?.booking_history?.booking_property?.guests}</p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
-              <p className="text-gray-400">Total stay</p>
-              <p className="text-start text-gray-400 font-semibold">{totalStay} days</p>
+              <p className="text-black-400 font-bold">Total stay</p>
+              <p className="text-start text-black-400 font-bold font-semibold">{totalStay} days</p>
             </div>
           </div>
         </div>

@@ -71,7 +71,7 @@ export default function Header() {
               />
             </svg>
           </div>
-          <div className={`menu-items md:flex items-center  ${isMenuOpen ? 'block' : 'hidden'}`}>
+          <div className={`menu-items md:flex gap-8 items-center  ${isMenuOpen ? 'block' : 'hidden'}`}>
             <Link href="/apartments">
               <p>Our Apartments</p>
             </Link>
