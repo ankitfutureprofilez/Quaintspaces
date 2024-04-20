@@ -324,8 +324,10 @@ const Book = () => {
       .bookingpayment(record)
       .then((res) => {
         if (res) {
-          toast.success(res?.data?.message);
-          router.push(`/success/${listingID}`);
+          if(res?.data?.status ==true){
+            toast.success(res?.data?.message);
+            router.push(`/success/${listingID}`);
+          }
         } else {
           toast.error(res?.data?.message);
         }

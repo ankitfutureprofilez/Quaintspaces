@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { format } from "date-fns";
 
 const GuestsModel = ({ infos, guests, setGuests, setGuestsModel }) => {
+  console.log("infos",infos)
   const router = useRouter();
   const sectionRef = useRef(null);
   const overlayRef = useRef(null);
@@ -65,23 +66,41 @@ const GuestsModel = ({ infos, guests, setGuests, setGuestsModel }) => {
     }, 350);
   };
 
+  // const changeUrlData = () => {
+  //   setGuestsModel(false);
+  //   router.push(
+  //     `/book/${router.query.listingID}?numberOfAdults=${
+  //       guests.adults.value
+  //     }&numberOfChildren=${guests.children.value}&numberOfInfants=${
+  //       guests.infants.value
+  //     }&numberOfPets=${guests.pets.value}&checkin=${format(
+  //       new Date(new Date(infos.checkin).toLocaleDateString() + ", 00:00:00"),
+  //       "yyyy-MM-dd"
+  //     )}&checkout=${format(
+  //       new Date(new Date(infos.checkout).toLocaleDateString() + ", 00:00:00"),
+  //       "yyyy-MM-dd"
+  //     )}`
+  //   );
+  // };
+
+
   const changeUrlData = () => {
     setGuestsModel(false);
-    router.push(
-      `/book/${router.query.listingID}?numberOfAdults=${
-        guests.adults.value
-      }&numberOfChildren=${guests.children.value}&numberOfInfants=${
-        guests.infants.value
-      }&numberOfPets=${guests.pets.value}&checkin=${format(
-        new Date(new Date(infos.checkin).toLocaleDateString() + ", 00:00:00"),
-        "yyyy-MM-dd"
-      )}&checkout=${format(
-        new Date(new Date(infos.checkout).toLocaleDateString() + ", 00:00:00"),
-        "yyyy-MM-dd"
-      )}`
-    );
+    try {
+      const checkinDate = new Date(`${infos.checkin}T00:00:00`);
+      const checkoutDate = new Date(`${infos.checkout}T00:00:00`);
+      const formattedCheckin = format(checkinDate, "yyyy-MM-dd");
+      const formattedCheckout = format(checkoutDate, "yyyy-MM-dd");
+      
+      router.push(
+        `/book/${router.query.listingID}?numberOfAdults=${guests.adults.value}&numberOfChildren=${guests.children.value}&numberOfInfants=${guests.infants.value}&numberOfPets=${guests.pets.value}&checkin=${formattedCheckin}&checkout=${formattedCheckout}`
+      );
+    } catch (error) {
+      console.error("Error parsing dates:", error);
+      // Handle the error, possibly by displaying a message to the user or falling back to default values.
+    }
   };
-
+  
   return (
     <div className="fixed top-0 left-0 w-screen h-screen z-40 flex items-center justify-center">
       <div
