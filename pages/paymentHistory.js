@@ -119,7 +119,11 @@ export default function paymentHistory() {
         </div>
         <div className="">
           {loading ? (
-            <p>loading...</p>
+            <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 min-w-1200px">
+            <div className="flex justify-center items-center space-x-1 text-gray-700">
+              <div className="text-lg">Loading...</div>
+            </div>
+          </div>
           ) : listings && listings.length > 0 ? (
             <BookingTable />
           ) : (
