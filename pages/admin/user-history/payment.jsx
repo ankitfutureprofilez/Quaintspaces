@@ -7,7 +7,7 @@ import Spinner from "../hook/spinner";
 
 export default function payment({ record }) {
 
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState([]);
 
   const [loading, setLoading] = useState(false);
   useEffect(() => {
