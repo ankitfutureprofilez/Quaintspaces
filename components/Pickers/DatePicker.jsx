@@ -65,7 +65,6 @@ const DatePicker = ({
       console.log("Both selectedDay and selectEnd are null.");
     }
   }, [selectedDay, selectEnd]);
-  console.log("selectedDay, selectEnd",selectedDay, selectEnd)
   
   const [width, setWidth] = useState();
   function setWid() {

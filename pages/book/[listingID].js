@@ -40,7 +40,6 @@ const Book = () => {
   const [pricerate, setPriceRate] = useState(0);
   const [orderId, setOrderId] = useState("");
 
-  console.log("orderId", orderId);
   const recorddate = Moment(new Date())?.format("DD-MM-YYYY");
   const [formData, setFormData] = useState({
     selectOption: "",
@@ -50,7 +49,6 @@ const Book = () => {
     date: recorddate,
   });
 
-  console.log("formData", formData);
 
   useEffect(() => {
     const url = router.query;
@@ -89,7 +87,6 @@ const Book = () => {
     });
   }, [router.asPath]);
 
-  console.log("listing",listing)
 
   useEffect(() => {
     if (infos.checkout && infos.checkin && listing) {
@@ -129,12 +126,10 @@ const Book = () => {
   useEffect(() => {
     const url = router.query;
     setInfos(url);
-    // console.log("router query", url);
     const main = new Listings();
     main
       .PropertyDetail(url.listingID)
       .then((r) => {
-        // console.log("Data",r.data.data);
         setListing(r?.data?.data);
       })
       .catch((err) => {
@@ -166,7 +161,6 @@ const Book = () => {
     });
   }, [router.asPath]);
 
-  console.log("infos", infos);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -262,7 +256,6 @@ const Book = () => {
             description: "Payment for services",
             order_id: res?.data?.orderId,
             handler: function (response) {
-              console.log("response",response)
               toast.success("Payment Successful");
               setOrderId(res?.data?.orderId);
               // return false;

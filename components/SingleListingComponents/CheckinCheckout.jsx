@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
 
-  console.log("selectedDayCheckinCheckOut, selectEnd CheckinCheckOut",selectedDay, selectEnd )
   const [dates, setDates] = useState({
     selectedDay: null,
     selectEnd: null,

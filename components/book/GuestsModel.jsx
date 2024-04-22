@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { format } from "date-fns";
 
 const GuestsModel = ({ infos, guests, setGuests, setGuestsModel }) => {
-  console.log("infos",infos)
   const router = useRouter();
   const sectionRef = useRef(null);
   const overlayRef = useRef(null);

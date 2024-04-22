@@ -72,7 +72,6 @@ export default function Index() {
   const handleInput = (e) => {
     const { name, value } = e.target;
     setForgetpass((prevState) => ({ ...prevState, [name]: value }));
-    console.table("password", forgetpass);
   };
 
   const handleforgetpass = async (e) => {

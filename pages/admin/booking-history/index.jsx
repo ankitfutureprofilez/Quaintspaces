@@ -43,7 +43,6 @@ export default function index() {
     setMessage(e?.target?.value);
   };
 
-  console.log("content",content )
   function fetchData() {
     setLoading(true);
     const main = new Listing();
@@ -76,7 +75,6 @@ export default function index() {
     main
       .booking_confirm_cancelled(uuid, id, formdata)
       .then((response) => {
-        console.log("response", response);
         if (response && response.data && response?.data?.status === true) {
           fetchData();
           closeConfirmModal();
