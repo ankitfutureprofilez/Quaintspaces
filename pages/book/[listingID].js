@@ -27,6 +27,7 @@ const Book = () => {
   const RAZOPAY_KEY = process.env.NEXT_PUBLIC_RAZOPAY_KEY;
   const { listingID } = router.query;
 
+
   const [listing, setListing] = useState([]);
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
@@ -87,6 +88,8 @@ const Book = () => {
       },
     });
   }, [router.asPath]);
+
+  console.log("listing",listing)
 
   useEffect(() => {
     if (infos.checkout && infos.checkin && listing) {
@@ -532,22 +535,24 @@ const Book = () => {
             </div>
             <div className="w-5/12  rounded-xl shadow py-8 px-5 h-fit golden-border">
               <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
-                <Image
-                  src="http://quaintstays.laraveldevelopmentcompany.com//public//storage//property//images//1710834595_houseimg%202.jpg"
-                  alt="Apartment"
-                  width={200}
-                  height={200}
-                />
+              <Image
+  src={listing?.property_image && listing.property_image.length > 0 ? listing.property_image[0].image_url : '/fallback_image_url'}
+  alt="Apartment"
+  width={200}
+  height={200}
+/>
+
                 <div>
-                  <h4 className="text-xl mb-1">{listing?.title}</h4>
-                  <h3 className=" text-lg">Entire Apartment </h3>
+                  <h4 className="text-xl mb-1">{listing?.name}</h4>
+                  <h3 className=" text-lg">{listing?.type}</h3>
                   <span className="flex text-sm items-center gap-1">
                     <span>
                       <Star />
                     </span>
                     <span>
-                      {listing?.rating || "4.5"} (
-                      {listing?.reviews_length || 141} reviews)
+                    {listing?.rating} {listing?.
+review ? listing?.
+review + " reviews" : ""}
                     </span>
                   </span>
                 </div>

@@ -13,7 +13,7 @@ export default function payment({ record }) {
   useEffect(() => {
     setLoading(true);
     const main = new Listing();
-    const response = main.user_payment_history(record);
+    const response = main.Paymentuser(record);
     response
       .then((res) => {
         setLoading(false);
