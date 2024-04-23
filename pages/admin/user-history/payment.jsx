@@ -20,6 +20,7 @@ export default function payment({ record }) {
         setLoading(false);
         setContent(res?.data?.data?.user_payment_history);
       })
+      
       .catch((error) => {
         setLoading(false);
         console.log("error", error);
