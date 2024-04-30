@@ -9,7 +9,6 @@ import Link from "next/link"
 export default function Index() {
   const[loading ,setLoading] =useState(false)
   const [content, setContent] = useState([]);
-  console.log("content",content)
 
   useEffect(() => {
     const fetchData = async () => {

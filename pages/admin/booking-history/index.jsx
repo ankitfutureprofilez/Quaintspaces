@@ -43,17 +43,12 @@ export default function index() {
     setMessage(e?.target?.value);
   };
 
-  console.log("content",content )
   function fetchData() {
     setLoading(true);
     const main = new Listing();
     const response = main.bookinghistory();
     response
       .then((res) => {
-<<<<<<< HEAD
-        // console.log("res?.data?.data", res?.data?.data);
-=======
->>>>>>> 37353a8de20463ea5a37cdfc3ad85dcf3b5779ff
         setContent(res?.data?.data);
         setLoading(false);
       })
@@ -80,7 +75,6 @@ export default function index() {
     main
       .booking_confirm_cancelled(uuid, id, formdata)
       .then((response) => {
-        // console.log("response", response);
         if (response && response.data && response?.data?.status === true) {
           fetchData();
           closeConfirmModal();

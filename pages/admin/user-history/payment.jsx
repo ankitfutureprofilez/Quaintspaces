@@ -7,13 +7,13 @@ import Spinner from "../hook/spinner";
 
 export default function payment({ record }) {
 
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState([]);
 
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
     const main = new Listing();
-    const response = main.user_payment_history(record);
+    const response = main.Paymentuser(record);
     response
       .then((res) => {
         setLoading(false);
