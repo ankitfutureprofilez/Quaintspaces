@@ -27,7 +27,6 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
       document.querySelector("body").style.overflow = "auto";
     }
   }, [amenitiesModal]);
-  // console.log("amenities",listing?.data?.amenities)
 
   return (
     <div className="w-full">

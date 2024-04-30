@@ -16,23 +16,23 @@ function index() {
   const [record, setRecord] = useState("");
 
   useEffect(() => {
-    const main = new Listing();
-    const response = main.userdetails(slug);
-    response
-      .then((res) => {
-        setRecord(res?.data?.data);
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
+    if(slug){
+      const main = new Listing();
+      const response = main.userdetails(slug);
+      response
+        .then((res) => {
+          setRecord(res?.data?.data);
+        })
+        .catch((error) => {
+          console.log("error", error);
+        });
+    }
   }, [slug]);
 
   const [activeTab, setActiveTab] = useState("Booking");
 
   return (
     <AdminLayout heading={"User Details  "}>
-
-
       <div className="antialiased mt-16">
         <div className="container mx-auto profile-payment">
           <div className="h-60 w-full profile-cover" >
@@ -62,7 +62,7 @@ function index() {
                 />
               </div>
               <div className="mt-16">
-                <h1 className="font-bold text-center  text-3xl text-white-900">
+                <h1 className="font-bold text-center text-capitalize text-3xl text-white-900">
                   {" "}
                   {record?.name}
                 </h1>

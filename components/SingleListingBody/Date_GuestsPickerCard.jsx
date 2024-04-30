@@ -25,10 +25,8 @@ const Date_GuestsPickerCard = React.forwardRef(
     },
     ref
   ) => {
-    // console.log("price",listing)
     const router = useRouter();
     const { auth, setOpenLogin } = useContext(Context);
-    // console.log("auth",auth)
 
     return (
       <>

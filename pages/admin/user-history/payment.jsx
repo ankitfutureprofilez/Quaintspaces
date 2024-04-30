@@ -29,11 +29,15 @@ export default function payment({ record }) {
    
       <>
         {loading ? (
-          <Spinner />
+          <div className="flex items-center justify-center w-full h-full relative top-0 left-0 -z-10 payment-loading ">
+      <div className="flex justify-center text-lg items-center space-x-1  text-gray-700">
+        <div className="text-lg">Loading ...</div>
+      </div>
+    </div>
         ) : content && content.length > 0 ? (
-          <div className="mx-auto mt-8 ">
-            <div className="mt-6 overflow-hidden rounded-xl border shadow">
-              <table className="min-w-[1200px] w-full border-separate border-spacing-y-2 border-spacing-x-2">
+          <div className="mx-auto mt-6 ">
+            <div className=" rounded-xl border shadow">
+              <table className="min-w-[1200px] border border-gray-200 dark:border-gray-700 md:rounded-lg  w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
                 <thead className="hidden border-b lg:table-header-group">
                   <tr className="">
                     <td className="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">
@@ -90,12 +94,12 @@ export default function payment({ record }) {
 
                         <td className="whitespace-no-wrap py-4 px-6 text-right text-sm text-gray-600 lg:text-left">
                           {item?.price}
-                          <div className="flex mt-1 ml-auto w-fit items-center rounded-full bg-blue-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
+                          <div className="capitalize flex mt-1 ml-auto w-fit items-center rounded-full bg-blue-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
                             {item?.payment_status}
                           </div>
                         </td>
                         <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                          <div className="inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">
+                          <div className="capitalize inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">
                             {item?.booking_status}
                           </div>
                         </td>
@@ -111,10 +115,10 @@ export default function payment({ record }) {
                             />
 
                             <div>
-                              <h2 className="text-sm font-medium text-gray-800">
+                              <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
                                 {item?.booking_user?.name}
                               </h2>
-                              <p className="text-xs font-normal text-gray-600">
+                              <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
                                 {item?.booking_user?.email}
                               </p>
                             </div>

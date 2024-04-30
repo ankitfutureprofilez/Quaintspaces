@@ -4,10 +4,12 @@ import Image from "next/image";
 import AdminLayout from "../AdminLayout";
 import Spinner  from  "../hook/spinner";
 import Nodata from "../hook/NoRecord"
+import Link from "next/link"
 
 export default function Index() {
   const[loading ,setLoading] =useState(false)
   const [content, setContent] = useState([]);
+  console.log("content",content)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,27 +34,29 @@ export default function Index() {
         <Spinner/>
       ) : (
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto mt-3">
         <div className="w-full">
-          <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
+          <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg">
     {content && content.length > 0 ? (
 
-<table className="min-w-[1200px] w-full break-all divide-gray-200">
-<thead className="bg-gray-50">
+<table className="min-w-[1200px] w-full break-all divide-gray-200 dark:divide-gray-700">
+<thead className="bg-gray-50 dark:bg-gray-800">
   <tr >
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 ">Payment Id </td>
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 ">Customer</td>
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">Purchase</td>
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">Method</td>
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">Status</td>
-    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">Amount</td>
+    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Payment Id </td>
+    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Customer</td>
+    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Purchase</td>
+    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Method</td>
+    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Status</td>
+    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Amount</td>
   </tr>
 </thead>
-<tbody className="bg-white divide-y divide-gray-200">
+<tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
   {content && content.map((item, index) => (
     <tr key={index}>
-      <td className="px-4 py-4 text-sm text-gray-500">{item?.payment_id}</td>
-      <td className="px-4 py-4 text-sm text-gray-500">
+      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">{item?.payment_id}</td>
+      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+        <Link href={`/admin/user-history/${item?.booking_history?.booking_user[0]?.id}`}>
+
         <div className="flex gap-2 items-center  text-sm p-2 ">
           <Image
             width={35}
@@ -66,9 +70,12 @@ export default function Index() {
             <div className="text-sm">{item?.booking_history?.booking_user[0]?.email}</div>
           </div>
         </div>
+        </Link>
       </td>
 
-      <td className="px-4 py-4 text-sm text-gray-500">
+      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+      <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
+
         <div className="items-center flex gap-2 text-sm p-2 ">
           <Image
             width={35}
@@ -78,16 +85,17 @@ export default function Index() {
             alt="Property"
           />
           <div>
-            <div className="text-gray-800 font-medium">{item?.booking_history?.booking_property?.name}</div>
-            <div className="text-sm">{item?.booking_history?.booking_property?.properties_type}</div>
+            <div className="text-gray-800 font-medium capitalize ">{item?.booking_history?.booking_property?.name}</div>
+            <div className="text-sm capitalize">{item?.booking_history?.booking_property?.properties_type}</div>
           </div>
         </div>
+        </Link>
       </td>
-      <td className="px-4 py-4 text-sm text-gray-500">{item?.method}</td>
+      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 capitalize  ">{item?.method}</td>
       <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
         
       <td
-                        className={`inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${item?.payment_status === "success"
+                        className={` capitalize inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${item?.payment_status === "success"
                           ? "bg-green-600"
                           : item?.payment_status === "cancelled"
                             ? "bg-red-600"

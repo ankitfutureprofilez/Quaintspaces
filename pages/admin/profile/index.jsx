@@ -95,7 +95,7 @@ export default function Profileindex() {
   }, []);
   return (
     <>
-      <AdminLayout heading={"profile Management"}>
+      <AdminLayout heading={"Profile Management"}>
         <div className="container mx-auto mt-5">
           <div className="flex items-center profile-border">
             <div className="relative mt-5">

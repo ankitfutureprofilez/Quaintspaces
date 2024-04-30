@@ -8,7 +8,6 @@ const PostBody = ({ listings, loading }) => {
   const child = useRef([]);
 
   useEffect(() => {
-    // console.log("V listings.data", listings)
     if (!listings &&  listings && listings?.length > 0) {
       if (child && child.current) {
         let tl = gsap.timeline();

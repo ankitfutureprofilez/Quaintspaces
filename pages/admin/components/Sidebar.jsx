@@ -5,6 +5,8 @@ import Link from "next/link";
 import {
   ArrowRight2,
   Element3,
+  TextalignJustifycenter,
+  Message,
   Triangle,
   Add,
 } from "iconsax-react";
@@ -56,7 +58,7 @@ function Sidebar() {
 
   return (
     <div
-      className={`shrink-0 md:block h-screen sticky top-0 overflow-hidden ${
+      className={` shrink-0 md:block h-screen sticky top-0 overflow-hidden ${
         isSidebarOpen ? "!fixed" : "hidden"
       }`}
     >
@@ -284,7 +286,6 @@ function Sidebar() {
                   </div>
                 </div>
                 <button className="text-gray-500" aria-label="button">
-                  <ArrowRight2 size={24} color="#4B0082" />
                   <Menu isOpen={isDropdownOpen} record={auth} />
                 </button>
               </div>

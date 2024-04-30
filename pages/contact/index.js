@@ -148,7 +148,7 @@ export default function index() {
         </div>
         <div className="md:w-6/12 w-full !ml-0 md:!ml-8 mt-4 md:mt-0">
           <h2
-            className="text-xl sm:text-3xl text-lg font-semibold mb-4 lg:mb-8 mt-2.5 border-b pb-3 lg:pb-6"
+            className="text-xl sm:text-3xl text-lg  text-center font-semibold mb-4 lg:mb-8 mt-2.5 border-b pb-3 lg:pb-6"
             style={{ color: "#3F2A17" }}
           >
             Write to Us
@@ -206,9 +206,10 @@ export default function index() {
                   rows={4} // Set the number of rows as needed
                 />
               </div>
-              <button className="filter btn w-7/12 !py-2 lg:!py-3">
+              <button className="filter btn w-7/12 !py-2 lg:!py-3 flex justify-center">
                 {loading ? "Submitting..." : "Submit"}
               </button>
+
             </form>
           </div>
         </div>

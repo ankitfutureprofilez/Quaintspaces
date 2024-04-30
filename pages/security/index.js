@@ -28,7 +28,7 @@ export default function index() {
           localStorage && localStorage.removeItem("token");
           setAuth(null);
           toast.success(res?.data?.message);
-          router.push("/");
+          router.push("/login");
         } else {
           toast.error(res?.data?.message);
         }

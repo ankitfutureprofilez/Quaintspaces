@@ -2,26 +2,26 @@ import { format } from "date-fns";
 import { useEffect, useState } from "react";
 
 const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
+
+  console.log("selectedDayCheckinCheckOut, selectEnd CheckinCheckOut",selectedDay, selectEnd )
   const [dates, setDates] = useState({
     selectedDay: null,
     selectEnd: null,
   });
 
   useEffect(() => {
-    if (selectedDay && selectEnd) {
       setDates({
         selectedDay: selectedDay,
         selectEnd: selectEnd,
       });
-      // setDates({ ...dates, selectedDay: selectedDay });
-      // setDates({ ...dates, selectEnd: selectEnd });
-      // console.log("selectedDay, selectEnd", selectedDay, selectEnd);
-      // setDates({
-      //   selectedDay: format(selectedDay, "MM/dd/yyyy"),
-      //   selectEnd: format(selectEnd, "MM/dd/yyyy"),
-      // });
-    }
   }, [selectedDay, selectEnd]);
+
+  const handleClearDates = () => {
+    setDates({
+      selectedDay: null,
+      selectEnd: null,
+    });
+  };
 
   return (
     <div
@@ -31,9 +31,7 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
     >
       <div
         className={`w-1/2 p-3 relative z-10 select-none cursor-pointer border-r border-orange-300`}
-        onClick={() =>
-          setSelection((prev) => (prev === "date" ? null : "date"))
-        }
+        onClick={() => setSelection((prev) => (prev === "date" ? null : "date"))}
       >
         <span className="block text-xs font-semibold">CHECK IN</span>
         <span className="block font-medium mt-1">
@@ -51,15 +49,13 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
               </div>
             </div>
           ) : (
-            "Add dates"
+            <span onClick={handleClearDates}>Add dates</span>
           )}
         </span>
       </div>
       <div
         className={`w-1/2 p-3 relative z-10 select-none cursor-pointer`}
-        onClick={() =>
-          setSelection((prev) => (prev === "date" ? null : "date"))
-        }
+        onClick={() => setSelection((prev) => (prev === "date" ? null : "date"))}
       >
         <span className="block text-xs font-semibold">CHECK OUT</span>
         <span className="block font-medium mt-1">
@@ -77,7 +73,7 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
               </div>
             </div>
           ) : (
-            "Add dates"
+            <span onClick={handleClearDates}>Add dates</span>
           )}
         </span>
       </div>
@@ -86,3 +82,5 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
 };
 
 export default CheckinCheckOut;
+
+

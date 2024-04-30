@@ -7,6 +7,7 @@ import Nodata from "../hook/NoRecord";
 import Spinner from "../hook/spinner";
 import toast from "react-hot-toast";
 import Modal from "../hook/Modal";
+import Link from "next/link";
 
 export default function index() {
   const [content, setContent] = useState([]);
@@ -29,9 +30,12 @@ export default function index() {
 
   const closeConfirmModal = () => {
     setIsConfirmOpen(false);
+    setMessage("");
+
   };
 
   const closeCancelModal = () => {
+    setMessage("");
     setIsCancelOpen(false);
   };
 
@@ -39,13 +43,17 @@ export default function index() {
     setMessage(e?.target?.value);
   };
 
+  console.log("content",content )
   function fetchData() {
     setLoading(true);
     const main = new Listing();
     const response = main.bookinghistory();
     response
       .then((res) => {
+<<<<<<< HEAD
         // console.log("res?.data?.data", res?.data?.data);
+=======
+>>>>>>> 37353a8de20463ea5a37cdfc3ad85dcf3b5779ff
         setContent(res?.data?.data);
         setLoading(false);
       })
@@ -60,6 +68,7 @@ export default function index() {
   }, []);
 
   const bookingaccept = (uuid, id, bookingStatus) => {
+    setLoading(true);
     if (message?.length == 0) {
       toast.error("Message can't be empty!");
       return;
@@ -77,9 +86,12 @@ export default function index() {
           closeConfirmModal();
           closeCancelModal();
           setMessage("");
+          setLoading(false)
           toast.success(response.data.message);
         } else {
           toast.error(response.data.message);
+          setLoading(false)
+
         }
       })
       .catch((error) => {
@@ -92,71 +104,86 @@ export default function index() {
       {loading ? (
         <Spinner />
       ) : content && content.length > 0 ? (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto mt-3">
           <div className="w-full">
-            <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
-              <table className="min-w-[1200px] w-full break-all divide-gray-200">
-                <thead className="bg-gray-50">
+            <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg mt-2">
+              <table className="min-w-[1200px] w-full break-all divide-gray-200 dark:divide-gray-700">
+                <thead className="bg-gray-50 dark:bg-gray-800">
                   <tr className="">
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">
+                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       {" "}
                       booking Date
                     </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">
+                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       booking Number{" "}
                     </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 ">
+                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       Stay{" "}
                     </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">
+                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       Amount
                     </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500">
+                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       Status
                     </td>
-                    {/* <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    {/* <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400">
                       user
                     </td> */}
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 ">
+                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       Document Image and Type{" "}
                     </td>
-                    <td className="px-4 py-3 text-sm font-normal text-left rtl:text-right text-gray-500 ">
+                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       Action
                     </td>
                   </tr>
                 </thead>
 
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                   {content.map((item, index) => (
                     <tr key={index}>
-                      <td className="px-4 py-4 text-sm text-gray-500">
+                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <Dateformat item={item?.booking_date} />
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500">
+                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         {item?.booking_number}
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500">
-                        <div className="flex flex-wrap justify-center-between">
-                          {item?.adults} adults {item?.children} children{" "}
-                          {item?.no_of_pet} pet
-                        </div>
+                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                        <Link href={`/property/${item?.booking_property?.uuid}`}>
+                          <div className="items-center flex gap-2 text-sm p-2 ">
+                            <Image
+                              width={35}
+                              height={35}
+                              className="top-2 right-2 p-1 rounded-full user-profile-img"
+                              src={item?.booking_property?.property_image[0]?.image_url}
+                              alt={item?.booking_property?.property_image[0]?.properties_id}
+
+                            />
+                            <div>
+                              <div className="text-gray-800 font-medium">                             {item?.booking_property?.name.split(' ').slice(0, 7).join(' ')}
+                                {item?.booking_property?.name.split(' ').length > 7 ? '...' : ''}
+                              </div>
+                              <div className="text-sm">{item?.booking_property?.adults} adults  || {item?.booking_property?.children} children || {item?.booking_property?.no_of_pet_allowed} pet </div>
+                            </div>
+                          </div>
+
+                        </Link>
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500">
+
+                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         {item?.price}
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500">
+                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <td
-                          className={`inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${
-                            item?.booking_status === "completed"
-                              ? "bg-green-600"
-                              : item?.booking_status === "cancelled"
+                          className={`capitalize inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${item?.booking_status === "completed"
+                            ? "bg-slate-600"
+                            : item?.booking_status === "cancelled"
                               ? "bg-red-600"
                               : item?.booking_status === "confirm"
-                              ? "bg-green-600"
-                              : "bg-blue-600"
-                          }`}
+                                ? "bg-green-600"
+                                : "bg-blue-600"
+                            }`}
                         >
                           {item?.booking_status}
                         </td>
@@ -176,29 +203,28 @@ export default function index() {
                           </div>
                         </div>
                       </td> */}
-                      <td className="px-4 py-4 text-sm text-gray-500">
+                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                        
                         <div className="flex items-center">
                           <Image
                             width={50}
                             height={50}
-                            className="inline-flex items-center rounded-full ml-2 user-profile-img"
+                            className="capitalize inline-flex items-center rounded-full ml-2 user-profile-img"
                             src={item?.front_url}
                             alt="Document Image"
                           />
-                          <div className="inline-flex items-center rounded-full ml-2">
+                          <div className="capitalize inline-flex items-center rounded-full ml-2">
                             {item?.doc_type}
                           </div>
                         </div>
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500">
-                        <td
-                          onClick={
-                            () => openConfirmModal(item)
-                            // bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
-                          }
-                          className="cursor-pointer text-green-500 flex items-center gap-2 border rounded-full p-2 mb-2"
-                        >
+                      <td className="px-4 py-2 text-sm text-gray-500 dark:text-gray-300 ">
+
+                        <div onClick={
+                          () => openConfirmModal(item)
+                          // bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
+                        } className="capitalize  cursor-pointer text-green-500 flex items-center gap-2 border w-fit rounded-full p-1 px-4 mb-2">
                           {loading ? "loading.." : "confirmed"}
                           <svg
                             className="text-emerald-500"
@@ -213,15 +239,14 @@ export default function index() {
                               fill="currentColor"
                             ></path>
                           </svg>
-                        </td>
+                        </div>
 
-                        <td
-                          onClick={() =>
-                            //bookingaccept(item.booking_user[0]?.id, item.id, "cancelled")
-                            openCancelModal(item)
-                          }
-                          className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-2"
-                        >
+
+
+                        <div onClick={() =>
+                          //bookingaccept(item.booking_user[0]?.id, item.id, "cancelled")
+                          openCancelModal(item)
+                        } className="capitalize cursor-pointer text-red-500 flex items-center w-fit gap-2 border rounded-full p-1 px-4">
                           <svg
                             className="text-red-400"
                             xmlns="http://www.w3.org/2000/svg"
@@ -240,7 +265,7 @@ export default function index() {
                             ></path>
                           </svg>
                           {loading ? "loading.." : "Cancelled"}
-                        </td>
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -282,7 +307,7 @@ export default function index() {
                 )
               }
             >
-              {loading ? "loading..." : "proceed"}
+              {loading ? "loading..." : "Processed"}
             </button>
           </div>
         </Modal>
@@ -317,7 +342,7 @@ export default function index() {
                 )
               }
             >
-              {loading ? "loading..." : "proceed"}
+              {loading ? "loading..." : "Processed"}
             </button>
           </div>
         </Modal>

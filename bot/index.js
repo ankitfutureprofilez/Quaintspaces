@@ -31,7 +31,6 @@ const { scrollPageToBottom } = require("puppeteer-autoscroll-down");
       const json = JSON.stringify(result);
       fs.writeFile("data.json", json, "utf8", function (err) {
         if (err) throw err;
-        // console.log("complete");
       });
     }
     // browser.close();

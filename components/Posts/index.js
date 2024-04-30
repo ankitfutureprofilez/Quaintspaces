@@ -22,7 +22,6 @@ const Posts = () => {
       setListings({ loading: false, data: data.data });
       const { data: categoryData } = await axios("/api/categories");
       setCategories({ loading: false, data: categoryData.data });
-      // console.log("listings",listings.data)
     })();
   }, []);
 

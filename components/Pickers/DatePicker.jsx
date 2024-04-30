@@ -24,6 +24,7 @@ const DatePicker = ({
   footer = false,
   datePickerFunction = null,
 }) => {
+
   const today = startOfToday();
   const [hoveredDate, setHoveredDate] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy"));
@@ -42,6 +43,7 @@ const DatePicker = ({
     end: endOfMonth(nextMonthState),
   });
 
+
   function previousMonth() {
     if (width < 767) {
       let firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 });
@@ -58,6 +60,13 @@ const DatePicker = ({
     }
   }
 
+  useEffect(() => {
+    if (selectedDay === null && selectEnd === null) {
+      console.log("Both selectedDay and selectEnd are null.");
+    }
+  }, [selectedDay, selectEnd]);
+  console.log("selectedDay, selectEnd",selectedDay, selectEnd)
+  
   const [width, setWidth] = useState();
   function setWid() {
     setWidth(window && window.innerWidth);
@@ -68,7 +77,6 @@ const DatePicker = ({
   }, []);
 
   function nextMonth() {
-    // console.log("w", width);
     if (width < 767) {
       let firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 });
       setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
@@ -87,10 +95,9 @@ const DatePicker = ({
 
   return (
     <div
-      className={`${
-        css ||
+      className={`${css ||
         "date-picker w-full relative z-10 mx-auto shadow border border-gray-300 bg-white rounded-3xl px-8 py-8"
-      }`}
+        }`}
     >
       {/* <div className="flex gap-2"> */}
       {/* <h1 className="text-md font-semibold px-4 py-2 rounded-md border border-gray-500"> */}
@@ -134,7 +141,7 @@ const DatePicker = ({
                   dayIdx={dayIdx}
                   setHoveredDate={setHoveredDate}
                   hoveredDate={hoveredDate}
-                  // setButtonClicked={setButtonClicked}
+                // setButtonClicked={setButtonClicked}
                 />
               );
             })}
@@ -194,7 +201,8 @@ const DatePicker = ({
       {footer && typeof datePickerFunction === "function" && (
         <div className="flex justify-end gap-6 mt-4">
           <button
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               setSelectedDay(null);
               setSelectEnd(null);
             }}
@@ -202,6 +210,7 @@ const DatePicker = ({
           >
             Clear dates
           </button>
+
           <button
             onClick={() => datePickerFunction()}
             className="rounded-md border border-gray-700 bg-black text-white transition duration-200 px-4 py-2 text-sm"

@@ -284,6 +284,7 @@ const Book = () => {
           rzp.on("payment.failed", function (response) {
             paymentsubmit(res?.data?.orderId);
             toast.error("Payment Failed");
+          router.push(`/cancel/${listingID}`);
           });
           rzp.open();
         } else {
@@ -323,11 +324,12 @@ const Book = () => {
       .bookingpayment(record)
       .then((res) => {
         if (res) {
-          toast.success(res?.data?.message);
-          router.push(`/success/${listingID}`);
+          if(res?.data?.status ==true){
+            toast.success(res?.data?.message);
+            router.push(`/success/${listingID}`);
+          }
         } else {
           toast.error(res?.data?.message);
-          router.push(`/cancel/${listingID}`);
         }
       })
       .catch((error) => {

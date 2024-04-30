@@ -82,10 +82,10 @@ const DatesModel = ({ infos, setDateModel }) => {
         infos.numberOfAdults
       }&numberOfChildren=${infos.numberOfChildren}&numberOfInfants=${
         infos.numberOfInfants
-      }&numberOfPets=${infos.numberOfPets}&checkin=${format(
+      }&numberOfPets=${infos.numberOfPets}&checkin=${selectedDay ? format(
         selectedDay,
         "yyyy-MM-dd"
-      )}&checkout=${format(selectEnd, "yyyy-MM-dd")}`
+      ) : ""}&checkout=${selectEnd ? format(selectEnd, "yyyy-MM-dd") : ""}`
     );
   };
 
