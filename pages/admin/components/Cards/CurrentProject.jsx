@@ -57,6 +57,7 @@ function CurrentProject() {
                                 </div>
                             </div>
                         </div>
+                        
                         {/* <div className='flex text-xxs font-medium items-center gap-1'>
                             <MinusCirlce size={14} variant='Bold' />
                             <span>Absent</span>
