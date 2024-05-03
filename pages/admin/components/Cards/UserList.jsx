@@ -13,9 +13,9 @@ function UserList() {
   useEffect(() => {
     const main = new Listing();
     main
-      .userListing()
+      .Top3Users()
       .then((r) => {
-        setRecord(r?.data?.data?.data);
+        setRecord(r?.data?.data);
       })
       .catch((err) => {
         console.log(err);
@@ -45,7 +45,7 @@ function UserList() {
       <div className="space-y-3">
         {/* comment 1 */}
         {record &&
-          record?.slice(4,7)?.map((item) => (
+          record?.map((item) => (
             <div className="flex items-center justify-between w-full select-none cursor-pointer">
               <div className="flex items-center gap-2">
                 <Image

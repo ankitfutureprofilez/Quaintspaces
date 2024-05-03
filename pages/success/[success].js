@@ -26,7 +26,7 @@ const success = () => {
     }
   }, []);
 
-  console.log("record",record)
+  // console.log("record",record)
 
   const handleSubmit = (main, data) => {
     const parsedData = JSON.parse(data);
@@ -36,13 +36,13 @@ const success = () => {
       "order_id": razorpay_order_id
     })
       .then((res) => {
-        console.log("response", res);
+        // console.log("response", res);
         if (res && res.data && res.data.status) {
           toast.success(res.data.message);
           setRecord(res?.data?.data);
         } else {
           toast.error(res?.data.message);
-          console.log(res?.data.message);
+          // console.log(res?.data.message);
         }
       })
       .catch((error) => {

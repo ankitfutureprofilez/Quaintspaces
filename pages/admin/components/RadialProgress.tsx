@@ -1,8 +1,8 @@
 
-function RadialProgress() {
+function RadialProgress({progress}) {
     return (
         <div className="relative flex items-center justify-center">
-            <span className="absolute text-gray-800 font-bold">65%</span>
+            <span className="absolute text-gray-800 font-bold">{progress}%</span>
             <svg width="80" height="80" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M160 80C160 124.183 124.183 160 80 160C35.8172 160 0 124.183 0 80C0 35.8172 35.8172 0 80 0C124.183 0 160 35.8172 160 80ZM16 80C16 115.346 44.6538 144 80 144C115.346 144 144 115.346 144 80C144 44.6538 115.346 16 80 16C44.6538 16 16 44.6538 16 80Z" fill="#EEEFF3" />
                 <path

@@ -110,8 +110,31 @@ async all_user_payment_history(){
 }
 
 async user_payment_history(user_id){
-    return Api.get(`admin/all-user-payment-history/${user_id}`)
-    
+    return Api.get(`admin/all-user-payment-history/${user_id}`)  
+}
+
+async Top3Properties(){
+    return Api.get(`admin/top-property-listing`)  
+}
+
+async Top3Bookings(booking_status){
+    return Api.get(`admin/top-booking/${booking_status}`)  
+}
+
+async Top3rating(){
+    return Api.get(`admin/top-rating`)  
+}
+
+async Top3Users(){
+    return Api.get(`admin/top-user-booking-user`)  
+}
+
+async Top3Payments(){
+    return Api.get(`admin/top-payment`)  
+}
+
+async ActiveUser(){
+    return Api.get(`admin/month-user-active`)  
 }
 
 // user-payment-history/4

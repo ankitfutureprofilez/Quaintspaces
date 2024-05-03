@@ -12,7 +12,7 @@ function Reviews() {
   useEffect(() => {
     const main = new Listing();
     main
-      .getrating()
+      .Top3rating()
       .then((r) => {
         setRecord(r?.data?.data);
       })
@@ -62,7 +62,7 @@ function Reviews() {
 
         {/* note 2 */}
         {record &&
-          record?.slice(2, 5)?.map((item) => (
+          record?.map((item) => (
             <>
               <div className="flex items-start gap-3 w-full opacity-70">
                 {/* <button className='w-4 shrink-0 mt-1 h-4 border-2 border-gray-300 rounded-full' /> */}
@@ -72,7 +72,7 @@ function Reviews() {
                     {item?.rating_user?.name}
                   </p>
                   <p className="text-xs text-black line-limit leading-relaxed">
-                    {item?.review_text}
+                    {item?.get_property_review?.description}
                   </p>
                   <div className="flex justify-between items-end">
                     <div className="space-x-2 font-medium">
@@ -85,7 +85,7 @@ function Reviews() {
                     </div>
                     <p className="flex items-center gap-1 text-xs text-black">
                       <Calendar2 size={12} />
-                      <Dateformat item={item?.createdAt} />
+                      <Dateformat item={item?.updated_at} />
                     </p>
                   </div>
                 </div>
