@@ -68,7 +68,7 @@ export default function Index() {
   };
 
   const loadMore = () => {
-    if (!loading && hasmore) {
+    if (!loading ) {
       fetchData(page + 1);
     }
   };
@@ -316,7 +316,7 @@ export default function Index() {
             <> </>
           )}
         </div>
-        {!loading && hasmore && (
+        {!loading && (
           <div className="flex justify-center">
             <div
               className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
@@ -327,7 +327,14 @@ export default function Index() {
           </div>
         )}
         {!loading && !hasmore && record.length === 0 && (
-          <div className="text-center">No more data</div>
+
+<div className="flex justify-center">
+<div
+  className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+>
+  No More Data
+</div>
+</div>
         )}
       </div>
     </AdminLayout>

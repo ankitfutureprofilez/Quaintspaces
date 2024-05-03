@@ -3,20 +3,30 @@ import Listing from "../api/Listing";
 import Image from "next/image";
 import AdminLayout from "../AdminLayout";
 import Spinner  from  "../hook/spinner";
-import Nodata from "../hook/NoRecord"
+import Nodata from "../hook/NoRecord";
+import userprofile from "../../../public/admin/userprofile.png";
 import Link from "next/link"
 
 export default function Index() {
   const[loading ,setLoading] =useState(false)
   const [content, setContent] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasmore, setHasMore] = useState(true);
+  
 
-  useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (pg) => {
       setLoading(true);
       try {
         const main = new Listing();
-        const response = await main.all_user_payment_history();
-        setContent(response?.data?.data);
+        const response = await main.all_user_payment_history(pg);
+        const newdata = response?.data?.data?.data || [];
+        setContent((prevData) => {
+          if (pg === 1) {
+            return newdata;
+          } else {
+            return [...prevData, ...newdata];
+          }
+        });
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -24,8 +34,15 @@ export default function Index() {
       }
     };
 
-    fetchData();
-  }, []);
+    useEffect(() => {
+      fetchData(1);
+    }, []);
+
+ const loadMore = () => {
+    if (!loading ) {
+      fetchData(page + 1);
+    }
+  };
 
   return (
     <AdminLayout heading={"Payment History"}>
@@ -41,6 +58,8 @@ export default function Index() {
 <table className="min-w-[1200px] w-full break-all divide-gray-200 dark:divide-gray-700">
 <thead className="bg-gray-50 dark:bg-gray-800">
   <tr >
+  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">S. No. </td>
+
     <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Payment Id </td>
     <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Customer</td>
     <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Purchase</td>
@@ -52,6 +71,8 @@ export default function Index() {
 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
   {content && content.map((item, index) => (
     <tr key={index}>
+      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">{index+1}</td>
+
       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">{item?.payment_id}</td>
       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
         <Link href={`/admin/user-history/${item?.booking_history?.booking_user[0]?.id}`}>
@@ -61,7 +82,7 @@ export default function Index() {
             width={35}
             height={35}
             className="top-2 right-2 p-1 rounded-full"
-            src={item?.booking_history?.booking_user[0]?.image_url}
+            src={item?.booking_history?.booking_user[0]?.image_url || userprofile}
             alt="User Image"
           />
           <div>
@@ -121,6 +142,26 @@ export default function Index() {
     ) }
     
   
+    {!loading && (
+          <div className="flex justify-center">
+            <div
+              className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+              onClick={loadMore}
+            >
+              Load More
+            </div>
+          </div>
+        )}
+        {!loading && !hasmore && record.length === 0 && (
+
+<div className="flex justify-center">
+<div
+  className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+>
+  No More Data
+</div>
+</div>
+        )}
   </div>
 </div>
 </div>

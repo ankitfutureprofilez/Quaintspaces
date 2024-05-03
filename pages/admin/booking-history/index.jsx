@@ -8,15 +8,20 @@ import Spinner from "../hook/spinner";
 import toast from "react-hot-toast";
 import Modal from "../hook/Modal";
 import Link from "next/link";
+import userProfile from "../../../public/admin/userprofile.png"
 
 export default function index() {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [selectedBooking, setSelectedBooking] = useState(null); // New state to store selected booking
-  const [isConfirmOpen, setIsConfirmOpen] = useState(false); // State for confirm modal
-  const [isCancelOpen, setIsCancelOpen] = useState(false); // State for cancel modal
+  const [selectedBooking, setSelectedBooking] = useState(null); 
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [isCancelOpen, setIsCancelOpen] = useState(false);
+
+  const [hasmore, setHasMore] = useState(true);
+
+  const [page, setPage] = useState(0);
 
   const openConfirmModal = (booking) => {
     setSelectedBooking(booking);
@@ -43,13 +48,22 @@ export default function index() {
     setMessage(e?.target?.value);
   };
 
-  function fetchData() {
+  function fetchData(pg) {
     setLoading(true);
     const main = new Listing();
-    const response = main.bookinghistory();
+    const response = main.bookinghistory(pg);
     response
       .then((res) => {
-        setContent(res?.data?.data);
+        const newdata = res?.data?.data?.data|| [];
+        setContent((prevData) => {
+          if (pg === 1) {
+            return newdata;
+          } else {
+            return [...prevData, ...newdata];
+          }
+        });
+        setHasMore(res?.data?.current_page < res?.data?.last_page);
+        setPage(res?.data?.current_page);
         setLoading(false);
       })
       .catch((error) => {
@@ -58,16 +72,26 @@ export default function index() {
       });
   }
 
+  
+
   useEffect(() => {
-    fetchData();
+    if (content && content?.length < 1) {
+      fetchData(page + 1);
+     }
   }, []);
+
+  const loadMore = () => {
+    if (!loading && page) {
+      fetchData(page + 1);
+    }
+  };
 
   const bookingaccept = (uuid, id, bookingStatus) => {
     setLoading(true);
-    if (message?.length == 0) {
-      toast.error("Message can't be empty!");
-      return;
-    }
+    // if (message?.length == 0) {
+    //   toast.error("Message can't be empty!");
+    //   return;
+    // }
     const main = new Listing();
     const formdata = new FormData();
     formdata.append("booking_status", bookingStatus);
@@ -104,29 +128,32 @@ export default function index() {
               <table className="min-w-[1200px] w-full break-all divide-gray-200 dark:divide-gray-700">
                 <thead className="bg-gray-50 dark:bg-gray-800">
                   <tr className="">
-                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                  <td className="px-4 py-4 capitalize  text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                      S.No.
+                    </td>
+                    <td className="px-4 py-4 capitalize text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       {" "}
                       booking Date
                     </td>
-                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                    <td className="px-4 py-4 capitalize text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       booking Number{" "}
                     </td>
-                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                    <td className="px-4 py-4 capitalize text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       Stay{" "}
                     </td>
-                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                    <td className="px-4 py-4 capitalize text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       Amount
                     </td>
-                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                    <td className="px-4 py-4 capitalize  text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       Status
                     </td>
                     {/* <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400">
                       user
                     </td> */}
-                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                    <td className="px-4 py-4 capitalize  text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       Document Image and Type{" "}
                     </td>
-                    <td className="px-4 py-4 text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                    <td className="px-4 py-4 capitalize  text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       Action
                     </td>
                   </tr>
@@ -135,6 +162,9 @@ export default function index() {
                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                   {content.map((item, index) => (
                     <tr key={index}>
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                        {index+1}
+                      </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <Dateformat item={item?.booking_date} />
                       </td>
@@ -183,20 +213,7 @@ export default function index() {
                         </td>
                       </td>
 
-                      {/* <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
-                        <div className="flex items-center">
-                          <Image
-                            width={50}
-                            height={50}
-                            className="inline-flex items-center rounded-full ml-2 user-profile-img"
-                            src={item?.booking_user[0]?.image_url}
-                            alt="Document Image"
-                          />
-                          <div className="inline-flex items-center rounded-full ml-2">
-                            {item?.booking_user[0]?.name}
-                          </div>
-                        </div>
-                      </td> */}
+                      
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         
                         <div className="flex items-center">
@@ -204,7 +221,8 @@ export default function index() {
                             width={50}
                             height={50}
                             className="capitalize inline-flex items-center rounded-full ml-2 user-profile-img"
-                            src={item?.front_url}
+                            src={item?.front_url || userProfile
+                    }
                             alt="Document Image"
                           />
                           <div className="capitalize inline-flex items-center rounded-full ml-2">
@@ -216,8 +234,9 @@ export default function index() {
                       <td className="px-4 py-2 text-sm text-gray-500 dark:text-gray-300 ">
 
                         <div onClick={
-                          () => openConfirmModal(item)
-                          // bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
+                          () =>
+                             bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
+                            //  openConfirmModal(item)
                         } className="capitalize  cursor-pointer text-green-500 flex items-center gap-2 border w-fit rounded-full p-1 px-4 mb-2">
                           {loading ? "loading.." : "confirmed"}
                           <svg
@@ -238,7 +257,6 @@ export default function index() {
 
 
                         <div onClick={() =>
-                          //bookingaccept(item.booking_user[0]?.id, item.id, "cancelled")
                           openCancelModal(item)
                         } className="capitalize cursor-pointer text-red-500 flex items-center w-fit gap-2 border rounded-full p-1 px-4">
                           <svg
@@ -267,12 +285,35 @@ export default function index() {
               </table>
             </div>
           </div>
+
+          {!loading && (
+          <div className="flex justify-center">
+            <div
+              className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+              onClick={loadMore}
+            >
+              Load More
+            </div>
+          </div>
+        )}
+        {!loading && !hasmore && record.length === 0 && (
+
+<div className="flex justify-center">
+<div
+  className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+>
+  No More Data
+</div>
+</div>
+        )}
         </div>
+
+        
       ) : (
         <Nodata text={"No Booking "} />
       )}
 
-      {selectedBooking && (
+      {/* {selectedBooking && (
         <Modal isOpen={isConfirmOpen} onClose={closeConfirmModal}>
           <div className="my-3 lg:my-6 flex flex-col">
             <label
@@ -305,7 +346,7 @@ export default function index() {
             </button>
           </div>
         </Modal>
-      )}
+      )} */}
 
       {selectedBooking && (
         <Modal isOpen={isCancelOpen} onClose={closeCancelModal}>

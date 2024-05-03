@@ -33,8 +33,8 @@ class Listings extends Component {
    // return Api.post("/add-booking", data);
     return Api.post("/booking", data);
   }
-  async BookingHistory(data) {
-    return Api.get("/user-booking-history?" + data);
+  async BookingHistory(page,data) {
+    return Api.get(`/user-booking-history?page=${page}&` + data);
   }
 
   
@@ -59,11 +59,13 @@ class Listings extends Component {
   async GetUserReview(data) {
     return Api.get("/rating-Review-listing/"+ data);
   }
+
   async AllReviews(data, page =1) {
     return Api.get(`/property-Rating/${data}?page=${page}`);
   }
-  async PaymentHistory() {
-    return Api.get("/user-payment-history");
+
+  async PaymentHistory(page) {
+    return Api.get(`/user-payment-history?page=${page}`);
   }
 
   async user_success_payment(data) {

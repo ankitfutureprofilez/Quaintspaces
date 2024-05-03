@@ -5,6 +5,7 @@ import AdminLayout from "../AdminLayout";
 import Nodata from "../hook/NoRecord";
 import Spinner from "../hook/spinner";
 import Link from "next/link";
+import userprofile from "../../../public/admin/userprofile.png"
 
 export default function payment({ record }) {
 
@@ -66,7 +67,7 @@ export default function payment({ record }) {
                                 width={35}
                                 height={35}
                                 className="top-2 right-2 p-1 rounded-full"
-                                src={item?.booking_history?.booking_user[0]?.image_url}
+                                src={item?.booking_history?.booking_user[0]?.image_url || userprofile}
                                 alt="User Image"
                               />
                               <div>

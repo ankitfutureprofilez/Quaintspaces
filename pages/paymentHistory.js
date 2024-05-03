@@ -15,27 +15,50 @@ export default function paymentHistory() {
   const [loading, setLoading] = useState(false);
   const [listings, setListings] = useState([]);
   const router = useRouter();
-
-  useEffect(() => {
+  const [hasmore, setHasMore] = useState(true);
+  const [page, setPage] = useState(0);
+  const fetching = async(pg) =>{
     setLoading(true);
     const main = new Listings();
     main
-      .PaymentHistory()
+      .PaymentHistory(pg)
       .then((r) => {
         setLoading(false);
-        setListings(r?.data?.data);
+        const newdata = r?.data?.data?.data|| [];
+        setListings((prevData) => {
+          if (pg === 1) {
+            return newdata;
+          } else {
+            return [...prevData, ...newdata];
+          }
+        });
+        setHasMore(r?.data?.current_page < r?.data?.last_page);
+        setPage(r?.data?.current_page);
+        setLoading(false);
       })
       .catch((err) => {
         setLoading(false);
+        setHasMore(false);
+        setPage(false);
         console.log(err);
       });
-    // console.log("listings", listings);
+  } 
+
+  useEffect(() => {
+     if (listings && listings?.length < 1) {
+      fetching(page + 1);
+     }
   }, []);
-  // {listings && listings.length > 0 ? ():()
+
+  const loadMore = () => {
+    if (!loading && page) {
+      fetching(page + 1);
+    }
+  };
+
   const BookingTable = () => {
     return (
       <>
-        {/* {listings && listings.length > 0 ? ( */}
         <div className="table-responsive">
           <table className=" w-full booking-table">
             <thead>
@@ -73,15 +96,9 @@ export default function paymentHistory() {
                         alt="Property"
                       />
                       <div>
-                        <div className="text-gray-800 font-medium text-left">
+                        <div className="text-gray-800 font-medium text-left capitalize">
                           {item?.booking_history?.booking_property?.name}
                         </div>
-                        {/* <div className="text-sm">
-                          {
-                            item?.booking_history?.booking_property
-                              ?.properties_type
-                          }
-                        </div> */}
                       </div>
                     </div>
                   </td>
@@ -89,16 +106,22 @@ export default function paymentHistory() {
                   <td className="px-4 py-2 text-sm">
                     {DateComponent(item?.booking_history?.check_in)}
                   </td>
-                  <td className="px-4 py-2">{item?.method}</td>
-                  <td className="px-4 py-2">{item?.status}</td>
+                  <td className="px-4 py-2 capitalize">{item?.method}</td>
+                  <td className="px-4 py-2 capitalize">{item?.status}</td>
                   <td className="px-4 py-2">{formatMultiPrice(item?.price)}</td>
                 </tr>
               </tbody>
             ))}
           </table>
         </div>
-        {/* ) : ( */}
-        {/* )} */}
+
+        {hasmore &&  (
+                <div className="load-more mt-5 text-center ">
+                  <button className="btn btn-outline-success" onClick={loadMore}>
+                    Load More
+                  </button>
+                </div>
+              )}
       </>
     );
   };
