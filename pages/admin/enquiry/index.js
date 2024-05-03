@@ -97,6 +97,8 @@ export default function Index() {
                           scope="col"
                           className="min-w-50 px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500"
                         >
+
+                          
                           
                         </th>
                       </tr>
