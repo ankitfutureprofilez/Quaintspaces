@@ -136,6 +136,9 @@ async Top3Payments(){
 async ActiveUser(){
     return Api.get(`admin/month-user-active`)  
 }
+async enqiry_info(data){
+    return Api.post(`admin/enquiry-info`,data)  
+}
 
 // user-payment-history/4
   render() {

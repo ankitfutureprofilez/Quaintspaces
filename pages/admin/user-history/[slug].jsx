@@ -117,20 +117,12 @@ function index() {
           >
             Payment{" "}
           </button>
-          <button
-            onClick={() => setActiveTab("rewards")}
-            className={`z-10 w-32 px-2 py-2  ${
-              activeTab === "rewards" ? "" : ""
-            }`}
-          ></button>
           <div className="absolute items-center top-0 left-0 w-32 h-full flex">
             <motion.div
               animate={{
                 x:
                   activeTab === "Booking"
                     ? 0
-                    : activeTab === "rewards"
-                    ? "200%"
                     : "100%",
               }}
               className="w-full h-full bg-white border bg-indigo-300 h-7 rounded-lg transform"
@@ -148,7 +140,6 @@ function index() {
               <Payment record={record?.id} />
             </div>
           )}
-          {activeTab === "Rewards" && <div></div>}
         </div>
       </div>
     </AdminLayout>

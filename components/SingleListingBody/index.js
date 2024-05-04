@@ -22,6 +22,7 @@ import { formatMultiPrice } from "../../hooks/ValueData";
 import toast from "react-hot-toast";
 
 const SingleListingBody = ({ listing, loading }) => {
+  console.log(listing?.data?.adults,"listing")
   const router = useRouter();
   const [selection, setSelection] = useState(null); // 'guests', 'dates', null
   const [selectedImage, setSelectedImage] = useState(null);
@@ -31,25 +32,27 @@ const SingleListingBody = ({ listing, loading }) => {
   const [guests, setGuests] = useState({
     adults: {
       value: 1,
-      max: listing?.data?.adults || 20,
+      max: listing?.data?.adults  ? listing?.data?.adults : 20,
       min: 0,
     },
     children: {
       value: 0,
-      max: listing?.data?.children || 20,
+      max: listing?.data?.children  ? listing?.data?.children : 5 ,
       min: 0,
     },
     infants: {
       value: 0,
-      max: listing?.data?.infants || 20,
+      max: listing?.data?.infants  ? listing?.data?.infants : 2 ,
       min: 0,
     },
     pets: {
       value: 0,
-      max: listing?.data?.no_of_pet_allowed || 20,
+      max: listing?.data?.no_of_pet_allowed   ? listing?.data?.no_of_pet_allowed : 1,
       min: 0,
     },
   });
+
+  console.log("guests",guests)
 
   const result = useLabeling(guests);
 

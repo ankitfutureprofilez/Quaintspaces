@@ -28,21 +28,13 @@ export default function index() {
     setIsConfirmOpen(true);
   };
 
-  const openCancelModal = (booking) => {
-    setSelectedBooking(booking);
-    setIsCancelOpen(true);
-  };
-
   const closeConfirmModal = () => {
     setIsConfirmOpen(false);
     setMessage("");
 
   };
 
-  const closeCancelModal = () => {
-    setMessage("");
-    setIsCancelOpen(false);
-  };
+ 
 
   const handleChange = (e) => {
     setMessage(e?.target?.value);
@@ -88,10 +80,6 @@ export default function index() {
 
   const bookingaccept = (uuid, id, bookingStatus) => {
     setLoading(true);
-    // if (message?.length == 0) {
-    //   toast.error("Message can't be empty!");
-    //   return;
-    // }
     const main = new Listing();
     const formdata = new FormData();
     formdata.append("booking_status", bookingStatus);
