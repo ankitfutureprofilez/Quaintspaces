@@ -11,7 +11,7 @@ function getToken() {
 }
 
 let Api = axios.create({
-  baseURL: API_URL,
+  baseURL: "http://quaintstays.laraveldevelopmentcompany.com/api",
   headers: {
     'Accept': 'application/json',
     'Access-Control-Allow-Origin': '*'
