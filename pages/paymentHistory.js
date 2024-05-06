@@ -129,6 +129,7 @@ export default function paymentHistory() {
   return (
     <AuthLayout>
       <Head>
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         <title>Payment History - QS Jaipur</title>
       </Head>
       <div className="container mx-auto">
