@@ -22,7 +22,6 @@ import { formatMultiPrice } from "../../hooks/ValueData";
 import toast from "react-hot-toast";
 
 const SingleListingBody = ({ listing, loading }) => {
-  console.log(listing?.data?.adults,"listing")
   const router = useRouter();
   const [selection, setSelection] = useState(null); // 'guests', 'dates', null
   const [selectedImage, setSelectedImage] = useState(null);
@@ -51,8 +50,6 @@ const SingleListingBody = ({ listing, loading }) => {
       min: 0,
     },
   });
-
-  console.log("guests",guests)
 
   const result = useLabeling(guests);
 

@@ -17,7 +17,7 @@ export default function index() {
     new_password: "",
     confirm_password: "",
   });
-  const setAuth = useContext(Context);
+  const {setAuth} = useContext(Context);
 
   const DeleteAccount = (e) => {
     const main = new Listings();
@@ -26,8 +26,8 @@ export default function index() {
       .then((res) => {
         if (res && res?.data && res?.data?.status) {
           localStorage && localStorage.removeItem("token");
-          setAuth(null);
           toast.success(res?.data?.message);
+          setAuth(null);
           router.push("/login");
         } else {
           toast.error(res?.data?.message);

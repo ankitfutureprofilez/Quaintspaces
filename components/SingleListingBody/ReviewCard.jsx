@@ -52,9 +52,13 @@ const ReviewCard = ({ data }) => {
             <StartRating size={15} value={data?.rating} />
           </p>
         <span className="text-red-500 text-xs">
-          {data && data?.status == 0
+          {data && data?.status == 2
             ? "Your review is not approved yet. Currently only you can see this."
-            : ""}
+            : data && data?.status == 0
+            ? "Review rejected. You can edit it for reconsideration."
+            :
+            ""
+            }
         </span>
       </div>
     </div>
