@@ -25,7 +25,6 @@ function CurrentProject() {
     main
       .Top3Payments()
       .then((r) => {
-        console.log("payments", r?.data?.data);
         setRecord(r?.data?.data);
         setLoading(false);
       })
@@ -37,7 +36,7 @@ function CurrentProject() {
   return (
     <>
       {loading ? (
-        <div className="border bg-lightBorderColor h-[40vh] w-full p-3 rounded-2xl "></div>
+        <div className="border bg-lightBorderColor h-[30vh] w-full p-3 rounded-2xl "></div>
       ) : (
         <div className="border text-gray-500 w-full p-3 rounded-2xl">
           <div className="flex items-center justify-between">

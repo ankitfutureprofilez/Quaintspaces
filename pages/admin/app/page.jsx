@@ -93,8 +93,6 @@ function Home() {
                 <div className="break-inside-avoid-column space-y-4">
                   <CourseProgress />
                 </div>
-
-                
               </div>
             </div>
           </div>

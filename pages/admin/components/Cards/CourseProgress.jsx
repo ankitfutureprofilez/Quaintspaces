@@ -6,18 +6,25 @@ import Link from "next/link";
 
 function CourseProgress() {
   const [activeUser, setActiveUser] = useState();
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const main = new Listing();
     const response = main.ActiveUser();
     response
       .then((res) => {
         setActiveUser(res?.data?.activeUser);
+        setLoading(false);
       })
       .catch((error) => {
         console.log("error", error);
       });
   }, []);
   return (
+    <>
+      {loading ? (
+        <div className="border bg-lightBorderColor h-[30vh] w-full p-3 rounded-2xl "></div>
+      ) : (
     <div className="border text-gray-500 w-full p-3 rounded-2xl">
       {/* header */}
       <div className="flex items-center justify-between">
@@ -56,6 +63,8 @@ function CourseProgress() {
         </div>
       </div>
     </div>
+      )}
+      </>
   );
 }
 
