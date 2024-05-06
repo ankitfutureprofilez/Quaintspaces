@@ -3,7 +3,7 @@ import Button from "../elements/Button";
 import Heading from "../elements/Heading.js";
 import { useRouter } from "next/router";
 import Listings from "../api/laravel/Listings";
-import Link from "next/link"
+import Link from "next/link";
 import AuthLayout from "../layout/AuthLayout.js";
 import Modal from "../elements/Modal.js";
 import NoData from "../elements/NoData.js";
@@ -43,25 +43,27 @@ export default function index() {
     setSelectedButton(e);
   };
 
-
   const [hasmore, setHasMore] = useState(true);
-
   const [page, setPage] = useState(0);
 
-  const fetching = async(pg) =>{
+  const fetching = async (pg) => {
     setLoading(true);
     let url = "";
-    if (selectedOption == "All Dates") {
-    } else if (selectedOption == "Last 30 Days") {
+
+    // Construct URL based on selected options
+    if (selectedOption === "All Dates") {
+      // No need to append anything
+    } else if (selectedOption === "Last 30 Days") {
       url += "booking_time=thirty-day&";
-    } else if (selectedOption == "Last 3 Months") {
+    } else if (selectedOption === "Last 3 Months") {
       url += "booking_time=three_month&";
-    } else if (selectedOption == "Last 1 Year") {
+    } else if (selectedOption === "Last 1 Year") {
       url += "booking_time=after_one_year&";
     } else {
       url += `booking_year=${selectedOption}&`;
     }
 
+    // Append booking event status to URL
     if (selectedButton === "upcoming") {
       url += "booking_event=upcoming&";
     } else if (selectedButton === "completed") {
@@ -75,7 +77,7 @@ export default function index() {
       .BookingHistory(pg, url)
       .then((r) => {
         setLoading(false);
-        const newdata = r?.data?.data?.data|| [];
+        const newdata = r?.data?.data?.data || [];
         setListings((prevData) => {
           if (pg === 1) {
             return newdata;
@@ -85,7 +87,6 @@ export default function index() {
         });
         setHasMore(r?.data?.current_page < r?.data?.last_page);
         setPage(r?.data?.current_page);
-        setLoading(false);
       })
       .catch((err) => {
         setLoading(false);
@@ -93,33 +94,33 @@ export default function index() {
         setPage(false);
         console.log(err);
       });
-  } 
+  };
+
   useEffect(() => {
-     if (listings && listings?.length < 1) {
-      fetching(page + 1);
-     }
-  }, [selectedButton, fetch]);
+    // Fetch data when component mounts or selected options change
+    fetching(page + 1);
+  }, [selectedButton, selectedOption, fetch]);
 
   const loadMore = () => {
     if (!loading && page) {
       fetching(page + 1);
     }
   };
-  // {listings && listings.length > 0 ? ():()
+
   const BookingTable = () => {
     return (
       <>
         {loading ? (
-           <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 min-w-1200px">
-           <div className="flex justify-center items-center space-x-1 text-gray-700">
-             <div className="text-lg">Loading...</div>
-           </div>
-         </div>
+          <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 min-w-1200px">
+            <div className="flex justify-center items-center space-x-1 text-gray-700">
+              <div className="text-lg">Loading...</div>
+            </div>
+          </div>
         ) : (
           <>
             {listings && listings.length > 0 ? (
               <div className="table-responsive">
-                <table key={index} className="table-fixed w-full booking-table">
+                <table className="table-fixed w-full booking-table">
                   <thead>
                     <tr>
                       <th>Booking Date</th>
@@ -130,23 +131,22 @@ export default function index() {
                       <th>Action</th>
                     </tr>
                   </thead>
-                  {listings.map((item, index) => (
-                    <tbody key={index}>
-                      <tr>
-                      <td className="px-4 py-2">{item?.booking_date}</td>
+                  <tbody>
+                    {listings.map((item, index) => (
+                      <tr key={index}>
+                        <td className="px-4 py-2">{item?.booking_date}</td>
                         <td className="px-4 py-2">
                           <div className="flex items-center">
                             <div className="text ml-2">
-                              <div className="title capitalize ">
+                              <div className="title capitalize">
                                 <Link href={`/property/${item?.booking_property?.uuid}`}>
-                               {item?.booking_property?.name}
-                               </Link>
-
+                                  {item?.booking_property?.name}
+                                </Link>
                               </div>
                             </div>
                           </div>
                         </td>
-                        <td className="px-4 py-2">{item?.check_in}     || {item?.check_out}</td>
+                        <td className="px-4 py-2">{item?.check_in} || {item?.check_out}</td>
                         <td className="px-4 py-2 capitalize">
                           <Button
                             text={`${item?.booking_status}`}
@@ -163,12 +163,10 @@ export default function index() {
                           />
                         </td>
                       </tr>
-                    </tbody>
-                  ))}
+                    ))}
+                  </tbody>
                 </table>
-                
               </div>
-
             ) : (
               <NoData
                 Heading={"Booking History not found"}
@@ -180,13 +178,13 @@ export default function index() {
           </>
         )}
 
-{hasmore && !loading && (
-                  <div className="load-more mt-5 text-center ">
-                    <button className="btn btn-outline-success" onClick={loadMore}>
-                      Load More
-                    </button>
-                  </div>
-                )}
+        {hasmore && !loading && (
+          <div className="load-more mt-5 text-center">
+            <button className="btn btn-outline-success" onClick={loadMore}>
+              Load More
+            </button>
+          </div>
+        )}
       </>
     );
   };
@@ -210,10 +208,9 @@ export default function index() {
         <div className="flex flex-col sm:flex-row justify-between">
           <div className="  flex align-items-center my-4 py-2 space-x-4 upcomming-box">
             <Button
-              design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${
-                selectedButton === "upcoming"
-                  ? "bg-orange-300 text-white"
-                  : "text-black"
+              design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${selectedButton === "upcoming"
+                ? "bg-orange-300 text-white"
+                : "text-black"
               }`}
               onClick={() => handleGroupChange("upcoming")}
               text={"Upcoming"}
@@ -221,19 +218,17 @@ export default function index() {
 
             <Button
               text={"Completed"}
-              design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${
-                selectedButton === "completed"
-                  ? "bg-orange-300 text-white"
-                  : "text-black"
+              design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${selectedButton === "completed"
+                ? "bg-orange-300 text-white"
+                : "text-black"
               } `}
               onClick={() => handleGroupChange("completed")}
             />
 
             <Button
-              design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${
-                selectedButton === "cancelled"
-                  ? "bg-orange-300 text-white"
-                  : "text-black"
+              design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${selectedButton === "cancelled"
+                ? "bg-orange-300 text-white"
+                : "text-black"
               } `}
               onClick={() => handleGroupChange("cancelled")}
               text={"Cancelled"}
@@ -245,7 +240,6 @@ export default function index() {
             </button>
             <Modal isOpen={isOpen} onClose={closeModal}>
               <div className="mb-4 mt-10">
-                {/* <h1 className="listing-heading mb-2">Select an option</h1> */}
                 {[
                   "All Dates",
                   "Last 30 Days",
