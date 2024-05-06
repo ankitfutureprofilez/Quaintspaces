@@ -247,8 +247,6 @@ const Book = () => {
               // return false;
               localStorage && localStorage.setItem("response",  JSON.stringify(response))
               paymentsubmit(res?.data?.orderId);
-
-              
             },
             prefill: {
               name: "Customer Name",
@@ -306,6 +304,7 @@ const Book = () => {
       .bookingpayment(record)
       .then((res) => {
         if (res) {
+          console.log("res",res)
           if(res?.data?.status ==true){
             toast.success(res?.data?.message);
             router.push(`/success/${listingID}`);
@@ -458,17 +457,18 @@ const Book = () => {
                     </p>
                   </div>
                   <div className="mt-2 mb-2 sm:mb-4 flex">
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      maxlength="10"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="mt-1 mr-1 p-4 border rounded-full w-full"
-                      placeholder="Enter your mobile number"
-                      required
-                    />
+                  <input
+  type="tel"
+  id="phone"
+  name="phone"
+  maxLength="10"
+  value={formData.phone}
+  onChange={handleChange}
+  className="mt-1 mr-1 p-4 border rounded-full w-full"
+  placeholder="Enter your mobile number"
+  required
+/>
+
                     {/* <button
                       onClick={() => {
                         if (formData.phone.length != 10) {

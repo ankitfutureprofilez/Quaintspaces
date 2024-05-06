@@ -107,8 +107,8 @@ const totalStay = calculateTotalDays(record?.booking_history?.check_in, record?.
           <div className=" pt-16 sm:text-xl text-sm 
           flex flex-wrap justify-center m-auto max-w-[600px]">
             <div className="w-full flex justify-between mb-4 flex-wrap  ">
-              <p className="text-black-400 font-bold ">Booking ID</p>
-              <p className="text-start text-black-400 font-bold font-semibold">{record?.booking_id}</p>
+              <p className="text-black-400 font-bold ">Booking Number</p>
+              <p className="text-start text-black-400 font-bold font-semibold">{record?.booking_history?.booking_number}</p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
               <p className="text-black-400 font-bold">Date :</p>

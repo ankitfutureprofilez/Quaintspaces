@@ -351,19 +351,21 @@ export default function Property(props) {
               <h2 className="text-3xl text-center mt-4 font-bold mb-8" >Which of these best describes your place?</h2>
               <div className="grid grid-cols-3 gap-4">
                 {propertyTypes && propertyTypes.map((p, i) => (
-                  <div key={i} className="">
-                    <div onClick={() => setPType(p.value)} className={`${p.value === PType ? "bg-indigo-500" : ""} block property-type-wrap cursor-pointer p-4 border rounded-xl`}>
-                 
-                          {p.value === "flat" && <FaBuilding style={{ color: 'black', fontSize: '40px' }} />}
-                          {p.value === "house" && <FaHome style={{ color: 'black', fontSize: '40px' }} />}
-                          {p.value === "unique_space" && <House size={40} />}
-                          {p.value === "guest_house" && <FaDoorOpen style={{ color: 'black', fontSize: '40px' }} />}
-                          {p.value === "hotel" && <FaHotel style={{ color: 'black', fontSize: '40px' }} />}
-                          {p.value === "single_room" && <FaBed style={{ color: 'black', fontSize: '40px' }} />}
-                          {p.value === "boutique_hotel" && <FaCouch style={{ color: 'black', fontSize: '40px' }} />}
-                      <h2 className={`${p.value === PType ? "text-gray-100" : "text-gray-400"} text-xl mt-4 font-normal`}>{p.label}</h2>
-                    </div>
-                  </div>
+                 <div key={i} className="">
+                 <div onClick={() => setPType(p?.value)} className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-indigo-500" : ""}`}>
+                   {p.value === "flat" && <FaBuilding style={{ color: 'black', fontSize: '40px' }} />}
+                   {p.value === "house" && <FaHome style={{ color: 'black', fontSize: '40px' }} />}
+                   {p.value === "unique_space" && <House size={40} />}
+                   {p.value === "guest_house" && <FaDoorOpen style={{ color: 'black', fontSize: '40px' }} />}
+                   {p.value === "hotel" && <FaHotel style={{ color: 'black', fontSize: '40px' }} />}
+                   {p.value === "single_room" && <FaBed style={{ color: 'black', fontSize: '40px' }} />}
+                   {p.value === "boutique_hotel" && <FaCouch style={{ color: 'black', fontSize: '40px' }} />}
+                   <h2 className={`text-xl mt-4 font-normal ${p.value === PType ? "text-gray-100" : "text-gray-400"}`}>
+                     {p.label}
+                   </h2>
+                 </div>
+               </div>
+               
                 ))}
               </div>
 
