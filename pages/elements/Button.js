@@ -34,7 +34,7 @@ export default Button;
 
 // .smart-box .iteam h3 {
 //     font-family: 'NewYork';
-//     fontSize: 24px;
+//     font-size: 24px;
 //     font-weight: 400;
 //     line-height: 29px;
 //     letter-spacing: 0em;

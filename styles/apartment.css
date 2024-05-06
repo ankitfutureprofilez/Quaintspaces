@@ -36,7 +36,7 @@ h2.text-lg.font-medium.mb-2.heading-property {
   border-radius: 20px;
   color: #c48b58;
   font-family: Oswald;
-  fontSize: 16px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -129,7 +129,7 @@ html {
   cursor: pointer;
 }
 .emoji-div {
-  fontSize: 50px;
+  font-size: 50px;
   justify-content: center;
 }
 
@@ -141,7 +141,7 @@ html {
   width: 100%;
   text-align: center;
   color: #16a24a;
-  fontSize: 20px;
+  font-size: 20px;
   padding: 30px 0 !important;
   background: #ffffff2e;
 }
@@ -191,19 +191,19 @@ body {
 }
 
 .text-size-20-vh {
-  fontSize: 20vh;
+  font-size: 20vh;
   line-height: normal;
 }
 
 .text-size-10-vh {
-  fontSize: 10vh;
+  font-size: 10vh;
 }
 
 .text-size-5-vh {
-  fontSize: 5vh;
+  font-size: 5vh;
 }
 .text-size-18 {
-  fontSize: 18px;
+  font-size: 18px;
 }
 .text-height-1-5 {
   line-height: 1.5;
@@ -392,7 +392,7 @@ body {
     display: none;
   }
   .text-size-10-vh {
-    fontSize: 6vh;
+    font-size: 6vh;
   }
 }
 .container {
@@ -416,7 +416,7 @@ body {
 
 .swiper-slide {
   text-align: center;
-  fontSize: 18px;
+  font-size: 18px;
   background: #fff;
 
   /* Center slide text vertically */

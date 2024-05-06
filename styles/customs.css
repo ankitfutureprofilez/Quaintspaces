@@ -68,7 +68,7 @@ h3.text-sm.font-medium.desc-property {
 .explor-btn-link a {
   display: flex;
   align-items: center; 
-  fontSize: 16px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 19px;
   letter-spacing: 0em;
@@ -119,7 +119,7 @@ h3.text-sm.font-medium.desc-property {
 .nav-bar a {
   padding: 8px 20px;
   font-family: "Inter", sans-serif;
-  fontSize: 16px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 25px;
   letter-spacing: 0em;
@@ -135,7 +135,7 @@ h3.text-sm.font-medium.desc-property {
 }
 .hero-sec h1 {
   font-family: "NewYork";
-  fontSize: 70px;
+  font-size: 70px;
   font-weight: 400;
   line-height: 85px;
   letter-spacing: 0em;
@@ -144,7 +144,7 @@ h3.text-sm.font-medium.desc-property {
   margin-bottom: 20px;
 }
 .hero-sec p {
-  fontSize: 22px;
+  font-size: 22px;
   font-weight: 400;
   line-height: 27px;
   letter-spacing: 0em;
@@ -154,7 +154,7 @@ h3.text-sm.font-medium.desc-property {
 }
 .hero-sec button {
   font-family: "Inter", sans-serif;
-  fontSize: 16px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 19px;
   letter-spacing: 0em;
@@ -167,7 +167,7 @@ h3.text-sm.font-medium.desc-property {
 }
 .luxury-stay h1 {
   font-family: "NewYork";
-  fontSize: 150px;
+  font-size: 150px;
   font-weight: 400;
   line-height: 183px;
   letter-spacing: 0em;
@@ -196,7 +196,7 @@ h1.in-jaipur {
   position: relative;
 }
 .luxury-stay p {
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 27px;
   letter-spacing: 0em;
@@ -212,7 +212,7 @@ h1.in-jaipur {
 }
 .premium-location-slider h1 {
   font-family: "NewYork";
-  fontSize: 40px;
+  font-size: 40px;
   font-weight: 400;
   line-height: 49px;
   letter-spacing: 0em;
@@ -238,7 +238,7 @@ h1.in-jaipur {
 }
 h2.loction-name {
   font-family: NewYork;
-  fontSize: 24px;
+  font-size: 24px;
   font-weight: 400;
   line-height: 29px;
   letter-spacing: 0em;
@@ -261,7 +261,7 @@ h2.loction-name {
   width: 127px;
 }
 p.menu-footer {
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 0em;
@@ -274,7 +274,7 @@ p.menu-footer {
 }
 .copy-right span {
   /* font-family: "Inter", sans-serif; */
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 0em;
@@ -304,7 +304,7 @@ footer {
 }
 .flat-info h2 {
   font-family: "Inter", sans-serif;
-  fontSize: 13px;
+  font-size: 13px;
   font-weight: 400;
   line-height: 23px;
   letter-spacing: 0em;
@@ -314,7 +314,7 @@ footer {
 }
 .flat-info h3 {
   /* font-family: NewYork; */
-  fontSize: 21px;
+  font-size: 21px;
   line-height: 29px;
   text-align: left;
   color: #464646;
@@ -323,7 +323,7 @@ footer {
 }
 .flat-info p {
   font-family: "Inter", sans-serif;
-  fontSize: 13px;
+  font-size: 13px;
   font-weight: 400;
   line-height: 16px;
   letter-spacing: 0em;
@@ -341,7 +341,7 @@ footer {
 .explor-btn .explore {
   display: flex;
   align-items: center; /* font-family: 'NewYork'; */
-  fontSize: 16px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 19px;
   letter-spacing: 0em;
@@ -368,7 +368,7 @@ footer {
 
 .flat-info h4 {
   font-family: "Inter", sans-serif;
-  fontSize: 13px;
+  font-size: 13px;
   font-weight: 400;
   line-height: 16px;
   letter-spacing: 0em;
@@ -379,7 +379,7 @@ footer {
 }
 .card-price {
   font-family: "Inter", sans-serif;
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 0em;
@@ -392,7 +392,7 @@ footer {
 }
 .load-more-btn a {
   font-family: "Inter", sans-serif;
-  fontSize: 16px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 19px;
   letter-spacing: 0em;
@@ -405,7 +405,7 @@ footer {
 }
 .listing-heading {
   font-family: "NewYork";
-  fontSize: 40px;
+  font-size: 40px;
   font-weight: 400;
   line-height: 49px;
   letter-spacing: 0em;
@@ -417,7 +417,7 @@ footer {
 }
 .visit-us-sec h2 {
   font-family: "NewYork";
-  fontSize: 40px;
+  font-size: 40px;
   font-weight: 400;
   line-height: 49px;
   letter-spacing: 0em;
@@ -443,7 +443,7 @@ footer {
 
 .smart-box .iteam h3 {
   font-family: "NewYork";
-  fontSize: 24px;
+  font-size: 24px;
   font-weight: 400;
   line-height: 29px;
   letter-spacing: 0em;
@@ -471,7 +471,7 @@ footer {
 }
 .left-logo-login p {
   font-family: "Inter", sans-serif;
-  fontSize: 22px;
+  font-size: 22px;
   font-weight: 400;
   line-height: 27px;
   letter-spacing: 0em;
@@ -496,7 +496,7 @@ footer {
 }
 .quainttay h2 {
   font-family: "NewYork";
-  fontSize: 24px;
+  font-size: 24px;
   font-weight: 400;
   line-height: 29px;
   letter-spacing: 0em;
@@ -505,7 +505,7 @@ footer {
 }
 .quainttay h3 {
   font-family: "Inter", sans-serif;
-  fontSize: 16px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 19px;
   letter-spacing: 0em;
@@ -529,7 +529,7 @@ footer {
 }
 .signup-form form label {
   font-family: "Inter", sans-serif;
-  fontSize: 16px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 19px;
   letter-spacing: 0em;
@@ -539,7 +539,7 @@ footer {
 }
 .signup-form form input {
   padding: 18px 25px;
-  fontSize: 16px;
+  font-size: 16px;
   margin-top: 10px;
   border-radius: 50px;
   border: 1px solid #ffffff26;
@@ -556,7 +556,7 @@ button.submint-btn {
   border-radius: 50px;
   padding: 20px;
   font-family: "Inter", sans-serif;
-  fontSize: 16px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 19px;
   letter-spacing: 0em;
@@ -580,7 +580,7 @@ button.submint-btn {
   display: flex;
   align-items: center;
   font-family: "NewYork";
-  fontSize: 40px;
+  font-size: 40px;
   font-weight: 400;
   line-height: 49px;
   letter-spacing: 0em;
@@ -592,7 +592,7 @@ button.submint-btn {
 }
 .booking-manage-box h1 {
   font-family: "Inter", sans-serif;
-  fontSize: 22px;
+  font-size: 22px;
   font-weight: 400;
   line-height: 27px;
   letter-spacing: 0em;
@@ -602,7 +602,7 @@ button.submint-btn {
 }
 .booking-manage-box p {
   font-family: "Inter", sans-serif;
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 0em;
@@ -639,7 +639,7 @@ button.submint-btn {
   padding: 30px;
   text-align: center;
   font-family: "Inter", sans-serif;
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 0em;
@@ -647,7 +647,7 @@ button.submint-btn {
 }
 .booking-table thead tr th {
   font-family: "Inter", sans-serif;
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 22px;
   letter-spacing: 0em;
@@ -655,7 +655,7 @@ button.submint-btn {
 }
 .booking-table td button {
   font-family: "Inter", sans-serif;
-  fontSize: 15px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 19px;
   letter-spacing: 0em;
@@ -685,7 +685,7 @@ button.submint-btn {
 .update-btn {
   background: #c48b58;
   font-family: "Inter", sans-serif;
-  fontSize: 16px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 19px;
   letter-spacing: 0em;
@@ -693,7 +693,7 @@ button.submint-btn {
 }
 .profile-text h1 {
   font-family: "Inter", sans-serif;
-  fontSize: 22px;
+  font-size: 22px;
   font-weight: 400;
   line-height: 27px;
   letter-spacing: 0em;
@@ -703,7 +703,7 @@ button.submint-btn {
 }
 .security-text{
   font-family: "Inter", sans-serif;
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 0em;
@@ -715,7 +715,7 @@ button.submint-btn {
 }
 .confirm-total span {
   font-family: "Inter", sans-serif !important;
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 600 !important;
   line-height: 27px;
   letter-spacing: 0em;
@@ -727,7 +727,7 @@ button.submint-btn {
 }
 .your-trip-sec h2 {
   font-family: "Roboto", sans-serif;
-  fontSize: 22px;
+  font-size: 22px;
   font-weight: 400;
   line-height: 26.69px;
   text-align: left;
@@ -739,7 +739,7 @@ button.submint-btn {
 .edit-here h2 {
   margin-bottom: 6px;
   font-family: "Roboto", sans-serif;
-  fontSize: 22px;
+  font-size: 22px;
   font-weight: 400;
   line-height: 26.69px;
   text-align: left;
@@ -747,7 +747,7 @@ button.submint-btn {
 }
 .edit-here p {
   font-family: "Roboto", sans-serif;
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 21.6px;
   text-align: left;
@@ -763,7 +763,7 @@ button.submint-btn {
 }
 .pers-info h3 {
   font-family: "Inter", sans-serif;
-  fontSize: 22px;
+  font-size: 22px;
   font-weight: 400;
   line-height: 26.69px;
   text-align: left;
@@ -772,7 +772,7 @@ button.submint-btn {
 }
 .pers-info p {
   font-family: "Inter", sans-serif;
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 21.6px;
   text-align: left;
@@ -828,20 +828,20 @@ button.submint-btn {
     padding: 17px;
   }
   .backtohome a {
-    fontSize: 32px;
+    font-size: 32px;
   }
   .left-logo-login img {
     width: 228px;
     margin-bottom: 20px;
   }
   .left-logo-login p {
-    fontSize: 18px;
+    font-size: 18px;
   }
   .listing-heading {
-    fontSize: 34px;
+    font-size: 34px;
   }
   .filter-box .listing-heading {
-    fontSize: 30px;
+    font-size: 30px;
     line-height: 38px;
     margin-bottom: 0;
   }
@@ -856,12 +856,12 @@ button.submint-btn {
     padding: 150px 0 180px;
   }
   .hero-sec h1 {
-    fontSize: 52px;
+    font-size: 52px;
     line-height: 58px;
     margin-bottom: 18px;
   }
   .hero-sec p {
-    fontSize: 20px;
+    font-size: 20px;
     line-height: 24px;
     margin-bottom: 30px;
     text-align: center;
@@ -871,7 +871,7 @@ button.submint-btn {
     padding: 15px;
   }
   .luxury-stay h1 {
-    fontSize: 95px;
+    font-size: 95px;
     line-height: 160px;
   }
   h1.in-jaipur {
@@ -884,7 +884,7 @@ button.submint-btn {
     padding: 50px 0;
   }
   .listing-heading {
-    fontSize: 30px;
+    font-size: 30px;
     line-height: 38px;
     margin-bottom: 29px;
   }
@@ -898,13 +898,13 @@ button.submint-btn {
     margin-top: 10px;
   }
   .flat-info span {
-    fontSize: 16px;
+    font-size: 16px;
   }
   .premium-location-slider {
     padding: 50px 0;
   }
   .premium-location-slider h1 {
-    fontSize: 30px;
+    font-size: 30px;
     line-height: 36px;
     margin-bottom: 18px;
   }
@@ -914,7 +914,7 @@ button.submint-btn {
   }
   .nav-bar a {
     padding: 8px 10px;
-    fontSize: 15px;
+    font-size: 15px;
     line-height: 22px;
   }
   .login-signup-btn a {
@@ -933,7 +933,7 @@ button.submint-btn {
     padding: 0 5px;
   }
   .smart-box .iteam h3 {
-    fontSize: 18px;
+    font-size: 18px;
     line-height: 26px;
   }
   .visit-us-sec {
@@ -941,7 +941,7 @@ button.submint-btn {
     margin-bottom: 50px;
   }
   .visit-us-sec h2 {
-    fontSize: 34px;
+    font-size: 34px;
     line-height: 36px;
   }
   .footer-menu nav a {
@@ -954,7 +954,7 @@ button.submint-btn {
     justify-content: end;
   }
   .filter-box .listing-heading {
-    fontSize: 26px;
+    font-size: 26px;
     line-height: 35px;
   }
   .filter-box .button-group {
@@ -972,7 +972,7 @@ button.submint-btn {
     width: 47%;
   }
   .hero-sec p {
-    fontSize: 18px;
+    font-size: 18px;
     margin-bottom: 25px;
     padding: 0 15px;
   }
@@ -980,17 +980,17 @@ button.submint-btn {
     padding: 100px 0;
   }
   .hero-sec h1 {
-    fontSize: 44px;
+    font-size: 44px;
     line-height: 50px;
     margin-bottom: 10px;
   }
   .hero-sec button {
     width: 274px;
     padding: 12px;
-    fontSize: 15px;
+    font-size: 15px;
   }
   .luxury-stay h1 {
-    fontSize: 62px;
+    font-size: 62px;
     line-height: 80px;
     margin-bottom: 37px;
   }
@@ -999,11 +999,11 @@ button.submint-btn {
     margin-bottom: 0;
   }
   .luxury-stay p {
-    fontSize: 16px;
+    font-size: 16px;
     line-height: 26px;
   }
   .load-more-btn a {
-    fontSize: 15px;
+    font-size: 15px;
     line-height: 16px;
     padding: 12px 38px;
   }
@@ -1021,13 +1021,13 @@ button.submint-btn {
     padding: 20px 0;
   }
   p.menu-footer {
-    fontSize: 16px;
+    font-size: 16px;
   }
   .copy-right {
     padding: 20px 0;
   }
   .copy-right span {
-    fontSize: 16px;
+    font-size: 16px;
   }
   .menu-items {
     position: absolute;
@@ -1054,7 +1054,7 @@ button.submint-btn {
     width: 30px;
   }
   .backtohome a {
-    fontSize: 22px;
+    font-size: 22px;
   }
   .left-logo-login {
     width: 100%;
@@ -1083,7 +1083,7 @@ button.submint-btn {
     margin-bottom: 24px;
   }
   .peora-title {
-    fontSize: 20px;
+    font-size: 20px;
   }
   .your-trip-sec .w-8\/12 {
     width: 100%;
@@ -1125,25 +1125,25 @@ button.submint-btn {
     width: 100% !important;
   }
   .visit-us-sec h2 {
-    fontSize: 26px;
+    font-size: 26px;
     line-height: 34px;
   }
   .hero-sec {
     padding: 55px 0;
   }
   .hero-sec h1 {
-    fontSize: 36px;
+    font-size: 36px;
     line-height: 40px;
     margin-bottom: 10px;
     text-align: center;
   }
   .hero-sec p {
-    fontSize: 16px;
+    font-size: 16px;
     margin-bottom: 22px;
     padding: 0 15px;
   }
   .luxury-stay h1 {
-    fontSize: 44px;
+    font-size: 44px;
     line-height: 70px;
     margin-bottom: 42px;
   }
@@ -1158,7 +1158,7 @@ button.submint-btn {
     padding: 30px 0;
   }
   .listing-heading {
-    fontSize: 28px;
+    font-size: 28px;
     line-height: 38px;
     margin-bottom: 20px;
   }
@@ -1183,13 +1183,13 @@ button.submint-btn {
   }
   .filter-btn-select button {
     padding: 5px 12px;
-    fontSize: 15px;
+    font-size: 15px;
   }
   footer {
     padding-top: 20px;
   }
   .peora-title {
-    fontSize: 18px;
+    font-size: 18px;
   }
   .peora-title svg {
     margin: 0;
@@ -1205,12 +1205,12 @@ button.submint-btn {
     width: 130px !important;
   }
   .booking-manage-box h1 {
-    fontSize: 18px;
+    font-size: 18px;
     line-height: 22px;
     margin-bottom: 5px;
   }
   .booking-manage-box p {
-    fontSize: 16px;
+    font-size: 16px;
   }
   .booking-manage-box {
     margin-left: 10px;
@@ -1223,7 +1223,7 @@ button.submint-btn {
     margin-top: 20px !important ;
   }
   .upcomming-box button {
-    fontSize: 14px !important ;
+    font-size: 14px !important ;
     margin-left: 6px !important;
   }
   .upcomming-box {
@@ -1272,7 +1272,7 @@ button.submint-btn {
 .sort {
   border: 2px solid #c48b58;
   color: #c48b58;
-  fontSize: 14px;
+  font-size: 14px;
 }
 .filter {
   background: #c48b58;
@@ -1286,7 +1286,7 @@ button.submint-btn {
 }
 .image-data h4 {
   font-family: Gilroy-Bold;
-  fontSize: 20px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 25px;
   letter-spacing: 0em;
@@ -1296,7 +1296,7 @@ button.submint-btn {
 
 .image-data p {
   font-family: "Inter", sans-serif;
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 0em;
@@ -1306,7 +1306,7 @@ button.submint-btn {
 
 .image-data span {
   font-family: "Inter", sans-serif;
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 0em;
@@ -1316,7 +1316,7 @@ button.submint-btn {
 
 .confirm-details h1 {
   font-family: "Inter", sans-serif;
-  fontSize: 22px;
+  font-size: 22px;
   font-weight: 400;
   line-height: 27px;
   letter-spacing: 0em;
@@ -1326,7 +1326,7 @@ button.submint-btn {
 
 .confirm-details span {
   font-family: "Inter", sans-serif;
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 27px;
   letter-spacing: 0em;
@@ -1337,7 +1337,7 @@ button.submint-btn {
 .confirm-details .confirm-price {
   color: #00860d;
   font-family: "Inter", sans-serif;
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 27px;
   letter-spacing: 0em;
@@ -1346,7 +1346,7 @@ button.submint-btn {
 
 .confirm-total span {
   font-family: Gilroy-Bold;
-  fontSize: 18px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 27px;
   letter-spacing: 0em;
@@ -1374,7 +1374,7 @@ button.submint-btn {
 }
 
 .empty-state__message {
-  fontSize: 18px;
+  font-size: 18px;
   color: #555;
 }
 
