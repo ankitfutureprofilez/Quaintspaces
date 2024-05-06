@@ -234,12 +234,12 @@ export default function index() {
                           }
                           className="capitalize  cursor-pointer text-green-500 flex items-center gap-2 border w-fit rounded-full p-1 px-4 mb-2"
                         >
-                          {loading ? "loading.." : "confirmed"}
+                          {loading ? "loading.." : "confirm"}
                           <svg
                             className="text-emerald-500"
                             xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
+                            width="14"
+                            height="14"
                             viewBox="0 0 24 24"
                             fill="none"
                           >
@@ -271,7 +271,7 @@ export default function index() {
                               fill="currentColor"
                             ></path>
                           </svg>
-                          {loading ? "loading.." : "Cancelled"}
+                          {loading ? "loading.." : "Cancel"}
                         </div>
                       </td>
                     </tr>
