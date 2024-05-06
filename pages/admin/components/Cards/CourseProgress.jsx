@@ -39,6 +39,8 @@ function CourseProgress() {
       <div className="flex justify-between">
         <div className="flex items-center gap-4">
           <RadialProgress progress={activeUser?.toFixed(0)} />
+          {/* <RadialProgress progress={50} /> */}
+
           <div className="space-y-1">
             <p className="text-sm text-gray-800   text-black font-semibold">
             Active Users

@@ -9,6 +9,8 @@ import StartRating from "../../../elements/StartRating"
 function Reviews() {
   const [record, setRecord] = useState("");
   const[ratingCount ,SetRatigCount] =useState("")
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     const main = new Listing();
@@ -17,12 +19,17 @@ function Reviews() {
       .then((r) => {
         setRecord(r?.data?.data);
         SetRatigCount(r?.data?.rating_count)
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
   return (
+    <>
+      {loading ? (
+        <div className="border bg-lightBorderColor h-[40vh] w-full p-3 rounded-2xl "></div>
+      ) : (
     <div className="border text-gray-500 w-full  p-3 rounded-2xl">
       {/* header */}
       <div className="flex items-center justify-between">
@@ -97,6 +104,8 @@ function Reviews() {
           ))}
       </div>
     </div>
+      )}
+      </>
   );
 }
 
