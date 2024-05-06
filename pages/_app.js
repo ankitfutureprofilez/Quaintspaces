@@ -60,6 +60,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <PullToRefresh>
         <Head>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
           <link rel="manifest" href="/manifest.json" />
           <meta
             name="description"
