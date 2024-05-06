@@ -50,42 +50,38 @@ const Book = () => {
   });
 
 
-  useEffect(() => {
-    const url = router.query;
-    setInfos(url);
-    const main = new Listings();
-    main
-      .PropertyDetail(url.listingID)
-      .then((r) => {
-        setListing(r?.data?.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+  // useEffect(() => {
+  //   const url = router.query;
+  //   setInfos(url);
+  //   const main = new Listings();
+  //   main
+  //     .PropertyDetail(url.listingID)
+  //     .then((r) => {
+  //       setListing(r?.data?.data);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  //     console.log("booking page",listing)
 
-    setGuests({
-      adults: {
-        value: +url.numberOfAdults || 0,
-        max: 16,
-        min: 0,
-      },
-      children: {
-        value: +url.numberOfChildren || 0,
-        max: 15,
-        min: 0,
-      },
-      infants: {
-        value: +url.numberOfInfants || 0,
-        max: 5,
-        min: 0,
-      },
-      pets: {
-        value: +url.numberOfPets || 0,
-        max: 5,
-        min: 0,
-      },
-    });
-  }, [router.asPath]);
+  //   setGuests({
+  //     adults: {
+  //       value: +url.numberOfAdults || 0,
+  //       max: listing?.adults || 5,
+  //       min: 0,
+  //     },
+  //     children: {
+  //       value: +url.numberOfChildren || 0,
+  //       max: listing?.children || 5,
+  //       min: 0,
+  //     },
+  //     pets: {
+  //       value: +url.numberOfPets || 0,
+  //       max: listing?.no_of_pet_allowed || 5,
+  //       min: 0,
+  //     },
+  //   });
+  // }, [router.asPath]);
 
 
   useEffect(() => {
@@ -103,22 +99,17 @@ const Book = () => {
   const [guests, setGuests] = useState({
     adults: {
       value: +infos.adults || 0,
-      max: 16,
+      max: 5,
       min: 0,
     },
     children: {
       value: +infos.children || 0,
-      max: 15,
-      min: 0,
-    },
-    infants: {
-      value: +infos.infants || 0,
       max: 5,
       min: 0,
     },
     pets: {
       value: +infos.pets || 0,
-      max: 5,
+      max:  5,
       min: 0,
     },
   });
@@ -128,7 +119,7 @@ const Book = () => {
     setInfos(url);
     const main = new Listings();
     main
-      .PropertyDetail(url.listingID)
+      .PropertyDetail(url?.listingID)
       .then((r) => {
         setListing(r?.data?.data);
       })
@@ -136,29 +127,24 @@ const Book = () => {
         console.error(err);
       });
 
-    // console.log("liiitn",listing)
-    setGuests({
-      adults: {
-        value: +url.numberOfAdults || 0,
-        max: 16,
-        min: 0,
-      },
-      children: {
-        value: +url.numberOfChildren || 0,
-        max: 15,
-        min: 0,
-      },
-      infants: {
-        value: +url.numberOfInfants || 0,
-        max: 5,
-        min: 0,
-      },
-      pets: {
-        value: +url.numberOfPets || 0,
-        max: 5,
-        min: 0,
-      },
-    });
+    console.log("listing",listing?.adults)
+      setGuests({
+        adults: {
+          value: +url.numberOfAdults || 0,
+          max: listing?.adults || 5,
+          min: 0,
+        },
+        children: {
+          value: +url.numberOfChildren || 0,
+          max: listing?.children || 5,
+          min: 0,
+        },
+        pets: {
+          value: +url.numberOfPets || 0,
+          max: listing?.no_of_pet_allowed || 5,
+          min: 0,
+        },
+      });
   }, [router.asPath]);
 
 

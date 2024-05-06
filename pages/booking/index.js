@@ -3,7 +3,7 @@ import Button from "../elements/Button";
 import Heading from "../elements/Heading.js";
 import { useRouter } from "next/router";
 import Listings from "../api/laravel/Listings";
-import Link from "next/link"
+import Link from "next/link";
 import AuthLayout from "../layout/AuthLayout.js";
 import Modal from "../elements/Modal.js";
 import NoData from "../elements/NoData.js";
@@ -43,12 +43,11 @@ export default function index() {
     setSelectedButton(e);
   };
 
-
   const [hasmore, setHasMore] = useState(true);
 
   const [page, setPage] = useState(0);
 
-  const fetching = async(pg) =>{
+  const fetching = async (pg) => {
     setLoading(true);
     let url = "";
     if (selectedOption == "All Dates") {
@@ -75,7 +74,7 @@ export default function index() {
       .BookingHistory(pg, url)
       .then((r) => {
         setLoading(false);
-        const newdata = r?.data?.data?.data|| [];
+        const newdata = r?.data?.data?.data || [];
         setListings((prevData) => {
           if (pg === 1) {
             return newdata;
@@ -93,11 +92,11 @@ export default function index() {
         setPage(false);
         console.log(err);
       });
-  } 
+  };
   useEffect(() => {
-     if (listings && listings?.length < 1) {
+    if (listings && listings?.length < 1) {
       fetching(page + 1);
-     }
+    }
   }, [selectedButton, fetch]);
 
   const loadMore = () => {
@@ -110,11 +109,11 @@ export default function index() {
     return (
       <>
         {loading ? (
-           <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 min-w-1200px">
-           <div className="flex justify-center items-center space-x-1 text-gray-700">
-             <div className="text-lg">Loading...</div>
-           </div>
-         </div>
+          <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 min-w-1200px">
+            <div className="flex justify-center items-center space-x-1 text-gray-700">
+              <div className="text-lg">Loading...</div>
+            </div>
+          </div>
         ) : (
           <>
             {listings && listings.length > 0 ? (
@@ -133,20 +132,23 @@ export default function index() {
                   {listings.map((item, index) => (
                     <tbody key={index}>
                       <tr>
-                      <td className="px-4 py-2">{item?.booking_date}</td>
+                        <td className="px-4 py-2">{item?.booking_date}</td>
                         <td className="px-4 py-2">
                           <div className="flex items-center">
                             <div className="text ml-2">
                               <div className="title capitalize ">
-                                <Link href={`/property/${item?.booking_property?.uuid}`}>
-                               {item?.booking_property?.name}
-                               </Link>
-
+                                <Link
+                                  href={`/property/${item?.booking_property?.uuid}`}
+                                >
+                                  {item?.booking_property?.name}
+                                </Link>
                               </div>
                             </div>
                           </div>
                         </td>
-                        <td className="px-4 py-2">{item?.check_in}     || {item?.check_out}</td>
+                        <td className="px-4 py-2">
+                          {item?.check_in} || {item?.check_out}
+                        </td>
                         <td className="px-4 py-2 capitalize">
                           <Button
                             text={`${item?.booking_status}`}
@@ -166,9 +168,7 @@ export default function index() {
                     </tbody>
                   ))}
                 </table>
-                
               </div>
-
             ) : (
               <NoData
                 Heading={"Booking History not found"}
@@ -180,13 +180,13 @@ export default function index() {
           </>
         )}
 
-{hasmore && !loading && (
-                  <div className="load-more mt-5 text-center ">
-                    <button className="btn btn-outline-success" onClick={loadMore}>
-                      Load More
-                    </button>
-                  </div>
-                )}
+        {hasmore && !loading && (
+          <div className="load-more mt-5 text-center ">
+            <button className="btn btn-outline-success" onClick={loadMore}>
+              Load More
+            </button>
+          </div>
+        )}
       </>
     );
   };
@@ -240,7 +240,10 @@ export default function index() {
             />
           </div>
           <div className="me-2 my-4 py-2">
-            <button className="font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full bg-orange-300 text-white " onClick={openModal}>
+            <button
+              className="font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full bg-orange-300 text-white "
+              onClick={openModal}
+            >
               Filter By Booking Date
             </button>
             <Modal isOpen={isOpen} onClose={closeModal}>
