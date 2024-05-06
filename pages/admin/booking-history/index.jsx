@@ -8,14 +8,14 @@ import Spinner from "../hook/spinner";
 import toast from "react-hot-toast";
 import Modal from "../hook/Modal";
 import Link from "next/link";
-import userProfile from "../../../public/admin/userprofile.png"
+import userProfile from "../../../public/admin/userprofile.png";
 
 export default function index() {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [selectedBooking, setSelectedBooking] = useState(null); 
+  const [selectedBooking, setSelectedBooking] = useState(null);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isCancelOpen, setIsCancelOpen] = useState(false);
 
@@ -30,11 +30,9 @@ export default function index() {
 
   const closeConfirmModal = () => {
     setIsConfirmOpen(false);
+    fetchData(page);
     setMessage("");
-
   };
-
- 
 
   const handleChange = (e) => {
     setMessage(e?.target?.value);
@@ -46,7 +44,7 @@ export default function index() {
     const response = main.bookinghistory(pg);
     response
       .then((res) => {
-        const newdata = res?.data?.data?.data|| [];
+        const newdata = res?.data?.data?.data || [];
         setContent((prevData) => {
           if (pg === 1) {
             return newdata;
@@ -64,12 +62,10 @@ export default function index() {
       });
   }
 
-  
-
   useEffect(() => {
     if (content && content?.length < 1) {
       fetchData(page + 1);
-     }
+    }
   }, []);
 
   const loadMore = () => {
@@ -88,16 +84,15 @@ export default function index() {
       .booking_confirm_cancelled(uuid, id, formdata)
       .then((response) => {
         if (response && response.data && response?.data?.status === true) {
-          fetchData();
+        
           closeConfirmModal();
           closeCancelModal();
           setMessage("");
-          setLoading(false)
+          setLoading(false);
           toast.success(response.data.message);
         } else {
           toast.error(response.data.message);
-          setLoading(false)
-
+          setLoading(false);
         }
       })
       .catch((error) => {
@@ -116,7 +111,7 @@ export default function index() {
               <table className="min-w-[1200px] w-full break-all divide-gray-200 dark:divide-gray-700">
                 <thead className="bg-gray-50 dark:bg-gray-800">
                   <tr className="">
-                  <td className="px-4 py-4 capitalize  text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                    <td className="px-4 py-4 capitalize  text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       S.No.
                     </td>
                     <td className="px-4 py-4 capitalize text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
@@ -135,9 +130,6 @@ export default function index() {
                     <td className="px-4 py-4 capitalize  text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       Status
                     </td>
-                    {/* <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right text-white dark:text-gray-400">
-                      user
-                    </td> */}
                     <td className="px-4 py-4 capitalize  text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       Document Image and Type{" "}
                     </td>
@@ -150,8 +142,8 @@ export default function index() {
                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                   {content.map((item, index) => (
                     <tr key={index}>
-                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
-                        {index+1}
+                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                        {index + 1}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <Dateformat item={item?.booking_date} />
@@ -167,50 +159,62 @@ export default function index() {
                               width={35}
                               height={35}
                               className="top-2 right-2 p-1 rounded-full user-profile-img"
-                              src={item?.booking_property?.property_image[0]?.image_url}
-                              alt={item?.booking_property?.property_image[0]?.properties_id}
-
+                              src={
+                                item?.booking_property?.property_image[0]
+                                  ?.image_url
+                              }
+                              alt={
+                                item?.booking_property?.property_image[0]
+                                  ?.properties_id
+                              }
                             />
                             <div>
-                              <div className="text-gray-800 font-medium">                             {item?.booking_property?.name.split(' ').slice(0, 7).join(' ')}
-                                {item?.booking_property?.name.split(' ').length > 7 ? '...' : ''}
+                              <div className="text-gray-800 font-medium">
+                                {item?.booking_property?.name
+                                  .split(" ")
+                                  .slice(0, 7)
+                                  .join(" ")}
+                                {item?.booking_property?.name.split(" ")
+                                  .length > 7
+                                  ? "..."
+                                  : ""}
                               </div>
-                              <div className="text-sm">{item?.booking_property?.adults} adults  || {item?.booking_property?.children} children || {item?.booking_property?.no_of_pet_allowed} pet </div>
+                              <div className="text-sm">
+                                {item?.booking_property?.adults} adults ||{" "}
+                                {item?.booking_property?.children} children ||{" "}
+                                {item?.booking_property?.no_of_pet_allowed} pet{" "}
+                              </div>
                             </div>
                           </div>
-
                         </Link>
                       </td>
-
 
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         {item?.price}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <td
-                          className={`capitalize inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${item?.booking_status === "completed"
-                            ? "bg-slate-600"
-                            : item?.booking_status === "cancelled"
+                          className={`capitalize inline-flex items-center rounded-full py-3  px-4  text-xs text-white bg-slate-600capitalize inline-flex items-center rounded-full py-3  px-4  text-xs text-white bg-slate-600 ${
+                            item?.booking_status === "completed"
+                              ? "bg-slate-600"
+                              : item?.booking_status === "cancelled"
                               ? "bg-red-600"
                               : item?.booking_status === "confirm"
-                                ? "bg-green-600"
-                                : "bg-blue-600"
-                            }`}
+                              ? "bg-green-600"
+                              : "bg-blue-600"
+                          }`}
                         >
                           {item?.booking_status}
                         </td>
                       </td>
 
-                      
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
-                        
                         <div className="flex items-center">
                           <Image
                             width={50}
                             height={50}
                             className="capitalize inline-flex items-center rounded-full ml-2 user-profile-img"
-                            src={item?.front_url || userProfile
-                    }
+                            src={item?.front_url || userProfile}
                             alt="Document Image"
                           />
                           <div className="capitalize inline-flex items-center rounded-full ml-2">
@@ -220,12 +224,16 @@ export default function index() {
                       </td>
 
                       <td className="px-4 py-2 text-sm text-gray-500 dark:text-gray-300 ">
-
-                        <div onClick={
-                          () =>
-                             bookingaccept(item.booking_user[0]?.id, item.id, "confirm")
-                            //  openConfirmModal(item)
-                        } className="capitalize  cursor-pointer text-green-500 flex items-center gap-2 border w-fit rounded-full p-1 px-4 mb-2">
+                        <div
+                          onClick={() =>
+                            bookingaccept(
+                              item.booking_user[0]?.id,
+                              item.id,
+                              "confirm"
+                            )
+                          }
+                          className="capitalize  cursor-pointer text-green-500 flex items-center gap-2 border w-fit rounded-full p-1 px-4 mb-2"
+                        >
                           {loading ? "loading.." : "confirmed"}
                           <svg
                             className="text-emerald-500"
@@ -242,11 +250,10 @@ export default function index() {
                           </svg>
                         </div>
 
-
-
-                        <div onClick={() =>
-                          openCancelModal(item)
-                        } className="capitalize cursor-pointer text-red-500 flex items-center w-fit gap-2 border rounded-full p-1 px-4">
+                        <div
+                          onClick={() => openConfirmModal(item)}
+                          className="capitalize cursor-pointer text-red-500 flex items-center w-fit gap-2 border rounded-full p-1 px-4"
+                        >
                           <svg
                             className="text-red-400"
                             xmlns="http://www.w3.org/2000/svg"
@@ -275,33 +282,28 @@ export default function index() {
           </div>
 
           {!loading && (
-          <div className="flex justify-center">
-            <div
-              className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
-              onClick={loadMore}
-            >
-              Load More
+            <div className="flex justify-center">
+              <div
+                className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+                onClick={loadMore}
+              >
+                Load More
+              </div>
             </div>
-          </div>
-        )}
-        {!loading && !hasmore && record.length === 0 && (
-
-<div className="flex justify-center">
-<div
-  className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
->
-  No More Data
-</div>
-</div>
-        )}
+          )}
+          {!loading && !hasmore && content.length === 0 && (
+            <div className="flex justify-center">
+              <div className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white">
+                No More Data
+              </div>
+            </div>
+          )}
         </div>
-
-        
       ) : (
         <Nodata text={"No Booking "} />
       )}
 
-      {/* {selectedBooking && (
+      {selectedBooking && (
         <Modal isOpen={isConfirmOpen} onClose={closeConfirmModal}>
           <div className="my-3 lg:my-6 flex flex-col">
             <label
@@ -318,42 +320,7 @@ export default function index() {
               className="mt-3 p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
               required
               placeholder="Type your  message for the user here"
-              rows={2} // Set the number of rows as needed
-            />
-            <button
-              className="btn filter mt-8 w-2/4 mx-auto"
-              onClick={() =>
-                bookingaccept(
-                  selectedBooking.booking_user[0].id,
-                  selectedBooking.id,
-                  "confirm"
-                )
-              }
-            >
-              {loading ? "loading..." : "Processed"}
-            </button>
-          </div>
-        </Modal>
-      )} */}
-
-      {selectedBooking && (
-        <Modal isOpen={isCancelOpen} onClose={closeCancelModal}>
-          <div className="my-3 lg:my-6 flex flex-col">
-            <label
-              htmlFor="message"
-              className="mx-auto mb-8 block text-lg font-medium text-gray-600"
-            >
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={message}
-              onChange={handleChange}
-              className="mt-3 p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
-              required
-              placeholder="Type your cancellation message for the user here"
-              rows={2} // Set the number of rows as needed
+              rows={2}
             />
             <button
               className="btn filter mt-8 w-2/4 mx-auto"

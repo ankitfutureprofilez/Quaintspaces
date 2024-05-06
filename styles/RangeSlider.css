@@ -47,7 +47,7 @@
   .slider__left-value,
   .slider__right-value {
     color: #262626;
-    font-size: 16px;
+    fontSize: 16px;
     margin-top: 18px;
     display: flex;
     flex-direction: column;

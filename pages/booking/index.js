@@ -50,9 +50,7 @@ export default function index() {
     setLoading(true);
     let url = "";
 
-    // Construct URL based on selected options
     if (selectedOption === "All Dates") {
-      // No need to append anything
     } else if (selectedOption === "Last 30 Days") {
       url += "booking_time=thirty-day&";
     } else if (selectedOption === "Last 3 Months") {
@@ -63,7 +61,6 @@ export default function index() {
       url += `booking_year=${selectedOption}&`;
     }
 
-    // Append booking event status to URL
     if (selectedButton === "upcoming") {
       url += "booking_event=upcoming&";
     } else if (selectedButton === "completed") {
@@ -97,7 +94,6 @@ export default function index() {
   };
 
   useEffect(() => {
-    // Fetch data when component mounts or selected options change
     fetching(page + 1);
   }, [selectedButton, selectedOption, fetch]);
 

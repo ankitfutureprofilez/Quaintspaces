@@ -81,7 +81,7 @@ function MyApp({ Component, pageProps }) {
               position: "top-right",
               className: "",
               style: {
-                "font-size": "14px",
+                "fontSize": "14px",
               },
             }}
           />
