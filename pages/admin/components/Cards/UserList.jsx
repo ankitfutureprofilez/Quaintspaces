@@ -9,6 +9,7 @@ import Listing from "../../api/Listing";
 
 function UserList() {
   const [record, setRecord] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const main = new Listing();
@@ -16,6 +17,7 @@ function UserList() {
       .Top3Users()
       .then((r) => {
         setRecord(r?.data?.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -23,6 +25,10 @@ function UserList() {
   }, []);
 
   return (
+    <>
+    {loading ? (
+      <div className="border bg-lightBorderColor h-[30vh] w-full p-3 rounded-2xl "></div>
+    ) : (
     <div className="border text-gray-500 w-full p-3 rounded-2xl space-y-4">
       {/* header */}
       <div className="flex items-center justify-between">
@@ -81,6 +87,8 @@ function UserList() {
         </Link> */}
       </div>
     </div>
+    )}
+    </>
   );
 }
 

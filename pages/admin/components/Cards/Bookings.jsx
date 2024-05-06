@@ -13,6 +13,8 @@ function Bookings() {
   const [comment2Liked, setComment2Liked] = useState(false);
   const [record, setRecord] = useState("");
 const[bookingCount,SetbookingCount] = useState("")
+const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const main = new Listing();
     const response = main.Top3Bookings(activeTab);
@@ -21,12 +23,17 @@ const[bookingCount,SetbookingCount] = useState("")
         console.log("res",res)
         setRecord(res?.data?.data);
         SetbookingCount(res?.data?.booking_count)
+        setLoading(false);
       })
       .catch((error) => {
         console.log("error", error);
       });
   }, [activeTab]);
   return (
+    <>
+    {loading ? (
+      <div className="border bg-lightBorderColor h-[40vh] w-full p-3 rounded-2xl "></div>
+    ) : (
     <div className="border text-gray-500 w-full p-3 rounded-2xl space-y-4">
       {/* header */}
       <div className="flex items-center justify-between">
@@ -128,6 +135,8 @@ const[bookingCount,SetbookingCount] = useState("")
         </Link> */}
       </div>
     </div>
+    )}
+    </>
   );
 }
 
