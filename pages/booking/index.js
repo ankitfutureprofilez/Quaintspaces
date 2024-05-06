@@ -99,6 +99,8 @@ export default function Index() {
       fetching(1);
   }, [selectedButton, fetch]);
 
+  
+
   const loadMore = () => {
     if (!loading && page) {
       fetching(page + 1);
