@@ -21,14 +21,12 @@ import toast from "react-hot-toast";
 import { formatMultiPrice } from "../../hooks/ValueData";
 import useRazorpay from "react-razorpay";
 
-const Book = () => {
+const Book = ({ listingData, listingID }) => {
   const router = useRouter();
   const [Razorpay] = useRazorpay();
   const RAZOPAY_KEY = process.env.NEXT_PUBLIC_RAZOPAY_KEY;
-  const { listingID } = router.query;
 
-
-  const [listing, setListing] = useState([]);
+  const [listing, setListing] = useState(listingData);
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
   const [guestsModel, setGuestsModel] = useState(false);
@@ -48,54 +46,6 @@ const Book = () => {
     phone: "",
     date: recorddate,
   });
-
-
-  // useEffect(() => {
-  //   const url = router.query;
-  //   setInfos(url);
-  //   const main = new Listings();
-  //   main
-  //     .PropertyDetail(url.listingID)
-  //     .then((r) => {
-  //       setListing(r?.data?.data);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  //     console.log("booking page",listing)
-
-  //   setGuests({
-  //     adults: {
-  //       value: +url.numberOfAdults || 0,
-  //       max: listing?.adults || 5,
-  //       min: 0,
-  //     },
-  //     children: {
-  //       value: +url.numberOfChildren || 0,
-  //       max: listing?.children || 5,
-  //       min: 0,
-  //     },
-  //     pets: {
-  //       value: +url.numberOfPets || 0,
-  //       max: listing?.no_of_pet_allowed || 5,
-  //       min: 0,
-  //     },
-  //   });
-  // }, [router.asPath]);
-
-
-  useEffect(() => {
-    if (infos.checkout && infos.checkin && listing) {
-      const calculatedPriceRate =
-        +listing.price *
-        differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
-      setPriceRate(formatMultiPrice(calculatedPriceRate));
-    } else {
-      setPriceRate(0);
-    }
-  }, [infos.checkout, infos.checkin, listing]);
-
-  // console.log("infos",infos)
   const [guests, setGuests] = useState({
     adults: {
       value: +infos.adults || 0,
@@ -115,38 +65,60 @@ const Book = () => {
   });
 
   useEffect(() => {
-    const url = router.query;
-    setInfos(url);
-    const main = new Listings();
-    main
-      .PropertyDetail(url?.listingID)
-      .then((r) => {
-        setListing(r?.data?.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    if (listingData) {
+      setListing(listingData);
+    }
+  }, [listingData]);
 
-    console.log("listing",listing?.adults)
+  useEffect(() => {
+    if (listingData) {
+      setListing(listingData);
+    }
+  }, [listingData]);
+
+  useEffect(() => {
+    if (infos.checkout && infos.checkin && listing) {
+      const calculatedPriceRate =
+        +listing.price *
+        differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
+      setPriceRate(formatMultiPrice(calculatedPriceRate));
+    } else {
+      setPriceRate(0);
+    }
+  }, [infos.checkout, infos.checkin, listing]);
+
+  useEffect(() => {
+    if (router.query) {
+      setInfos(router.query);
+      const main = new Listings();
+      main
+        .PropertyDetail(router.query?.listingID)
+        .then((r) => {
+          setListing(r?.data?.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+
       setGuests({
         adults: {
-          value: +url.numberOfAdults || 0,
+          value: +router.query.numberOfAdults || 0,
           max: listing?.adults || 5,
           min: 0,
         },
         children: {
-          value: +url.numberOfChildren || 0,
+          value: +router.query.numberOfChildren || 0,
           max: listing?.children || 5,
           min: 0,
         },
         pets: {
-          value: +url.numberOfPets || 0,
+          value: +router.query.numberOfPets || 0,
           max: listing?.no_of_pet_allowed || 5,
           min: 0,
         },
       });
-  }, [router.asPath]);
-
+    }
+  }, [router.query]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -164,16 +136,6 @@ const Book = () => {
     }));
   };
 
-  useEffect(() => {
-    if (infos.checkout && infos.checkin && listing) {
-      const calculatedPriceRate =
-        +listing.price *
-        differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
-      setPriceRate(formatMultiPrice(calculatedPriceRate));
-    } else {
-      setPriceRate(0);
-    }
-  }, [infos.checkout, infos.checkin, listing]);
 
   //   record.append("front_doc", formData.fornt);
   //   record.append("no_of_pet", infos.numberOfPets);
@@ -584,5 +546,16 @@ review + " reviews" : ""}
     </AuthLayout>
   );
 };
+export async function getServerSideProps(context) {
+  const { listingID } = context.query;
+  const main = new Listings();
+  const listingData = await main.PropertyDetail(listingID);
+  return {
+    props: {
+      listingData: listingData?.data?.data || null,
+      listingID,
+    },
+  };
+}
 
 export default Book;
