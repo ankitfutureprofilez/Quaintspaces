@@ -1,17 +1,16 @@
-
 import React, { useEffect, useState } from "react";
 import Button from "../elements/Button";
 import Heading from "../elements/Heading.js";
 import { useRouter } from "next/router";
 import Listings from "../api/laravel/Listings";
-import Link from "next/link"
+import Link from "next/link";
 import AuthLayout from "../layout/AuthLayout.js";
 import Modal from "../elements/Modal.js";
 import NoData from "../elements/NoData.js";
 import { formatMultiPrice } from "../../hooks/ValueData.js";
 import Head from "next/head";
 
-export default function index() {
+export default function Index() {
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedButton, setSelectedButton] = useState("upcoming");
@@ -40,43 +39,43 @@ export default function index() {
     setIsOpen(false);
   };
 
-  const handleGroupChange = (e) => {
-    setSelectedButton(e);
+  const handleGroupChange = (buttonType) => {
+    setSelectedButton(buttonType);
   };
 
-
   const [hasmore, setHasMore] = useState(true);
-
   const [page, setPage] = useState(0);
 
-  const fetching = async(pg) =>{
-    setLoading(true);
-    let url = "";
-    if (selectedOption == "All Dates") {
-    } else if (selectedOption == "Last 30 Days") {
+  console.log("selectedButton",selectedButton)
+  const fetching = async (pg) => {
+      setLoading(true);
+      let url = "";
+      console.log("url",url)
+    if (selectedOption === "All Dates") {
+    } else if (selectedOption === "Last 30 Days") {
       url += "booking_time=thirty-day&";
-    } else if (selectedOption == "Last 3 Months") {
+    } else if (selectedOption === "Last 3 Months") {
       url += "booking_time=three_month&";
-    } else if (selectedOption == "Last 1 Year") {
+    } else if (selectedOption === "Last 1 Year") {
       url += "booking_time=after_one_year&";
     } else {
       url += `booking_year=${selectedOption}&`;
     }
 
     if (selectedButton === "upcoming") {
-      url += "booking_event=upcoming&";
-    } else if (selectedButton === "completed") {
-      url += "booking_event=completed&";
-    } else {
-      url += "booking_status=cancelled&";
-    }
+        url += "booking_event=upcoming&";
+      } else if (selectedButton === "completed") {
+        url += "booking_event=completed&";
+      } else {
+        url += "booking_status=cancelled&";
+      }
 
     const main = new Listings();
     main
       .BookingHistory(pg, url)
       .then((r) => {
         setLoading(false);
-        const newdata = r?.data?.data?.data|| [];
+        const newdata = r?.data?.data?.data || [];
         setListings((prevData) => {
           if (pg === 1) {
             return newdata;
@@ -94,11 +93,10 @@ export default function index() {
         setPage(false);
         console.log(err);
       });
-  } 
+  };
+
   useEffect(() => {
-     if (listings && listings?.length < 1) {
-      fetching(page + 1);
-     }
+      fetching(1);
   }, [selectedButton, fetch]);
 
   const loadMore = () => {
@@ -106,21 +104,23 @@ export default function index() {
       fetching(page + 1);
     }
   };
-  // {listings && listings.length > 0 ? ():()
+
+  console.log("selectedOption",selectedOption)
+
   const BookingTable = () => {
     return (
       <>
         {loading ? (
-           <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 min-w-1200px">
-           <div className="flex justify-center items-center space-x-1 text-gray-700">
-             <div className="text-lg">Loading...</div>
-           </div>
-         </div>
+          <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 min-w-1200px">
+            <div className="flex justify-center items-center space-x-1 text-gray-700">
+              <div className="text-lg">Loading...</div>
+            </div>
+          </div>
         ) : (
           <>
             {listings && listings.length > 0 ? (
               <div className="table-responsive">
-                <table key={index} className="table-fixed w-full booking-table">
+                <table className="table-fixed w-full booking-table">
                   <thead>
                     <tr>
                       <th>Booking Date</th>
@@ -134,20 +134,19 @@ export default function index() {
                   {listings.map((item, index) => (
                     <tbody key={index}>
                       <tr>
-                      <td className="px-4 py-2">{item?.booking_date}</td>
+                        <td className="px-4 py-2">{item?.booking_date}</td>
                         <td className="px-4 py-2">
                           <div className="flex items-center">
                             <div className="text ml-2">
                               <div className="title capitalize ">
                                 <Link href={`/property/${item?.booking_property?.uuid}`}>
-                               {item?.booking_property?.name}
-                               </Link>
-
+                                  {item?.booking_property?.name}
+                                </Link>
                               </div>
                             </div>
                           </div>
                         </td>
-                        <td className="px-4 py-2">{item?.check_in}     || {item?.check_out}</td>
+                        <td className="px-4 py-2">{item?.check_in} || {item?.check_out}</td>
                         <td className="px-4 py-2 capitalize">
                           <Button
                             text={`${item?.booking_status}`}
@@ -167,27 +166,23 @@ export default function index() {
                     </tbody>
                   ))}
                 </table>
-                
               </div>
-
             ) : (
               <NoData
                 Heading={"Booking History not found"}
-                content={
-                  "You have not done any bookings yet. Click below to go to the home page"
-                }
+                content={"You have not done any bookings yet. Click below to go to the home page"}
               />
             )}
           </>
         )}
 
-{hasmore && !loading && (
-                  <div className="load-more mt-5 text-center ">
-                    <button className="btn btn-outline-success" onClick={loadMore}>
-                      Load More
-                    </button>
-                  </div>
-                )}
+        {hasmore && !loading && (
+          <div className="load-more mt-5 text-center ">
+            <button className="btn btn-outline-success" onClick={loadMore}>
+              Load More
+            </button>
+          </div>
+        )}
       </>
     );
   };
@@ -246,13 +241,7 @@ export default function index() {
             </button>
             <Modal isOpen={isOpen} onClose={closeModal}>
               <div className="mb-4 mt-10">
-                {/* <h1 className="listing-heading mb-2">Select an option</h1> */}
-                {[
-                  "All Dates",
-                  "Last 30 Days",
-                  "Last 3 Months",
-                  "Last 1 Year",
-                ].map((option) => (
+                {["All Dates", "Last 30 Days", "Last 3 Months", "Last 1 Year"].map((option) => (
                   <div key={option} className="mb-2">
                     <input
                       type="radio"
@@ -285,11 +274,6 @@ export default function index() {
             </Modal>
           </div>
         </div>
-
-
-
-
-
 
         <div className="">
           <BookingTable />
