@@ -10,6 +10,8 @@ function getToken() {
   return null;
 }
 
+
+
 let Api = axios.create({
   baseURL: "http://quaintstays.laraveldevelopmentcompany.com/api",
   headers: {
