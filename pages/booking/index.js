@@ -286,6 +286,11 @@ export default function index() {
           </div>
         </div>
 
+
+
+
+
+
         <div className="">
           <BookingTable />
         </div>
