@@ -89,6 +89,7 @@ export default function Index() {
         setIsModalOpen(true);
     };
 
+
     const closeModal = () => {
         setMessage("");
         setIsModalOpen(false);
