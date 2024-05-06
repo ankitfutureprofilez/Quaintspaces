@@ -14,8 +14,8 @@ async city_list(id){
 async area_list(id){
     return Api.get(`/admin/area-list/${id}`)
 }
-async UserMessages(){
-    return Api.get(`/admin/contact-list`)
+async UserMessages(page){
+    return Api.get(`/admin/contact-list?page=${page}`)
 }
 
 async Adminprofile(){
@@ -67,8 +67,8 @@ async userdetails (id) {
     return  Api.get("/admin/user-detail/" +id)
 }
 
-async getrating() {
-    return Api.get("/admin/get-all-rating")
+async getrating(page) {
+    return Api.get(`/admin/get-all-rating?page=${page}`)
 }
 
 async Paymentuser(id) {
@@ -92,8 +92,8 @@ async forgetopt(data) {
     return  Api.post("admin/verify-reset-password-otp" ,data)
 } 
 
-async bookinghistory(){
-    return Api.get("admin/booking-history")
+async bookinghistory(page){
+    return Api.get(`admin/booking-history?page=${page}`)
 }
 
 async statistics(){
@@ -105,8 +105,8 @@ async booking_confirm_cancelled(user_id,booking_id,booking_status) {
     return Api.post(`admin/booking-confirm-cancelled/${user_id}/${booking_id}` , booking_status)
 }
 
-async all_user_payment_history(){
-    return Api.get("admin/all-user-payment-history")
+async all_user_payment_history(page){
+    return Api.get(`admin/all-user-payment-history?page=${page}`)
 }
 
 async user_payment_history(user_id){
@@ -135,6 +135,9 @@ async Top3Payments(){
 
 async ActiveUser(){
     return Api.get(`admin/month-user-active`)  
+}
+async enqiry_info(data){
+    return Api.post(`admin/enquiry-info`,data)  
 }
 
 // user-payment-history/4

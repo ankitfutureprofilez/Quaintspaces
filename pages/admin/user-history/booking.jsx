@@ -30,17 +30,17 @@ export default function Booking(props) {
   return (
     <>
       {loading ? (
-   <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 min-w-1200px">
-   <div className="flex justify-center items-center space-x-1 text-gray-700">
-     <div className="text-lg">Loading...</div>
-   </div>
- </div>
-  
- 
+        <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 min-w-1200px">
+          <div className="flex justify-center items-center space-x-1 text-gray-700">
+            <div className="text-lg">Loading...</div>
+          </div>
+        </div>
+
+
       ) : content && content.length > 0 ? (
 
         <div className="mt-5 overflow-x-auto">
-        <div className="inline-block align-middle w-full">
+          <div className="inline-block align-middle w-full">
             <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
               <thead className="bg-gray-50 dark:bg-gray-800">
                 <tr className="">
@@ -107,9 +107,9 @@ export default function Booking(props) {
                   ))}
               </tbody>
             </table>
+          </div>
         </div>
-      </div>
-      
+
       ) : (
         <Nodata heading={"Booking Not Found "} />
       )}

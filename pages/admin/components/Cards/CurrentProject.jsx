@@ -11,7 +11,7 @@ import Link from 'next/link'
 import {formatMultiPrice} from "../../../../hooks/ValueData"
 
 
-function CurrentProject() {
+function  CurrentProject() {
     const[record,setRecord]=useState();
     
   useEffect(() => {
@@ -47,13 +47,14 @@ function CurrentProject() {
                     <div className='flex items-center justify-between'>
                         <div>
                             <div className='flex items-center gap-2'>
-                                <Image src={item?.booking_history?.booking_property?.property_image[0]?.image_url} alt='loom' height={36} width={36} className='rounded-full' />
+                                <Image src={item?.userImage || Avatar4} alt='loom' height={36} width={36} className='rounded-full' />
                                 <div className='font-medium'>
                                     <div className='flex space-x-2 justify-between'>
-                                    <p className='text-xs text-gray-800'>{item?.payment_id}</p>
-                                    <p className='text-xs text-gray-800'>{item?.booking_history?.check_in}</p>
+                                    <p className='text-xs text-gray-800'>{item?.userName}</p>
                                     </div>
-                                    <p className='text-xs text-gray-500'> {formatMultiPrice(item?.price)}</p>
+                                    <p className='text-xs text-gray-600'>({item?.payment_id}) </p>
+
+                                    <p className='text-xs text-gray-500'> {formatMultiPrice(item?.price)} ||  {item?.payment_date}</p>
                                 </div>
                             </div>
                         </div>

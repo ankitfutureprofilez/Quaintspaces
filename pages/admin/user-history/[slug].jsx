@@ -6,7 +6,7 @@ import Element from "../element";
 import Link from "next/link";
 import Booking from "./booking";
 import Payment from "./payment";
-import Image from 'next/image';
+import Image from "next/image";
 
 import { motion } from "framer-motion";
 
@@ -16,7 +16,7 @@ function index() {
   const [record, setRecord] = useState("");
 
   useEffect(() => {
-    if(slug){
+    if (slug) {
       const main = new Listing();
       const response = main.userdetails(slug);
       response
@@ -32,22 +32,22 @@ function index() {
   const [activeTab, setActiveTab] = useState("Booking");
 
   return (
-    <AdminLayout heading={"User Details  "}>
+    <AdminLayout heading={"User Details"}>
       <div className="antialiased mt-16">
         <div className="container mx-auto profile-payment">
-          <div className="h-60 w-full profile-cover" >
-          <Image
-          blurDataURL="/images/profile-cover-img.jpg?q=1"
-            src="/images/profile-cover-img.jpg"
-            alt="Description of image"
-         className="profile-cover-image"
-            loading="lazy"
-            width={10000}
-            height={1000}
-          />
+          <div className="h-60 w-full profile-cover">
+            <Image
+              blurDataURL="/images/profile-cover-img.jpg?q=1"
+              src="/images/profile-cover-img.jpg"
+              alt="Description of image"
+              className="profile-cover-image"
+              loading="lazy"
+              width={10000}
+              height={1000}
+            />
           </div>
-          <div >
-            <div className=" relative  pb-6 rounded-lg  mx-auto">
+          <div>
+            <div className="relative  pb-6 rounded-lg  mx-auto">
               <div className="flex justify-center">
                 <Image
                   src={
@@ -117,20 +117,12 @@ function index() {
           >
             Payment{" "}
           </button>
-          <button
-            onClick={() => setActiveTab("rewards")}
-            className={`z-10 w-32 px-2 py-2  ${
-              activeTab === "rewards" ? "" : ""
-            }`}
-          ></button>
           <div className="absolute items-center top-0 left-0 w-32 h-full flex">
             <motion.div
               animate={{
                 x:
                   activeTab === "Booking"
                     ? 0
-                    : activeTab === "rewards"
-                    ? "200%"
                     : "100%",
               }}
               className="w-full h-full bg-white border bg-indigo-300 h-7 rounded-lg transform"
@@ -148,7 +140,6 @@ function index() {
               <Payment record={record?.id} />
             </div>
           )}
-          {activeTab === "Rewards" && <div></div>}
         </div>
       </div>
     </AdminLayout>

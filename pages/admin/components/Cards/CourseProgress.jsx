@@ -23,7 +23,7 @@ function CourseProgress() {
       <div className="flex items-center justify-between">
         <div className="flex items-center text-sm gap-2">
           <Book size={18} />
-          <p className="text-gray-800 font-medium">Active Users</p>
+          <p className="text-gray-800 font-medium">Active Users Month </p>
         </div>
         <Link
           href="/admin/user-history"
@@ -41,7 +41,7 @@ function CourseProgress() {
           <RadialProgress progress={activeUser?.toFixed(0)} />
           <div className="space-y-1">
             <p className="text-sm text-gray-800   text-black font-semibold">
-              User Data
+            Active Users
             </p>
             <p className="text-xs  text-black">Active Users for this month</p>
             <Link

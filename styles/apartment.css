@@ -29,6 +29,22 @@ h2.text-lg.font-medium.mb-2.heading-property {
   position: relative;
 }
 
+/* /pagintion  */
+.load-more .btn{
+  background-color: initial;
+  border: 1px solid #c48b58;
+  border-radius: 20px;
+  color: #c48b58;
+  font-family: Oswald;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  min-width: 149px;
+  padding: 10px 15px;
+  text-transform: uppercase;
+}
+
 /* Define fade-in and fade-out animations */
 @keyframes fade-in {
   from {

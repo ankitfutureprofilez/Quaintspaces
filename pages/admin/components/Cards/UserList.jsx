@@ -28,7 +28,7 @@ function UserList() {
       <div className="flex items-center justify-between">
         <div className="flex items-center text-sm gap-2">
           <MagicStar size={18} />
-          <p className="text-gray-800 font-medium">Users</p>
+          <p className="text-gray-800 font-medium">Top Booking Users</p>
         </div>
         <Link
           href="/admin/user-history"
@@ -72,13 +72,13 @@ function UserList() {
         <hr className="bg-gray-400" />
 
         {/* comment button */}
-        <Link
+        {/* <Link
           href="/admin/user-history"
           className="border flex items-center justify-center w-full gap-2 p-2 text-gray-600 font-medium rounded-lg text-xs"
         >
           <Edit2 size={14} />
           Show All
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

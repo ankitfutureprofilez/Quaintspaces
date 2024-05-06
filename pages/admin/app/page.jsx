@@ -73,32 +73,28 @@ function Home() {
           <div className="flex">
             <div className="w-full ">
               <div className="p-4 md:p-6 space-y-4 columns-1 sm:columns-2 lg:columns-3">
-                {/* <div className='break-inside-avoid-column space-y-4'>
-              <TraningAnalysis data={record?.user} />
-            </div> */}
-
                 <div className="break-inside-avoid-column space-y-4">
-                  <Bookings />
+                  <TopProperty />
                 </div>
-               
-                <div className="break-inside-avoid-column space-y-4">
-                  <UserList />
-                </div>
-
-                <div className="break-inside-avoid-column space-y-4">
-                  <Reviews />
-                </div>
-                <div className="break-inside-avoid-column space-y-4">
-                  <CourseProgress />
-                </div>
-
                 <div className="break-inside-avoid-column space-y-4">
                   <CurrentProject />
                 </div>
                 <div className="break-inside-avoid-column space-y-4">
-                  <TopProperty properties={record?.property} />
+                  <Bookings />
+                </div>
+                <div className="break-inside-avoid-column space-y-4">
+                  <UserList />
+                </div>
+             
+                <div className="break-inside-avoid-column space-y-4">
+                  <Reviews />
                 </div>
 
+                <div className="break-inside-avoid-column space-y-4">
+                  <CourseProgress />
+                </div>
+
+                
               </div>
             </div>
           </div>

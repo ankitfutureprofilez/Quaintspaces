@@ -7,18 +7,32 @@ import Loading from "../hook/spinner";
 import Moment from "moment";
 import Dateformat from "../hook/Dateformat";
 import Nodata from "../hook/NoRecord";
+import userprofile from "../../../public/admin/userprofile.png";
 import Image from 'next/image';
 
 export default function Index() {
     const [loading, setLoading] = useState(true);
     const [content, setContent] = useState();
 
-    const fetchData = async () => {
+    const [hasmore, setHasMore] = useState(true);
+
+    const [page, setPage] = useState(0);
+
+    const fetchData = async (pg) => {
         setLoading(true);
         try {
             const Main = new Listing();
-            const response = await Main.getrating();
-            setContent(response?.data?.data);
+            const response = await Main.getrating(pg);
+            const newdata = response?.data?.data?.data|| [];
+            setContent((prevData) => {
+              if (pg === 1) {
+                return newdata;
+              } else {
+                return [...prevData, ...newdata];
+              }
+            });
+            setHasMore(response?.data?.current_page < response?.data?.last_page);
+            setPage(response?.data?.current_page);
             setLoading(false);
         } catch (error) {
             console.log("errr", error);
@@ -26,11 +40,16 @@ export default function Index() {
         }
     };
 
+
     useEffect(() => {
-        if (loading) {
-            fetchData();
+          fetchData(page + 1);
+      }, []);
+
+      const loadMore = () => {
+        if (!loading && page) {
+          fetchData(page + 1);
         }
-    }, []);
+      };
 
     const acceptReview = (uuid, id, newStatus) => {
         const main = new Listing();
@@ -76,6 +95,10 @@ export default function Index() {
                                         <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
                                             <thead className="bg-gray-50 dark:bg-gray-800">
                                                 <tr>
+                                                <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 "
+                                                    >
+                                                         S.No.
+                                                    </th>
                                                     <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 "
                                                     >
                                                          Date
@@ -109,13 +132,16 @@ export default function Index() {
                                                         return (
                                                             <tr key={index}>
                                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+{index+1}
+</td>
+                                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                                                                     <Dateformat item={item?.createdAt} />
                                                                 </td>
                                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
                                                                     <div className="flex items-center gap-x-2">
                                                                         <Image
                                                                             className="object-cover w-8 h-8 rounded-full user-profile-img"
-                                                                            src={item?.rating_user?.image_url}
+                                                                            src={item?.rating_user?.image_url || userprofile}
                                                                             alt=""
                                                                             width={32}
                                                                             height={32}
@@ -274,6 +300,26 @@ export default function Index() {
                             </div>
                         )}
                     </div>
+                    {!loading && (
+          <div className="flex justify-center">
+            <div
+              className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+              onClick={loadMore}
+            >
+              Load More
+            </div>
+          </div>
+        )}
+        {!loading && !hasmore  && (
+
+<div className="flex justify-center">
+<div
+  className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+>
+  No More Data
+</div>
+</div>
+        )}
                 </section>
             </AdminLayout>
         </>

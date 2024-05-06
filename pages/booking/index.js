@@ -3,6 +3,7 @@ import Button from "../elements/Button";
 import Heading from "../elements/Heading.js";
 import { useRouter } from "next/router";
 import Listings from "../api/laravel/Listings";
+import Link from "next/link"
 import AuthLayout from "../layout/AuthLayout.js";
 import Modal from "../elements/Modal.js";
 import NoData from "../elements/NoData.js";
@@ -42,7 +43,12 @@ export default function index() {
     setSelectedButton(e);
   };
 
-  useEffect(() => {
+
+  const [hasmore, setHasMore] = useState(true);
+
+  const [page, setPage] = useState(0);
+
+  const fetching = async(pg) =>{
     setLoading(true);
     let url = "";
     if (selectedOption == "All Dates") {
@@ -61,21 +67,44 @@ export default function index() {
     } else if (selectedButton === "completed") {
       url += "booking_event=completed&";
     } else {
-      url += "booking_status=canceled&";
+      url += "booking_status=cancelled&";
     }
+
     const main = new Listings();
     main
-      .BookingHistory(url)
+      .BookingHistory(pg, url)
       .then((r) => {
         setLoading(false);
-        setListings(r?.data?.data);
+        const newdata = r?.data?.data?.data|| [];
+        setListings((prevData) => {
+          if (pg === 1) {
+            return newdata;
+          } else {
+            return [...prevData, ...newdata];
+          }
+        });
+        setHasMore(r?.data?.current_page < r?.data?.last_page);
+        setPage(r?.data?.current_page);
+        setLoading(false);
       })
       .catch((err) => {
         setLoading(false);
+        setHasMore(false);
+        setPage(false);
         console.log(err);
       });
-    // console.log("listings", listings);
+  } 
+  useEffect(() => {
+     if (listings && listings?.length < 1) {
+      fetching(page + 1);
+     }
   }, [selectedButton, fetch]);
+
+  const loadMore = () => {
+    if (!loading && page) {
+      fetching(page + 1);
+    }
+  };
   // {listings && listings.length > 0 ? ():()
   const BookingTable = () => {
     return (
@@ -93,32 +122,35 @@ export default function index() {
                 <table key={index} className="table-fixed w-full booking-table">
                   <thead>
                     <tr>
+                      <th>Booking Date</th>
                       <th>Title</th>
-                      <th>Check In</th>
-                      <th>Check Out</th>
+                      <th>Check In & Out</th>
                       <th>Status</th>
                       <th>Price</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   {listings.map((item, index) => (
-                    <tbody>
+                    <tbody key={index}>
                       <tr>
+                      <td className="px-4 py-2">{item?.booking_date}</td>
                         <td className="px-4 py-2">
                           <div className="flex items-center">
                             <div className="text ml-2">
-                              <div className="title">
-                                {item?.booking_property?.name}
+                              <div className="title capitalize ">
+                                <Link href={`/property/${item?.booking_property?.uuid}`}>
+                               {item?.booking_property?.name}
+                               </Link>
+
                               </div>
                             </div>
                           </div>
                         </td>
-                        <td className="px-4 py-2">{item?.check_in}</td>
-                        <td className="px-4 py-2">{item?.check_out}</td>
-                        <td className="px-4 py-2">
+                        <td className="px-4 py-2">{item?.check_in}     || {item?.check_out}</td>
+                        <td className="px-4 py-2 capitalize">
                           <Button
                             text={`${item?.booking_status}`}
-                            design="font-inter text-blue-700 font-medium leading-tight text-center w-32 p-3 rounded-full"
+                            design="font-inter capitalize text-blue-700 font-medium leading-tight text-center w-32 p-3 rounded-full"
                           />
                         </td>
                         <td className="px-4 py-2">
@@ -134,10 +166,12 @@ export default function index() {
                     </tbody>
                   ))}
                 </table>
+                
               </div>
+
             ) : (
               <NoData
-                Heading={"No Bookings Found"}
+                Heading={"Booking History not found"}
                 content={
                   "You have not done any bookings yet. Click below to go to the home page"
                 }
@@ -145,6 +179,14 @@ export default function index() {
             )}
           </>
         )}
+
+{hasmore && !loading && (
+                  <div className="load-more mt-5 text-center ">
+                    <button className="btn btn-outline-success" onClick={loadMore}>
+                      Load More
+                    </button>
+                  </div>
+                )}
       </>
     );
   };
@@ -189,17 +231,17 @@ export default function index() {
 
             <Button
               design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${
-                selectedButton === "canceled"
+                selectedButton === "cancelled"
                   ? "bg-orange-300 text-white"
                   : "text-black"
               } `}
-              onClick={() => handleGroupChange("canceled")}
-              text={"Canceled"}
+              onClick={() => handleGroupChange("cancelled")}
+              text={"Cancelled"}
             />
           </div>
           <div className="me-2 my-4 py-2">
-            <button className="filter btn ms-2 w-[146px]" onClick={openModal}>
-              Filter By Date
+            <button className="font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full bg-orange-300 text-white " onClick={openModal}>
+              Filter By Booking Date
             </button>
             <Modal isOpen={isOpen} onClose={closeModal}>
               <div className="mb-4 mt-10">

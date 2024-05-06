@@ -11,14 +11,16 @@ function Bookings() {
   const [activeTab, setActiveTab] = useState("upcoming");
   const [comment1Liked, setComment1Liked] = useState(true);
   const [comment2Liked, setComment2Liked] = useState(false);
-  const [record, setRecord] = useState();
-
+  const [record, setRecord] = useState("");
+const[bookingCount,SetbookingCount] = useState("")
   useEffect(() => {
     const main = new Listing();
     const response = main.Top3Bookings(activeTab);
     response
       .then((res) => {
+        console.log("res",res)
         setRecord(res?.data?.data);
+        SetbookingCount(res?.data?.booking_count)
       })
       .catch((error) => {
         console.log("error", error);
@@ -30,7 +32,7 @@ function Bookings() {
       <div className="flex items-center justify-between">
         <div className="flex items-center text-sm gap-2">
           <MagicStar size={18} />
-          <p className="text-gray-800 font-medium">Bookings</p>
+          <p className="text-gray-800 font-medium">Bookings {bookingCount}</p>
         </div>
         <Link
           href="/admin/booking-history"
@@ -94,16 +96,17 @@ function Bookings() {
               <div className="flex items-center justify-between w-full select-none cursor-pointer">
                 <div className="flex items-center gap-2">
                   <Image
-                    src={item?.booking_user[0]?.image_url || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
+                    src={item?.userImage
+                      || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
                     alt="loom"
                     height={36}
                     width={36}
                     className="rounded-full"
                   />
                   <div className="font-medium">
-                    <p className="text-xxs text-gray-500">{item?.booking_user[0]?.name}</p>
+                    <p className="text-xxs text-gray-500">{item?.userName}  ({item?.booking_number})</p>
                     <p className="text-xs text-gray line-limit leading-relaxed">
-                    {item?.booking_property?.name}
+                    {item?.propertyName}
                     </p>
                   </div>
                 </div>
@@ -116,13 +119,13 @@ function Bookings() {
           ))}
 
         {/* comment button */}
-        <Link
+        {/* <Link
           href="/admin/booking-history"
           className="border flex items-center justify-center w-full gap-2 p-2 text-gray-600 font-medium rounded-lg text-xs"
         >
           <Edit2 size={14} />
           Show All
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

@@ -68,7 +68,7 @@ export default function Index() {
   };
 
   const loadMore = () => {
-    if (!loading && hasmore) {
+    if (!loading) {
       fetchData(page + 1);
     }
   };
@@ -89,8 +89,11 @@ export default function Index() {
         <div className="w-full ">
           <table className="w-full text-sm rounded-md">
             <thead>
-              <tr className="bg-gray-100 rounded-lg flex items-center bg-black text-white justify-between text-gray-500">
-                <th className="flex gap-2 bg-black text-white  w-1/4 text-sm p-4">
+              <tr className="bg-gray-100 rounded-lg flex items-center bg-indigo text-white justify-between text-gray-500">
+                <th className="flex gap-2 bg-black text-white flex justify-center w-1/4 text-sm p-4">
+                  <p>S.No.</p>
+                </th>
+                <th className="flex gap-2 bg-black text-white flex justify-center  w-1/4 text-sm p-4">
                   <p>Name</p>
                 </th>
                 <th className="flex gap-2 flex justify-center bg-black text-white w-1/4 text-sm p-4">
@@ -111,6 +114,9 @@ export default function Index() {
                   key={index}
                   className="hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700 !mt-0"
                 >
+                  <td className="flex gap-2 items-center flex justify-center w-1/4 text-sm p-2  ">
+                    {index + 1}
+                  </td>
                   <td className="flex gap-2 items-center w-1/4 text-sm p-2 ">
                     <Image
                       width={35}
@@ -161,18 +167,18 @@ export default function Index() {
                           <div className="flex items-center gap-1 border rounded-full p-1">
                             <p className="text-xs">Activate</p>{" "}
                             <svg
-                                      className="text-emerald-500"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      width="16"
-                                      height="16"
-                                      viewBox="0 0 24 24"
-                                      fill="none"
-                                    >
-                                      <path
-                                        d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z"
-                                        fill="currentColor"
-                                      ></path>
-                                    </svg>
+                              className="text-emerald-500"
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                            >
+                              <path
+                                d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z"
+                                fill="currentColor"
+                              ></path>
+                            </svg>
                           </div>
                         )}
                       </button>
@@ -316,20 +322,27 @@ export default function Index() {
             <> </>
           )}
         </div>
-        {!loading && hasmore && (
-          <div className="flex justify-center">
-            <div
-              className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
-              onClick={loadMore}
-            >
-              Load More
-            </div>
-          </div>
-        )}
-        {!loading && !hasmore && record.length === 0 && (
-          <div className="text-center">No more data</div>
-        )}
       </div>
+      {!loading && (
+        <div className="flex justify-center">
+          <div
+            className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+            onClick={loadMore}
+          >
+            Load More
+          </div>
+        </div>
+      )}
+      {!loading && !hasmore && record.length === 0 && (
+
+        <div className="flex justify-center">
+          <div
+            className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+          >
+            No More Data
+          </div>
+        </div>
+      )}
     </AdminLayout>
   );
 }

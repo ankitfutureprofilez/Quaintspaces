@@ -8,6 +8,7 @@ import StartRating from "../../../elements/StartRating"
 
 function Reviews() {
   const [record, setRecord] = useState("");
+  const[ratingCount ,SetRatigCount] =useState("")
 
   useEffect(() => {
     const main = new Listing();
@@ -15,6 +16,7 @@ function Reviews() {
       .Top3rating()
       .then((r) => {
         setRecord(r?.data?.data);
+        SetRatigCount(r?.data?.rating_count)
       })
       .catch((err) => {
         console.log(err);
@@ -26,7 +28,7 @@ function Reviews() {
       <div className="flex items-center justify-between">
         <div className="flex items-center text-sm gap-2">
           <NoteText size={18} />
-          <p className="text-gray-800 font-medium">User Reviews</p>
+          <p className="text-gray-800 font-medium">User Reviews {ratingCount}</p>
         </div>
         <Link
           href="/admin/review"

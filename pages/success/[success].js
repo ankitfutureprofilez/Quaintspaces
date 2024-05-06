@@ -39,6 +39,7 @@ const success = () => {
         // console.log("response", res);
         if (res && res.data && res.data.status) {
           toast.success(res.data.message);
+          console.log(res?.data?.data)
           setRecord(res?.data?.data);
         } else {
           toast.error(res?.data.message);
@@ -125,7 +126,7 @@ const totalStay = calculateTotalDays(record?.booking_history?.check_in, record?.
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
               <p className="text-black-400 font-bold">Total Members</p>
-              <p className="text-start text-black-400 font-bold font-semibold">{record?.booking_history?.booking_property?.guests}</p>
+              <p className="text-start text-black-400 font-bold font-semibold">{record?.guests}</p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
               <p className="text-black-400 font-bold">Total stay</p>
