@@ -323,7 +323,7 @@ export default function Index() {
           )}
         </div>
       </div>
-      {!loading && (
+      {/* {!loading && (
         <div className="flex justify-center">
           <div
             className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
@@ -332,17 +332,24 @@ export default function Index() {
             Load More
           </div>
         </div>
-      )}
-      {!loading && !hasmore && record.length === 0 && (
+      )} */}
+      {!loading && !hasmore && record.length === 0 ? (
+  <div className="flex justify-center">
+    <div className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white">
+      No Data Available
+    </div>
+  </div>
+) : (
+  <div className="flex justify-center">
+    <div
+      className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+      onClick={loadMore}
+    >
+      Load More
+    </div>
+  </div>
+)}
 
-        <div className="flex justify-center">
-          <div
-            className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
-          >
-            No More Data
-          </div>
-        </div>
-      )}
     </AdminLayout>
   );
 }
