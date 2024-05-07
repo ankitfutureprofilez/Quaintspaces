@@ -196,12 +196,11 @@ export default function index() {
                         <td
                           className={`capitalize inline-flex items-center rounded-full py-3 px-4 text-xs text-white  ${
                             item?.booking_status === "completed"
-                              ? "bg-green-800"
+                              ? "bg-green-700"
                               : item?.booking_status === "cancelled"
                               ? "bg-red-600"
                               : item?.booking_status === "confirm"
                               ? "bg-green-600"
-
                               :item?.booking_status === "pending" ? "bg-slate-600"
                               : "bg-blue-600"
                           }`}
