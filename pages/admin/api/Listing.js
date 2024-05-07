@@ -139,6 +139,9 @@ async ActiveUser(){
 async enqiry_info(data){
     return Api.post(`admin/enquiry-info`,data)  
 }
+async DeleteUser(id, message){
+    return Api.post(`admin/delete-user/${id}`,message)
+}
 
 // user-payment-history/4
   render() {

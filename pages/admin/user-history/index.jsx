@@ -6,6 +6,7 @@ import Popup from "../hook/Popup";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import Image from "next/image";
+import Modal from "../hook/Modal";
 
 export default function Index() {
   const [popupOpen, setPopupOpen] = useState(null);
@@ -14,6 +15,9 @@ export default function Index() {
   const [page, setPage] = useState(1);
   const [hasmore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const[message,setMessage]=useState();
+  const[id,setid]=useState();
 
   const fetchData = async (pg) => {
     try {
@@ -41,6 +45,18 @@ export default function Index() {
     }
   };
 
+  const handleChange = (e) => {
+    setMessage(e?.target?.value);
+  };
+
+  const openModal = (id) => {
+    setid(id);
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+  
   useEffect(() => {
     fetchData(1);
   }, []);
@@ -59,6 +75,29 @@ export default function Index() {
           );
         } else {
           toast.error(res.data.message);
+        }
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  };
+
+  const deleteAccount = async (id) => {
+    if(message?.length==0){
+      toast.error("Mesage can not be empty !!")
+      return;
+    }
+    const formData =  new FormData()
+    formData.append("message",message)
+    const main = new Listing();
+    const response = main.DeleteUser(id,formData);
+    response
+      .then((res) => {
+        if (res && res?.data && res?.data?.status) {
+          toast.success(res?.data?.message);
+          setIsOpen(false);
+        } else {
+          toast.error(res?.data?.message);
         }
       })
       .catch((error) => {
@@ -130,7 +169,7 @@ export default function Index() {
                     />
                     <div>
                       <div className="text-gray-800 font-medium">
-                        {item.name} {item.id}
+                        {item.name}
                       </div>
                       <div className="text-sm">{item.email}</div>
                     </div>
@@ -264,8 +303,8 @@ export default function Index() {
                                 }
                               >
                                 {item.status === 0 ? (
-                                  <div className="flex items-center gap-1  p-1 hover:bg-black-500">
-                                    <p className="text-xs ">Deactivate</p>{" "}
+                                  <div className="flex items-center gap-1 hover:bg-black-500">
+                                    <p className="block hover:bg-gray-100 ">Deactivate</p>{" "}
                                     <svg
                                       class="text-gray-400"
                                       xmlns="http://www.w3.org/2000/svg"
@@ -285,8 +324,8 @@ export default function Index() {
                                     </svg>
                                   </div>
                                 ) : (
-                                  <div className="flex items-center gap-1  p-1">
-                                    <p className="text-xs">Activate</p>{" "}
+                                  <div className="flex items-center gap-1">
+                                    <p className="block hover:bg-gray-100 ">Activate</p>{" "}
                                     <svg
                                       className="text-emerald-500"
                                       xmlns="http://www.w3.org/2000/svg"
@@ -309,8 +348,31 @@ export default function Index() {
                                 href={`user-history/${item.id}`}
                                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                               >
-                                User Details{" "}
+                                User Detail{" "}
                               </Link>
+                            </li>
+                            <li>
+                              <button className="block px-4 py-2 hover:bg-gray-100" 
+                              onClick={()=>openModal(item?.id)}>
+                                <div className="flex items-center gap-1 hover:bg-black-500">
+                                  <p className="">Delete Account</p>{" "}
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                  >
+                                    <path
+                                      d="M21 5.98c-3.33-.33-6.68-.5-10.02-.5-1.98 0-3.96.1-5.94.3L3 5.98M8.5 4.97l.22-1.31C8.88 2.71 9 2 10.69 2h2.62c1.69 0 1.82.75 1.97 1.67l.22 1.3M18.85 9.14l-.65 10.07C18.09 20.78 18 22 15.21 22H8.79C6 22 5.91 20.78 5.8 19.21L5.15 9.14M10.33 16.5h3.33M9.5 12.5h5"
+                                      stroke="#ff0000"
+                                      stroke-width="1.5"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                    ></path>
+                                  </svg>
+                                </div>
+                              </button>
                             </li>
                             {/* <li>
                               <Link href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</Link>
@@ -346,8 +408,8 @@ export default function Index() {
           </div>
         </div>
       )} */}
-      {!loading ? ( // If not loading
-        !hasmore ? ( // If hasmore is false
+      {!loading ? (
+        !hasmore ? (
           <div className="flex justify-center">
             <div className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white">
               No Data Available
@@ -365,6 +427,36 @@ export default function Index() {
           </div>
         )
       ) : null}
+      {isOpen && (
+        <Modal isOpen={openModal} onClose={closeModal}>
+          <div className="my-3 lg:my-6 flex flex-col">
+            <label
+              htmlFor="message"
+              className="mx-auto mb-8 block text-lg font-medium text-gray-600"
+            >
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={message}
+              onChange={handleChange}
+              className="mt-3 p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
+              required
+              placeholder="Please enter a reason for account deletion"
+              rows={2}
+            />
+            <button
+              className="btn filter mt-8 w-2/4 mx-auto"
+              onClick={() =>
+                deleteAccount(id)
+              }
+            >
+              {loading ? "Processing..." : "Proceed"}
+            </button>
+          </div>
+        </Modal>
+      )}
     </AdminLayout>
   );
 }

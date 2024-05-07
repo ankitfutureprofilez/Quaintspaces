@@ -335,7 +335,7 @@ export default function index() {
               onChange={handleChange}
               className="mt-3 p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
               required
-              placeholder="Type your  message for the user here"
+              placeholder="Please enter your reason for cancellation"
               rows={2}
             />
             <button
