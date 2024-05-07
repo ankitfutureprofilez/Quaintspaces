@@ -744,7 +744,7 @@ export default function Property(props) {
                         type="button"
                         onClick={() => deletePropertyImage(uuid, item?.uuid)}
                         className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1" >
-                        Remove
+                        Delete
                       </button>
                     </div>
                   ))
