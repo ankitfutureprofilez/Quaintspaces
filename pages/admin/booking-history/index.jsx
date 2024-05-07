@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import Modal from "../hook/Modal";
 import Link from "next/link";
 import userProfile from "../../../public/admin/userprofile.png";
+import{ formatMultiPrice }  from "../../../hooks/ValueData"
 
 export default function index() {
   const [content, setContent] = useState([]);
@@ -120,29 +121,29 @@ export default function index() {
               <table className="min-w-[1200px] w-full break-all divide-gray-200 dark:divide-gray-700">
                 <thead className="bg-gray-50 dark:bg-gray-800">
                   <tr className="">
-                    <td className="px-4 py-4 capitalize  text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                    <td className="px-4 py-4 capitalize  text-sm font-normal w-[10vh] bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
                       S.No.
                     </td>
-                    <td className="px-4 py-4 capitalize text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                    <td className="px-4 py-4 capitalize text-sm font-normal w-[15vh] bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
                       {" "}
                       booking Date
                     </td>
-                    <td className="px-4 py-4 capitalize text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                    <td className="px-4 py-4 capitalize text-sm font-normal w-[20vh] bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
                       booking Number{" "}
                     </td>
-                    <td className="px-4 py-4 capitalize text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                    <td className="px-4 py-4 capitalize text-sm font-normal  bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
                       Stay{" "}
                     </td>
-                    <td className="px-2 py-4 capitalize text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                    <td className="px-2 py-4 capitalize text-sm font-normal w-[12vh] bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
                       Amount
                     </td>
-                    <td className="px-4 py-4 capitalize  text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                    <td className="px-4 py-4 capitalize  text-sm font-normal  bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
                       Status
                     </td>
-                    <td className="px-4 py-4 capitalize  text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
-                      Document Image and Type{" "}
+                    <td className="px-4 py-4 capitalize  text-sm font-normal  bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                      Document & its Type{" "}
                     </td>
-                    <td className="px-4 py-4 capitalize  text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                    <td className="px-4 py-4 capitalize  text-sm font-normal  bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
                       Action
                     </td>
                   </tr>
@@ -155,7 +156,7 @@ export default function index() {
                         {index + 1}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
-                        <Dateformat item={item?.booking_date} />
+                        {item?.booking_date}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         {item?.booking_number}
@@ -201,7 +202,7 @@ export default function index() {
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
-                        {item?.price}
+                        {formatMultiPrice(item?.price)}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <td

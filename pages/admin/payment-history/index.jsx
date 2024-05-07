@@ -6,6 +6,7 @@ import Spinner from "../hook/spinner";
 import Nodata from "../hook/NoRecord";
 import userprofile from "../../../public/admin/userprofile.png";
 import Link from "next/link"
+import{ formatMultiPrice }  from "../../../hooks/ValueData"
 
 export default function Index() {
   const [loading, setLoading] = useState(false)
@@ -52,20 +53,20 @@ export default function Index() {
 
         <div className="overflow-x-auto mt-3">
           <div className="w-full">
-            <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg">
+            <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
               {content && content.length > 0 ? (
 
-                <table className="min-w-[1200px] w-full break-all divide-gray-200 dark:divide-gray-700">
-                  <thead className="bg-gray-50 dark:bg-gray-800">
+                <table className="min-w-[1200px] w-full break-all divide-gray-200">
+                  <thead className="bg-gray-50">
                     <tr >
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">S. No. </td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white w-[8vw] capitalize">S. No. </td>
 
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Payment Id </td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Customer</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Purchase</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Method</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Status</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Amount</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white w-[19vw] capitalize">Payment Id </td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white w-[25vw] capitalize">Customer</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white w-[25vw] capitalize">Purchase</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white w-[10vw] capitalize">Method</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize">Status</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white w-[12vw] capitalize">Amount</td>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
@@ -130,7 +131,9 @@ export default function Index() {
 
                         </td>
 
-                        <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">{item?.price}</td>
+                        <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
+                          { formatMultiPrice (item?.price)}
+                       </td>
 
                       </tr>
                     ))}
@@ -150,7 +153,7 @@ export default function Index() {
       {!loading && (
         <div className="flex justify-center">
           <div
-            className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+            className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-600 border-0 p-4 rounded-full mt-10 mb-12 text-white"
             onClick={loadMore}
           >
             Load More
@@ -161,7 +164,7 @@ export default function Index() {
 
         <div className="flex justify-center">
           <div
-            className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+            className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-600ed-full mt10 mb-12 text-white"
           >
             No More Data
           </div>

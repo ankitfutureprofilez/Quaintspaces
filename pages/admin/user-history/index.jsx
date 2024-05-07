@@ -16,8 +16,8 @@ export default function Index() {
   const [hasmore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const[message,setMessage]=useState();
-  const[id,setid]=useState();
+  const [message, setMessage] = useState();
+  const [id, setid] = useState();
 
   const fetchData = async (pg) => {
     try {
@@ -56,7 +56,7 @@ export default function Index() {
   const closeModal = () => {
     setIsOpen(false);
   };
-  
+
   useEffect(() => {
     fetchData(1);
   }, []);
@@ -83,14 +83,14 @@ export default function Index() {
   };
 
   const deleteAccount = async (id) => {
-    if(message?.length==0){
-      toast.error("Mesage can not be empty !!")
+    if (message?.length == 0) {
+      toast.error("Mesage can not be empty !!");
       return;
     }
-    const formData =  new FormData()
-    formData.append("message",message)
+    const formData = new FormData();
+    formData.append("message", message);
     const main = new Listing();
-    const response = main.DeleteUser(id,formData);
+    const response = main.DeleteUser(id, formData);
     response
       .then((res) => {
         if (res && res?.data && res?.data?.status) {
@@ -127,35 +127,35 @@ export default function Index() {
         <div className="w-full ">
           <table className="w-full text-sm rounded-md">
             <thead>
-              <tr className="bg-gray-100 rounded-lg flex items-center bg-indigo text-white justify-between text-gray-500">
-                <th className="flex gap-2 bg-black text-white flex justify-center w-1/4 text-sm p-4">
+              <tr className="bg-gray-100 rounded-lg flex items-center bg-indigo-600 text-white justify-between text-gray-500">
+                <th className="px-4 py-4 text-sm font-normal text-left w-[10vh] rtl:text-right bg-indigo-600 text-white capitalize">
                   <p>S.No.</p>
                 </th>
-                <th className="flex gap-2 bg-black text-white flex justify-center  w-1/4 text-sm p-4">
+                <th className="px-4 py-4 text-sm font-normal text-left w-[40vh] rtl:text-right bg-indigo-600 text-white capitalize">
                   <p>Name</p>
                 </th>
-                <th className="flex gap-2 flex justify-center bg-black text-white w-1/4 text-sm p-4">
+                <th className="px-4 py-4 text-sm font-normal text-left w-[20vh] rtl:text-right bg-indigo-600 text-white capitalize">
                   <p>Phone Number</p>
                 </th>
-                <th className="flex gap-2 flex justify-center bg-black text-white w-1/4 text-sm p-4">
+                <th className="px-4 py-4 text-sm font-normal text-left w-[10vh] rtl:text-right bg-indigo-600 text-white capitalize">
                   <p>Status</p>
                 </th>
-                <th className="flex gap-2 flex justify-center bg-black text-white w-1/4 text-sm p-4">
+                <th className="px-4 py-4 text-sm font-normal text-left w-[10vh] rtl:text-right bg-indigo-600 text-white capitalize">
                   <p>Details</p>
                 </th>
               </tr>
             </thead>
 
-            <tbody className="space-y-2 divide-y">
+            <tbody className="bg-white divide-y divide-gray-200">
               {record.map((item, index) => (
                 <tr
                   key={index}
                   className="hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700 !mt-0"
                 >
-                  <td className="flex gap-2 items-center flex justify-center w-1/4 text-sm p-2  ">
+                  <td className="px-4 py-4 text-sm text-gray-500 w-[10vh] ">
                     {index + 1}
                   </td>
-                  <td className="flex gap-2 items-center w-1/4 text-sm p-2 ">
+                  <td className="flex gap-2 items-center text-sm p-2 w-[40vh]">
                     <Image
                       width={35}
                       height={35}
@@ -174,10 +174,10 @@ export default function Index() {
                       <div className="text-sm">{item.email}</div>
                     </div>
                   </td>
-                  <td className="flex gap-2 items-center flex justify-center w-1/4 text-sm p-2  ">
+                  <td className="px-4 py-4 text-sm text-gray-500 w-[20vh] ">
                     {item.phone_no ? item.phone_no : ""}
                   </td>
-                  <td className="flex gap-2 items-center flex justify-center w-1/4 text-sm p-2  ">
+                  <td className="px-4 py-4 text-sm text-gray-500 w-[10vh] ">
                     <div className="flex items-center gap-1 p-1">
                       <button
                         onClick={() =>
@@ -226,7 +226,7 @@ export default function Index() {
                       </button>
                     </div>
                   </td>
-                  <td className="w-1/4  p-2 flex justify-center">
+                  <td className="px-4 py-4 text-sm text-gray-500 w-[10vh]">
                     <div className="relative">
                       <div
                         onClick={() => handleRowClick(item.id)}
@@ -303,8 +303,8 @@ export default function Index() {
                                 }
                               >
                                 {item.status === 0 ? (
-                                  <div className="flex items-center gap-1 hover:bg-black-500">
-                                    <p className="block hover:bg-gray-100 ">Deactivate</p>{" "}
+                                  <div className="flex items-center gap-2 border rounded-full p-2">
+                                    <p className="text-xs">Deactivate</p>{" "}
                                     <svg
                                       class="text-gray-400"
                                       xmlns="http://www.w3.org/2000/svg"
@@ -325,7 +325,7 @@ export default function Index() {
                                   </div>
                                 ) : (
                                   <div className="flex items-center gap-1">
-                                    <p className="block hover:bg-gray-100 ">Activate</p>{" "}
+                                    <p className="text-xs">Activate</p>{" "}
                                     <svg
                                       className="text-emerald-500"
                                       xmlns="http://www.w3.org/2000/svg"
@@ -352,8 +352,10 @@ export default function Index() {
                               </Link>
                             </li>
                             <li>
-                              <button className="block px-4 py-2 hover:bg-gray-100" 
-                              onClick={()=>openModal(item?.id)}>
+                              <button
+                                className="block px-4 py-2 hover:bg-gray-100"
+                                onClick={() => openModal(item?.id)}
+                              >
                                 <div className="flex items-center gap-1 hover:bg-black-500">
                                   <p className="">Delete Account</p>{" "}
                                   <svg
@@ -374,12 +376,6 @@ export default function Index() {
                                 </div>
                               </button>
                             </li>
-                            {/* <li>
-                              <Link href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</Link>
-                            </li>
-                            <li>
-                              <Link href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</Link>
-                            </li> */}
                           </ul>
                         </div>
                       )}
@@ -398,6 +394,7 @@ export default function Index() {
           )}
         </div>
       </div>
+
       {/* {!loading && (
         <div className="flex justify-center">
           <div
@@ -448,9 +445,7 @@ export default function Index() {
             />
             <button
               className="btn filter mt-8 w-2/4 mx-auto"
-              onClick={() =>
-                deleteAccount(id)
-              }
+              onClick={() => deleteAccount(id)}
             >
               {loading ? "Processing..." : "Proceed"}
             </button>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 export const formatMultiPrice = (amount) => {
+  console.log("amount",amount)
   return new Intl.NumberFormat("en-GB", {
     style: "currency",
     currency: "INR",

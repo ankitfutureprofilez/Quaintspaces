@@ -124,7 +124,6 @@ const Book = () => {
         console.error(err);
       });
 
-    console.log("listing", listing?.adults);
     setGuests({
       adults: {
         value: +url.numberOfAdults || 0,
@@ -143,6 +142,7 @@ const Book = () => {
       },
     });
   }, [router.asPath]);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -209,6 +209,18 @@ const Book = () => {
     }
     if (formData.phone.length !== 10) {
       toast.error("Invalid Phone Number");
+      return;
+    }
+    if(infos?.numberOfAdults>listing?.adults){
+      toast.error(`Number of adults exceeds the allowed limit ${listing?.adults}` )
+      return;
+    }
+    if(infos?.numberOfChildren>listing?.children){
+      toast.error(`Number of children exceeds the allowed limit ${listing?.children}` )
+      return;
+    }
+    if(infos?.numberOfPets>listing?.no_of_pet_allowed){
+      toast.error(`Number of pets exceeds the allowed limit ${listing?.no_of_pet_allowed}` )
       return;
     }
     if (loading) return;
@@ -301,7 +313,6 @@ const Book = () => {
       .bookingpayment(record)
       .then((res) => {
         if (res) {
-          console.log("res", res);
           if (res?.data?.status == true) {
             toast.success(res?.data?.message);
             router.push(`/success/${listingID}`);
@@ -523,8 +534,8 @@ const Book = () => {
                 />
 
                 <div>
-                  <h4 className="text-xl mb-1">{listing?.name}</h4>
-                  <h3 className=" text-lg">{listing?.type}</h3>
+                  <h4 className="text-xl mb-1 capitalize">{listing?.name}</h4>
+                  <h3 className=" text-lg capitalize">{listing?.type?.replace("_" ," ")}</h3>
                   <span className="flex text-sm items-center gap-1">
                     <span>
                       <Star />
