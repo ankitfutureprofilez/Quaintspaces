@@ -21,12 +21,13 @@ import toast from "react-hot-toast";
 import { formatMultiPrice } from "../../hooks/ValueData";
 import useRazorpay from "react-razorpay";
 
-const Book = ({ listingData, listingID }) => {
+const Book = () => {
   const router = useRouter();
   const [Razorpay] = useRazorpay();
   const RAZOPAY_KEY = process.env.NEXT_PUBLIC_RAZOPAY_KEY;
+  const { listingID } = router.query;
 
-  const [listing, setListing] = useState(listingData);
+  const [listing, setListing] = useState([]);
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
   const [guestsModel, setGuestsModel] = useState(false);
@@ -46,6 +47,52 @@ const Book = ({ listingData, listingID }) => {
     phone: "",
     date: recorddate,
   });
+
+  // useEffect(() => {
+  //   const url = router.query;
+  //   setInfos(url);
+  //   const main = new Listings();
+  //   main
+  //     .PropertyDetail(url.listingID)
+  //     .then((r) => {
+  //       setListing(r?.data?.data);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  //     console.log("booking page",listing)
+
+  //   setGuests({
+  //     adults: {
+  //       value: +url.numberOfAdults || 0,
+  //       max: listing?.adults || 5,
+  //       min: 0,
+  //     },
+  //     children: {
+  //       value: +url.numberOfChildren || 0,
+  //       max: listing?.children || 5,
+  //       min: 0,
+  //     },
+  //     pets: {
+  //       value: +url.numberOfPets || 0,
+  //       max: listing?.no_of_pet_allowed || 5,
+  //       min: 0,
+  //     },
+  //   });
+  // }, [router.asPath]);
+
+  useEffect(() => {
+    if (infos.checkout && infos.checkin && listing) {
+      const calculatedPriceRate =
+        +listing.price *
+        differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
+      setPriceRate(formatMultiPrice(calculatedPriceRate));
+    } else {
+      setPriceRate(0);
+    }
+  }, [infos.checkout, infos.checkin, listing]);
+
+  // console.log("infos",infos)
   const [guests, setGuests] = useState({
     adults: {
       value: +infos.adults || 0,
@@ -59,66 +106,43 @@ const Book = ({ listingData, listingID }) => {
     },
     pets: {
       value: +infos.pets || 0,
-      max:  5,
+      max: 5,
       min: 0,
     },
   });
 
   useEffect(() => {
-    if (listingData) {
-      setListing(listingData);
-    }
-  }, [listingData]);
-
-  useEffect(() => {
-    if (listingData) {
-      setListing(listingData);
-    }
-  }, [listingData]);
-
-  useEffect(() => {
-    if (infos.checkout && infos.checkin && listing) {
-      const calculatedPriceRate =
-        +listing.price *
-        differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
-      setPriceRate(formatMultiPrice(calculatedPriceRate));
-    } else {
-      setPriceRate(0);
-    }
-  }, [infos.checkout, infos.checkin, listing]);
-
-  useEffect(() => {
-    if (router.query) {
-      setInfos(router.query);
-      const main = new Listings();
-      main
-        .PropertyDetail(router.query?.listingID)
-        .then((r) => {
-          setListing(r?.data?.data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-
-      setGuests({
-        adults: {
-          value: +router.query.numberOfAdults || 0,
-          max: listing?.adults || 5,
-          min: 0,
-        },
-        children: {
-          value: +router.query.numberOfChildren || 0,
-          max: listing?.children || 5,
-          min: 0,
-        },
-        pets: {
-          value: +router.query.numberOfPets || 0,
-          max: listing?.no_of_pet_allowed || 5,
-          min: 0,
-        },
+    const url = router.query;
+    setInfos(url);
+    const main = new Listings();
+    main
+      .PropertyDetail(url?.listingID)
+      .then((r) => {
+        setListing(r?.data?.data);
+      })
+      .catch((err) => {
+        console.error(err);
       });
-    }
-  }, [router.query]);
+
+    console.log("listing", listing?.adults);
+    setGuests({
+      adults: {
+        value: +url.numberOfAdults || 0,
+        max: listing?.adults || 5,
+        min: 0,
+      },
+      children: {
+        value: +url.numberOfChildren || 0,
+        max: listing?.children || 5,
+        min: 0,
+      },
+      pets: {
+        value: +url.numberOfPets || 0,
+        max: listing?.no_of_pet_allowed || 5,
+        min: 0,
+      },
+    });
+  }, [router.asPath]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -136,6 +160,16 @@ const Book = ({ listingData, listingID }) => {
     }));
   };
 
+  useEffect(() => {
+    if (infos.checkout && infos.checkin && listing) {
+      const calculatedPriceRate =
+        +listing.price *
+        differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
+      setPriceRate(formatMultiPrice(calculatedPriceRate));
+    } else {
+      setPriceRate(0);
+    }
+  }, [infos.checkout, infos.checkin, listing]);
 
   //   record.append("front_doc", formData.fornt);
   //   record.append("no_of_pet", infos.numberOfPets);
@@ -207,7 +241,8 @@ const Book = ({ listingData, listingID }) => {
               toast.success("Payment Successful");
               setOrderId(res?.data?.orderId);
               // return false;
-              localStorage && localStorage.setItem("response",  JSON.stringify(response))
+              localStorage &&
+                localStorage.setItem("response", JSON.stringify(response));
               paymentsubmit(res?.data?.orderId);
             },
             prefill: {
@@ -226,7 +261,7 @@ const Book = ({ listingData, listingID }) => {
           rzp.on("payment.failed", function (response) {
             paymentsubmit(res?.data?.orderId);
             toast.error("Payment Failed");
-          router.push(`/cancel/${listingID}`);
+            router.push(`/cancel/${listingID}`);
           });
           rzp.open();
         } else {
@@ -266,8 +301,8 @@ const Book = ({ listingData, listingID }) => {
       .bookingpayment(record)
       .then((res) => {
         if (res) {
-          console.log("res",res)
-          if(res?.data?.status ==true){
+          console.log("res", res);
+          if (res?.data?.status == true) {
             toast.success(res?.data?.message);
             router.push(`/success/${listingID}`);
           }
@@ -419,17 +454,17 @@ const Book = ({ listingData, listingID }) => {
                     </p>
                   </div>
                   <div className="mt-2 mb-2 sm:mb-4 flex">
-                  <input
-  type="tel"
-  id="phone"
-  name="phone"
-  maxLength="10"
-  value={formData.phone}
-  onChange={handleChange}
-  className="mt-1 mr-1 p-4 border rounded-full w-full"
-  placeholder="Enter your mobile number"
-  required
-/>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      maxLength="10"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="mt-1 mr-1 p-4 border rounded-full w-full"
+                      placeholder="Enter your mobile number"
+                      required
+                    />
 
                     {/* <button
                       onClick={() => {
@@ -476,12 +511,16 @@ const Book = ({ listingData, listingID }) => {
             </div>
             <div className="w-5/12  rounded-xl shadow py-8 px-5 h-fit golden-border">
               <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
-              <Image
-  src={listing?.property_image && listing.property_image.length > 0 ? listing.property_image[0].image_url : '/fallback_image_url'}
-  alt="Apartment"
-  width={200}
-  height={200}
-/>
+                <Image
+                  src={
+                    listing?.property_image && listing.property_image.length > 0
+                      ? listing.property_image[0].image_url
+                      : "/fallback_image_url"
+                  }
+                  alt="Apartment"
+                  width={200}
+                  height={200}
+                />
 
                 <div>
                   <h4 className="text-xl mb-1">{listing?.name}</h4>
@@ -491,9 +530,8 @@ const Book = ({ listingData, listingID }) => {
                       <Star />
                     </span>
                     <span>
-                    {listing?.rating} {listing?.
-review ? listing?.
-review + " reviews" : ""}
+                      {listing?.rating}{" "}
+                      {listing?.review ? listing?.review + " reviews" : ""}
                     </span>
                   </span>
                 </div>
@@ -546,16 +584,5 @@ review + " reviews" : ""}
     </AuthLayout>
   );
 };
-export async function getServerSideProps(context) {
-  const { listingID } = context.query;
-  const main = new Listings();
-  const listingData = await main.PropertyDetail(listingID);
-  return {
-    props: {
-      listingData: listingData?.data?.data || null,
-      listingID,
-    },
-  };
-}
 
 export default Book;
