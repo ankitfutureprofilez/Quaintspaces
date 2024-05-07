@@ -1,5 +1,6 @@
 function RadialProgress({ progress }) {
     const dashOffset = ((100 - progress) / 100) * 502.65; 
+    console.log("dashOffset",dashOffset)
 
     return (
         <div className="relative flex items-center justify-center">

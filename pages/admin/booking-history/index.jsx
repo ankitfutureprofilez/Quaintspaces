@@ -194,13 +194,15 @@ export default function index() {
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <td
-                          className={`capitalize inline-flex items-center rounded-full py-3  px-4  text-xs text-white bg-slate-600capitalize inline-flex items-center rounded-full py-3  px-4  text-xs text-white bg-slate-600 ${
+                          className={`capitalize inline-flex items-center rounded-full py-3 px-4 text-xs text-white  ${
                             item?.booking_status === "completed"
-                              ? "bg-slate-600"
+                              ? "bg-green-800"
                               : item?.booking_status === "cancelled"
                               ? "bg-red-600"
                               : item?.booking_status === "confirm"
                               ? "bg-green-600"
+
+                              :item?.booking_status === "pending" ? "bg-slate-600"
                               : "bg-blue-600"
                           }`}
                         >
@@ -234,7 +236,6 @@ export default function index() {
                           }
                           className="capitalize  cursor-pointer text-green-500 flex items-center gap-2 border w-fit rounded-full p-1 px-4 mb-2"
                         >
-                          {loading ? "loading.." : "confirm"}
                           <svg
                             className="text-emerald-500"
                             xmlns="http://www.w3.org/2000/svg"
@@ -248,6 +249,7 @@ export default function index() {
                               fill="currentColor"
                             ></path>
                           </svg>
+                          {loading ? "loading.." : "confirm"}
                         </div>
 
                         <div

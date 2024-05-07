@@ -42,7 +42,7 @@ export default function Index() {
 
 
     useEffect(() => {
-          fetchData(page + 1);
+          fetchData(1);
       }, []);
 
       const loadMore = () => {
@@ -266,7 +266,7 @@ export default function Index() {
                                                                             acceptReview(
                                                                                 item?.user_id,
                                                                                 item?.properties_id,
-                                                                                item.status === 0 ? 1 : ""
+                                                                                item.status === 0 ? 1 : 0
                                                                             )
                                                                         }
                                                                         className="cursor-pointer text-green-500 flex items-center gap-2 w-28 border rounded-full p-2 mb-2 flex justify-center"
@@ -291,7 +291,7 @@ export default function Index() {
                                                                             acceptReview(
                                                                                 item?.user_id,
                                                                                 item?.properties_id,
-                                                                                item.status === 1 ? 0 : ""
+                                                                                item.status === 1 ? 0 : 1
                                                                             )
                                                                         }
                                                                         className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-2 flex justify-center w-28"
