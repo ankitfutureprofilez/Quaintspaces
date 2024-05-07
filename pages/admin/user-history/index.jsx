@@ -8,7 +8,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Index() {
-
   const [popupOpen, setPopupOpen] = useState(null);
   const [selectedRowData, setSelectedRowData] = useState(null);
   const [record, setRecord] = useState([]);
@@ -122,7 +121,11 @@ export default function Index() {
                       width={35}
                       height={35}
                       className="top-2 right-2 p-1 rounded-full"
-                      src={item.image_url ? item.image_url : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"}
+                      src={
+                        item.image_url
+                          ? item.image_url
+                          : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"
+                      }
                       alt={item.index ? item.index : "0"}
                     />
                     <div>
@@ -244,15 +247,20 @@ export default function Index() {
                         </svg>
                       </div>
 
-
                       {/* Dropdown menu */}
                       {popupOpen === item.id && selectedRowData && (
                         <div className="z-10 absolute top-full right-0 mt-1 w-44 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
-                          <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                          <ul
+                            className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                            aria-labelledby="dropdownDefaultButton"
+                          >
                             <li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                               <button
                                 onClick={() =>
-                                  statusUpdate(item.id, item.status === 0 ? 1 : 0)
+                                  statusUpdate(
+                                    item.id,
+                                    item.status === 0 ? 1 : 0
+                                  )
                                 }
                               >
                                 {item.status === 0 ? (
@@ -297,7 +305,12 @@ export default function Index() {
                               </button>
                             </li>
                             <li>
-                              <Link href={`user-history/${item.id}`} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">User Details </Link>
+                              <Link
+                                href={`user-history/${item.id}`}
+                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                              >
+                                User Details{" "}
+                              </Link>
                             </li>
                             {/* <li>
                               <Link href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</Link>
@@ -333,23 +346,25 @@ export default function Index() {
           </div>
         </div>
       )} */}
-      {!loading && !hasmore ? (
-  <div className="flex justify-center">
-    <div className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white">
-      No Data Available
-    </div>
-  </div>
-) : (
-  <div className="flex justify-center">
-    <div
-      className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
-      onClick={loadMore}
-    >
-      Load More
-    </div>
-  </div>
-)}
-
+      {!loading ? ( // If not loading
+        !hasmore ? ( // If hasmore is false
+          <div className="flex justify-center">
+            <div className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white">
+              No Data Available
+            </div>
+          </div>
+        ) : (
+          // If hasmore is true
+          <div className="flex justify-center">
+            <div
+              className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+              onClick={loadMore} // Call loadMore function on click
+            >
+              Load More
+            </div>
+          </div>
+        )
+      ) : null}
     </AdminLayout>
   );
 }

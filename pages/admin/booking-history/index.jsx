@@ -15,9 +15,10 @@ export default function index() {
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const[document,setDocument]=useState();
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
-  const [isCancelOpen, setIsCancelOpen] = useState(false);
+  const [imageOpen, setimageOpen] = useState(false);
 
   const [hasmore, setHasMore] = useState(true);
 
@@ -34,6 +35,14 @@ export default function index() {
     setMessage("");
   };
 
+  const openImageModal = (image) => {
+    setDocument(image);
+    setimageOpen(true);
+  };
+
+  const CloseImageModal = () => {
+    setimageOpen(false);
+  };
   const handleChange = (e) => {
     setMessage(e?.target?.value);
   };
@@ -84,7 +93,6 @@ export default function index() {
       .booking_confirm_cancelled(uuid, id, formdata)
       .then((response) => {
         if (response && response.data && response?.data?.status === true) {
-        
           closeConfirmModal();
           closeCancelModal();
           setMessage("");
@@ -124,7 +132,7 @@ export default function index() {
                     <td className="px-4 py-4 capitalize text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       Stay{" "}
                     </td>
-                    <td className="px-4 py-4 capitalize text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
+                    <td className="px-2 py-4 capitalize text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
                       Amount
                     </td>
                     <td className="px-4 py-4 capitalize  text-sm font-normal bg-black text-left rtl:text-right text-white dark:text-gray-400">
@@ -153,7 +161,9 @@ export default function index() {
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
-                        <Link href={`/property/${item?.booking_property?.uuid}`}>
+                        <Link
+                          href={`/property/${item?.booking_property?.uuid}`}
+                        >
                           <div className="items-center flex gap-2 text-sm p-2 ">
                             <Image
                               width={35}
@@ -194,14 +204,15 @@ export default function index() {
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                         <td
-                          className={`capitalize inline-flex items-center rounded-full py-3 px-4 text-xs text-white  ${
+                          className={`capitalize inline-flex items-center rounded-full py-3 w-max px-4 text-xs text-white  ${
                             item?.booking_status === "completed"
                               ? "bg-green-700"
                               : item?.booking_status === "cancelled"
                               ? "bg-red-600"
                               : item?.booking_status === "confirm"
                               ? "bg-green-600"
-                              :item?.booking_status === "pending" ? "bg-slate-600"
+                              : item?.booking_status === "pending"
+                              ? "bg-slate-600"
                               : "bg-blue-600"
                           }`}
                         >
@@ -210,7 +221,10 @@ export default function index() {
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
-                        <div className="flex items-center">
+                        <div
+                          className="flex items-center"
+                          onClick={() => openImageModal(item?.front_url)}
+                        >
                           <Image
                             width={50}
                             height={50}
@@ -218,6 +232,7 @@ export default function index() {
                             src={item?.front_url || userProfile}
                             alt="Document Image"
                           />
+
                           <div className="capitalize inline-flex items-center rounded-full ml-2">
                             {item?.doc_type}
                           </div>
@@ -233,7 +248,7 @@ export default function index() {
                               "confirm"
                             )
                           }
-                          className="capitalize  cursor-pointer text-green-500 flex items-center gap-2 border w-fit rounded-full p-1 px-4 mb-2"
+                          className="capitalize  cursor-pointer text-green-500 flex items-center gap-2 border w-max rounded-full p-1 px-4 mb-2"
                         >
                           <svg
                             className="text-emerald-500"
@@ -335,6 +350,17 @@ export default function index() {
             >
               {loading ? "loading..." : "Processed"}
             </button>
+          </div>
+        </Modal>
+      )}
+
+      {imageOpen && (
+        <Modal isOpen={openImageModal} onClose={CloseImageModal}>
+          <div className="my-4 mx-4 lg:my-6 flex flex-col">
+            <img
+              src={document}
+              alt="Document Image"
+            />
           </div>
         </Modal>
       )}

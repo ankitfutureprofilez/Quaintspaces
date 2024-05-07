@@ -111,11 +111,11 @@ export default function Index() {
                             </div>
                           </Link>
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 capitalize  ">{item?.method}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 capitalize">{item?.method}</td>
                         <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
 
                           <td
-                            className={` capitalize inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${item?.payment_status === "success"
+                            className={` capitalize inline-flex w-max items-center rounded-full py-2 px-3 text-xs text-white ${item?.payment_status === "success"
                               ? "bg-green-600"
                               : item?.payment_status === "cancelled"
                                 ? "bg-red-600"

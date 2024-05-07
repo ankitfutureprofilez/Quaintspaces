@@ -1,5 +1,5 @@
 import { Book, Diagram } from "iconsax-react";
-import RadialProgress from "../RadialProgress";
+import RadialProgress from "../RadialProgress.jsx";
 import { useEffect, useState } from "react";
 import Listing from "../../api/Listing";
 import Link from "next/link";

@@ -451,3 +451,66 @@ body {
   right: var(--swiper-navigation-sides-offset, 10px);
   left: auto;
 }
+
+/* Radial Progress Bar */
+.radial-progress {
+  width: 120px;
+  height: 120px;
+  position: relative;
+}
+
+.radial-progress .circle {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #ddd;
+  border-radius: 50%;
+}
+
+.radial-progress .circle .mask,
+.radial-progress .circle .fill {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.radial-progress .circle .mask {
+  clip: rect(0, 60px, 120px, 30px);
+}
+
+.radial-progress .circle .fill {
+  clip: rect(0, 30px, 120px, 0);
+  background-color: #007bff;
+}
+
+.radial-progress .circle .mask .fill.fix {
+  clip: rect(0, 120px, 120px, 60px);
+}
+
+.radial-progress .circle .shadow {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #000;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.radial-progress .inset {
+  width: 94px;
+  height: 94px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radial-progress .percentage {
+  font-size: 18px;
+  color: #333;
+}
