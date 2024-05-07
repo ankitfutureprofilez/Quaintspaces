@@ -82,6 +82,7 @@ export default function index() {
       fetchData(page + 1);
     }
   };
+  
 
   const bookingaccept = (uuid, id, bookingStatus) => {
     setLoading(true);
