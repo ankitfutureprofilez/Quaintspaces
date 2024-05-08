@@ -25,6 +25,7 @@ function Reviews() {
         console.log(err);
       });
   }, []);
+  // console.log("setRecord",record)
   return (
     <>
       {loading ? (
@@ -94,7 +95,8 @@ function Reviews() {
                     </div>
                     <p className="flex items-center gap-1 text-xs text-black">
                       <Calendar2 size={12} />
-                      <Dateformat item={item?.updated_at} />
+                      {/* <Dateformat item={item?.updated_at} /> */}
+                      {item?.createdAt}
                     </p>
                   </div>
                 </div>

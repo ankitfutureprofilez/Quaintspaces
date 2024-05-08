@@ -6,6 +6,7 @@ import Nodata from "../hook/NoRecord";
 import Spinner from "../hook/spinner";
 import Link from "next/link";
 import userprofile from "../../../public/admin/userprofile.png"
+import { formatMultiPrice } from "../../../hooks/ValueData";
 
 export default function payment({ record }) {
 
@@ -47,12 +48,12 @@ export default function payment({ record }) {
                 <table className="min-w-[1200px] w-full break-all divide-gray-200 dark:divide-gray-700">
                   <thead className="bg-gray-50 dark:bg-gray-800">
                     <tr >
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Invoice </td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Customer</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Purchase</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Method</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Status</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Amount</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white dark:text-gray-400 capitalize ">Invoice </td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white dark:text-gray-400 capitalize ">Customer</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white dark:text-gray-400 capitalize ">Purchase</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white dark:text-gray-400 capitalize ">Method</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white dark:text-gray-400 capitalize ">Status</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white dark:text-gray-400 capitalize ">Amount</td>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
@@ -116,7 +117,9 @@ export default function payment({ record }) {
 
                         </td>
 
-                        <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">{item?.price}</td>
+                        <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">{
+                        formatMultiPrice(item?.price)
+                        }</td>
 
                       </tr>
                     ))}

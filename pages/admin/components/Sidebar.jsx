@@ -71,11 +71,9 @@ function Sidebar() {
           className="p-4 md:p-6 flex cursor-pointer group items-center gap-2 z-10 h-24"
           onClick={toggleSidebar}
         >
-          <div className="h-10 outline outline-violet-300 w-10 flex items-center bg-gradient-to-br justify-center rounded-full from-violet-500 to-violet-400 text-white">
-            <Triangle
-              size={24}
-              className="relative group-hover:scale-85 duration-200"
-            />
+          <div className="h-10 outline outline-indigo-300 w-10 flex items-center bg-indigo-600 justify-center rounded-full from-indigo-500 to-indigo-400 text-white">
+         
+            QS
           </div>
           <div>
             <h1 className="text-sm font-bold text-gray-800">Admin</h1>
