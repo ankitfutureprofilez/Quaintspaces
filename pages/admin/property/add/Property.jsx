@@ -507,6 +507,7 @@ export default function Property(props) {
                   />
                 </div>
               </div>
+              
             </div>
             <div className={`${step === 3 ? "" : "display-none"}`}>
               <h2 className="text-3xl text-center font-bold mb-8" >Let's start with the basics</h2>
