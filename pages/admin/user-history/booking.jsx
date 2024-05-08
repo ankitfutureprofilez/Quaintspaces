@@ -3,6 +3,8 @@ import Listing from "../api/Listing";
 import Image from "next/image";
 import Nodata from "../hook/NoRecord";
 import Spinner from "../hook/spinner";
+import { formatMultiPrice } from "../../../hooks/ValueData";
+
 
 export default function Booking(props) {
   const { record } = props;
@@ -44,23 +46,23 @@ export default function Booking(props) {
             <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200 dark:divide-gray-700">
               <thead className="bg-gray-50 dark:bg-gray-800">
                 <tr className="">
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">
+                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white dark:text-gray-400">
                     {" "}
                     booking Date
                   </td>
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">
+                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white dark:text-gray-400">
                     booking Number{" "}
                   </td>
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">
+                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white dark:text-gray-400">
                     Check In & Checkout Time{" "}
                   </td>
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">
+                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white dark:text-gray-400">
                     Amount
                   </td>
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">
+                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white dark:text-gray-400">
                     Status
                   </td>
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400">
+                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white dark:text-gray-400">
                     Document Image and Type{" "}
                   </td>
                 </tr>
@@ -81,7 +83,10 @@ export default function Booking(props) {
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
-                        {item?.price}
+                       
+                        { formatMultiPrice(
+                          item?.price
+                        )}
                         <div className="capitalize flex mt-1 ml-auto w-fit items-center rounded-full bg-blue-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
                           {item?.booking_status}
                         </div>
@@ -96,7 +101,7 @@ export default function Booking(props) {
                           width={40}
                           height={40}
                           alt="Document"
-                          className="inline-flex items-center rounded-full user-profile-img"
+                          className="inline-flex items-center rounded-full user-profile-img mr-3"
                           src={item?.front_url}
                         />
                         <div className="capitalize gap-3 inline-flex items-center rounded-full">

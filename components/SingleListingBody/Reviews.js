@@ -94,7 +94,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
         
         </span>
           <span>
-            {data?.review ? <>· <span>{data?.review} reviews</span></> : ''}
+            {data?.review ? <> <span>{data?.review} Review</span></> : ''}
           </span>
       </h1>
 

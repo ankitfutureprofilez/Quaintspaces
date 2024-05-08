@@ -77,7 +77,7 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                   onClick={handleClick}
                 >
                   {listing && listing.data && listing.data.review > 0 ? (
-                    <>{listing.data.review} review</>
+                    <>{listing.data.review} Review</>
                   ) : null}
                 </span>
               </div>

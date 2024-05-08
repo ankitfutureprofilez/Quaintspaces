@@ -410,7 +410,7 @@ const Book = () => {
                       type="file"
                       id="fileUpload"
                       name="fornt"
-                      accept=".pdf,.doc,.docx, .jpg, .png"
+                      accept=".jpg, .png"
                       onChange={handleFileChange}
                       className="mt-1 p-4 border rounded-full w-full"
                       required

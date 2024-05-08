@@ -107,7 +107,7 @@ export default function paymentHistory() {
                     {DateComponent(item?.booking_history?.check_in)}
                   </td>
                   <td className="px-4 py-2 capitalize">{item?.method}</td>
-                  <td className="px-4 py-2 capitalize">{item?.status}</td>
+                  <td className="px-4 py-2 capitalize">{item?.payment_status}</td>
                   <td className="px-4 py-2">{formatMultiPrice(item?.price)}</td>
                 </tr>
               </tbody>
