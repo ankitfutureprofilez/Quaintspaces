@@ -226,19 +226,19 @@ export default function Property(props) {
     }
   };
 
-  useEffect(() => {
-    const isAddressComplete =
-      address.street_address &&
-      address.nearby &&
-      address.district &&
-      address.city &&
-      address.state &&
-      address.pin;
+  // useEffect(() => {
+  //   const isAddressComplete =
+  //     address.street_address &&
+  //     address.nearby &&
+  //     address.district &&
+  //     address.city &&
+  //     address.state &&
+  //     address.pin;
 
-    if (isAddressComplete) {
-      fetchLocation();
-    }
-  }, [address.street_address, address.nearby, address.district, address.city, address.state, address.pin]);
+  //   if (address.street_address) {
+  //     fetchLocation();
+  //   }
+  // }, [address.street_address, address.nearby, address.district, address.city, address.state, address.pin]);
   const [imageproperty, setImagesproperty] = useState(property_image);
 
   const deletePropertyImage = (recordUUID, itemUUID) => {
@@ -442,6 +442,7 @@ export default function Property(props) {
                 </div>
                 <div className="w-full border border-gray-300 rounded-lg overflow-hidden">
                   <input
+             
                     value={address.flat_house}
                     name='flat_house'
                     onChange={handleAddress}
@@ -450,6 +451,7 @@ export default function Property(props) {
                     className="w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
                   />
                   <input
+                       onBlur={fetchLocation}
                     value={address.street_address}
                     name="street_address"
                     onChange={handleAddress}
@@ -458,6 +460,7 @@ export default function Property(props) {
                     className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
                   />
                   <input
+                    onBlur={fetchLocation}
                     value={address.nearby}
                     name="nearby"
                     onChange={handleAddress}
@@ -467,6 +470,7 @@ export default function Property(props) {
                     className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
                   />
                   <input
+                    onBlur={fetchLocation}
                     value={address.district}
                     name="district"
                     onChange={handleAddress}
@@ -475,6 +479,7 @@ export default function Property(props) {
                     className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
                   />
                   <input
+                    onBlur={fetchLocation}
                     value={address.city}
                     name="city"
                     onChange={handleAddress}
@@ -483,6 +488,7 @@ export default function Property(props) {
                     className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
                   />
                   <input
+                    onBlur={fetchLocation}
                     value={address.state}
                     name="state"
                     onChange={handleAddress}
@@ -491,6 +497,7 @@ export default function Property(props) {
                     className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
                   />
                   <input
+                    onBlur={fetchLocation}
                     value={address.pin}
                     name="pin"
                     onChange={handleAddress}
