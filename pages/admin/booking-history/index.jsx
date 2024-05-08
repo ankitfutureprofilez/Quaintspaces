@@ -181,7 +181,7 @@ export default function index() {
                               }
                             />
                             <div>
-                              <div className="text-gray-800 font-medium">
+                              <div className="text-gray-800 font-medium capitalize">
                                 {item?.booking_property?.name
                                   .split(" ")
                                   .slice(0, 7)

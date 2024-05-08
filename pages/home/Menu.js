@@ -41,7 +41,7 @@ export default function Menu() {
                 <div className="space-y-2 flex flex-col flex-1 truncate">
                   <div className="font-medium relative text-xl leading-tight text-gray-900">
                     <span className="flex">
-                      <span className=" relative pr-8">
+                      <span className=" relative pr-8 capitalize">
                         {auth?.first_name}
                         <span
                           aria-label="verified"

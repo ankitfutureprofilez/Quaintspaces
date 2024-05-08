@@ -9,6 +9,8 @@ import Dateformat from "../hook/Dateformat";
 import Nodata from "../hook/NoRecord";
 import userprofile from "../../../public/admin/userprofile.png";
 import Image from "next/image";
+import{ formatMultiPrice }  from "../../../hooks/ValueData"
+
 
 export default function Index() {
   const [loading, setLoading] = useState(true);
@@ -122,13 +124,13 @@ export default function Index() {
                           content.map((item, index) => {
                             return (
                               <tr key={index}>
-                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 w-[5%] ">
                                   {index + 1}
                                 </td>
-                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 w-[10%]">
                                   {item?.createdAt}
                                 </td>
-                                <td className="px-4 py-4 w-[35vh] text-sm text-gray-500 dark:text-gray-300 ">
+                                <td className="px-4 py-4 w-[25%] text-sm text-gray-500 dark:text-gray-300 ">
                                   <div className="flex items-center gap-x-2">
                                     <Image
                                       className="object-cover w-8 h-8 rounded-full user-profile-img"
@@ -142,7 +144,7 @@ export default function Index() {
                                     />
 
                                     <div>
-                                      <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
+                                      <h2 className="text-sm capitalize font-medium text-gray-800 dark:text-white ">
                                         {item?.rating_user?.name}
                                       </h2>
                                       <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
@@ -151,11 +153,11 @@ export default function Index() {
                                     </div>
                                   </div>
                                 </td>
-                                <td className="break-after-auto px-4 py-4 text-sm text-gray-500 dark:text-gray-300 w-[25%] ">
+                                <td className="break-after-auto capitalize px-4 py-4 text-sm text-gray-500 dark:text-gray-300 w-[25%] ">
                                   {item?.review_text}
                                 </td>
 
-                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 w-[25%] ">
                                   <div className="flex items-center gap-x-2">
                                     <Link
                                       href={`/property/${item?.get_property_review?.uuid}`}
@@ -173,11 +175,13 @@ export default function Index() {
                                       />
 
                                       <div>
-                                        <h2 className="capitalize text-sm font-medium text-gray-800 dark:text-white ">
+                                        <h2 className="capitalize capitalize text-sm font-medium text-gray-800 dark:text-white ">
                                           {item?.get_property_review?.name}
                                         </h2>
                                         <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
-                                          {item?.get_property_review?.price}
+                                          {
+                                          formatMultiPrice( item?.get_property_review?.price)
+                                         }
                                         </p>
                                       </div>
                                     </Link>

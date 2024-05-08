@@ -77,7 +77,7 @@ function Reviews() {
                 {/* <button className='w-4 shrink-0 mt-1 h-4 border-2 border-gray-300 rounded-full' /> */}
                 <Image src={item?.rating_user?.image_url} alt='company' height={32} width={32} />
                 <div className="w-full space-y-1">
-                  <p className="text-sm text-black font-medium">
+                  <p className="text-sm text-black font-medium capitalize">
                     {item?.rating_user?.name}
                   </p>
                   <p className="text-xs text-black line-limit leading-relaxed">

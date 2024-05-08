@@ -87,8 +87,8 @@ export default function Index() {
                                 alt="User Image"
                               />
                               <div>
-                                <div className="text-gray-800 font-medium">{item?.booking_history?.booking_user[0]?.name}</div>
-                                <div className="text-sm">{item?.booking_history?.booking_user[0]?.email}</div>
+                                <div className="text-gray-800 font-medium capitalize ">{item?.booking_history?.booking_user[0]?.name}</div>
+                                <div className="text-sm ">{item?.booking_history?.booking_user[0]?.email}</div>
                               </div>
                             </div>
                           </Link>
