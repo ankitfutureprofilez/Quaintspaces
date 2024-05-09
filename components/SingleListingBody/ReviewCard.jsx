@@ -5,7 +5,6 @@ import StartRating from "../../pages/elements/StartRating";
 
 const ReviewCard = ({ data }) => {
   const date = new Date(data?.created_at);
-  // console.log("date",date)
   // let reviewtime=""
   // reviewtime+= date.getMonth() + 1; // getMonth() returns zero-based month (0-11), so we add 1
   // reviewtime+=" ,"+ date.getFullYear();

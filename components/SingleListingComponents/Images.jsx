@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 import Image from "next/image";
 
 const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
-  // console.log("lisitng",listing)
   return (
     <div className="flex flex-wrap sm:flex-nowrap gap-2 w-full h-full">
       {loading ? (

@@ -58,7 +58,6 @@ export default function index() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log("Form submitted:", formData);
     if (loading == true) {
       return;
     }
@@ -73,9 +72,7 @@ export default function index() {
       .then((res) => {
         if (res && res?.data && res?.data?.status) {
           toast.success(res?.data?.message);
-          // console.log("res",res)
           router.push("/");
-          // console.log(res.data.message)
           setFormData({
             new_password: "",
             confirm_password: "",
@@ -83,7 +80,6 @@ export default function index() {
           });
         } else {
           toast.error(res?.data?.message);
-          // console.log(res?.data.message)
           setLoading(false);
         }
       })

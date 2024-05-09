@@ -116,33 +116,31 @@ export default function Index() {
                       <tr>
                         <th
                           scope="col"
-                          className="px-4 py-3.5 text-sm font-normal text-left text-white"
-                          style={{ width: "5%" }} // Adjusted width for S.No column
+                          className="px-4 py-3.5 text-sm font-normal whitespace-nowrap text-left text-white"
                         >
                           S.No
                         </th>
                         <th
                           scope="col"
-                          style={{ width: "25%" }} // Adjusted width for Message Date column
-                          className="px-4 py-3.5 text-sm font-normal text-left text-white"
+                          className="px-4 py-3.5 text-sm whitespace-nowrap font-normal text-left text-white"
                         >
                           Message Date
                         </th>
                         <th
                           scope="col"
-                          className="px-4 py-3.5 text-sm font-normal text-left text-white"
+                          className="px-4 py-3.5 text-sm whitespace-nowrap font-normal text-left text-white"
                         >
                           User
                         </th>
                         <th
                           scope="col"
-                          className="min-w-[30%] px-4 py-3.5 text-sm font-normal text-left text-white" // Adjusted width for Message column
+                          className="min-w-[30%] px-4 py-3.5 whitespace-nowrap text-sm font-normal text-left text-white" // Adjusted width for Message column
                         >
                           Message
                         </th>
                         <th
                           scope="col"
-                          className="min-w-[30%] px-4 py-3.5 text-sm font-normal text-left text-white" // Adjusted width for Reply Message column
+                          className="min-w-[30%] px-4 py-3.5 whitespace-nowrap text-sm font-normal text-left text-white" // Adjusted width for Reply Message column
                         >
                           Reply Message
                         </th>
@@ -163,7 +161,7 @@ export default function Index() {
                               <div className="text-gray-800 font-medium capitalize">
                                 {item?.name}
                               </div>
-                              <div className="text-sm capitalize">{item?.email}</div>
+                              <div className="text-sm">{item?.email}</div>
                             </td>
                             <td className="px-4 py-4 text-sm text-gray-500">
                               {item?.message}

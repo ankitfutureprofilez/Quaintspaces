@@ -13,7 +13,6 @@ export default function Popup({
   text,
   footer,
 }) {
-  // console.log("isOpen", isOpen);
 
   const { setOpenLogin } = useContext(Context);
   const cancelButtonRef = useRef(null);

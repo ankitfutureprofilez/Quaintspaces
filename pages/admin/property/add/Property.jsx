@@ -24,7 +24,6 @@ export default function Property(props) {
 
   const { isEdit, p, onClose, fetchProperties } = props;
   const { uuid, location, children, adults, properties_type, name, no_of_pet_allowed, price, description, bedrooms, beds, bathrooms, amenities, property_image } = p ? p : {};
-  // console.log("p", props.p);
 
 
   const router = useRouter();
@@ -36,6 +35,7 @@ export default function Property(props) {
   }
 
   const [images, setImages] = useState([]);
+  console.log("oimagew",images)
   const [PType, setPType] = useState(properties_type || "flat");
 
 
@@ -56,7 +56,6 @@ export default function Property(props) {
     longitude: l && l.longitude ? l.longitude : "",
   });
 
-  // console.log("address", address)
 
   const handleAddress = (e) => {
     const { name, value } = e.target;
@@ -80,7 +79,6 @@ export default function Property(props) {
     free_cancel_time: ""
   });
 
-  // console.log("item", item)
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setItem({ ...item, [name]: value });
@@ -96,7 +94,6 @@ export default function Property(props) {
     });
     setImages([...images, ...arr]);
 
-    // console.log("[...images, ...arr]", [...images, ...arr])
 
   };
 
@@ -160,7 +157,6 @@ export default function Property(props) {
     }
   };
 
-  // console.log("locationupdate", locationupdate)
 
 
 
@@ -256,7 +252,6 @@ export default function Property(props) {
 
 
   async function handleSubmit(e) {
-    // console.log("item", { ...item, address, propertytype: PType, images });
     e.preventDefault();
     if (!isEdit && step === 5 && images?.length < 5) {
       toast.error("Please select at least five images.");
@@ -312,7 +307,6 @@ export default function Property(props) {
   };
 
   useEffect(() => {
-    // console.log("images", images)
   }, [images])
 
   return (
@@ -789,7 +783,7 @@ export default function Property(props) {
                 <button
                 type="button"
                 onClick={prevStep}
-                className="inline-flex justify-center items-center h-10 py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
               >
                 Back
               </button>

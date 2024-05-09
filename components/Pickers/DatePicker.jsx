@@ -62,7 +62,6 @@ const DatePicker = ({
 
   useEffect(() => {
     if (selectedDay === null && selectEnd === null) {
-      console.log("Both selectedDay and selectEnd are null.");
     }
   }, [selectedDay, selectEnd]);
   

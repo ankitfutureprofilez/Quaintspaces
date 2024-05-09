@@ -49,4 +49,3 @@
 // ];
 
 // const res = d.map((post, i) => ({ ...post, location: locations[i] }));
-// console.log(res);

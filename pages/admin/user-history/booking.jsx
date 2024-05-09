@@ -8,7 +8,6 @@ import { formatMultiPrice } from "../../../hooks/ValueData";
 
 export default function Booking(props) {
   const { record } = props;
-  // console.log("record",record)
 
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
@@ -20,7 +19,6 @@ export default function Booking(props) {
     response
       .then((res) => {
         setLoading(false);
-        // console.log("res", res);
         setContent(res?.data?.data?.user_booking_history);
       })
       .catch((error) => {

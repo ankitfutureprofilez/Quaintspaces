@@ -23,7 +23,6 @@ const ForgotPassword = () => {
   };
   const handleSubmit1 = (e) => {
     e.preventDefault();
-    // console.log("Form submitted:", formData1);
     if(loading==true){return;}
     setLoading(true);
     const main = new Listings();
@@ -65,7 +64,6 @@ const ForgotPassword = () => {
   };
   const handleSubmit2 = (e) => {
     e.preventDefault();
-    // console.log("Form submitted:", formData2);
     if(loading==true){return;}
     setLoading(true);
     const main = new Listings();
@@ -110,7 +108,6 @@ const ForgotPassword = () => {
   };
   const handleSubmit3 = (e) => {
     e.preventDefault();
-    // console.log("Form submitted:", formData3);
     if(loading==true){return;}
     setLoading(true);
     const main = new Listings();

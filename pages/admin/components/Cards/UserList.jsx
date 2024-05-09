@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Listing from "../../api/Listing";
 
-function UserList() {
+function UserList({totaluser}) {
   const [record, setRecord] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -34,7 +34,7 @@ function UserList() {
       <div className="flex items-center justify-between">
         <div className="flex items-center text-sm gap-2">
           <MagicStar size={18} />
-          <p className="text-gray-800 font-medium">Top Booking Users</p>
+          <p className="text-gray-800 font-medium">Top Booking Users({totaluser})</p>
         </div>
         <Link
           href="/admin/user-history"
@@ -61,8 +61,8 @@ function UserList() {
                       : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
                   }
                   alt="profile-image for user"
-                  height={36}
-                  width={36}
+                  height={30}
+                  width={30}
                   className="rounded-full"
                 />
                 <div className="font-medium">

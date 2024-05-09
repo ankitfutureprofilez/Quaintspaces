@@ -92,7 +92,6 @@ const Book = () => {
     }
   }, [infos.checkout, infos.checkin, listing]);
 
-  // console.log("infos",infos)
   const [guests, setGuests] = useState({
     adults: {
       value: +infos.adults || 0,
@@ -143,7 +142,6 @@ const Book = () => {
     });
   }, [router.asPath]);
 
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -153,12 +151,36 @@ const Book = () => {
   };
 
   const handleFileChange = (e) => {
+    const imageFormats = [
+      "jpg",
+      "jpeg",
+      "png",
+      "gif",
+      "bmp",
+      "tif",
+      "tiff",
+      "svg",
+      "webp",
+      "avif",
+    ];
     const formData = e.target.files[0];
-    setFormData((prevState) => ({
-      ...prevState,
-      fornt: formData,
-    }));
+    console.log("formData", formData);
+    const type=formData.type?.split('/');
+    console.log("type",type)
+    if(imageFormats.includes(type[1])){
+      console.log("Hello")
+      setFormData((prevState) => ({
+        ...prevState,
+        fornt: formData,
+      }));
+    }
+    else{
+      console.log("Hi")
+      toast.error("Invalid Image type! Only jpg, svg, png, avif are accepted")
+    }
   };
+
+  console.log()
 
   useEffect(() => {
     if (infos.checkout && infos.checkin && listing) {
@@ -211,16 +233,22 @@ const Book = () => {
       toast.error("Invalid Phone Number");
       return;
     }
-    if(infos?.numberOfAdults>listing?.adults){
-      toast.error(`Number of adults exceeds the allowed limit ${listing?.adults}` )
+    if (infos?.numberOfAdults > listing?.adults) {
+      toast.error(
+        `Number of adults exceeds the allowed limit ${listing?.adults}`
+      );
       return;
     }
-    if(infos?.numberOfChildren>listing?.children){
-      toast.error(`Number of children exceeds the allowed limit ${listing?.children}` )
+    if (infos?.numberOfChildren > listing?.children) {
+      toast.error(
+        `Number of children exceeds the allowed limit ${listing?.children}`
+      );
       return;
     }
-    if(infos?.numberOfPets>listing?.no_of_pet_allowed){
-      toast.error(`Number of pets exceeds the allowed limit ${listing?.no_of_pet_allowed}` )
+    if (infos?.numberOfPets > listing?.no_of_pet_allowed) {
+      toast.error(
+        `Number of pets exceeds the allowed limit ${listing?.no_of_pet_allowed}`
+      );
       return;
     }
     if (loading) return;
@@ -287,6 +315,7 @@ const Book = () => {
       .finally(() => setLoading(false));
   };
 
+  console.log("formData",formData)
   const paymentsubmit = (orderId) => {
     // Receive orderId as a parameter
     const main = new Listings();
@@ -410,7 +439,7 @@ const Book = () => {
                       type="file"
                       id="fileUpload"
                       name="fornt"
-                      accept=".jpg, .png"
+                      accept=".jpg, .jpeg, .png, .gif, .bmp, .tif, .tiff, .svg, .webp, .avif"
                       onChange={handleFileChange}
                       className="mt-1 p-4 border rounded-full w-full"
                       required
@@ -535,7 +564,9 @@ const Book = () => {
 
                 <div>
                   <h4 className="text-xl mb-1 capitalize">{listing?.name}</h4>
-                  <h3 className=" text-lg capitalize">{listing?.type?.replace("_" ," ")}</h3>
+                  <h3 className=" text-lg capitalize">
+                    {listing?.type?.replace("_", " ")}
+                  </h3>
                   <span className="flex text-sm items-center gap-1">
                     <span>
                       <Star />

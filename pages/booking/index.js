@@ -46,11 +46,9 @@ export default function Index() {
   const [hasmore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
 
-  console.log("selectedButton",selectedButton)
   const fetching = async (pg) => {
       setLoading(true);
       let url = "";
-      console.log("url",url)
     if (selectedOption === "All Dates") {
     } else if (selectedOption === "Last 30 Days") {
       url += "booking_time=thirty-day&";
@@ -107,7 +105,6 @@ export default function Index() {
     }
   };
 
-  console.log("selectedOption",selectedOption)
 
   const BookingTable = () => {
     return (

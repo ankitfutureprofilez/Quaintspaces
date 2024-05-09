@@ -45,7 +45,7 @@ function CurrentProject() {
               <p className="text-gray-800 font-medium">Payments</p>
             </div>
             <Link
-              href="/admin/property"
+              href="/admin/payment-history"
               className="border px-2 py-1 rounded-lg text-xs"
             >
               See all
@@ -62,10 +62,10 @@ function CurrentProject() {
                     <div>
                       <div className="flex items-center gap-2">
                         <Image
-                          src={item?.userImage || Avatar4}
+                          src={item?.userImage || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
                           alt="loom"
-                          height={36}
-                          width={36}
+                          height={30}
+                          width={30}
                           className="rounded-full"
                         />
                         <div className="font-medium">
@@ -75,7 +75,7 @@ function CurrentProject() {
                             </p>
                           </div>
                           <p className="text-xs text-gray-600">
-                            ({item?.payment_id}){" "}
+                            {item?.propertyName}{" "}
                           </p>
 
                           <p className="text-xs text-gray-500">
