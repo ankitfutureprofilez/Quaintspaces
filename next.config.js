@@ -36,16 +36,6 @@ const nextConfig = {
     },
   };
 
-  module.exports = {
-    async exportPathMap(defaultPathMap) {
-      return {
-        '/': { page: '/' },
-        '/apartments': { page: '/apartments' },
-        '/404': { page: '/404' }, 
-        ...defaultPathMap,
-      };
-      
-    },
-  };
+
   
   
