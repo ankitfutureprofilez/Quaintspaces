@@ -127,20 +127,20 @@ export default function Index() {
         <div className="w-full ">
           <table className="w-full text-sm rounded-md">
             <thead>
-              <tr className="bg-gray-100 rounded-lg flex items-center bg-indigo-600 text-white justify-between text-gray-500">
-                <th className="px-4 py-4 text-sm font-normal text-left w-[10vh] rtl:text-right bg-indigo-600 text-white capitalize">
+              <tr className="bg-gray-100 rounded-lg items-center bg-indigo-600 text-white justify-between text-gray-500">
+                <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
                   <p>S.No.</p>
                 </th>
-                <th className="px-4 py-4 text-sm font-normal text-left w-[40vh] rtl:text-right bg-indigo-600 text-white capitalize">
+                <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
                   <p>Name</p>
                 </th>
-                <th className="px-4 py-4 text-sm font-normal text-left w-[20vh] rtl:text-right bg-indigo-600 text-white capitalize">
+                <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
                   <p>Phone Number</p>
                 </th>
-                <th className="px-4 py-4 text-sm font-normal text-left w-[10vh] rtl:text-right bg-indigo-600 text-white capitalize">
+                <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
                   <p>Status</p>
                 </th>
-                <th className="px-4 py-4 text-sm font-normal text-left w-[10vh] rtl:text-right bg-indigo-600 text-white capitalize">
+                <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
                   <p>Details</p>
                 </th>
               </tr>
@@ -150,12 +150,12 @@ export default function Index() {
               {record.map((item, index) => (
                 <tr
                   key={index}
-                  className="hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700 !mt-0"
+                  className="hover:bg-gray-100  items-center justify-between duration-150 text-gray-700 !mt-0"
                 >
-                  <td className="px-4 py-4 text-sm text-gray-500 w-[10vh] ">
+                  <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
                     {index + 1}
                   </td>
-                  <td className="flex gap-2 items-center text-sm p-2 w-[40vh]">
+                  <td className="flex gap-2 py-4 items-center text-sm px-2 whitespace-nowrap">
                     <Image
                       width={35}
                       height={35}
@@ -174,10 +174,10 @@ export default function Index() {
                       <div className="text-sm">{item.email}</div>
                     </div>
                   </td>
-                  <td className="px-4 py-4 text-sm text-gray-500 w-[20vh] ">
-                    {item.phone_no ? item.phone_no : ""}
+                  <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
+                    {item.phone_no ? item.phone_no : "-"}
                   </td>
-                  <td className="px-4 py-4 text-sm text-gray-500 w-[10vh] ">
+                  <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
                     <div className="flex items-center gap-1 p-1">
                       <button
                         onClick={() =>
@@ -226,7 +226,7 @@ export default function Index() {
                       </button>
                     </div>
                   </td>
-                  <td className="px-4 py-4 text-sm text-gray-500 w-[10vh]">
+                  <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
                     <div className="relative">
                       <div
                         onClick={() => handleRowClick(item.id)}
@@ -351,7 +351,7 @@ export default function Index() {
                                 User Detail{" "}
                               </Link>
                             </li>
-                            <li>
+                            {/* <li>
                               <button
                                 className="block px-4 py-2 hover:bg-gray-100"
                                 onClick={() => openModal(item?.id)}
@@ -374,6 +374,14 @@ export default function Index() {
                                     ></path>
                                   </svg>
                                 </div>
+                              </button>
+                            </li> */}
+                            <li>
+                              <button
+                                 onClick={() => openModal(item?.id)}
+                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                              >
+                                Delete Account{" "}
                               </button>
                             </li>
                           </ul>

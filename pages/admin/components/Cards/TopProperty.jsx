@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import Listing from "../../api/Listing";
 import { formatMultiPrice } from "../../../../hooks/ValueData";
 
-function StatusTracker() {
+function StatusTracker({property_count}) {
   const [propertylist, setPropertylist] = useState([]);
   const [proerty_count, setPropertyCount] = useState("");
   const [loading, setLoading] = useState(true);
@@ -36,7 +36,7 @@ function StatusTracker() {
             <div className="flex items-center text-sm gap-2">
               <House size={18} />
               <p className="text-gray-800 font-medium">
-                Total Properties - {proerty_count}
+                Top Properties({property_count})
               </p>
             </div>
             <Link
@@ -65,8 +65,8 @@ function StatusTracker() {
                               : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
                           }
                           alt="loom"
-                          height={36}
-                          width={36}
+                          height={30}
+                          width={30}
                           className="rounded-full"
                         />
                         <div className="font-medium">
@@ -75,7 +75,7 @@ function StatusTracker() {
                               {item?.name}
                             </p>
                             <p className="text-sm text-gray-600 capitalize  line-limit leading-relaxed">
-                              {item?.description}
+                              {item?.location}
                             </p>
                             {/* <p className='text-xs text-gray-500 capitalize'> {formatMultiPrice(item?.price)}</p> */}
                           </Link>

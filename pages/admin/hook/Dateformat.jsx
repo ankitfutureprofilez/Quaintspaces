@@ -1,19 +1,14 @@
 import React from 'react';
 import Moment from 'moment';
 
-const DateComponent = ( item ) => {
-  const formattedDateString = item ? Moment(item).format('YYYY-MMM-DD') : '';
-  const [year, month, day] = formattedDateString.split('-');
+const DateComponent = ({ item }) => {
+  const formattedDateString = item ? Moment(item).format('D MMMM YYYY') : '';
 
   return (
     <div>
-      {day}&nbsp;
-      {month}&nbsp;
-   {year}
+      {formattedDateString}
     </div>
   );
 };
 
 export default DateComponent;
-
-

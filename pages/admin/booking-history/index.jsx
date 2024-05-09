@@ -121,28 +121,28 @@ export default function index() {
             <table className="min-w-[1200px] w-full divide-gray-200 dark:divide-gray-700">
               <thead className="bg-gray-50 dark:bg-gray-800">
                 <tr>
-                  <th className="px-4 py-4 capitalize text-sm font-normal w-1/12 bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
                     S.No.
                   </th>
-                  <th className="px-4 py-4 capitalize text-sm font-normal w-2/12 bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
                     Booking Date
                   </th>
-                  <th className="px-4 py-4 capitalize text-sm font-normal w-3/12 bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
                     Booking Number
                   </th>
-                  <th className="px-4 py-4 capitalize text-sm font-normal w-4/12 bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
                     Stay
                   </th>
-                  <th className="px-2 py-4 capitalize text-sm font-normal w-1/12 bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-2 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
                     Amount
                   </th>
-                  <th className="px-4 py-4 capitalize text-sm font-normal w-1/12 bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
                     Status
                   </th>
-                  <th className="px-4 py-4 capitalize text-sm font-normal w-1/12 bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
                     Document & its Type
                   </th>
-                  <th className="px-4 py-4 capitalize text-sm font-normal w-1/12 bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
                     Action
                   </th>
                 </tr>
@@ -221,19 +221,12 @@ export default function index() {
                     <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                     <div
               style={{cursor:"pointer"}}
-                className="flex items-center"
+                className="flex items-center "
                 onClick={() => openImageModal(item?.front_url)}
               >
-                <Image
-                  width={50}
-                  height={50}
-                  className="capitalize inline-flex items-center rounded-full ml-2 user-profile-img"
-                  src={item?.front_url || userProfile}
-                  alt="Document Image"
-                />
-
                 <div className="capitalize inline-flex items-center rounded-full ml-2">
                   {item?.doc_type}
+                <span className="text-base ml-1">🛈</span>
                 </div>
               </div>
                     </td>
@@ -315,7 +308,7 @@ export default function index() {
       </div>
       
       ) : (
-        <Nodata text={"No Booking "} />
+        <Nodata heading={"No Booking"} />
       )}
 
       {selectedBooking && (
