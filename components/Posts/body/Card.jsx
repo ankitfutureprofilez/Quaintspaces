@@ -36,7 +36,7 @@ const Card = ({ post }) => {
 
   return (
     <div className="banipark-box rounded-lg">
-      <Link className="block" href={`/property/${post?.uuid}`}>
+      <Link className="block" href={`/ap/${post?.uuid}`}>
         <Image
           width={100}
           height={300}
