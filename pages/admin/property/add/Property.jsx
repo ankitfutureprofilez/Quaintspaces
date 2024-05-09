@@ -682,17 +682,20 @@ export default function Property(props) {
                         color="#ccc"
                       />
                       <p className="mb-2 text-lg text-gray-500 text-gray-400">
-                        <span className="font-semibold">Click to upload</span> or
-                        drag and drop
+                        <span className="font-semibold">Click to upload</span>
                       </p>
                       <p className="text-normal text-gray-500 text-gray-400">
                         Choose atleast 5 images
+                      </p>
+                      <p className="text-normal text-gray-500 text-gray-400">
+                      (jpg, jpeg, png, gif, bmp, tif, tiff, svg, webp, avif)
                       </p>
                     </div>
                     <input
                       id="dropzone-file"
                       type="file"
                       className="hidden"
+                      accept=".jpg, .jpeg, .png, .gif, .bmp, .tif, .tiff, .svg, .webp, .avif"
                       onChange={handleFileChange}
                       name="images"
                       required
@@ -712,17 +715,20 @@ export default function Property(props) {
                         color="#ccc"
                       />
                       <p className="mb-2 text-lg text-gray-500 text-gray-400">
-                        <span className="font-semibold">Click to upload</span> or
-                        drag and drop
+                        <span className="font-semibold">Click to upload</span>
                       </p>
                       <p className="text-normal text-gray-500 text-gray-400">
                         Choose atleast 5 images
+                      </p>
+                      <p className="text-normal text-gray-500 text-gray-400">
+                      (jpg, jpeg, png, gif, bmp, tif, tiff, svg, webp, avif)
                       </p>
                     </div>
                     <input
                       id="dropzone-file"
                       type="file"
                       className="hidden"
+                      accept=".jpg, .jpeg, .png, .gif, .bmp, .tif, .tiff, .svg, .webp, .avif"
                       onChange={handleFileChange}
                       name="images"
                       required

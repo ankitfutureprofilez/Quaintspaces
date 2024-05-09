@@ -164,18 +164,14 @@ const Book = () => {
       "avif",
     ];
     const formData = e.target.files[0];
-    console.log("formData", formData);
     const type=formData.type?.split('/');
-    console.log("type",type)
     if(imageFormats.includes(type[1])){
-      console.log("Hello")
       setFormData((prevState) => ({
         ...prevState,
         fornt: formData,
       }));
     }
     else{
-      console.log("Hi")
       toast.error("Invalid Image type! Only jpg, svg, png, avif are accepted")
     }
   };
