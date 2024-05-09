@@ -21,6 +21,7 @@ module.exports = {
   ...nextConfig,
   async headers() {
     return [
+      
       {
         source: "/api/:path*",
         headers: [
