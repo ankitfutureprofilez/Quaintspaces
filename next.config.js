@@ -44,6 +44,7 @@ const nextConfig = {
         '/404': { page: '/404' }, 
         ...defaultPathMap,
       };
+      
     },
   };
   
