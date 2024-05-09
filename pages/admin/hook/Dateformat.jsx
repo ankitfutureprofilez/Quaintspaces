@@ -3,7 +3,6 @@ import Moment from 'moment';
 
 const DateComponent = ( item ) => {
   const formattedDateString = item ? Moment(item).format('YYYY-MMM-DD') : '';
-//  console.log("formattedDateString",formattedDateString)
   const [year, month, day] = formattedDateString.split('-');
 
   return (

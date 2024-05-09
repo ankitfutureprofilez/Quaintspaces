@@ -20,7 +20,6 @@ const [loading, setLoading] = useState(true);
     const response = main.Top3Bookings(activeTab);
     response
       .then((res) => {
-        console.log("res",res)
         setRecord(res?.data?.data);
         SetbookingCount(res?.data?.booking_count)
         setLoading(false);

@@ -13,7 +13,6 @@ export default function index() {
   const router = useRouter();
 
   const handleClick = () => {
-    // console.log("Logout Function")
     localStorage && localStorage.removeItem("token");
     setAuth(null);
     toast.success("Logout Successfully !!");

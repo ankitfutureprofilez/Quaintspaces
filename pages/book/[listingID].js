@@ -92,7 +92,6 @@ const Book = () => {
     }
   }, [infos.checkout, infos.checkin, listing]);
 
-  // console.log("infos",infos)
   const [guests, setGuests] = useState({
     adults: {
       value: +infos.adults || 0,

@@ -28,7 +28,6 @@ export default function payment({ record }) {
         console.log("error", error);
       });
   }, []);
-  console.log("content", content)
   return (
 
     <>

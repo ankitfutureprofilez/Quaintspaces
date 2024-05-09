@@ -16,7 +16,6 @@ export default function index() {
 
     const handleSortChange = (value) => {
       setSortBy(value);
-      // console.log(value);
       setIsOpen(false); // Close the dropdown after selecting an option
     };
 

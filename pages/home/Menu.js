@@ -9,7 +9,6 @@ import SecurityIcon from "../../public/icons/SecurityIcon";
 export default function Menu() {
   const { setAuth, auth } = useContext(Context);
   const router = useRouter();
-  // console.log("auth",auth);
 
   const handleLogoutClick = () => {
     localStorage && localStorage.removeItem("token");

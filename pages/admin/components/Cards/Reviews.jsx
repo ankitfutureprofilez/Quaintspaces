@@ -25,7 +25,6 @@ function Reviews() {
         console.log(err);
       });
   }, []);
-  // console.log("setRecord",record)
   return (
     <>
       {loading ? (
