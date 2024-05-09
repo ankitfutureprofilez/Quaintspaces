@@ -10,8 +10,8 @@ import Layout from "../layout/Layout.js";
 import ThingsToKnow from "./ThingsToKnow.js";
 import Listings from "../api/laravel/Listings.js";
 import Heading from "../elements/Heading.js";
-
-const Listing = ({listingData,listingID}) => {
+// {listingData,listingID}
+const Listing = () => {
   const router = useRouter();
   const { slug } = router.query;
   const { wishlist, setWishlist } = useContext(Context);
@@ -22,8 +22,8 @@ const Listing = ({listingData,listingID}) => {
   const [record, setrecord] = useState({
     loading: true,
     data: {},
-    listingData
   });
+  // listingData
 
   useEffect(() => {
     if (slug) {
@@ -48,11 +48,11 @@ const Listing = ({listingData,listingID}) => {
     }
   }, [slug]);
 
-  useEffect(() => {
-    if (listingData) {
-      setrecord(listingData);
-    }
-  }, [listingData]);
+  // useEffect(() => {
+  //   if (listingData) {
+  //     setrecord(listingData);
+  //   }
+  // }, [listingData]);
 
   return (
     <>
@@ -93,14 +93,14 @@ const Listing = ({listingData,listingID}) => {
 
 export default Listing;
 
-export async function getServerSideProps(context) {
-  const { listingID } = context.query;
-  const main = new Listings();
-  const listingData = await main.PropertyDetail(listingID);
-  return {
-    props: {
-      listingData: listingData?.data?.data || null,
-      listingID,
-    },
-  };
-}
+// export async function getServerSideProps(context) {
+//   const { listingID } = context.query;
+//   const main = new Listings();
+//   const listingData = await main.PropertyDetail(listingID);
+//   return {
+//     props: {
+//       listingData: listingData?.data?.data || null,
+//       listingID,
+//     },
+//   };
+// }
