@@ -4,8 +4,21 @@
     { "src": "next.config.js", "use": "@vercel/next" }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    { "source": "/", "destination": "/" }
   ],
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/404",
+      "dest": "/404.jsx"
+    },
+    {
+      "src": "/",
+      "dest": "/"
+    }
+  ]
 }
