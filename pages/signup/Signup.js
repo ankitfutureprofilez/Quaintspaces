@@ -105,7 +105,9 @@ export default function Signup() {
               <div className="quainttay">
                 <h2>Welcome to Quaint Stay Jaipur </h2>
                 <h3>
-                  Already have an account? <Link href="/login">Login</Link>
+                  Already have an account? <Link 
+                  className="underline"
+                  href="/login">Login</Link>
                 </h3>
               </div>
 

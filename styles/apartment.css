@@ -414,15 +414,18 @@ body {
   height: 100%;
 }
 
+:root {
+  --swiper-navigation-size: 29px !important;
+}
+
 .swiper-slide {
-  text-align: center;
+  text-align: left;
   font-size: 18px;
   background: #fff;
-
   /* Center slide text vertically */
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
 }
 
 .swiper-slide img {
@@ -435,9 +438,9 @@ body {
 .swiper-button-next,
 .swiper-rtl .swiper-button-prev {
   color: white !important;
-  padding: 33px !important ;
-  border-radius: 50px !important ;
-  background: #dcac81 !important ;
+  padding: 25px !important;
+  border-radius: 41px !important;
+  background: #dcac81 !important;
   right: var(--swiper-navigation-sides-offset, 10px);
   left: auto;
 }
@@ -445,8 +448,8 @@ body {
 .swiper-button-prev,
 .swiper-rtl .swiper-button-prev {
   color: white !important;
-  padding: 33px !important ;
-  border-radius: 50px !important ;
+  padding: 25px !important ;
+  border-radius: 41px !important ;
   background: #dcac81 !important ;
   right: var(--swiper-navigation-sides-offset, 10px);
   left: auto;
@@ -513,4 +516,7 @@ body {
 .radial-progress .percentage {
   font-size: 18px;
   color: #333;
+}
+.text-theme{
+  color:#c48b58 !important;
 }
