@@ -541,7 +541,7 @@ const Book = () => {
                 />
               </div>
             </div>
-            <div className="w-12/12  rounded-xl shadow py-8 px-5 h-fit golden-border">
+            <div className="w-4/12  rounded-xl shadow py-8 px-5 h-fit golden-border">
               <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
                 <Image
                   src={
