@@ -32,10 +32,6 @@ const Book = () => {
   const [dateModel, setDateModel] = useState(false);
   const [guestsModel, setGuestsModel] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [numberField, setNumberField] = useState(false);
-  const [hasAddedNumber, setHasAddedNumber] = useState(false);
-  const [messageField, setMessageField] = useState(false);
-  const [hasAddedMessage, setHasAddedMessage] = useState(false);
   const [pricerate, setPriceRate] = useState(0);
   const [orderId, setOrderId] = useState("");
 
@@ -95,20 +91,22 @@ const Book = () => {
   const [guests, setGuests] = useState({
     adults: {
       value: +infos.adults || 0,
-      max: 5,
+      max: 10,
       min: 0,
     },
     children: {
       value: +infos.children || 0,
-      max: 5,
+      max: 10,
       min: 0,
     },
     pets: {
       value: +infos.pets || 0,
-      max: 5,
+      max: 10,
       min: 0,
     },
   });
+  console.log("infos",infos)
+  console.log("guests",guests)
 
   useEffect(() => {
     const url = router.query;
@@ -126,17 +124,17 @@ const Book = () => {
     setGuests({
       adults: {
         value: +url.numberOfAdults || 0,
-        max: listing?.adults || 5,
+        max: listing?.adults || 10,
         min: 0,
       },
       children: {
         value: +url.numberOfChildren || 0,
-        max: listing?.children || 5,
+        max: listing?.children || 10,
         min: 0,
       },
       pets: {
         value: +url.numberOfPets || 0,
-        max: listing?.no_of_pet_allowed || 5,
+        max: listing?.no_of_pet_allowed || 10,
         min: 0,
       },
     });
@@ -229,19 +227,19 @@ const Book = () => {
       toast.error("Invalid Phone Number");
       return;
     }
-    if (infos?.numberOfAdults > listing?.adults) {
+    if (guests?.adults?.value > listing?.adults) {
       toast.error(
         `Number of adults exceeds the allowed limit ${listing?.adults}`
       );
       return;
     }
-    if (infos?.numberOfChildren > listing?.children) {
+    if (guests?.children?.value > listing?.children) {
       toast.error(
         `Number of children exceeds the allowed limit ${listing?.children}`
       );
       return;
     }
-    if (infos?.numberOfPets > listing?.no_of_pet_allowed) {
+    if (guests?.pets?.value > listing?.no_of_pet_allowed) {
       toast.error(
         `Number of pets exceeds the allowed limit ${listing?.no_of_pet_allowed}`
       );
@@ -311,7 +309,6 @@ const Book = () => {
       .finally(() => setLoading(false));
   };
 
-  console.log("formData",formData)
   const paymentsubmit = (orderId) => {
     // Receive orderId as a parameter
     const main = new Listings();
@@ -319,12 +316,11 @@ const Book = () => {
     record.append("property_uid", listingID);
     record.append("check_in", infos.checkin);
     record.append("check_out", infos.checkout);
-    record.append("adults", infos.numberOfAdults);
-    record.append("infants", infos.numberOfInfants);
-    record.append("children", infos.numberOfChildren);
+    record.append("adults", guests?.adults?.value);
+    record.append("children", guests?.children?.value);
     record.append("doc_type", formData.selectOption);
     record.append("front_doc", formData.fornt);
-    record.append("no_of_pet", infos.numberOfPets);
+    record.append("no_of_pet", guests?.pets?.value);
     record.append("phone_no", formData.phone);
     record.append("razorpay_order_id", orderId);
     record.append(
@@ -356,17 +352,17 @@ const Book = () => {
     <AuthLayout>
       <div>
         <Head>
-          <title>Confirm and Pay - QS Jaipur</title>
+          <title>Confirm & Pay - QS Jaipur</title>
         </Head>
         <main className="max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12">
           <Heading
-            text={loading ? "Processing..." : "Confirm and pay"}
+            text={loading ? "Processing..." : "Confirm & Pay"}
             handleClick={() => router.back()}
           />
           <div className="flex mt-3 sm:mt-8 md:mt-14 px-3 gap-10 your-trip-sec">
             <div className="w-8/12">
               <h2 className="text-xl mb-4 font-medium heading-data">
-                Your trip
+                Your Trip
               </h2>
               <div className="flex items-center justify-between w-full py-2">
                 <div>
@@ -390,14 +386,14 @@ const Book = () => {
                   <h5 className="text-lg font-medium item-heading">Guests</h5>
                   <p className="text-md item-paragrapg">
                     {`${
-                      +infos.numberOfAdults + +infos.numberOfChildren
+                      +guests?.adults?.value + +guests?.children?.value
                     } guests ${
                       +infos.numberOfInfants
                         ? ", " + infos.numberOfInfants + " infants"
                         : ""
                     } ${
-                      +infos.numberOfPets
-                        ? ", " + infos.numberOfPets + " pets"
+                      +guests?.pets?.value
+                        ? ", " + guests?.pets?.value + " pets"
                         : ""
                     }`}
                   </p>

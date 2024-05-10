@@ -48,7 +48,7 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
               </div>
             </div>
           ) : (
-            <span onClick={handleClearDates}>Add dates</span>
+            <span onClick={handleClearDates}>Add date</span>
           )}
         </span>
       </div>
@@ -72,7 +72,7 @@ const CheckinCheckOut = ({ setSelection, rounded, selectedDay, selectEnd }) => {
               </div>
             </div>
           ) : (
-            <span onClick={handleClearDates}>Add dates</span>
+            <span onClick={handleClearDates}>Add date</span>
           )}
         </span>
       </div>

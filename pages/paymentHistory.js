@@ -86,9 +86,9 @@ export default function paymentHistory() {
                     {" "}
                     <div className="items-center flex gap-2 text-base">
                       <Image
-                        width={35}
-                        height={35}
-                        className="top-2 right-2 p-1 rounded-full"
+                        width={40}
+                        height={40}
+                        className="top-2 right-2 rounded-full"
                         src={
                           item?.booking_history?.booking_property
                             ?.property_image[0]?.image_url

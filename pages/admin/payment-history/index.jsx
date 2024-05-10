@@ -28,6 +28,7 @@ export default function Index() {
         }
       });
       setLoading(false);
+      setHasMore(response?.data?.current_page < response?.data?.last_page);
     } catch (error) {
       console.error("Error fetching data:", error);
       setLoading(false);
@@ -149,7 +150,7 @@ export default function Index() {
                                   <div className="text-sm capitalize">
                                     {
                                       item?.booking_history?.booking_property
-                                        ?.properties_type
+                                        ?.properties_type.replace("_", " ")
                                     }
                                   </div>
                                 </div>
@@ -189,7 +190,7 @@ export default function Index() {
           </div>
         </div>
       )}
-      {!loading && content?.length > 0 && (
+      {!loading && hasmore && (
         <div className="flex justify-center">
           <div
             className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-600 border-0 p-4 rounded-full mt-10 mb-12 text-white"
@@ -199,9 +200,9 @@ export default function Index() {
           </div>
         </div>
       )}
-      {!loading && !hasmore && record.length === 0 && (
+      {!loading && !hasmore && (
         <div className="flex justify-center">
-          <div className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-600ed-full mt10 mb-12 text-white">
+          <div className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white">
             No More Data
           </div>
         </div>

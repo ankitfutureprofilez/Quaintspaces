@@ -3,9 +3,12 @@ import Listings from "../api/laravel/Listings";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import ForgotLayout from "./ForgotLayout";
+import { Context } from "../_app";
+import { useContext } from "react";
 import Link from "next/link";
 
 const ForgotPassword = () => {
+  const { setOpenLogin } = useContext(Context);
   const router = useRouter();
   const [step, setStep] = useState(1);
   const[loading,setLoading]=useState(false);
@@ -141,7 +144,7 @@ const ForgotPassword = () => {
   const nextStep = () => {
     setStep(step + 1);
   };
-
+  setOpenLogin(false);
   return (
     <div>
       {step === 1 && (

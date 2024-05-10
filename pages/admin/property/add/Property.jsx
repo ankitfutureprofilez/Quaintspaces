@@ -385,7 +385,7 @@ export default function Property(props) {
                 <input
                   required
                   type="number"
-                  name="price" placeholder="Property Price"
+                  name="price" placeholder="Property Price Per Night"
                   id="name"
                   className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
                   value={item?.price}

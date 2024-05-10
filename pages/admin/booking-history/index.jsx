@@ -103,10 +103,12 @@ export default function index() {
         } else {
           toast.error(response.data.message);
           setLoading(false);
+          closeConfirmModal();
         }
       })
       .catch((error) => {
         console.error("Error confirming/canceling booking:", error);
+        closeConfirmModal();
       });
   };
 
@@ -230,6 +232,7 @@ export default function index() {
                 </div>
               </div>
                     </td>
+                    {item?.booking_status === "pending"?
                     <td className="px-4 py-2 text-sm text-gray-500 dark:text-gray-300">
                     <div
                 onClick={() =>
@@ -281,6 +284,11 @@ export default function index() {
                 {loading ? "loading.." : "Cancel"}
               </div>
                     </td>
+                    :
+                    <td className="px-4 py-2 text-sm text-gray-500 dark:text-gray-300">
+                      Already Taken
+                    </td>
+                    }
                   </tr>
                 ))}
               </tbody>
@@ -288,7 +296,7 @@ export default function index() {
           </div>
         </div>
       
-        {!loading && (
+        {!loading && hasmore && (
           <div className="flex justify-center">
             <div
               className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
@@ -298,7 +306,7 @@ export default function index() {
             </div>
           </div>
         )}
-        {!loading && !hasmore && content.length === 0 && (
+        {!loading && !hasmore && (
           <div className="flex justify-center">
             <div className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white">
               No More Data
@@ -340,7 +348,7 @@ export default function index() {
                 )
               }
             >
-              {loading ? "loading..." : "Processed"}
+              {loading ? "Proceeding..." : "Proceed"}
             </button>
           </div>
         </Modal>

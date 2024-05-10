@@ -89,7 +89,11 @@ const Reviews = React.forwardRef(({ data }, ref) => {
       className="min-h-[50vh] border-y border-darkBorderColor py-8">
       <h1 className="text-xl md:text-2xl mb-4 font-semibold flex items-center gap-1">
         <span className="flex" >
-        <p className="pe-2" >{parseFloat(data && data?.rating && data?.rating?.toFixed(0))}.0</p>
+        <p className="pe-2" >{parseFloat(data && data?.rating && data?.rating?.toFixed(0))}
+        {data?.rating>0?
+          ".0"
+        :null}
+        </p>
         <StartRating size={26} value={parseFloat(data && data?.rating && data?.rating?.toFixed(2))} /> 
         
         </span>
