@@ -7,8 +7,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Listing from "../../api/Listing";
 import { formatMultiPrice } from "../../../../hooks/ValueData";
+import DashboardNoData from "../../hook/DashboardNoData";
 
-function StatusTracker({property_count}) {
+function StatusTracker({ property_count }) {
   const [propertylist, setPropertylist] = useState([]);
   const [proerty_count, setPropertyCount] = useState("");
   const [loading, setLoading] = useState(true);
@@ -48,86 +49,41 @@ function StatusTracker({property_count}) {
           </div>
 
           <hr className="bg-gray-400 my-4" />
-
-          {/* content */}
           <div className="space-y-3">
-            {/* absent */}
-            {propertylist &&
+            {propertylist && propertylist?.length > 0 ? (
               propertylist.map((item) => (
-                <div className="space-y-3">
+                <div className="space-y-3" key={item.uuid}>
                   <div className="flex items-center justify-between">
-                    <div>
-                      <div className="flex items-center gap-2 proerty-img">
-                        <Image
-                          src={
-                            item?.image
-                              ? item?.image
-                              : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
-                          }
-                          alt="loom"
-                          height={30}
-                          width={30}
-                          className="rounded-full"
-                        />
-                        <div className="font-medium">
-                          <Link href={`/property/${item?.uuid}`}>
-                            <p className="text-sm text-gray-800 capitalize ">
-                              {item?.name}
-                            </p>
-                            <p className="text-sm text-gray-600 capitalize  line-limit leading-relaxed">
-                              {item?.location}
-                            </p>
-                            {/* <p className='text-xs text-gray-500 capitalize'> {formatMultiPrice(item?.price)}</p> */}
-                          </Link>
-                        </div>
+                    <div className="flex items-center gap-2 proerty-img">
+                      <Image
+                        src={
+                          item?.image
+                            ? item?.image
+                            : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
+                        }
+                        alt="Property"
+                        height={30}
+                        width={30}
+                        className="rounded-full"
+                      />
+                      <div className="font-medium">
+                        <Link href={`/property/${item?.uuid}`}>
+                          <p className="text-sm text-gray-800 capitalize">
+                            {item?.name}
+                          </p>
+                          <p className="text-sm text-gray-600 capitalize line-limit leading-relaxed">
+                            {item?.location}
+                          </p>
+                        </Link>
                       </div>
                     </div>
-                    {/* <div className='flex text-xxs font-medium items-center gap-1'>
-                        <MinusCirlce size={14} variant='Bold' />
-                        <span>Absent</span>
-                    </div> */}
                   </div>
                 </div>
-              ))}
-
+              ))
+            ) : (
+              <DashboardNoData />
+            )}
             <hr className="bg-gray-400" />
-
-            {/* away */}
-            {/* <div className='space-y-3'>
-                <p className='text-xs text-black'>Away</p>
-
-                <div className='flex items-center justify-between'>
-                    <div>
-                        <div className='flex items-center gap-2'>
-                            <Image src={Avatar2} alt='loom' height={36} width={36} className='rounded-full' />
-                            <div className='font-medium'>
-                                <p className='text-sm text-gray-800'>Walter White</p>
-                                <p className='text-xs text-gray-500'>Backend Developer</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='flex text-xxs font-medium items-center gap-1 pr-1.5 bg-black-100 px-1 py-0.5 rounded-full text-white-400'>
-                        <Clock size={14} variant='Bold' />
-                        <span>25m</span>
-                    </div>
-                </div>
-
-                <div className='flex items-center justify-between'>
-                    <div>
-                        <div className='flex items-center gap-2'>
-                            <Image src={Avatar3} alt='loom' height={36} width={36} className='rounded-full' />
-                            <div className='font-medium'>
-                                <p className='text-sm text-gray-800'>Dwayne Johnson</p>
-                                <p className='text-xs text-gray-500'>DevOps Engineer</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='flex text-xxs font-medium items-center gap-1 pr-1.5 bg-black-100 px-1 py-0.5 rounded-full text-white-400'>
-                        <Clock size={14} variant='Bold' />
-                        <span>12m</span>
-                    </div>
-                </div>
-            </div> */}
           </div>
         </div>
       )}
