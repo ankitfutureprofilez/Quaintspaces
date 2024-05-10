@@ -77,7 +77,7 @@ function Reviews() {
             {record &&
               record?.map((item) => (
                 <>
-                  <div className="flex items-start gap-3 w-full proerty-img opacity-70">
+                  <div className="flex items-start gap-3 w-full opacity-70 ">
                     {/* <button className='w-4 shrink-0 mt-1 h-4 border-2 border-gray-300 rounded-full' /> */}
                     <Image
                       src={item?.rating_user?.image_url ||   "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}

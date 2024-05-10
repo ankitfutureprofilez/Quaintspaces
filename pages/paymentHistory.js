@@ -7,6 +7,7 @@ import Listings from "./api/laravel/Listings.js";
 import AuthLayout from "./layout/AuthLayout.js";
 import Modal from "./elements/Modal.js";
 import NoData from "./elements/NoData.js";
+import Link from "next/link";
 import { formatMultiPrice } from "../hooks/ValueData.js";
 import Image from "next/image";
 import DateComponent from "./admin/hook/Dateformat.jsx";
@@ -65,7 +66,7 @@ export default function paymentHistory() {
             <thead>
               <tr>
                 <th>Payment ID</th>
-                <th>Property</th>
+                <th>Property Name</th>
                 <th>Payment Date</th>
                 <th>Check In & Out</th>
                 <th>Method</th>
@@ -86,21 +87,11 @@ export default function paymentHistory() {
                   <td className="px-2 md:px-4 py-2">
                     {" "}
                     <div className="items-center img-data flex gap-2 text-base">
-                      <Image
-                        width={40}
-                        height={40}
-                        className="top-2 right-2 rounded-full"
-                        src={
-                          item?.booking_history?.booking_property
-                            ?.property_image[0]?.image_url
-                        }
-                        alt="Property"
-                      />
-                      <div>
                         <div className="text-gray-800 font-medium text-left capitalize">
-                          {item?.booking_history?.booking_property?.name}
-                        </div>
-                      </div>
+                                <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
+                                  {item?.booking_history?.booking_property?.name}
+                                </Link>
+                              </div>
                     </div>
                   </td>
                   <td className="px-2 md:px-4 py-2">{item?.payment_date}</td>
