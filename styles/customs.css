@@ -306,7 +306,7 @@ footer {
   font-family: "Inter", sans-serif;
   font-size: 13px;
   font-weight: 400;
-  line-height: 23px;
+  line-height: 26px;
   letter-spacing: 0em;
   color: #95908d;
   padding: 20px 10px 15px 10px;
@@ -620,57 +620,60 @@ button.submint-btn {
 .upcomming-box {
   margin-bottom: 40px !important;
 }
-.booking-table tr,
+.table-responsive {
+  overflow-x: auto;
+}
+
 .booking-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.booking-table th,
+.booking-table td {
+  padding: 15px;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #3f2a17;
   border: 1px solid #e7e7e7;
 }
-.booking-table th {
-  padding: 18px;
+
+.booking-table thead th {
+  background-color: #f7f7f7;
 }
-.booking-table td {
-  padding: 30px;
-  text-align: center;
+
+.booking-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
-.booking-table thead tr th:first-child,
-.booking-table tbody tr td:first-child {
-  text-align: left;
+
+.booking-table tbody tr:hover {
+  background-color: #fafafa;
 }
-.booking-table td {
-  padding: 30px;
-  text-align: center;
-  font-family: "Inter", sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 22px;
-  letter-spacing: 0em;
-  color: #3f2a17;
-}
-.booking-table thead tr th {
-  font-family: "Inter", sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 22px;
-  letter-spacing: 0em;
-  color: #47311d8f;
-}
+
 .booking-table td button {
   font-family: "Inter", sans-serif;
   font-size: 15px;
   font-weight: 400;
-  line-height: 19px;
+  line-height: 1.5;
   letter-spacing: 0em;
   border: none;
   padding: 8px;
 }
+
 .booking-table td button.text-blue-700 {
   color: #2722ea;
   background: #efefff;
 }
+
 .booking-table td button.text-red-700 {
   border: 1px solid;
   color: #db4632;
   background: none;
 }
+
 .edit-profile {
   background: #c48b58;
   height: 32px;

@@ -237,7 +237,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
 
         {/* Add review option */}
         <button
-          className="btn-normal mt-8"
+          className="btn-normal mt-8 capitalize"
           onClick={() => {
             if (auth) {
               openModal();
