@@ -9,6 +9,7 @@ import Listing from "../../api/Listing";
 import DateFormat from "../../hook/Dateformat";
 import { Calendar2 } from "iconsax-react";
 import { formatMultiPrice } from "../../../../hooks/ValueData";
+import Spinner from "../../hook/spinner";
 
 function Bookings() {
   const [activeTab, setActiveTab] = useState("upcoming");
@@ -17,9 +18,10 @@ function Bookings() {
   const [record, setRecord] = useState("");
   const [bookingCount, SetbookingCount] = useState("");
   const [loading, setLoading] = useState(true);
+  const [dataLoading, setdataLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
+    setdataLoading(true);
     const main = new Listing();
     const response = main.Top3Bookings(activeTab);
     response
@@ -27,10 +29,12 @@ function Bookings() {
         setRecord(res?.data?.data);
         SetbookingCount(res?.data?.booking_count);
         setLoading(false);
+        setdataLoading(false);
       })
       .catch((error) => {
         console.log("error", error);
         setLoading(false);
+        setdataLoading(false);
       });
   }, [activeTab]);
   return (
@@ -101,6 +105,9 @@ function Bookings() {
           </div>
 
           {/* content */}
+          {dataLoading ?
+    <Spinner/>
+          :
           <div className="space-y-3">
             {/* comment 1 */}
             {record &&
@@ -152,6 +159,7 @@ function Bookings() {
           Show All
         </Link> */}
           </div>
+           }
         </div>
       )}
     </>

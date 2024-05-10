@@ -81,18 +81,18 @@ export default function Index() {
                       </td>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                  <tbody className="bg-white divide-y divide-gray-200">
                     {content &&
                       content.map((item, index) => (
                         <tr key={index}>
-                          <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+                          <td className="px-4 py-4 text-sm text-gray-500">
                             {index + 1}
                           </td>
 
-                          <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+                          <td className="px-4 py-4 text-sm text-gray-500">
                             {item?.payment_id}
                           </td>
-                          <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+                          <td className="px-4 py-4 text-sm text-gray-500">
                             <Link
                               href={`/admin/user-history/${item?.booking_history?.booking_user[0]?.id}`}
                             >
@@ -125,7 +125,7 @@ export default function Index() {
                             </Link>
                           </td>
 
-                          <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+                          <td className="px-4 py-4 text-sm text-gray-500">
                             <Link
                               href={`/property/${item?.booking_history?.booking_property?.uuid}`}
                             >
@@ -157,7 +157,7 @@ export default function Index() {
                               </div>
                             </Link>
                           </td>
-                          <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 capitalize">
+                          <td className="px-4 py-4 text-sm text-gray-500 capitalize">
                             {item?.method}
                           </td>
                           <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">

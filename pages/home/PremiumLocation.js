@@ -31,7 +31,7 @@ export default function PremiumLocation() {
     <div className="premium-location-slider z-0" id="premium">
       <div className="container mx-auto ">
         <h1>Premium Location in Jaipur</h1>
-        <div className="relative flex items-center ">
+        <div className="relative flex items-center">
           <Swiper
             navigation={true}
             modules={[Navigation]}
@@ -62,7 +62,7 @@ export default function PremiumLocation() {
                     className=""
                     loading="lazy"
                   />
-                  <div className="w-full py-4">
+                  <div className="w-full py-4 text-center">
                     <h2 className="location-name">{reason?.text}</h2>
                   </div>
                 </div>
