@@ -131,7 +131,7 @@ export default function Index() {
                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                                   <div className="flex items-center gap-x-2">
                                     <Image
-                                      className="object-cover w-8 h-8 rounded-full user-profile-img"
+                                      className="img-data object-cover w-8 h-8 rounded-full user-profile-img"
                                       src={
                                         item?.rating_user?.image_url ||
                                         userprofile
@@ -160,7 +160,7 @@ export default function Index() {
                                       className="flex items-center gap-x-2"
                                     >
                                       <Image
-                                        className="object-cover w-8 h-8 rounded-full"
+                                        className="object-cover img-data w-8 h-8 rounded-full"
                                         src={
                                           item?.get_property_review
                                             ?.property_image[0]?.image_url

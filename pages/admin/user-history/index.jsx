@@ -155,7 +155,7 @@ export default function Index() {
                   <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
                     {index + 1}
                   </td>
-                  <td className="flex gap-2 py-4 items-center text-sm px-2 whitespace-nowrap">
+                  <td className="flex gap-2 py-4 img-data items-center text-sm px-2 whitespace-nowrap">
                     <Image
                       width={35}
                       height={35}

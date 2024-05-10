@@ -1,212 +1,166 @@
-import React, { useState, useEffect } from "react";
-import Listing from "../api/Listing";
+
+import React, { useEffect, useState } from "react";
+import Button from "./elements/Button.js";
+import Heading from "./elements/Heading.js";
+import { useRouter } from "next/router";
+import Listings from "./api/laravel/Listings.js";
+import AuthLayout from "./layout/AuthLayout.js";
+import Modal from "./elements/Modal.js";
+import NoData from "./elements/NoData.js";
+import { formatMultiPrice } from "../hooks/ValueData.js";
 import Image from "next/image";
-import AdminLayout from "../AdminLayout";
-import Spinner from "../hook/spinner";
-import Nodata from "../hook/NoRecord";
-import userprofile from "../../../public/admin/userprofile.png";
-import Link from "next/link";
-import { formatMultiPrice } from "../../../hooks/ValueData";
+import DateComponent from "./admin/hook/Dateformat.jsx";
+import Head from "next/head";
 
-export default function Index() {
+export default function paymentHistory() {
   const [loading, setLoading] = useState(false);
-  const [content, setContent] = useState([]);
-  const [page, setPage] = useState(1);
+  const [listings, setListings] = useState([]);
+  const router = useRouter();
   const [hasmore, setHasMore] = useState(true);
-
-  const fetchData = async (pg) => {
+  const [page, setPage] = useState(0);
+  const fetching = async(pg) =>{
     setLoading(true);
-    try {
-      const main = new Listing();
-      const response = await main.all_user_payment_history(pg);
-      const newdata = response?.data?.data?.data || [];
-      setContent((prevData) => {
-        if (pg === 1) {
-          return newdata;
-        } else {
-          return [...prevData, ...newdata];
-        }
+    const main = new Listings();
+    main
+      .PaymentHistory(pg)
+      .then((r) => {
+        setLoading(false);
+        const newdata = r?.data?.data?.data|| [];
+        setListings((prevData) => {
+          if (pg === 1) {
+            return newdata;
+          } else {
+            return [...prevData, ...newdata];
+          }
+        });
+        setHasMore(r?.data?.current_page < r?.data?.last_page);
+        setPage(r?.data?.current_page);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setHasMore(false);
+        setPage(false);
+        console.log(err);
       });
-      setLoading(false);
-      setHasMore(response?.data?.current_page < response?.data?.last_page);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setLoading(false);
-    }
-  };
+  } 
 
   useEffect(() => {
-    fetchData(1);
+     if (listings && listings?.length < 1) {
+      fetching(page + 1);
+     }
   }, []);
 
   const loadMore = () => {
-    if (!loading) {
-      fetchData(page + 1);
+    if (!loading && page) {
+      fetching(page + 1);
     }
   };
 
-  return (
-    <AdminLayout heading={"Payment History"}>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <div className="overflow-x-auto mt-3">
-          <div className="w-full">
-            <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
-              {content && content.length > 0 ? (
-                <table className="min-w-[1200px] w-full break-all divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-                        S. No.{" "}
-                      </td>
+  const BookingTable = () => {
+    return (
+      <>
+        <div className="container  table-responsive">
+          <table className=" w-full booking-table">
+            <thead>
+              <tr>
+                <th>Payment ID</th>
+                <th>Property</th>
+                <th>Payment Date</th>
+                <th>Check In & Out</th>
+                <th>Method</th>
+                <th>Status</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            {listings?.map((item, index) => (
+              <tbody key={index}>
+                <tr>
+                  <td className="px-2 md:px-4 py-2">
+                    <div className="flex items-center">
+                      <div className="text ml-2">
+                        <div className="title">{item?.payment_id}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-2 md:px-4 py-2">
+                    {" "}
+                    <div className="items-center flex gap-2 text-base">
+                      <Image
+                        width={40}
+                        height={40}
+                        className="top-2 right-2 rounded-full"
+                        src={
+                          item?.booking_history?.booking_property
+                            ?.property_image[0]?.image_url
+                        }
+                        alt="Property"
+                      />
+                      <div>
+                        <div className="text-gray-800 font-medium text-left capitalize">
+                          {item?.booking_history?.booking_property?.name}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-2 md:px-4 py-2">{item?.payment_date}</td>
+                  <td className="px-2 md:px-4 py-2 text-sm">
+                    {item?.booking_history?.check_in} &  {item?.booking_history?.check_out}
+                  </td>
+                  <td className="px-2 md:px-4 py-2 capitalize">{item?.method}</td>
+                  <td className="px-2 md:px-4 py-2 capitalize">{item?.payment_status}</td>
+                  <td className="px-2 md:px-4 py-2">{formatMultiPrice(item?.price)}</td>
+                </tr>
+              </tbody>
+            ))}
+          </table>
+        </div>
 
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-                        Payment Id{" "}
-                      </td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-                        Customer
-                      </td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-                        Purchase
-                      </td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-                        Method
-                      </td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize">
-                        Status
-                      </td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-                        Amount
-                      </td>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                    {content &&
-                      content.map((item, index) => (
-                        <tr key={index}>
-                          <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
-                            {index + 1}
-                          </td>
-
-                          <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
-                            {item?.payment_id}
-                          </td>
-                          <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
-                            <Link
-                              href={`/admin/user-history/${item?.booking_history?.booking_user[0]?.id}`}
-                            >
-                              <div className="flex gap-2 items-center  text-sm p-2 ">
-                                <Image
-                                  width={35}
-                                  height={35}
-                                  className="top-2 right-2 p-1 rounded-full"
-                                  src={
-                                    item?.booking_history?.booking_user[0]
-                                      ?.image_url || userprofile
-                                  }
-                                  alt="User Image"
-                                />
-                                <div>
-                                  <div className="text-gray-800 font-medium capitalize ">
-                                    {
-                                      item?.booking_history?.booking_user[0]
-                                        ?.name
-                                    }
-                                  </div>
-                                  <div className="text-sm ">
-                                    {
-                                      item?.booking_history?.booking_user[0]
-                                        ?.email
-                                    }
-                                  </div>
-                                </div>
-                              </div>
-                            </Link>
-                          </td>
-
-                          <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
-                            <Link
-                              href={`/property/${item?.booking_history?.booking_property?.uuid}`}
-                            >
-                              <div className="items-center flex gap-2 text-sm p-2 ">
-                                <Image
-                                  width={35}
-                                  height={35}
-                                  className="top-2 right-2 p-1 rounded-full user-profile-img"
-                                  src={
-                                    item?.booking_history?.booking_property
-                                      ?.property_image[0]?.image_url
-                                  }
-                                  alt="Property"
-                                />
-                                <div>
-                                  <div className="text-gray-800 font-medium capitalize ">
-                                    {
-                                      item?.booking_history?.booking_property
-                                        ?.name
-                                    }
-                                  </div>
-                                  <div className="text-sm capitalize">
-                                    {
-                                      item?.booking_history?.booking_property
-                                        ?.properties_type.replace("_", " ")
-                                    }
-                                  </div>
-                                </div>
-                              </div>
-                            </Link>
-                          </td>
-                          <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 capitalize">
-                            {item?.method}
-                          </td>
-                          <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                            <td
-                              className={` capitalize inline-flex w-max items-center rounded-full py-2 px-3 text-xs text-white ${
-                                item?.payment_status === "success"
-                                  ? "bg-green-600"
-                                  : item?.payment_status === "cancelled"
-                                  ? "bg-red-600"
-                                  : item?.payment_status === "confirm"
-                                  ? "bg-green-600"
-                                  : "bg-blue-600"
-                              }`}
-                            >
-                              {item?.payment_status}
-                            </td>
-                          </td>
-
-                          <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                            {formatMultiPrice(item?.price)}
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              ) : (
-                <Nodata heading={"No Payment History"} />
+        {hasmore &&  (
+                <div className="load-more mt-5 text-center ">
+                  <button className="btn btn-outline-success" onClick={loadMore}>
+                    Load More
+                  </button>
+                </div>
               )}
+      </>
+    );
+  };
+
+  return (
+    <AuthLayout>
+      <Head>
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
+        <title>Payment History - QS Jaipur</title>
+      </Head>
+      <div className="container mx-auto">
+        <div className=" account-btn ">
+          <div className=" pt-4 sm:pt-8 md:pt-12 pb-3 sm:pb-6 md:pb-10">
+            <Heading
+              text={"Payment History"}
+              handleClick={() => router.back()}
+            />
+          </div>
+        </div>
+        <div className="">
+          {loading ? (
+            <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 min-w-1200px">
+            <div className="flex justify-center items-center space-x-1 text-gray-700">
+              <div className="text-lg">Loading...</div>
             </div>
           </div>
+          ) : listings && listings.length > 0 ? (
+            <BookingTable />
+          ) : (
+            <NoData
+              Heading={"No Data Found"}
+              content={
+                "You have not done any payment yet. Click below to go to the home page"
+              }
+            />
+          )}
         </div>
-      )}
-      {!loading && hasmore && (
-        <div className="flex justify-center">
-          <div
-            className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-600 border-0 p-4 rounded-full mt-10 mb-12 text-white"
-            onClick={loadMore}
-          >
-            Load More
-          </div>
-        </div>
-      )}
-      {!loading && !hasmore && (
-        <div className="flex justify-center">
-          <div className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white">
-            No More Data
-          </div>
-        </div>
-      )}
-    </AdminLayout>
+      </div>
+    </AuthLayout>
   );
 }
