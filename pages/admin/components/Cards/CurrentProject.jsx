@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import Listing from "../../api/Listing";
 import Link from "next/link";
 import { formatMultiPrice } from "../../../../hooks/ValueData";
+import DashboardNoData from "../../hook/DashboardNoData";
 
 function CurrentProject() {
   const [record, setRecord] = useState();
@@ -55,45 +56,49 @@ function CurrentProject() {
           <hr className="bg-gray-400 my-4" />
 
           <div className="space-y-3">
-            {record &&
-              record?.map((item) => (
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <Image
-                          src={item?.userImage || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
-                          alt="loom"
-                          height={30}
-                          width={30}
-                          className="rounded-full"
-                        />
-                        <div className="font-medium">
-                          <div className="flex space-x-2 justify-between">
-                            <p className="text-xs text-gray-800">
-                              {item?.userName}
-                            </p>
-                          </div>
-                          <p className="text-xs text-gray-600">
-                            {item?.propertyName}{" "}
-                          </p>
+            {record && record?.length>0 ?
+             record &&
+             record?.map((item) => (
+               <div className="space-y-3">
+                 <div className="flex items-center justify-between">
+                   <div>
+                     <div className="flex items-center gap-2">
+                       <Image
+                         src={item?.userImage || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
+                         alt="loom"
+                         height={30}
+                         width={30}
+                         className="rounded-full"
+                       />
+                       <div className="font-medium">
+                         <div className="flex space-x-2 justify-between">
+                           <p className="text-xs text-gray-800">
+                             {item?.userName}
+                           </p>
+                         </div>
+                         <p className="text-xs text-gray-600">
+                           {item?.propertyName}{" "}
+                         </p>
 
-                          <p className="text-xs text-gray-500">
-                            {" "}
-                            {formatMultiPrice(item?.price)} ||{" "}
-                            {item?.payment_date}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+                         <p className="text-xs text-gray-500">
+                           {" "}
+                           {formatMultiPrice(item?.price)} ||{" "}
+                           {item?.payment_date}
+                         </p>
+                       </div>
+                     </div>
+                   </div>
 
-                    {/* <div className='flex text-xxs font-medium items-center gap-1'>
-                            <MinusCirlce size={14} variant='Bold' />
-                            <span>Absent</span>
-                        </div> */}
-                  </div>
-                </div>
-              ))}
+                   {/* <div className='flex text-xxs font-medium items-center gap-1'>
+                           <MinusCirlce size={14} variant='Bold' />
+                           <span>Absent</span>
+                       </div> */}
+                 </div>
+               </div>
+             ))
+            :
+            <DashboardNoData/>
+            }
 
             <hr className="bg-gray-400" />
           </div>

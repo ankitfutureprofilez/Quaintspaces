@@ -10,6 +10,8 @@ import DateFormat from "../../hook/Dateformat";
 import { Calendar2 } from "iconsax-react";
 import { formatMultiPrice } from "../../../../hooks/ValueData";
 import Spinner from "../../hook/spinner";
+import DashboardNoData from "../../hook/DashboardNoData";
+
 
 function Bookings() {
   const [activeTab, setActiveTab] = useState("upcoming");
@@ -105,61 +107,66 @@ function Bookings() {
           </div>
 
           {/* content */}
-          {dataLoading ?
-    <Spinner/>
-          :
-          <div className="space-y-3">
-            {/* comment 1 */}
-            {record &&
-              record?.map((item) => (
-                <>
-                  <div className="flex items-center justify-between w-full select-none cursor-pointer">
-                    <div className="flex items-center gap-2">
-                      <Image
-                        src={
-                          item?.userImage ||
-                          "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
-                        }
-                        alt="loom"
-                        height={30}
-                        width={30}
-                        className="rounded-full"
-                      />
-                      <div className="font-medium">
-                        <p className="text-sm text-gray-600">
-                          {item?.userName} ({item?.booking_number})
-                        </p>
-                        <p className="text-xs text-gray line-limit !pb-0 leading-relaxed">
-                          {item?.propertyName}
-                          <span className="ml-4">
-                            {formatMultiPrice(item?.price)}
-                          </span>
-                        </p>
-                        <div className="flex text-xs gap-1">
-                          <Calendar2 size={16} />
-                          <DateFormat item={item?.check_in} /> -{" "}
-                          <DateFormat item={item?.check_out} />
+          {dataLoading ? (
+            <div className="h-[30vh] flex items-center justify-center">
+              <p className="text-base">Loading...</p>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              
+              {/* comment 1 */}
+              {record  && record.length >0 ?(  record?.map((item) => (
+                  <>
+                    <div className="flex items-center justify-between w-full select-none cursor-pointer">
+                      <div className="flex items-center gap-2">
+                        <Image
+                          src={
+                            item?.userImage ||
+                            "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
+                          }
+                          alt="loom"
+                          height={30}
+                          width={30}
+                          className="rounded-full"
+                        />
+                        <div className="font-medium">
+                          <p className="text-sm text-gray-600">
+                            {item?.userName} ({item?.booking_number})
+                          </p>
+                          <p className="text-xs text-gray line-limit !pb-0 leading-relaxed">
+                            {item?.propertyName}
+                            <span className="ml-4">
+                              {formatMultiPrice(item?.price)}
+                            </span>
+                          </p>
+                          <div className="flex text-xs gap-1">
+                            <Calendar2 size={16} />
+                            <DateFormat item={item?.check_in} /> -{" "}
+                            <DateFormat item={item?.check_out} />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    {/* <button onClick={() => setComment1Liked(!comment1Liked)} className={`${comment1Liked ? 'text-red-500' : 'text-black-500'} duration-200 active:scale-50`}>
+                      {/* <button onClick={() => setComment1Liked(!comment1Liked)} className={`${comment1Liked ? 'text-red-500' : 'text-black-500'} duration-200 active:scale-50`}>
                       <Heart size={20} variant={comment1Liked ? 'Bold' : 'Linear'} /> 
                     </button> */}
-                  </div>
-                  <hr className="bg-gray-400" />
-                </>
-              ))}
+                    </div>
+                    <hr className="bg-gray-400" />
+                  </>
+                ))) : (
+                  <DashboardNoData/>
+                ) }
+            
 
-            {/* comment button */}
-            {/* <Link
+              {/* comment button */}
+              {/* <Link
           href="/admin/booking-history"
           className="border flex items-center justify-center w-full gap-2 p-2 text-gray-600 font-medium rounded-lg text-xs"
         >
           <Edit2 size={14} />
           Show All
         </Link> */}
-          </div>
-           }
+            </div>
+          )}
         </div>
       )}
     </>

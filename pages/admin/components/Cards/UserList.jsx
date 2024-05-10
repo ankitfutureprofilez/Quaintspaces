@@ -6,6 +6,8 @@ import Avatar3 from "../assets/avatars/avatar3.png";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Listing from "../../api/Listing";
+import DashboardNoData from "../../hook/DashboardNoData";
+
 
 function UserList({totaluser}) {
   const [record, setRecord] = useState("");
@@ -50,7 +52,7 @@ function UserList({totaluser}) {
       {/* content */}
       <div className="space-y-3">
         {/* comment 1 */}
-        {record &&
+        {record && record?.length >0 ? (
           record?.map((item) => (
             <div className="flex items-center justify-between w-full select-none cursor-pointer">
               <div className="flex items-center gap-2 proerty-img">
@@ -73,8 +75,11 @@ function UserList({totaluser}) {
                 </div>
               </div>
             </div>
-          ))}
-
+          ))
+        ) : (
+          <DashboardNoData/>
+        ) }
+       
         <hr className="bg-gray-400" />
 
         {/* comment button */}
