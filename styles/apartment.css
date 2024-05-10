@@ -28,6 +28,9 @@ h2.text-lg.font-medium.mb-2.heading-property {
 .page-transition-container {
   position: relative;
 }
+.table-responsive {
+  overflow: auto;
+}
 
 /* /pagintion  */
 .load-more .btn{

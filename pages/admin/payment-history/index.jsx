@@ -96,7 +96,7 @@ export default function Index() {
                             <Link
                               href={`/admin/user-history/${item?.booking_history?.booking_user[0]?.id}`}
                             >
-                              <div className="flex gap-2 items-center  text-sm p-2 ">
+                              <div className="flex gap-2 items-center img-data  text-sm p-2 ">
                                 <Image
                                   width={35}
                                   height={35}
@@ -129,7 +129,7 @@ export default function Index() {
                             <Link
                               href={`/property/${item?.booking_history?.booking_property?.uuid}`}
                             >
-                              <div className="items-center flex gap-2 text-sm p-2 ">
+                              <div className="items-center flex gap-2 text-sm p-2  img-data ">
                                 <Image
                                   width={35}
                                   height={35}

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Button from "./elements/Button.js";
 import Heading from "./elements/Heading.js";
@@ -17,15 +18,14 @@ export default function paymentHistory() {
   const router = useRouter();
   const [hasmore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
-  const fetching = async (pg) => {
+  const fetching = async(pg) =>{
     setLoading(true);
     const main = new Listings();
     main
       .PaymentHistory(pg)
       .then((r) => {
         setLoading(false);
-        console.log("r?.data", r?.data);
-        const newdata = r?.data?.data?.data || [];
+        const newdata = r?.data?.data?.data|| [];
         setListings((prevData) => {
           if (pg === 1) {
             return newdata;
@@ -43,12 +43,12 @@ export default function paymentHistory() {
         setPage(false);
         console.log(err);
       });
-  };
+  } 
 
   useEffect(() => {
-    if (listings && listings?.length < 1) {
+     if (listings && listings?.length < 1) {
       fetching(page + 1);
-    }
+     }
   }, []);
 
   const loadMore = () => {
@@ -59,63 +59,78 @@ export default function paymentHistory() {
 
   const BookingTable = () => {
     return (
-      <div className="table-responsive">
-        <table className="booking-table">
-          <thead>
-            <tr>
-              <th>Payment ID</th>
-              <th>Property</th>
-              <th>Payment Date</th>
-              <th>Check In & Out</th>
-              <th>Method</th>
-              <th>Status</th>
-              <th>Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            {listings?.map((item, index) => (
-              <tr key={index}>
-                <td>{item?.payment_id}</td>
-                <td>
-                  <div className="items-center flex gap-2 text-base">
-                    <img
-                      width={40}
-                      height={40}
-                      className="rounded-full"
-                      src={
-                        item?.booking_history?.booking_property
-                          ?.property_image[0]?.image_url
-                      }
-                      alt="Property"
-                    />
-                    <div className="text-gray-800 font-medium text-left capitalize">
-                      {item?.booking_history?.booking_property?.name}
-                    </div>
-                  </div>
-                </td>
-                <td>{item?.payment_date}</td>
-                <td>
-                  {item?.booking_history?.check_in} &{" "}
-                  {item?.booking_history?.check_out}
-                </td>
-                <td className="capitalize">{item?.method}</td>
-                <td className="capitalize">{item?.payment_status}</td>
-                <td>{formatMultiPrice(item?.price)}</td>
+      <>
+        <div className="container  table-responsive">
+          <table className=" w-full booking-table">
+            <thead>
+              <tr>
+                <th>Payment ID</th>
+                <th>Property</th>
+                <th>Payment Date</th>
+                <th>Check In & Out</th>
+                <th>Method</th>
+                <th>Status</th>
+                <th>Amount</th>
               </tr>
+            </thead>
+            {listings?.map((item, index) => (
+              <tbody key={index}>
+                <tr>
+                  <td className="px-2 md:px-4 py-2">
+                    <div className="flex items-center">
+                      <div className="text ml-2">
+                        <div className="title">{item?.payment_id}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-2 md:px-4 py-2">
+                    {" "}
+                    <div className="items-center flex gap-2 text-base">
+                      <Image
+                        width={40}
+                        height={40}
+                        className="top-2 right-2 rounded-full"
+                        src={
+                          item?.booking_history?.booking_property
+                            ?.property_image[0]?.image_url
+                        }
+                        alt="Property"
+                      />
+                      <div>
+                        <div className="text-gray-800 font-medium text-left capitalize">
+                          {item?.booking_history?.booking_property?.name}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-2 md:px-4 py-2">{item?.payment_date}</td>
+                  <td className="px-2 md:px-4 py-2 text-sm">
+                    {item?.booking_history?.check_in} &  {item?.booking_history?.check_out}
+                  </td>
+                  <td className="px-2 md:px-4 py-2 capitalize">{item?.method}</td>
+                  <td className="px-2 md:px-4 py-2 capitalize">{item?.payment_status}</td>
+                  <td className="px-2 md:px-4 py-2">{formatMultiPrice(item?.price)}</td>
+                </tr>
+              </tbody>
             ))}
-          </tbody>
-        </table>
-      </div>
+          </table>
+        </div>
+
+        {hasmore &&  (
+                <div className="load-more mt-5 text-center ">
+                  <button className="btn btn-outline-success" onClick={loadMore}>
+                    Load More
+                  </button>
+                </div>
+              )}
+      </>
     );
   };
 
   return (
     <AuthLayout>
       <Head>
-        <meta
-          http-equiv="Content-Security-Policy"
-          content="upgrade-insecure-requests"
-        />
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
         <title>Payment History - QS Jaipur</title>
       </Head>
       <div className="container mx-auto">
@@ -130,10 +145,10 @@ export default function paymentHistory() {
         <div className="">
           {loading ? (
             <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 min-w-1200px">
-              <div className="flex justify-center items-center space-x-1 text-gray-700">
-                <div className="text-lg">Loading...</div>
-              </div>
+            <div className="flex justify-center items-center space-x-1 text-gray-700">
+              <div className="text-lg">Loading...</div>
             </div>
+          </div>
           ) : listings && listings.length > 0 ? (
             <BookingTable />
           ) : (

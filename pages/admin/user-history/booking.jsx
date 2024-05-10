@@ -94,7 +94,7 @@ export default function Booking(props) {
                           {item?.booking_status}
                         </div>
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500">
+                      <td className="img-data px-4 py-4 text-sm text-gray-500">
                         <Image
                           width={40}
                           height={40}
