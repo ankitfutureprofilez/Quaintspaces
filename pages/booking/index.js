@@ -137,7 +137,6 @@ export default function Index() {
                       <tr>
                         <td className="px-4 py-2">{item?.booking_date}</td>
                         <td className="px-4 py-2">{item?.booking_number}</td>
-
                         <td className="px-4 py-2">
                           <div className="flex items-center">
                             <div className="text ml-2">
