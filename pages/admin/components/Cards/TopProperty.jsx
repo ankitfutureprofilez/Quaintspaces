@@ -88,6 +88,7 @@ function StatusTracker({ property_count }) {
         </div>
       )}
     </>
+    
   );
 }
 
