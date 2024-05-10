@@ -92,43 +92,43 @@ export default function Index() {
                 {content.length > 0 ? (
                   <div className="overflow-x-auto mt-3">
                     <div className="inline-block align-middle w-full">
-                      <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg">
-                        <table className="min-w-[1200px] w-full table-auto divide-y divide-gray-200 dark:divide-gray-700">
+                      <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
+                        <table className="min-w-[1200px] w-full table-auto divide-y divide-gray-200">
                           <thead className="bg-indigo-600">
                             <tr>
-                              <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white dark:text-gray-400">
+                              <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                                 S.No.
                               </th>
-                              <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white dark:text-gray-400">
+                              <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                                 Date
                               </th>
-                              <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white dark:text-gray-400">
+                              <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                                 Customer
                               </th>
-                              <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white dark:text-gray-400">
+                              <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                                 Message
                               </th>
-                              <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white dark:text-gray-400">
+                              <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                                 Property
                               </th>
-                              <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white dark:text-gray-400">
+                              <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                                 Status
                               </th>
-                              <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white dark:text-gray-400">
+                              <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                                 Actions
                               </th>
                             </tr>
                           </thead>
-                          <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                          <tbody className="bg-white divide-y divide-gray-200">
                             {content.map((item, index) => (
                               <tr key={index}>
-                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                                <td className="px-4 py-4 text-sm text-gray-500">
                                   {index + 1}
                                 </td>
-                                <td className="px-4 py-4 text-sm whitespace-nowrap text-gray-500 dark:text-gray-300">
+                                <td className="px-4 py-4 text-sm whitespace-nowrap text-gray-500">
                                   {item?.createdAt}
                                 </td>
-                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                                <td className="px-4 py-4 text-sm text-gray-500">
                                   <div className="flex items-center gap-x-2">
                                     <Image
                                       className="object-cover w-8 h-8 rounded-full user-profile-img"
@@ -141,19 +141,19 @@ export default function Index() {
                                       height={32}
                                     />
                                     <div>
-                                      <h2 className="text-sm capitalize font-medium text-gray-800 dark:text-white">
+                                      <h2 className="text-sm capitalize font-medium text-gray-800">
                                         {item?.rating_user?.name}
                                       </h2>
-                                      <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
+                                      <p className="text-xs font-normal text-gray-600">
                                         {item?.rating_user?.email}
                                       </p>
                                     </div>
                                   </div>
                                 </td>
-                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                                <td className="px-4 py-4 text-sm text-gray-500">
                                   {item?.review_text}
                                 </td>
-                                <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap dark:text-gray-300">
+                                <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
                                   <div className="flex items-center gap-x-2">
                                     <Link
                                       href={`/property/${item?.get_property_review?.uuid}`}
@@ -170,10 +170,10 @@ export default function Index() {
                                         height={32}
                                       />
                                       <div>
-                                        <h2 className="capitalize capitalize text-sm font-medium text-gray-800 dark:text-white">
+                                        <h2 className="capitalize capitalize text-sm font-medium text-gray-800">
                                           {item?.get_property_review?.name}
                                         </h2>
-                                        <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
+                                        <p className="text-xs font-normal text-gray-600">
                                           {formatMultiPrice(
                                             item?.get_property_review?.price
                                           )}
@@ -182,7 +182,7 @@ export default function Index() {
                                     </Link>
                                   </div>
                                 </td>
-                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                                <td className="px-4 py-4 text-sm text-gray-500">
                                   {item?.status === 1 ? (
                                     <div className="flex items-center gap-x-2">
                                       <svg
@@ -244,7 +244,7 @@ export default function Index() {
                                     </div>
                                   )}
                                 </td>
-                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                                <td className="px-4 py-4 text-sm text-gray-500">
                                   {item?.status === 1 ? (
                                     <div
                                       onClick={() =>

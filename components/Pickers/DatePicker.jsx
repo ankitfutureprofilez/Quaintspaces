@@ -114,7 +114,7 @@ const DatePicker = ({
       {/* </h1> */}
       {/* </div> */}
       <div className="flex gap-6">
-        <div className="hidden sm:block w-full">
+        <div className="block w-full">
           <div className="flex items-center">
             <h2 className="flex-auto font-semibold text-gray-900 text-center">
               {format(firstDayCurrentMonth, "MMMM yyyy")}

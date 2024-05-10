@@ -171,7 +171,7 @@ export default function Index() {
                                 {item?.reply_message}
                               </td>
                             ) : (
-                              <td className="px-4 py-2 text-sm text-gray-500 dark:text-gray-300">
+                              <td className="px-4 py-2 text-sm text-gray-500">
                                 <div
                                   onClick={() => openModal(item)}
                                   className="capitalize cursor-pointer text-red-500 flex items-center w-fit gap-2 border rounded-full p-1 px-4"

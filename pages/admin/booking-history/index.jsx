@@ -119,50 +119,50 @@ export default function index() {
       ) : content && content.length > 0 ? (
         <div className="overflow-x-auto mt-3">
         <div className="w-full">
-          <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg mt-2">
-            <table className="min-w-[1200px] w-full divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gray-50 dark:bg-gray-800">
+          <div className="overflow-x-auto border border-gray-200 md:rounded-lg mt-2">
+            <table className="min-w-[1200px] w-full divide-gray-200">
+              <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
                     S.No.
                   </th>
-                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
                     Booking Date
                   </th>
-                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
                     Booking Number
                   </th>
-                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
                     Stay
                   </th>
-                  <th className="px-2 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-2 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
                     Amount
                   </th>
-                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
                     Status
                   </th>
-                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
                     Document & its Type
                   </th>
-                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white dark:text-gray-400">
+                  <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
                     Action
                   </th>
                 </tr>
               </thead>
       
-              <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+              <tbody className="bg-white divide-y divide-gray-200">
                 {content.map((item, index) => (
                   <tr key={index}>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                    <td className="px-4 py-4 text-sm text-gray-500">
                       {index + 1}
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                    <td className="px-4 py-4 text-sm text-gray-500">
                       {item?.booking_date}
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                    <td className="px-4 py-4 text-sm text-gray-500">
                       {item?.booking_number}
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                    <td className="px-4 py-4 text-sm text-gray-500">
                     <Link
                 href={`/property/${item?.booking_property?.uuid}`}
               >
@@ -200,10 +200,10 @@ export default function index() {
                 </div>
               </Link>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                    <td className="px-4 py-4 text-sm text-gray-500">
                     {formatMultiPrice(item?.price)}
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                    <td className="px-4 py-4 text-sm text-gray-500">
                     <td
                 className={`capitalize inline-flex items-center rounded-full py-3 w-max px-4 text-xs text-white  ${
                   item?.booking_status === "completed"
@@ -220,7 +220,7 @@ export default function index() {
                 {item?.booking_status}
               </td>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+                    <td className="px-4 py-4 text-sm text-gray-500">
                     <div
               style={{cursor:"pointer"}}
                 className="flex items-center "
@@ -233,7 +233,7 @@ export default function index() {
               </div>
                     </td>
                     {item?.booking_status === "pending"?
-                    <td className="px-4 py-2 text-sm text-gray-500 dark:text-gray-300">
+                    <td className="px-4 py-2 text-sm text-gray-500">
                     <div
                 onClick={() =>
                   bookingaccept(
@@ -285,7 +285,7 @@ export default function index() {
               </div>
                     </td>
                     :
-                    <td className="px-4 py-2 text-sm text-gray-500 dark:text-gray-300">
+                    <td className="px-4 py-2 text-sm text-gray-500">
                       Already Taken
                     </td>
                     }

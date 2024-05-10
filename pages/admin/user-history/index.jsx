@@ -288,12 +288,12 @@ export default function Index() {
 
                       {/* Dropdown menu */}
                       {popupOpen === item.id && selectedRowData && (
-                        <div className="z-10 absolute top-full right-0 mt-1 w-44 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
+                        <div className="z-10 absolute top-full right-0 mt-1 w-44 bg-white divide-y divide-gray-100 rounded-lg shadow">
                           <ul
-                            className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                            className="py-2 text-sm text-gray-700"
                             aria-labelledby="dropdownDefaultButton"
                           >
-                            <li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                            <li className="block px-4 py-2 hover:bg-gray-100">
                               <button
                                 onClick={() =>
                                   statusUpdate(
@@ -346,7 +346,7 @@ export default function Index() {
                             <li>
                               <Link
                                 href={`user-history/${item.id}`}
-                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                className="block px-4 py-2 hover:bg-gray-100"
                               >
                                 User Detail{" "}
                               </Link>
@@ -379,7 +379,7 @@ export default function Index() {
                             <li>
                               <button
                                  onClick={() => openModal(item?.id)}
-                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                className="block px-4 py-2 hover:bg-gray-100"
                               >
                                 Delete Account{" "}
                               </button>
