@@ -672,6 +672,13 @@ button.submint-btn {
   width: 50px;
   height: 50px;
 }
+
+.proerty-img img {
+  object-position: top;
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
+}
 .booking-table td button.text-blue-700 {
   color: #2722ea;
   background: #efefff

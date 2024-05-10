@@ -60,7 +60,7 @@ export default function paymentHistory() {
   const BookingTable = () => {
     return (
       <>
-        <div className="container  table-responsive">
+        <div className="  table-responsive">
           <table className=" w-full booking-table">
             <thead>
               <tr>
@@ -85,7 +85,7 @@ export default function paymentHistory() {
                   </td>
                   <td className="px-2 md:px-4 py-2">
                     {" "}
-                    <div className="items-center flex gap-2 text-base">
+                    <div className="items-center img-data flex gap-2 text-base">
                       <Image
                         width={40}
                         height={40}

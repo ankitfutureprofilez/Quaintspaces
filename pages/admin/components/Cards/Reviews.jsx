@@ -2,6 +2,8 @@ import { Add, Calendar2, NoteText, TickCircle } from "iconsax-react";
 import Link from "next/link";
 import Listing from "../../api/Listing";
 import { useEffect, useState } from "react";
+import Avatar1 from "../assets/avatars/avatar1.png";
+
 import Image from "next/image";
 import Dateformat from "../../hook/Dateformat";
 import StartRating from "../../../elements/StartRating";
@@ -75,11 +77,11 @@ function Reviews() {
             {record &&
               record?.map((item) => (
                 <>
-                  <div className="flex items-start gap-3 w-full opacity-70">
+                  <div className="flex items-start gap-3 w-full proerty-img opacity-70">
                     {/* <button className='w-4 shrink-0 mt-1 h-4 border-2 border-gray-300 rounded-full' /> */}
                     <Image
-                      src={item?.rating_user?.image_url}
-                      alt="company"
+                      src={item?.rating_user?.image_url ||   "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
+                      alt="property Quant-stay"
                       height={30}
                       width={30}
                     />

@@ -53,7 +53,7 @@ function UserList({totaluser}) {
         {record &&
           record?.map((item) => (
             <div className="flex items-center justify-between w-full select-none cursor-pointer">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 proerty-img">
                 <Image
                   src={
                     item?.image_url

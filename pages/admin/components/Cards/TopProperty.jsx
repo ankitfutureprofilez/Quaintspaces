@@ -57,7 +57,7 @@ function StatusTracker({property_count}) {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="flex items-center gap-2 proerty-img">
+                      <div className="flex items-center gap-2 proerty-img ">
                         <Image
                           src={
                             item?.image
