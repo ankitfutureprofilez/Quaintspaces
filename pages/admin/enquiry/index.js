@@ -235,7 +235,7 @@ export default function Index() {
               className="btn filter mt-8 w-2/4 mx-auto"
               onClick={() => handleInquiryAcceptance(selectedEnquiry)}
             >
-              {loading ? "Loading..." : "Processed"}
+              {loading ? "Loading..." : "Proceed"}
             </button>
           </div>
         </Modal>
