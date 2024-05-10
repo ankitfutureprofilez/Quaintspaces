@@ -75,14 +75,14 @@ export default function paymentHistory() {
             {listings?.map((item, index) => (
               <tbody key={index}>
                 <tr>
-                  <td className="px-4 py-2">
+                  <td className="px-2 md:px-4 py-2">
                     <div className="flex items-center">
                       <div className="text ml-2">
                         <div className="title">{item?.payment_id}</div>
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-2">
+                  <td className="px-2  md:px-4 py-2">
                     {" "}
                     <div className="items-center flex gap-2 text-base">
                       <Image
@@ -102,13 +102,13 @@ export default function paymentHistory() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-2">{item?.payment_date}</td>
-                  <td className="px-4 py-2 text-sm">
+                  <td className="px-2 md:px-4 py-2">{item?.payment_date}</td>
+                  <td className="px-2 md:px-4 py-2 text-sm">
                     {DateComponent(item?.booking_history?.check_in)}
                   </td>
-                  <td className="px-4 py-2 capitalize">{item?.method}</td>
-                  <td className="px-4 py-2 capitalize">{item?.payment_status}</td>
-                  <td className="px-4 py-2">{formatMultiPrice(item?.price)}</td>
+                  <td className="px-2 md:px-4 py-2 capitalize">{item?.method}</td>
+                  <td className="px-2 md:px-4 py-2 capitalize">{item?.payment_status}</td>
+                  <td className="px-2 md:px-4 py-2">{formatMultiPrice(item?.price)}</td>
                 </tr>
               </tbody>
             ))}
