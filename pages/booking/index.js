@@ -103,18 +103,23 @@ export default function Index() {
   // booking-cancel/42
 
   const cancelBooking= async(id)=>{
+    setLoading(true);
        const main = new Listings();
       const response = main.Booking_cancel(id)
       response.then((res)=>{
       console.log("res",res)
         if(res?.data?.status === true){
+          setLoading(false);
           console.log(res?.data?.status)
           toast.success(res?.data?.message);
           fetching(page);
       }else{
         toast.error(res?.data?.message)
+        setLoading(false);
       }
       }).catch((error)=>{
+        setLoading(false);
+
         console.log("eror",error)
       })
     
@@ -188,7 +193,7 @@ export default function Index() {
                           cancelBooking(item.id)
                         }
                       >
-                        Cancel
+                        {loading ? ("loading") :("Cancel") }
                           </button>
                           ) : (
                             <p className="title capitalize">
