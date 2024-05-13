@@ -151,7 +151,6 @@ export default function Index() {
                     <tr>
                       <th>Booking Date</th>
                       <th>Booking Number</th>
-
                       <th>Title</th>
                       <th>Check In & Out</th>
                       <th>Status</th>
