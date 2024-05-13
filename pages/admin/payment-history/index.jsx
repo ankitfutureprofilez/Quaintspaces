@@ -14,29 +14,57 @@ export default function Index() {
   const [page, setPage] = useState(1);
   const [hasmore, setHasMore] = useState(true);
 
-  const fetchData = async (pg) => {
+  // const fetchData = async (pg) => {
+  //   setLoading(true);
+  //   try {
+  //     const main = new Listing();
+  //     const response = await main.all_user_payment_history(pg);
+  //     const newdata = response?.data?.data?.data || [];
+  //     setContent((prevData) => {
+  //       if (pg === 1) {
+  //         return newdata;
+  //       } else {
+  //         return [...prevData, ...newdata];
+  //       }
+  //     });
+  //     setLoading(false);
+  //     setHasMore(response?.data?.current_page < response?.data?.last_page);
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //     setLoading(false);
+  //   }
+  // };
+
+
+
+  function fetchData(pg) {
     setLoading(true);
-    try {
-      const main = new Listing();
-      const response = await main.all_user_payment_history(pg);
-      const newdata = response?.data?.data?.data || [];
-      setContent((prevData) => {
-        if (pg === 1) {
-          return newdata;
-        } else {
-          return [...prevData, ...newdata];
-        }
+    const main = new Listing();
+    const response = main.all_user_payment_history(pg);
+    response
+      .then((res) => {
+        const newdata = res?.data?.data?.data || [];
+        setContent((prevData) => {
+          if (pg === 1) {
+            return newdata;
+          } else {
+            return [...prevData, ...newdata];
+          }
+        });
+        setHasMore(res?.data?.current_page < res?.data?.last_page);
+        setPage(res?.data?.current_page);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log("error", error);
+        setLoading(false);
       });
-      setLoading(false);
-      setHasMore(response?.data?.current_page < response?.data?.last_page);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setLoading(false);
-    }
-  };
+  }
 
   useEffect(() => {
-    fetchData(1);
+    if (content && content?.length < 1) {
+      fetchData(page + 1);
+    }
   }, []);
 
   const loadMore = () => {

@@ -9,6 +9,7 @@ import Modal from "../elements/Modal.js";
 import NoData from "../elements/NoData.js";
 import { formatMultiPrice } from "../../hooks/ValueData.js";
 import Head from "next/head";
+import { toast } from "react-hot-toast";
 
 export default function Index() {
   const [loading, setLoading] = useState(false);
@@ -99,6 +100,27 @@ export default function Index() {
 
   
 
+  // booking-cancel/42
+
+  const cancelBooking= async(id)=>{
+       const main = new Listings();
+      const response = main.Booking_cancel(id)
+      response.then((res)=>{
+      console.log("res",res)
+        if(res?.data?.status === true){
+          console.log(res?.data?.status)
+          toast.success(res?.data?.message);
+          fetching(page);
+      }else{
+        toast.error(res?.data?.message)
+      }
+      }).catch((error)=>{
+        console.log("eror",error)
+      })
+    
+  }
+
+
   const loadMore = () => {
     if (!loading && page) {
       fetching(page + 1);
@@ -159,10 +181,21 @@ export default function Index() {
                           {formatMultiPrice(item?.price)}
                         </td>
                         <td className="px-4 py-2">
-                          <Button
-                            text="Cancel"
-                            design="font-inter text-red-700 font-medium leading-tight text-center w-32 border-red-500 p-3 rounded-full"
-                          />
+                          {item?.booking_status !== "cancelled" ? (
+                             <button
+                        className="font-inter text-red-700 font-medium leading-tight text-center w-32 border-red-500 p-3 rounded-full"
+                        onClick={() =>
+                          cancelBooking(item.id)
+                        }
+                      >
+                        Cancel
+                          </button>
+                          ) : (
+                            <p className="title capitalize">
+                              AllReady Taken
+                              </p>
+                          ) }
+                       
                         </td>
                       </tr>
                     </tbody>

@@ -27,7 +27,6 @@ function StatusTracker({ property_count }) {
       });
   }, []);
   return (
-    
     <>
       {loading ? (
         <div className="border bg-lightBorderColor h-[40vh] w-full p-3 rounded-2xl "></div>
@@ -48,7 +47,6 @@ function StatusTracker({ property_count }) {
               See all
             </Link>
           </div>
-
           <hr className="bg-gray-400 my-4" />
           <div className="space-y-3">
             {propertylist && propertylist?.length > 0 ? (
@@ -81,7 +79,6 @@ function StatusTracker({ property_count }) {
                   </div>
                 </div>
               ))
-
             ) : (
               <DashboardNoData />
             )}
