@@ -27,6 +27,7 @@ function StatusTracker({ property_count }) {
       });
   }, []);
   return (
+    
     <>
       {loading ? (
         <div className="border bg-lightBorderColor h-[40vh] w-full p-3 rounded-2xl "></div>
@@ -80,7 +81,7 @@ function StatusTracker({ property_count }) {
                   </div>
                 </div>
               ))
-              
+
             ) : (
               <DashboardNoData />
             )}
