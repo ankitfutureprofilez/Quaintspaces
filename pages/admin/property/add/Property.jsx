@@ -1064,6 +1064,7 @@ export default function Property(props) {
 
             </div>
             
+            
             <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
               {step == 0 ? (
                 <> </>
