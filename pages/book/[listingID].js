@@ -27,16 +27,11 @@ const Book = () => {
   const RAZOPAY_KEY = process.env.NEXT_PUBLIC_RAZOPAY_KEY;
   const { listingID } = router.query;
 
-
   const [listing, setListing] = useState([]);
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
   const [guestsModel, setGuestsModel] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [numberField, setNumberField] = useState(false);
-  const [hasAddedNumber, setHasAddedNumber] = useState(false);
-  const [messageField, setMessageField] = useState(false);
-  const [hasAddedMessage, setHasAddedMessage] = useState(false);
   const [pricerate, setPriceRate] = useState(0);
   const [orderId, setOrderId] = useState("");
 
@@ -49,44 +44,38 @@ const Book = () => {
     date: recorddate,
   });
 
+  // useEffect(() => {
+  //   const url = router.query;
+  //   setInfos(url);
+  //   const main = new Listings();
+  //   main
+  //     .PropertyDetail(url.listingID)
+  //     .then((r) => {
+  //       setListing(r?.data?.data);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  //     console.log("booking page",listing)
 
-  useEffect(() => {
-    const url = router.query;
-    setInfos(url);
-    const main = new Listings();
-    main
-      .PropertyDetail(url.listingID)
-      .then((r) => {
-        setListing(r?.data?.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-
-    setGuests({
-      adults: {
-        value: +url.numberOfAdults || 0,
-        max: 16,
-        min: 0,
-      },
-      children: {
-        value: +url.numberOfChildren || 0,
-        max: 15,
-        min: 0,
-      },
-      infants: {
-        value: +url.numberOfInfants || 0,
-        max: 5,
-        min: 0,
-      },
-      pets: {
-        value: +url.numberOfPets || 0,
-        max: 5,
-        min: 0,
-      },
-    });
-  }, [router.asPath]);
-
+  //   setGuests({
+  //     adults: {
+  //       value: +url.numberOfAdults || 0,
+  //       max: listing?.adults || 5,
+  //       min: 0,
+  //     },
+  //     children: {
+  //       value: +url.numberOfChildren || 0,
+  //       max: listing?.children || 5,
+  //       min: 0,
+  //     },
+  //     pets: {
+  //       value: +url.numberOfPets || 0,
+  //       max: listing?.no_of_pet_allowed || 5,
+  //       min: 0,
+  //     },
+  //   });
+  // }, [router.asPath]);
 
   useEffect(() => {
     if (infos.checkout && infos.checkin && listing) {
@@ -99,36 +88,32 @@ const Book = () => {
     }
   }, [infos.checkout, infos.checkin, listing]);
 
-  // console.log("infos",infos)
   const [guests, setGuests] = useState({
     adults: {
       value: +infos.adults || 0,
-      max: 16,
+      max: 10,
       min: 0,
     },
     children: {
       value: +infos.children || 0,
-      max: 15,
-      min: 0,
-    },
-    infants: {
-      value: +infos.infants || 0,
-      max: 5,
+      max: 10,
       min: 0,
     },
     pets: {
       value: +infos.pets || 0,
-      max: 5,
+      max: 10,
       min: 0,
     },
   });
+  console.log("infos",infos)
+  console.log("guests",guests)
 
   useEffect(() => {
     const url = router.query;
     setInfos(url);
     const main = new Listings();
     main
-      .PropertyDetail(url.listingID)
+      .PropertyDetail(url?.listingID)
       .then((r) => {
         setListing(r?.data?.data);
       })
@@ -136,31 +121,24 @@ const Book = () => {
         console.error(err);
       });
 
-    // console.log("liiitn",listing)
     setGuests({
       adults: {
         value: +url.numberOfAdults || 0,
-        max: 16,
+        max: listing?.adults || 10,
         min: 0,
       },
       children: {
         value: +url.numberOfChildren || 0,
-        max: 15,
-        min: 0,
-      },
-      infants: {
-        value: +url.numberOfInfants || 0,
-        max: 5,
+        max: listing?.children || 10,
         min: 0,
       },
       pets: {
         value: +url.numberOfPets || 0,
-        max: 5,
+        max: listing?.no_of_pet_allowed || 10,
         min: 0,
       },
     });
   }, [router.asPath]);
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -171,12 +149,32 @@ const Book = () => {
   };
 
   const handleFileChange = (e) => {
+    const imageFormats = [
+      "jpg",
+      "jpeg",
+      "png",
+      "gif",
+      "bmp",
+      "tif",
+      "tiff",
+      "svg",
+      "webp",
+      "avif",
+    ];
     const formData = e.target.files[0];
-    setFormData((prevState) => ({
-      ...prevState,
-      fornt: formData,
-    }));
+    const type=formData.type?.split('/');
+    if(imageFormats.includes(type[1])){
+      setFormData((prevState) => ({
+        ...prevState,
+        fornt: formData,
+      }));
+    }
+    else{
+      toast.error("Invalid Image type! Only jpg, svg, png, avif are accepted")
+    }
   };
+
+  console.log()
 
   useEffect(() => {
     if (infos.checkout && infos.checkin && listing) {
@@ -229,6 +227,24 @@ const Book = () => {
       toast.error("Invalid Phone Number");
       return;
     }
+    if (guests?.adults?.value > listing?.adults) {
+      toast.error(
+        `Number of adults exceeds the allowed limit ${listing?.adults}`
+      );
+      return;
+    }
+    if (guests?.children?.value > listing?.children) {
+      toast.error(
+        `Number of children exceeds the allowed limit ${listing?.children}`
+      );
+      return;
+    }
+    if (guests?.pets?.value > listing?.no_of_pet_allowed) {
+      toast.error(
+        `Number of pets exceeds the allowed limit ${listing?.no_of_pet_allowed}`
+      );
+      return;
+    }
     if (loading) return;
 
     setLoading(true);
@@ -259,10 +275,9 @@ const Book = () => {
               toast.success("Payment Successful");
               setOrderId(res?.data?.orderId);
               // return false;
-              localStorage && localStorage.setItem("response",  JSON.stringify(response))
+              localStorage &&
+                localStorage.setItem("response", JSON.stringify(response));
               paymentsubmit(res?.data?.orderId);
-
-              
             },
             prefill: {
               name: "Customer Name",
@@ -280,7 +295,7 @@ const Book = () => {
           rzp.on("payment.failed", function (response) {
             paymentsubmit(res?.data?.orderId);
             toast.error("Payment Failed");
-          router.push(`/cancel/${listingID}`);
+            router.push(`/cancel/${listingID}`);
           });
           rzp.open();
         } else {
@@ -301,12 +316,11 @@ const Book = () => {
     record.append("property_uid", listingID);
     record.append("check_in", infos.checkin);
     record.append("check_out", infos.checkout);
-    record.append("adults", infos.numberOfAdults);
-    record.append("infants", infos.numberOfInfants);
-    record.append("children", infos.numberOfChildren);
+    record.append("adults", guests?.adults?.value);
+    record.append("children", guests?.children?.value);
     record.append("doc_type", formData.selectOption);
     record.append("front_doc", formData.fornt);
-    record.append("no_of_pet", infos.numberOfPets);
+    record.append("no_of_pet", guests?.pets?.value);
     record.append("phone_no", formData.phone);
     record.append("razorpay_order_id", orderId);
     record.append(
@@ -320,7 +334,7 @@ const Book = () => {
       .bookingpayment(record)
       .then((res) => {
         if (res) {
-          if(res?.data?.status ==true){
+          if (res?.data?.status == true) {
             toast.success(res?.data?.message);
             router.push(`/success/${listingID}`);
           }
@@ -338,17 +352,17 @@ const Book = () => {
     <AuthLayout>
       <div>
         <Head>
-          <title>Confirm and Pay - QS Jaipur</title>
+          <title>Confirm & Pay - QS Jaipur</title>
         </Head>
         <main className="max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12">
           <Heading
-            text={loading ? "Processing..." : "Confirm and pay"}
+            text={loading ? "Processing..." : "Confirm & Pay"}
             handleClick={() => router.back()}
           />
           <div className="flex mt-3 sm:mt-8 md:mt-14 px-3 gap-10 your-trip-sec">
             <div className="w-8/12">
               <h2 className="text-xl mb-4 font-medium heading-data">
-                Your trip
+                Your Trip
               </h2>
               <div className="flex items-center justify-between w-full py-2">
                 <div>
@@ -372,14 +386,14 @@ const Book = () => {
                   <h5 className="text-lg font-medium item-heading">Guests</h5>
                   <p className="text-md item-paragrapg">
                     {`${
-                      +infos.numberOfAdults + +infos.numberOfChildren
+                      +guests?.adults?.value + +guests?.children?.value
                     } guests ${
                       +infos.numberOfInfants
                         ? ", " + infos.numberOfInfants + " infants"
                         : ""
                     } ${
-                      +infos.numberOfPets
-                        ? ", " + infos.numberOfPets + " pets"
+                      +guests?.pets?.value
+                        ? ", " + guests?.pets?.value + " pets"
                         : ""
                     }`}
                   </p>
@@ -417,7 +431,7 @@ const Book = () => {
                       type="file"
                       id="fileUpload"
                       name="fornt"
-                      accept=".pdf,.doc,.docx, .jpg, .png"
+                      accept=".jpg, .jpeg, .png, .gif, .bmp, .tif, .tiff, .svg, .webp, .avif"
                       onChange={handleFileChange}
                       className="mt-1 p-4 border rounded-full w-full"
                       required
@@ -476,13 +490,14 @@ const Book = () => {
                       type="tel"
                       id="phone"
                       name="phone"
-                      maxlength="10"
+                      maxLength="10"
                       value={formData.phone}
                       onChange={handleChange}
                       className="mt-1 mr-1 p-4 border rounded-full w-full"
                       placeholder="Enter your mobile number"
                       required
                     />
+
                     {/* <button
                       onClick={() => {
                         if (formData.phone.length != 10) {
@@ -526,26 +541,31 @@ const Book = () => {
                 />
               </div>
             </div>
-            <div className="w-5/12  rounded-xl shadow py-8 px-5 h-fit golden-border">
+            <div className="w-4/12  rounded-xl shadow py-8 px-5 h-fit golden-border">
               <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
-              <Image
-  src={listing?.property_image && listing.property_image.length > 0 ? listing.property_image[0].image_url : '/fallback_image_url'}
-  alt="Apartment"
-  width={200}
-  height={200}
-/>
+                <Image
+                  src={
+                    listing?.property_image && listing.property_image.length > 0
+                      ? listing.property_image[0].image_url
+                      : "/fallback_image_url"
+                  }
+                  alt="Apartment"
+                  width={200}
+                  height={200}
+                />
 
                 <div>
-                  <h4 className="text-xl mb-1">{listing?.name}</h4>
-                  <h3 className=" text-lg">{listing?.type}</h3>
+                  <h4 className="text-xl mb-1 capitalize">{listing?.name}</h4>
+                  <h3 className=" text-lg capitalize">
+                    {listing?.type?.replace("_", " ")}
+                  </h3>
                   <span className="flex text-sm items-center gap-1">
                     <span>
                       <Star />
                     </span>
                     <span>
-                    {listing?.rating} {listing?.
-review ? listing?.
-review + " reviews" : ""}
+                      {listing?.rating}{" "}
+                      {listing?.review ? listing?.review + " reviews" : ""}
                     </span>
                   </span>
                 </div>
@@ -580,6 +600,7 @@ review + " reviews" : ""}
                 <span className="font-bold">Total(INR)</span>
                 <span className="text-md font-medium">{pricerate}</span>
               </div>
+
             </div>
           </div>
           {guestsModel && (

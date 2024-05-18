@@ -77,8 +77,8 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                   onClick={handleClick}
                 >
                   {listing && listing.data && listing.data.review > 0 ? (
-                    <>{listing.data.review} review</>
-                  ) : null}
+                    <>{listing.data.review} Review</>
+                  ) : "No Review"}
                 </span>
               </div>
             </>
@@ -124,7 +124,7 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
         </div>
 
         <button
-          className="btn-normal mt-8"
+          className="btn-normal mt-8 capitalize"
           onClick={() => setAmenitiesModal(true)}
         >
           See all{" "}
@@ -169,7 +169,9 @@ const AmenitiesModal = ({ amenities, setAmenitiesModal }) => {
       ></div>
       <div className="w-[50rem] h-full max-h-[calc(100vh-110px)] bg-white z-40 relative rounded-xl animation_primary">
         <header className="flex items-center py-6 px-4">
-          <button onClick={() => setAmenitiesModal(false)}>
+          <button
+          className="absolute right-[23px] top-[20px]"
+           onClick={() => setAmenitiesModal(false)}>
             <Times />
           </button>
         </header>

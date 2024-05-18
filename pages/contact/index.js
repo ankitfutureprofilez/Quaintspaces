@@ -49,7 +49,6 @@ export default function index() {
           });
         } else {
           toast.error(res?.data?.message);
-          // console.log(res?.data.message);
           setLoading(false);
         }
       })
@@ -66,7 +65,7 @@ export default function index() {
       </Head>
       <div className="container mx-auto">
         <div className="pt-3 sm:pt-6 md:pt-12">
-          <Heading text={"Contact "} handleClick={() => router.back()} />
+          <Heading text={"Contact Us"} handleClick={() => router.back()} />
         </div>
       </div>
       <div className="bg-orange-300 justify-between w-full py-6 md:py-12 my-6 md:my-12">
@@ -206,7 +205,7 @@ export default function index() {
                   rows={4} // Set the number of rows as needed
                 />
               </div>
-              <button className="filter btn w-7/12 !py-2 lg:!py-3 flex justify-center">
+              <button className="filter btn w-7/12 !py-2 lg:!py-3 flex mx-auto justify-center">
                 {loading ? "Submitting..." : "Submit"}
               </button>
 

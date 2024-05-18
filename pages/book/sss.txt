@@ -12,19 +12,21 @@ import Footer from "../../components/Footer";
 import { getParams } from "../../utils/handlers";
 import postsData from "../../bot/data.json";
 import Heading from "../elements/Heading";
+import Moment from "moment";
 import Image from "next/image";
 import Button from "../elements/Button";
 import Listings from "../api/laravel/Listings";
 import AuthLayout from "../layout/AuthLayout";
 import toast from "react-hot-toast";
 import { formatMultiPrice } from "../../hooks/ValueData";
- import Razorpay from 'razorpay';
+import useRazorpay from "react-razorpay";
 
-const Book = () => {
+const Book = ({ listingData, listingID }) => {
   const router = useRouter();
-  const { listingID } = router.query;
-  // console.log("listingID", listingID);
-  const [listing, setListing] = useState([]);
+  const [Razorpay] = useRazorpay();
+  const RAZOPAY_KEY = process.env.NEXT_PUBLIC_RAZOPAY_KEY;
+
+  const [listing, setListing] = useState(listingData);
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
   const [guestsModel, setGuestsModel] = useState(false);
@@ -33,21 +35,25 @@ const Book = () => {
   const [hasAddedNumber, setHasAddedNumber] = useState(false);
   const [messageField, setMessageField] = useState(false);
   const [hasAddedMessage, setHasAddedMessage] = useState(false);
+  const [pricerate, setPriceRate] = useState(0);
+  const [orderId, setOrderId] = useState("");
 
-  // console.log("infos",infos)
+  const recorddate = Moment(new Date())?.format("DD-MM-YYYY");
+  const [formData, setFormData] = useState({
+    selectOption: "",
+    fornt: null,
+    message: "",
+    phone: "",
+    date: recorddate,
+  });
   const [guests, setGuests] = useState({
     adults: {
       value: +infos.adults || 0,
-      max: 16,
+      max: 5,
       min: 0,
     },
     children: {
       value: +infos.children || 0,
-      max: 15,
-      min: 0,
-    },
-    infants: {
-      value: +infos.infants || 0,
       max: 5,
       min: 0,
     },
@@ -59,53 +65,61 @@ const Book = () => {
   });
 
   useEffect(() => {
-    const url = router.query;
-    setInfos(url);
-    // console.log("router query", url);
-    const main = new Listings();
-    main
-      .PropertyDetail(url.listingID)
-      .then((r) => {
-        // console.log("Data",r.data.data);
-        setListing(r?.data?.data);
-      })
-      .catch((err) => {
-        console.error(err);
+    if (listingData) {
+      setListing(listingData);
+    }
+  }, [listingData]);
+
+  useEffect(() => {
+    if (listingData) {
+      setListing(listingData);
+    }
+  }, [listingData]);
+
+  useEffect(() => {
+    if (infos.checkout && infos.checkin && listing) {
+      const calculatedPriceRate =
+        +listing.price *
+        differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
+      setPriceRate(formatMultiPrice(calculatedPriceRate));
+    } else {
+      setPriceRate(0);
+    }
+  }, [infos.checkout, infos.checkin, listing]);
+
+  useEffect(() => {
+    if (router.query) {
+      setInfos(router.query);
+      const main = new Listings();
+      main
+        .PropertyDetail(router.query?.listingID)
+        .then((r) => {
+          setListing(r?.data?.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+
+      setGuests({
+        adults: {
+          value: +router.query.numberOfAdults || 0,
+          max: listing?.adults || 5,
+          min: 0,
+        },
+        children: {
+          value: +router.query.numberOfChildren || 0,
+          max: listing?.children || 5,
+          min: 0,
+        },
+        pets: {
+          value: +router.query.numberOfPets || 0,
+          max: listing?.no_of_pet_allowed || 5,
+          min: 0,
+        },
       });
+    }
+  }, [router.query]);
 
-    // console.log("liiitn",listing)
-    setGuests({
-      adults: {
-        value: +url.numberOfAdults || 0,
-        max: 16,
-        min: 0,
-      },
-      children: {
-        value: +url.numberOfChildren || 0,
-        max: 15,
-        min: 0,
-      },
-      infants: {
-        value: +url.numberOfInfants || 0,
-        max: 5,
-        min: 0,
-      },
-      pets: {
-        value: +url.numberOfPets || 0,
-        max: 5,
-        min: 0,
-      },
-    });
-  }, [router.asPath]);
-  // console.log("infos", infos);
-
-  const [formData, setFormData] = useState({
-    selectOption: "",
-    fornt: null,
-    message: "",
-    phone: "",
-  });
-  0;
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -122,51 +136,51 @@ const Book = () => {
     }));
   };
 
-  const [pricerate, setPriceRate] = useState(0);
+  //   record.append("front_doc", formData.fornt);
+  //   record.append("no_of_pet", infos.numberOfPets);
+  //   record.append("phone_no", formData.phone);
+  //   record.append("razorpay_order_id", orderId);
+  //   record.append(
+  //     "price",
+  //     infos.checkout && infos.checkin &&
+  //     +listing?.price * differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
+  //   );
+  //   main.bookingpayment(record)
+  //     .then((res) => {
+  //       if (res) {
+  //         toast.success(res?.data?.message);
+  //       } else {
+  //         toast.error(res?.data?.message);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       // Errors(error);
+  //     })
+  //     .finally(() => setLoading(false));
+  // };
 
-  useEffect(() => {
-    if (infos.checkout && infos.checkin && listing) {
-      const calculatedPriceRate =
-        +listing.price *
-        differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
-      setPriceRate(formatMultiPrice(calculatedPriceRate));
-    } else {
-      setPriceRate(0);
-    }
-  }, [infos.checkout, infos.checkin, listing]);
-
-
-  const [orderId, setOrderId] = useState('');
-  console.log("orderId",orderId)
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // if (formData.phone.length === 0) {
-    //   toast.error("Phone Number is required");
-    //   return;
-    // }
-    // if (formData.phone.length != 10) {
-    //   toast.error("Invalid Phone Number");
-    //   return;
-    // }
-    if (loading == true) {
+  const handleSubmit = () => {
+    if (!formData.selectOption) {
+      toast.error("Document type is required");
       return;
     }
+    if (!formData.fornt) {
+      toast.error("Document is required");
+      return;
+    }
+    if (formData.phone.length === 0) {
+      toast.error("Phone Number is required");
+      return;
+    }
+    if (formData.phone.length !== 10) {
+      toast.error("Invalid Phone Number");
+      return;
+    }
+    if (loading) return;
+
     setLoading(true);
     const main = new Listings();
     const record = new FormData();
-    // record.append("property_uid", listingID);
-    // record.append("check_in", infos.checkin);
-    // record.append("check_out", infos.checkout);
-    // record.append("adults", infos.numberOfAdults);
-    // record.append("infants", infos.numberOfInfants);
-    // record.append("children", infos.numberOfChildren);
-    // record.append("doc_type", formData.selectOption);
-    // record.append("front_doc", formData.fornt);
-    // record.append("no_of_pet", infos.numberOfPets);
-    // formData.message.length != 0
-    //   ? record.append("message", formData.message)
-    //   : null;
-    // record.append("phone_no", formData.phone);
     record.append(
       "price",
       infos.checkout &&
@@ -174,61 +188,105 @@ const Book = () => {
         +listing?.price *
           differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
     );
-    record.append(
-      "currency",
-     "INR"
-    );
-    const response = main.PropertyBooking(record);
-    response
-      .then((res) => {
-      
-        if (res && res.data) {
-          setOrderId(res?.data?.orderId)
-          toast.success(res.data.message);
-          if (res.data && res.data.orderId) {
-            setOrderId(res.data.orderIdd);
-            const options = {
-                key: 'rzp_test_9D45c0ttcrwNii',
-                amount: 1000, 
-                currency: 'INR',
-                name: 'Your Company Name',
-                description: 'Payment for services',
-                order_id: orderId,
-                handler: function (response) {
-                    console.log("response",response);
-                    alert('Payment Successful');
-                },
-                prefill: {
-                    name: 'Customer Name',
-                    email: 'customer@example.com',
-                    contact: '9999999999'
-                },
-                theme: {
-                    color: '#F37254'
-                }
-            };
+    record.append("currency", "INR");
+    record.append("payment_date", formData?.date);
 
-            const razorpay = new Razorpay(options);
-            razorpay.open();
-        }
-          // router.push("/");
-          // console.log(res.data.message);/
+    main
+      .PropertyBooking(record)
+      .then((res) => {
+        if (res && res?.data && res?.data?.orderId) {
+          const options = {
+            key: RAZOPAY_KEY,
+            amount: 1000,
+            currency: "INR",
+            name: "Your Company Name",
+            description: "Payment for services",
+            order_id: res?.data?.orderId,
+            handler: function (response) {
+              toast.success("Payment Successful");
+              setOrderId(res?.data?.orderId);
+              // return false;
+              localStorage &&
+                localStorage.setItem("response", JSON.stringify(response));
+              paymentsubmit(res?.data?.orderId);
+            },
+            prefill: {
+              name: "Customer Name",
+              email: "customer@example.com",
+              contact: "8824744976",
+            },
+            notes: {
+              address: "Razorpay Corporate Office",
+            },
+            theme: {
+              color: "#F37254",
+            },
+          };
+          const rzp = new Razorpay(options);
+          rzp.on("payment.failed", function (response) {
+            paymentsubmit(res?.data?.orderId);
+            toast.error("Payment Failed");
+            router.push(`/cancel/${listingID}`);
+          });
+          rzp.open();
         } else {
-          toast.error(res?.data.message);
-          // console.log(res?.data.message)
-          setLoading(false);
+          toast.error(res?.data?.message || "Failed to create order");
         }
       })
       .catch((error) => {
-        console.log("error", error);
-        toast.error(error.message);
-        setLoading(false);
-      });
+        // Errors(error);
+        toast.error("Error creating order");
+      })
+      .finally(() => setLoading(false));
+  };
+
+  const paymentsubmit = (orderId) => {
+    // Receive orderId as a parameter
+    const main = new Listings();
+    const record = new FormData();
+    record.append("property_uid", listingID);
+    record.append("check_in", infos.checkin);
+    record.append("check_out", infos.checkout);
+    record.append("adults", infos.numberOfAdults);
+    record.append("infants", infos.numberOfInfants);
+    record.append("children", infos.numberOfChildren);
+    record.append("doc_type", formData.selectOption);
+    record.append("front_doc", formData.fornt);
+    record.append("no_of_pet", infos.numberOfPets);
+    record.append("phone_no", formData.phone);
+    record.append("razorpay_order_id", orderId);
+    record.append(
+      "price",
+      infos.checkout &&
+        infos.checkin &&
+        +listing?.price *
+          differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
+    );
+    main
+      .bookingpayment(record)
+      .then((res) => {
+        if (res) {
+          console.log("res", res);
+          if (res?.data?.status == true) {
+            toast.success(res?.data?.message);
+            router.push(`/success/${listingID}`);
+          }
+        } else {
+          toast.error(res?.data?.message);
+        }
+      })
+      .catch((error) => {
+        // Errors(error);
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
     <AuthLayout>
       <div>
+        <Head>
+          <title>Confirm and Pay - QS Jaipur</title>
+        </Head>
         <main className="max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12">
           <Heading
             text={loading ? "Processing..." : "Confirm and pay"}
@@ -328,88 +386,77 @@ const Book = () => {
                       Share why you're travelling, who's coming with you and
                       what you love about the space.
                     </p>
-                    <button
-                      onClick={() => setMessageField(true)}
-                      className="edit-color underline font-bold"
-                    >
-                      {hasAddedMessage ? "Edit" : "ADD"}
-                    </button>
                   </div>
-                  {messageField ? (
-                    <div className="mt-2 mb-2 sm:mb-4 flex">
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        className="mt-1 mr-1 p-4 border rounded w-5/6"
-                      ></textarea>
-                      <button
-                        onClick={() => {
-                          if (formData.message.length === 0) {
-                            toast.error("Mesage field is empty");
-                            setHasAddedMessage(false);
-                          } else {setHasAddedMessage(true);}
-                          setMessageField(false);
-                        }}
-                        className="w-1/6 sort btn"
-                      >
-                        Confirm
-                      </button>
-                    </div>
-                  ) : null}
+                  <div className="mt-2 mb-2 sm:mb-4 flex">
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      className="mt-1 mr-1 p-4 border rounded w-full"
+                      placeholder="Enter a message for your host"
+                    ></textarea>
+                    {/* <button
+                      onClick={() => {
+                        if (formData.message.length === 0) {
+                          toast.error("Mesage field is empty");
+                          setHasAddedMessage(false);
+                        } else {setHasAddedMessage(true);}
+                        setMessageField(false);
+                      }}
+                      className="w-1/6 sort btn"
+                    >
+                      Confirm
+                    </button> */}
+                  </div>
 
-                  <h1 className="text-lg item-heading mb-2">Phone number</h1>
+                  <h1 className="text-lg item-heading mb-2">
+                    Phone number <span className="text-red-700">*</span>
+                  </h1>
                   <div className="flex flex-wrap justify-between">
                     <p className="item-pargraph">
                       Add and confirm your phone number to get trip updates.
                     </p>
-                    <button
-                      onClick={() => setNumberField(true)}
-                      className="edit-color underline font-bold"
-                    >
-                      {hasAddedNumber ? "Edit" : "ADD"}
-                    </button>
                   </div>
-                  {numberField ? (
-                    <div className="mt-2 mb-2 sm:mb-4 flex">
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        maxlength="10"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="mt-1 mr-1 p-4 border rounded-full w-5/6"
-                        required
-                      />
-                      <button
-                        onClick={() => {
-                          if (formData.phone.length != 10) {
-                            toast.error("Invalid Phone Number");
-                            return;
-                          }
-                          setHasAddedNumber(true);
-                          setNumberField(false);
-                        }}
-                        className="w-1/6 sort btn"
-                      >
-                        Confirm
-                      </button>
-                    </div>
-                  ) : null}
+                  <div className="mt-2 mb-2 sm:mb-4 flex">
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      maxLength="10"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="mt-1 mr-1 p-4 border rounded-full w-full"
+                      placeholder="Enter your mobile number"
+                      required
+                    />
+
+                    {/* <button
+                      onClick={() => {
+                        if (formData.phone.length != 10) {
+                          toast.error("Invalid Phone Number");
+                          return;
+                        }
+                        setHasAddedNumber(true);
+                        setNumberField(false);
+                      }}
+                      className="w-1/6 sort btn"
+                    >
+                      Confirm
+                    </button> */}
+                  </div>
                 </div>
               </div>
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
-                <div className="ml-3 mt-4">
+                <div className="ml-3 mt-4 w-full">
                   <h1 className="text-lg heading-data mb-4">
                     Cancellation policy
                   </h1>
-                  <div className="flex flex-wrap ">
+                  <div className="flex flex-wrap justify-between">
                     <p className="item-pargraph">
                       This reservation is non-refundable.
                     </p>
-                    <Link href="/terms">
+                    <Link href="/terms" target="blank">
                       <p className="underline edit-color font-bold">
                         Learn More
                       </p>
@@ -419,7 +466,7 @@ const Book = () => {
               </div>
               <div className="mt-11">
                 <Button
-                  text={"Confirm & Pay"}
+                  text={loading ? "Processing..." : "Confirm & Pay"}
                   design={
                     "font-inter  font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 p-4 rounded-full"
                   }
@@ -430,21 +477,26 @@ const Book = () => {
             <div className="w-5/12  rounded-xl shadow py-8 px-5 h-fit golden-border">
               <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
                 <Image
-                  src="http://quaintstays.laraveldevelopmentcompany.com//public//storage//property//images//1710834595_houseimg%202.jpg"
+                  src={
+                    listing?.property_image && listing.property_image.length > 0
+                      ? listing.property_image[0].image_url
+                      : "/fallback_image_url"
+                  }
                   alt="Apartment"
                   width={200}
                   height={200}
                 />
+
                 <div>
-                  <h4 className="text-xl mb-1">{listing?.title}</h4>
-                  <h3 className=" text-lg">Entire Apartment </h3>
+                  <h4 className="text-xl mb-1">{listing?.name}</h4>
+                  <h3 className=" text-lg">{listing?.type}</h3>
                   <span className="flex text-sm items-center gap-1">
                     <span>
                       <Star />
                     </span>
                     <span>
-                      {listing?.rating || "4.5"} (
-                      {listing?.reviews_length || 141} reviews)
+                      {listing?.rating}{" "}
+                      {listing?.review ? listing?.review + " reviews" : ""}
                     </span>
                   </span>
                 </div>
@@ -497,5 +549,16 @@ const Book = () => {
     </AuthLayout>
   );
 };
+export async function getServerSideProps(context) {
+  const { listingID } = context.query;
+  const main = new Listings();
+  const listingData = await main.PropertyDetail(listingID);
+  return {
+    props: {
+      listingData: listingData?.data?.data || null,
+      listingID,
+    },
+  };
+}
 
 export default Book;

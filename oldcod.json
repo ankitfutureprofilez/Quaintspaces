@@ -1,0 +1,37 @@
+
+{
+  "amenities": [
+    {"value": "wifi", "title": "Wifi"},
+    {"value": "tv", "title": "TV"},
+    {"value": "kitchen", "title": "Kitchen"},
+    {"value": "washing_machine", "title": "Washing machine"},
+    {"value": "free_parking_on_premises", "title": "Free parking on premises"},
+    {"value": "paid_parking_on_premises", "title": "Paid parking on premises"},
+    {"value": "air_conditioning", "title": "Air conditioning"},
+    {"value": "dedicated_workspace", "title": "Dedicated workspace"}
+  ], 
+  "amenities2" :[
+  {"value": "pool", "title": "Pool"},
+  {"value": "hot_tub", "title": "Hot tub"},
+  {"value": "patio", "title": "Patio"},
+  {"value": "bbq_grill", "title": "BBQ grill"},
+  {"value": "outdoor_dining_area", "title": "Outdoor dining area"},
+  {"value": "firepit", "title": "Firepit"},
+  {"value": "pool_table", "title": "Pool table"},
+  {"value": "indoor_fireplace", "title": "Indoor fireplace"},
+  {"value": "piano", "title": "Piano"},
+  {"value": "exercise_equipment", "title": "Exercise equipment"},
+  {"value": "lake_access", "title": "Lake access"},
+  {"value": "beach_access", "title": "Beach access"},
+  {"value": "ski_in_out", "title": "Ski-in/out"},
+  {"value": "hair_dryer", "title": "Hair dryer"},
+  {"value": "outdoor_shower", "title": "Outdoor shower"}
+],
+  "standout_amenity": 
+  [
+    {"value": "smoke_alarm", "title": "Smoke alarm"},
+  {"value": "first_aid_kit", "title": "First aid kit"},
+  {"value": "fire_extinguisher", "title": "Fire extinguisher"},
+  {"value": "carbon_monoxide_alarm", "title": "Carbon monoxide alarm"}
+  ]
+}

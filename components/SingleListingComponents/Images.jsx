@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 import Image from "next/image";
 
 const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
-  // console.log("lisitng",listing)
   return (
     <div className="flex flex-wrap sm:flex-nowrap gap-2 w-full h-full">
       {loading ? (
@@ -112,7 +111,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
           setImageViewer(true);
           setSelectedImage(0);
         }}
-        className="flex items-center justify-center gap-2 absolute bottom-4 right-4 rounded-md font-medium border darkBorderColor bg-lightBorderColor text-blackColor px-3 py-1"
+        className="flex items-center justify-center gap-2 absolute bottom-0 right-0 sm:bottom-4 sm:right-4 rounded-md font-medium border darkBorderColor bg-lightBorderColor text-blackColor px-3 py-1"
       >
         <span>
           <Grid />

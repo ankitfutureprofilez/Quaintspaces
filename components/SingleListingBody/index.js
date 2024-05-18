@@ -51,7 +51,6 @@ const SingleListingBody = ({ listing, loading }) => {
     },
   });
 
-
   const result = useLabeling(guests);
 
   const [selectedDay, setSelectedDay] = useState(null);

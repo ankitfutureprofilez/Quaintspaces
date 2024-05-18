@@ -10,7 +10,7 @@ import Layout from "../layout/Layout.js";
 import ThingsToKnow from "./ThingsToKnow.js";
 import Listings from "../api/laravel/Listings.js";
 import Heading from "../elements/Heading.js";
-
+// {listingData,listingID}
 const Listing = () => {
   const router = useRouter();
   const { slug } = router.query;
@@ -23,6 +23,7 @@ const Listing = () => {
     loading: true,
     data: {},
   });
+  // listingData
 
   useEffect(() => {
     if (slug) {
@@ -46,6 +47,12 @@ const Listing = () => {
         });
     }
   }, [slug]);
+
+  // useEffect(() => {
+  //   if (listingData) {
+  //     setrecord(listingData);
+  //   }
+  // }, [listingData]);
 
   return (
     <>
@@ -85,3 +92,15 @@ const Listing = () => {
 };
 
 export default Listing;
+
+// export async function getServerSideProps(context) {
+//   const { listingID } = context.query;
+//   const main = new Listings();
+//   const listingData = await main.PropertyDetail(listingID);
+//   return {
+//     props: {
+//       listingData: listingData?.data?.data || null,
+//       listingID,
+//     },
+//   };
+// }

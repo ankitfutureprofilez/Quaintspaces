@@ -1,23 +1,30 @@
 import { Book, Diagram } from "iconsax-react";
-import RadialProgress from "../RadialProgress";
+import RadialProgress from "../RadialProgress.jsx";
 import { useEffect, useState } from "react";
 import Listing from "../../api/Listing";
 import Link from "next/link";
 
 function CourseProgress() {
   const [activeUser, setActiveUser] = useState();
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const main = new Listing();
     const response = main.ActiveUser();
     response
       .then((res) => {
         setActiveUser(res?.data?.activeUser);
+        setLoading(false);
       })
       .catch((error) => {
         console.log("error", error);
       });
   }, []);
   return (
+    <>
+      {loading ? (
+        <div className="border bg-lightBorderColor h-[30vh] w-full p-3 rounded-2xl "></div>
+      ) : (
     <div className="border text-gray-500 w-full p-3 rounded-2xl">
       {/* header */}
       <div className="flex items-center justify-between">
@@ -39,6 +46,7 @@ function CourseProgress() {
       <div className="flex justify-between">
         <div className="flex items-center gap-4">
           <RadialProgress progress={activeUser?.toFixed(0)} />
+
           <div className="space-y-1">
             <p className="text-sm text-gray-800   text-black font-semibold">
             Active Users
@@ -54,6 +62,8 @@ function CourseProgress() {
         </div>
       </div>
     </div>
+      )}
+      </>
   );
 }
 

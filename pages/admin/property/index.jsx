@@ -9,6 +9,7 @@ import NoRecord from  "../hook/NoRecord"
 import AdminLayout from "../AdminLayout"; 
 import Loading from  "../hook/loading"
 import { useRouter } from "next/router";
+import{ formatMultiPrice }  from "../../../hooks/ValueData"
 // Assuming this is a custom layout component
 
 export default function Index() {
@@ -111,7 +112,9 @@ export default function Index() {
             {item?.type ? `${item?.type?.replace("_", " ")} .` : ""}
             {item.bedrooms} Bedrooms· {item.beds} Beds
            </p>
-           <p  className="text-sm text-gray-600 mt-3 font-bold">{item?.price } Night</p>
+           <p  className="text-sm text-gray-600 mt-3 font-bold">{
+           formatMultiPrice (item?.price)
+            } Night</p>
            <div className="mt-4">
             <Link href={`/property/${item.uuid}`}>
             <div className="text-normal text-underline btn sort rounded text-gray-500 w-full mt-3 px-5 py-2 cursor-pointer font-medium 0" >Public View</div>

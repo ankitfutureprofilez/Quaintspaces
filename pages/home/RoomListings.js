@@ -18,6 +18,7 @@ export default function RoomListings() {
     });
   }, []);
   return (
+    
     <PostBody loading={loading} listings={listings} />
   );
 }

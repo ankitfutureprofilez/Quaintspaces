@@ -37,7 +37,9 @@ class Listings extends Component {
     return Api.get(`/user-booking-history?page=${page}&` + data);
   }
 
-  
+  async Booking_cancel(id) {
+    return Api.get(`/booking-cancel/${id}`);
+  }
   async bookingpayment(data) {
     return Api.post("/payment" , data);
   }

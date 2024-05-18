@@ -108,9 +108,7 @@ export default function Property() {
     fetchAreaList();
   }, []);
 
-  // console.log("area", area)
 
-  console.log("loc", Poperty)
   const fetchLocationData = async (manualLocation) => {
     if (manualLocation) {
       try {
@@ -118,7 +116,6 @@ export default function Property() {
           `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(manualLocation)}`
         );
         const locationData = response.data[0];
-        // console.log("locationData", locationData)
         if (locationData) {
           setPoperty((prevProperty) => ({
             ...prevProperty,
@@ -138,7 +135,6 @@ export default function Property() {
             `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
           );
           const locationData = response.data;
-          // console.log("location ", locationData)
           setPoperty((prevProperty) => ({
             ...prevProperty,
             location: locationData.display_name,

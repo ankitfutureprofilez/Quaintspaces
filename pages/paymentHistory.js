@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Button from "./elements/Button.js";
 import Heading from "./elements/Heading.js";
@@ -6,6 +7,7 @@ import Listings from "./api/laravel/Listings.js";
 import AuthLayout from "./layout/AuthLayout.js";
 import Modal from "./elements/Modal.js";
 import NoData from "./elements/NoData.js";
+import Link from "next/link";
 import { formatMultiPrice } from "../hooks/ValueData.js";
 import Image from "next/image";
 import DateComponent from "./admin/hook/Dateformat.jsx";
@@ -59,14 +61,14 @@ export default function paymentHistory() {
   const BookingTable = () => {
     return (
       <>
-        <div className="table-responsive">
+        <div className="  table-responsive">
           <table className=" w-full booking-table">
             <thead>
               <tr>
                 <th>Payment ID</th>
-                <th>Property</th>
+                <th>Title</th>
                 <th>Payment Date</th>
-                <th>Check In</th>
+                <th>Check In & Out</th>
                 <th>Method</th>
                 <th>Status</th>
                 <th>Amount</th>
@@ -75,40 +77,30 @@ export default function paymentHistory() {
             {listings?.map((item, index) => (
               <tbody key={index}>
                 <tr>
-                  <td className="px-4 py-2">
+                  <td className="px-2 md:px-4 py-2">
                     <div className="flex items-center">
                       <div className="text ml-2">
                         <div className="title">{item?.payment_id}</div>
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-2">
+                  <td className="px-2 md:px-4 py-2">
                     {" "}
-                    <div className="items-center flex gap-2 text-base">
-                      <Image
-                        width={35}
-                        height={35}
-                        className="top-2 right-2 p-1 rounded-full"
-                        src={
-                          item?.booking_history?.booking_property
-                            ?.property_image[0]?.image_url
-                        }
-                        alt="Property"
-                      />
-                      <div>
+                    <div className="items-center img-data flex gap-2 text-base">
                         <div className="text-gray-800 font-medium text-left capitalize">
-                          {item?.booking_history?.booking_property?.name}
-                        </div>
-                      </div>
+                                <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
+                                  {item?.booking_history?.booking_property?.name}
+                                </Link>
+                              </div>
                     </div>
                   </td>
-                  <td className="px-4 py-2">{item?.payment_date}</td>
-                  <td className="px-4 py-2 text-sm">
-                    {DateComponent(item?.booking_history?.check_in)}
+                  <td className="px-2 md:px-4 py-2">{item?.payment_date}</td>
+                  <td className="px-2 md:px-4 py-2 text-sm">
+                    {item?.booking_history?.check_in} &  {item?.booking_history?.check_out}
                   </td>
-                  <td className="px-4 py-2 capitalize">{item?.method}</td>
-                  <td className="px-4 py-2 capitalize">{item?.status}</td>
-                  <td className="px-4 py-2">{formatMultiPrice(item?.price)}</td>
+                  <td className="px-2 md:px-4 py-2 capitalize">{item?.method}</td>
+                  <td className="px-2 md:px-4 py-2 capitalize">{item?.payment_status}</td>
+                  <td className="px-2 md:px-4 py-2">{formatMultiPrice(item?.price)}</td>
                 </tr>
               </tbody>
             ))}
@@ -129,6 +121,7 @@ export default function paymentHistory() {
   return (
     <AuthLayout>
       <Head>
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
         <title>Payment History - QS Jaipur</title>
       </Head>
       <div className="container mx-auto">

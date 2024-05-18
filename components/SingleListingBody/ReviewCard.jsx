@@ -5,7 +5,6 @@ import StartRating from "../../pages/elements/StartRating";
 
 const ReviewCard = ({ data }) => {
   const date = new Date(data?.created_at);
-  // console.log("date",date)
   // let reviewtime=""
   // reviewtime+= date.getMonth() + 1; // getMonth() returns zero-based month (0-11), so we add 1
   // reviewtime+=" ,"+ date.getFullYear();
@@ -52,9 +51,13 @@ const ReviewCard = ({ data }) => {
             <StartRating size={15} value={data?.rating} />
           </p>
         <span className="text-red-500 text-xs">
-          {data && data?.status == 0
+          {data && data?.status == 2
             ? "Your review is not approved yet. Currently only you can see this."
-            : ""}
+            : data && data?.status == 0
+            ? "Review rejected. You can edit it for reconsideration."
+            :
+            ""
+            }
         </span>
       </div>
     </div>

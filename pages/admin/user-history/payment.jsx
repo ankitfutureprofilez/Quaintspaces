@@ -6,6 +6,7 @@ import Nodata from "../hook/NoRecord";
 import Spinner from "../hook/spinner";
 import Link from "next/link";
 import userprofile from "../../../public/admin/userprofile.png"
+import { formatMultiPrice } from "../../../hooks/ValueData";
 
 export default function payment({ record }) {
 
@@ -27,7 +28,6 @@ export default function payment({ record }) {
         console.log("error", error);
       });
   }, []);
-  console.log("content", content)
   return (
 
     <>
@@ -41,28 +41,28 @@ export default function payment({ record }) {
 
         <div className="overflow-x-auto mt-3">
           <div className="w-full">
-            <div className="overflow-x-auto border border-gray-200 dark:border-gray-700 md:rounded-lg">
+            <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
               {content && content.length > 0 ? (
 
-                <table className="min-w-[1200px] w-full break-all divide-gray-200 dark:divide-gray-700">
-                  <thead className="bg-gray-50 dark:bg-gray-800">
+                <table className="min-w-[1200px] w-full break-all divide-gray-200">
+                  <thead className="bg-gray-50">
                     <tr >
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Invoice </td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Customer</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Purchase</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Method</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Status</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-black text-white dark:text-gray-400 capitalize ">Amount</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Invoice </td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Customer</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Purchase</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Method</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Status</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Amount</td>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                  <tbody className="bg-white divide-y divide-gray-200">
                     {content && content.map((item, index) => (
                       <tr key={index}>
-                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">{item?.payment_id}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+                        <td className="px-4 py-4 text-sm text-gray-500">{item?.payment_id}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500">
                           <Link href={`/admin/user-history/${item?.booking_history?.booking_user[0]?.id}`}>
 
-                            <div className="flex gap-2 items-center  text-sm p-2 ">
+                            <div className="flex gap-2 img-data  items-center  text-sm p-2 ">
                               <Image
                                 width={35}
                                 height={35}
@@ -78,10 +78,10 @@ export default function payment({ record }) {
                           </Link>
                         </td>
 
-                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
+                        <td className="px-4 py-4 text-sm text-gray-500">
                           <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
 
-                            <div className="items-center flex gap-2 text-sm p-2 ">
+                            <div className="items-center img-data flex gap-2 text-sm p-2 ">
                               <Image
                                 width={35}
                                 height={35}
@@ -91,13 +91,13 @@ export default function payment({ record }) {
                               />
                               <div>
                                 <div className="text-gray-800 font-medium capitalize ">{item?.booking_history?.booking_property?.name}</div>
-                                <div className="text-sm capitalize">{item?.booking_history?.booking_property?.properties_type}</div>
+                                <div className="text-sm capitalize">{item?.booking_history?.booking_property?.properties_type?.replace("_"," ")}</div>
                               </div>
                             </div>
                           </Link>
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 capitalize  ">{item?.method}</td>
-                        <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
+                        <td className="px-4 py-4 text-sm text-gray-500 capitalize  ">{item?.method}</td>
+                        <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-500 sm:px-6 table-cell">
 
                           <td
                             className={` capitalize inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${item?.payment_status === "success"
@@ -116,7 +116,9 @@ export default function payment({ record }) {
 
                         </td>
 
-                        <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">{item?.price}</td>
+                        <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-500 sm:px-6 table-cell">{
+                        formatMultiPrice(item?.price)
+                        }</td>
 
                       </tr>
                     ))}

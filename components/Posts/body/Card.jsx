@@ -45,7 +45,7 @@ const Card = ({ post }) => {
           alt="Property cover image"
         />
         <div className="flat-info">
-          <h2 className="line-limit">
+          <h2 className="line-limit sm:min-h-[72px]">
             {/* {textResizer(
             post &&
               post.location &&

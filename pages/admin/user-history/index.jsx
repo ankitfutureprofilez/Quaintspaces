@@ -6,15 +6,18 @@ import Popup from "../hook/Popup";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import Image from "next/image";
+import Modal from "../hook/Modal";
 
 export default function Index() {
-
   const [popupOpen, setPopupOpen] = useState(null);
   const [selectedRowData, setSelectedRowData] = useState(null);
   const [record, setRecord] = useState([]);
   const [page, setPage] = useState(1);
   const [hasmore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [message, setMessage] = useState();
+  const [id, setid] = useState();
 
   const fetchData = async (pg) => {
     try {
@@ -30,8 +33,8 @@ export default function Index() {
             return [...prevData, ...newdata];
           }
         });
-        setPage(response.data && response.data.current_page);
-        setHasMore(response.data && response.data.current_page < response.data && response.data.last_page);
+        setPage(response?.data && response?.data?.current_page);
+        setHasMore(response?.data?.current_page < response?.data?.last_page);
       } else {
         setRecord([]);
       }
@@ -40,6 +43,18 @@ export default function Index() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleChange = (e) => {
+    setMessage(e?.target?.value);
+  };
+
+  const openModal = (id) => {
+    setid(id);
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -60,6 +75,29 @@ export default function Index() {
           );
         } else {
           toast.error(res.data.message);
+        }
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  };
+
+  const deleteAccount = async (id) => {
+    if (message?.length == 0) {
+      toast.error("Mesage can not be empty !!");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("message", message);
+    const main = new Listing();
+    const response = main.DeleteUser(id, formData);
+    response
+      .then((res) => {
+        if (res && res?.data && res?.data?.status) {
+          toast.success(res?.data?.message);
+          setIsOpen(false);
+        } else {
+          toast.error(res?.data?.message);
         }
       })
       .catch((error) => {
@@ -89,53 +127,57 @@ export default function Index() {
         <div className="w-full ">
           <table className="w-full text-sm rounded-md">
             <thead>
-              <tr className="bg-gray-100 rounded-lg flex items-center bg-indigo text-white justify-between text-gray-500">
-                <th className="flex gap-2 bg-black text-white flex justify-center w-1/4 text-sm p-4">
+              <tr className="bg-gray-100 rounded-lg items-center bg-indigo-600 text-white justify-between text-gray-500">
+                <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
                   <p>S.No.</p>
                 </th>
-                <th className="flex gap-2 bg-black text-white flex justify-center  w-1/4 text-sm p-4">
+                <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
                   <p>Name</p>
                 </th>
-                <th className="flex gap-2 flex justify-center bg-black text-white w-1/4 text-sm p-4">
+                <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
                   <p>Phone Number</p>
                 </th>
-                <th className="flex gap-2 flex justify-center bg-black text-white w-1/4 text-sm p-4">
+                <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
                   <p>Status</p>
                 </th>
-                <th className="flex gap-2 flex justify-center bg-black text-white w-1/4 text-sm p-4">
+                <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
                   <p>Details</p>
                 </th>
               </tr>
             </thead>
 
-            <tbody className="space-y-2 divide-y">
+            <tbody className="bg-white divide-y divide-gray-200">
               {record.map((item, index) => (
                 <tr
                   key={index}
-                  className="hover:bg-gray-100 flex items-center justify-between duration-150 text-gray-700 !mt-0"
+                  className="hover:bg-gray-100  items-center justify-between duration-150 text-gray-700 !mt-0"
                 >
-                  <td className="flex gap-2 items-center flex justify-center w-1/4 text-sm p-2  ">
+                  <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
                     {index + 1}
                   </td>
-                  <td className="flex gap-2 items-center w-1/4 text-sm p-2 ">
+                  <td className="flex gap-2 py-4 img-data items-center text-sm px-2 whitespace-nowrap">
                     <Image
                       width={35}
                       height={35}
                       className="top-2 right-2 p-1 rounded-full"
-                      src={item.image_url ? item.image_url : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"}
+                      src={
+                        item.image_url
+                          ? item.image_url
+                          : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"
+                      }
                       alt={item.index ? item.index : "0"}
                     />
                     <div>
                       <div className="text-gray-800 font-medium">
-                        {item.name} {item.id}
+                        {item.name}
                       </div>
                       <div className="text-sm">{item.email}</div>
                     </div>
                   </td>
-                  <td className="flex gap-2 items-center flex justify-center w-1/4 text-sm p-2  ">
-                    {item.phone_no ? item.phone_no : ""}
+                  <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
+                    {item.phone_no ? item.phone_no : "-"}
                   </td>
-                  <td className="flex gap-2 items-center flex justify-center w-1/4 text-sm p-2  ">
+                  <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
                     <div className="flex items-center gap-1 p-1">
                       <button
                         onClick={() =>
@@ -184,7 +226,7 @@ export default function Index() {
                       </button>
                     </div>
                   </td>
-                  <td className="w-1/4  p-2 flex justify-center">
+                  <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
                     <div className="relative">
                       <div
                         onClick={() => handleRowClick(item.id)}
@@ -244,20 +286,25 @@ export default function Index() {
                         </svg>
                       </div>
 
-
                       {/* Dropdown menu */}
                       {popupOpen === item.id && selectedRowData && (
-                        <div className="z-10 absolute top-full right-0 mt-1 w-44 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
-                          <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                            <li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                        <div className="z-10 absolute top-full right-0 mt-1 w-44 bg-white divide-y divide-gray-100 rounded-lg shadow">
+                          <ul
+                            className="py-2 text-sm text-gray-700"
+                            aria-labelledby="dropdownDefaultButton"
+                          >
+                            <li className="block px-4 py-2 hover:bg-gray-100">
                               <button
                                 onClick={() =>
-                                  statusUpdate(item.id, item.status === 0 ? 1 : 0)
+                                  statusUpdate(
+                                    item.id,
+                                    item.status === 0 ? 1 : 0
+                                  )
                                 }
                               >
                                 {item.status === 0 ? (
-                                  <div className="flex items-center gap-1  p-1 hover:bg-black-500">
-                                    <p className="text-xs ">Deactivate</p>{" "}
+                                  <div className="flex items-center gap-2 border rounded-full p-2">
+                                    <p className="text-xs">Deactivate</p>{" "}
                                     <svg
                                       class="text-gray-400"
                                       xmlns="http://www.w3.org/2000/svg"
@@ -277,7 +324,7 @@ export default function Index() {
                                     </svg>
                                   </div>
                                 ) : (
-                                  <div className="flex items-center gap-1  p-1">
+                                  <div className="flex items-center gap-1">
                                     <p className="text-xs">Activate</p>{" "}
                                     <svg
                                       className="text-emerald-500"
@@ -297,14 +344,46 @@ export default function Index() {
                               </button>
                             </li>
                             <li>
-                              <Link href={`user-history/${item.id}`} className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">User Details </Link>
+                              <Link
+                                href={`user-history/${item.id}`}
+                                className="block px-4 py-2 hover:bg-gray-100"
+                              >
+                                User Detail{" "}
+                              </Link>
                             </li>
                             {/* <li>
-                              <Link href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</Link>
-                            </li>
-                            <li>
-                              <Link href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</Link>
+                              <button
+                                className="block px-4 py-2 hover:bg-gray-100"
+                                onClick={() => openModal(item?.id)}
+                              >
+                                <div className="flex items-center gap-1 hover:bg-black-500">
+                                  <p className="">Delete Account</p>{" "}
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                  >
+                                    <path
+                                      d="M21 5.98c-3.33-.33-6.68-.5-10.02-.5-1.98 0-3.96.1-5.94.3L3 5.98M8.5 4.97l.22-1.31C8.88 2.71 9 2 10.69 2h2.62c1.69 0 1.82.75 1.97 1.67l.22 1.3M18.85 9.14l-.65 10.07C18.09 20.78 18 22 15.21 22H8.79C6 22 5.91 20.78 5.8 19.21L5.15 9.14M10.33 16.5h3.33M9.5 12.5h5"
+                                      stroke="#ff0000"
+                                      stroke-width="1.5"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                    ></path>
+                                  </svg>
+                                </div>
+                              </button>
                             </li> */}
+                            <li>
+                              <button
+                                 onClick={() => openModal(item?.id)}
+                                className="block px-4 py-2 hover:bg-gray-100"
+                              >
+                                Delete Account{" "}
+                              </button>
+                            </li>
                           </ul>
                         </div>
                       )}
@@ -323,7 +402,8 @@ export default function Index() {
           )}
         </div>
       </div>
-      {!loading && (
+
+      {/* {!loading && (
         <div className="flex justify-center">
           <div
             className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
@@ -332,16 +412,53 @@ export default function Index() {
             Load More
           </div>
         </div>
-      )}
-      {!loading && !hasmore && record.length === 0 && (
-
-        <div className="flex justify-center">
-          <div
-            className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
-          >
-            No More Data
+      )} */}
+      {!loading ? (
+        !hasmore ? (
+          <div className="flex justify-center">
+            <div className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white">
+              No Data Available
+            </div>
           </div>
-        </div>
+        ) : (
+          // If hasmore is true
+          <div className="flex justify-center">
+            <div
+              className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+              onClick={loadMore} // Call loadMore function on click
+            >
+              Load More
+            </div>
+          </div>
+        )
+      ) : null}
+      {isOpen && (
+        <Modal isOpen={openModal} onClose={closeModal}>
+          <div className="my-3 lg:my-6 flex flex-col">
+            <label
+              htmlFor="message"
+              className="mx-auto mb-8 block text-lg font-medium text-gray-600"
+            >
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={message}
+              onChange={handleChange}
+              className="mt-3 p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
+              required
+              placeholder="Please enter a reason for account deletion"
+              rows={2}
+            />
+            <button
+              className="btn filter mt-8 w-2/4 mx-auto"
+              onClick={() => deleteAccount(id)}
+            >
+              {loading ? "Processing..." : "Proceed"}
+            </button>
+          </div>
+        </Modal>
       )}
     </AdminLayout>
   );

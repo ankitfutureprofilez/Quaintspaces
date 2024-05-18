@@ -16,7 +16,6 @@ export default function index() {
 
     const handleSortChange = (value) => {
       setSortBy(value);
-      // console.log(value);
       setIsOpen(false); // Close the dropdown after selecting an option
     };
 
@@ -29,7 +28,7 @@ export default function index() {
           <span className="rounded-md shadow-sm">
             <button
               type="button"
-              className="sort btn flex mx-2"
+              className="sort btn flex mr-2"
               id="options-menu"
               aria-haspopup="true"
               aria-expanded="true"
@@ -165,7 +164,7 @@ export default function index() {
       <PwaFooter />
       <div className="container mx-auto ">
         <div className="mt-6 sm:mt-10">
-          <div className="flex justify-between mb-10 filter-box px-[15px]">
+          <div className="flex justify-between mb-10 filter-box">
             <h2 className="listing-heading text-left">
               Explore our Apartments
             </h2>

@@ -3,9 +3,12 @@ import Listings from "../api/laravel/Listings";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import ForgotLayout from "./ForgotLayout";
+import { Context } from "../_app";
+import { useContext } from "react";
 import Link from "next/link";
 
 const ForgotPassword = () => {
+  const { setOpenLogin } = useContext(Context);
   const router = useRouter();
   const [step, setStep] = useState(1);
   const[loading,setLoading]=useState(false);
@@ -23,7 +26,6 @@ const ForgotPassword = () => {
   };
   const handleSubmit1 = (e) => {
     e.preventDefault();
-    // console.log("Form submitted:", formData1);
     if(loading==true){return;}
     setLoading(true);
     const main = new Listings();
@@ -65,7 +67,6 @@ const ForgotPassword = () => {
   };
   const handleSubmit2 = (e) => {
     e.preventDefault();
-    // console.log("Form submitted:", formData2);
     if(loading==true){return;}
     setLoading(true);
     const main = new Listings();
@@ -110,7 +111,6 @@ const ForgotPassword = () => {
   };
   const handleSubmit3 = (e) => {
     e.preventDefault();
-    // console.log("Form submitted:", formData3);
     if(loading==true){return;}
     setLoading(true);
     const main = new Listings();
@@ -144,7 +144,7 @@ const ForgotPassword = () => {
   const nextStep = () => {
     setStep(step + 1);
   };
-
+  setOpenLogin(false);
   return (
     <div>
       {step === 1 && (

@@ -74,7 +74,7 @@ function Home() {
             <div className="w-full ">
               <div className="p-4 md:p-6 space-y-4 columns-1 sm:columns-2 lg:columns-3">
                 <div className="break-inside-avoid-column space-y-4">
-                  <TopProperty />
+                  <TopProperty property_count={record?.property}/>
                 </div>
                 <div className="break-inside-avoid-column space-y-4">
                   <CurrentProject />
@@ -83,7 +83,7 @@ function Home() {
                   <Bookings />
                 </div>
                 <div className="break-inside-avoid-column space-y-4">
-                  <UserList />
+                  <UserList totaluser={record?.user?.total_user}/>
                 </div>
              
                 <div className="break-inside-avoid-column space-y-4">
@@ -93,8 +93,6 @@ function Home() {
                 <div className="break-inside-avoid-column space-y-4">
                   <CourseProgress />
                 </div>
-
-                
               </div>
             </div>
           </div>

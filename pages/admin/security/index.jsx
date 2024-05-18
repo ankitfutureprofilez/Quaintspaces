@@ -26,7 +26,6 @@ export default function index() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log("Form submitted:", formData);
     if (loading === true) {
       return;
     }

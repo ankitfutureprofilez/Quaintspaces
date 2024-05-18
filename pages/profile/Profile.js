@@ -13,7 +13,6 @@ export default function Profile() {
   const [loading, setLoading] = useState(false);
   const [ImageUploaded, setImageUploaded] = useState(false);
   const { auth, setAuth } = useContext(Context);
-  // console.log("auth", auth);
   const [data, setData] = useState({
     email: "",
     phone_no: "",
@@ -30,7 +29,6 @@ export default function Profile() {
     image: {},
   });
 
-  // console.log("toast",toast)
   const router = useRouter();
 
   const [previewImgSrc, setPreviewImgSrc] = useState(
@@ -59,7 +57,6 @@ export default function Profile() {
     main
       .GetUserProfile()
       .then((r) => {
-        // console.log("r.data.data", r.data.data);
         const profiledata = r?.data?.data;
         setRecord({
           first: profiledata?.first_name,
@@ -85,7 +82,6 @@ export default function Profile() {
       [name]: value,
     }));
   };
-  // console.log("record", record);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -107,10 +103,8 @@ export default function Profile() {
     const response = main.UpdateUserProfile(formdata);
     response
       .then((res) => {
-        // console.log("res", res);
         if (res && res?.data && res?.data?.status) {
           toast.success(res?.data?.message);
-          // console.log(res.data.message);
           setRecord({
             email: res?.data?.data?.email,
             phone: res?.data?.data?.phone_no,
@@ -123,7 +117,6 @@ export default function Profile() {
         } else {
           toast.error(res?.data?.message);
           setImageUploaded(false);
-          // console.log(res?.data.message);
         }
         setLoading(false);
         setImageUploaded(false);

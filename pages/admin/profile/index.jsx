@@ -8,7 +8,6 @@ import Image from 'next/image';
 
 export default function Profileindex() {
   const { auth, setAuth } = useContext(Context);
-  // console.log("auth",auth);
   const [Loading, setLoading] = useState(false);
   const [record, setRecord] = useState({
     email: "",

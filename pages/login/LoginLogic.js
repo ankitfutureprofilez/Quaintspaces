@@ -9,7 +9,6 @@ export default function LoginLogic({isPopup,color}) {
 
   const { setAuth, setOpenLogin } = useContext(Context);
   const router = useRouter();
-  // console.log("router asPath",router.asPath);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -71,7 +70,9 @@ export default function LoginLogic({isPopup,color}) {
             <div className="quainttay">
               <h2>Welcome to Quaint Stay Jaipur </h2>
               <h3 className={`${color}`}>
-                Don't have an account? <button href="/signup"
+                Don't have an account? <button 
+                className="underline"
+                href="/signup"
                 onClick={()=>{
                   router.push("/signup");
                   setOpenLogin(false);
