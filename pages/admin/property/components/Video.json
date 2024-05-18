@@ -1,0 +1,22 @@
+{
+    "step1": {
+      "title": "Step 1",
+      "description": "Tell us about your place",
+      "instructions": "In this step, we'll ask you which type of property you have and if guests will book the entire place or just a room. Then let us know the location and how many guests can stay.",
+      "source": "https://stream.media.muscache.com/zFaydEaihX6LP01x8TSCl76WHblb01Z01RrFELxyCXoNek.mp4?v_q=high"
+    },
+   
+    "step2": {
+        "title": "Step 2",
+        "description": "Make your place stand out",
+        "instructions": " In this step, you’ll add some of the amenities your place offers, plus 5 or more photos. Then you’ll create a title anddescription.",
+        "source": "https://stream.media.muscache.com/H0101WTUG2qWbyFhy02jlOggSkpsM9H02VOWN52g02oxhDVM.mp4?v_q=high"},
+
+      "step3": {
+        "title": "Step 3",
+        "description": "Finish up and publish",
+        "instructions": " Finally, you’ll choose booking settings, set up pricing and publish your listing.",
+        "source": "https://stream.media.muscache.com/KeNKUpa01dRaT5g00SSBV95FqXYkqf01DJdzn01F1aT00vCI.mp4?v_q=high"
+      }
+  }
+  

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import amenitiesList from "../../../../aminites.json";
+import Aminiteisdata from "../../../../oldcod.json"
 import Listing from "../../api/Listing";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import axios from "axios";
+import Step1 from "../components/Video.json"
 import { House, Add } from "iconsax-react";
 import {
   FaBuilding,
@@ -16,6 +18,7 @@ import {
 } from "react-icons/fa";
 import { MdOutlineFreeBreakfast } from "react-icons/md";
 import Image from "next/image";
+import Video from "../components/Video";
 
 const propertyTypes = [
   { value: "flat", label: "Flat/Apartment" },
@@ -97,6 +100,8 @@ export default function Property(props) {
     selectedAmenities: amenities ? stringToArray(amenities) : [],
     free_cancel_time: "",
   });
+
+  console.log("item",item)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -297,7 +302,7 @@ export default function Property(props) {
     formData.append("description", item?.about);
     formData.append("price", item?.price);
     formData.append("properties_type", PType);
-    formData.append("bedrooms", item?.bedrooms);
+    formData.append("bedrooms", Bedrooms);
     formData.append("beds", item?.beds);
     formData.append("bathrooms", item?.bathrooms);
     formData.append("adults", item?.adults);
@@ -312,6 +317,7 @@ export default function Property(props) {
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
+    console.log("formData",formData)
     const response = isEdit
       ? main.propertyedit(uuid, formData)
       : main.addproperty(formData);
@@ -337,69 +343,18 @@ export default function Property(props) {
       });
   }
 
-  useEffect(() => {}, [images]);
+  useEffect(() => { }, [images]);
 
-  const [Guests, setGuests] = useState(1); // Initial number of guests is 1
+  const [guests, setGuests] = useState(0);
+  const [Bedrooms, setBedrooms] = useState(0);
+  const [rooms, setRooms] = useState(0);
+  const [Bathrooms, setBathrooms] = useState(0);
+  const [pets, setPets] = useState(0);
 
-  const incrementGuests = () => {
-    setGuests((prevGuests) => prevGuests + 1);
-  };
-
-  const decrementGuests = () => {
-    if (Guests > 1) {
-      setGuests((prevGuests) => prevGuests - 1);
-    }
-  };
-
-  const [Bedrooms, setBedrooms] = useState(1); // Initial number of guests is 1
-
-  const incrementBedrooms = () => {
-    setBedrooms((prevBedrooms) => prevBedrooms + 1);
-  };
-
-  const decrementBedrooms = () => {
-    if (Bedrooms > 1) {
-      setBedrooms((prevBedrooms) => prevBedrooms - 1);
-    }
-  };
-
-  const [rooms, setrooms] = useState(1); // Initial number of guests is 1
-
-  const incrementrooms = () => {
-    setrooms((prevrooms) => prevrooms + 1);
-  };
-
-  const decrementrooms = () => {
-    if (rooms > 1) {
-      setrooms((prevrooms) => prevBedrooms - 1);
-    }
-  };
+  const decrement = (setter) => () => setter(prev => Math.max(0, prev - 1));
+  const increment = (setter) => () => setter(prev => prev + 1);
 
 
-  const [Bathrooms, setBathrooms] = useState(1); // Initial number of guests is 1
-
-  const incrementBathrooms = () => {
-    setBathrooms((prevBathrooms) => prevBathrooms + 1);
-  };
-
-  const decrementBathrooms = () => {
-    if (rooms > 1) {
-      setBathrooms((prevBathrooms) => prevBathrooms - 1);
-    }
-  };
-
-
-  const [pets, setPets] = useState(1); // Initial number of guests is 1
-
-  const incrementpets = () => {
-    setPets((prevpets) => prevpets + 1);
-  };
-
-  const decrementpets = () => {
-    if (pets > 1) {
-      setPets((prevpets) => prevpets - 1);
-    }
-  };
   return (
     <>
       <style>{`
@@ -414,119 +369,16 @@ export default function Property(props) {
             className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
           >
             <div
-              className={`${
-                step === 0 ? "" : "display-none"
-              } max-w-[100%] m-auto table w-full`}
+              className={`${step === 0 ? "" : "display-none"
+                } max-w-[100%] m-auto table w-full`}
               style={{ display: "flex", alignItems: "center" }}
             >
-              <div className="">
-                <h1 className="text-base font-sans  font-medium text-black-100 text-left md:font-bold mb-2">
-                  Step 1
-                </h1>
-                <h2 classanme="text-3xl  font-sans text-left text-gray-600 mt-4 font-semibold md:font-bold mb-8">
-                  Tell us about your place
-                </h2>
-                <p classanme="text-lg font-sans text-left text-gray-600  font-normal md:font-bold mb-2">
-                  In this step, we'll ask you which type of property you have
-                  and if guests will book the entire place or just a room. Then
-                  let us know the location and how many guests can stay.
-                </p>
-              </div>
-              <div
-                className="w-full aspect-video "
-                style={{ marginLeft: "20px" }}
-              >
-                <div className="">
-                  <video
-                    className=""
-                    style={{ objectFit: "cover" }}
-                    autoPlay
-                    crossOrigin="anonymous"
-                    muted
-                    playsInline
-                    preload="auto"
-                  >
-                    <source src="https://stream.media.muscache.com/zFaydEaihX6LP01x8TSCl76WHblb01Z01RrFELxyCXoNek.mp4?v_q=high" />
-                  </video>
-                </div>
-              </div>
+              <Video step1={Step1?.step1} />
             </div>
 
             <div
-              className={`${
-                step === 1 ? "" : "display-none"
-              } max-w-[100%] m-auto table w-full`}
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <div className="">
-                <h1>Step 2</h1>
-
-                <h2>Make your place stand out</h2>
-                <p>
-                  In this step, you’ll add some of the amenities your place
-                  offers, plus 5 or more photos. Then you’ll create a title and
-                  description.
-                </p>
-              </div>
-              <div
-                className="v1vyqk7a dir dir-ltr"
-                style={{ marginLeft: "20px" }}
-              >
-                <div className="c1pf0cm0 dir dir-ltr">
-                  <video
-                    className="v6iu1id dir dir-ltr"
-                    style={{ objectFit: "cover" }}
-                    autoPlay
-                    crossOrigin="anonymous"
-                    muted
-                    playsInline
-                    preload="auto"
-                  >
-                    <source src="https://stream.media.muscache.com/H0101WTUG2qWbyFhy02jlOggSkpsM9H02VOWN52g02oxhDVM.mp4?v_q=high" />
-                  </video>
-                </div>
-              </div>
-            </div>
-
-            <div
-              className={`${
-                step === 2 ? "" : "display-none"
-              } max-w-[100%] m-auto table w-full`}
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <div className="">
-                <h1 className=" ">Step 3</h1>
-
-                <h2>Finish up and publish</h2>
-                <p>
-                  Finally, you’ll choose booking settings, set up pricing and
-                  publish your listing.
-                </p>
-              </div>
-              <div
-                className="v1vyqk7a dir dir-ltr"
-                style={{ marginLeft: "20px" }}
-              >
-                <div className="c1pf0cm0 dir dir-ltr">
-                  <video
-                    className="v6iu1id dir dir-ltr"
-                    style={{ objectFit: "cover" }}
-                    autoPlay
-                    crossOrigin="anonymous"
-                    muted
-                    playsInline
-                    preload="auto"
-                  >
-                    <source src="https://stream.media.muscache.com/KeNKUpa01dRaT5g00SSBV95FqXYkqf01DJdzn01F1aT00vCI.mp4?v_q=high" />
-                  </video>
-                </div>
-              </div>
-            </div>
-
-            <div
-              className={`${
-                step === 1 ? "" : "display-none"
-              } max-w-[100%] m-auto table w-full`}
+              className={`${step === 1 ? "" : "display-none"
+                } max-w-[100%] m-auto table w-full`}
             >
               {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
                <div className="grid grid-cols-3 gap-4 m-auto table  " >
@@ -556,9 +408,8 @@ export default function Property(props) {
                     <div key={i} className="">
                       <div
                         onClick={() => setPType(p?.value)}
-                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${
-                          p?.value === PType ? "bg-indigo-500" : ""
-                        }`}
+                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-indigo-500" : ""
+                          }`}
                       >
                         {p.value === "flat" && (
                           <FaBuilding
@@ -594,11 +445,10 @@ export default function Property(props) {
                         )}
                         {p.value === "fram" && <FaWarehouse size={40} />}
                         <h2
-                          className={`text-xl mt-4 font-normal ${
-                            p.value === PType
+                          className={`text-xl mt-4 font-normal ${p.value === PType
                               ? "text-gray-100"
                               : "text-gray-400"
-                          }`}
+                            }`}
                         >
                           {p.label}
                         </h2>
@@ -608,66 +458,6 @@ export default function Property(props) {
               </div>
 
               {/* </> : '' } */}
-            </div>
-
-            <div
-              className={`${
-                step === 4 ? "" : "display-none"
-              } max-w-[100%] m-auto table w-full`}
-            >
-              <h2 className="text-3xl text-center font-bold mb-8">
-                Describes your place?
-              </h2>
-              <div className="mt-4">
-                <input
-                  required
-                  type="text"
-                  name="name"
-                  placeholder="Property Name"
-                  id="name"
-                  className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
-                  value={item?.name}
-                  onChange={handleInputChange}
-                />
-              </div>
-
-              <div className="relative mt-4 text-sm font-medium text-gray-700">
-                <input
-                  required
-                  type="number"
-                  name="price"
-                  placeholder="Property Price Per Night"
-                  id="name"
-                  className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
-                  value={item?.price}
-                  onChange={handleInputChange}
-                />
-                <div className="mt-4">
-                  <textarea
-                    required
-                    id="about"
-                    name="about"
-                    minCol={"5"}
-                    minRow={"5"}
-                    value={item?.about}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-xl shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
-                    placeholder="Tell more about your property..."
-                  />
-                  <div className="flex flex-wrap justify-between">
-                    <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
-                      {item?.about ? (
-                        <span>{item?.about.length}/100 characters</span>
-                      ) : (
-                        <span>0/100 characters</span>
-                      )}
-                    </label>
-                    <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
-                      Minimum 100 words.
-                    </label>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div className={`${step === 2 ? "" : "display-none"}`}>
@@ -760,184 +550,255 @@ export default function Property(props) {
                 </div>
               </div>
             </div>
+
             <div className={`${step === 3 ? "" : "display-none"}`}>
+              Hello  Pin
+            </div>
+
+
+            <div className={`${step === 4 ? "" : "display-none"}`}>
               <h2 className="text-3xl text-center font-bold mb-8">
                 Share some basics about your place
               </h2>
               <h2 className="text-xl text-center font-bold mb-8">
                 You'll add more details later, such as bed types.
               </h2>
-              <div className="grid  max-w-[500px] m-auto table gap-y-2 sm:grid-cols-2 sm:gap-x-8 mt-5">
-                {/* <div>
-                  <label
-                    htmlFor="adults"
-                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                  >
-                    Adult
-                  </label>
-                  <select
-                    required
-                    id="adults"
-                    name="adults"
-                    autoComplete="guests"
-                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item?.adults}
-                    onChange={handleInputChange}
-                  >
-                    {Array.from({ length: 20 }, (_, i) => (
-                      <option key={i + 1}>{i + 1}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label
-                    htmlFor="children"
-                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                  >
-                    Children
-                  </label>
-                  <select
-                    required
-                    id="children"
-                    name="children"
-                    autoComplete="guests"
-                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item?.children}
-                    onChange={handleInputChange}
-                  >
-                    {Array.from({ length: 20 }, (_, i) => (
-                      <option key={i + 1}>{i + 1}</option>
-                    ))}
-                  </select>
-                </div> */}
-
-                <div>
-                    Guests
-                  <button onClick={decrementGuests}>-</button>
-                  {Guests}
-                  <button onClick={incrementGuests}>+</button>
+              <div className="grid max-w-[500px] m-auto table gap-y-4  mt-5">
+                <div className="flex items-center justify-between">
+                  <span>Guests</span>
+                  <div className="flex items-center space-x-2">
+                    <button onClick={decrement(setGuests)} className="rounded-full border px-3 py-1">-</button>
+                    <span>{guests}</span>
+                    <button onClick={increment(setGuests)} className="rounded-full border px-3 py-1">+</button>
+                  </div>
                 </div>
 
-                <div>
-                Bedrooms
-                  <button onClick={decrementBedrooms}>-</button>
-                  {Bedrooms}
-                  <button onClick={incrementBedrooms}>+</button>
+                <div className="flex items-center justify-between">
+                  <span>Bedrooms</span>
+                  <div className="flex items-center space-x-2">
+                    <button onClick={decrement(setBedrooms)} className="rounded-full border px-3 py-1">-</button>
+                    <span>{Bedrooms}</span>
+                    <button onClick={increment(setBedrooms)} className="rounded-full border px-3 py-1">+</button>
+                  </div>
                 </div>
 
-                <div>
-                Rooms
-                  <button onClick={decrementrooms}>-</button>
-                  {rooms}
-                  <button onClick={incrementrooms}>+</button>
+                <div className="flex items-center justify-between">
+                  <span>Rooms</span>
+                  <div className="flex items-center space-x-2">
+                    <button onClick={decrement(setRooms)} className="rounded-full border px-3 py-1">-</button>
+                    <span>{rooms}</span>
+                    <button onClick={increment(setRooms)} className="rounded-full border px-3 py-1">+</button>
+                  </div>
                 </div>
 
-                <div>
-                Bathrooms
-                  <button onClick={decrementBathrooms}>-</button>
-                  {Bathrooms}
-                  <button onClick={incrementBathrooms}>+</button>
+                <div className="flex items-center justify-between">
+                  <span>Bathrooms</span>
+                  <div className="flex items-center space-x-2">
+                    <button onClick={decrement(setBathrooms)} className="rounded-full border px-3 py-1">-</button>
+                    <span>{Bathrooms}</span>
+                    <button onClick={increment(setBathrooms)} className="rounded-full border px-3 py-1">+</button>
+                  </div>
                 </div>
 
-                <div>
-                Pets
-                  <button onClick={decrementpets}>-</button>
-                  {pets}
-                  <button onClick={incrementpets}>+</button>
-                </div>
-                <div>
-                  <label
-                    htmlFor="bedrooms"
-                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                  >
-                    Bedrooms
-                  </label>
-                  <select
-                    required
-                    id="bedrooms"
-                    name="bedrooms"
-                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item?.bedrooms}
-                    onChange={handleInputChange}
-                  >
-                    {Array.from({ length: 20 }, (_, i) => (
-                      <option key={i + 1}>{i + 1}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label
-                    htmlFor="beds"
-                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                  >
-                    Beds
-                  </label>
-                  <select
-                    required
-                    id="beds"
-                    name="beds"
-                    autoComplete="beds"
-                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item?.beds}
-                    onChange={handleInputChange}
-                  >
-                    {Array.from({ length: 20 }, (_, i) => (
-                      <option key={i + 1}>{i + 1}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label
-                    htmlFor="bathrooms"
-                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                  >
-                    Bathrooms
-                  </label>
-                  <select
-                    required
-                    id="bathrooms"
-                    name="bathrooms"
-                    autoComplete="bathrooms"
-                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item?.bathrooms}
-                    onChange={handleInputChange}
-                  >
-                    {Array.from({ length: 20 }, (_, i) => (
-                      <option key={i + 1}>{i + 1}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label
-                    htmlFor="pet"
-                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                  >
-                    Pets
-                  </label>
-                  <select
-                    id="pet"
-                    required
-                    name="pets"
-                    autoComplete="pet"
-                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item?.pets}
-                    onChange={handleInputChange}
-                  >
-                    {Array.from({ length: 20 }, (_, i) => (
-                      <option key={i + 1}>{i + 1}</option>
-                    ))}
-                  </select>
+                <div className="flex items-center justify-between">
+                  <span>Pets</span>
+                  <div className="flex items-center space-x-2">
+                    <button onClick={decrement(setPets)} className="rounded-full border px-3 py-1">-</button>
+                    <span>{pets}</span>
+                    <button onClick={increment(setPets)} className="rounded-full border px-3 py-1">+</button>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className={`${step === 4 ? "" : "display-none"}`}>
+
+            <div
+              className={`${step === 5 ? "" : "display-none"
+                } max-w-[100%] m-auto table w-full`}
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <Video step1={Step1?.step2} />
+            </div>
+
+            <div className={`${step === 6? "" : "display-none"}`}>
               <h2 className="text-3xl text-center font-bold mb-2">
                 Tell guests what your place has to offer
               </h2>
               <p className="text-normal text-center text-gray-500 mb-8">
                 You can add more amenities after you publish your listing.
               </p>
+              <div className="grid grid-cols-3 gap-4 mb-5 ">
+                {Aminiteisdata &&
+                  Aminiteisdata?.amenities?.map((p, i) => (
+                    <div key={i} className="">
+                      <div
+                        onClick={() => setPType(p?.value)}
+                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === p?.title ? "bg-indigo-500" : ""
+                          }`}
+                      >
+                        {p.value === "flat" && (
+                          <FaBuilding
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "house" && (
+                          <FaHome
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "unique_space" && <House size={40} />}
+                        {p.value === "guest_house" && (
+                          <FaDoorOpen
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "hotel" && (
+                          <FaHotel
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "single_room" && (
+                          <FaBed style={{ color: "black", fontSize: "40px" }} />
+                        )}
+                        {p.value === "boutique_hotel" && (
+                          <FaCouch
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "breakfast" && (
+                          <MdOutlineFreeBreakfast size={40} />
+                        )}
+                        {p.value === "fram" && <FaWarehouse size={40} />}
+                        <h2
+                          className={`text-sm mt-4 font-normal ${p.value === p.title
+                              ? "text-gray-100"
+                              : "text-gray-400"
+                            }`}
+                        >
+                          {p.title}
+                        </h2>
+                      </div>
+                    </div>
+                  ))}
+              </div>
 
+              <p className="text-bold text-left text-gray-500 mb-8">
+              Do you have any standout amenities?
+              </p>
+
+              <div className="grid grid-cols-3 gap-4 mb-5">
+                {Aminiteisdata &&
+                  Aminiteisdata?.amenities2?.map((p, i) => (
+                    <div key={i} className="">
+                      <div
+                        onClick={() => setPType(p?.value)}
+                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === p?.title ? "bg-indigo-500" : ""
+                          }`}
+                      >
+                        {p.value === "flat" && (
+                          <FaBuilding
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "house" && (
+                          <FaHome
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "unique_space" && <House size={40} />}
+                        {p.value === "guest_house" && (
+                          <FaDoorOpen
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "hotel" && (
+                          <FaHotel
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "single_room" && (
+                          <FaBed style={{ color: "black", fontSize: "40px" }} />
+                        )}
+                        {p.value === "boutique_hotel" && (
+                          <FaCouch
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "breakfast" && (
+                          <MdOutlineFreeBreakfast size={40} />
+                        )}
+                        {p.value === "fram" && <FaWarehouse size={40} />}
+                        <h2
+                          className={`text-sm mt-4 font-normal ${p.value === p.title
+                              ? "text-gray-100"
+                              : "text-gray-400"
+                            }`}
+                        >
+                          {p.title}
+                        </h2>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+
+              <p className="text-bold text-left text-gray-500 mb-8">
+              Do you have any of these safety items?
+              </p>
+
+              <div className="grid grid-cols-3 gap-4">
+                {Aminiteisdata &&
+                  Aminiteisdata?.standout_amenity?.map((p, i) => (
+                    <div key={i} className="">
+                      <div
+                        onClick={() => setPType(p?.value)}
+                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === p?.title ? "bg-indigo-500" : ""
+                          }`}
+                      >
+                        {p.value === "flat" && (
+                          <FaBuilding
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "house" && (
+                          <FaHome
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "unique_space" && <House size={40} />}
+                        {p.value === "guest_house" && (
+                          <FaDoorOpen
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "hotel" && (
+                          <FaHotel
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "single_room" && (
+                          <FaBed style={{ color: "black", fontSize: "40px" }} />
+                        )}
+                        {p.value === "boutique_hotel" && (
+                          <FaCouch
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "breakfast" && (
+                          <MdOutlineFreeBreakfast size={40} />
+                        )}
+                        {p.value === "fram" && <FaWarehouse size={40} />}
+                        <h2
+                          className={`text-sm mt-4 font-normal ${p.value === p.title
+                              ? "text-gray-100"
+                              : "text-gray-400"
+                            }`}
+                        >
+                          {p.title}
+                        </h2>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+{/* 
               <div className="max-w-[600px] m-auto justify-center flex flex-wrap ammenties-checked-lists">
                 {amenitiesList.map((amenity, index) => (
                   <div key={index} className="flex items-center">
@@ -958,13 +819,12 @@ export default function Property(props) {
                     </label>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
 
             <div
-              className={`${
-                step === 5 ? "" : "display-none"
-              } max-w-[600px] m-auto`}
+              className={`${step ===7  ? "" : "display-none"
+                } max-w-[600px] m-auto`}
             >
               <h2 className="text-3xl text-center font-bold mb-2">
                 Add some photos of your{" "}
@@ -1040,23 +900,23 @@ export default function Property(props) {
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4  mt-16 ">
                 {isEdit
                   ? imageproperty?.map((item, index) => (
-                      <div key={index} className="relative isedits">
-                        <Image
-                          className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
-                          src={item?.image_url || ""}
-                          width={200}
-                          height={200}
-                          alt={`Preview ${index}`}
-                        />
-                        <button
-                          type="button"
-                          onClick={() => deletePropertyImage(uuid, item?.uuid)}
-                          className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    ))
+                    <div key={index} className="relative isedits">
+                      <Image
+                        className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
+                        src={item?.image_url || ""}
+                        width={200}
+                        height={200}
+                        alt={`Preview ${index}`}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => deletePropertyImage(uuid, item?.uuid)}
+                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  ))
                   : ""}
 
                 {images &&
@@ -1082,6 +942,128 @@ export default function Property(props) {
               </div>
             </div>
 
+            <div className={`${step === 8 ? "" : "display-none"
+                } max-w-[100%] m-auto table w-full`}
+            >
+                <h2 className="text-3xl text-center font-bold mb-2">
+                Now, let's give your cabin a title
+              </h2>
+              <p className="text-normal text-center text-gray-500 mb-8">
+              Short titles work best. Have fun with it – you can always change it later.
+              </p>
+
+              <div className="relative mt-4 text-sm font-medium text-gray-700">
+              <input
+                  required
+                  type="number"
+                  name="price"
+                  placeholder="Property Price Per Night"
+                  id="name"
+                  className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                  value={item?.price}
+                  onChange={handleInputChange}
+                />
+                <div className="mt-4">
+                  <textarea
+                    required
+                    id="about"
+                    name="about"
+                    minCol={"5"}
+                    minRow={"5"}
+                    value={item?.name}
+                    onChange={handleInputChange}
+                    className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-xl shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
+                    placeholder="Tell more about your property..."
+                  />
+                  <div className="flex flex-wrap justify-between">
+                    <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
+                      {item?.name ? (
+                        <span>{item?.name.length}/50 characters</span>
+                      ) : (
+                        <span>0/50 characters</span>
+                      )}
+                    </label>
+                    <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
+                      Minimum 50 words.
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+            <div className={`${step === 9 ? "" : "display-none"
+                } max-w-[100%] m-auto table w-full`}
+            >
+                <h2 className="text-3xl text-center font-bold mb-2">
+                Next, let's describe your cabin
+              </h2>
+              <p className="text-normal text-center text-gray-500 mb-8">
+              Choose up to 2 highlights. We'll use these to get your description started.
+              </p>
+
+            </div>
+
+
+            <div className={`${step === 10 ? "" : "display-none"
+                } max-w-[100%] m-auto table w-full`}
+            >
+                <h2 className="text-3xl text-center font-bold mb-2">
+                Create your description
+              </h2>
+              <p className="text-normal text-center text-gray-500 mb-8">
+              Share what makes your place special.
+
+              </p>
+              <div className="relative mt-4 text-sm font-medium text-gray-700">
+                <div className="mt-4">
+                  <textarea
+                    required
+                    id="about"
+                    name="about"
+                    minCol={"5"}
+                    minRow={"5"}
+                    value={item?.about}
+                    onChange={handleInputChange}
+                    className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-xl shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
+                    placeholder="Tell more about your property..."
+                  />
+                  <div className="flex flex-wrap justify-between">
+                    <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
+                      {item?.about ? (
+                        <span>{item?.about.length}/500 characters</span>
+                      ) : (
+                        <span>0/500 characters</span>
+                      )}
+                    </label>
+                    <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
+                      Minimum 500 words.
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div
+              className={`${step === 11 ? "" : "display-none"
+                } max-w-[100%] m-auto table w-full`}
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <Video step1={Step1?.step3} />
+            </div>
+
+            <div className={`${step === 12 ? "" : "display-none"
+                } max-w-[100%] m-auto table w-full`}
+            >
+                <h2 className="text-3xl text-center font-bold mb-2">
+                Decide how you’ll confirm reservations
+              </h2>
+              
+
+            </div>
+            
             <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
               {step == 0 ? (
                 <> </>
@@ -1095,7 +1077,7 @@ export default function Property(props) {
                 </button>
               )}
 
-              {step < 5 ? (
+              {step < 15 ? (
                 <button
                   type="button"
                   onClick={nextStep}
