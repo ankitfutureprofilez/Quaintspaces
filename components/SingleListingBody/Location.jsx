@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 
 const Location = React.forwardRef(({ listing }, ref) => {
@@ -12,23 +12,25 @@ const Location = React.forwardRef(({ listing }, ref) => {
   } catch (error) {
     console.error("Error parsing JSON:", error);
   }
-  
-  
+
   const center = {
     lat: parseFloat(record?.latitude),
     lng: parseFloat(record?.longitude),
   };
- 
+
   // const center =  {
   //   lat:26.9372,
   //   lng:75.7993,
   // };
 
-
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY,
   });
+
+  // URL to the home icon
+  const homeIconUrl = "https://raw.githubusercontent.com/encharm/Font-Awesome-SVG-PNG/master/black/svg/home.svg";
+
   return (
     <div ref={ref} className="py-8">
       <h1 className="text-2xl mb-4 font-semibold">Location</h1>
@@ -40,7 +42,13 @@ const Location = React.forwardRef(({ listing }, ref) => {
           center={center}
           zoom={15}
         >
-          <Marker position={center} />
+          <Marker 
+            position={center}
+            icon={{
+              url: homeIconUrl,
+              scaledSize: new window.google.maps.Size(40, 40),
+            }}
+          />
         </GoogleMap>
       )}
     </div>
