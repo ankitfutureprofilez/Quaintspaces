@@ -1,5 +1,4 @@
 function Video({step1}) {
-    console.log("Step1",step1)
     return ( 
         <>
         <div className="">
