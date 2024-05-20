@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import amenitiesList from "../../../../aminites.json";
-import Aminiteisdata from "../../../../oldcod.json"
+import Aminiteisdata from "../../../../oldcod.json";
 import Listing from "../../api/Listing";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import axios from "axios";
-import Step1 from "../components/Video.json"
+import Step1 from "../components/Video.json";
 import { House, Add } from "iconsax-react";
 import {
   FaBuilding,
@@ -33,7 +33,6 @@ const propertyTypes = [
 ];
 
 export default function Property(props) {
-
   const { isEdit, p, onClose, fetchProperties } = props;
   const {
     uuid,
@@ -62,7 +61,7 @@ export default function Property(props) {
 
   const [images, setImages] = useState([]);
 
-  const[locationdata ,setLocationdata] = useState("")
+  const [locationdata, setLocationdata] = useState("");
   console.log("oimagew", images);
   const [PType, setPType] = useState(properties_type || "flat");
 
@@ -103,7 +102,6 @@ export default function Property(props) {
     selectedAmenities: amenities ? stringToArray(amenities) : [],
     free_cancel_time: "",
   });
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -200,7 +198,7 @@ export default function Property(props) {
                 `https://nominatim.openstreetmap.org/reverse?lat=${address?.latitude}&lon=${address?.longitude}&format=json`
               );
               locationData = response.data;
-              setLocationdata(locationData?.address)
+              setLocationdata(locationData?.address);
               setLocationupdate(locationData?.address);
             }
             setAddress({
@@ -293,23 +291,22 @@ export default function Property(props) {
   const [Bathrooms, setBathrooms] = useState(0);
   const [pets, setPets] = useState(0);
 
-  const decrement = (setter) => () => setter(prev => Math.max(0, prev - 1));
-  const increment = (setter) => () => setter(prev => prev + 1);
+  const decrement = (setter) => () => setter((prev) => Math.max(0, prev - 1));
+  const increment = (setter) => () => setter((prev) => prev + 1);
 
-  const decrements = (Bathrooms) => () => setBathrooms(prev => Math.max(0, prev - 0.5));
-  const increments = (Bathrooms) => () => setBathrooms(prev => prev + 0.5);
+  const decrements = (Bathrooms) => () =>
+    setBathrooms((prev) => Math.max(0, prev - 0.5));
+  const increments = (Bathrooms) => () => setBathrooms((prev) => prev + 0.5);
 
+  const HouseData = [
+    { value: "peaceful", label: "Peaceful" },
+    { value: "uniqe", label: "Unique" },
+    { value: "family_friendly", label: "Family-Friendly" },
+    { value: "stylish", label: "Stylish" },
+    { value: "central", label: "Central" },
+    { value: "spacious", label: "Spacious" },
+  ];
 
-
- const HouseData = [
-  { value: "peaceful", label: "Peaceful" },
-  { value: "uniqe", label: "Unique" },
-  { value: "family_friendly", label: "Family-Friendly" },
-  { value: "stylish", label: "Stylish" },
-  { value: "central", label: "Central" },
-  { value: "spacious", label: "Spacious" },
-];
- 
   async function handleSubmit(e) {
     e.preventDefault();
     if (!isEdit && step === 5 && images?.length < 5) {
@@ -324,7 +321,7 @@ export default function Property(props) {
     const main = new Listing();
     const formData = new FormData();
     formData.append("name", item?.name);
-    formData.append("no_of_pet_allowed",pets);
+    formData.append("no_of_pet_allowed", pets);
     formData.append("description", item?.about);
     formData.append("price", item?.price);
     formData.append("properties_type", PType);
@@ -332,7 +329,7 @@ export default function Property(props) {
     formData.append("beds", beds);
     formData.append("rooms", rooms);
     formData.append("bathrooms", bathrooms);
-    formData.append("guests",guests);
+    formData.append("guests", guests);
     // formData.append("children", item?.children);
     formData.append("address", JSON.stringify(address));
     formData.append("infants", "1");
@@ -343,7 +340,7 @@ export default function Property(props) {
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
-    console.log("formData",formData)
+    console.log("formData", formData);
     const response = isEdit
       ? main.propertyedit(uuid, formData)
       : main.addproperty(formData);
@@ -369,9 +366,8 @@ export default function Property(props) {
       });
   }
 
-  useEffect(() => { }, [images]);
+  useEffect(() => {}, [images]);
 
-  
   return (
     <>
       <style>{`
@@ -386,16 +382,18 @@ export default function Property(props) {
             className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
           >
             <div
-              className={`${step === 0 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
+              className={`${
+                step === 0 ? "" : "display-none"
+              } max-w-[100%] m-auto table w-full`}
               style={{ display: "flex", alignItems: "center" }}
             >
               <Video step1={Step1?.step1} />
             </div>
 
             <div
-              className={`${step === 1 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
+              className={`${
+                step === 1 ? "" : "display-none"
+              } max-w-[100%] m-auto table w-full`}
             >
               {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
                <div className="grid grid-cols-3 gap-4 m-auto table  " >
@@ -425,8 +423,9 @@ export default function Property(props) {
                     <div key={i} className="">
                       <div
                         onClick={() => setPType(p?.value)}
-                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-indigo-500" : ""
-                          }`}
+                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${
+                          p?.value === PType ? "bg-indigo-500" : ""
+                        }`}
                       >
                         {p.value === "flat" && (
                           <FaBuilding
@@ -462,10 +461,11 @@ export default function Property(props) {
                         )}
                         {p.value === "fram" && <FaWarehouse size={40} />}
                         <h2
-                          className={`text-xl mt-4 font-normal ${p.value === PType
+                          className={`text-xl mt-4 font-normal ${
+                            p.value === PType
                               ? "text-gray-100"
                               : "text-gray-400"
-                            }`}
+                          }`}
                         >
                           {p.label}
                         </h2>
@@ -564,56 +564,51 @@ export default function Property(props) {
                     className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
                   />
                 </div>
-
               </div>
               <div>
-              <h2 className="text-3xl text-center font-bold mb-2 mt-3">
-              Show your specific location
-              </h2>
-              <p className="text-normal text-center text-gray-500 mb-8">
-              Make it clear to guests where your place is located. We'll only share your address after they've made a reservation
-              </p>
+                <h2 className="text-3xl text-center font-bold mb-2 mt-3">
+                  Show your specific location
+                </h2>
+                <p className="text-normal text-center text-gray-500 mb-8">
+                  Make it clear to guests where your place is located. We'll
+                  only share your address after they've made a reservation
+                </p>
 
-              <div>
-                                                    
-                { locationdata ? (
+                <div>
+                  {locationdata ? (
                     <iframe
-                    src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
+                      src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
                         ` ${locationdata}`
-                    )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
-                    width="100%"
-                    height="450"
-                    style={{ border: "0" }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Google Map"
-                ></iframe>
-                )  :(
-                  <iframe
-                  src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
-                      ` jaipur rajasthan`
-                  )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
-                  width="100%"
-                  height="450"
-                  style={{ border: "0" }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Google Map"
-              ></iframe>
-                ) }
-            
+                      )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
+                      width="100%"
+                      height="450"
+                      style={{ border: "0" }}
+                      allowFullScreen=""
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Google Map"
+                    ></iframe>
+                  ) : (
+                    <iframe
+                      src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
+                        ` jaipur rajasthan`
+                      )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
+                      width="100%"
+                      height="450"
+                      style={{ border: "0" }}
+                      allowFullScreen=""
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Google Map"
+                    ></iframe>
+                  )}
                 </div>
-                </div>
-
-
+              </div>
             </div>
 
             <div className={`${step === 3 ? "" : "display-none"}`}>
-              Hello  Pin
+              Hello Pin
             </div>
-
 
             <div className={`${step === 4 ? "" : "display-none"}`}>
               <h2 className="text-3xl text-center font-bold mb-8">
@@ -626,60 +621,110 @@ export default function Property(props) {
                 <div className="flex items-center justify-between border-b-2 border-black-600 p-2">
                   <span>Guests</span>
                   <div className="flex items-center space-x-2">
-                    <button onClick={decrement(setGuests)} className="rounded-full border px-3 py-1">-</button>
+                    <button
+                      onClick={decrement(setGuests)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      -
+                    </button>
                     <span>{guests}</span>
-                    <button onClick={increment(setGuests)} className="rounded-full border px-3 py-1">+</button>
+                    <button
+                      onClick={increment(setGuests)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between border-b-2 border-black-600 p-2">
                   <span>Bedrooms</span>
                   <div className="flex items-center space-x-2">
-                    <button onClick={decrement(setBedrooms)} className="rounded-full border px-3 py-1">-</button>
+                    <button
+                      onClick={decrement(setBedrooms)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      -
+                    </button>
                     <span>{Bedrooms}</span>
-                    <button onClick={increment(setBedrooms)} className="rounded-full border px-3 py-1">+</button>
+                    <button
+                      onClick={increment(setBedrooms)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between border-b-2 border-black-600 p-2">
-    <span>Rooms</span>
-    <div className="flex items-center space-x-2">
-        <button onClick={decrement(setRooms)} className="rounded-full border px-3 py-1">-</button>
-        <span>{rooms}</span>
-        <button onClick={increment(setRooms)} className="rounded-full border px-3 py-1">+</button>
-    </div>
-</div>
-
+                  <span>Rooms</span>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={decrement(setRooms)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      -
+                    </button>
+                    <span>{rooms}</span>
+                    <button
+                      onClick={increment(setRooms)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
 
                 <div className="flex items-center justify-between border-b-2 border-black-600 p-2 ">
                   <span>Bathrooms</span>
                   <div className="flex items-center space-x-2">
-                    <button onClick={decrements(setBathrooms)} className="rounded-full border px-3 py-1">-</button>
+                    <button
+                      onClick={decrements(setBathrooms)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      -
+                    </button>
                     <span>{Bathrooms}</span>
-                    <button onClick={increments(setBathrooms)} className="rounded-full border px-3 py-1">+</button>
+                    <button
+                      onClick={increments(setBathrooms)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between border-b-2 border-black-600 p-2 ">
                   <span>Pets</span>
                   <div className="flex items-center space-x-2">
-                    <button onClick={decrement(setPets)} className="rounded-full border px-3 py-1">-</button>
+                    <button
+                      onClick={decrement(setPets)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      -
+                    </button>
                     <span>{pets}</span>
-                    <button onClick={increment(setPets)} className="rounded-full border px-3 py-1">+</button>
+                    <button
+                      onClick={increment(setPets)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
 
             <div
-              className={`${step === 5 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
+              className={`${
+                step === 5 ? "" : "display-none"
+              } max-w-[100%] m-auto table w-full`}
               style={{ display: "flex", alignItems: "center" }}
             >
               <Video step1={Step1?.step2} />
             </div>
 
-            <div className={`${step === 6? "" : "display-none"}`}>
+            <div className={`${step === 6 ? "" : "display-none"}`}>
               <h2 className="text-3xl text-center font-bold mb-2">
                 Tell guests what your place has to offer
               </h2>
@@ -692,8 +737,9 @@ export default function Property(props) {
                     <div key={i} className="">
                       <div
                         onClick={() => setPType(p?.value)}
-                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === p?.title ? "bg-indigo-500" : ""
-                          }`}
+                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${
+                          p?.value === p?.title ? "bg-indigo-500" : ""
+                        }`}
                       >
                         {p.value === "flat" && (
                           <FaBuilding
@@ -729,10 +775,11 @@ export default function Property(props) {
                         )}
                         {p.value === "fram" && <FaWarehouse size={40} />}
                         <h2
-                          className={`text-sm mt-4 font-normal ${p.value === p.title
+                          className={`text-sm mt-4 font-normal ${
+                            p.value === p.title
                               ? "text-gray-100"
                               : "text-gray-400"
-                            }`}
+                          }`}
                         >
                           {p.title}
                         </h2>
@@ -742,7 +789,7 @@ export default function Property(props) {
               </div>
 
               <p className="text-bold font-bold text-left text-gray-500 mb-8">
-              Do you have any standout amenities?
+                Do you have any standout amenities?
               </p>
 
               <div className="grid grid-cols-3 gap-4 mb-5">
@@ -751,8 +798,9 @@ export default function Property(props) {
                     <div key={i} className="">
                       <div
                         onClick={() => setPType(p?.value)}
-                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === p?.title ? "bg-indigo-500" : ""
-                          }`}
+                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${
+                          p?.value === p?.title ? "bg-indigo-500" : ""
+                        }`}
                       >
                         {p.value === "flat" && (
                           <FaBuilding
@@ -788,10 +836,11 @@ export default function Property(props) {
                         )}
                         {p.value === "fram" && <FaWarehouse size={40} />}
                         <h2
-                          className={`text-sm mt-4 font-normal ${p.value === p.title
+                          className={`text-sm mt-4 font-normal ${
+                            p.value === p.title
                               ? "text-gray-100"
                               : "text-gray-400"
-                            }`}
+                          }`}
                         >
                           {p.title}
                         </h2>
@@ -801,7 +850,7 @@ export default function Property(props) {
               </div>
 
               <p className="text-bold font-bold text-left text-gray-500 mb-8">
-              Do you have any of these safety items?
+                Do you have any of these safety items?
               </p>
 
               <div className="grid grid-cols-3 gap-4">
@@ -810,8 +859,9 @@ export default function Property(props) {
                     <div key={i} className="">
                       <div
                         onClick={() => setPType(p?.value)}
-                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === p?.title ? "bg-indigo-500" : ""
-                          }`}
+                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${
+                          p?.value === p?.title ? "bg-indigo-500" : ""
+                        }`}
                       >
                         {p.value === "flat" && (
                           <FaBuilding
@@ -847,10 +897,11 @@ export default function Property(props) {
                         )}
                         {p.value === "fram" && <FaWarehouse size={40} />}
                         <h2
-                          className={`text-sm mt-4 font-normal ${p.value === p.title
+                          className={`text-sm mt-4 font-normal ${
+                            p.value === p.title
                               ? "text-gray-100"
                               : "text-gray-400"
-                            }`}
+                          }`}
                         >
                           {p.title}
                         </h2>
@@ -858,7 +909,7 @@ export default function Property(props) {
                     </div>
                   ))}
               </div>
-{/* 
+              {/* 
               <div className="max-w-[600px] m-auto justify-center flex flex-wrap ammenties-checked-lists">
                 {amenitiesList.map((amenity, index) => (
                   <div key={index} className="flex items-center">
@@ -883,8 +934,9 @@ export default function Property(props) {
             </div>
 
             <div
-              className={`${step ===7  ? "" : "display-none"
-                } max-w-[600px] m-auto`}
+              className={`${
+                step === 7 ? "" : "display-none"
+              } max-w-[600px] m-auto`}
             >
               <h2 className="text-3xl text-center font-bold mb-2">
                 Add some photos of your{" "}
@@ -956,28 +1008,27 @@ export default function Property(props) {
                   </label>
                 </div>
               )}
-              
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4  mt-16 ">
                 {isEdit
                   ? imageproperty?.map((item, index) => (
-                    <div key={index} className="relative isedits">
-                      <Image
-                        className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
-                        src={item?.image_url || ""}
-                        width={200}
-                        height={200}
-                        alt={`Preview ${index}`}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => deletePropertyImage(uuid, item?.uuid)}
-                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  ))
+                      <div key={index} className="relative isedits">
+                        <Image
+                          className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
+                          src={item?.image_url || ""}
+                          width={200}
+                          height={200}
+                          alt={`Preview ${index}`}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => deletePropertyImage(uuid, item?.uuid)}
+                          className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    ))
                   : ""}
 
                 {images &&
@@ -1003,18 +1054,21 @@ export default function Property(props) {
               </div>
             </div>
 
-            <div className={`${step === 8 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
+            <div
+              className={`${
+                step === 8 ? "" : "display-none"
+              } max-w-[100%] m-auto table w-full`}
             >
-                <h2 className="text-3xl text-center font-bold mb-2">
+              <h2 className="text-3xl text-center font-bold mb-2">
                 Now, let's give your cabin a title
               </h2>
               <p className="text-normal text-center text-gray-500 mb-8">
-              Short titles work best. Have fun with it – you can always change it later.
+                Short titles work best. Have fun with it – you can always change
+                it later.
               </p>
 
               <div className="relative mt-4 text-sm font-medium text-gray-700">
-              <input
+                <input
                   required
                   type="number"
                   name="price"
@@ -1050,29 +1104,29 @@ export default function Property(props) {
                   </div>
                 </div>
               </div>
-
             </div>
 
-
-
-
-
-            <div className={`${step === 9 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
+            <div
+              className={`${
+                step === 9 ? "" : "display-none"
+              } max-w-[100%] m-auto table w-full`}
             >
-                <h2 className="text-3xl text-center font-bold mb-2">
+              <h2 className="text-3xl text-center font-bold mb-2">
                 Next, let's describe your house
               </h2>
               <p className="text-normal text-center text-gray-500 mb-8">
-              Choose up to 2 highlights. We'll use these to get your description started.
+                Choose up to 2 highlights. We'll use these to get your
+                description started.
               </p>
-      <div className="grid grid-cols-3 gap-4 mb-5">
-                {HouseData && HouseData?.map((p, i) => (
+              <div className="grid grid-cols-3 gap-4 mb-5">
+                {HouseData &&
+                  HouseData?.map((p, i) => (
                     <div key={i} className="">
                       <div
                         onClick={() => setPType(p?.value)}
-                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === p?.title ? "bg-indigo-500" : ""
-                          }`}
+                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${
+                          p?.value === p?.title ? "bg-indigo-500" : ""
+                        }`}
                       >
                         {p.value === "flat" && (
                           <FaBuilding
@@ -1108,10 +1162,11 @@ export default function Property(props) {
                         )}
                         {p.value === "fram" && <FaWarehouse size={40} />}
                         <h2
-                          className={`text-sm mt-4 font-normal ${p.value === p.title
+                          className={`text-sm mt-4 font-normal ${
+                            p.value === p.title
                               ? "text-gray-100"
                               : "text-gray-400"
-                            }`}
+                          }`}
                         >
                           {p.label}
                         </h2>
@@ -1119,19 +1174,18 @@ export default function Property(props) {
                     </div>
                   ))}
               </div>
-
             </div>
 
-
-            <div className={`${step === 10 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
+            <div
+              className={`${
+                step === 10 ? "" : "display-none"
+              } max-w-[100%] m-auto table w-full`}
             >
-                <h2 className="text-3xl text-center font-bold mb-2">
+              <h2 className="text-3xl text-center font-bold mb-2">
                 Create your description
               </h2>
               <p className="text-normal text-center text-gray-500 mb-8">
-              Share what makes your place special.
-
+                Share what makes your place special.
               </p>
               <div className="relative mt-4 text-sm font-medium text-gray-700">
                 <div className="mt-4">
@@ -1160,140 +1214,144 @@ export default function Property(props) {
                   </div>
                 </div>
               </div>
-
             </div>
 
             <div
-              className={`${step === 11 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
+              className={`${
+                step === 11 ? "" : "display-none"
+              } max-w-[100%] m-auto table w-full`}
               style={{ display: "flex", alignItems: "center" }}
             >
               <Video step1={Step1?.step3} />
             </div>
 
-            <div className={`${step === 13 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
+            <div
+              className={`${
+                step === 13 ? "" : "display-none"
+              } max-w-[100%] m-auto table w-full`}
             >
-                <h2 className="text-3xl text-center font-bold mb-2">
+              <h2 className="text-3xl text-center font-bold mb-2">
                 Decide how you’ll confirm reservations
               </h2>
 
               <p className="text-normal text-center text-gray-500 mb-8">
-              After your first guest anyone can book your place. Learn more
+                After your first guest anyone can book your place. Learn more
               </p>
-              
-               <div className="_sm28cjm" style={{ animationDelay: '400ms' }}>
-      <button 
-        className="_ih2x5tr" 
-        type="button" 
-        role="radio" 
-        aria-checked="true" 
-        theme={{}}
-      >
-        <div className="_114nnaka">
-          
 
-<h2> 
-  Any Airbnb guest </h2>
-  <p>
+              <div className="_sm28cjm" style={{ animationDelay: "400ms" }}>
+                <button
+                  className="_ih2x5tr"
+                  type="button"
+                  role="radio"
+                  aria-checked="true"
+                  theme={{}}
+                >
+                  <div className="_114nnaka">
+                    <h2>Any Airbnb guest </h2>
+                    <p>
+                      Get reservations faster when you welcome anyone from the
+                      Airbnb community.
+                    </p>
+                  </div>
+                </button>
+              </div>
 
-Get reservations faster when you welcome anyone from the Airbnb community.
-</p>
-        </div>
-      </button>
-    </div>
-   
-    <div className="_sm28cjm" style={{ animationDelay: '449.741ms' }}>
-
-
-      <button 
-        className="_162au8t5" 
-        type="button" 
-        role="radio" 
-        aria-checked="false" 
-        theme={{}}
-      >
-         <h2>
-
-An experienced guest </h2>
-<p>
-
-For your first guest, welcome someone with a good track record on Airbnb who can offer tips for how to be a great Host.
-</p>
-       
-      </button>
-    </div>
-
+              <div className="_sm28cjm" style={{ animationDelay: "449.741ms" }}>
+                <button
+                  className="_162au8t5"
+                  type="button"
+                  role="radio"
+                  aria-checked="false"
+                  theme={{}}
+                >
+                  <h2>An experienced guest </h2>
+                  <p>
+                    For your first guest, welcome someone with a good track
+                    record on Airbnb who can offer tips for how to be a great
+                    Host.
+                  </p>
+                </button>
+              </div>
             </div>
 
-            <div className={`${step === 12 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
+            <div
+              className={`${
+                step === 12 ? "" : "display-none"
+              } max-w-[100%] m-auto table w-full`}
             >
-                <h2 className="text-3xl text-center font-bold mb-2">
+              <h2 className="text-3xl text-center font-bold mb-2">
                 Choose who to welcome for your first reservation
               </h2>
-              
-               <div className="_sm28cjm" style={{ animationDelay: '400ms' }}>
-      <button 
-        className="_ih2x5tr" 
-        type="button" 
-        role="radio" 
-        aria-checked="true" 
-        theme={{}}
-      >
-        <div className="_114nnaka">
-          <h2 className="_6pu6cc">Use Instant Book</h2>
-          <div className="_winr5s">Guests can book automatically.</div>
-        </div>
-        <div className="_j2nheb">
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            viewBox="0 0 32 32" 
-            aria-hidden="true" 
-            role="presentation" 
-            focusable="false" 
-            style={{ display: 'block', height: '32px', width: '32px', fill: 'black' }}
-          >
-            <path d="M17.16 1.46L6.19 17.42l-.1.17c-.05.12-.06.18-.08.4l.04.13c.19.65.23.67.97.88H13v10.97l.04.22c.05.28.1.33.4.61l.27.09c.51.16.59.1 1.13-.35l10.97-15.96.1-.18c.05-.11.06-.17.08-.39l-.04-.13c-.19-.66-.23-.67-.97-.88H19V2.03l-.04-.22c-.05-.28-.1-.33-.4-.61l-.27-.09c-.51-.16-.59-.1-1.13.35zM17 5.22V15h6.1L15 26.78V17H8.9L17 5.22z"></path>
-          </svg>
-        </div>
-      </button>
-    </div>
 
+              <div className="_sm28cjm" style={{ animationDelay: "400ms" }}>
+                <button
+                  className="_ih2x5tr"
+                  type="button"
+                  role="radio"
+                  aria-checked="true"
+                  theme={{}}
+                >
+                  <div className="_114nnaka">
+                    <h2 className="_6pu6cc">Use Instant Book</h2>
+                    <div className="_winr5s">
+                      Guests can book automatically.
+                    </div>
+                  </div>
+                  <div className="_j2nheb">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 32 32"
+                      aria-hidden="true"
+                      role="presentation"
+                      focusable="false"
+                      style={{
+                        display: "block",
+                        height: "32px",
+                        width: "32px",
+                        fill: "black",
+                      }}
+                    >
+                      <path d="M17.16 1.46L6.19 17.42l-.1.17c-.05.12-.06.18-.08.4l.04.13c.19.65.23.67.97.88H13v10.97l.04.22c.05.28.1.33.4.61l.27.09c.51.16.59.1 1.13-.35l10.97-15.96.1-.18c.05-.11.06-.17.08-.39l-.04-.13c-.19-.66-.23-.67-.97-.88H19V2.03l-.04-.22c-.05-.28-.1-.33-.4-.61l-.27-.09c-.51-.16-.59-.1-1.13.35zM17 5.22V15h6.1L15 26.78V17H8.9L17 5.22z"></path>
+                    </svg>
+                  </div>
+                </button>
+              </div>
 
-    <div className="_sm28cjm" style={{ animationDelay: '449.741ms' }}>
-      <button 
-        className="_162au8t5" 
-        type="button" 
-        role="radio" 
-        aria-checked="false" 
-        theme={{}}
-      >
-        <div className="_114nnaka">
-          <h2 className="_6pu6cc">Approve or decline requests</h2>
-          <div className="_winr5s">Guests must ask if they can book.</div>
-        </div>
-        <div className="_j2nheb">
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            viewBox="0 0 32 32" 
-            aria-hidden="true" 
-            role="presentation" 
-            focusable="false" 
-            style={{ display: 'block', height: '32px', width: '32px', fill: 'black' }}
-          >
-            <path d="M26 1a5 5 0 0 1 5 4.78v10.9a5 5 0 0 1-4.78 5H26a5 5 0 0 1-4.78 5h-4l-3.72 4.36-3.72-4.36H6a5 5 0 0 1-4.98-4.56L1 21.9 1 21.68V11a5 5 0 0 1 4.78-5H6a5 5 0 0 1 4.78-5H26zm-5 7H6a3 3 0 0 0-3 2.82v10.86a3 3 0 0 0 2.82 3h4.88l2.8 3.28 2.8-3.28H21a3 3 0 0 0 3-2.82V11a3 3 0 0 0-3-3zm-1 10v2H6v-2h14zm6-15H11a3 3 0 0 0-3 2.82V6h13a5 5 0 0 1 5 4.78v8.9a3 3 0 0 0 3-2.82V6a3 3 0 0 0-2.82-3H26zM15 13v2H6v-2h9z"></path>
-          </svg>
-        </div>
-      </button>
-    </div>
-
+              <div className="_sm28cjm" style={{ animationDelay: "449.741ms" }}>
+                <button
+                  className="_162au8t5"
+                  type="button"
+                  role="radio"
+                  aria-checked="false"
+                  theme={{}}
+                >
+                  <div className="_114nnaka">
+                    <h2 className="_6pu6cc">Approve or decline requests</h2>
+                    <div className="_winr5s">
+                      Guests must ask if they can book.
+                    </div>
+                  </div>
+                  <div className="_j2nheb">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 32 32"
+                      aria-hidden="true"
+                      role="presentation"
+                      focusable="false"
+                      style={{
+                        display: "block",
+                        height: "32px",
+                        width: "32px",
+                        fill: "black",
+                      }}
+                    >
+                      <path d="M26 1a5 5 0 0 1 5 4.78v10.9a5 5 0 0 1-4.78 5H26a5 5 0 0 1-4.78 5h-4l-3.72 4.36-3.72-4.36H6a5 5 0 0 1-4.98-4.56L1 21.9 1 21.68V11a5 5 0 0 1 4.78-5H6a5 5 0 0 1 4.78-5H26zm-5 7H6a3 3 0 0 0-3 2.82v10.86a3 3 0 0 0 2.82 3h4.88l2.8 3.28 2.8-3.28H21a3 3 0 0 0 3-2.82V11a3 3 0 0 0-3-3zm-1 10v2H6v-2h14zm6-15H11a3 3 0 0 0-3 2.82V6h13a5 5 0 0 1 5 4.78v8.9a3 3 0 0 0 3-2.82V6a3 3 0 0 0-2.82-3H26zM15 13v2H6v-2h9z"></path>
+                    </svg>
+                  </div>
+                </button>
+              </div>
             </div>
 
-
-          
-            
-            
             <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
               {step == 0 ? (
                 <> </>
