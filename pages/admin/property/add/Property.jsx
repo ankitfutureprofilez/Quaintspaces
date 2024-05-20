@@ -287,7 +287,6 @@ export default function Property(props) {
 
   const [guests, setGuests] = useState(0);
   const [Bedrooms, setBedrooms] = useState(0);
-  const [rooms, setRooms] = useState(0);
   const [Bathrooms, setBathrooms] = useState(0);
   const [pets, setPets] = useState(0);
 
@@ -327,7 +326,8 @@ export default function Property(props) {
     formData.append("properties_type", PType);
     formData.append("bedrooms", Bedrooms);
     formData.append("beds", beds);
-    formData.append("rooms", rooms);
+
+
     formData.append("bathrooms", bathrooms);
     formData.append("guests", guests);
     // formData.append("children", item?.children);
@@ -656,25 +656,7 @@ export default function Property(props) {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between border-b-2 border-black-600 p-2">
-                  <span>Rooms</span>
-                  <div className="flex items-center space-x-2">
-                    <button
-                      onClick={decrement(setRooms)}
-                      className="rounded-full border px-3 py-1"
-                    >
-                      -
-                    </button>
-                    <span>{rooms}</span>
-                    <button
-                      onClick={increment(setRooms)}
-                      className="rounded-full border px-3 py-1"
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-
+                
                 <div className="flex items-center justify-between border-b-2 border-black-600 p-2 ">
                   <span>Bathrooms</span>
                   <div className="flex items-center space-x-2">
@@ -1057,6 +1039,127 @@ export default function Property(props) {
             <div
               className={`${
                 step === 8 ? "" : "display-none"
+              } max-w-[600px] m-auto`}
+            >
+              <h2 className="text-3xl text-center font-bold mb-2">
+                Add some photos of your{" "}
+                {PType ? PType.replace("_", " ") : "house"}
+              </h2>
+              <p className="text-normal text-center text-gray-500 mb-8">
+                You'll need 5 photos to get started. You can add more or make
+                changes later.
+              </p>
+
+              {isEdit ? (
+                <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
+                  <label
+                    htmlFor="dropzone-file"
+                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
+                  >
+                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                      <Add size="100" color="#ccc" />
+                      <p className="mb-2 text-lg text-gray-500 text-gray-400">
+                        <span className="font-semibold">Click to upload</span>
+                      </p>
+                      <p className="text-normal text-gray-500 text-gray-400">
+                        Choose atleast 5 images
+                      </p>
+                      <p className="text-normal text-gray-500 text-gray-400">
+                        (jpg, jpeg, png, gif, bmp, tif, tiff, svg, webp, avif)
+                      </p>
+                    </div>
+                    <input
+                      id="dropzone-file"
+                      type="file"
+                      className="hidden"
+                      accept=".jpg, .jpeg, .png, .gif, .bmp, .tif, .tiff, .svg, .webp, .avif"
+                      onChange={handleFileChange}
+                      name="images"
+                      required
+                      multiple
+                    />
+                  </label>
+                </div>
+              ) : (
+                <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
+                  <label
+                    htmlFor="dropzone-file"
+                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
+                  >
+                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                      <Add size="100" color="#ccc" />
+                      <p className="mb-2 text-lg text-gray-500 text-gray-400">
+                        <span className="font-semibold">Click to upload</span>
+                      </p>
+                      <p className="text-normal text-gray-500 text-gray-400">
+                        Choose atleast 5 images
+                      </p>
+                      <p className="text-normal text-gray-500 text-gray-400">
+                        (jpg, jpeg, png, gif, bmp, tif, tiff, svg, webp, avif)
+                      </p>
+                    </div>
+                    <input
+                      id="dropzone-file"
+                      type="file"
+                      className="hidden"
+                      accept=".jpg, .jpeg, .png, .gif, .bmp, .tif, .tiff, .svg, .webp, .avif"
+                      onChange={handleFileChange}
+                      name="images"
+                      required
+                      multiple
+                    />
+                  </label>
+                </div>
+              )}
+
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4  mt-16 ">
+                {isEdit
+                  ? imageproperty?.map((item, index) => (
+                      <div key={index} className="relative isedits">
+                        <Image
+                          className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
+                          src={item?.image_url || ""}
+                          width={200}
+                          height={200}
+                          alt={`Preview ${index}`}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => deletePropertyImage(uuid, item?.uuid)}
+                          className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    ))
+                  : ""}
+
+                {images &&
+                  images.map((file, index) => (
+                    <div key={index} className="relative">
+                      <Image
+                        src={URL.createObjectURL(file)}
+                        width={200}
+                        height={200}
+                        alt={`Preview ${index}`}
+                        className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                        onLoad={() => URL.revokeObjectURL(file)}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeImage(file)}
+                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+              </div>
+            </div>
+
+            <div
+              className={`${
+                step === 9 ? "" : "display-none"
               } max-w-[100%] m-auto table w-full`}
             >
               <h2 className="text-3xl text-center font-bold mb-2">
@@ -1108,7 +1211,7 @@ export default function Property(props) {
 
             <div
               className={`${
-                step === 9 ? "" : "display-none"
+                step === 10 ? "" : "display-none"
               } max-w-[100%] m-auto table w-full`}
             >
               <h2 className="text-3xl text-center font-bold mb-2">
@@ -1178,7 +1281,7 @@ export default function Property(props) {
 
             <div
               className={`${
-                step === 10 ? "" : "display-none"
+                step === 11 ? "" : "display-none"
               } max-w-[100%] m-auto table w-full`}
             >
               <h2 className="text-3xl text-center font-bold mb-2">
@@ -1218,7 +1321,7 @@ export default function Property(props) {
 
             <div
               className={`${
-                step === 11 ? "" : "display-none"
+                step === 12 ? "" : "display-none"
               } max-w-[100%] m-auto table w-full`}
               style={{ display: "flex", alignItems: "center" }}
             >
@@ -1227,7 +1330,7 @@ export default function Property(props) {
 
             <div
               className={`${
-                step === 13 ? "" : "display-none"
+                step === 14 ? "" : "display-none"
               } max-w-[100%] m-auto table w-full`}
             >
               <h2 className="text-3xl text-center font-bold mb-2">
@@ -1276,7 +1379,7 @@ export default function Property(props) {
 
             <div
               className={`${
-                step === 12 ? "" : "display-none"
+                step === 13 ? "" : "display-none"
               } max-w-[100%] m-auto table w-full`}
             >
               <h2 className="text-3xl text-center font-bold mb-2">
@@ -1352,6 +1455,91 @@ export default function Property(props) {
               </div>
             </div>
 
+
+            <div
+              className={`${
+                step === 15 ? "" : "display-none"
+              } max-w-[100%] m-auto table w-full`}
+            >
+              <h2 className="text-3xl text-center font-bold mb-2">
+              Add discounts
+              </h2>
+              <p>
+
+Help your place stand out to get booked faster and earn your first reviews.
+
+             </p>
+            </div>
+
+            <div
+              className={`${
+                step === 16 ? "" : "display-none"
+              } max-w-[100%] m-auto table w-full`}
+            >
+              <h2> Just one last step! </h2>
+              <p>
+              Does your place have any of these?
+</p>
+
+<div className="max-w-lg mx-auto">
+      <fieldset className="mb-5">
+        <div className="flex items-start items-center mb-4">
+          <input
+            id="checkbox-2"
+            aria-describedby="checkbox-2"
+            type="checkbox"
+            className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-black-300 h-4 w-4 rounded"
+          />
+          <label
+            htmlFor="checkbox-2"
+            className="text-sm ml-3 font-medium text-gray-900"
+          >
+          Weapons
+          </label>
+        </div>
+
+        <div className="flex items-start items-center mb-4">
+          <input
+            id="checkbox-3"
+            aria-describedby="checkbox-3"
+            type="checkbox"
+            className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-black-300 h-4 w-4 rounded"
+          />
+          <label
+            htmlFor="checkbox-3"
+            className="text-sm ml-3 font-medium text-gray-900"
+          >
+      Noise decibel monitors
+          </label>
+        </div>
+
+        <div className="flex items-start mb-4">
+          <div className="flex items-center h-5">
+            <input
+              id="shipping-2"
+              aria-describedby="shipping-2"
+              type="checkbox"
+              className="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-black-300 h-4 w-4 rounded"
+            />
+          </div>
+          <div className="text-sm ml-3">
+            <label
+              htmlFor="shipping-2"
+              className="font-medium text-gray-900"
+            >
+             Exterior security cameras
+            </label>
+          </div>
+        </div>
+
+      </fieldset>
+
+    </div>
+
+
+
+
+              </div>
             <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
               {step == 0 ? (
                 <> </>
@@ -1365,7 +1553,7 @@ export default function Property(props) {
                 </button>
               )}
 
-              {step < 15 ? (
+              {step < 16 ? (
                 <button
                   type="button"
                   onClick={nextStep}
