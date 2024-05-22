@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { House, Add } from "iconsax-react";
+import { PiWashingMachine ,PiHairDryerBold ,PiFireExtinguisherThin , PiPicnicTableThin} from "react-icons/pi";
+import { TbBrandCarbon ,TbAirConditioning } from "react-icons/tb";
 import {
   FaBuilding,
   FaHome,
@@ -13,63 +15,84 @@ import {
   FaHotel,
   FaBed,
   FaCouch,
+  FaShower,
+  FaHeadphones
 } from "react-icons/fa";
-import { MdOutlineFreeBreakfast } from "react-icons/md";
 import Image from 'next/image';
-import {WiFi } from 'react-icons/wi';
-import { AiOutlineTv as Tv } from 'react-icons/ai';
-import { IoIosKitchen as Kitchen } from 'react-icons/io';
-import { IoMdWashingMachine as WashingMachine } from 'react-icons/io';
-import { AiFillCar as FreeParking } from 'react-icons/ai';
-import { MdAirlineSeatIndividualSuite as AirConditioning } from 'react-icons/md';
-import { FaRegEdit as WorkSpace } from 'react-icons/fa';
+import { BsPersonWorkspace } from "react-icons/bs";
+import { MdOutlineSmokeFree, MdOutlineFreeBreakfast ,MdOutlineLocalParking,MdOutlineFireplace,MdPool,MdOutdoorGrill } from "react-icons/md";
+import { RiFirstAidKitFill } from "react-icons/ri";
+import { BiChair } from "react-icons/bi";
+import { FaWifi ,FaParking   ,FaArrowUpFromWaterPump,FaFireBurner ,FaHotTubPerson,FaUmbrellaBeach,FaPersonSkiing} from "react-icons/fa6";
+import { GiPoolTableCorner ,GiKitchenKnives  } from "react-icons/gi";
+import { VscPiano } from "react-icons/vsc";
+
 
 const amenitiesData = {
   "amenities": [
     {"value": "wifi", "title": "Wifi", "icon": "WiFi"},
-    {"value": "tv", "title": "TV" ,"icon": "Tv"},
+    {"value": "tv", "title": "TV", "icon": "WashingMachine"},
     {"value": "kitchen", "title": "Kitchen", "icon": "Kitchen"},
     {"value": "washing_machine", "title": "Washing machine", "icon": "WashingMachine"},
     {"value": "free_parking_on_premises", "title": "Free parking on premises", "icon": "FreeParking"},
-    {"value": "paid_parking_on_premises", "title": "Paid parking on premises"},
-    {"value": "air_conditioning", "title": "Air conditioning", "icon": "AirConditioning"},
-    {"value": "dedicated_workspace", "title": "Dedicated workspace", "icon": "WorkSpace"}
-  ], 
+    {"value": "paid_parking_on_premises", "title": "Paid parking on premises", "icon": "paidParking"},
+    {"value": "air_conditioning", "title": "Air conditioning", "icon": "TbAirConditioning"},
+    {"value": "dedicated_workspace", "title": "Dedicated workspace", "icon": "BsPersonWorkspace"}
+  ],
   "amenities2": [
-    {"value": "pool", "title": "Pool"},
-    {"value": "hot_tub", "title": "Hot tub"},
-    {"value": "patio", "title": "Patio"},
-    {"value": "bbq_grill", "title": "BBQ grill"},
-    {"value": "outdoor_dining_area", "title": "Outdoor dining area"},
-    {"value": "firepit", "title": "Firepit"},
-    {"value": "pool_table", "title": "Pool table"},
-    {"value": "indoor_fireplace", "title": "Indoor fireplace"},
-    {"value": "piano", "title": "Piano"},
-    {"value": "exercise_equipment", "title": "Exercise equipment"},
-    {"value": "lake_access", "title": "Lake access"},
-    {"value": "beach_access", "title": "Beach access"},
-    {"value": "ski_in_out", "title": "Ski-in/out"},
-    {"value": "hair_dryer", "title": "Hair dryer"},
-    {"value": "outdoor_shower", "title": "Outdoor shower"}
+    {"value": "pool", "title": "Pool" , "icons":"MdPool"},
+    {"value": "hot_tub", "title": "Hot tub" ,"icons":"FaHotTubPerson"},
+    {"value": "patio", "title": "Patio" ,"icons":"BiChair" },
+    {"value": "bbq_grill", "title": "BBQ grill" ,"icons":"MdOutdoorGrill" },
+    {"value": "outdoor_dining_area", "title": "Outdoor dining area" ,"icons":"PiPicnicTableThin"},
+    {"value": "firepit", "title": "Firepit"  ,"icons":"FaFireBurner" },
+    {"value": "pool_table", "title": "Pool table" ,"icons":"GiPoolTableCorner"},
+    {"value": "indoor_fireplace", "title": "Indoor fireplace" ,"icons":"MdOutlineFireplace"},
+    {"value": "piano", "title": "Piano" ,"icons":"VscPiano"},
+    {"value": "exercise_equipment", "title": "Exercise equipment" ,"icons":"FaHeadphones"},
+    {"value": "lake_access", "title": "Lake access" ,"icons":"FaArrowUpFromWaterPump"},
+    {"value": "beach_access", "title": "Beach access" ,"icons":"FaUmbrellaBeach"},
+    {"value": "ski_in_out", "title": "Ski-in/out" ,"icons":"FaPersonSkiing"},
+    {"value": "hair_dryer", "title": "Hair dryer" ,"icons":"PiHairDryerBold"},
+    {"value": "outdoor_shower", "title": "Outdoor shower" ,"icons":"FaShower"}
   ],
   "standout_amenity": [
-    {"value": "smoke_alarm", "title": "Smoke alarm"},
-    {"value": "first_aid_kit", "title": "First aid kit"},
-    {"value": "fire_extinguisher", "title": "Fire extinguisher"},
-    {"value": "carbon_monoxide_alarm", "title": "Carbon monoxide alarm"}
+    {"value": "smoke_alarm", "title": "Smoke alarm" ,"icons":"MdOutlineSmokeFree"},
+    {"value": "first_aid_kit", "title": "First aid kit" ,"icons":"RiFirstAidKitFill"},
+    {"value": "fire_extinguisher", "title": "Fire extinguisher","icons":"PiFireExtinguisherThin"},
+    {"value": "carbon_monoxide_alarm", "title": "Carbon monoxide alarm" ,"icons":"TbBrandCarbon"}
   ]
 };
 
-// Icon mapping
-const iconMapping = {
-  WiFi: <WiFi style={{ color: "black", fontSize: "40px" }} />,
-  Tv: <Tv style={{ color: "black", fontSize: "40px" }} />,
-  Kitchen: <Kitchen style={{ color: "black", fontSize: "40px" }} />,
-  WashingMachine: <WashingMachine style={{ color: "black", fontSize: "40px" }} />,
-  FreeParking: <FreeParking style={{ color: "black", fontSize: "40px" }} />,
-  AirConditioning: <AirConditioning style={{ color: "black", fontSize: "40px" }} />,
-  WorkSpace: <WorkSpace style={{ color: "black", fontSize: "40px" }} />,
-};
+// const iconMapping = {
+//   FreeParking: <FaParking style={{ color: "black", fontSize: "40px" }} />,
+//   paidParking: <MdOutlineLocalParking style={{ color: "black", fontSize: "40px" }} />,
+//   WiFi: <FaWifi style={{ color: "black", fontSize: "40px" }} />,
+//   Kitchen: <GiKitchenKnives style={{ color: "black", fontSize: "40px" }} />,
+//   WashingMachine: <PiWashingMachine style={{ color: "black", fontSize: "40px" }} />,
+//   BsPersonWorkspace: <BsPersonWorkspace style={{ color: "black", fontSize: "40px" }} />,
+//   TbAirConditioning: <TbAirConditioning style={{ color: "black", fontSize: "40px" }} />,
+//   PiFireExtinguisherThin:<PiFireExtinguisherThin style={{ color: "black", fontSize: "40px" }}  />,
+//   TbBrandCarbon :<TbBrandCarbon style={{ color: "black", fontSize: "40px" }} />,
+//   RiFirstAidKitFill:<RiFirstAidKitFill style={{ color: "black", fontSize: "40px" }}/>,
+//   MdOutlineSmokeFree:<MdOutlineSmokeFree style={{ color: "black", fontSize: "40px" }}/>,
+//   FaShower:<FaShower style={{ color: "black", fontSize: "40px" }}/>,
+//   PiHairDryerBold:<PiHairDryerBold style={{ color: "black", fontSize: "40px" }} />,
+//   FaPersonSkiing:<FaPersonSkiing style={{ color: "black", fontSize: "40px" }}/>,
+//   FaUmbrellaBeach:<FaUmbrellaBeach style={{ color: "black", fontSize: "40px" }}/>,
+//   FaArrowUpFromWaterPump:<FaArrowUpFromWaterPump  style={{ color: "black", fontSize: "40px" }}/> ,
+//   MdPool:<MdPool style={{ color: "black", fontSize: "40px" }}/> ,
+//   FaHotTubPerson:<FaHotTubPerson style={{ color: "black", fontSize: "40px" }}/> ,
+//   BiChair:<BiChair style={{ color: "black", fontSize: "40px" }}/> ,
+//   MdOutdoorGrill: <MdOutdoorGrill style={{ color: "black", fontSize: "40px" }}/>,
+//   PiPicnicTableThin:<PiPicnicTableThin style={{ color: "black", fontSize: "40px" }}/>,
+//   FaFireBurner:<FaFireBurner style={{ color: "black", fontSize: "40px" }}/>,
+//   GiPoolTableCorner:<GiPoolTableCorner style={{ color: "black", fontSize: "40px" }}/>,
+//   MdOutlineFireplace:<MdOutlineFireplace style={{ color: "black", fontSize: "40px" }}/>,
+//   VscPiano:<VscPiano  style={{ color: "black", fontSize: "40px" }}/>,
+//   FaHeadphones:<FaHeadphones  style={{ color: "black", fontSize: "40px" }}/>,
+// };
+
 
 const propertyTypes = [
   { value: "flat", label: "Flat/Apartment" },
@@ -84,17 +107,13 @@ const propertyTypes = [
 ];
 
 export default function Property(props) {
-
   const { isEdit, p, onClose, fetchProperties } = props;
   const { uuid, location, children, adults, properties_type, name, no_of_pet_allowed, price, description, bedrooms, beds, bathrooms, amenities, property_image } = p ? p : {};
   const [selectedAmenity, setSelectedAmenity] = useState(null);
-
-
   console.log("selectedAmenity",selectedAmenity)
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [Loading, setLoading] = useState(false);
-
   function stringToArray(inputString) {
     return inputString.split(",");
   }
@@ -169,30 +188,30 @@ export default function Property(props) {
 
   const prevStep = () => setStep((prev) => prev - 1);
   const nextStep = async () => {
-    if (step === 0 && PType == '') {
-      toast.error("Please choose a property type which one you want to list.");
-    }
-    if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
-      toast.error("Property description is too short. Description should be a minimum of 100 words.");
-      return false;
-    }
-    if (step === 2 && (
-      address?.pin === "" || address?.pin?.length < 5 ||
-      address?.state === "" ||
-      address?.city === "" ||
-      address?.street_address === "" ||
-      address?.district === "")) {
-      toast.error(`Incomplete address. Please enter complete address.`);
-      return false;
-    }
-    if (step == 4 && item?.selectedAmenities && item?.selectedAmenities?.length < 4) {
-      toast.error("Please choose atleast 4 amenities.");
-      return false;
-    }
+    // if (step === 0 && PType == '') {
+    //   toast.error("Please choose a property type which one you want to list.");
+    // }
+    // if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
+    //   toast.error("Property description is too short. Description should be a minimum of 100 words.");
+    //   return false;
+    // }
+    // if (step === 2 && (
+    //   address?.pin === "" || address?.pin?.length < 5 ||
+    //   address?.state === "" ||
+    //   address?.city === "" ||
+    //   address?.street_address === "" ||
+    //   address?.district === "")) {
+    //   toast.error(`Incomplete address. Please enter complete address.`);
+    //   return false;
+    // }
+    // if (step == 4 && item?.selectedAmenities && item?.selectedAmenities?.length < 4) {
+    //   toast.error("Please choose atleast 4 amenities.");
+    //   return false;
+    // }
     setStep((prev) => prev + 1);
   };
 
@@ -288,19 +307,7 @@ const[locationmap,setLocationmap] =useState("")
     }
   };
 
-  // useEffect(() => {
-  //   const isAddressComplete =
-  //     address.street_address &&
-  //     address.nearby &&
-  //     address.district &&
-  //     address.city &&
-  //     address.state &&
-  //     address.pin;
-
-  //   if (address.street_address) {
-  //     fetchLocation();
-  //   }
-  // }, [address.street_address, address.nearby, address.district, address.city, address.state, address.pin]);
+ 
   const [imageproperty, setImagesproperty] = useState(property_image);
 
   const deletePropertyImage = (recordUUID, itemUUID) => {
@@ -343,7 +350,7 @@ const[locationmap,setLocationmap] =useState("")
     const main = new Listing();
     const formData = new FormData();
     formData.append("name", item?.name);
-    formData.append("no_of_pet_allowed", item?.pets);
+    formData.append("no_of_pet_allowed", pets);
     formData.append("description", item?.about);
     formData.append("price", item?.price);
     formData.append("properties_type", PType);
@@ -758,7 +765,7 @@ const[locationmap,setLocationmap] =useState("")
             <div className={`${step === 4 ? "" : "display-none"}`}>
       <h2 className="text-3xl text-center font-bold mb-2">Tell guests what your place has to offer</h2>
       <p className="text-normal text-center text-gray-500 mb-8">You can add more amenities after you publish your listing.</p>
-      <div className="grid grid-cols-3 gap-4 mb-5">
+      <div className="grid grid-cols-3 gap-4">
         {amenitiesData && amenitiesData?.amenities?.map((amenity, i) => (
           <div key={i} className="">
             <div
@@ -774,7 +781,7 @@ const[locationmap,setLocationmap] =useState("")
         ))}
       </div>
 
-      <p className="text-bold font-bold text-left text-gray-500 mb-8">
+      <p className="text-bold font-bold text-left text-gray-500 mb-8 mt-2" >
         Do you have any standout amenities?
       </p>
 
@@ -785,7 +792,7 @@ const[locationmap,setLocationmap] =useState("")
               onClick={() => setSelectedAmenity(amenity?.value)}
               className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${selectedAmenity === amenity?.value ? "bg-indigo-500" : ""}`}
             >
-              {iconMapping[amenity.icon] || <div style={{ fontSize: "40px" }}>?</div>}
+              {/* {iconMapping[amenity.icon] || <div style={{ fontSize: "40px" }}>?</div>} */}
               <h2 className={`text-sm mt-4 font-normal ${selectedAmenity === amenity?.value ? "text-gray-100" : "text-gray-400"}`}>
                 {amenity.title}
               </h2>
@@ -794,7 +801,7 @@ const[locationmap,setLocationmap] =useState("")
         ))}
       </div>
 
-      <p className="text-bold font-bold text-left text-gray-500 mb-8">
+      <p className="text-bold font-bold text-left text-gray-500 mb-8 mt-2">
         Do you have any of these safety items?
       </p>
 
@@ -805,7 +812,7 @@ const[locationmap,setLocationmap] =useState("")
               onClick={() => setSelectedAmenity(amenity?.value)}
               className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${selectedAmenity === amenity?.value ? "bg-indigo-500" : ""}`}
             >
-              {iconMapping[amenity.icon] || <div style={{ fontSize: "40px" }}>?</div>}
+              {/* {iconMapping[amenity.icon] || <div style={{ fontSize: "40px" }}>?</div>} */}
               <h2 className={`text-sm mt-4 font-normal ${selectedAmenity === amenity?.value ? "text-gray-100" : "text-gray-400"}`}>
                 {amenity.title}
               </h2>
