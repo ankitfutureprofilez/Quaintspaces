@@ -1,35 +1,119 @@
 import React, { useEffect, useState } from "react";
-import amenitiesList from "../../../../aminites.json";
+import amenities from "../../../../aminites.json";
 import Listing from "../../api/Listing";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { House, Add } from 'iconsax-react'
-import { FaBuilding, FaHome, FaBuildingO, FaDoorOpen, FaHotel, FaBed, FaCouch } from 'react-icons/fa';
-
+import { House, Add } from "iconsax-react";
+import { PiWashingMachine ,PiHairDryerBold ,PiFireExtinguisherThin , PiPicnicTableThin} from "react-icons/pi";
+import { TbBrandCarbon ,TbAirConditioning } from "react-icons/tb";
+import {
+  FaBuilding,
+  FaHome,
+  FaWarehouse,
+  FaDoorOpen,
+  FaHotel,
+  FaBed,
+  FaCouch,
+  FaShower,
+  FaHeadphones
+} from "react-icons/fa";
 import Image from 'next/image';
+import { BsPersonWorkspace } from "react-icons/bs";
+import { MdOutlineSmokeFree, MdOutlineFreeBreakfast ,MdOutlineLocalParking,MdOutlineFireplace,MdPool,MdOutdoorGrill } from "react-icons/md";
+import { RiFirstAidKitFill } from "react-icons/ri";
+import { BiChair } from "react-icons/bi";
+import { FaWifi ,FaParking   ,FaArrowUpFromWaterPump,FaFireBurner ,FaHotTubPerson,FaUmbrellaBeach,FaPersonSkiing} from "react-icons/fa6";
+import { GiPoolTableCorner ,GiKitchenKnives  } from "react-icons/gi";
+import { VscPiano } from "react-icons/vsc";
+
+
+const amenitiesData = {
+  "amenities": [
+    {"value": "wifi", "title": "Wifi", "icon": "WiFi"},
+    {"value": "tv", "title": "TV", "icon": "WashingMachine"},
+    {"value": "kitchen", "title": "Kitchen", "icon": "Kitchen"},
+    {"value": "washing_machine", "title": "Washing machine", "icon": "WashingMachine"},
+    {"value": "free_parking_on_premises", "title": "Free parking on premises", "icon": "FreeParking"},
+    {"value": "paid_parking_on_premises", "title": "Paid parking on premises", "icon": "paidParking"},
+    {"value": "air_conditioning", "title": "Air conditioning", "icon": "TbAirConditioning"},
+    {"value": "dedicated_workspace", "title": "Dedicated workspace", "icon": "BsPersonWorkspace"}
+  ],
+  "amenities2": [
+    {"value": "pool", "title": "Pool" , "icons":"MdPool"},
+    {"value": "hot_tub", "title": "Hot tub" ,"icons":"FaHotTubPerson"},
+    {"value": "patio", "title": "Patio" ,"icons":"BiChair" },
+    {"value": "bbq_grill", "title": "BBQ grill" ,"icons":"MdOutdoorGrill" },
+    {"value": "outdoor_dining_area", "title": "Outdoor dining area" ,"icons":"PiPicnicTableThin"},
+    {"value": "firepit", "title": "Firepit"  ,"icons":"FaFireBurner" },
+    {"value": "pool_table", "title": "Pool table" ,"icons":"GiPoolTableCorner"},
+    {"value": "indoor_fireplace", "title": "Indoor fireplace" ,"icons":"MdOutlineFireplace"},
+    {"value": "piano", "title": "Piano" ,"icons":"VscPiano"},
+    {"value": "exercise_equipment", "title": "Exercise equipment" ,"icons":"FaHeadphones"},
+    {"value": "lake_access", "title": "Lake access" ,"icons":"FaArrowUpFromWaterPump"},
+    {"value": "beach_access", "title": "Beach access" ,"icons":"FaUmbrellaBeach"},
+    {"value": "ski_in_out", "title": "Ski-in/out" ,"icons":"FaPersonSkiing"},
+    {"value": "hair_dryer", "title": "Hair dryer" ,"icons":"PiHairDryerBold"},
+    {"value": "outdoor_shower", "title": "Outdoor shower" ,"icons":"FaShower"}
+  ],
+  "standout_amenity": [
+    {"value": "smoke_alarm", "title": "Smoke alarm" ,"icons":"MdOutlineSmokeFree"},
+    {"value": "first_aid_kit", "title": "First aid kit" ,"icons":"RiFirstAidKitFill"},
+    {"value": "fire_extinguisher", "title": "Fire extinguisher","icons":"PiFireExtinguisherThin"},
+    {"value": "carbon_monoxide_alarm", "title": "Carbon monoxide alarm" ,"icons":"TbBrandCarbon"}
+  ]
+};
+
+// const iconMapping = {
+//   FreeParking: <FaParking style={{ color: "black", fontSize: "40px" }} />,
+//   paidParking: <MdOutlineLocalParking style={{ color: "black", fontSize: "40px" }} />,
+//   WiFi: <FaWifi style={{ color: "black", fontSize: "40px" }} />,
+//   Kitchen: <GiKitchenKnives style={{ color: "black", fontSize: "40px" }} />,
+//   WashingMachine: <PiWashingMachine style={{ color: "black", fontSize: "40px" }} />,
+//   BsPersonWorkspace: <BsPersonWorkspace style={{ color: "black", fontSize: "40px" }} />,
+//   TbAirConditioning: <TbAirConditioning style={{ color: "black", fontSize: "40px" }} />,
+//   PiFireExtinguisherThin:<PiFireExtinguisherThin style={{ color: "black", fontSize: "40px" }}  />,
+//   TbBrandCarbon :<TbBrandCarbon style={{ color: "black", fontSize: "40px" }} />,
+//   RiFirstAidKitFill:<RiFirstAidKitFill style={{ color: "black", fontSize: "40px" }}/>,
+//   MdOutlineSmokeFree:<MdOutlineSmokeFree style={{ color: "black", fontSize: "40px" }}/>,
+//   FaShower:<FaShower style={{ color: "black", fontSize: "40px" }}/>,
+//   PiHairDryerBold:<PiHairDryerBold style={{ color: "black", fontSize: "40px" }} />,
+//   FaPersonSkiing:<FaPersonSkiing style={{ color: "black", fontSize: "40px" }}/>,
+//   FaUmbrellaBeach:<FaUmbrellaBeach style={{ color: "black", fontSize: "40px" }}/>,
+//   FaArrowUpFromWaterPump:<FaArrowUpFromWaterPump  style={{ color: "black", fontSize: "40px" }}/> ,
+//   MdPool:<MdPool style={{ color: "black", fontSize: "40px" }}/> ,
+//   FaHotTubPerson:<FaHotTubPerson style={{ color: "black", fontSize: "40px" }}/> ,
+//   BiChair:<BiChair style={{ color: "black", fontSize: "40px" }}/> ,
+//   MdOutdoorGrill: <MdOutdoorGrill style={{ color: "black", fontSize: "40px" }}/>,
+//   PiPicnicTableThin:<PiPicnicTableThin style={{ color: "black", fontSize: "40px" }}/>,
+//   FaFireBurner:<FaFireBurner style={{ color: "black", fontSize: "40px" }}/>,
+//   GiPoolTableCorner:<GiPoolTableCorner style={{ color: "black", fontSize: "40px" }}/>,
+//   MdOutlineFireplace:<MdOutlineFireplace style={{ color: "black", fontSize: "40px" }}/>,
+//   VscPiano:<VscPiano  style={{ color: "black", fontSize: "40px" }}/>,
+//   FaHeadphones:<FaHeadphones  style={{ color: "black", fontSize: "40px" }}/>,
+// };
 
 
 const propertyTypes = [
-  { value: "flat", label: "Flat" },
+  { value: "flat", label: "Flat/Apartment" },
   { value: "house", label: "House" },
   { value: "unique_space", label: "Unique Space" },
   { value: "guest_house", label: "Guest House" },
   { value: "hotel", label: "Hotel" },
   { value: "single_room", label: "Single Room" },
-  { value: "boutique_hotel", label: "Boutique Hotel" }
+  { value: "boutique_hotel", label: "Boutique Hotel" },
+  { value: "fram", label: "Fram" },
+  { value: "breakfast", label: "Bed & Breakfast" },
 ];
 
 export default function Property(props) {
-
   const { isEdit, p, onClose, fetchProperties } = props;
   const { uuid, location, children, adults, properties_type, name, no_of_pet_allowed, price, description, bedrooms, beds, bathrooms, amenities, property_image } = p ? p : {};
-
-
+  const [selectedAmenity, setSelectedAmenity] = useState(null);
+  console.log("selectedAmenity",selectedAmenity)
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [Loading, setLoading] = useState(false);
-
   function stringToArray(inputString) {
     return inputString.split(",");
   }
@@ -104,30 +188,30 @@ export default function Property(props) {
 
   const prevStep = () => setStep((prev) => prev - 1);
   const nextStep = async () => {
-    if (step === 0 && PType == '') {
-      toast.error("Please choose a property type which one you want to list.");
-    }
-    if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
-      toast.error("Property description is too short. Description should be a minimum of 100 words.");
-      return false;
-    }
-    if (step === 2 && (
-      address?.pin === "" || address?.pin?.length < 5 ||
-      address?.state === "" ||
-      address?.city === "" ||
-      address?.street_address === "" ||
-      address?.district === "")) {
-      toast.error(`Incomplete address. Please enter complete address.`);
-      return false;
-    }
-    if (step == 4 && item?.selectedAmenities && item?.selectedAmenities?.length < 4) {
-      toast.error("Please choose atleast 4 amenities.");
-      return false;
-    }
+    // if (step === 0 && PType == '') {
+    //   toast.error("Please choose a property type which one you want to list.");
+    // }
+    // if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
+    //   toast.error("Property description is too short. Description should be a minimum of 100 words.");
+    //   return false;
+    // }
+    // if (step === 2 && (
+    //   address?.pin === "" || address?.pin?.length < 5 ||
+    //   address?.state === "" ||
+    //   address?.city === "" ||
+    //   address?.street_address === "" ||
+    //   address?.district === "")) {
+    //   toast.error(`Incomplete address. Please enter complete address.`);
+    //   return false;
+    // }
+    // if (step == 4 && item?.selectedAmenities && item?.selectedAmenities?.length < 4) {
+    //   toast.error("Please choose atleast 4 amenities.");
+    //   return false;
+    // }
     setStep((prev) => prev + 1);
   };
 
@@ -158,7 +242,7 @@ export default function Property(props) {
   };
 
 
-
+const[locationmap,setLocationmap] =useState("")
 
   const fetchLocationData = async () => {
     setLoading(true);
@@ -180,6 +264,7 @@ export default function Property(props) {
               `https://nominatim.openstreetmap.org/reverse?lat=${address?.latitude}&lon=${address?.longitude}&format=json`
             );
             locationData = response.data;
+            setLocationmap(locationData?.address);
             setLocationupdate(locationData?.address);
           }
           setAddress({
@@ -222,19 +307,7 @@ export default function Property(props) {
     }
   };
 
-  // useEffect(() => {
-  //   const isAddressComplete =
-  //     address.street_address &&
-  //     address.nearby &&
-  //     address.district &&
-  //     address.city &&
-  //     address.state &&
-  //     address.pin;
-
-  //   if (address.street_address) {
-  //     fetchLocation();
-  //   }
-  // }, [address.street_address, address.nearby, address.district, address.city, address.state, address.pin]);
+ 
   const [imageproperty, setImagesproperty] = useState(property_image);
 
   const deletePropertyImage = (recordUUID, itemUUID) => {
@@ -249,6 +322,18 @@ export default function Property(props) {
         console.error("Error:", error);
       });
   };
+
+  const [guests, setGuests] = useState(0);
+  const [Bedrooms, setBedrooms] = useState(0);
+  const [Bathrooms, setBathrooms] = useState(0);
+  const [pets, setPets] = useState(0);
+
+  const decrement = (setter) => () => setter((prev) => Math.max(0, prev - 1));
+  const increment = (setter) => () => setter((prev) => prev + 1);
+
+  const decrements = (Bathrooms) => () =>
+    setBathrooms((prev) => Math.max(0, prev - 0.5));
+  const increments = (Bathrooms) => () => setBathrooms((prev) => prev + 0.5);
 
 
   async function handleSubmit(e) {
@@ -265,14 +350,14 @@ export default function Property(props) {
     const main = new Listing();
     const formData = new FormData();
     formData.append("name", item?.name);
-    formData.append("no_of_pet_allowed", item?.pets);
+    formData.append("no_of_pet_allowed", pets);
     formData.append("description", item?.about);
     formData.append("price", item?.price);
     formData.append("properties_type", PType);
-    formData.append("bedrooms", item?.bedrooms);
+    formData.append("bedrooms", Bedrooms);
     formData.append("beds", item?.beds);
-    formData.append("bathrooms", item?.bathrooms);
-    formData.append("adults", item?.adults);
+    formData.append("bathrooms", Bathrooms);
+    formData.append("guests", guests);
     formData.append("children", item?.children);
     formData.append("address", JSON.stringify(address));
     formData.append("infants", "1");
@@ -344,20 +429,58 @@ export default function Property(props) {
               {/* {typeHere === "entire_place" ?  <> */}
               <h2 className="text-3xl text-center mt-4 font-bold mb-8" >Which of these best describes your place?</h2>
               <div className="grid grid-cols-3 gap-4">
-                {propertyTypes && propertyTypes.map((p, i) => (
-                 <div key={i} className="">
-                 <div onClick={() => setPType(p?.value)} className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-indigo-500" : ""}`}>
-                   {p.value === "flat" && <FaBuilding style={{ color: 'black', fontSize: '40px' }} />}
-                   {p.value === "house" && <FaHome style={{ color: 'black', fontSize: '40px' }} />}
-                   {p.value === "unique_space" && <House size={40} />}
-                   {p.value === "guest_house" && <FaDoorOpen style={{ color: 'black', fontSize: '40px' }} />}
-                   {p.value === "hotel" && <FaHotel style={{ color: 'black', fontSize: '40px' }} />}
-                   {p.value === "single_room" && <FaBed style={{ color: 'black', fontSize: '40px' }} />}
-                   {p.value === "boutique_hotel" && <FaCouch style={{ color: 'black', fontSize: '40px' }} />}
-                   <h2 className={`text-xl mt-4 font-normal ${p.value === PType ? "text-gray-100" : "text-gray-400"}`}>
-                     {p.label}
-                   </h2>
-                 </div>
+                {propertyTypes &&
+                  propertyTypes.map((p, i) => (
+                    <div key={i} className="">
+                      <div
+                        onClick={() => setPType(p?.value)}
+                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${
+                          p?.value === PType ? "bg-indigo-500" : ""
+                        }`}
+                      >
+                        {p.value === "flat" && (
+                          <FaBuilding
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "house" && (
+                          <FaHome
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "unique_space" && <House size={40} />}
+                        {p.value === "guest_house" && (
+                          <FaDoorOpen
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "hotel" && (
+                          <FaHotel
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "single_room" && (
+                          <FaBed style={{ color: "black", fontSize: "40px" }} />
+                        )}
+                        {p.value === "boutique_hotel" && (
+                          <FaCouch
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "breakfast" && (
+                          <MdOutlineFreeBreakfast size={40} />
+                        )}
+                        {p.value === "fram" && <FaWarehouse size={40} />}
+                        <h2
+                          className={`text-xl mt-4 font-normal ${
+                            p.value === PType
+                              ? "text-gray-100"
+                              : "text-gray-400"
+                          }`}
+                        >
+                          {p.label}
+                        </h2>
+                      </div>
                </div>
                
                 ))}
@@ -420,32 +543,39 @@ export default function Property(props) {
             </div>
 
             <div className={`${step === 2 ? "" : "display-none"}`}>
-              <h2 className="text-3xl text-center font-bold mb-2" >Where's your place located?</h2>
-              <p className="text-normal text-center text-gray-500 mb-8" >Your address is only shared with guests after they’ve made a reservation.</p>
-
-              <div class="table w-full m-auto max-w-[500px] space-y-4 text-center">
+              <h2 className="text-3xl text-center font-bold mb-2">
+                Where's your place located?
+              </h2>
+              <p className="text-normal text-center text-gray-500 mb-8">
+                Your address is only shared with guests after they’ve made a
+                reservation.
+              </p>
+              <div className="table w-full m-auto max-w-[500px] space-y-4 text-center">
                 <p>{address?.location}</p>
-                <div class="w-full mt-4"   >
-                  <button className="btn sort w-full" onClick={fetchLocationData}>
+                <div class="w-full mt-4">
+                  <button
+                    className="btn sort w-full"
+                    onClick={fetchLocationData}
+                  >
                     {Loading ? "...." : "Use Current Location"}
                   </button>
-
                 </div>
                 <div class="flex items-center justify-center space-x-4">
-                  <div class="font-semibold text-gray-400 py-3 text-center">OR</div>
+                  <div class="font-semibold text-gray-400 py-3 text-center">
+                    OR
+                  </div>
                 </div>
                 <div className="w-full border border-gray-300 rounded-lg overflow-hidden">
                   <input
-             
                     value={address.flat_house}
-                    name='flat_house'
+                    name="flat_house"
                     onChange={handleAddress}
                     type="text"
                     placeholder="Flat, house, etc. (if applicable)"
                     className="w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
                   />
                   <input
-                       onBlur={fetchLocation}
+                    onBlur={fetchLocation}
                     value={address.street_address}
                     name="street_address"
                     onChange={handleAddress}
@@ -460,7 +590,6 @@ export default function Property(props) {
                     onChange={handleAddress}
                     type="text"
                     placeholder="Nearby Landmark (if applicable)"
-
                     className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
                   />
                   <input
@@ -501,169 +630,197 @@ export default function Property(props) {
                   />
                 </div>
               </div>
+              <div>
+                <h2 className="text-3xl text-center font-bold mb-2 mt-3">
+                  Show your specific location
+                </h2>
+                <p className="text-normal text-center text-gray-500 mb-8">
+                  Make it clear to guests where your place is located. We'll
+                  only share your address after they've made a reservation
+                </p>
+
+                <div>
+                  {locationmap ? (
+                 
+
+                    <iframe
+                    src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
+                      ` jaipur rajasthan`
+                    )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
+                    width="100%"
+                    height="450"
+                    style={{ border: "0" }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Google Map"
+                  ></iframe>
+                  ) : (
+                    <iframe
+                    src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
+                      ` ${locationmap}`
+                    )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
+                    width="100%"
+                    height="450"
+                    style={{ border: "0" }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Google Map"
+                  ></iframe>
+                  )}
+                </div>
+              </div>
+
               
             </div>
             <div className={`${step === 3 ? "" : "display-none"}`}>
-              <h2 className="text-3xl text-center font-bold mb-8" >Let's start with the basics</h2>
-              <h2 className="text-xl text-center font-bold mb-8" >How many people can stay here?</h2>
-              <div className="grid grid-cols-1 max-w-[500px] m-auto table gap-y-2 sm:grid-cols-2 sm:gap-x-8 mt-5">
-                <div>
-                  <label
-                    htmlFor="adults"
-                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                  >
-                    Adult
-                  </label>
-                  <select
-                    required
-                    id="adults"
-                    name="adults"
-                    autoComplete="guests"
-                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item?.adults}
-                    onChange={handleInputChange}
-                  >
-                    {Array.from({ length: 20 }, (_, i) => (
-                      <option key={i + 1}>{i + 1}</option>
-                    ))}
-                  </select>
+              <h2 className="text-3xl text-center font-bold mb-8">
+                Share some basics about your place
+              </h2>
+              <h2 className="text-xl text-center font-bold mb-8">
+                You'll add more details later, such as bed types.
+              </h2>
+              <div className="grid max-w-[500px] m-auto table gap-y-4  mt-5">
+                <div className="flex items-center justify-between border-b-2 border-black-600 p-2">
+                  <span>Guests</span>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={decrement(setGuests)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      -
+                    </button>
+                    <span>{guests}</span>
+                    <button
+                      onClick={increment(setGuests)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
-                <div>
-                  <label
-                    htmlFor="children"
-                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                  >
-                    Children
-                  </label>
-                  <select
-                    required
-                    id="children"
-                    name="children"
-                    autoComplete="guests"
-                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item?.children}
-                    onChange={handleInputChange}
-                  >
-                    {Array.from({ length: 20 }, (_, i) => (
-                      <option key={i + 1}>{i + 1}</option>
-                    ))}
-                  </select>
+
+                <div className="flex items-center justify-between border-b-2 border-black-600 p-2">
+                  <span>Bedrooms</span>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={decrement(setBedrooms)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      -
+                    </button>
+                    <span>{Bedrooms}</span>
+                    <button
+                      onClick={increment(setBedrooms)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
-                <div>
-                  <label
-                    htmlFor="bedrooms"
-                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                  >
-                    Bedrooms
-                  </label>
-                  <select
-                    required
-                    id="bedrooms"
-                    name="bedrooms"
-                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item?.bedrooms}
-                    onChange={handleInputChange}
-                  >
-                    {Array.from({ length: 20 }, (_, i) => (
-                      <option key={i + 1}>{i + 1}</option>
-                    ))}
-                  </select>
+
+                
+                <div className="flex items-center justify-between border-b-2 border-black-600 p-2 ">
+                  <span>Bathrooms</span>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={decrements(setBathrooms)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      -
+                    </button>
+                    <span>{Bathrooms}</span>
+                    <button
+                      onClick={increments(setBathrooms)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
-                <div>
-                  <label
-                    htmlFor="beds"
-                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                  >
-                    Beds
-                  </label>
-                  <select
-                    required
-                    id="beds"
-                    name="beds"
-                    autoComplete="beds"
-                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item?.beds}
-                    onChange={handleInputChange}
-                  >
-                    {Array.from({ length: 20 }, (_, i) => (
-                      <option key={i + 1}>{i + 1}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label
-                    htmlFor="bathrooms"
-                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                  >
-                    Bathrooms
-                  </label>
-                  <select
-                    required
-                    id="bathrooms"
-                    name="bathrooms"
-                    autoComplete="bathrooms"
-                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item?.bathrooms}
-                    onChange={handleInputChange}
-                  >
-                    {Array.from({ length: 20 }, (_, i) => (
-                      <option key={i + 1}>{i + 1}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label
-                    htmlFor="pet"
-                    className="block text-sm mb-1 font-medium text-gray-700 mt-3"
-                  >
-                    Pets
-                  </label>
-                  <select
-                    id="pet"
-                    required
-                    name="pets"
-                    autoComplete="pet"
-                    className="mt-1 p-3 focus:outline-0 border rounded-lg w-full pe-16"
-                    value={item?.pets}
-                    onChange={handleInputChange}
-                  >
-                    {Array.from({ length: 20 }, (_, i) => (
-                      <option key={i + 1}>{i + 1}</option>
-                    ))}
-                  </select>
+
+                <div className="flex items-center justify-between border-b-2 border-black-600 p-2 ">
+                  <span>Pets</span>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={decrement(setPets)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      -
+                    </button>
+                    <span>{pets}</span>
+                    <button
+                      onClick={increment(setPets)}
+                      className="rounded-full border px-3 py-1"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-
-
 
 
             <div className={`${step === 4 ? "" : "display-none"}`}>
-              <h2 className="text-3xl text-center font-bold mb-2" >Tell guests what your place has to offer</h2>
-              <p className="text-normal text-center text-gray-500 mb-8" >You can add more amenities after you publish your listing.</p>
-
-              <div className="max-w-[600px] m-auto justify-center flex flex-wrap ammenties-checked-lists">
-                {amenitiesList.map((amenity, index) => (
-                  <div key={index} className="flex items-center">
-                    <input
-                      id={amenity.value}
-                      name={amenity.value}
-                      type="checkbox"
-                      value={amenity.value}
-                      className="mr-2 rounded text-indigo-600 focus:ring-indigo-500 hidden"
-                      checked={item?.selectedAmenities.includes(amenity.value)}
-                      onChange={handleCheckboxChange}
-                    />
-                    <label
-                      htmlFor={amenity.value}
-                      className="me-2 mb-2 bg-gray-300 px-4 py-2 rounded-lg text-md text-gray-500 cursor-pointer" >
-                      {amenity.title}
-                    </label>
-                  </div>
-                ))}
-              </div>
+      <h2 className="text-3xl text-center font-bold mb-2">Tell guests what your place has to offer</h2>
+      <p className="text-normal text-center text-gray-500 mb-8">You can add more amenities after you publish your listing.</p>
+      <div className="grid grid-cols-3 gap-4">
+        {amenitiesData && amenitiesData?.amenities?.map((amenity, i) => (
+          <div key={i} className="">
+            <div
+              onClick={() => setSelectedAmenity(amenity?.value)}
+              className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${selectedAmenity === amenity?.value ? "bg-indigo-500" : ""}`}
+            >
+              {iconMapping[amenity.icon] || <div style={{ fontSize: "40px" }}>?</div>}
+              <h2 className={`text-sm mt-4 font-normal ${selectedAmenity === amenity?.value ? "text-gray-100" : "text-gray-400"}`}>
+                {amenity.title}
+              </h2>
             </div>
+          </div>
+        ))}
+      </div>
 
+      <p className="text-bold font-bold text-left text-gray-500 mb-8 mt-2" >
+        Do you have any standout amenities?
+      </p>
+
+      <div className="grid grid-cols-3 gap-4 mb-5">
+        {amenitiesData && amenitiesData?.amenities2?.map((amenity, i) => (
+          <div key={i} className="">
+            <div
+              onClick={() => setSelectedAmenity(amenity?.value)}
+              className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${selectedAmenity === amenity?.value ? "bg-indigo-500" : ""}`}
+            >
+              {/* {iconMapping[amenity.icon] || <div style={{ fontSize: "40px" }}>?</div>} */}
+              <h2 className={`text-sm mt-4 font-normal ${selectedAmenity === amenity?.value ? "text-gray-100" : "text-gray-400"}`}>
+                {amenity.title}
+              </h2>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p className="text-bold font-bold text-left text-gray-500 mb-8 mt-2">
+        Do you have any of these safety items?
+      </p>
+
+      <div className="grid grid-cols-3 gap-4">
+        {amenitiesData && amenitiesData?.standout_amenity?.map((amenity, i) => (
+          <div key={i} className="">
+            <div
+              onClick={() => setSelectedAmenity(amenity?.value)}
+              className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${selectedAmenity === amenity?.value ? "bg-indigo-500" : ""}`}
+            >
+              {/* {iconMapping[amenity.icon] || <div style={{ fontSize: "40px" }}>?</div>} */}
+              <h2 className={`text-sm mt-4 font-normal ${selectedAmenity === amenity?.value ? "text-gray-100" : "text-gray-400"}`}>
+                {amenity.title}
+              </h2>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
 
             <div className={`${step === 5 ? "" : "display-none"} max-w-[600px] m-auto`}>
               <h2 className="text-3xl text-center font-bold mb-2" >Add some photos of your {PType ? PType.replace("_", ' ') : "house"}</h2>
