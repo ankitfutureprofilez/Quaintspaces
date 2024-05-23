@@ -269,7 +269,7 @@ export default function Property(props) {
   const [Amenity, setAmenity] = useState([]);
   const [standoutAmenity, setstandoutAmenity] = useState([]);
 
-  console.log(guests,Bathrooms,Bedrooms,pets, selectedAmenity,standoutAmenity ,Amenity)
+  console.log(guests,Bathrooms,Bedrooms,pets, standoutAmenity ,Amenity)
 
   async function handleSubmit(e) {
     e.preventDefault();

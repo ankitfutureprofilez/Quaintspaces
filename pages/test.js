@@ -11,12 +11,13 @@ export default function test() {
     pet: "",
     guest: "",
   });
-  const [selectedOption, setSelectedOption] = useState('list'); 
 
   const [propertyDuplicated, setpropertyDuplicated] = useState(false);
-  const [showContent, setShowContent] = useState(" ");
 
   const ButtonGroup = () => {
+
+  const [selectedOption, setSelectedOption] = useState('list'); 
+
     const handleOptionChange = (e) => {
       setSelectedOption(e.target.value);
     };
