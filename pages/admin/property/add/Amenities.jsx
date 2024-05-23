@@ -173,8 +173,9 @@ const iconMapping = {
   FaHeadphones: <FaHeadphones style={{ color: "black", fontSize: "40px" }} />,
 };
 
-export default function Amenities() {
-  const [selectedAmenity, setSelectedAmenity] = useState([]);
+export default function Amenities({selectedAmenity, setSelectedAmenity,standoutAmenity, setstandoutAmenity, Amenity, setAmenity}) {
+  
+
   const toggleSelectedAmenity = (amenityValue) => {
     const isSelected = selectedAmenity.includes(amenityValue);
     if (isSelected) {
@@ -186,7 +187,6 @@ export default function Amenities() {
     }
   };
 
-  const [Amenity, setAmenity] = useState([]);
   const toggleAmenity = (amenityValue) => {
     const isSelected = Amenity.includes(amenityValue);
     if (isSelected) {
@@ -198,7 +198,6 @@ export default function Amenities() {
     }
   };
 
-  const [standoutAmenity, setstandoutAmenity] = useState([]);
   const togglestandoutAmenity = (amenityValue) => {
     const isSelected = standoutAmenity.includes(amenityValue);
     if (isSelected) {
@@ -210,7 +209,6 @@ export default function Amenities() {
     }
   };
 
-  console.log(standoutAmenity,Amenity,selectedAmenity)
   return (
     <>
       <h2 className="text-3xl text-center font-bold mt-5  mb-2">
@@ -220,23 +218,23 @@ export default function Amenities() {
         You can add more amenities after you publish your listing.
       </p>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-4   ">
         {amenitiesData &&
           amenitiesData?.amenities?.map((amenity, i) => (
             <div key={i} className="">
               <div
-                onClick={() => toggleSelectedAmenity(amenity.value)}
-                className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${
-                  selectedAmenity.includes(amenity.value) ? "bg-white-600" : ""
+                onClick={() => togglestandoutAmenity(amenity.value)}
+                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl ${
+                  standoutAmenity.includes(amenity.value) ? "bg-indigo-600" : ""
                 }`}
               >
                 {/* {iconMapping[amenity.icons] || (
                   <div style={{ fontSize: "40px" }}>?</div>
                 )} */}
                 <h2
-                  className={`text-lg mt-4 font-bold  capitalize ${
-                    selectedAmenity.includes(amenity.value)
-                      ? "text-black-300"
+                  className={`text-lg mt-4 font-bold text-left  capitalize ${
+                    standoutAmenity.includes(amenity.value)
+                      ? "text-white-300"
                       : "text-white-600"
                   }`}
                 >
@@ -251,23 +249,23 @@ export default function Amenities() {
         Do you have any standout amenities?
       </p>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-4   ">
         {amenitiesData &&
           amenitiesData?.amenities2?.map((amenity, i) => (
             <div key={i} className="">
               <div
-                onClick={() => toggleAmenity(amenity.value)}
-                className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${
-                 Amenity.includes(amenity.value) ? "bg-indigo-600" : ""
+                onClick={() => togglestandoutAmenity(amenity.value)}
+                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl ${
+                  standoutAmenity.includes(amenity.value) ? "bg-indigo-600" : ""
                 }`}
               >
-                 {/* {iconMapping[amenity.icons] || (
+                {/* {iconMapping[amenity.icons] || (
                   <div style={{ fontSize: "40px" }}>?</div>
                 )} */}
                 <h2
-                  className={`text-lg mt-4 font-bold capitalize ${
-                    Amenity.includes(amenity.value)
-                      ? "text-black-300"
+                  className={`text-lg mt-4 font-bold text-left  capitalize ${
+                    standoutAmenity.includes(amenity.value)
+                      ? "text-white-300"
                       : "text-white-600"
                   }`}
                 >

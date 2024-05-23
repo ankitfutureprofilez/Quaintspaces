@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 
 export default function Guest({
-  petrecord,
-  guestrecord,
-  Bedroomsrecord,
-  bathroomrecords,
+    guests, setGuests, Bedrooms, setBedrooms,Bathrooms, setBathrooms, pets, setPets
 }) {
-  const [guests, setGuests] = useState(1);
-  const [Bedrooms, setBedrooms] = useState(1);
-  const [Bathrooms, setBathrooms] = useState(0.5);
-  const [pets, setPets] = useState(1);
+ 
 
   const decrement = (setter) => () => setter((prev) => Math.max(0, prev - 1));
   const increment = (setter) => () => setter((prev) => prev + 1);

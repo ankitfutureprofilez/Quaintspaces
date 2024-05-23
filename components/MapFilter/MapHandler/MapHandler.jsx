@@ -13,7 +13,6 @@ const MapHandler = ({ children, ...rest }) => {
   useEffect(() => {
     (async function init() {
       delete L.Icon.Default.prototype._getIconUrl;
-
       L.Icon.Default.mergeOptions({
         iconRetinaUrl: iconRetinaUrl.src,
         iconUrl: iconUrl.src,

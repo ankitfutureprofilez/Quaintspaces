@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Listing from "../../api/Listing";
 import { useRouter } from "next/router";
+import Image from 'next/image'
 import toast from "react-hot-toast";
 import axios from "axios";
 import Aminites from "./Amenities";
 import { House, Add } from "iconsax-react";
 import {
-  MdOutlineSmokeFree,
   MdOutlineFreeBreakfast,
-  MdOutlineLocalParking,
-  MdOutlineFireplace,
-  MdPool,
-  MdOutdoorGrill,
 } from "react-icons/md";
 import {
   FaBuilding,
@@ -21,8 +17,6 @@ import {
   FaHotel,
   FaBed,
   FaCouch,
-  FaShower,
-  FaHeadphones,
 } from "react-icons/fa";
 import Guest from "./Guest";
 
@@ -172,8 +166,8 @@ export default function Property(props) {
     }
   };
 
-  const [locationmap, setLocationmap] = useState("");
 
+  console.log("locationmap,locationmap",address)
   const fetchLocationData = async () => {
     setLoading(true);
     const navigatorObj = getNavigator();
@@ -195,7 +189,7 @@ export default function Property(props) {
                 `https://nominatim.openstreetmap.org/reverse?lat=${address?.latitude}&lon=${address?.longitude}&format=json`
               );
               locationData = response.data;
-              setLocationmap(locationData?.address);
+              console.log(":locationData",locationData)
               setLocationupdate(locationData?.address);
             }
             setAddress({
@@ -266,6 +260,17 @@ export default function Property(props) {
       });
   };
 
+
+  const [guests, setGuests] = useState(1);
+  const [Bedrooms, setBedrooms] = useState(1);
+  const [Bathrooms, setBathrooms] = useState(0.5);
+  const [pets, setPets] = useState(1);
+  const [selectedAmenity, setSelectedAmenity] = useState([]);
+  const [Amenity, setAmenity] = useState([]);
+  const [standoutAmenity, setstandoutAmenity] = useState([]);
+
+  console.log(guests,Bathrooms,Bedrooms,pets, selectedAmenity,standoutAmenity ,Amenity)
+
   async function handleSubmit(e) {
     e.preventDefault();
     if (!isEdit && step === 5 && images?.length < 5) {
@@ -284,15 +289,15 @@ export default function Property(props) {
     formData.append("no_of_pet_allowed", pets);
     formData.append("description", item?.about);
     formData.append("price", item?.price);
-    // formData.append("bedrooms", Bedrooms);
-    // formData.append("beds", item?.beds);
-    // formData.append("bathrooms", Bathrooms);
-    // formData.append("guests", guests);
+    formData.append("bedrooms", Bedrooms);
+    formData.append("beds", item?.beds);
+    formData.append("bathrooms", Bathrooms);
+    formData.append("guests", guests);
     formData.append("address", JSON.stringify(address));
     formData.append("infants", "1");
     formData.append("pet_allowed", "1");
     formData.append("free_cancel_time", "1");
-    formData.append("amenities", selectedAmenity);
+    // formData.append("amenities", selectedAmenity);
     formData.append("type", typeHere);
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
@@ -573,19 +578,18 @@ export default function Property(props) {
                 </div>
               </div>
               <div>
-                <h2 className="text-3xl text-center font-bold mb-2 mt-3">
+                <h2 className="text-3xl text-center font-bold mb-2 mt-5 capitalize">
                   Show your specific location
                 </h2>
-                <p className="text-normal text-center text-gray-500 mb-8">
+                <p className="text-normal text-center text-gray-500 mb-8 mt-4">
                   Make it clear to guests where your place is located. We'll
                   only share your address after they've made a reservation
                 </p>
 
                 <div>
-                  {locationmap ? (
                     <iframe
                       src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
-                        ` jaipur rajasthan`
+                        ` ${address?.location}`
                       )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
                       width="100%"
                       height="450"
@@ -595,29 +599,17 @@ export default function Property(props) {
                       referrerPolicy="no-referrer-when-downgrade"
                       title="Google Map"
                     ></iframe>
-                  ) : (
-                    <iframe
-                      src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
-                        ` ${locationmap}`
-                      )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
-                      width="100%"
-                      height="450"
-                      style={{ border: "0" }}
-                      allowFullScreen=""
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title="Google Map"
-                    ></iframe>
-                  )}
                 </div>
               </div>
             </div>
             <div className={`${step === 3 ? "" : "display-none"}`}>
-              <Guest />
+              <Guest guests ={guests} setGuests={setGuests} 
+               Bedrooms={Bedrooms}  setBedrooms ={setBedrooms}  Bathrooms={Bathrooms}setBathrooms ={setBathrooms} pets=  {pets} setPets ={setPets}
+              />
             </div>
 
             <div className={`${step === 4 ? "" : "display-none"}`}>
-              <Aminites />
+              <Aminites selectedAmenity={selectedAmenity} standoutAmenity={standoutAmenity} Amenity={Amenity}  setAmenity={setAmenity}setstandoutAmenity={setstandoutAmenity} setSelectedAmenity={setSelectedAmenity}/>
             </div>
 
             <div
