@@ -5,9 +5,6 @@ import Link from "next/link";
 import {
   ArrowRight2,
   Element3,
-  TextalignJustifycenter,
-  Message,
-  Triangle,
   Add,
 } from "iconsax-react";
 import { Context } from "../../_app";
@@ -19,9 +16,9 @@ import { useRouter } from "next/router";
 function Sidebar() {
   const { auth, setAuth } = useContext(Context);
   const pathname = usePathname();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // State to control sidebar visibility
-  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false); // State to control mobile sidebar visibility
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to control dropdown visibility
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); 
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
   const webtoken = LocalToken("Admintoken");
   const router = useRouter();
 
