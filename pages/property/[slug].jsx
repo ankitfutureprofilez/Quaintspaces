@@ -10,6 +10,7 @@ import Layout from "../layout/Layout.js";
 import ThingsToKnow from "./ThingsToKnow.js";
 import Listings from "../api/laravel/Listings.js";
 import Heading from "../elements/Heading.js";
+import { GiConsoleController } from "react-icons/gi";
 // {listingData,listingID}
 const Listing = () => {
   const router = useRouter();

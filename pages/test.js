@@ -14,6 +14,61 @@ export default function test() {
 
   const [propertyDuplicated, setpropertyDuplicated] = useState(false);
 
+  const CheckinCheckout = () => {
+    const [checkinStart, setCheckinStart] = useState('3:00 pm');
+    const [checkinEnd, setCheckinEnd] = useState('5:00 pm');
+    const [checkout, setCheckout] = useState('12:00 am');
+  
+    return (
+      <div className="max-w-md mx-auto p-4">
+        <h2 className="text-2xl font-bold mb-4">Check-in & checkout times</h2>
+        
+        <div className="mb-4">
+          <label className="block mb-2 font-semibold">Check-in window</label>
+          <div className="flex flex-col">
+            <div className="relative">
+              <label className="absolute top-1 left-1 text-xs text-gray-500">Start time</label>
+              <select 
+                value={checkinStart} 
+                onChange={(e) => setCheckinStart(e.target.value)} 
+                className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
+              >
+                <option>3:00 pm</option>
+                <option>4:00 pm</option>
+                <option>5:00 pm</option>
+              </select>
+            </div>
+            <div className="relative">
+              <label className="absolute top-1 left-1 text-xs text-gray-500">End time</label>
+              <select 
+                value={checkinEnd} 
+                onChange={(e) => setCheckinEnd(e.target.value)} 
+                className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none sm:text-sm"
+              >
+                <option>4:00 pm</option>
+                <option>5:00 pm</option>
+                <option>6:00 pm</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <label className="block mb-2 font-semibold">Checkout time</label>
+          <select 
+            value={checkout} 
+            onChange={(e) => setCheckout(e.target.value)} 
+            className="mt-1 block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          >
+            <option>12:00 am</option>
+            <option>1:00 am</option>
+            <option>2:00 am</option>
+          </select>
+        </div>
+      </div>
+    );
+  };
+
   const ButtonGroup = () => {
 
  
@@ -128,6 +183,7 @@ export default function test() {
 
   return (
     <>
+    <CheckinCheckout/>
       <ButtonGroup />
       <PriceManageForm />
     </>

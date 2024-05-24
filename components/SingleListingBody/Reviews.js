@@ -20,6 +20,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
   const [page, setPage] = useState(1);
   const [selfReview, setselfReview] = useState([]);
   const [reviewData, setReviewData] = useState([]);
+  console.log("data",data)
 
   const getSelfreview = () => {
     if (id) {
@@ -146,9 +147,9 @@ const Reviews = React.forwardRef(({ data }, ref) => {
                 ></span>
               </div>
               <span>
-                {parseFloat(
+                {/* {parseFloat(
                   data && data?.check_in && data?.check_in?.toFixed(1)
-                )}
+                )} */}
               </span>
             </div>
           </div>
