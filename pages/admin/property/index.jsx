@@ -116,7 +116,7 @@ export default function Index() {
            formatMultiPrice (item?.price)
             } Night</p>
            <div className="mt-4">
-            <Link href={`/property/${item.uuid}`}>
+            <Link href={`/admin/property/${item.uuid}`}>
             <div className="text-normal text-underline btn sort rounded text-gray-500 w-full mt-3 px-5 py-2 cursor-pointer font-medium 0" >Public View</div>
             </Link>
               {showConfirmation && (

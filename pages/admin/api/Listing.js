@@ -8,6 +8,10 @@ class Listing extends Component {
 async addproperty(data) {
     return Api.post("/admin/add-property",data);
 }
+
+async viewproperty(uuid) {
+    return Api.post("/admin/property-details/",+uuid);
+}
 async city_list(id){
     return Api.get(`/admin/city-list/${id}`)
 }

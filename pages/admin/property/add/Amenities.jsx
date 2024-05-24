@@ -59,7 +59,7 @@ const amenitiesData = {
       icons: "BsPersonWorkspace",
     },
   ],
-  amenities2: [
+  standout_amenity: [
     { value: "pool", title: "Pool", icons: "MdPool" },
     { value: "hot_tub", title: "Hot tub", icons: "FaHotTubPerson" },
     { value: "patio", title: "Patio", icons: "BiChair" },
@@ -92,7 +92,7 @@ const amenitiesData = {
     { value: "hair_dryer", title: "Hair dryer", icons: "PiHairDryerBold" },
     { value: "outdoor_shower", title: "Outdoor shower", icons: "FaShower" },
   ],
-  standout_amenity: [
+safety_amenity: [
     { value: "smoke_alarm", title: "Smoke alarm", icons: "MdOutlineSmokeFree" },
     {
       value: "first_aid_kit",
