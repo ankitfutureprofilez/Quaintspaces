@@ -8,8 +8,6 @@ import { Context } from "../_app.js";
 import Wishlist from "../../components/Wishlist.jsx";
 import Layout from "../layout/Layout.js";
 import ThingsToKnow from "./ThingsToKnow.js";
-import Listings from "../api/laravel/Listings.js";
-import Heading from "../elements/Heading.js";
 // {listingData,listingID}
 const Listing = () => {
   const router = useRouter();
