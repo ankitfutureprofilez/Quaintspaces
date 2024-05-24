@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function Guest({
-    guests, setGuests, Bedrooms, setBedrooms,Bathrooms, setBathrooms, pets, setPets
+  Guests, setGuests, Bedrooms, setBedrooms,Bathrooms, setBathrooms, pets, setPets
 }) {
  
 
@@ -29,7 +29,7 @@ export default function Guest({
             >
               -
             </button>
-            <span className="font-normal   ">{guests}</span>
+            <span className="font-normal   ">{Guests}</span>
             <button
               onClick={increment(setGuests)}
               className="rounded-full border  border-black-600 px-3 py-1"

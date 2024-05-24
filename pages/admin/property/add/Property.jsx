@@ -21,7 +21,7 @@ import {
 import Guest from "./Guest";
 
 const propertyTypes = [
-  { value: "flat", label: "Flat/Apartment" },
+  { value: "flat", label: "Flat & Apartment" },
   { value: "house", label: "House" },
   { value: "unique_space", label: "Unique Space" },
   { value: "guest_house", label: "Guest House" },
@@ -37,8 +37,6 @@ export default function Property(props) {
   const {
     uuid,
     location,
-    children,
-    adults,
     properties_type,
     name,
     no_of_pet_allowed,
@@ -46,6 +44,7 @@ export default function Property(props) {
     description,
     bedrooms,
     beds,
+    guests,
     bathrooms,
     amenities,
     property_image,
@@ -263,11 +262,11 @@ export default function Property(props) {
   };
 
   const [selectedOption, setSelectedOption] = useState('list'); 
-  const [guests, setGuests] = useState(1);
-  const [Bedrooms, setBedrooms] = useState(1);
-  const [Bathrooms, setBathrooms] = useState(0.5);
-  const [pets, setPets] = useState(1);
-  const [selectedAmenity, setSelectedAmenity] = useState([]);
+  const [Guests, setGuests] = useState(guests|| 1);
+  const [Bedrooms, setBedrooms] = useState(bedrooms || 1);
+  const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
+  const [pets, setPets] = useState(no_of_pet_allowed|| 1);
+  const [selectedAmenity, setSelectedAmenity] = useState([amenities]);
   const [Amenity, setAmenity] = useState([]);
   const [standoutAmenity, setstandoutAmenity] = useState([]);
   const handleOptionChange = (e) => {
@@ -605,7 +604,7 @@ export default function Property(props) {
               </div>
             </div>
             <div className={`${step === 3 ? "" : "display-none"}`}>
-              <Guest guests ={guests} setGuests={setGuests} 
+              <Guest Guests ={Guests} setGuests={setGuests} 
                Bedrooms={Bedrooms}  setBedrooms ={setBedrooms}  Bathrooms={Bathrooms}setBathrooms ={setBathrooms} pets=  {pets} setPets ={setPets}
               />
             </div>

@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  PiHairDryerBold,
-  PiFireExtinguisherThin,
-  PiPicnicTableThin,
-} from "react-icons/pi";
+import { PiHairDryerBold, PiFireExtinguisherThin, PiPicnicTableThin,} from "react-icons/pi";
 import { CgGym } from "react-icons/cg";
 import { MdBeachAccess } from "react-icons/md";
 import { TbBrandCarbon, TbAirConditioning } from "react-icons/tb";
@@ -47,12 +43,12 @@ const amenitiesData = {
     },
     {
       value: "free_parking_on_premises",
-      title: "Free parking on premises",
+      title: "Free parking ",
       icons:  <FaParking style={{ color: "black", fontSize: "40px" }} />,
     },
     {
       value: "paid_parking_on_premises",
-      title: "Paid parking on premises",
+      title: "Paid parking ",
       icons: <MdOutlineLocalParking style={{ color: "black", fontSize: "40px" }} />,
     },
     {
@@ -118,7 +114,11 @@ safety_amenity: [
       icons: <TbBrandCarbon style={{ color: "black", fontSize: "40px" }} />,
     },
   ],
+
+  
 };
+
+
 
 
 
@@ -162,14 +162,14 @@ export default function Amenities({selectedAmenity, setSelectedAmenity,standoutA
 
   return (
     <>
-      <h2 className="text-3xl text-center font-bold mt-5  mb-2">
+      <h2 className="text-3xl text-center font-bold mt-5  mb-2 mt-5">
         Tell guests what your place has to offer
       </h2>
       <p className="text-normal text-center text-gray-500 mb-8">
         You can add more amenities after you publish your listing.
       </p>
 
-      <div className="grid grid-cols-3 gap-4   ">
+      <div className="grid grid-cols-4  gap-1   ">
         {amenitiesData &&
           amenitiesData?.amenities?.map((amenity, i) => (
             <div key={i} className="">
@@ -198,7 +198,7 @@ export default function Amenities({selectedAmenity, setSelectedAmenity,standoutA
         Do you have any standout amenities?
       </p>
 
-      <div className="grid grid-cols-3 gap-4   ">
+      <div className="grid grid-cols-4 gap-4   ">
         {amenitiesData &&
           amenitiesData?.standout_amenity?.map((amenity, i) => (
             <div key={i} className="">
@@ -227,7 +227,7 @@ export default function Amenities({selectedAmenity, setSelectedAmenity,standoutA
         Do you have any of these safety items?
       </p>
 
-      <div className="grid grid-cols-3 gap-4   ">
+      <div className="grid grid-cols-4 gap-4   ">
         {amenitiesData &&
           amenitiesData?.safety_amenity?.map((amenity, i) => (
             <div key={i} className="">
