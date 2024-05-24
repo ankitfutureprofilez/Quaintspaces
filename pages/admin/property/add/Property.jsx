@@ -156,6 +156,8 @@ export default function Property(props) {
     }
   };
 
+
+ 
   const [locationupdate, setLocationupdate] = useState([]);
   const getNavigator = () => {
     if (typeof navigator !== "undefined") {
@@ -260,7 +262,7 @@ export default function Property(props) {
       });
   };
 
-
+  const [selectedOption, setSelectedOption] = useState('list'); 
   const [guests, setGuests] = useState(1);
   const [Bedrooms, setBedrooms] = useState(1);
   const [Bathrooms, setBathrooms] = useState(0.5);
@@ -268,8 +270,9 @@ export default function Property(props) {
   const [selectedAmenity, setSelectedAmenity] = useState([]);
   const [Amenity, setAmenity] = useState([]);
   const [standoutAmenity, setstandoutAmenity] = useState([]);
-
-  console.log(guests,Bathrooms,Bedrooms,pets, standoutAmenity ,Amenity)
+  const handleOptionChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -290,15 +293,14 @@ export default function Property(props) {
     formData.append("description", item?.about);
     formData.append("price", item?.price);
     formData.append("bedrooms", Bedrooms);
-    formData.append("beds", item?.beds);
     formData.append("bathrooms", Bathrooms);
     formData.append("guests", guests);
     formData.append("address", JSON.stringify(address));
-    formData.append("infants", "1");
-    formData.append("pet_allowed", "1");
-    formData.append("free_cancel_time", "1");
-    // formData.append("amenities", selectedAmenity);
+    formData.append("amenities", selectedAmenity);
+    formData.append("standout_amenity", standoutAmenity);
+    formData.append("safety_amenity", Amenity);
     formData.append("type", typeHere);
+    formData.append("list", selectedOption);
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
@@ -733,6 +735,36 @@ export default function Property(props) {
               </div>
             </div>
 
+            <div className={`${step === 6 ? "" : "display-none"}`}>
+            <div className="mt-32 flex flex-col items-center space-y-12">
+        <h1 className="mb-8 capitalize font-bold text-2xl">
+          Please select an option
+        </h1>
+  
+        <div className="flex items-center space-x-4 mb-8">
+          <label className="flex items-center space-x-2">
+            <input
+              type="radio"
+              value="list"
+              checked={selectedOption === 'list'}
+              onChange={handleOptionChange}
+              className="form-radio"
+            />
+            <span>List Property</span>
+          </label>
+          <label className="flex items-center space-x-2">
+            <input
+              type="radio"
+              value="unlist"
+              checked={selectedOption === 'unlist'}
+              onChange={handleOptionChange}
+              className="form-radio"
+            />
+            <span>Unlist Property</span>
+          </label>
+        </div>
+      </div>
+      </div>
             <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
               {step == 0 ? (
                 <> </>
@@ -746,7 +778,7 @@ export default function Property(props) {
                 </button>
               )}
 
-              {step < 5 ? (
+              {step < 6 ? (
                 <button
                   type="button"
                   onClick={nextStep}

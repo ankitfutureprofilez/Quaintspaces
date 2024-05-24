@@ -16,7 +16,7 @@ export default function test() {
 
   const ButtonGroup = () => {
 
-  const [selectedOption, setSelectedOption] = useState('list'); 
+ 
 
     const handleOptionChange = (e) => {
       setSelectedOption(e.target.value);
