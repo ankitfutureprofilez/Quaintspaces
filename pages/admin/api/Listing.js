@@ -10,7 +10,7 @@ async addproperty(data) {
 }
 
 async viewproperty(uuid) {
-    return Api.post("/admin/property-details/",+uuid);
+    return Api.get(`/admin/property-details/${uuid}`);
 }
 async city_list(id){
     return Api.get(`/admin/city-list/${id}`)
