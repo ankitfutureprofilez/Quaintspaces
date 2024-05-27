@@ -5,7 +5,7 @@ export default function test() {
     const { name, value } = e.target;
     setItem({ ...item, [name]: value });
   };
- 
+
   const [item, setItem] = useState({
     cleaning: "",
     pet: "",
@@ -14,55 +14,195 @@ export default function test() {
 
   const [propertyDuplicated, setpropertyDuplicated] = useState(false);
 
+  const StayPolicySelector = () => {
+    const [selectedPolicy, setSelectedPolicy] = useState(null);
+
+    const handlePolicyChange = (policy) => {
+      setSelectedPolicy(policy);
+    };
+
+    return (
+      <div className="p-4 rounded-lg shadow-md text-center">
+        <h2 className="text-xl font-semibold mb-4">
+          Choose your long-term stay policy
+        </h2>
+        <p className="text-gray-500 mb-4">
+          To understand the full policies, visit the{" "}
+          <span className="underline font-semibold cursor-pointer">Help Centre.</span>
+        </p>
+        <div className="flex space-x-2">
+          <div
+            className={`flex justify-center mb-4 p-4 items-center border-2 w-1/2 cursor-pointer ${
+              selectedPolicy === "Flexible" ? "border-black" : "border-gray-200"
+            }`}
+            onClick={() => handlePolicyChange("Flexible")}
+          >
+            <div className="flex flex-col">
+              <label className="flex items-center cursor-pointer mx-auto text-center">
+                Flexible
+              </label>
+              <p className="text-gray-500">
+                First 30 days are non-refundable. Full refund up to 30 days
+                before check-in.
+              </p>
+            </div>
+            <input
+              type="radio"
+              name="stayPolicy"
+              value="flexible"
+              checked={selectedPolicy === "Flexible"}
+              onChange={() => handlePolicyChange("Flexible")}
+              className="ml-2 w-4 h-4 cursor-pointer"
+            />
+          </div>
+          <div
+            className={`flex justify-center p-4 mb-4 items-center border-2 w-1/2 cursor-pointer ${
+              selectedPolicy === "Strict" ? "border-black" : "border-gray-200"
+            }`}
+            onClick={() => handlePolicyChange("Strict")}
+          >
+            <div className="flex flex-col">
+              <label className="flex items-center cursor-pointer mx-auto text-center">
+                Strict
+              </label>
+              <p className="text-gray-500 ml-4">
+                Full refund if canceled within 48 hours of booking and at least
+                28 days before check-in. After that, the first 30 days of the
+                stay are non-refundable.
+              </p>
+            </div>
+            <input
+              type="radio"
+              name="stayPolicy"
+              value="strict"
+              checked={selectedPolicy === "Strict"}
+              onChange={() => handlePolicyChange("Strict")}
+              className="mr-2 w-4 h-4 cursor-pointer"
+            />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const CheckinCheckout = () => {
-    const [checkinStart, setCheckinStart] = useState('3:00 pm');
-    const [checkinEnd, setCheckinEnd] = useState('5:00 pm');
-    const [checkout, setCheckout] = useState('12:00 am');
-  
+    const [checkinStart, setCheckinStart] = useState("flexible");
+    const [checkinEnd, setCheckinEnd] = useState("flexible");
+    const [checkout, setCheckout] = useState("12:00");
+
     return (
       <div className="max-w-md mx-auto p-4">
         <h2 className="text-2xl font-bold mb-4">Check-in & checkout times</h2>
-        
+
         <div className="mb-4">
           <label className="block mb-2 font-semibold">Check-in window</label>
           <div className="flex flex-col">
             <div className="relative">
-              <label className="absolute top-1 left-1 text-xs text-gray-500">Start time</label>
-              <select 
-                value={checkinStart} 
-                onChange={(e) => setCheckinStart(e.target.value)} 
+              <label className="absolute top-1 left-1 text-xs text-gray-500">
+                Start time
+              </label>
+              <select
+                value={checkinStart}
+                onChange={(e) => setCheckinStart(e.target.value)}
                 className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
               >
-                <option>3:00 pm</option>
-                <option>4:00 pm</option>
-                <option>5:00 pm</option>
+                <option value="flexible">Flexible</option>
+                <option value="00:00">12:00 AM</option>
+                <option value="01:00">1:00 AM</option>
+                <option value="02:00">2:00 AM</option>
+                <option value="03:00">3:00 AM</option>
+                <option value="04:00">4:00 AM</option>
+                <option value="05:00">5:00 AM</option>
+                <option value="06:00">6:00 AM</option>
+                <option value="07:00">7:00 AM</option>
+                <option value="08:00">8:00 AM</option>
+                <option value="09:00">9:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+                <option value="17:00">5:00 PM</option>
+                <option value="18:00">6:00 PM</option>
+                <option value="19:00">7:00 PM</option>
+                <option value="20:00">8:00 PM</option>
+                <option value="21:00">9:00 PM</option>
+                <option value="22:00">10:00 PM</option>
+                <option value="23:00">11:00 PM</option>
               </select>
             </div>
             <div className="relative">
-              <label className="absolute top-1 left-1 text-xs text-gray-500">End time</label>
-              <select 
-                value={checkinEnd} 
-                onChange={(e) => setCheckinEnd(e.target.value)} 
-                className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none sm:text-sm"
+              <label className="absolute top-1 left-1 text-xs text-gray-500">
+                End time
+              </label>
+              <select
+                value={checkinEnd}
+                onChange={(e) => setCheckinEnd(e.target.value)}
+                className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
               >
-                <option>4:00 pm</option>
-                <option>5:00 pm</option>
-                <option>6:00 pm</option>
+                <option value="flexible">Flexible</option>
+                <option value="00:00">12:00 AM</option>
+                <option value="01:00">1:00 AM</option>
+                <option value="02:00">2:00 AM</option>
+                <option value="03:00">3:00 AM</option>
+                <option value="04:00">4:00 AM</option>
+                <option value="05:00">5:00 AM</option>
+                <option value="06:00">6:00 AM</option>
+                <option value="07:00">7:00 AM</option>
+                <option value="08:00">8:00 AM</option>
+                <option value="09:00">9:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+                <option value="17:00">5:00 PM</option>
+                <option value="18:00">6:00 PM</option>
+                <option value="19:00">7:00 PM</option>
+                <option value="20:00">8:00 PM</option>
+                <option value="21:00">9:00 PM</option>
+                <option value="22:00">10:00 PM</option>
+                <option value="23:00">11:00 PM</option>
               </select>
             </div>
           </div>
         </div>
-        
+
         <div>
           <label className="block mb-2 font-semibold">Checkout time</label>
-          <select 
-            value={checkout} 
-            onChange={(e) => setCheckout(e.target.value)} 
-            className="mt-1 block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          <select
+            value={checkout}
+            onChange={(e) => setCheckout(e.target.value)}
+            className="mt-1 block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
           >
-            <option>12:00 am</option>
-            <option>1:00 am</option>
-            <option>2:00 am</option>
+            <option value="00:00">12:00 AM</option>
+            <option value="01:00">1:00 AM</option>
+            <option value="02:00">2:00 AM</option>
+            <option value="03:00">3:00 AM</option>
+            <option value="04:00">4:00 AM</option>
+            <option value="05:00">5:00 AM</option>
+            <option value="06:00">6:00 AM</option>
+            <option value="07:00">7:00 AM</option>
+            <option value="08:00">8:00 AM</option>
+            <option value="09:00">9:00 AM</option>
+            <option value="10:00">10:00 AM</option>
+            <option value="11:00">11:00 AM</option>
+            <option value="12:00">12:00 PM</option>
+            <option value="13:00">1:00 PM</option>
+            <option value="14:00">2:00 PM</option>
+            <option value="15:00">3:00 PM</option>
+            <option value="16:00">4:00 PM</option>
+            <option value="17:00">5:00 PM</option>
+            <option value="18:00">6:00 PM</option>
+            <option value="19:00">7:00 PM</option>
+            <option value="20:00">8:00 PM</option>
+            <option value="21:00">9:00 PM</option>
+            <option value="22:00">10:00 PM</option>
+            <option value="23:00">11:00 PM</option>
           </select>
         </div>
       </div>
@@ -70,25 +210,24 @@ export default function test() {
   };
 
   const ButtonGroup = () => {
-
- 
+    const [selectedOption, setSelectedOption] = useState("list");
 
     const handleOptionChange = (e) => {
       setSelectedOption(e.target.value);
     };
-    
+
     return (
       <div className="mt-32 flex flex-col items-center space-y-12">
         <h1 className="mb-8 capitalize font-bold text-2xl">
           Please select an option
         </h1>
-  
+
         <div className="flex items-center space-x-4 mb-8">
           <label className="flex items-center space-x-2">
             <input
               type="radio"
               value="list"
-              checked={selectedOption === 'list'}
+              checked={selectedOption === "list"}
               onChange={handleOptionChange}
               className="form-radio"
             />
@@ -98,14 +237,14 @@ export default function test() {
             <input
               type="radio"
               value="unlist"
-              checked={selectedOption === 'unlist'}
+              checked={selectedOption === "unlist"}
               onChange={handleOptionChange}
               className="form-radio"
             />
             <span>Unlist Property</span>
           </label>
         </div>
-  
+
         {!propertyDuplicated ? (
           <>
             <button className="border-gray border-2 px-8 py-8 rounded-full w-3/5 capitalize">
@@ -183,8 +322,9 @@ export default function test() {
 
   return (
     <>
-    <CheckinCheckout/>
+      <CheckinCheckout />
       <ButtonGroup />
+      <StayPolicySelector />
       <PriceManageForm />
     </>
   );
