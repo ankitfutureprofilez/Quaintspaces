@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Listing from "../../api/Listing";
 import { useRouter } from "next/router";
 import Image from 'next/image'
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import toast from "react-hot-toast";
 import axios from "axios";
 import Aminites from "./Amenities";
@@ -54,6 +53,7 @@ export default function Property(props) {
     bathrooms,
     amenities,
     property_image,
+
   } = p ? p : {};
 
   const router = useRouter();
@@ -83,6 +83,10 @@ export default function Property(props) {
   };
   const [typeHere, setTypeHere] = useState("entire_place");
 
+
+  const [checkinStart, setCheckinStart] = useState("12:00");
+  const [checkinEnd, setCheckinEnd] = useState("flexible");
+  const [checkout, setCheckout] = useState("12:00");
   const [item, setItem] = useState({
     name: name || "",
     about: description || "",
@@ -90,6 +94,9 @@ export default function Property(props) {
     propertytype: PType || "",
     pets: no_of_pet_allowed || "1",
     free_cancel_time: "",
+    cleaning: "",
+    pet: "",
+    extra_guest: "",
   });
 
 
@@ -117,7 +124,7 @@ export default function Property(props) {
     return inputString.split(",");
   }
 
-  const [selectedOption, setSelectedOption] = useState('list'); 
+  const [selectedOption, setSelectedOption] = useState('1'); 
   const [Guests, setGuests] = useState(guests || 1);
   const [Bedrooms, setBedrooms] = useState(bedrooms || 1);
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
@@ -320,7 +327,14 @@ export default function Property(props) {
     formData.append("standout_amenity", standoutAmenity);
     formData.append("safety_amenity", Amenity);
     formData.append("type", typeHere);
-    formData.append("list", selectedOption);
+    formData.append("cleaning_fee", item?.cleaning);
+    formData.append("extra_guest_fee", item?.extra_guest);
+    formData.append("pat_fee", item?.pet);
+    formData.append("flexible_check_in",checkinEnd);
+    formData.append("check_in", checkinStart);
+    formData.append("check_out", checkout);
+    formData.append("status", selectedOption);
+
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
@@ -763,7 +777,7 @@ export default function Property(props) {
               </div>
             </div>
 
-            <div className={`${step === 6 ? "" : "display-none"}`}>
+            <div className={`${step === 7 ? "" : "display-none"}`}>
             <div className="mt-32 flex flex-col items-center space-y-12">
         <h1 className="mb-8 capitalize font-bold text-2xl">
           Please select an option
@@ -774,7 +788,7 @@ export default function Property(props) {
             <input
               type="radio"
               value="list"
-              checked={selectedOption === 'list'}
+              checked={selectedOption === '1'}
               onChange={handleOptionChange}
               className="form-radio"
             />
@@ -784,7 +798,7 @@ export default function Property(props) {
             <input
               type="radio"
               value="unlist"
-              checked={selectedOption === 'unlist'}
+              checked={selectedOption === '0'}
               onChange={handleOptionChange}
               className="form-radio"
             />
@@ -793,6 +807,167 @@ export default function Property(props) {
         </div>
       </div>
       </div>
+      <div className={`${step === 6 ? "" : "display-none"}`}>
+      <div className={`max-w-[100%] m-auto table w-full mt-10`}>
+      <h2 className="text-3xl text-center font-bold mb-8 capitalize">
+        Please enter the following details?
+      </h2>
+      <div className="flex flex-col mt-4 text-sm font-medium text-gray-700">
+        <label>Cleaning Fees</label>
+        <input
+          required
+          type="number"
+          name="cleaning"
+          placeholder="Cleaning Fees Per Day"
+          id="cleaning"
+          className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-3/5"
+          value={item?.cleaning}
+          onChange={handleInputChange}
+        />
+      </div>
+
+      <div className="flex flex-col relative mt-4 text-sm font-medium text-gray-700">
+        <label>Pet Fees</label>
+        <input
+          type="number"
+          name="pet"
+          placeholder="Pet Fees"
+          id="pet"
+          className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-3/5"
+          value={item?.pet}
+          onChange={handleInputChange}
+        />
+      </div>
+      <div className="flex flex-col relative mt-4 text-sm font-medium text-gray-700">
+        <label>Extra Guest Fees (Per Guest)</label>
+        <input
+          required
+          type="number"
+          name="extra_guest"
+          placeholder="Extra Guest Fees"
+          id="guest"
+          className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-3/5"
+          value={item?.extra_guest}
+          onChange={handleInputChange}
+        />
+      </div>
+    </div>
+    <div className="max-w-md mx-auto p-4">
+        <h2 className="text-2xl font-bold mb-4">Check-in & checkout times</h2>
+
+        <div className="mb-4">
+          <label className="block mb-2 font-semibold">Check-in window</label>
+          <div className="flex flex-col">
+            <div className="relative">
+              <label className="absolute top-1 left-1 text-xs text-gray-500">
+                Start time
+              </label>
+              <select
+                value={checkinStart}
+                onChange={(e) => setCheckinStart(e.target.value)}
+                className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
+              >
+                <option value="flexible">Flexible</option>
+               <option value="00:00">12:00 AM</option>
+    <option value="01:00">1:00 AM</option>
+    <option value="02:00">2:00 AM</option>
+    <option value="03:00">3:00 AM</option>
+    <option value="04:00">4:00 AM</option>
+    <option value="05:00">5:00 AM</option>
+    <option value="06:00">6:00 AM</option>
+    <option value="07:00">7:00 AM</option>
+    <option value="08:00">8:00 AM</option>
+    <option value="09:00">9:00 AM</option>
+    <option value="10:00">10:00 AM</option>
+    <option value="11:00">11:00 AM</option>
+    <option value="12:00">12:00 PM</option>
+    <option value="13:00">1:00 PM</option>
+    <option value="14:00">2:00 PM</option>
+    <option value="15:00">3:00 PM</option>
+    <option value="16:00">4:00 PM</option>
+    <option value="17:00">5:00 PM</option>
+    <option value="18:00">6:00 PM</option>
+    <option value="19:00">7:00 PM</option>
+    <option value="20:00">8:00 PM</option>
+    <option value="21:00">9:00 PM</option>
+    <option value="22:00">10:00 PM</option>
+    <option value="23:00">11:00 PM</option>
+              </select>
+            </div>
+            <div className="relative">
+              <label className="absolute top-1 left-1 text-xs text-gray-500">
+                End time
+              </label>
+              <select
+                value={checkinEnd}
+                onChange={(e) => setCheckinEnd(e.target.value)}
+                className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
+              >
+                <option value="flexible">Flexible</option>
+                <option value="00:00">12:00 AM</option>
+    <option value="01:00">1:00 AM</option>
+    <option value="02:00">2:00 AM</option>
+    <option value="03:00">3:00 AM</option>
+    <option value="04:00">4:00 AM</option>
+    <option value="05:00">5:00 AM</option>
+    <option value="06:00">6:00 AM</option>
+    <option value="07:00">7:00 AM</option>
+    <option value="08:00">8:00 AM</option>
+    <option value="09:00">9:00 AM</option>
+    <option value="10:00">10:00 AM</option>
+    <option value="11:00">11:00 AM</option>
+    <option value="12:00">12:00 PM</option>
+    <option value="13:00">1:00 PM</option>
+    <option value="14:00">2:00 PM</option>
+    <option value="15:00">3:00 PM</option>
+    <option value="16:00">4:00 PM</option>
+    <option value="17:00">5:00 PM</option>
+    <option value="18:00">6:00 PM</option>
+    <option value="19:00">7:00 PM</option>
+    <option value="20:00">8:00 PM</option>
+    <option value="21:00">9:00 PM</option>
+    <option value="22:00">10:00 PM</option>
+    <option value="23:00">11:00 PM</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label className="block mb-2 font-semibold">Checkout time</label>
+          <select
+            value={checkout}
+            onChange={(e) => setCheckout(e.target.value)}
+            className="mt-1 block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
+          >
+            <option value="00:00">12:00 AM</option>
+            <option value="01:00">1:00 AM</option>
+            <option value="02:00">2:00 AM</option>
+            <option value="03:00">3:00 AM</option>
+            <option value="04:00">4:00 AM</option>
+            <option value="05:00">5:00 AM</option>
+            <option value="06:00">6:00 AM</option>
+            <option value="07:00">7:00 AM</option>
+            <option value="08:00">8:00 AM</option>
+            <option value="09:00">9:00 AM</option>
+            <option value="10:00">10:00 AM</option>
+            <option value="11:00">11:00 AM</option>
+            <option value="12:00">12:00 PM</option>
+            <option value="13:00">1:00 PM</option>
+            <option value="14:00">2:00 PM</option>
+            <option value="15:00">3:00 PM</option>
+            <option value="16:00">4:00 PM</option>
+            <option value="17:00">5:00 PM</option>
+            <option value="18:00">6:00 PM</option>
+            <option value="19:00">7:00 PM</option>
+            <option value="20:00">8:00 PM</option>
+            <option value="21:00">9:00 PM</option>
+            <option value="22:00">10:00 PM</option>
+            <option value="23:00">11:00 PM</option>
+          </select>
+        </div>
+      </div>
+    </div>
             <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
               {step == 0 ? (
                 <> </>
