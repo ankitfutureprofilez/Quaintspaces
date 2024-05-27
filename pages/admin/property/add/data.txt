@@ -1,0 +1,665 @@
+data:[
+    [
+      {
+        "value": "air_conditioning",
+        "title": "Air Conditioning",
+        "icons": "<RiAirConditionerFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "arcade_games",
+        "title": "Arcade Games",
+        "icons": "<RiGamepadFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "baby_bath",
+        "title": "Baby Bath",
+        "icons": "<RiShowerFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "baby_monitor",
+        "title": "Baby Monitor",
+        "icons": "<RiBabyMonitorFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "baby_safety_gates",
+        "title": "Baby Safety Gates",
+        "icons": "<RiDoorOpenFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "babysitter_recommendations",
+        "title": "Babysitter Recommendations",
+        "icons": "<RiUserStarFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "baking_sheet",
+        "title": "Baking Sheet",
+        "icons": "<RiCake2Fill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "barbecue_utensils",
+        "title": "Barbecue Utensils",
+        "icons": "<RiBarChartHorizontalFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "bath",
+        "title": "Bath",
+        "icons": "<RiBathtubFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "batting_cage",
+        "title": "Batting Cage",
+        "icons": "<RiBaseballFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "bbq_grill",
+        "title": "BBQ Grill",
+        "icons": "<RiBbqFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "beach_access",
+        "title": "Beach Access",
+        "icons": "<RiBeachFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "beach_essentials",
+        "title": "Beach Essentials",
+        "icons": "<RiSunscreenFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "bed_linen",
+        "title": "Bed Linen",
+        "icons": "<RiHotelBedFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "bidet",
+        "title": "Bidet",
+        "icons": "<RiShowerHeadFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "bikes",
+        "title": "Bikes",
+        "icons": "<RiBicycleFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "blender",
+        "title": "Blender",
+        "icons": "<RiBlenderFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "board_games",
+        "title": "Board Games",
+        "icons": "<RiGamepadLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "boat_berth",
+        "title": "Boat Berth",
+        "icons": "<RiAnchorFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "body_soap",
+        "title": "Body Soap",
+        "icons": "<RiSoapFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "books_and_reading_material",
+        "title": "Books and Reading Material",
+        "icons": "<RiBookOpenFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "bowling_alley",
+        "title": "Bowling Alley",
+        "icons": "<RiBowlingBallFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "bread_maker",
+        "title": "Bread Maker",
+        "icons": "<RiBreadFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "breakfast",
+        "title": "Breakfast",
+        "icons": "<RiRestaurantFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "carbon_monoxide_alarm",
+        "title": "Carbon Monoxide Alarm",
+        "icons": "<RiAlarmWarningFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "ceiling_fan",
+        "title": "Ceiling Fan",
+        "icons": "<RiFanFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "changing_table",
+        "title": "Changing Table",
+        "icons": "<RiTableFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "childrens_bikes",
+        "title": "Children’s Bikes",
+        "icons": "<RiBikeFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "childrens_books_and_toys",
+        "title": "Children’s Books and Toys",
+        "icons": "<RiBookReadFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "childrens_playroom",
+        "title": "Children’s Playroom",
+        "icons": "<RiPlaystationFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "childrens_tableware",
+        "title": "Children’s Tableware",
+        "icons": "<RiRestaurantLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "cinema",
+        "title": "Cinema",
+        "icons": "<RiMovie2Fill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "cleaning_available_during_stay",
+        "title": "Cleaning Available During Stay",
+        "icons": "<RiCleanFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "cleaning_products",
+        "title": "Cleaning Products",
+        "icons": "<RiBrushFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "climbing_wall",
+        "title": "Climbing Wall",
+        "icons": "<RiWallFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "clothes_drying_rack",
+        "title": "Clothes Drying Rack",
+        "icons": "<RiHangerFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "clothes_storage",
+        "title": "Clothes Storage",
+        "icons": "<RiWardrobeFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "coffee",
+        "title": "Coffee",
+        "icons": "<RiCoffeeFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "coffee_maker",
+        "title": "Coffee Maker",
+        "icons": "<RiCoffeeMakerFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "conditioner",
+        "title": "Conditioner",
+        "icons": "<RiShampooFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "cooker",
+        "title": "Cooker",
+        "icons": "<RiCookerFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "cooking_basics",
+        "title": "Cooking Basics",
+        "icons": "<RiKnifeFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "cot",
+        "title": "Cot",
+        "icons": "<RiCribFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "dedicated_workspace",
+        "title": "Dedicated Workspace",
+        "icons": "<RiComputerFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "dining_table",
+        "title": "Dining Table",
+        "icons": "<RiTableLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "dishes_and_cutlery",
+        "title": "Dishes and Cutlery",
+        "icons": "<RiDishLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "dishwasher",
+        "title": "Dishwasher",
+        "icons": "<RiDishFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "dryer",
+        "title": "Dryer",
+        "icons": "<RiTShirt2Fill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "essentials",
+        "title": "Essentials",
+        "icons": "<RiSuitcase2Fill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "ethernet_connection",
+        "title": "Ethernet Connection",
+        "icons": "<RiRouterFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "ev_charger",
+        "title": "EV Charger",
+        "icons": "<RiChargingPileFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "exercise_equipment",
+        "title": "Exercise Equipment",
+        "icons": "<RiDumbbellFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "extra_pillows_and_blankets",
+        "title": "Extra Pillows and Blankets",
+        "icons": "<RiPillowFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "fire_extinguisher",
+        "title": "Fire Extinguisher",
+        "icons": "<RiFireFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "firepit",
+        "title": "Firepit",
+        "icons": "<RiFireLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "fireplace_guards",
+        "title": "Fireplace Guards",
+        "icons": "<RiShieldStarFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "first_aid_kit",
+        "title": "First Aid Kit",
+        "icons": "<RiFirstAidKitFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "free_on_street_parking",
+        "title": "Free On-Street Parking",
+        "icons": "<RiParkingFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "free_parking_on_premises",
+        "title": "Free Parking on Premises",
+        "icons": "<RiCarFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "freezer",
+        "title": "Freezer",
+        "icons": "<RiFridgeFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "fridge",
+        "title": "Fridge",
+        "icons": "<RiFridgeLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "games_console",
+        "title": "Games Console",
+        "icons": "<RiGamepadFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "garden",
+        "title": "Garden",
+        "icons": "<RiPlantFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "gym",
+        "title": "Gym",
+        "icons": "<RiRunFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "hair_dryer",
+        "title": "Hair Dryer",
+        "icons": "<RiScissorsFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "hammock",
+        "title": "Hammock",
+        "icons": "<RiHammockFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "hangers",
+        "title": "Hangers",
+        "icons": "<RiHangerLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "heating",
+        "title": "Heating",
+        "icons": "<RiTempHotFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "high_chair",
+        "title": "High Chair",
+        "icons": "<RiChairLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "hot_tub",
+        "title": "Hot Tub",
+        "icons": "<RiHotTubFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "hot_water",
+        "title": "Hot Water",
+        "icons": "<RiTempHotLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "ice_hocvalue_rink",
+        "title": "Ice Hocvalue Rink",
+        "icons": "<RiHocvalueFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "indoor_fireplace",
+        "title": "Indoor Fireplace",
+        "icons": "<RiFireplaceFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "iron",
+        "title": "Iron",
+        "icons": "<RiIronFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "kayak",
+        "title": "Kayak",
+        "icons": "<RiSailboatFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "kettle",
+        "title": "Kettle",
+        "icons": "<RiKettleFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "kitchen",
+        "title": "Kitchen",
+        "icons": "<RiRestaurantFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "kitchenette",
+        "title": "Kitchenette",
+        "icons": "<RiRestaurantLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "lake_access",
+        "title": "Lake Access",
+        "icons": "<RiWaterFlashFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "laser_tag",
+        "title": "Laser Tag",
+        "icons": "<RiLaserPointerFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "launderette_nearby",
+        "title": "Launderette Nearby",
+        "icons": "<RiTShirtLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "life_size_games",
+        "title": "Life-Size Games",
+        "icons": "<RiGamepadLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "lift",
+        "title": "Lift",
+        "icons": "<RiArrowUpCircleFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "long_term_stays_allowed",
+        "title": "Long-Term Stays Allowed",
+        "icons": "<RiCalendarLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "luggage_drop_off_allowed",
+        "title": "Luggage Drop-Off Allowed",
+        "icons": "<RiSuitcaseFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "microwave",
+        "title": "Microwave",
+        "icons": "<RiMicrowaveFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "mini_fridge",
+        "title": "Mini Fridge",
+        "icons": "<RiFridgeMiniFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "mini_golf",
+        "title": "Mini Golf",
+        "icons": "<RiGolfFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "mosquito_net",
+        "title": "Mosquito Net",
+        "icons": "<RiShieldStarLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "outdoor_dining_area",
+        "title": "Outdoor Dining Area",
+        "icons": "<RiTableLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "outdoor_furniture",
+        "title": "Outdoor Furniture",
+        "icons": "<RiSeatLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "outdoor_kitchen",
+        "title": "Outdoor Kitchen",
+        "icons": "<RiRestaurantFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "outdoor_playground",
+        "title": "Outdoor Playground",
+        "icons": "<RiPlaygroundFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "outdoor_shower",
+        "title": "Outdoor Shower",
+        "icons": <RiShowerFill style={{ color: 'black', fontSize: '40px' }} />
+      },
+      {
+        "value": "oven",
+        "title": "Oven",
+        "icons": <RiOvenFill style={{ color: 'black', fontSize: '40px' }} />
+      },
+      {
+        "value": "paid_parking_off_premises",
+        "title": "Paid Parking Off Premises",
+        "icons": <RiParkingBoxFill style={{ color: 'black', fontSize: '40px' }} />
+      },
+      {
+        "value": "paid_parking_on_premises",
+        "title": "Paid Parking On Premises",
+        "icons": <RiCarFill style={{ color: 'black', fontSize: '40px' }} />
+      },
+      {
+        "value": "patio_or_balcony",
+        "title": "Patio or Balcony",
+        "icons": "<RiHotelBedFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "piano",
+        "title": "Piano",
+        "icons": "<RiPianoFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "ping_pong_table",
+        "title": "Ping Pong Table",
+        "icons": "<RiPingPongFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "plug_socket_covers",
+        "title": "Plug Socket Covers",
+        "icons": "<RiPlugFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "pocket_wifi",
+        "title": "Pocket WiFi",
+        "icons": "<RiWifiFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "pool",
+        "title": "Pool",
+        "icons": "<RiPoolFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "pool_table",
+        "title": "Pool Table",
+        "icons": "<RiBilliardsFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "portable_fans",
+        "title": "Portable Fans",
+        "icons": "<RiFanLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "private_entrance",
+        "title": "Private Entrance",
+        "icons": "<RiDoorClosedFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "private_living_room",
+        "title": "Private Living Room",
+        "icons": "<RiHome2Fill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "record_player",
+        "title": "Record Player",
+        "icons": "<RiRecordVinylFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "resort_access",
+        "title": "Resort Access",
+        "icons": "<RiHotelLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "rice_cooker",
+        "title": "Rice Cooker",
+        "icons": "<RiPlantLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "room_darkening_blinds",
+        "title": "Room-Darkening Blinds",
+        "icons": "<RiBlindsFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "safe",
+        "title": "Safe",
+        "icons": "<RiShieldvalueholeFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "sauna",
+        "title": "Sauna",
+        "icons": "<RiSteamFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "shampoo",
+        "title": "Shampoo",
+        "icons": "<RiShampooFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "shower_gel",
+        "title": "Shower Gel",
+        "icons": "<RiShowerFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "single_level_home",
+        "title": "Single Level Home",
+        "icons": "<RiHomeFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "skate_ramp",
+        "title": "Skate Ramp",
+        "icons": "<RiSkateboardFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "ski_in_out",
+        "title": "Ski-In/Out",
+        "icons": "<RiSnowyFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "smoke_alarm",
+        "title": "Smoke Alarm",
+        "icons": "<RiAlarmWarningLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "sound_system",
+        "title": "Sound System",
+        "icons": "<RiSpeaker3Fill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "sun_loungers",
+        "title": "Sun Loungers",
+        "icons": "<RiSunFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "table_corner_guards",
+        "title": "Table Corner Guards",
+        "icons": "<RiShieldUserFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "theme_room",
+        "title": "Theme Room",
+        "icons": "<RiHome4Fill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "toaster",
+        "title": "Toaster",
+        "icons": "<RiToasterFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "travel_cot",
+        "title": "Travel Cot",
+        "icons": "<RiSuitcase2Fill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "tv",
+        "title": "TV",
+        "icons": "<RiTv2Fill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "washing_machine",
+        "title": "Washing Machine",
+        "icons": "<RiWashingMachineFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "waste_compactor",
+        "title": "Waste Compactor",
+        "icons": "<RiRecycleFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "waterfront",
+        "title": "Waterfront",
+        "icons": "<RiWaterFlashFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "wifi",
+        "title": "WiFi",
+        "icons": "<RiWifiLine style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "wine_cooler",
+        "title": "Wine Cooler",
+        "icons": "<RiFridgeFill style={{ color: 'black', fontSize: '40px' }} />"
+      },
+      {
+        "value": "window_guards",
+        "title": "Window Guards",
+        "icons": "<RiShieldFill style={{ color: 'black', fontSize: '40px' }} />"
+      }
+    ]
+    
+  ]
