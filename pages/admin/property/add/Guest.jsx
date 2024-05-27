@@ -29,7 +29,7 @@ export default function Guest({
             >
               -
             </button>
-            <span className="font-normal   ">{Guests}</span>
+            <span className="font-normal">{Guests}</span>
             <button
               onClick={increment(setGuests)}
               className="rounded-full border  border-black-600 px-3 py-1"

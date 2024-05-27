@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Listing from "../../api/Listing";
 import { useRouter } from "next/router";
 import Image from 'next/image'
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import toast from "react-hot-toast";
 import axios from "axios";
 import Aminites from "./Amenities";
@@ -19,6 +20,11 @@ import {
   FaCouch,
 } from "react-icons/fa";
 import Guest from "./Guest";
+const mapStyles = {
+  width: '100%',
+  height: '400px',
+};
+
 
 const propertyTypes = [
   { value: "flat", label: "Flat & Apartment" },
@@ -43,20 +49,18 @@ export default function Property(props) {
     price,
     description,
     bedrooms,
-    beds,
+    safety_amenity, standout_amenity,
     guests,
     bathrooms,
     amenities,
     property_image,
   } = p ? p : {};
+
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [Loading, setLoading] = useState(false);
-
   const [images, setImages] = useState([]);
-  const [PType, setPType] = useState(properties_type );
-
-  console.log("properties_type",PType)
+  const [PType, setPType] = useState(properties_type);
   const lstring = location ? JSON.parse(location.replace('/\\"/g', '"')) : null;
   const l = JSON.parse(lstring);
 
@@ -88,7 +92,8 @@ export default function Property(props) {
     free_cancel_time: "",
   });
 
-  console.log("item", item);
+
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -108,8 +113,20 @@ export default function Property(props) {
     const filter = images && images?.filter((file, index) => file !== f);
     setImages(filter);
   };
+  function stringToArray(inputString) {
+    return inputString.split(",");
+  }
 
+  const [selectedOption, setSelectedOption] = useState('list'); 
+  const [Guests, setGuests] = useState(guests || 1);
+  const [Bedrooms, setBedrooms] = useState(bedrooms || 1);
+  const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
+  const [pets, setPets] = useState(no_of_pet_allowed|| 1);
+  const [selectedAmenity, setSelectedAmenity] = useState(amenities ? stringToArray(amenities) : []);
+  const [Amenity, setAmenity] = useState(safety_amenity ? stringToArray(safety_amenity) : []);
+  const [standoutAmenity, setstandoutAmenity] = useState(standout_amenity ? stringToArray(standout_amenity) : []);
   const prevStep = () => setStep((prev) => prev - 1);
+  
   const nextStep = async () => {
     // if (step === 0 && PType == '') {
     //   toast.error("Please choose a property type which one you want to list.");
@@ -168,7 +185,6 @@ export default function Property(props) {
   };
 
 
-  console.log("locationmap,locationmap",address)
   const fetchLocationData = async () => {
     setLoading(true);
     const navigatorObj = getNavigator();
@@ -190,7 +206,6 @@ export default function Property(props) {
                 `https://nominatim.openstreetmap.org/reverse?lat=${address?.latitude}&lon=${address?.longitude}&format=json`
               );
               locationData = response.data;
-              console.log(":locationData",locationData)
               setLocationupdate(locationData?.address);
             }
             setAddress({
@@ -220,6 +235,7 @@ export default function Property(props) {
       );
     }
   };
+  console.log("address",address)
 
   const fetchLocation = async () => {
     const formattedAddress = `${address.street_address}, ${address.nearby}, ${address.district}, ${address.city}, ${address.state}, ${address.pin}`;
@@ -243,6 +259,18 @@ export default function Property(props) {
     }
   };
 
+  const containerStyle = {
+    width: '100%',
+    height: '400px'
+  };
+  
+
+  const center = {
+    lat: parseFloat(address?.latitude),
+    lng: parseFloat(address?.longitude),
+  };
+
+
   const [imageproperty, setImagesproperty] = useState(property_image);
 
   const deletePropertyImage = (recordUUID, itemUUID) => {
@@ -261,14 +289,7 @@ export default function Property(props) {
       });
   };
 
-  const [selectedOption, setSelectedOption] = useState('list'); 
-  const [Guests, setGuests] = useState(guests|| 1);
-  const [Bedrooms, setBedrooms] = useState(bedrooms || 1);
-  const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
-  const [pets, setPets] = useState(no_of_pet_allowed|| 1);
-  const [selectedAmenity, setSelectedAmenity] = useState([amenities]);
-  const [Amenity, setAmenity] = useState([]);
-  const [standoutAmenity, setstandoutAmenity] = useState([]);
+
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
   };
@@ -293,7 +314,7 @@ export default function Property(props) {
     formData.append("price", item?.price);
     formData.append("bedrooms", Bedrooms);
     formData.append("bathrooms", Bathrooms);
-    formData.append("guests", guests);
+    formData.append("guests", Guests);
     formData.append("address", JSON.stringify(address));
     formData.append("amenities", selectedAmenity);
     formData.append("standout_amenity", standoutAmenity);
@@ -367,6 +388,14 @@ export default function Property(props) {
                </div> */}
 
               {/* {typeHere === "entire_place" ?  <> */}
+
+              {/* <Map
+					google={this?.props?.google}
+					center={{lat: 18.5204, lng: 73.8567}}
+					height='300px'
+					zoom={15}
+				/> */}
+
               <h2 className="text-3xl text-center mt-4 font-bold mb-8">
                 Which of these best describes your place?
               </h2>
