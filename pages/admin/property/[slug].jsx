@@ -67,7 +67,7 @@ const Listings = () => {
         headerSearch={headerSearch}
         setHeaderSearch={setHeaderSearch}
       /> */}
-        <SingleListingBody loading={loading} listing={record} />
+        <SingleListingBody isAdmin={true} loading={loading} listing={record} />
         <ThingsToKnow guests={record?.data?.guests} />
         {/* <Footer /> */}
         {overlay && (

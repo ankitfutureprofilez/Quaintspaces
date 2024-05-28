@@ -3,8 +3,9 @@ import Heart from "../../public/_svgs/Heart";
 import Star from "../../public/_svgs/star";
 import Upload from "../../public/_svgs/upload";
 import Back from "../common/Back";
+import Link from "next/link";
 
-const Title = ({ isSaved, listing, addWishlist,loading }) => {
+const Title = ({ isSaved, listing, isAdmin, loading }) => {
   function capitalizeFirstLetter(str) {
     // Split the string into words
     const words =str && str?.split(" ");
@@ -29,47 +30,19 @@ const Title = ({ isSaved, listing, addWishlist,loading }) => {
       ) : (
         
         <>
-          <div className="text-2xl lg:text-3xl mt-2.5 flex font-medium mb-2 peora-title">
+          <div className="mt-2.5 flex font-medium mb-2 peora-title">
             <div className={"backtag"} ></div>
               <Back />
               {/* {listing.data?.title.slice(0, 1).toUpperCase() +
               listing.data?.title.slice(1, listing.data?.title.length)} */}
+              <span className="text-2xl lg:text-3xl">
               {capitalizeFirstLetter(listing?.data?.name)}
-          </div>
-          <div className="flex items-center justify-between  md:my-0">
-            {/* <div className="flex flex-col md:flex-row gap-2 items-start md:items-center">
-              <span className="flex gap-1 items-center text-md font-medium">
-                <span>
-                  <Star />
-                </span>
-                {listing.data?.rating}
               </span>
-              <div className="hidden">·</div>
-              <span className="underline text-md font-medium">
-                {listing.data?.reviews?.length || 0} reviews
-              </span>
-              <div className="hidden">·</div>
-              <span className="underline text-md font-medium">
-                {listing.data?.lt}
-              </span>
-            </div> */}
-            {/* <div className="gap-4 items-center hidden lg:flex">
-              <button className="bg-white hover:bg-borderColor flex items-center gap-2 px-4 py-2 underline rounded-md">
-                <Upload />
-                <span className="block text-lg font-medium">Share</span>
-              </button>
-              <button
-                onClick={addWishlist}
-                className="bg-white hover:bg-borderColor flex items-center gap-2 px-4 py-2 underline rounded-md"
-              >
-                <Heart
-                  css={`h-[23px] w-[23px] stroke-white stroke-[3] ${
-                    isSaved ? "fill-[#ff385c]" : "fill-[rgba(0, 0, 0, 0.5)]"
-                  }`}
-                />
-                <span className="block text-lg font-medium">Save</span>
-              </button>
-            </div> */}
+              {isAdmin ? 
+              <Link className="ml-8 border-black border-2 rounded-full p-2" href=""> Edit Property</Link>
+              :
+              null
+              }
           </div>
         </>
       )}
