@@ -69,10 +69,10 @@ const Listings = () => {
         setHeaderSearch={setHeaderSearch}
       /> */}
         <div className="absolute top-[6rem] right-[3rem] md:top-[8.5rem] md:right-20">
-          <Link className="ml-8 border-black border-2 rounded-full p-2" href="">
+          <button className="ml-8 border-black border-2 rounded-full p-2" >
             {" "}
             Edit Property
-          </Link>
+          </button>
         </div>
         <SingleListingBody isAdmin={true} loading={loading} listing={record} />
         <ThingsToKnow guests={record?.data?.guests} />
