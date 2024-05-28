@@ -6,10 +6,10 @@ import Metatag from "../../hook/Metatag"
 export default function Index() {
   return (
     <>
-    <Metatag/>
-    <AdminLayout heading="Add Property" >
-        <Property/>
-    </AdminLayout>
+      <Metatag />
+      <AdminLayout heading="Add Property" >
+        <Property />
+      </AdminLayout>
     </>
   );
 }

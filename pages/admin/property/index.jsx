@@ -27,6 +27,7 @@ export default function Index() {
     main.Adminproperty()
       .then((res) => {
         let properties = res?.data?.data;
+        console.log("properties",properties)
         if (properties) {
           setRecord(properties);
           setIsLoading(false);

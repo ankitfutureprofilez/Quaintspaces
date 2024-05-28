@@ -5,6 +5,8 @@ import Image from 'next/image'
 import toast from "react-hot-toast";
 import axios from "axios";
 import Aminites from "./Amenities";
+import HouseRules from "./HouseRules";
+import CancelPolicy from "./CancelPolicy";
 import { House, Add } from "iconsax-react";
 import {
   MdOutlineFreeBreakfast,
@@ -124,16 +126,26 @@ export default function Property(props) {
     return inputString.split(",");
   }
 
-  const [selectedOption, setSelectedOption] = useState('1'); 
+  const [selectedOption, setSelectedOption] = useState('1');
   const [Guests, setGuests] = useState(guests || 1);
+
   const [Bedrooms, setBedrooms] = useState(bedrooms || 1);
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
-  const [pets, setPets] = useState(no_of_pet_allowed|| 1);
+  const [pets, setPets] = useState(no_of_pet_allowed || 1);
   const [selectedAmenity, setSelectedAmenity] = useState(amenities ? stringToArray(amenities) : []);
   const [Amenity, setAmenity] = useState(safety_amenity ? stringToArray(safety_amenity) : []);
   const [standoutAmenity, setstandoutAmenity] = useState(standout_amenity ? stringToArray(standout_amenity) : []);
+  const [longTermPolicy, setLongTermPolicy] = useState(null);
+  const [selectedPolicy, setSelectedPolicy] = useState(null);
+  const [showFlexible, setShowFlexible] = useState(false);
+  const [showFirm, setShowFirm] = useState(false);
+  const [petsAllowed, setPetsAllowed] = useState(0);
+  const [eventsAllowed, setEventsAllowed] = useState(0);
+  const [smokingAllowed, setSmokingAllowed] = useState(0);
+  const [quietHours, setQuietHours] = useState(0);
+  const [PhotographyAllowed, setPhotographyAllowed] = useState(0);
   const prevStep = () => setStep((prev) => prev - 1);
-  
+
   const nextStep = async () => {
     // if (step === 0 && PType == '') {
     //   toast.error("Please choose a property type which one you want to list.");
@@ -180,7 +192,7 @@ export default function Property(props) {
   };
 
 
- 
+
   const [locationupdate, setLocationupdate] = useState([]);
   const getNavigator = () => {
     if (typeof navigator !== "undefined") {
@@ -190,7 +202,7 @@ export default function Property(props) {
       return null;
     }
   };
-
+  console.log("typeHere", typeHere)
 
   const fetchLocationData = async () => {
     setLoading(true);
@@ -242,7 +254,7 @@ export default function Property(props) {
       );
     }
   };
-  console.log("address",address)
+  console.log("address", address)
 
   const fetchLocation = async () => {
     const formattedAddress = `${address.street_address}, ${address.nearby}, ${address.district}, ${address.city}, ${address.state}, ${address.pin}`;
@@ -270,7 +282,7 @@ export default function Property(props) {
     width: '100%',
     height: '400px'
   };
-  
+
 
   const center = {
     lat: parseFloat(address?.latitude),
@@ -314,6 +326,7 @@ export default function Property(props) {
     setLoading(true);
     const main = new Listing();
     const formData = new FormData();
+    formData.append("type", typeHere);
     formData.append("properties_type", PType);
     formData.append("name", item?.name);
     formData.append("no_of_pet_allowed", pets);
@@ -326,15 +339,25 @@ export default function Property(props) {
     formData.append("amenities", selectedAmenity);
     formData.append("standout_amenity", standoutAmenity);
     formData.append("safety_amenity", Amenity);
-    formData.append("type", typeHere);
     formData.append("cleaning_fee", item?.cleaning);
     formData.append("extra_guest_fee", item?.extra_guest);
-    formData.append("pat_fee", item?.pet);
-    formData.append("flexible_check_in",checkinEnd);
+    formData.append("pet_fee", item?.pet);
+    formData.append("flexible_check_in", checkinEnd);
     formData.append("check_in", checkinStart);
     formData.append("check_out", checkout);
     formData.append("status", selectedOption);
-
+    formData.append("step_completed", step);
+    formData.append("standard_policy", selectedPolicy);
+    formData.append("wifi_username", selectedPolicy);
+    formData.append("wifi_password", selectedPolicy);
+    formData.append("long_term_policy", longTermPolicy);
+    formData.append("house_manuals", "hello");
+    formData.append("pet_allowed", petsAllowed);
+    formData.append("events_allowed", eventsAllowed);
+    formData.append("direction", "hii");
+    formData.append("smoking_allowed", smokingAllowed);
+    formData.append("quiet_hours_allowed", quietHours);
+    formData.append("photography_allowed", PhotographyAllowed);
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
@@ -363,7 +386,9 @@ export default function Property(props) {
       });
   }
 
-  useEffect(() => {}, [images]);
+  useEffect(() => { }, [images]);
+
+
 
   return (
     <>
@@ -373,15 +398,23 @@ export default function Property(props) {
       // .property-type:checked + label h2 { color :#000 !important;border-color:#000 !important;}
     `}</style>
 
+      <div className="flex justify-end">
+        <button
+          onClick={handleSubmit}
+          className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+        >
+          {Loading ? "Processing..." : "Save/Exit"}
+        </button>
+      </div>
+
       <div className={`w-full  flex items-center justify-center px-6 py-8 `}>
         <div className="max-w-4xl w-full space-y-8 w-full ">
           <div
             className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
           >
             <div
-              className={`${
-                step === 0 ? "" : "display-none"
-              } max-w-[100%] m-auto table w-full`}
+              className={`${step === 0 ? "" : "display-none"
+                } max-w-[100%] m-auto table w-full`}
             >
               {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
                <div className="grid grid-cols-3 gap-4 m-auto table  " >
@@ -409,7 +442,6 @@ export default function Property(props) {
 					height='300px'
 					zoom={15}
 				/> */}
-
               <h2 className="text-3xl text-center mt-4 font-bold mb-8">
                 Which of these best describes your place?
               </h2>
@@ -419,9 +451,8 @@ export default function Property(props) {
                     <div key={i} className="">
                       <div
                         onClick={() => setPType(p?.value)}
-                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${
-                          p?.value === PType ? "bg-indigo-500" : ""
-                        }`}
+                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-indigo-500" : ""
+                          }`}
                       >
                         {p.value === "flat" && (
                           <FaBuilding
@@ -457,11 +488,10 @@ export default function Property(props) {
                         )}
                         {p.value === "fram" && <FaWarehouse size={40} />}
                         <h2
-                          className={`text-xl mt-4 font-normal ${
-                            p.value === PType
-                              ? "text-gray-100"
-                              : "text-gray-400"
-                          }`}
+                          className={`text-xl mt-4 font-normal ${p.value === PType
+                            ? "text-gray-100"
+                            : "text-gray-400"
+                            }`}
                         >
                           {p.label}
                         </h2>
@@ -474,9 +504,8 @@ export default function Property(props) {
             </div>
 
             <div
-              className={`${
-                step === 1 ? "" : "display-none"
-              } max-w-[100%] m-auto table w-full`}
+              className={`${step === 1 ? "" : "display-none"
+                } max-w-[100%] m-auto table w-full`}
             >
               <h2 className="text-3xl text-center font-bold mb-8">
                 Describes your place?
@@ -631,35 +660,34 @@ export default function Property(props) {
                 </p>
 
                 <div>
-                    <iframe
-                      src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
-                        ` ${address?.location}`
-                      )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
-                      width="100%"
-                      height="450"
-                      style={{ border: "0" }}
-                      allowFullScreen=""
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title="Google Map"
-                    ></iframe>
+                  <iframe
+                    src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
+                      ` ${address?.location}`
+                    )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
+                    width="100%"
+                    height="450"
+                    style={{ border: "0" }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Google Map"
+                  ></iframe>
                 </div>
               </div>
             </div>
             <div className={`${step === 3 ? "" : "display-none"}`}>
-              <Guest Guests ={Guests} setGuests={setGuests} 
-               Bedrooms={Bedrooms}  setBedrooms ={setBedrooms}  Bathrooms={Bathrooms}setBathrooms ={setBathrooms} pets=  {pets} setPets ={setPets}
+              <Guest Guests={Guests} setGuests={setGuests}
+                Bedrooms={Bedrooms} setBedrooms={setBedrooms} Bathrooms={Bathrooms} setBathrooms={setBathrooms} pets={pets} setPets={setPets}
               />
             </div>
 
             <div className={`${step === 4 ? "" : "display-none"}`}>
-              <Aminites selectedAmenity={selectedAmenity} standoutAmenity={standoutAmenity} Amenity={Amenity}  setAmenity={setAmenity}setstandoutAmenity={setstandoutAmenity} setSelectedAmenity={setSelectedAmenity}/>
+              <Aminites selectedAmenity={selectedAmenity} standoutAmenity={standoutAmenity} Amenity={Amenity} setAmenity={setAmenity} setstandoutAmenity={setstandoutAmenity} setSelectedAmenity={setSelectedAmenity} />
             </div>
 
             <div
-              className={`${
-                step === 5 ? "" : "display-none"
-              } max-w-[600px] m-auto`}
+              className={`${step === 5 ? "" : "display-none"
+                } max-w-[600px] m-auto`}
             >
               <h2 className="text-3xl text-center font-bold mb-2">
                 Add some photos of your{" "}
@@ -735,23 +763,23 @@ export default function Property(props) {
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4  mt-16 ">
                 {isEdit
                   ? imageproperty?.map((item, index) => (
-                      <div key={index} className="relative isedits">
-                        <Image
-                          className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
-                          src={item?.image_url || ""}
-                          width={200}
-                          height={200}
-                          alt={`Preview ${index}`}
-                        />
-                        <button
-                          type="button"
-                          onClick={() => deletePropertyImage(uuid, item?.uuid)}
-                          className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    ))
+                    <div key={index} className="relative isedits">
+                      <Image
+                        className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
+                        src={item?.image_url || ""}
+                        width={200}
+                        height={200}
+                        alt={`Preview ${index}`}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => deletePropertyImage(uuid, item?.uuid)}
+                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  ))
                   : ""}
 
                 {images &&
@@ -776,198 +804,213 @@ export default function Property(props) {
                   ))}
               </div>
             </div>
+            <div className={`${step === 6 ? "" : "display-none"}`}>
+              <div className="max-w-[100%] m-auto w-full mt-10">
+                <h2 className="text-3xl text-center font-bold mb-8 capitalize">
+                  Please enter the following details
+                </h2>
+                <div className="flex justify-between mt-4 text-sm font-medium text-gray-700 space-x-4">
+                  <div className="flex flex-col w-1/3">
+                    <label>Cleaning Fees</label>
+                    <input
+                      required
+                      type="number"
+                      name="cleaning"
+                      placeholder="Cleaning Fees Per Day"
+                      id="cleaning"
+                      className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                      value={item?.cleaning}
+                      onChange={handleInputChange}
+                    />
+                  </div>
 
+                  <div className="flex flex-col w-1/3">
+                    <label>Pet Fees</label>
+                    <input
+                      type="number"
+                      name="pet"
+                      placeholder="Pet Fees"
+                      id="pet"
+                      className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                      value={item?.pet}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="flex flex-col w-1/3">
+                    <label>Extra Guest Fees (Per Guest)</label>
+                    <input
+                      required
+                      type="number"
+                      name="extra_guest"
+                      placeholder="Extra Guest Fees"
+                      id="guest"
+                      className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                      value={item?.extra_guest}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="max-w-md mx-auto p-4">
+                <h2 className="text-2xl font-bold mb-4">Check-in & checkout times</h2>
+                <div className="flex justify-between mb-4 space-x-4">
+                  <div className="w-1/3">
+                    <label className="block mb-2 font-semibold">Check-in window</label>
+                    <div className="flex flex-col">
+                      <div className="relative mb-3 mt-2">
+                        <label className="absolute top-1 left-1 text-xs text-gray-500">
+                          Start time
+                        </label>
+                        <select
+                          value={checkinStart}
+                          onChange={(e) => setCheckinStart(e.target.value)}
+                          className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
+                        >
+                          <option value="flexible">Flexible</option>
+                          <option value="00:00">12:00 AM</option>
+                          <option value="01:00">1:00 AM</option>
+                          <option value="02:00">2:00 AM</option>
+                          <option value="03:00">3:00 AM</option>
+                          <option value="04:00">4:00 AM</option>
+                          <option value="05:00">5:00 AM</option>
+                          <option value="06:00">6:00 AM</option>
+                          <option value="07:00">7:00 AM</option>
+                          <option value="08:00">8:00 AM</option>
+                          <option value="09:00">9:00 AM</option>
+                          <option value="10:00">10:00 AM</option>
+                          <option value="11:00">11:00 AM</option>
+                          <option value="12:00">12:00 PM</option>
+                          <option value="13:00">1:00 PM</option>
+                          <option value="14:00">2:00 PM</option>
+                          <option value="15:00">3:00 PM</option>
+                          <option value="16:00">4:00 PM</option>
+                          <option value="17:00">5:00 PM</option>
+                          <option value="18:00">6:00 PM</option>
+                          <option value="19:00">7:00 PM</option>
+                          <option value="20:00">8:00 PM</option>
+                          <option value="21:00">9:00 PM</option>
+                          <option value="22:00">10:00 PM</option>
+                          <option value="23:00">11:00 PM</option>
+                        </select>
+                      </div>
+                      <div className="relative">
+                        <label className="absolute top-1 left-1 text-xs text-gray-500">
+                          End time
+                        </label>
+                        <select
+                          value={checkinEnd}
+                          onChange={(e) => setCheckinEnd(e.target.value)}
+                          className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
+                        >
+                          <option value="flexible">Flexible</option>
+                          <option value="00:00">12:00 AM</option>
+                          <option value="01:00">1:00 AM</option>
+                          <option value="02:00">2:00 AM</option>
+                          <option value="03:00">3:00 AM</option>
+                          <option value="04:00">4:00 AM</option>
+                          <option value="05:00">5:00 AM</option>
+                          <option value="06:00">6:00 AM</option>
+                          <option value="07:00">7:00 AM</option>
+                          <option value="08:00">8:00 AM</option>
+                          <option value="09:00">9:00 AM</option>
+                          <option value="10:00">10:00 AM</option>
+                          <option value="11:00">11:00 AM</option>
+                          <option value="12:00">12:00 PM</option>
+                          <option value="13:00">1:00 PM</option>
+                          <option value="14:00">2:00 PM</option>
+                          <option value="15:00">3:00 PM</option>
+                          <option value="16:00">4:00 PM</option>
+                          <option value="17:00">5:00 PM</option>
+                          <option value="18:00">6:00 PM</option>
+                          <option value="19:00">7:00 PM</option>
+                          <option value="20:00">8:00 PM</option>
+                          <option value="21:00">9:00 PM</option>
+                          <option value="22:00">10:00 PM</option>
+                          <option value="23:00">11:00 PM</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="w-1/3">
+                    <label className="block mb-2 font-semibold">Checkout time</label>
+                    <select
+                      value={checkout}
+                      onChange={(e) => setCheckout(e.target.value)}
+                      className="mt-1 block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
+                    >
+                      <option value="00:00">12:00 AM</option>
+                      <option value="01:00">1:00 AM</option>
+                      <option value="02:00">2:00 AM</option>
+                      <option value="03:00">3:00 AM</option>
+                      <option value="04:00">4:00 AM</option>
+                      <option value="05:00">5:00 AM</option>
+                      <option value="06:00">6:00 AM</option>
+                      <option value="07:00">7:00 AM</option>
+                      <option value="08:00">8:00 AM</option>
+                      <option value="09:00">9:00 AM</option>
+                      <option value="10:00">10:00 AM</option>
+                      <option value="11:00">11:00 AM</option>
+                      <option value="12:00">12:00 PM</option>
+                      <option value="13:00">1:00 PM</option>
+                      <option value="14:00">2:00 PM</option>
+                      <option value="15:00">3:00 PM</option>
+                      <option value="16:00">4:00 PM</option>
+                      <option value="17:00">5:00 PM</option>
+                      <option value="18:00">6:00 PM</option>
+                      <option value="19:00">7:00 PM</option>
+                      <option value="20:00">8:00 PM</option>
+                      <option value="21:00">9:00 PM</option>
+                      <option value="22:00">10:00 PM</option>
+                      <option value="23:00">11:00 PM</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+            </div>
             <div className={`${step === 7 ? "" : "display-none"}`}>
-            <div className="mt-32 flex flex-col items-center space-y-12">
-        <h1 className="mb-8 capitalize font-bold text-2xl">
-          Please select an option
-        </h1>
-  
-        <div className="flex items-center space-x-4 mb-8">
-          <label className="flex items-center space-x-2">
-            <input
-              type="radio"
-              value="list"
-              checked={selectedOption === '1'}
-              onChange={handleOptionChange}
-              className="form-radio"
-            />
-            <span>List Property</span>
-          </label>
-          <label className="flex items-center space-x-2">
-            <input
-              type="radio"
-              value="unlist"
-              checked={selectedOption === '0'}
-              onChange={handleOptionChange}
-              className="form-radio"
-            />
-            <span>Unlist Property</span>
-          </label>
-        </div>
-      </div>
-      </div>
-      <div className={`${step === 6 ? "" : "display-none"}`}>
-      <div className={`max-w-[100%] m-auto table w-full mt-10`}>
-      <h2 className="text-3xl text-center font-bold mb-8 capitalize">
-        Please enter the following details?
-      </h2>
-      <div className="flex flex-col mt-4 text-sm font-medium text-gray-700">
-        <label>Cleaning Fees</label>
-        <input
-          required
-          type="number"
-          name="cleaning"
-          placeholder="Cleaning Fees Per Day"
-          id="cleaning"
-          className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-3/5"
-          value={item?.cleaning}
-          onChange={handleInputChange}
-        />
-      </div>
+              <div className="mt-32 flex flex-col items-center space-y-12">
+                <h1 className="mb-8 capitalize font-bold text-2xl">
+                  Please select an option
+                </h1>
 
-      <div className="flex flex-col relative mt-4 text-sm font-medium text-gray-700">
-        <label>Pet Fees</label>
-        <input
-          type="number"
-          name="pet"
-          placeholder="Pet Fees"
-          id="pet"
-          className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-3/5"
-          value={item?.pet}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div className="flex flex-col relative mt-4 text-sm font-medium text-gray-700">
-        <label>Extra Guest Fees (Per Guest)</label>
-        <input
-          required
-          type="number"
-          name="extra_guest"
-          placeholder="Extra Guest Fees"
-          id="guest"
-          className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-3/5"
-          value={item?.extra_guest}
-          onChange={handleInputChange}
-        />
-      </div>
-    </div>
-    <div className="max-w-md mx-auto p-4">
-        <h2 className="text-2xl font-bold mb-4">Check-in & checkout times</h2>
+                <div className="flex items-center space-x-4 mb-8">
+                  <label className="flex items-center space-x-2">
+                    <input
+                      type="radio"
+                      value="list"
+                      checked={selectedOption === '1'}
+                      onChange={handleOptionChange}
+                      className="form-radio"
+                    />
+                    <span>List Property</span>
+                  </label>
+                  <label className="flex items-center space-x-2">
+                    <input
+                      type="radio"
+                      value="unlist"
+                      checked={selectedOption === '0'}
+                      onChange={handleOptionChange}
+                      className="form-radio"
+                    />
+                    <span>Unlist Property</span>
+                  </label>
 
-        <div className="mb-4">
-          <label className="block mb-2 font-semibold">Check-in window</label>
-          <div className="flex flex-col">
-            <div className="relative">
-              <label className="absolute top-1 left-1 text-xs text-gray-500">
-                Start time
-              </label>
-              <select
-                value={checkinStart}
-                onChange={(e) => setCheckinStart(e.target.value)}
-                className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
-              >
-                <option value="flexible">Flexible</option>
-               <option value="00:00">12:00 AM</option>
-    <option value="01:00">1:00 AM</option>
-    <option value="02:00">2:00 AM</option>
-    <option value="03:00">3:00 AM</option>
-    <option value="04:00">4:00 AM</option>
-    <option value="05:00">5:00 AM</option>
-    <option value="06:00">6:00 AM</option>
-    <option value="07:00">7:00 AM</option>
-    <option value="08:00">8:00 AM</option>
-    <option value="09:00">9:00 AM</option>
-    <option value="10:00">10:00 AM</option>
-    <option value="11:00">11:00 AM</option>
-    <option value="12:00">12:00 PM</option>
-    <option value="13:00">1:00 PM</option>
-    <option value="14:00">2:00 PM</option>
-    <option value="15:00">3:00 PM</option>
-    <option value="16:00">4:00 PM</option>
-    <option value="17:00">5:00 PM</option>
-    <option value="18:00">6:00 PM</option>
-    <option value="19:00">7:00 PM</option>
-    <option value="20:00">8:00 PM</option>
-    <option value="21:00">9:00 PM</option>
-    <option value="22:00">10:00 PM</option>
-    <option value="23:00">11:00 PM</option>
-              </select>
+                </div>
+              </div>
             </div>
-            <div className="relative">
-              <label className="absolute top-1 left-1 text-xs text-gray-500">
-                End time
-              </label>
-              <select
-                value={checkinEnd}
-                onChange={(e) => setCheckinEnd(e.target.value)}
-                className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
-              >
-                <option value="flexible">Flexible</option>
-                <option value="00:00">12:00 AM</option>
-    <option value="01:00">1:00 AM</option>
-    <option value="02:00">2:00 AM</option>
-    <option value="03:00">3:00 AM</option>
-    <option value="04:00">4:00 AM</option>
-    <option value="05:00">5:00 AM</option>
-    <option value="06:00">6:00 AM</option>
-    <option value="07:00">7:00 AM</option>
-    <option value="08:00">8:00 AM</option>
-    <option value="09:00">9:00 AM</option>
-    <option value="10:00">10:00 AM</option>
-    <option value="11:00">11:00 AM</option>
-    <option value="12:00">12:00 PM</option>
-    <option value="13:00">1:00 PM</option>
-    <option value="14:00">2:00 PM</option>
-    <option value="15:00">3:00 PM</option>
-    <option value="16:00">4:00 PM</option>
-    <option value="17:00">5:00 PM</option>
-    <option value="18:00">6:00 PM</option>
-    <option value="19:00">7:00 PM</option>
-    <option value="20:00">8:00 PM</option>
-    <option value="21:00">9:00 PM</option>
-    <option value="22:00">10:00 PM</option>
-    <option value="23:00">11:00 PM</option>
-              </select>
-            </div>
-          </div>
-        </div>
+            <div className={`${step === 8 ? "" : "display-none"}`}>
+              <CancelPolicy showFirm={showFirm} setShowFirm={setShowFirm} setShowFlexible={setShowFlexible} selectedPolicy={selectedPolicy} setSelectedPolicy={setSelectedPolicy} showFlexible={showFlexible} longTermPolicy={longTermPolicy} setLongTermPolicy={setLongTermPolicy} />
 
-        <div>
-          <label className="block mb-2 font-semibold">Checkout time</label>
-          <select
-            value={checkout}
-            onChange={(e) => setCheckout(e.target.value)}
-            className="mt-1 block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
-          >
-            <option value="00:00">12:00 AM</option>
-            <option value="01:00">1:00 AM</option>
-            <option value="02:00">2:00 AM</option>
-            <option value="03:00">3:00 AM</option>
-            <option value="04:00">4:00 AM</option>
-            <option value="05:00">5:00 AM</option>
-            <option value="06:00">6:00 AM</option>
-            <option value="07:00">7:00 AM</option>
-            <option value="08:00">8:00 AM</option>
-            <option value="09:00">9:00 AM</option>
-            <option value="10:00">10:00 AM</option>
-            <option value="11:00">11:00 AM</option>
-            <option value="12:00">12:00 PM</option>
-            <option value="13:00">1:00 PM</option>
-            <option value="14:00">2:00 PM</option>
-            <option value="15:00">3:00 PM</option>
-            <option value="16:00">4:00 PM</option>
-            <option value="17:00">5:00 PM</option>
-            <option value="18:00">6:00 PM</option>
-            <option value="19:00">7:00 PM</option>
-            <option value="20:00">8:00 PM</option>
-            <option value="21:00">9:00 PM</option>
-            <option value="22:00">10:00 PM</option>
-            <option value="23:00">11:00 PM</option>
-          </select>
-        </div>
-      </div>
-    </div>
+            </div>
+
+            <div className={`${step === 9 ? "" : "display-none"}`}>
+              <HouseRules petsAllowed={petsAllowed} setPetsAllowed={setPetsAllowed} quietHours={quietHours} setEventsAllowed={setEventsAllowed} setQuietHours={setQuietHours} eventsAllowed={eventsAllowed} PhotographyAllowed={PhotographyAllowed} setPhotographyAllowed={setPhotographyAllowed} smokingAllowed={smokingAllowed} setSmokingAllowed={setSmokingAllowed} />
+
+            </div>
             <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
               {step == 0 ? (
                 <> </>
@@ -981,7 +1024,7 @@ export default function Property(props) {
                 </button>
               )}
 
-              {step < 6 ? (
+              {step < 10 ? (
                 <button
                   type="button"
                   onClick={nextStep}
