@@ -21,7 +21,7 @@ import { addDays } from "date-fns";
 import { formatMultiPrice } from "../../hooks/ValueData";
 import toast from "react-hot-toast";
 
-const SingleListingBody = ({ listing, isAdmin, loading }) => {
+const SingleListingBody = ({ isAdmin, listing, loading }) => {
   const router = useRouter();
   const [selection, setSelection] = useState(null); // 'guests', 'dates', null
   const [selectedImage, setSelectedImage] = useState(null);
@@ -142,7 +142,7 @@ const SingleListingBody = ({ listing, isAdmin, loading }) => {
           images={listing?.data?.property_image}
           isSaved={isSaved}
           setImageViewer={setImageViewer}
-          isAdmin={isAdmin}
+          // isAdmin={isAdmin}
         />
       )}
       <header
@@ -256,7 +256,7 @@ const SingleListingBody = ({ listing, isAdmin, loading }) => {
             isSaved={isSaved}
             listing={listing}
             addWishlist={changeWishlist}
-            isAdmin={isAdmin}
+            // isAdmin={isAdmin}
           />
           <div
             ref={ImagesRef}
@@ -266,7 +266,7 @@ const SingleListingBody = ({ listing, isAdmin, loading }) => {
               setSelectedImage={setSelectedImage}
               listing={listing}
               setImageViewer={setImageViewer}
-              isAdmin={isAdmin}
+              // isAdmin={isAdmin}
             />
           </div>
 
@@ -277,7 +277,7 @@ const SingleListingBody = ({ listing, isAdmin, loading }) => {
               ref={AmenitiesRef}
               handleClick={() => {
                 router.push("#reviews");
-                isAdmin={isAdmin}
+                // isAdmin={isAdmin}
               }}
             />
             <div className={isAdmin ? "hidden" : "block"}>
@@ -299,9 +299,9 @@ const SingleListingBody = ({ listing, isAdmin, loading }) => {
           </div>
 
           <div id="reviews">
-            <Reviews data={listing?.data} ref={ReviewsRef} isAdmin={isAdmin} />
+            <Reviews data={listing?.data} ref={ReviewsRef} />
           </div>
-          <Location listing={listing?.data} ref={LocationRef} isAdmin={isAdmin}/>
+          <Location listing={listing?.data} ref={LocationRef} />
         </div>
       </section>
     </>
