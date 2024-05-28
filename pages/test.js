@@ -320,12 +320,94 @@ export default function test() {
     </div>
   );
 
+  const DirectionManualWifiComponent = () => {
+    const [direction, setDirection] = useState('');
+    const [manual, setManual] = useState('');
+    const [wifi, setWifi] = useState('');
+    const [wifiPassword, setWifiPassword] = useState('');
+
+  
+    const handleDirectionChange = (event) => {
+      setDirection(event.target.value);
+    };
+    const handleManualChange = (event) => {
+      setManual(event.target.value);
+    };
+    const handleWifiChange = (event) => {
+      setWifi(event.target.value);
+    };
+    const handlewifiPasswordChange = (event) => {
+      setWifiPassword(event.target.value);
+    };
+  
+    return (
+      <>
+      <div className="flex flex-col items-center p-4">
+        <label htmlFor="directions" className="block font-medium text-gray-700">
+          Directions
+        </label>
+        <textarea
+          id="directions"
+          name="directions"
+          rows={5}
+          className="shadow-sm p-4 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
+          placeholder="Enter directions here..."
+          value={direction}
+          onChange={handleDirectionChange}
+        />
+      </div>
+      <div className="flex flex-col items-center p-4">
+      <label htmlFor="directions" className="block font-medium text-gray-700">
+        House Manual
+      </label>
+      <textarea
+        id="manual"
+        name="manual"
+        rows={5}
+        className="shadow-sm p-4 w-4/5 mt-1 block sm:text-sm border rounded-xl"
+        placeholder="Enter some instructions for your guest..."
+        value={manual}
+        onChange={handleManualChange}
+      />
+    </div>
+    <div className="flex flex-col items-center p-4">
+      <h1 className="capitalize text-lg font-bold my-8">Please enter your wifi details</h1>
+      <label htmlFor="directions" className="block font-medium text-gray-700 my-2">
+       Wifi Name
+      </label>
+      <input
+        id="wifi"
+        name="wifi"
+        type="text"
+        className="shadow-sm p-4 w-4/5 mt-1 block sm:text-sm border rounded-xl"
+        placeholder="Enter your wifi name..."
+        value={wifi}
+        onChange={handleWifiChange}
+      />
+      <label htmlFor="directions" className="block font-medium text-gray-700 my-2">
+        Wifi Password
+      </label>
+      <input
+        id="wifiPassword"
+        name="wifiPassword"
+        type="password"
+        className="shadow-sm p-4 w-4/5 mt-1 block sm:text-sm border rounded-xl"
+        placeholder="Enter your wifi Password here..."
+        value={wifiPassword}
+        onChange={handlewifiPasswordChange}
+      />
+    </div>
+    </>
+    );
+  };
+
   return (
     <>
       <CheckinCheckout />
       <ButtonGroup />
       <StayPolicySelector />
       <PriceManageForm />
+      <DirectionManualWifiComponent/>
     </>
   );
 }
