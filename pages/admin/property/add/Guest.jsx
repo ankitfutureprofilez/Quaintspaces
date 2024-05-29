@@ -3,11 +3,8 @@ import React, { useState } from "react";
 export default function Guest({
   Guests, setGuests, Bedrooms, setBedrooms, Bathrooms, setBathrooms, pets, setPets
 }) {
-
-
   const decrement = (setter) => () => setter((prev) => Math.max(0, prev - 1));
   const increment = (setter) => () => setter((prev) => prev + 1);
-
   const decrements = (Bathrooms) => () =>
     setBathrooms((prev) => Math.max(0, prev - 0.5));
   const increments = (Bathrooms) => () => setBathrooms((prev) => prev + 0.5);
