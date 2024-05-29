@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import {SingleListingBody} from "../../../components/index.js"
+import { SingleListingBody } from "../../../components/index.js";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Layout from "../../layout/Layout.js";
 import ThingsToKnow from "../../property/ThingsToKnow.js";
-import Listing from "../api/Listing.js"
+import Listing from "../api/Listing.js";
+import Link from "next/link.js";
 
 // {listingData,listingID}
 const Listings = () => {
@@ -26,7 +27,7 @@ const Listings = () => {
       main
         .viewproperty(slug || "")
         .then((r) => {
-          console.log("r?.data?.data",r?.data?.data)
+          console.log("r?.data?.data", r?.data?.data);
           setrecord({
             loading: false,
             data: r?.data?.data,
@@ -54,8 +55,8 @@ const Listings = () => {
       <Layout>
         <Head>
           <title>
-            House rent in {record?.loading ? "..." : record?.data?.name} -
-            QS Jaipur
+            House rent in {record?.loading ? "..." : record?.data?.name} - QS
+            Jaipur
           </title>
         </Head>
         {/* <Header
@@ -67,6 +68,12 @@ const Listings = () => {
         headerSearch={headerSearch}
         setHeaderSearch={setHeaderSearch}
       /> */}
+        <div className="absolute top-[6rem] right-[3rem] md:top-[8.5rem] md:right-20">
+          <button className="ml-8 border-black border-2 rounded-full p-2" >
+            {" "}
+            Edit Property
+          </button>
+        </div>
         <SingleListingBody isAdmin={true} loading={loading} listing={record} />
         <ThingsToKnow guests={record?.data?.guests} />
         {/* <Footer /> */}

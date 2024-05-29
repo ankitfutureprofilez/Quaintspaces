@@ -5,7 +5,7 @@ import Upload from "../../public/_svgs/upload";
 import Back from "../common/Back";
 import Link from "next/link";
 
-const Title = ({ isSaved, listing, isAdmin, loading }) => {
+const Title = ({ isSaved, listing, loading }) => {
   function capitalizeFirstLetter(str) {
     // Split the string into words
     const words =str && str?.split(" ");
@@ -38,11 +38,6 @@ const Title = ({ isSaved, listing, isAdmin, loading }) => {
               <span className="text-2xl lg:text-3xl">
               {capitalizeFirstLetter(listing?.data?.name)}
               </span>
-              {isAdmin ? 
-              <Link className="ml-8 border-black border-2 rounded-full p-2" href=""> Edit Property</Link>
-              :
-              null
-              }
           </div>
         </>
       )}
