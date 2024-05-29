@@ -818,6 +818,7 @@ export default function Property(props) {
                           onChange={(e) => setCheckinEnd(e.target.value)}
                           className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
                         >
+                        
                           <option value="flexible">Flexible</option>
                           <option value="00:00">12:00 AM</option>
                           <option value="01:00">1:00 AM</option>
