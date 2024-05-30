@@ -50,22 +50,22 @@ export default function Property(props) {
     price,
     description,
     bedrooms,
-    safety_amenity, standout_amenity, long_term_policy, standard_policy, house_manuals, direction, pet_allowed, events_allowed, smoking_allowed, quiet_hours_allowed, photography_allowed, step_completed,
+    safety_amenity, standout_amenity,
+    property_rule, step_completed,
     guests, pet_fee, extra_guest_fee, flexible_check_in, check_in,
-    bathrooms, cleaning_fee, wifiPassword, wifiusername,
-    amenities, check_out, additional_rules,
+    bathrooms, cleaning_fee,
+    amenities, check_out,
     property_image, status
-
-
   } = p ? p : {};
 
+  console.log("p", p)
   const router = useRouter();
   const [step, setStep] = useState(step_completed || 0);
   const [Loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
   const [PType, setPType] = useState(properties_type);
   const lstring = location ? JSON.parse(location.replace('/\\"/g', '"')) : null;
-  const l = JSON.parse(lstring);
+  const l = JSON?.parse(lstring);
 
   const [address, setAddress] = useState({
     street_address: l && l.street_address ? l.street_address : "",
@@ -87,9 +87,9 @@ export default function Property(props) {
   const [typeHere, setTypeHere] = useState("entire_place");
 
 
-  const [checkinStart, setCheckinStart] = useState(check_in || "12:00");
+  const [checkinStart, setCheckinStart] = useState(check_in || "00:00");
   const [checkinEnd, setCheckinEnd] = useState(flexible_check_in || "flexible");
-  const [checkout, setCheckout] = useState(check_out || "12:00");
+  const [checkout, setCheckout] = useState(check_out || "00:00");
   const [item, setItem] = useState({
     name: name || "",
     about: description || "",
@@ -100,14 +100,12 @@ export default function Property(props) {
     cleaning: cleaning_fee || "",
     pet: pet_fee || "",
     extra_guest: extra_guest_fee || "",
-    direction: direction || "",
-    housemanual: house_manuals || "",
-    wifi: wifiusername || '',
-    additonalrule: additional_rules || "",
-    wifiPassword: wifiPassword || ''
+    Direction: property_rule?.direction || "",
+    housemanual: property_rule?.house_manuals || "",
+    wifi: property_rule?.wifiusername || '',
+    additonalrule: property_rule?.additional_rules || "",
+    wifiPassword: property_rule?.wifiPassword || ''
   });
-
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setItem({ ...item, [name]: value });
@@ -130,7 +128,14 @@ export default function Property(props) {
     return inputString.split(",");
   }
 
-  const [selectedOption, setSelectedOption] = useState(status || '1');
+  // const [selectedOption, setSelectedOption] = useState(status || '1');
+  const [selectedOption, setSelectedOption] = useState(status || 1);
+
+  console.log("selectedOption",selectedOption)
+  const handleOptionChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
+  console.log("status", status)
   const [Guests, setGuests] = useState(guests || 1);
   const [Bedrooms, setBedrooms] = useState(bedrooms || 1);
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
@@ -138,42 +143,60 @@ export default function Property(props) {
   const [selectedAmenity, setSelectedAmenity] = useState(amenities ? stringToArray(amenities) : []);
   const [Amenity, setAmenity] = useState(safety_amenity ? stringToArray(safety_amenity) : []);
   const [standoutAmenity, setstandoutAmenity] = useState(standout_amenity ? stringToArray(standout_amenity) : []);
-  const [longTermPolicy, setLongTermPolicy] = useState(long_term_policy || null);
-  const [selectedPolicy, setSelectedPolicy] = useState(standard_policy || null);
+  const [longTermPolicy, setLongTermPolicy] = useState(property_rule?.long_term_policy || null);
+  const [selectedPolicy, setSelectedPolicy] = useState(property_rule?.standard_policy || null);
   const [showFlexible, setShowFlexible] = useState(false);
   const [showFirm, setShowFirm] = useState(false);
-  const [petsAllowed, setPetsAllowed] = useState(pet_allowed || 0);
-  const [eventsAllowed, setEventsAllowed] = useState(events_allowed || 0);
-  const [smokingAllowed, setSmokingAllowed] = useState(smoking_allowed || 0);
-  const [quietHours, setQuietHours] = useState(quiet_hours_allowed || 0);
-  const [PhotographyAllowed, setPhotographyAllowed] = useState(photography_allowed || 0);
+  const [petsAllowed, setPetsAllowed] = useState(property_rule?.pet_allowed || 0);
+  const [eventsAllowed, setEventsAllowed] = useState(property_rule?.events_allowed || 0);
+  const [smokingAllowed, setSmokingAllowed] = useState(property_rule?.smoking_allowed || 0);
+  const [quietHours, setQuietHours] = useState(property_rule?.quiet_hours_allowed || 0);
+  const [PhotographyAllowed, setPhotographyAllowed] = useState(property_rule?.photography_allowed || 0);
   const prevStep = () => setStep((prev) => prev - 1);
 
   const nextStep = async () => {
-    // if (step === 0 && PType == '') {
-    //   toast.error("Please choose a property type which one you want to list.");
-    // }
-    // if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
-    //   toast.error("Property description is too short. Description should be a minimum of 100 words.");
-    //   return false;
-    // }
-    // if (step === 2 && (
-    //   address?.pin === "" || address?.pin?.length < 5 ||
-    //   address?.state === "" ||
-    //   address?.city === "" ||
-    //   address?.street_address === "" ||
-    //   address?.district === "")) {
-    //   toast.error(`Incomplete address. Please enter complete address.`);
-    //   return false;
-    // }
-    // if (step == 4 && item?.selectedAmenities && item?.selectedAmenities?.length < 4) {
-    //   toast.error("Please choose atleast 4 amenities.");
-    //   return false;
-    // }
+    if (step === 0 && PType == '') {
+      toast.error("Please choose a property type which one you want to list.");
+    }
+    if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
+      toast.error("Property description is too short. Description should be a minimum of 100 words.");
+      return false;
+    }
+    if (step === 2 && (
+      address?.pin === "" || address?.pin?.length < 5 ||
+      address?.state === "" ||
+      address?.city === "" ||
+      address?.street_address === "" ||
+      address?.district === "")) {
+      toast.error(`Incomplete address. Please enter complete address.`);
+      return false;
+    }
+    if (step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (step == 4 && selectedAmenity && selectedAmenity?.length < 4) {
+      toast.error("Please choose atleast 4 amenities.");
+      return false;
+    }
+
+    if (!isEdit && step === 5 && images?.length < 5) {
+      toast.error("Please select at least five images.");
+      return false;
+    }
+    if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
+      toast.error("Please select at least five images.");
+      return false;
+    }
+
+    if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
     setStep((prev) => prev + 1);
   };
   const [locationupdate, setLocationupdate] = useState([]);
@@ -278,20 +301,10 @@ export default function Property(props) {
   };
 
 
-  const handleOptionChange = (e) => {
-    setSelectedOption(e.target.value);
-  };
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!isEdit && step === 5 && images?.length < 5) {
-      toast.error("Please select at least five images.");
-      return false;
-    }
-    if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
-      toast.error("Please select at least five images.");
-      return false;
-    }
+   
     setLoading(true);
     const main = new Listing();
     const formData = new FormData();
@@ -323,11 +336,11 @@ export default function Property(props) {
     formData.append("house_manuals", item?.housemanual);
     formData.append("pet_allowed", petsAllowed);
     formData.append("events_allowed", eventsAllowed);
-    formData.append("direction", item?.direction);
+    formData.append("direction", item?.Direction);
     formData.append("smoking_allowed", smokingAllowed);
     formData.append("quiet_hours_allowed", quietHours);
     formData.append("photography_allowed", PhotographyAllowed);
-    formData.append("additional_rules", PhotographyAllowed);
+    formData.append("additional_rules", item?.additonalrule);
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
@@ -407,7 +420,7 @@ export default function Property(props) {
           </button>
         </div>
 
-        
+
       )}
 
       <div className={`w-full  flex items-center justify-center px-6 py-8 `}>
@@ -415,7 +428,99 @@ export default function Property(props) {
           <div
             className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
           >
+
+            <div
+              className={`${step === 0 ? "" : "display-none"
+                } max-w-[100%] m-auto table w-full`}
+            >
+              {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
+               <div className="grid grid-cols-3 gap-4 m-auto table  " >
+                <div className="" >
+                      <div onClick={(e)=>setTypeHere("single_room")} className={`${typeHere === "single_room" ? "bg-gray-500" : ''} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
             
+                        <House size="52" color="#dedede" /> 
+                        <h2 className="text-xl mt-4 font-normal text-gray-400" >Single Room</h2>
+                      </div>
+                  </div>
+                <div className="" >
+                      <label onClick={(e)=>setTypeHere("entire_place")}
+                      className={`${typeHere === "entire_place" ? "bg-gray-500" : ''} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
+                        <House size="52" color="#dedede" /> 
+                        <h2 className="text-xl mt-4 font-normal text-gray-400" >Entire Place</h2>
+                      </label>
+                  </div>
+               </div> */}
+
+              {/* {typeHere === "entire_place" ?  <> */}
+
+              {/* <Map
+					google={this?.props?.google}
+					center={{lat: 18.5204, lng: 73.8567}}
+					height='300px'
+					zoom={15}
+				/> */}
+              <h2 className="text-3xl text-center mt-4 font-bold mb-8">
+                Which of these best describes your place?
+              </h2>
+              <div className="grid grid-cols-3 gap-4">
+                {propertyTypes &&
+                  propertyTypes.map((p, i) => (
+                    <div key={i} className="">
+                      <div
+                        onClick={() => setPType(p?.value)}
+                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-indigo-500" : ""
+                          }`}
+                      >
+                        {p.value === "flat" && (
+                          <FaBuilding
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "house" && (
+                          <FaHome
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "unique_space" && <House size={40} />}
+                        {p.value === "guest_house" && (
+                          <FaDoorOpen
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "hotel" && (
+                          <FaHotel
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "single_room" && (
+                          <FaBed style={{ color: "black", fontSize: "40px" }} />
+                        )}
+                        {p.value === "boutique_hotel" && (
+                          <FaCouch
+                            style={{ color: "black", fontSize: "40px" }}
+                          />
+                        )}
+                        {p.value === "breakfast" && (
+                          <MdOutlineFreeBreakfast size={40} />
+                        )}
+                        {p.value === "fram" && <FaWarehouse size={40} />}
+                        <h2
+                          className={`text-xl mt-4 font-normal ${p.value === PType
+                            ? "text-gray-100"
+                            : "text-gray-400"
+                            }`}
+                        >
+                          {p.label}
+                        </h2>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+
+              {/* </> : '' } */}
+            </div>
+
+
 
             <div
               className={`${step === 1 ? "" : "display-none"
@@ -782,31 +887,31 @@ export default function Property(props) {
                           onChange={(e) => setCheckinStart(e.target.value)}
                           className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
                         >
-                          <option value="flexible">Flexible</option>
-                          <option value="00:00">12:00 AM</option>
-                          <option value="01:00">1:00 AM</option>
-                          <option value="02:00">2:00 AM</option>
-                          <option value="03:00">3:00 AM</option>
-                          <option value="04:00">4:00 AM</option>
-                          <option value="05:00">5:00 AM</option>
-                          <option value="06:00">6:00 AM</option>
-                          <option value="07:00">7:00 AM</option>
-                          <option value="08:00">8:00 AM</option>
-                          <option value="09:00">9:00 AM</option>
-                          <option value="10:00">10:00 AM</option>
-                          <option value="11:00">11:00 AM</option>
-                          <option value="12:00">12:00 PM</option>
-                          <option value="13:00">1:00 PM</option>
-                          <option value="14:00">2:00 PM</option>
-                          <option value="15:00">3:00 PM</option>
-                          <option value="16:00">4:00 PM</option>
-                          <option value="17:00">5:00 PM</option>
-                          <option value="18:00">6:00 PM</option>
-                          <option value="19:00">7:00 PM</option>
-                          <option value="20:00">8:00 PM</option>
-                          <option value="21:00">9:00 PM</option>
-                          <option value="22:00">10:00 PM</option>
-                          <option value="23:00">11:00 PM</option>
+                          <option value="00:00:00">12:00 AM</option>
+                          <option value="01:00:00">1:00 AM</option>
+                          <option value="02:00:00">2:00 AM</option>
+                          <option value="03:00:00">3:00 AM</option>
+                          <option value="04:00:00">4:00 AM</option>
+                          <option value="05:00:00">5:00 AM</option>
+                          <option value="06:00:00">6:00 AM</option>
+                          <option value="07:00:00">7:00 AM</option>
+                          <option value="08:00:00">8:00 AM</option>
+                          <option value="09:00:00">9:00 AM</option>
+                          <option value="10:00:00">10:00 AM</option>
+                          <option value="11:00:00">11:00 AM</option>
+                          <option value="12:00:00">12:00 PM</option>
+                          <option value="13:00:00">1:00 PM</option>
+                          <option value="14:00:00">2:00 PM</option>
+                          <option value="14:00:00">2:00 PM</option>
+                          <option value="15:00:00">3:00 PM</option>
+                          <option value="16:00:00">4:00 PM</option>
+                          <option value="17:00:00">5:00 PM</option>
+                          <option value="18:00:00">6:00 PM</option>
+                          <option value="19:00:00">7:00 PM</option>
+                          <option value="20:00:00">8:00 PM</option>
+                          <option value="21:00:00">9:00 PM</option>
+                          <option value="22:00:00">10:00 PM</option>
+                          <option value="23:00:00">11:00 PM</option>
                         </select>
                       </div>
                       <div className="w-1/2 relative">
@@ -854,30 +959,31 @@ export default function Property(props) {
                       onChange={(e) => setCheckout(e.target.value)}
                       className="mt-1 block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
                     >
-                      <option value="00:00">12:00 AM</option>
-                      <option value="01:00">1:00 AM</option>
-                      <option value="02:00">2:00 AM</option>
-                      <option value="03:00">3:00 AM</option>
-                      <option value="04:00">4:00 AM</option>
-                      <option value="05:00">5:00 AM</option>
-                      <option value="06:00">6:00 AM</option>
-                      <option value="07:00">7:00 AM</option>
-                      <option value="08:00">8:00 AM</option>
-                      <option value="09:00">9:00 AM</option>
-                      <option value="10:00">10:00 AM</option>
-                      <option value="11:00">11:00 AM</option>
-                      <option value="12:00">12:00 PM</option>
-                      <option value="13:00">1:00 PM</option>
-                      <option value="14:00">2:00 PM</option>
-                      <option value="15:00">3:00 PM</option>
-                      <option value="16:00">4:00 PM</option>
-                      <option value="17:00">5:00 PM</option>
-                      <option value="18:00">6:00 PM</option>
-                      <option value="19:00">7:00 PM</option>
-                      <option value="20:00">8:00 PM</option>
-                      <option value="21:00">9:00 PM</option>
-                      <option value="22:00">10:00 PM</option>
-                      <option value="23:00">11:00 PM</option>
+                      <option value="00:00:00">12:00 AM</option>
+                      <option value="01:00:00">1:00 AM</option>
+                      <option value="02:00:00">2:00 AM</option>
+                      <option value="03:00:00">3:00 AM</option>
+                      <option value="04:00:00">4:00 AM</option>
+                      <option value="05:00:00">5:00 AM</option>
+                      <option value="06:00:00">6:00 AM</option>
+                      <option value="07:00:00">7:00 AM</option>
+                      <option value="08:00:00">8:00 AM</option>
+                      <option value="09:00:00">9:00 AM</option>
+                      <option value="10:00:00">10:00 AM</option>
+                      <option value="11:00:00">11:00 AM</option>
+                      <option value="12:00:00">12:00 PM</option>
+                      <option value="13:00:00">1:00 PM</option>
+                      <option value="14:00:00">2:00 PM</option>
+                      <option value="14:00:00">2:00 PM</option>
+                      <option value="15:00:00">3:00 PM</option>
+                      <option value="16:00:00">4:00 PM</option>
+                      <option value="17:00:00">5:00 PM</option>
+                      <option value="18:00:00">6:00 PM</option>
+                      <option value="19:00:00">7:00 PM</option>
+                      <option value="20:00:00">8:00 PM</option>
+                      <option value="21:00:00">9:00 PM</option>
+                      <option value="22:00:00">10:00 PM</option>
+                      <option value="23:00:00">11:00 PM</option>
                     </select>
                   </div>
                 </div>
@@ -892,8 +998,8 @@ export default function Property(props) {
                   <label className="flex items-center space-x-2">
                     <input
                       type="radio"
-                      value="1"
-                      checked={selectedOption === '1'}
+                      value={1}
+                      checked={selectedOption === 1}
                       onChange={handleOptionChange}
                       className="form-radio"
                     />
@@ -902,14 +1008,13 @@ export default function Property(props) {
                   <label className="flex items-center space-x-2">
                     <input
                       type="radio"
-                      value="0"
-                      checked={selectedOption === '0'}
+                      value={0}
+                      checked={selectedOption === 0}
                       onChange={handleOptionChange}
                       className="form-radio"
                     />
                     <span>Unlist Property</span>
                   </label>
-
                 </div>
               </div>
             </div>
@@ -947,11 +1052,11 @@ export default function Property(props) {
                 </label>
                 <textarea
                   id="directions"
-                  name="direction"
+                  name="Direction"
                   rows={5}
                   className="shadow-sm p-4 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
                   placeholder="Enter directions here..."
-                  value={item?.direction}
+                  value={item?.Direction}
                   onChange={handleInputChange}
                 />
               </div>
