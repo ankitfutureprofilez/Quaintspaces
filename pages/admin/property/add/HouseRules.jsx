@@ -8,10 +8,11 @@ const HouseRules = ({ petsAllowed, setPetsAllowed, eventsAllowed, setEventsAllow
         Guests are expected to follow your rules and may be removed from Airbnb if they don't.
       </p>
 
-      <div className='flex p-3 '>
+      <div className='flex p-3  justify-content-between'>
         <label className='font-normal  text-right  text-lg text-slate-600 mt-3  mb-4' style={{ marginRight: '10px' }}>
           Pets allowed:
         </label>
+
         <span className="mt-4 mb-3" onClick={() => setPetsAllowed(1)} style={{ cursor: 'pointer' }}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', height: '12px', width: '12px', fill: 'currentcolor', marginRight: '5px', borderRadius: '50%', border: petsAllowed ? '2px solid black' : '2px solid transparent' }}>
             <path d="m10.5 1.939 1.061 1.061-7.061 7.061-.53-.531-3-3-.531-.53 1.061-1.061 3 3 5.47-5.469z" />
@@ -58,11 +59,12 @@ const HouseRules = ({ petsAllowed, setPetsAllowed, eventsAllowed, setEventsAllow
         </span>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: "space-between", marginBottom: '10px' }}>
+      <div >
         <label className='font-normal  text-right  text-lg text-slate-600 mt-3  mb-4' style={{ marginRight: '10px' }}>
 
           Smoking Allowed:
         </label>
+        
         <span onClick={() => setSmokingAllowed(1)} style={{ cursor: 'pointer' }}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', height: '12px', width: '12px', fill: 'currentcolor', marginRight: '5px', borderRadius: '50%', border: smokingAllowed ? '2px solid black' : '2px solid transparent' }}>
             <path d="m10.5 1.939 1.061 1.061-7.061 7.061-.53-.531-3-3-.531-.53 1.061-1.061 3 3 5.47-5.469z" />

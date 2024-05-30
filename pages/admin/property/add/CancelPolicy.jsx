@@ -3,11 +3,11 @@ import { useState } from "react";
 function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, selectedPolicy, setSelectedPolicy, longTermPolicy, setLongTermPolicy }) {
 
     const handlePolicyChanges = (policy) => {
-        setLongTermPolicy(policy);
+        setLongTermPolicy(longTermPolicy === policy ? "" : policy);
     };
 
     const handlePolicyChange = (policy) => {
-        setSelectedPolicy(policy);
+        setSelectedPolicy(selectedPolicy === policy ? "" : policy);
     };
 
     const policies = [
@@ -46,7 +46,11 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                 <div className="p-4 mb-5 mt-3 ">
                     <p className="text-center font-normal text-lg text-slate-700 mt-3 mb-4">Standard policy</p>
                     <p className="text-center font-normal text-sm text-slate-500 mt-3 mb-4">Applies to any stays under 28 nights.</p>
-                    <div className="flex flex-col border-2 p-3 cursor-pointer " onClick={toggleFlexible}>
+                    <div
+                        onClick={toggleFlexible}
+                        className={`flex flex-col border-2 p-3 cursor-pointer ${showFlexible === true ? "border-black" : "border-gray-200"}`}
+                    >
+
                         <label className="flex items-center cursor-pointer mx-auto text-center">Flexible</label>
                         <p className="text-gray-500">
                             First 30 days are non-refundable. Full refund up to 30 days before check-in.
@@ -57,7 +61,10 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                     <p className="text-center font-normal text-lg text-slate-700 mt-3 mb-4">Long-term stay policy</p>
                     <p className="text-center font-normal text-sm text-slate-500 mt-3 mb-4">Applies to stays 28 nights or longer.</p>
 
-                    <div className="flex flex-col border-2 p-3 cursor-pointer " onClick={toggleFirm}>
+                    <div
+                        onClick={toggleFirm}
+                        className={`flex flex-col border-2 p-3 cursor-pointer ${showFirm === "firm" ? "border-black" : "border-gray-200"}`}
+                    >
                         <label className="flex items-center cursor-pointer mx-auto text-center">Firm</label>
                         <p className="text-gray-500">
                             Full refund up to 30 days before check-in. After that, the first 30 days of the stay are non-refundable.
@@ -79,24 +86,23 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                                     key={policy}
                                     className={`flex justify-center mb-4 p-4 items-center border-2 w-full md:w-full cursor-pointer ${selectedPolicy === policy ? "border-black" : "border-gray-200"
                                         }`}
-                                    onClick={() => handlePolicyChange(policy)}
                                 >
                                     <div className="flex flex-col">
                                         <label className="flex items-center cursor-pointer mx-auto text-center">
                                             {policy}
+                                            <input
+                                                type="checkbox"
+                                                name={policy}
+                                                value={policy}
+                                                checked={selectedPolicy === policy}
+                                                onChange={() => handlePolicyChange(policy)}
+                                                className="ml-2 w-4 h-4 cursor-pointer"
+                                            />
                                         </label>
                                         <p className="text-gray-500">
                                             {description}
                                         </p>
                                     </div>
-                                    <input
-                                        type="radio"
-                                        name="stayPolicy"
-                                        value={policy.toLowerCase()}
-                                        checked={selectedPolicy === policy}
-                                        onChange={() => handlePolicyChange(policy)}
-                                        className="ml-2 w-4 h-4 cursor-pointer"
-                                    />
                                 </div>
                             ))}
                         </div>
@@ -114,7 +120,6 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                             <div
                                 className={`flex justify-center mb-4 p-4 items-center border-2 cursor-pointer ${longTermPolicy === "Flexible" ? "border-black" : "border-gray-200"
                                     }`}
-                                onClick={() => handlePolicyChanges("Flexible")}
                             >
                                 <div className="flex flex-col">
                                     <label className="flex items-center cursor-pointer mx-auto text-center">Flexible</label>
@@ -123,9 +128,9 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                                     </p>
                                 </div>
                                 <input
-                                    type="radio"
-                                    name="longtermpolicy"
-                                    value="flexible"
+                                    type="checkbox"
+                                    name="longTermPolicy"
+                                    value="Flexible"
                                     checked={longTermPolicy === "Flexible"}
                                     onChange={() => handlePolicyChanges("Flexible")}
                                     className="ml-2 w-4 h-4 cursor-pointer"
@@ -134,7 +139,6 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                             <div
                                 className={`flex justify-center p-4 mb-4 items-center border-2 cursor-pointer ${longTermPolicy === "Strict" ? "border-black" : "border-gray-200"
                                     }`}
-                                onClick={() => handlePolicyChanges("Strict")}
                             >
                                 <div className="flex flex-col">
                                     <label className="flex items-center cursor-pointer mx-auto text-center">Strict</label>
@@ -143,9 +147,9 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                                     </p>
                                 </div>
                                 <input
-                                    type="radio"
-                                    name="longtermpolicy"
-                                    value="strict"
+                                    type="checkbox"
+                                    name="longTermPolicy"
+                                    value="Strict"
                                     checked={longTermPolicy === "Strict"}
                                     onChange={() => handlePolicyChanges("Strict")}
                                     className="mr-2 w-4 h-4 cursor-pointer"

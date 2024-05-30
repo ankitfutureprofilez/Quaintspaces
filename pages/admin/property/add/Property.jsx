@@ -35,7 +35,7 @@ const propertyTypes = [
   { value: "hotel", label: "Hotel" },
   { value: "single_room", label: "Single Room" },
   { value: "boutique_hotel", label: "Boutique Hotel" },
-  { value: "fram", label: "Fram" },
+  { value: "farm", label: "Farm" },
   { value: "breakfast", label: "Bed & Breakfast" },
 ];
 
@@ -63,7 +63,7 @@ export default function Property(props) {
   const [step, setStep] = useState(step_completed || 0);
   const [Loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
-  const [PType, setPType] = useState(properties_type);
+  const [PType, setPType] = useState(properties_type || "flat");
   const lstring = location ? JSON.parse(location.replace('/\\"/g', '"')) : null;
   const l = JSON?.parse(lstring);
 
@@ -104,7 +104,7 @@ export default function Property(props) {
     housemanual: property_rule?.house_manuals || "",
     wifi: property_rule?.wifiusername || '',
     additonalrule: property_rule?.additional_rules || "",
-    wifiPassword: property_rule?.wifiPassword || ''
+    wifiPassword: property_rule?.wifiPassword || '',
   });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -128,12 +128,13 @@ export default function Property(props) {
     return inputString.split(",");
   }
 
-  // const [selectedOption, setSelectedOption] = useState(status || '1');
   const [selectedOption, setSelectedOption] = useState(status || 1);
 
-  console.log("selectedOption",selectedOption)
-  const handleOptionChange = (e) => {
-    setSelectedOption(e.target.value);
+  console.log("selectedOption", selectedOption);
+
+  const handleOptionChange = (event) => {
+    const option = parseInt(event.target.value, 10);
+    setSelectedOption(selectedOption === option ? "" : option);
   };
   console.log("status", status)
   const [Guests, setGuests] = useState(guests || 1);
@@ -179,10 +180,11 @@ export default function Property(props) {
       toast.error(`All fields are required.`);
       return false;
     }
-    if (step == 4 && selectedAmenity && selectedAmenity?.length < 4) {
-      toast.error("Please choose atleast 4 amenities.");
+    if (step == 4 && selectedAmenity && Amenity && standoutAmenity && (selectedAmenity.length + Amenity.length + standoutAmenity.length < 4)) {
+      toast.error("Please choose at least 4 amenities.");
       return false;
     }
+
 
     if (!isEdit && step === 5 && images?.length < 5) {
       toast.error("Please select at least five images.");
@@ -192,11 +194,21 @@ export default function Property(props) {
       toast.error("Please select at least five images.");
       return false;
     }
-
-    if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
+    if (step === 6 && (checkout === " " || checkinStart === " " || selectedOption === "" || checkinEnd === "" || item?.cleaning === "" || item?.extra_guest === "" || item?.pet === "")) {
       toast.error(`All fields are required.`);
       return false;
     }
+    if (step === 7 && (longTermPolicy === null  && selectedPolicy === null )) {
+      toast.error(`At least one field is required.`);
+      return false;
+    }
+
+    if (step === 8 && (item?.additonalrule === "" || petsAllowed === " " || smokingAllowed === " " || eventsAllowed === "" || quietHours === "" || PhotographyAllowed === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+
+
     setStep((prev) => prev + 1);
   };
   const [locationupdate, setLocationupdate] = useState([]);
@@ -303,13 +315,18 @@ export default function Property(props) {
 
 
   async function handleSubmit(e) {
+    if (step === 9 && (item?.Direction === "" || item?.wifi === " " || item?.wifiPassword === " " || item?.housemanual === " ")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
     e.preventDefault();
-   
+
     setLoading(true);
     const main = new Listing();
     const formData = new FormData();
     formData.append("type", typeHere);
-    formData.append("properties_type", PType);
+    formData.append("properties_type", PType
+    );
     formData.append("name", item?.name);
     formData.append("no_of_pet_allowed", pets);
     formData.append("description", item?.about);
@@ -411,7 +428,10 @@ export default function Property(props) {
           </>
         )
       ) : (
-        <div className="flex justify-end mt-5">
+        (step >= 8 ? (
+         <> </>
+        ) : (
+          <div className="flex justify-end mt-5">
           <button
             onClick={handleSubmit}
             className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
@@ -419,6 +439,8 @@ export default function Property(props) {
             {Loading ? "Processing..." : "Save/Exit"}
           </button>
         </div>
+        ) )
+        
 
 
       )}
@@ -503,7 +525,7 @@ export default function Property(props) {
                         {p.value === "breakfast" && (
                           <MdOutlineFreeBreakfast size={40} />
                         )}
-                        {p.value === "fram" && <FaWarehouse size={40} />}
+                        {p.value === "farm" && <FaWarehouse size={40} />}
                         <h2
                           className={`text-xl mt-4 font-normal ${p.value === PType
                             ? "text-gray-100"
@@ -989,10 +1011,8 @@ export default function Property(props) {
                 </div>
               </div>
 
-              <div className="max-w-[100%] m-auto w-full mt-10 ">
-                <h2 className="text-2xl font-bold mb-4">
-                  Please select an option
-                </h2>
+              <div className="max-w-[100%] m-auto w-full mt-10">
+                <h2 className="text-2xl font-bold mb-4">Please select an option</h2>
 
                 <div className="flex items-center space-x-4 mb-8">
                   <label className="flex items-center space-x-2">
