@@ -25,7 +25,7 @@ const Card = ({ post }) => {
   }
   function capitalizeFirstLetter(str) {
     // Split the string into words
-    const words = str.split(" ");
+    const words = str?.split(" ");
     
     // Capitalize the first letter of each word
     const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));

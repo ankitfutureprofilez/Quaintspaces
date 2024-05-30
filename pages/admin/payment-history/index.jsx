@@ -178,7 +178,7 @@ export default function Index() {
                                   <div className="text-sm capitalize">
                                     {
                                       item?.booking_history?.booking_property
-                                        ?.properties_type.replace("_", " ")
+                                        ?.properties_type?.replace("_", " ")
                                     }
                                   </div>
                                 </div>
