@@ -118,12 +118,6 @@ safety_amenity: [
   
 };
 
-
-
-
-
-
-
 export default function Amenities({selectedAmenity, setSelectedAmenity,standoutAmenity, setstandoutAmenity, Amenity, setAmenity}) {
   
 

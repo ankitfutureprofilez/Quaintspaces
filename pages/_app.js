@@ -11,6 +11,7 @@ import React from "react";
 import "../styles/globals.css";
 import "../styles/customs.css";
 import "../styles/apartment.css";
+import "../styles/ImageMover.css";
 import LoginLogic from "./login/LoginLogic";
 import NotLogin from "./login/NotLogin";
 

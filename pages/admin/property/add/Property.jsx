@@ -4,7 +4,7 @@ import Router, { useRouter } from "next/router";
 import Image from 'next/image'
 import toast from "react-hot-toast";
 import axios from "axios";
-import Aminites from "./Amenities";
+import Amenities from "./Amenities";
 import HouseRules from "./HouseRules";
 import CancelPolicy from "./CancelPolicy";
 import { House, Add } from "iconsax-react";
@@ -409,13 +409,13 @@ export default function Property(props) {
       // .property-type:checked + label h2 { color :#000 !important;border-color:#000 !important;}
     `}</style>
 
-      {isEdit ? (
+     {isEdit ? (
         !propertyDuplicated ? (
           <div
             className={`${step === 0 ? "" : "display-none"
               } max-w-[100%] m-auto table w-full`}
           >
-            <button className="border-gray border-2 px-8 py-8 rounded-full w-3/5 capitalize" onClick={() => { Router.back("/admin/property/add") }}>
+            <button className="border-gray border-2 px-8 py-8 rounded-full w-3/5 capitalize" onClick={() => { Router.push("/admin/property/add") }}>
               Add New Property
             </button>
             <button
@@ -428,7 +428,6 @@ export default function Property(props) {
             </button>
           </div>
         ) : (
-
           <div className="max-w-[100%] m-auto w-full mt-10">
             <div className="flex flex-col items-center space-y-4 mb-8">
               <button
@@ -459,18 +458,15 @@ export default function Property(props) {
             </button>
           </div>
         ))
-
-
-
-      )}
+      )} 
      
 
-        <div className={`w-full  flex items-center justify-center px-6 py-8 `}>
+
+     <div className={`w-full  flex items-center justify-center px-6 py-8 `}>
           <div className="max-w-4xl w-full space-y-8 w-full ">
             <div
               className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
             >
-
               <div
                 className={`${step === 0 ? "" : "display-none"
                   } max-w-[100%] m-auto table w-full`}
@@ -495,12 +491,6 @@ export default function Property(props) {
 
                 {/* {typeHere === "entire_place" ?  <> */}
 
-                {/* <Map
-					google={this?.props?.google}
-					center={{lat: 18.5204, lng: 73.8567}}
-					height='300px'
-					zoom={15}
-				/> */}
                 <h2 className="text-3xl text-center mt-4 font-bold mb-8">
                   Which of these best describes your place?
                 </h2>
@@ -743,7 +733,7 @@ export default function Property(props) {
               </div>
 
               <div className={`${step === 4 ? "" : "display-none"}`}>
-                <Aminites selectedAmenity={selectedAmenity} standoutAmenity={standoutAmenity} Amenity={Amenity} setAmenity={setAmenity} setstandoutAmenity={setstandoutAmenity} setSelectedAmenity={setSelectedAmenity} />
+                <Amenities selectedAmenity={selectedAmenity} standoutAmenity={standoutAmenity} Amenity={Amenity} setAmenity={setAmenity} setstandoutAmenity={setstandoutAmenity} setSelectedAmenity={setSelectedAmenity} />
               </div>
 
               <div
@@ -1178,6 +1168,7 @@ export default function Property(props) {
 
           </div>
         </div>
+       
     </>
   );
 }
