@@ -198,7 +198,7 @@ export default function Property(props) {
       toast.error(`All fields are required.`);
       return false;
     }
-    if (step === 7 && (longTermPolicy === null  && selectedPolicy === null )) {
+    if (step === 7 && (longTermPolicy === null && selectedPolicy === null)) {
       toast.error(`At least one field is required.`);
       return false;
     }
@@ -388,6 +388,16 @@ export default function Property(props) {
 
   useEffect(() => { }, [images]);
   const [propertyDuplicated, setpropertyDuplicated] = useState(false);
+  const [selectedEditOption, setSelectedEditOption] = useState(null);
+
+  const handleEditEntireProperty = () => {
+    setSelectedEditOption("Edit Entire Property");
+  };
+
+  const handleEditImage = () => {
+    setSelectedEditOption("Only Edit Image");
+  };
+
 
 
 
@@ -418,44 +428,54 @@ export default function Property(props) {
             </button>
           </div>
         ) : (
-          <>
-            <button className="border-gray border-2 px-8 py-8 rounded-full w-3/5 capitalize">
-              Edit Entire Property
-            </button>
-            <button className="border-gray border-2 px-8 py-8 rounded-full w-3/5 capitalize">
-              Only Edit Image
-            </button>
-          </>
+
+          <div className="max-w-[100%] m-auto w-full mt-10">
+            <div className="flex flex-col items-center space-y-4 mb-8">
+              <button
+                onClick={handleEditEntireProperty}
+                className="border-gray border-2 px-8 py-4 rounded-full w-3/5 capitalize"
+              >
+                Edit Entire Property
+              </button>
+              <button
+                onClick={handleEditImage}
+                className="border-gray border-2 px-8 py-4 rounded-full w-3/5 capitalize"
+              >
+                Only Edit Image
+              </button>
+            </div>
+          </div>
         )
       ) : (
         (step >= 8 ? (
-         <> </>
+          <> </>
         ) : (
           <div className="flex justify-end mt-5">
-          <button
-            onClick={handleSubmit}
-            className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-          >
-            {Loading ? "Processing..." : "Save/Exit"}
-          </button>
-        </div>
-        ) )
-        
+            <button
+              onClick={handleSubmit}
+              className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+            >
+              {Loading ? "Processing..." : "Save/Exit"}
+            </button>
+          </div>
+        ))
+
 
 
       )}
+     
 
-      <div className={`w-full  flex items-center justify-center px-6 py-8 `}>
-        <div className="max-w-4xl w-full space-y-8 w-full ">
-          <div
-            className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
-          >
-
+        <div className={`w-full  flex items-center justify-center px-6 py-8 `}>
+          <div className="max-w-4xl w-full space-y-8 w-full ">
             <div
-              className={`${step === 0 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
+              className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
             >
-              {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
+
+              <div
+                className={`${step === 0 ? "" : "display-none"
+                  } max-w-[100%] m-auto table w-full`}
+              >
+                {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
                <div className="grid grid-cols-3 gap-4 m-auto table  " >
                 <div className="" >
                       <div onClick={(e)=>setTypeHere("single_room")} className={`${typeHere === "single_room" ? "bg-gray-500" : ''} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
@@ -473,691 +493,691 @@ export default function Property(props) {
                   </div>
                </div> */}
 
-              {/* {typeHere === "entire_place" ?  <> */}
+                {/* {typeHere === "entire_place" ?  <> */}
 
-              {/* <Map
+                {/* <Map
 					google={this?.props?.google}
 					center={{lat: 18.5204, lng: 73.8567}}
 					height='300px'
 					zoom={15}
 				/> */}
-              <h2 className="text-3xl text-center mt-4 font-bold mb-8">
-                Which of these best describes your place?
-              </h2>
-              <div className="grid grid-cols-3 gap-4">
-                {propertyTypes &&
-                  propertyTypes.map((p, i) => (
-                    <div key={i} className="">
-                      <div
-                        onClick={() => setPType(p?.value)}
-                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-indigo-500" : ""
-                          }`}
-                      >
-                        {p.value === "flat" && (
-                          <FaBuilding
-                            style={{ color: "black", fontSize: "40px" }}
-                          />
-                        )}
-                        {p.value === "house" && (
-                          <FaHome
-                            style={{ color: "black", fontSize: "40px" }}
-                          />
-                        )}
-                        {p.value === "unique_space" && <House size={40} />}
-                        {p.value === "guest_house" && (
-                          <FaDoorOpen
-                            style={{ color: "black", fontSize: "40px" }}
-                          />
-                        )}
-                        {p.value === "hotel" && (
-                          <FaHotel
-                            style={{ color: "black", fontSize: "40px" }}
-                          />
-                        )}
-                        {p.value === "single_room" && (
-                          <FaBed style={{ color: "black", fontSize: "40px" }} />
-                        )}
-                        {p.value === "boutique_hotel" && (
-                          <FaCouch
-                            style={{ color: "black", fontSize: "40px" }}
-                          />
-                        )}
-                        {p.value === "breakfast" && (
-                          <MdOutlineFreeBreakfast size={40} />
-                        )}
-                        {p.value === "farm" && <FaWarehouse size={40} />}
-                        <h2
-                          className={`text-xl mt-4 font-normal ${p.value === PType
-                            ? "text-gray-100"
-                            : "text-gray-400"
+                <h2 className="text-3xl text-center mt-4 font-bold mb-8">
+                  Which of these best describes your place?
+                </h2>
+                <div className="grid grid-cols-3 gap-4">
+                  {propertyTypes &&
+                    propertyTypes.map((p, i) => (
+                      <div key={i} className="">
+                        <div
+                          onClick={() => setPType(p?.value)}
+                          className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-indigo-500" : ""
                             }`}
                         >
-                          {p.label}
-                        </h2>
+                          {p.value === "flat" && (
+                            <FaBuilding
+                              style={{ color: "black", fontSize: "40px" }}
+                            />
+                          )}
+                          {p.value === "house" && (
+                            <FaHome
+                              style={{ color: "black", fontSize: "40px" }}
+                            />
+                          )}
+                          {p.value === "unique_space" && <House size={40} />}
+                          {p.value === "guest_house" && (
+                            <FaDoorOpen
+                              style={{ color: "black", fontSize: "40px" }}
+                            />
+                          )}
+                          {p.value === "hotel" && (
+                            <FaHotel
+                              style={{ color: "black", fontSize: "40px" }}
+                            />
+                          )}
+                          {p.value === "single_room" && (
+                            <FaBed style={{ color: "black", fontSize: "40px" }} />
+                          )}
+                          {p.value === "boutique_hotel" && (
+                            <FaCouch
+                              style={{ color: "black", fontSize: "40px" }}
+                            />
+                          )}
+                          {p.value === "breakfast" && (
+                            <MdOutlineFreeBreakfast size={40} />
+                          )}
+                          {p.value === "farm" && <FaWarehouse size={40} />}
+                          <h2
+                            className={`text-xl mt-4 font-normal ${p.value === PType
+                              ? "text-gray-100"
+                              : "text-gray-400"
+                              }`}
+                          >
+                            {p.label}
+                          </h2>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                </div>
+
+                {/* </> : '' } */}
               </div>
 
-              {/* </> : '' } */}
-            </div>
 
 
-
-            <div
-              className={`${step === 1 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
-            >
-              <h2 className="text-3xl text-center font-bold mb-8">
-                Describes your place?
-              </h2>
-              <div className="mt-4">
-                <input
-                  required
-                  type="text"
-                  name="name"
-                  placeholder="Property Name"
-                  id="name"
-                  className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
-                  value={item?.name}
-                  onChange={handleInputChange}
-                />
-              </div>
-
-              <div className="relative mt-4 text-sm font-medium text-gray-700">
-                <input
-                  required
-                  type="number"
-                  name="price"
-                  placeholder="Property Price Per Night"
-                  id="name"
-                  className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
-                  value={item?.price}
-                  onChange={handleInputChange}
-                />
-                <div className="mt-4">
-                  <textarea
-                    required
-                    id="about"
-                    name="about"
-                    minCol={"5"}
-                    minRow={"5"}
-                    value={item?.about}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-xl shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
-                    placeholder="Tell more about your property..."
-                  />
-                  <div className="flex flex-wrap justify-between">
-                    <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
-                      {item?.about ? (
-                        <span>{item?.about.length}/100 characters</span>
-                      ) : (
-                        <span>0/100 characters</span>
-                      )}
-                    </label>
-                    <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
-                      Minimum 100 words.
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className={`${step === 2 ? "" : "display-none"}`}>
-              <h2 className="text-3xl text-center font-bold mb-2">
-                Where's your place located?
-              </h2>
-              <p className="text-normal text-center text-gray-500 mb-8">
-                Your address is only shared with guests after they’ve made a
-                reservation.
-              </p>
-              <div className="table w-full m-auto max-w-[500px] space-y-4 text-center">
-                <p>{address?.location}</p>
-                <div class="w-full mt-4">
-                  <button
-                    className="btn sort w-full"
-                    onClick={fetchLocationData}
-                  >
-                    {Loading ? "...." : "Use Current Location"}
-                  </button>
-                </div>
-                <div class="flex items-center justify-center space-x-4">
-                  <div class="font-semibold text-gray-400 py-3 text-center">
-                    OR
-                  </div>
-                </div>
-                <div className="w-full border border-gray-300 rounded-lg overflow-hidden">
-                  <input
-                    value={address.flat_house}
-                    name="flat_house"
-                    onChange={handleAddress}
-                    type="text"
-                    placeholder="Flat, house, etc. (if applicable)"
-                    className="w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-                  />
-                  <input
-                    onBlur={fetchLocation}
-                    value={address.street_address}
-                    name="street_address"
-                    onChange={handleAddress}
-                    type="text"
-                    placeholder="Street Address"
-                    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-                  />
-                  <input
-                    onBlur={fetchLocation}
-                    value={address.nearby}
-                    name="nearby"
-                    onChange={handleAddress}
-                    type="text"
-                    placeholder="Nearby Landmark (if applicable)"
-                    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-                  />
-                  <input
-                    onBlur={fetchLocation}
-                    value={address.district}
-                    name="district"
-                    onChange={handleAddress}
-                    type="text"
-                    placeholder="District/Locality"
-                    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-                  />
-                  <input
-                    onBlur={fetchLocation}
-                    value={address.city}
-                    name="city"
-                    onChange={handleAddress}
-                    type="text"
-                    placeholder="City/Town"
-                    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-                  />
-                  <input
-                    onBlur={fetchLocation}
-                    value={address.state}
-                    name="state"
-                    onChange={handleAddress}
-                    type="text"
-                    placeholder="State"
-                    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-                  />
-                  <input
-                    onBlur={fetchLocation}
-                    value={address.pin}
-                    name="pin"
-                    onChange={handleAddress}
-                    type="text"
-                    placeholder="PIN Code"
-                    className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-                  />
-                </div>
-              </div>
-              <div>
-                <h2 className="text-3xl text-center font-bold mb-2 mt-5 capitalize">
-                  Show your specific location
+              <div
+                className={`${step === 1 ? "" : "display-none"
+                  } max-w-[100%] m-auto table w-full`}
+              >
+                <h2 className="text-3xl text-center font-bold mb-8">
+                  Describes your place?
                 </h2>
-                <p className="text-normal text-center text-gray-500 mb-8 mt-4">
-                  Make it clear to guests where your place is located. We'll
-                  only share your address after they've made a reservation
+                <div className="mt-4">
+                  <input
+                    required
+                    type="text"
+                    name="name"
+                    placeholder="Property Name"
+                    id="name"
+                    className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                    value={item?.name}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                <div className="relative mt-4 text-sm font-medium text-gray-700">
+                  <input
+                    required
+                    type="number"
+                    name="price"
+                    placeholder="Property Price Per Night"
+                    id="name"
+                    className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                    value={item?.price}
+                    onChange={handleInputChange}
+                  />
+                  <div className="mt-4">
+                    <textarea
+                      required
+                      id="about"
+                      name="about"
+                      minCol={"5"}
+                      minRow={"5"}
+                      value={item?.about}
+                      onChange={handleInputChange}
+                      className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-xl shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
+                      placeholder="Tell more about your property..."
+                    />
+                    <div className="flex flex-wrap justify-between">
+                      <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
+                        {item?.about ? (
+                          <span>{item?.about.length}/100 characters</span>
+                        ) : (
+                          <span>0/100 characters</span>
+                        )}
+                      </label>
+                      <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
+                        Minimum 100 words.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className={`${step === 2 ? "" : "display-none"}`}>
+                <h2 className="text-3xl text-center font-bold mb-2">
+                  Where's your place located?
+                </h2>
+                <p className="text-normal text-center text-gray-500 mb-8">
+                  Your address is only shared with guests after they’ve made a
+                  reservation.
+                </p>
+                <div className="table w-full m-auto max-w-[500px] space-y-4 text-center">
+                  <p>{address?.location}</p>
+                  <div class="w-full mt-4">
+                    <button
+                      className="btn sort w-full"
+                      onClick={fetchLocationData}
+                    >
+                      {Loading ? "...." : "Use Current Location"}
+                    </button>
+                  </div>
+                  <div class="flex items-center justify-center space-x-4">
+                    <div class="font-semibold text-gray-400 py-3 text-center">
+                      OR
+                    </div>
+                  </div>
+                  <div className="w-full border border-gray-300 rounded-lg overflow-hidden">
+                    <input
+                      value={address.flat_house}
+                      name="flat_house"
+                      onChange={handleAddress}
+                      type="text"
+                      placeholder="Flat, house, etc. (if applicable)"
+                      className="w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                    />
+                    <input
+                      onBlur={fetchLocation}
+                      value={address.street_address}
+                      name="street_address"
+                      onChange={handleAddress}
+                      type="text"
+                      placeholder="Street Address"
+                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                    />
+                    <input
+                      onBlur={fetchLocation}
+                      value={address.nearby}
+                      name="nearby"
+                      onChange={handleAddress}
+                      type="text"
+                      placeholder="Nearby Landmark (if applicable)"
+                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                    />
+                    <input
+                      onBlur={fetchLocation}
+                      value={address.district}
+                      name="district"
+                      onChange={handleAddress}
+                      type="text"
+                      placeholder="District/Locality"
+                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                    />
+                    <input
+                      onBlur={fetchLocation}
+                      value={address.city}
+                      name="city"
+                      onChange={handleAddress}
+                      type="text"
+                      placeholder="City/Town"
+                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                    />
+                    <input
+                      onBlur={fetchLocation}
+                      value={address.state}
+                      name="state"
+                      onChange={handleAddress}
+                      type="text"
+                      placeholder="State"
+                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                    />
+                    <input
+                      onBlur={fetchLocation}
+                      value={address.pin}
+                      name="pin"
+                      onChange={handleAddress}
+                      type="text"
+                      placeholder="PIN Code"
+                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <h2 className="text-3xl text-center font-bold mb-2 mt-5 capitalize">
+                    Show your specific location
+                  </h2>
+                  <p className="text-normal text-center text-gray-500 mb-8 mt-4">
+                    Make it clear to guests where your place is located. We'll
+                    only share your address after they've made a reservation
+                  </p>
+
+                  <div>
+                    <iframe
+                      src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
+                        ` ${address?.location}`
+                      )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
+                      width="100%"
+                      height="450"
+                      style={{ border: "0" }}
+                      allowFullScreen=""
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Google Map"
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+              <div className={`${step === 3 ? "" : "display-none"}`}>
+                <Guest Guests={Guests} setGuests={setGuests}
+                  Bedrooms={Bedrooms} setBedrooms={setBedrooms} Bathrooms={Bathrooms} setBathrooms={setBathrooms} pets={pets} setPets={setPets}
+                />
+              </div>
+
+              <div className={`${step === 4 ? "" : "display-none"}`}>
+                <Aminites selectedAmenity={selectedAmenity} standoutAmenity={standoutAmenity} Amenity={Amenity} setAmenity={setAmenity} setstandoutAmenity={setstandoutAmenity} setSelectedAmenity={setSelectedAmenity} />
+              </div>
+
+              <div
+                className={`${step === 5 ? "" : "display-none"
+                  } max-w-[600px] m-auto`}
+              >
+                <h2 className="text-3xl text-center font-bold mb-2">
+                  Add some photos of your{" "}
+                  {PType ? PType.replace("_", " ") : "house"}
+                </h2>
+                <p className="text-normal text-center text-gray-500 mb-8">
+                  You'll need 5 photos to get started. You can add more or make
+                  changes later.
                 </p>
 
-                <div>
-                  <iframe
-                    src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
-                      ` ${address?.location}`
-                    )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
-                    width="100%"
-                    height="450"
-                    style={{ border: "0" }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Google Map"
-                  ></iframe>
-                </div>
-              </div>
-            </div>
-            <div className={`${step === 3 ? "" : "display-none"}`}>
-              <Guest Guests={Guests} setGuests={setGuests}
-                Bedrooms={Bedrooms} setBedrooms={setBedrooms} Bathrooms={Bathrooms} setBathrooms={setBathrooms} pets={pets} setPets={setPets}
-              />
-            </div>
-
-            <div className={`${step === 4 ? "" : "display-none"}`}>
-              <Aminites selectedAmenity={selectedAmenity} standoutAmenity={standoutAmenity} Amenity={Amenity} setAmenity={setAmenity} setstandoutAmenity={setstandoutAmenity} setSelectedAmenity={setSelectedAmenity} />
-            </div>
-
-            <div
-              className={`${step === 5 ? "" : "display-none"
-                } max-w-[600px] m-auto`}
-            >
-              <h2 className="text-3xl text-center font-bold mb-2">
-                Add some photos of your{" "}
-                {PType ? PType.replace("_", " ") : "house"}
-              </h2>
-              <p className="text-normal text-center text-gray-500 mb-8">
-                You'll need 5 photos to get started. You can add more or make
-                changes later.
-              </p>
-
-              {isEdit ? (
-                <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
-                  <label
-                    htmlFor="dropzone-file"
-                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
-                  >
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <Add size="100" color="#ccc" />
-                      <p className="mb-2 text-lg text-gray-500 text-gray-400">
-                        <span className="font-semibold">Click to upload</span>
-                      </p>
-                      <p className="text-normal text-gray-500 text-gray-400">
-                        Choose atleast 5 images
-                      </p>
-                      <p className="text-normal text-gray-500 text-gray-400">
-                        (jpg, jpeg, png, gif, bmp, tif, tiff, svg, webp, avif)
-                      </p>
-                    </div>
-                    <input
-                      id="dropzone-file"
-                      type="file"
-                      className="hidden"
-                      accept=".jpg, .jpeg, .png, .gif, .bmp, .tif, .tiff, .svg, .webp, .avif"
-                      onChange={handleFileChange}
-                      name="images"
-                      required
-                      multiple
-                    />
-                  </label>
-                </div>
-              ) : (
-                <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
-                  <label
-                    htmlFor="dropzone-file"
-                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
-                  >
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <Add size="100" color="#ccc" />
-                      <p className="mb-2 text-lg text-gray-500 text-gray-400">
-                        <span className="font-semibold">Click to upload</span>
-                      </p>
-                      <p className="text-normal text-gray-500 text-gray-400">
-                        Choose atleast 5 images
-                      </p>
-                      <p className="text-normal text-gray-500 text-gray-400">
-                        (jpg, jpeg, png, gif, bmp, tif, tiff, svg, webp, avif)
-                      </p>
-                    </div>
-                    <input
-                      id="dropzone-file"
-                      type="file"
-                      className="hidden"
-                      accept=".jpg, .jpeg, .png, .gif, .bmp, .tif, .tiff, .svg, .webp, .avif"
-                      onChange={handleFileChange}
-                      name="images"
-                      required
-                      multiple
-                    />
-                  </label>
-                </div>
-              )}
-
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4  mt-16 ">
-                {isEdit
-                  ? imageproperty?.map((item, index) => (
-                    <div key={index} className="relative isedits">
-                      <Image
-                        className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
-                        src={item?.image_url || ""}
-                        width={200}
-                        height={200}
-                        alt={`Preview ${index}`}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => deletePropertyImage(uuid, item?.uuid)}
-                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  ))
-                  : ""}
-
-                {images &&
-                  images.map((file, index) => (
-                    <div key={index} className="relative">
-                      <Image
-                        src={URL.createObjectURL(file)}
-                        width={200}
-                        height={200}
-                        alt={`Preview ${index}`}
-                        className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
-                        onLoad={() => URL.revokeObjectURL(file)}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeImage(file)}
-                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  ))}
-              </div>
-            </div>
-            <div className={`${step === 6 ? "" : "display-none"}`}>
-              <div className="max-w-[100%] m-auto w-full mt-10">
-                <h2 className="text-2xl font-bold mb-4">
-                  Please enter the following details
-                </h2>
-                <div className="flex justify-between mt-4 text-sm font-medium text-gray-700 space-x-4">
-                  <div className="flex flex-col w-1/3">
-                    <label>Cleaning Fees</label>
-                    <input
-                      required
-                      type="number"
-                      name="cleaning"
-                      placeholder="Cleaning Fees Per Day"
-                      id="cleaning"
-                      className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
-                      value={item?.cleaning}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-
-                  <div className="flex flex-col w-1/3">
-                    <label>Pet Fees</label>
-                    <input
-                      type="number"
-                      name="pet"
-                      placeholder="Pet Fees"
-                      id="pet"
-                      className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
-                      value={item?.pet}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-
-                  <div className="flex flex-col w-1/3">
-                    <label>Extra Guest Fees (Per Guest)</label>
-                    <input
-                      required
-                      type="number"
-                      name="extra_guest"
-                      placeholder="Extra Guest Fees"
-                      id="guest"
-                      className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
-                      value={item?.extra_guest}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="max-w-[100%] m-auto w-full mt-10 ">
-                <h2 className="text-2xl font-bold mb-4">Check-in & checkout times</h2>
-                <div className="flex justify-between mb-4 space-x-4">
-                  <div className="w-2/3">
-                    <label className="block mb-2 font-semibold">Check-in window</label>
-                    <div className="flex justify-between space-x-4">
-                      <div className="w-1/2 relative">
-                        <label className="absolute top-1 left-1 text-xs text-gray-500">
-                          Start time
-                        </label>
-                        <select
-                          value={checkinStart}
-                          onChange={(e) => setCheckinStart(e.target.value)}
-                          className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
-                        >
-                          <option value="00:00:00">12:00 AM</option>
-                          <option value="01:00:00">1:00 AM</option>
-                          <option value="02:00:00">2:00 AM</option>
-                          <option value="03:00:00">3:00 AM</option>
-                          <option value="04:00:00">4:00 AM</option>
-                          <option value="05:00:00">5:00 AM</option>
-                          <option value="06:00:00">6:00 AM</option>
-                          <option value="07:00:00">7:00 AM</option>
-                          <option value="08:00:00">8:00 AM</option>
-                          <option value="09:00:00">9:00 AM</option>
-                          <option value="10:00:00">10:00 AM</option>
-                          <option value="11:00:00">11:00 AM</option>
-                          <option value="12:00:00">12:00 PM</option>
-                          <option value="13:00:00">1:00 PM</option>
-                          <option value="14:00:00">2:00 PM</option>
-                          <option value="14:00:00">2:00 PM</option>
-                          <option value="15:00:00">3:00 PM</option>
-                          <option value="16:00:00">4:00 PM</option>
-                          <option value="17:00:00">5:00 PM</option>
-                          <option value="18:00:00">6:00 PM</option>
-                          <option value="19:00:00">7:00 PM</option>
-                          <option value="20:00:00">8:00 PM</option>
-                          <option value="21:00:00">9:00 PM</option>
-                          <option value="22:00:00">10:00 PM</option>
-                          <option value="23:00:00">11:00 PM</option>
-                        </select>
-                      </div>
-                      <div className="w-1/2 relative">
-                        <label className="absolute top-1 left-1 text-xs text-gray-500">
-                          End time
-                        </label>
-                        <select
-                          value={checkinEnd}
-                          onChange={(e) => setCheckinEnd(e.target.value)}
-                          className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
-                        >
-                          <option value="flexible">Flexible</option>
-                          <option value="00:00">12:00 AM</option>
-                          <option value="01:00">1:00 AM</option>
-                          <option value="02:00">2:00 AM</option>
-                          <option value="03:00">3:00 AM</option>
-                          <option value="04:00">4:00 AM</option>
-                          <option value="05:00">5:00 AM</option>
-                          <option value="06:00">6:00 AM</option>
-                          <option value="07:00">7:00 AM</option>
-                          <option value="08:00">8:00 AM</option>
-                          <option value="09:00">9:00 AM</option>
-                          <option value="10:00">10:00 AM</option>
-                          <option value="11:00">11:00 AM</option>
-                          <option value="12:00">12:00 PM</option>
-                          <option value="13:00">1:00 PM</option>
-                          <option value="14:00">2:00 PM</option>
-                          <option value="15:00">3:00 PM</option>
-                          <option value="16:00">4:00 PM</option>
-                          <option value="17:00">5:00 PM</option>
-                          <option value="18:00">6:00 PM</option>
-                          <option value="19:00">7:00 PM</option>
-                          <option value="20:00">8:00 PM</option>
-                          <option value="21:00">9:00 PM</option>
-                          <option value="22:00">10:00 PM</option>
-                          <option value="23:00">11:00 PM</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-1/3">
-                    <label className="block mb-2 font-semibold">Checkout time</label>
-                    <select
-                      value={checkout}
-                      onChange={(e) => setCheckout(e.target.value)}
-                      className="mt-1 block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
+                {isEdit ? (
+                  <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
+                    <label
+                      htmlFor="dropzone-file"
+                      className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
                     >
-                      <option value="00:00:00">12:00 AM</option>
-                      <option value="01:00:00">1:00 AM</option>
-                      <option value="02:00:00">2:00 AM</option>
-                      <option value="03:00:00">3:00 AM</option>
-                      <option value="04:00:00">4:00 AM</option>
-                      <option value="05:00:00">5:00 AM</option>
-                      <option value="06:00:00">6:00 AM</option>
-                      <option value="07:00:00">7:00 AM</option>
-                      <option value="08:00:00">8:00 AM</option>
-                      <option value="09:00:00">9:00 AM</option>
-                      <option value="10:00:00">10:00 AM</option>
-                      <option value="11:00:00">11:00 AM</option>
-                      <option value="12:00:00">12:00 PM</option>
-                      <option value="13:00:00">1:00 PM</option>
-                      <option value="14:00:00">2:00 PM</option>
-                      <option value="14:00:00">2:00 PM</option>
-                      <option value="15:00:00">3:00 PM</option>
-                      <option value="16:00:00">4:00 PM</option>
-                      <option value="17:00:00">5:00 PM</option>
-                      <option value="18:00:00">6:00 PM</option>
-                      <option value="19:00:00">7:00 PM</option>
-                      <option value="20:00:00">8:00 PM</option>
-                      <option value="21:00:00">9:00 PM</option>
-                      <option value="22:00:00">10:00 PM</option>
-                      <option value="23:00:00">11:00 PM</option>
-                    </select>
+                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                        <Add size="100" color="#ccc" />
+                        <p className="mb-2 text-lg text-gray-500 text-gray-400">
+                          <span className="font-semibold">Click to upload</span>
+                        </p>
+                        <p className="text-normal text-gray-500 text-gray-400">
+                          Choose atleast 5 images
+                        </p>
+                        <p className="text-normal text-gray-500 text-gray-400">
+                          (jpg, jpeg, png, gif, bmp, tif, tiff, svg, webp, avif)
+                        </p>
+                      </div>
+                      <input
+                        id="dropzone-file"
+                        type="file"
+                        className="hidden"
+                        accept=".jpg, .jpeg, .png, .gif, .bmp, .tif, .tiff, .svg, .webp, .avif"
+                        onChange={handleFileChange}
+                        name="images"
+                        required
+                        multiple
+                      />
+                    </label>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
+                    <label
+                      htmlFor="dropzone-file"
+                      className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
+                    >
+                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                        <Add size="100" color="#ccc" />
+                        <p className="mb-2 text-lg text-gray-500 text-gray-400">
+                          <span className="font-semibold">Click to upload</span>
+                        </p>
+                        <p className="text-normal text-gray-500 text-gray-400">
+                          Choose atleast 5 images
+                        </p>
+                        <p className="text-normal text-gray-500 text-gray-400">
+                          (jpg, jpeg, png, gif, bmp, tif, tiff, svg, webp, avif)
+                        </p>
+                      </div>
+                      <input
+                        id="dropzone-file"
+                        type="file"
+                        className="hidden"
+                        accept=".jpg, .jpeg, .png, .gif, .bmp, .tif, .tiff, .svg, .webp, .avif"
+                        onChange={handleFileChange}
+                        name="images"
+                        required
+                        multiple
+                      />
+                    </label>
+                  </div>
+                )}
+
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4  mt-16 ">
+                  {isEdit
+                    ? imageproperty?.map((item, index) => (
+                      <div key={index} className="relative isedits">
+                        <Image
+                          className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
+                          src={item?.image_url || ""}
+                          width={200}
+                          height={200}
+                          alt={`Preview ${index}`}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => deletePropertyImage(uuid, item?.uuid)}
+                          className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    ))
+                    : ""}
+
+                  {images &&
+                    images.map((file, index) => (
+                      <div key={index} className="relative">
+                        <Image
+                          src={URL.createObjectURL(file)}
+                          width={200}
+                          height={200}
+                          alt={`Preview ${index}`}
+                          className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                          onLoad={() => URL.revokeObjectURL(file)}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeImage(file)}
+                          className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ))}
+                </div>
+              </div>
+              <div className={`${step === 6 ? "" : "display-none"}`}>
+                <div className="max-w-[100%] m-auto w-full mt-10">
+                  <h2 className="text-2xl font-bold mb-4">
+                    Please enter the following details
+                  </h2>
+                  <div className="flex justify-between mt-4 text-sm font-medium text-gray-700 space-x-4">
+                    <div className="flex flex-col w-1/3">
+                      <label>Cleaning Fees</label>
+                      <input
+                        required
+                        type="number"
+                        name="cleaning"
+                        placeholder="Cleaning Fees Per Day"
+                        id="cleaning"
+                        className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                        value={item?.cleaning}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+
+                    <div className="flex flex-col w-1/3">
+                      <label>Pet Fees</label>
+                      <input
+                        type="number"
+                        name="pet"
+                        placeholder="Pet Fees"
+                        id="pet"
+                        className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                        value={item?.pet}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+
+                    <div className="flex flex-col w-1/3">
+                      <label>Extra Guest Fees (Per Guest)</label>
+                      <input
+                        required
+                        type="number"
+                        name="extra_guest"
+                        placeholder="Extra Guest Fees"
+                        id="guest"
+                        className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                        value={item?.extra_guest}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="max-w-[100%] m-auto w-full mt-10 ">
+                  <h2 className="text-2xl font-bold mb-4">Check-in & checkout times</h2>
+                  <div className="flex justify-between mb-4 space-x-4">
+                    <div className="w-2/3">
+                      <label className="block mb-2 font-semibold">Check-in window</label>
+                      <div className="flex justify-between space-x-4">
+                        <div className="w-1/2 relative">
+                          <label className="absolute top-1 left-1 text-xs text-gray-500">
+                            Start time
+                          </label>
+                          <select
+                            value={checkinStart}
+                            onChange={(e) => setCheckinStart(e.target.value)}
+                            className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
+                          >
+                            <option value="00:00:00">12:00 AM</option>
+                            <option value="01:00:00">1:00 AM</option>
+                            <option value="02:00:00">2:00 AM</option>
+                            <option value="03:00:00">3:00 AM</option>
+                            <option value="04:00:00">4:00 AM</option>
+                            <option value="05:00:00">5:00 AM</option>
+                            <option value="06:00:00">6:00 AM</option>
+                            <option value="07:00:00">7:00 AM</option>
+                            <option value="08:00:00">8:00 AM</option>
+                            <option value="09:00:00">9:00 AM</option>
+                            <option value="10:00:00">10:00 AM</option>
+                            <option value="11:00:00">11:00 AM</option>
+                            <option value="12:00:00">12:00 PM</option>
+                            <option value="13:00:00">1:00 PM</option>
+                            <option value="14:00:00">2:00 PM</option>
+                            <option value="14:00:00">2:00 PM</option>
+                            <option value="15:00:00">3:00 PM</option>
+                            <option value="16:00:00">4:00 PM</option>
+                            <option value="17:00:00">5:00 PM</option>
+                            <option value="18:00:00">6:00 PM</option>
+                            <option value="19:00:00">7:00 PM</option>
+                            <option value="20:00:00">8:00 PM</option>
+                            <option value="21:00:00">9:00 PM</option>
+                            <option value="22:00:00">10:00 PM</option>
+                            <option value="23:00:00">11:00 PM</option>
+                          </select>
+                        </div>
+                        <div className="w-1/2 relative">
+                          <label className="absolute top-1 left-1 text-xs text-gray-500">
+                            End time
+                          </label>
+                          <select
+                            value={checkinEnd}
+                            onChange={(e) => setCheckinEnd(e.target.value)}
+                            className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
+                          >
+                            <option value="flexible">Flexible</option>
+                            <option value="00:00">12:00 AM</option>
+                            <option value="01:00">1:00 AM</option>
+                            <option value="02:00">2:00 AM</option>
+                            <option value="03:00">3:00 AM</option>
+                            <option value="04:00">4:00 AM</option>
+                            <option value="05:00">5:00 AM</option>
+                            <option value="06:00">6:00 AM</option>
+                            <option value="07:00">7:00 AM</option>
+                            <option value="08:00">8:00 AM</option>
+                            <option value="09:00">9:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="13:00">1:00 PM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="15:00">3:00 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                            <option value="17:00">5:00 PM</option>
+                            <option value="18:00">6:00 PM</option>
+                            <option value="19:00">7:00 PM</option>
+                            <option value="20:00">8:00 PM</option>
+                            <option value="21:00">9:00 PM</option>
+                            <option value="22:00">10:00 PM</option>
+                            <option value="23:00">11:00 PM</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="w-1/3">
+                      <label className="block mb-2 font-semibold">Checkout time</label>
+                      <select
+                        value={checkout}
+                        onChange={(e) => setCheckout(e.target.value)}
+                        className="mt-1 block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
+                      >
+                        <option value="00:00:00">12:00 AM</option>
+                        <option value="01:00:00">1:00 AM</option>
+                        <option value="02:00:00">2:00 AM</option>
+                        <option value="03:00:00">3:00 AM</option>
+                        <option value="04:00:00">4:00 AM</option>
+                        <option value="05:00:00">5:00 AM</option>
+                        <option value="06:00:00">6:00 AM</option>
+                        <option value="07:00:00">7:00 AM</option>
+                        <option value="08:00:00">8:00 AM</option>
+                        <option value="09:00:00">9:00 AM</option>
+                        <option value="10:00:00">10:00 AM</option>
+                        <option value="11:00:00">11:00 AM</option>
+                        <option value="12:00:00">12:00 PM</option>
+                        <option value="13:00:00">1:00 PM</option>
+                        <option value="14:00:00">2:00 PM</option>
+                        <option value="14:00:00">2:00 PM</option>
+                        <option value="15:00:00">3:00 PM</option>
+                        <option value="16:00:00">4:00 PM</option>
+                        <option value="17:00:00">5:00 PM</option>
+                        <option value="18:00:00">6:00 PM</option>
+                        <option value="19:00:00">7:00 PM</option>
+                        <option value="20:00:00">8:00 PM</option>
+                        <option value="21:00:00">9:00 PM</option>
+                        <option value="22:00:00">10:00 PM</option>
+                        <option value="23:00:00">11:00 PM</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="max-w-[100%] m-auto w-full mt-10">
+                  <h2 className="text-2xl font-bold mb-4 capitalize">Please select an option</h2>
+
+                  <div className="flex items-center space-x-4 mb-8">
+                    <label className="flex items-center space-x-2 text-xl font-normal   ">
+                      <input
+                        type="radio"
+                        value={1}
+                        checked={selectedOption === 1}
+                        onChange={handleOptionChange}
+                        className="form-radio"
+                      />
+                      <span className="">List Property</span>
+                    </label>
+                    <label className="flex items-center space-x-2 text-xl font-normal">
+                      <input
+                        type="radio"
+                        value={0}
+                        checked={selectedOption === 0}
+                        onChange={handleOptionChange}
+                        className="form-radio "
+                      />
+                      <span>Unlist Property</span>
+                    </label>
                   </div>
                 </div>
               </div>
 
-              <div className="max-w-[100%] m-auto w-full mt-10">
-                <h2 className="text-2xl font-bold mb-4">Please select an option</h2>
+              <div className={`${step === 7 ? "" : "display-none"}`}>
+                <CancelPolicy showFirm={showFirm} setShowFirm={setShowFirm} setShowFlexible={setShowFlexible} selectedPolicy={selectedPolicy} setSelectedPolicy={setSelectedPolicy} showFlexible={showFlexible} longTermPolicy={longTermPolicy} setLongTermPolicy={setLongTermPolicy} />
 
-                <div className="flex items-center space-x-4 mb-8">
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      value={1}
-                      checked={selectedOption === 1}
-                      onChange={handleOptionChange}
-                      className="form-radio"
-                    />
-                    <span>List Property</span>
+              </div>
+
+              <div className={`${step === 8 ? "" : "display-none"}`}>
+                <HouseRules petsAllowed={petsAllowed} setPetsAllowed={setPetsAllowed} quietHours={quietHours} setEventsAllowed={setEventsAllowed} setQuietHours={setQuietHours} eventsAllowed={eventsAllowed} PhotographyAllowed={PhotographyAllowed} setPhotographyAllowed={setPhotographyAllowed} smokingAllowed={smokingAllowed} setSmokingAllowed={setSmokingAllowed} />
+
+                <div className="flex flex-col items-center p-4">
+                  <label htmlFor="directions" className="block font-medium text-gray-700">
+                    Additonal Rules
                   </label>
-                  <label className="flex items-center space-x-2">
-                    <input
-                      type="radio"
-                      value={0}
-                      checked={selectedOption === 0}
-                      onChange={handleOptionChange}
-                      className="form-radio"
-                    />
-                    <span>Unlist Property</span>
-                  </label>
+                  <textarea
+                    id="directions"
+                    name="additonalrule"
+                    rows={5}
+                    className="shadow-sm p-4 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
+                    placeholder="Enter directions here..."
+                    value={item?.additonalrule}
+                    onChange={handleInputChange}
+                  />
                 </div>
               </div>
-            </div>
 
-            <div className={`${step === 7 ? "" : "display-none"}`}>
-              <CancelPolicy showFirm={showFirm} setShowFirm={setShowFirm} setShowFlexible={setShowFlexible} selectedPolicy={selectedPolicy} setSelectedPolicy={setSelectedPolicy} showFlexible={showFlexible} longTermPolicy={longTermPolicy} setLongTermPolicy={setLongTermPolicy} />
+              <div className={`${step === 9 ? "" : "display-none"
+                } max-w-[100%] m-auto table w-full`}>
 
-            </div>
+                <div className="flex flex-col items-center p-4">
+                  <label htmlFor="directions" className="block font-medium text-gray-700">
+                    Directions
+                  </label>
+                  <textarea
+                    id="directions"
+                    name="Direction"
+                    rows={5}
+                    className="shadow-sm p-4 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
+                    placeholder="Enter directions here..."
+                    value={item?.Direction}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="flex flex-col items-center p-4">
+                  <label htmlFor="directions" className="block font-medium text-gray-700">
+                    House Manual
+                  </label>
+                  <textarea
+                    id="manual"
+                    name="housemanual"
+                    rows={5}
+                    className="shadow-sm p-4 w-4/5 mt-1 block sm:text-sm border rounded-xl"
+                    placeholder="Enter some instructions for your guest..."
+                    value={item?.housemanual}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="flex flex-col items-center p-4">
+                  <h1 className="capitalize text-lg font-bold my-8">Please enter your wifi details</h1>
+                  <label htmlFor="directions" className="block font-medium text-gray-700 my-2">
+                    Wifi Name
+                  </label>
+                  <input
+                    id="wifi"
+                    name="wifi"
+                    type="text"
+                    className="shadow-sm p-4 w-4/5 mt-1 block sm:text-sm border rounded-xl"
+                    placeholder="Enter your wifi name..."
+                    value={item?.wifi}
+                    onChange={handleInputChange}
+                  />
+                  <label htmlFor="directions" className="block font-medium text-gray-700 my-2">
+                    Wifi Password
+                  </label>
+                  <input
+                    id="wifiPassword"
+                    name="wifiPassword"
+                    type="password"
+                    className="shadow-sm p-4 w-4/5 mt-1 block sm:text-sm border rounded-xl"
+                    placeholder="Enter your wifi Password here..."
+                    value={item?.wifiPassword}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
 
-            <div className={`${step === 8 ? "" : "display-none"}`}>
-              <HouseRules petsAllowed={petsAllowed} setPetsAllowed={setPetsAllowed} quietHours={quietHours} setEventsAllowed={setEventsAllowed} setQuietHours={setQuietHours} eventsAllowed={eventsAllowed} PhotographyAllowed={PhotographyAllowed} setPhotographyAllowed={setPhotographyAllowed} smokingAllowed={smokingAllowed} setSmokingAllowed={setSmokingAllowed} />
+              <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
+                {step == 0 ? (
+                  <> </>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={prevStep}
+                    className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                  >
+                    Back
+                  </button>
+                )}
 
-              <div className="flex flex-col items-center p-4">
-                <label htmlFor="directions" className="block font-medium text-gray-700">
-                  Additonal Rules
-                </label>
-                <textarea
-                  id="directions"
-                  name="additonalrule"
-                  rows={5}
-                  className="shadow-sm p-4 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
-                  placeholder="Enter directions here..."
-                  value={item?.additonalrule}
-                  onChange={handleInputChange}
-                />
+                {step < 9 ? (
+                  <button
+                    type="button"
+                    onClick={nextStep}
+                    className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 "
+                  >
+                    Next
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    onClick={handleSubmit}
+                    className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 "
+                  >
+                    {Loading ? "processing.. " : "Submit"}
+                  </button>
+                )}
               </div>
             </div>
 
-            <div className={`${step === 9 ? "" : "display-none"
-              } max-w-[100%] m-auto table w-full`}>
-
-              <div className="flex flex-col items-center p-4">
-                <label htmlFor="directions" className="block font-medium text-gray-700">
-                  Directions
-                </label>
-                <textarea
-                  id="directions"
-                  name="Direction"
-                  rows={5}
-                  className="shadow-sm p-4 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
-                  placeholder="Enter directions here..."
-                  value={item?.Direction}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="flex flex-col items-center p-4">
-                <label htmlFor="directions" className="block font-medium text-gray-700">
-                  House Manual
-                </label>
-                <textarea
-                  id="manual"
-                  name="housemanual"
-                  rows={5}
-                  className="shadow-sm p-4 w-4/5 mt-1 block sm:text-sm border rounded-xl"
-                  placeholder="Enter some instructions for your guest..."
-                  value={item?.housemanual}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="flex flex-col items-center p-4">
-                <h1 className="capitalize text-lg font-bold my-8">Please enter your wifi details</h1>
-                <label htmlFor="directions" className="block font-medium text-gray-700 my-2">
-                  Wifi Name
-                </label>
-                <input
-                  id="wifi"
-                  name="wifi"
-                  type="text"
-                  className="shadow-sm p-4 w-4/5 mt-1 block sm:text-sm border rounded-xl"
-                  placeholder="Enter your wifi name..."
-                  value={item?.wifi}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="directions" className="block font-medium text-gray-700 my-2">
-                  Wifi Password
-                </label>
-                <input
-                  id="wifiPassword"
-                  name="wifiPassword"
-                  type="password"
-                  className="shadow-sm p-4 w-4/5 mt-1 block sm:text-sm border rounded-xl"
-                  placeholder="Enter your wifi Password here..."
-                  value={item?.wifiPassword}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-
-            <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
-              {step == 0 ? (
-                <> </>
-              ) : (
-                <button
-                  type="button"
-                  onClick={prevStep}
-                  className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-                >
-                  Back
-                </button>
-              )}
-
-              {step < 9 ? (
-                <button
-                  type="button"
-                  onClick={nextStep}
-                  className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 "
-                >
-                  Next
-                </button>
-              ) : (
-                <button
-                  type="submit"
-                  onClick={handleSubmit}
-                  className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 "
-                >
-                  {Loading ? "processing.. " : "Submit"}
-                </button>
-              )}
-            </div>
           </div>
-
         </div>
-      </div>
     </>
   );
 }
