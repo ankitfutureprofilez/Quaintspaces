@@ -403,11 +403,11 @@ export default function test() {
 
   return (
     <>
-      <CheckinCheckout />
-      <ButtonGroup />
-      <StayPolicySelector />
-      <PriceManageForm />
-      <DirectionManualWifiComponent/>
+      {/* <CheckinCheckout /> */}
+      {/* <ButtonGroup /> */}
+      {/* <StayPolicySelector /> */}
+      {/* <PriceManageForm /> */}
+      {/* <DirectionManualWifiComponent/> */}
     </>
   );
 }

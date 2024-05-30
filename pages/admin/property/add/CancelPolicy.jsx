@@ -2,7 +2,6 @@ import { useState } from "react";
 
 function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, selectedPolicy, setSelectedPolicy, longTermPolicy, setLongTermPolicy }) {
 
-
     const handlePolicyChanges = (policy) => {
         setLongTermPolicy(policy);
     };
@@ -10,7 +9,6 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
     const handlePolicyChange = (policy) => {
         setSelectedPolicy(policy);
     };
-
 
     const policies = [
         {
@@ -31,31 +29,35 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
         }
     ];
 
-    const toggleFlexible = () => setShowFlexible(!showFlexible);
-    const toggleFirm = () => setShowFirm(!showFirm);
+    const toggleFlexible = () => {
+        setShowFlexible(true);
+        setShowFirm(false);
+    };
+
+    const toggleFirm = () => {
+        setShowFirm(true);
+        setShowFlexible(false);
+    };
 
     return (
         <div className="container mx-auto p-4 flex">
             <div className="w-1/2 pr-2">
                 <h2 className="text-center font-bold text-2xl text-slate-900 mt-3 mb-4">Cancellation policy</h2>
-
-                <div>
+                <div className="p-4 mb-5 mt-3 ">
                     <p className="text-center font-normal text-lg text-slate-700 mt-3 mb-4">Standard policy</p>
                     <p className="text-center font-normal text-sm text-slate-500 mt-3 mb-4">Applies to any stays under 28 nights.</p>
-
-                    <div className="flex flex-col border-2 p-3 cursor-pointer" onClick={toggleFlexible}>
+                    <div className="flex flex-col border-2 p-3 cursor-pointer " onClick={toggleFlexible}>
                         <label className="flex items-center cursor-pointer mx-auto text-center">Flexible</label>
                         <p className="text-gray-500">
                             First 30 days are non-refundable. Full refund up to 30 days before check-in.
                         </p>
                     </div>
                 </div>
-
-                <div>
+                <div className="p-4 mb-5 mt-3 ">
                     <p className="text-center font-normal text-lg text-slate-700 mt-3 mb-4">Long-term stay policy</p>
                     <p className="text-center font-normal text-sm text-slate-500 mt-3 mb-4">Applies to stays 28 nights or longer.</p>
 
-                    <div className="flex flex-col border-2 p-3 cursor-pointer" onClick={toggleFirm}>
+                    <div className="flex flex-col border-2 p-3 cursor-pointer " onClick={toggleFirm}>
                         <label className="flex items-center cursor-pointer mx-auto text-center">Firm</label>
                         <p className="text-gray-500">
                             Full refund up to 30 days before check-in. After that, the first 30 days of the stay are non-refundable.
@@ -63,7 +65,6 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                     </div>
                 </div>
             </div>
-
             <div className="w-1/2 pl-2">
                 {showFlexible && (
                     <div className="p-4 rounded-lg shadow-md text-center">
@@ -76,7 +77,7 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                             {policies.map(({ policy, description }) => (
                                 <div
                                     key={policy}
-                                    className={`flex justify-center mb-4 p-4 items-center border-2 w-full md:w-1/2 cursor-pointer ${selectedPolicy === policy ? "border-black" : "border-gray-200"
+                                    className={`flex justify-center mb-4 p-4 items-center border-2 w-full md:w-full cursor-pointer ${selectedPolicy === policy ? "border-black" : "border-gray-200"
                                         }`}
                                     onClick={() => handlePolicyChange(policy)}
                                 >
@@ -109,9 +110,9 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                             To understand the full policies, visit the{" "}
                             <span className="underline font-semibold cursor-pointer">Help Centre.</span>
                         </p>
-                        <div className="flex space-x-2">
+                        <div className="">
                             <div
-                                className={`flex justify-center mb-4 p-4 items-center border-2 w-1/2 cursor-pointer ${longTermPolicy === "Flexible" ? "border-black" : "border-gray-200"
+                                className={`flex justify-center mb-4 p-4 items-center border-2 cursor-pointer ${longTermPolicy === "Flexible" ? "border-black" : "border-gray-200"
                                     }`}
                                 onClick={() => handlePolicyChanges("Flexible")}
                             >
@@ -131,7 +132,7 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                                 />
                             </div>
                             <div
-                                className={`flex justify-center p-4 mb-4 items-center border-2 w-1/2 cursor-pointer ${longTermPolicy === "Strict" ? "border-black" : "border-gray-200"
+                                className={`flex justify-center p-4 mb-4 items-center border-2 cursor-pointer ${longTermPolicy === "Strict" ? "border-black" : "border-gray-200"
                                     }`}
                                 onClick={() => handlePolicyChanges("Strict")}
                             >

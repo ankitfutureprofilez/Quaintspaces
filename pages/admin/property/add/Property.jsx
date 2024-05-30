@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Listing from "../../api/Listing";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import Image from 'next/image'
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -50,16 +50,17 @@ export default function Property(props) {
     price,
     description,
     bedrooms,
-    safety_amenity, standout_amenity,
-    guests,
-    bathrooms,
-    amenities,
-    property_image,
+    safety_amenity, standout_amenity, long_term_policy, standard_policy, house_manuals, direction, pet_allowed, events_allowed, smoking_allowed, quiet_hours_allowed, photography_allowed, step_completed,
+    guests, pet_fee, extra_guest_fee, flexible_check_in, check_in,
+    bathrooms, cleaning_fee, wifiPassword, wifiusername,
+    amenities, check_out, additional_rules,
+    property_image, status
+
 
   } = p ? p : {};
 
   const router = useRouter();
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(step_completed || 0);
   const [Loading, setLoading] = useState(false);
   const [images, setImages] = useState([]);
   const [PType, setPType] = useState(properties_type);
@@ -86,9 +87,9 @@ export default function Property(props) {
   const [typeHere, setTypeHere] = useState("entire_place");
 
 
-  const [checkinStart, setCheckinStart] = useState("12:00");
-  const [checkinEnd, setCheckinEnd] = useState("flexible");
-  const [checkout, setCheckout] = useState("12:00");
+  const [checkinStart, setCheckinStart] = useState(check_in || "12:00");
+  const [checkinEnd, setCheckinEnd] = useState(flexible_check_in || "flexible");
+  const [checkout, setCheckout] = useState(check_out || "12:00");
   const [item, setItem] = useState({
     name: name || "",
     about: description || "",
@@ -96,12 +97,15 @@ export default function Property(props) {
     propertytype: PType || "",
     pets: no_of_pet_allowed || "1",
     free_cancel_time: "",
-    cleaning: "",
-    pet: "",
-    extra_guest: "",
+    cleaning: cleaning_fee || "",
+    pet: pet_fee || "",
+    extra_guest: extra_guest_fee || "",
+    direction: direction || "",
+    housemanual: house_manuals || "",
+    wifi: wifiusername || '',
+    additonalrule: additional_rules || "",
+    wifiPassword: wifiPassword || ''
   });
-
-
 
 
   const handleInputChange = (e) => {
@@ -126,24 +130,23 @@ export default function Property(props) {
     return inputString.split(",");
   }
 
-  const [selectedOption, setSelectedOption] = useState('1');
+  const [selectedOption, setSelectedOption] = useState(status || '1');
   const [Guests, setGuests] = useState(guests || 1);
-
   const [Bedrooms, setBedrooms] = useState(bedrooms || 1);
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
   const [pets, setPets] = useState(no_of_pet_allowed || 1);
   const [selectedAmenity, setSelectedAmenity] = useState(amenities ? stringToArray(amenities) : []);
   const [Amenity, setAmenity] = useState(safety_amenity ? stringToArray(safety_amenity) : []);
   const [standoutAmenity, setstandoutAmenity] = useState(standout_amenity ? stringToArray(standout_amenity) : []);
-  const [longTermPolicy, setLongTermPolicy] = useState(null);
-  const [selectedPolicy, setSelectedPolicy] = useState(null);
+  const [longTermPolicy, setLongTermPolicy] = useState(long_term_policy || null);
+  const [selectedPolicy, setSelectedPolicy] = useState(standard_policy || null);
   const [showFlexible, setShowFlexible] = useState(false);
   const [showFirm, setShowFirm] = useState(false);
-  const [petsAllowed, setPetsAllowed] = useState(0);
-  const [eventsAllowed, setEventsAllowed] = useState(0);
-  const [smokingAllowed, setSmokingAllowed] = useState(0);
-  const [quietHours, setQuietHours] = useState(0);
-  const [PhotographyAllowed, setPhotographyAllowed] = useState(0);
+  const [petsAllowed, setPetsAllowed] = useState(pet_allowed || 0);
+  const [eventsAllowed, setEventsAllowed] = useState(events_allowed || 0);
+  const [smokingAllowed, setSmokingAllowed] = useState(smoking_allowed || 0);
+  const [quietHours, setQuietHours] = useState(quiet_hours_allowed || 0);
+  const [PhotographyAllowed, setPhotographyAllowed] = useState(photography_allowed || 0);
   const prevStep = () => setStep((prev) => prev - 1);
 
   const nextStep = async () => {
@@ -173,26 +176,6 @@ export default function Property(props) {
     // }
     setStep((prev) => prev + 1);
   };
-
-  const handleCheckboxChange = (e) => {
-    const { value, checked } = e.target;
-    if (checked) {
-      setItem((prevState) => ({
-        ...prevState,
-        selectedAmenities: [...prevState?.selectedAmenities, value],
-      }));
-    } else {
-      setItem((prevState) => ({
-        ...prevState,
-        selectedAmenities: prevState?.selectedAmenities?.filter(
-          (item) => item !== value
-        ),
-      }));
-    }
-  };
-
-
-
   const [locationupdate, setLocationupdate] = useState([]);
   const getNavigator = () => {
     if (typeof navigator !== "undefined") {
@@ -202,7 +185,6 @@ export default function Property(props) {
       return null;
     }
   };
-  console.log("typeHere", typeHere)
 
   const fetchLocationData = async () => {
     setLoading(true);
@@ -254,7 +236,6 @@ export default function Property(props) {
       );
     }
   };
-  console.log("address", address)
 
   const fetchLocation = async () => {
     const formattedAddress = `${address.street_address}, ${address.nearby}, ${address.district}, ${address.city}, ${address.state}, ${address.pin}`;
@@ -277,18 +258,6 @@ export default function Property(props) {
       console.error("Error fetching location:", error);
     }
   };
-
-  const containerStyle = {
-    width: '100%',
-    height: '400px'
-  };
-
-
-  const center = {
-    lat: parseFloat(address?.latitude),
-    lng: parseFloat(address?.longitude),
-  };
-
 
   const [imageproperty, setImagesproperty] = useState(property_image);
 
@@ -348,16 +317,17 @@ export default function Property(props) {
     formData.append("status", selectedOption);
     formData.append("step_completed", step);
     formData.append("standard_policy", selectedPolicy);
-    formData.append("wifi_username", selectedPolicy);
-    formData.append("wifi_password", selectedPolicy);
+    formData.append("wifi_username", item?.wifi);
+    formData.append("wifi_password", item?.wifiPassword);
     formData.append("long_term_policy", longTermPolicy);
-    formData.append("house_manuals", "hello");
+    formData.append("house_manuals", item?.housemanual);
     formData.append("pet_allowed", petsAllowed);
     formData.append("events_allowed", eventsAllowed);
-    formData.append("direction", "hii");
+    formData.append("direction", item?.direction);
     formData.append("smoking_allowed", smokingAllowed);
     formData.append("quiet_hours_allowed", quietHours);
     formData.append("photography_allowed", PhotographyAllowed);
+    formData.append("additional_rules", PhotographyAllowed);
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
@@ -387,6 +357,7 @@ export default function Property(props) {
   }
 
   useEffect(() => { }, [images]);
+  const [propertyDuplicated, setpropertyDuplicated] = useState(false);
 
 
 
@@ -398,110 +369,53 @@ export default function Property(props) {
       // .property-type:checked + label h2 { color :#000 !important;border-color:#000 !important;}
     `}</style>
 
-      <div className="flex justify-end">
-        <button
-          onClick={handleSubmit}
-          className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-        >
-          {Loading ? "Processing..." : "Save/Exit"}
-        </button>
-      </div>
+      {isEdit ? (
+        !propertyDuplicated ? (
+          <div
+            className={`${step === 0 ? "" : "display-none"
+              } max-w-[100%] m-auto table w-full`}
+          >
+            <button className="border-gray border-2 px-8 py-8 rounded-full w-3/5 capitalize" onClick={() => { Router.back("/admin/property/add") }}>
+              Add New Property
+            </button>
+            <button
+              onClick={() => {
+                setpropertyDuplicated(true);
+              }}
+              className="border-gray border-2 px-8 py-8 rounded-full w-3/5 capitalize"
+            >
+              Duplicate Existing Property
+            </button>
+          </div>
+        ) : (
+          <>
+            <button className="border-gray border-2 px-8 py-8 rounded-full w-3/5 capitalize">
+              Edit Entire Property
+            </button>
+            <button className="border-gray border-2 px-8 py-8 rounded-full w-3/5 capitalize">
+              Only Edit Image
+            </button>
+          </>
+        )
+      ) : (
+        <div className="flex justify-end mt-5">
+          <button
+            onClick={handleSubmit}
+            className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+          >
+            {Loading ? "Processing..." : "Save/Exit"}
+          </button>
+        </div>
+
+        
+      )}
 
       <div className={`w-full  flex items-center justify-center px-6 py-8 `}>
         <div className="max-w-4xl w-full space-y-8 w-full ">
           <div
             className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
           >
-            <div
-              className={`${step === 0 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
-            >
-              {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
-               <div className="grid grid-cols-3 gap-4 m-auto table  " >
-                <div className="" >
-                      <div onClick={(e)=>setTypeHere("single_room")} className={`${typeHere === "single_room" ? "bg-gray-500" : ''} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
             
-                        <House size="52" color="#dedede" /> 
-                        <h2 className="text-xl mt-4 font-normal text-gray-400" >Single Room</h2>
-                      </div>
-                  </div>
-                <div className="" >
-                      <label onClick={(e)=>setTypeHere("entire_place")}
-                      className={`${typeHere === "entire_place" ? "bg-gray-500" : ''} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
-                        <House size="52" color="#dedede" /> 
-                        <h2 className="text-xl mt-4 font-normal text-gray-400" >Entire Place</h2>
-                      </label>
-                  </div>
-               </div> */}
-
-              {/* {typeHere === "entire_place" ?  <> */}
-
-              {/* <Map
-					google={this?.props?.google}
-					center={{lat: 18.5204, lng: 73.8567}}
-					height='300px'
-					zoom={15}
-				/> */}
-              <h2 className="text-3xl text-center mt-4 font-bold mb-8">
-                Which of these best describes your place?
-              </h2>
-              <div className="grid grid-cols-3 gap-4">
-                {propertyTypes &&
-                  propertyTypes.map((p, i) => (
-                    <div key={i} className="">
-                      <div
-                        onClick={() => setPType(p?.value)}
-                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-indigo-500" : ""
-                          }`}
-                      >
-                        {p.value === "flat" && (
-                          <FaBuilding
-                            style={{ color: "black", fontSize: "40px" }}
-                          />
-                        )}
-                        {p.value === "house" && (
-                          <FaHome
-                            style={{ color: "black", fontSize: "40px" }}
-                          />
-                        )}
-                        {p.value === "unique_space" && <House size={40} />}
-                        {p.value === "guest_house" && (
-                          <FaDoorOpen
-                            style={{ color: "black", fontSize: "40px" }}
-                          />
-                        )}
-                        {p.value === "hotel" && (
-                          <FaHotel
-                            style={{ color: "black", fontSize: "40px" }}
-                          />
-                        )}
-                        {p.value === "single_room" && (
-                          <FaBed style={{ color: "black", fontSize: "40px" }} />
-                        )}
-                        {p.value === "boutique_hotel" && (
-                          <FaCouch
-                            style={{ color: "black", fontSize: "40px" }}
-                          />
-                        )}
-                        {p.value === "breakfast" && (
-                          <MdOutlineFreeBreakfast size={40} />
-                        )}
-                        {p.value === "fram" && <FaWarehouse size={40} />}
-                        <h2
-                          className={`text-xl mt-4 font-normal ${p.value === PType
-                            ? "text-gray-100"
-                            : "text-gray-400"
-                            }`}
-                        >
-                          {p.label}
-                        </h2>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-
-              {/* </> : '' } */}
-            </div>
 
             <div
               className={`${step === 1 ? "" : "display-none"
@@ -806,7 +720,7 @@ export default function Property(props) {
             </div>
             <div className={`${step === 6 ? "" : "display-none"}`}>
               <div className="max-w-[100%] m-auto w-full mt-10">
-                <h2 className="text-3xl text-center font-bold mb-8 capitalize">
+                <h2 className="text-2xl font-bold mb-4">
                   Please enter the following details
                 </h2>
                 <div className="flex justify-between mt-4 text-sm font-medium text-gray-700 space-x-4">
@@ -853,13 +767,13 @@ export default function Property(props) {
                 </div>
               </div>
 
-              <div className="max-w-md mx-auto p-4">
+              <div className="max-w-[100%] m-auto w-full mt-10 ">
                 <h2 className="text-2xl font-bold mb-4">Check-in & checkout times</h2>
                 <div className="flex justify-between mb-4 space-x-4">
-                  <div className="w-1/3">
+                  <div className="w-2/3">
                     <label className="block mb-2 font-semibold">Check-in window</label>
-                    <div className="flex flex-col">
-                      <div className="relative mb-3 mt-2">
+                    <div className="flex justify-between space-x-4">
+                      <div className="w-1/2 relative">
                         <label className="absolute top-1 left-1 text-xs text-gray-500">
                           Start time
                         </label>
@@ -895,7 +809,7 @@ export default function Property(props) {
                           <option value="23:00">11:00 PM</option>
                         </select>
                       </div>
-                      <div className="relative">
+                      <div className="w-1/2 relative">
                         <label className="absolute top-1 left-1 text-xs text-gray-500">
                           End time
                         </label>
@@ -933,7 +847,6 @@ export default function Property(props) {
                       </div>
                     </div>
                   </div>
-
                   <div className="w-1/3">
                     <label className="block mb-2 font-semibold">Checkout time</label>
                     <select
@@ -970,18 +883,16 @@ export default function Property(props) {
                 </div>
               </div>
 
-            </div>
-            <div className={`${step === 7 ? "" : "display-none"}`}>
-              <div className="mt-32 flex flex-col items-center space-y-12">
-                <h1 className="mb-8 capitalize font-bold text-2xl">
+              <div className="max-w-[100%] m-auto w-full mt-10 ">
+                <h2 className="text-2xl font-bold mb-4">
                   Please select an option
-                </h1>
+                </h2>
 
                 <div className="flex items-center space-x-4 mb-8">
                   <label className="flex items-center space-x-2">
                     <input
                       type="radio"
-                      value="list"
+                      value="1"
                       checked={selectedOption === '1'}
                       onChange={handleOptionChange}
                       className="form-radio"
@@ -991,7 +902,7 @@ export default function Property(props) {
                   <label className="flex items-center space-x-2">
                     <input
                       type="radio"
-                      value="unlist"
+                      value="0"
                       checked={selectedOption === '0'}
                       onChange={handleOptionChange}
                       className="form-radio"
@@ -1002,15 +913,91 @@ export default function Property(props) {
                 </div>
               </div>
             </div>
-            <div className={`${step === 8 ? "" : "display-none"}`}>
+
+            <div className={`${step === 7 ? "" : "display-none"}`}>
               <CancelPolicy showFirm={showFirm} setShowFirm={setShowFirm} setShowFlexible={setShowFlexible} selectedPolicy={selectedPolicy} setSelectedPolicy={setSelectedPolicy} showFlexible={showFlexible} longTermPolicy={longTermPolicy} setLongTermPolicy={setLongTermPolicy} />
 
             </div>
 
-            <div className={`${step === 9 ? "" : "display-none"}`}>
+            <div className={`${step === 8 ? "" : "display-none"}`}>
               <HouseRules petsAllowed={petsAllowed} setPetsAllowed={setPetsAllowed} quietHours={quietHours} setEventsAllowed={setEventsAllowed} setQuietHours={setQuietHours} eventsAllowed={eventsAllowed} PhotographyAllowed={PhotographyAllowed} setPhotographyAllowed={setPhotographyAllowed} smokingAllowed={smokingAllowed} setSmokingAllowed={setSmokingAllowed} />
 
+              <div className="flex flex-col items-center p-4">
+                <label htmlFor="directions" className="block font-medium text-gray-700">
+                  Additonal Rules
+                </label>
+                <textarea
+                  id="directions"
+                  name="additonalrule"
+                  rows={5}
+                  className="shadow-sm p-4 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
+                  placeholder="Enter directions here..."
+                  value={item?.additonalrule}
+                  onChange={handleInputChange}
+                />
+              </div>
             </div>
+
+            <div className={`${step === 9 ? "" : "display-none"
+              } max-w-[100%] m-auto table w-full`}>
+
+              <div className="flex flex-col items-center p-4">
+                <label htmlFor="directions" className="block font-medium text-gray-700">
+                  Directions
+                </label>
+                <textarea
+                  id="directions"
+                  name="direction"
+                  rows={5}
+                  className="shadow-sm p-4 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
+                  placeholder="Enter directions here..."
+                  value={item?.direction}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="flex flex-col items-center p-4">
+                <label htmlFor="directions" className="block font-medium text-gray-700">
+                  House Manual
+                </label>
+                <textarea
+                  id="manual"
+                  name="housemanual"
+                  rows={5}
+                  className="shadow-sm p-4 w-4/5 mt-1 block sm:text-sm border rounded-xl"
+                  placeholder="Enter some instructions for your guest..."
+                  value={item?.housemanual}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="flex flex-col items-center p-4">
+                <h1 className="capitalize text-lg font-bold my-8">Please enter your wifi details</h1>
+                <label htmlFor="directions" className="block font-medium text-gray-700 my-2">
+                  Wifi Name
+                </label>
+                <input
+                  id="wifi"
+                  name="wifi"
+                  type="text"
+                  className="shadow-sm p-4 w-4/5 mt-1 block sm:text-sm border rounded-xl"
+                  placeholder="Enter your wifi name..."
+                  value={item?.wifi}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="directions" className="block font-medium text-gray-700 my-2">
+                  Wifi Password
+                </label>
+                <input
+                  id="wifiPassword"
+                  name="wifiPassword"
+                  type="password"
+                  className="shadow-sm p-4 w-4/5 mt-1 block sm:text-sm border rounded-xl"
+                  placeholder="Enter your wifi Password here..."
+                  value={item?.wifiPassword}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
             <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
               {step == 0 ? (
                 <> </>
@@ -1024,7 +1011,7 @@ export default function Property(props) {
                 </button>
               )}
 
-              {step < 10 ? (
+              {step < 9 ? (
                 <button
                   type="button"
                   onClick={nextStep}
@@ -1043,7 +1030,7 @@ export default function Property(props) {
               )}
             </div>
           </div>
-          
+
         </div>
       </div>
     </>
