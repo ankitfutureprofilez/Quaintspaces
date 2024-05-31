@@ -506,7 +506,7 @@ export default function Property(props) {
                     <div key={i} className="">
                       <div
                         onClick={() => setPType(p?.value)}
-                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-indigo-500" : ""
+                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-slate-100 border-slate-700 text-slate-700" : ""
                           }`}
                       >
                         {p.value === "flat" && (
@@ -544,7 +544,7 @@ export default function Property(props) {
                         {p.value === "farm" && <FaWarehouse size={40} />}
                         <h2
                           className={`text-xl mt-4 font-normal ${p.value === PType
-                            ? "text-gray-100"
+                            ? "text-gray-600"
                             : "text-gray-400"
                             }`}
                         >

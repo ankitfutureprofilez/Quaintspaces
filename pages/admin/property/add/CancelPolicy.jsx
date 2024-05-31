@@ -84,11 +84,15 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                             {policies.map(({ policy, description }) => (
                                 <div
                                     key={policy}
-                                    className={`flex justify-center mb-4 p-4 items-center border-2 w-full md:w-full cursor-pointer ${selectedPolicy === policy ? "border-black" : "border-gray-200"
+                                    className={`flex mb-4 p-4 border-2 w-full md:w-full cursor-pointer ${selectedPolicy === policy ? "border-black" : "border-gray-200"
                                         }`}
                                 >
-                                    <div className="flex flex-col">
-                                        <label className="flex items-center cursor-pointer mx-auto text-center">
+                                    <div className="flex ">
+                                        
+                                        <p className="text-gray-500 w-3/4 text-left">
+                                            {description}
+                                        </p>
+                                        <label className="flex justify-end cursor-pointer w-1/4">
                                             {policy}
                                             <input
                                                 type="checkbox"
@@ -99,9 +103,6 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                                                 className="ml-2 w-4 h-4 cursor-pointer"
                                             />
                                         </label>
-                                        <p className="text-gray-500">
-                                            {description}
-                                        </p>
                                     </div>
                                 </div>
                             ))}

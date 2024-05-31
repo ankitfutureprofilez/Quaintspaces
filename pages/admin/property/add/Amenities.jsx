@@ -169,16 +169,16 @@ export default function Amenities({selectedAmenity, setSelectedAmenity,standoutA
             <div key={i} className="">
               <div
                 onClick={() => toggleSelectedAmenity(amenity.value)}
-                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl ${
-                  selectedAmenity.includes(amenity.value) ? "bg-indigo-600" : ""
+                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${
+                  selectedAmenity.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
                 }`}
               >
                {amenity?.icons}
                 <h2
                   className={`text-lg mt-4 font-bold text-left  capitalize ${
                     selectedAmenity.includes(amenity.value)
-                      ? "text-white-300"
-                      : "text-white-600"
+                      ? "text-slate-700"
+                      : "text-slate-700"
                   }`}
                 >
                   {amenity.title}
@@ -198,8 +198,8 @@ export default function Amenities({selectedAmenity, setSelectedAmenity,standoutA
             <div key={i} className="">
               <div
                 onClick={() => togglestandoutAmenity(amenity.value)}
-                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl ${
-                  standoutAmenity.includes(amenity.value) ? "bg-indigo-600" : ""
+                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${
+                  standoutAmenity.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
                 }`}
               >
                   {amenity.icons}
@@ -227,8 +227,8 @@ export default function Amenities({selectedAmenity, setSelectedAmenity,standoutA
             <div key={i} className="">
               <div
                 onClick={() => toggleAmenity(amenity.value)}
-                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl ${
-                  Amenity.includes(amenity.value) ? "bg-indigo-600" : ""
+                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${
+                  Amenity.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
                 }`}
               >
                  {amenity.icons}
