@@ -53,6 +53,7 @@ class Listings extends Component {
     return Api.get("/property-list?" + data);
   }
   async PropertyDetail(uuid) {
+    
     return Api.get("/property-details/" + uuid);
   }
   async AddRating(data) {
