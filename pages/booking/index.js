@@ -17,7 +17,8 @@ export default function Index() {
   const [selectedButton, setSelectedButton] = useState("upcoming");
   const [listings, setListings] = useState([]);
   const router = useRouter();
-
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [selectedBooking, setSelectedBooking] = useState(null);
   const [selectedOption, setSelectedOption] = useState("All Dates");
   const [fetch, setFetch] = useState(false);
   const currentYear = new Date().getFullYear();
@@ -26,6 +27,21 @@ export default function Index() {
     (_, index) => currentYear - index
   );
 
+
+  const [SelectBooking, SetSelectBooking] = useState(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const [refend, setRefend] = useState("")
+  const handleCanceled = (uuid) => {
+    setRefend(uuid?.refund_amount)
+    SetSelectBooking(uuid);
+    setShowConfirmation(true);
+  };
+
+  const handleConfirmation = () => {
+    cancelBooking(SelectBooking?.id);
+    setShowConfirmation(false);
+  };
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
     setFetch(!fetch);
@@ -40,6 +56,10 @@ export default function Index() {
     setIsOpen(false);
   };
 
+  const handleCancel = () => {
+    setShowConfirmation(false);
+  };
+
   const handleGroupChange = (buttonType) => {
     setSelectedButton(buttonType);
   };
@@ -48,8 +68,8 @@ export default function Index() {
   const [page, setPage] = useState(0);
 
   const fetching = async (pg) => {
-      setLoading(true);
-      let url = "";
+    setLoading(true);
+    let url = "";
     if (selectedOption === "All Dates") {
     } else if (selectedOption === "Last 30 Days") {
       url += "booking_time=thirty-day&";
@@ -62,12 +82,12 @@ export default function Index() {
     }
 
     if (selectedButton === "upcoming") {
-        url += "booking_event=upcoming&";
-      } else if (selectedButton === "completed") {
-        url += "booking_event=completed&";
-      } else {
-        url += "booking_status=cancelled&";
-      }
+      url += "booking_event=upcoming&";
+    } else if (selectedButton === "completed") {
+      url += "booking_event=completed&";
+    } else {
+      url += "booking_status=cancelled&";
+    }
 
     const main = new Listings();
     main
@@ -95,34 +115,32 @@ export default function Index() {
   };
 
   useEffect(() => {
-      fetching(1);
+    fetching(1);
   }, [selectedButton, fetch]);
 
-  
+
 
   // booking-cancel/42
 
-  const cancelBooking= async(id)=>{
+  const cancelBooking = async (id) => {
     setLoading(true);
-       const main = new Listings();
-      const response = main.Booking_cancel(id)
-      response.then((res)=>{
-      console.log("res",res)
-        if(res?.data?.status === true){
-          setLoading(false);
-          console.log(res?.data?.status)
-          toast.success(res?.data?.message);
-          fetching(page);
-      }else{
+    const main = new Listings();
+    const response = main.Booking_cancel(id)
+    response.then((res) => {
+      if (res?.data?.status === true) {
+        setLoading(false);
+        toast.success(res?.data?.message);
+        fetching(page);
+      } else {
         toast.error(res?.data?.message)
         setLoading(false);
       }
-      }).catch((error)=>{
-        setLoading(false);
+    }).catch((error) => {
+      setLoading(false);
 
-        console.log("eror",error)
-      })
-    
+      console.log("eror", error)
+    })
+
   }
 
 
@@ -186,20 +204,18 @@ export default function Index() {
                         </td>
                         <td className="px-4 py-2">
                           {item?.booking_status !== "cancelled" ? (
-                             <button
-                        className="font-inter text-red-700 font-medium leading-tight text-center w-32 border-red-500 p-3 rounded-full"
-                        onClick={() =>
-                          cancelBooking(item.id)
-                        }
-                      >
-                        {loading ? ("loading") :("Cancel") }
-                          </button>
+                            <button
+                              className="font-inter text-red-700 font-medium leading-tight text-center w-32 border-red-500 p-3 rounded-full"
+                              onClick={() => handleCanceled(item)}
+                            >
+                              {loading ? ("loading") : ("Cancel")}
+                            </button>
                           ) : (
                             <p className="title capitalize">
                               AllReady Taken
-                              </p>
-                          ) }
-                       
+                            </p>
+                          )}
+
                         </td>
                       </tr>
                     </tbody>
@@ -245,31 +261,28 @@ export default function Index() {
         <div className="flex flex-col sm:flex-row justify-between">
           <div className="  flex align-items-center my-4 py-2 space-x-4 upcomming-box">
             <Button
-              design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${
-                selectedButton === "upcoming"
-                  ? "bg-orange-300 text-white"
-                  : "text-black"
-              }`}
+              design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${selectedButton === "upcoming"
+                ? "bg-orange-300 text-white"
+                : "text-black"
+                }`}
               onClick={() => handleGroupChange("upcoming")}
               text={"Upcoming"}
             />
 
             <Button
               text={"Completed"}
-              design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${
-                selectedButton === "completed"
-                  ? "bg-orange-300 text-white"
-                  : "text-black"
-              } `}
+              design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${selectedButton === "completed"
+                ? "bg-orange-300 text-white"
+                : "text-black"
+                } `}
               onClick={() => handleGroupChange("completed")}
             />
 
             <Button
-              design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${
-                selectedButton === "cancelled"
-                  ? "bg-orange-300 text-white"
-                  : "text-black"
-              } `}
+              design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${selectedButton === "cancelled"
+                ? "bg-orange-300 text-white"
+                : "text-black"
+                } `}
               onClick={() => handleGroupChange("cancelled")}
               text={"Cancelled"}
             />
@@ -318,6 +331,37 @@ export default function Index() {
           <BookingTable />
         </div>
       </div>
+
+      {
+        refend ? (
+          showConfirmation && (
+            <Modal isOpen={showConfirmation} onClose={handleCancel}>
+              <p className="text-lg font-semibold mb-4 mt-6">
+                Are you sure you want to cancel your booking?
+              </p>
+              <p className="text-lg font-semibold mb-4 mt-6 capatalize">
+                your Refended  amount this  {refend}
+              </p>
+              <div className="flex justify-center mb-5">
+                <button
+                  className="bg-red-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-red-700"
+                  onClick={handleConfirmation}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400"
+                  onClick={handleCancel}
+                >
+                  Remove
+                </button>
+              </div>
+            </Modal>
+          )
+        ) : (<></>)
+      }
     </AuthLayout>
+
+
   );
 }
