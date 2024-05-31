@@ -496,7 +496,6 @@ export default function Property(props) {
                </div> */}
 
               {/* {typeHere === "entire_place" ?  <> */}
-
               <h2 className="text-3xl text-center mt-4 font-bold mb-8">
                 Which of these best describes your place?
               </h2>
