@@ -472,6 +472,7 @@ export default function Property(props) {
           <div
             className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
           >
+          
             <div
               className={`${step === 0 ? "" : "display-none"
                 } max-w-[100%] m-auto table w-full`}
