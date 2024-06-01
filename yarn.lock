@@ -2579,7 +2579,7 @@
     "@react-types/shared" "^3.22.1"
     "@swc/helpers" "^0.5.0"
 
-"@react-google-maps/api@^2.13.1":
+"@react-google-maps/api@^2.19.3":
   version "2.19.3"
   resolved "https://registry.npmjs.org/@react-google-maps/api/-/api-2.19.3.tgz"
   integrity sha512-jiLqvuOt5lOowkLeq7d077AByTyJp+s6hZVlLhlq7SBacBD37aUNpXBz2OsazfeR6Aw4a+9RRhAEjEFvrR1f5A==

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef,useCallback } from "react";
 import Listing from "../../api/Listing";
 import Router, { useRouter } from "next/router";
 import Image from 'next/image'
@@ -21,6 +21,8 @@ import {
   FaCouch,
 } from "react-icons/fa";
 import Guest from "./Guest";
+import Map from "./Map";
+import MapComponent from "./Map";
 const mapStyles = {
   width: '100%',
   height: '400px',
@@ -39,7 +41,37 @@ const propertyTypes = [
   { value: "breakfast", label: "Bed & Breakfast" },
 ];
 
+const mapContainerStyle = {
+width: "100%",
+height: "450px",
+};
+
+
+
+
+const libraries = ['places'];
+
 export default function Property(props) {
+
+  const [coordinates, setCoordinates] = useState({ });
+  console.log("coordinates",coordinates)
+  console.log("coordinates.lat",coordinates.lat)
+
+  const onMapLoad = useCallback((map) => {
+    mapRef.current = map;
+  }, []);
+
+
+  const center = coordinates;
+  console.log(center, "center")
+  const [markerPosition, setMarkerPosition] = useState(center);
+  const mapRef = useRef();
+
+
+
+
+
+  
   const { isEdit, p, onClose, fetchProperties } = props;
   const {
     uuid,
@@ -58,6 +90,13 @@ export default function Property(props) {
     property_image, status
   } = p ? p : {};
 
+
+  const onMarkerDragEnd = useCallback((event) => {
+    const newLat = event.latLng.lat();
+    const newLng = event.latLng.lng();
+    setMarkerPosition({ lat: newLat, lng: newLng });
+    console.log("New position: ", { lat: newLat, lng: newLng });
+  }, []);
   console.log("p", p)
   const router = useRouter();
   const [step, setStep] = useState(step_completed || 0);
@@ -244,6 +283,10 @@ export default function Property(props) {
               locationData = response.data;
               setLocationupdate(locationData?.address);
             }
+            setCoordinates({
+              lat: latitude.toString(),
+              long: longitude.toString(),
+            })
             setAddress({
               location: locationData.display_name,
               latitude: latitude.toString(),
@@ -271,6 +314,9 @@ export default function Property(props) {
       );
     }
   };
+
+
+
 
   const fetchLocation = async () => {
     const formattedAddress = `${address.street_address}, ${address.nearby}, ${address.district}, ${address.city}, ${address.state}, ${address.pin}`;
@@ -397,7 +443,10 @@ export default function Property(props) {
   const handleEditImage = () => {
     setStep(5)
   };
-
+  const defaultCenter = {
+    lat: 37.7749, // Default latitude
+    lng: -122.4194, // Default longitude
+  };
 
 
 
@@ -728,7 +777,9 @@ export default function Property(props) {
                     referrerPolicy="no-referrer-when-downgrade"
                     title="Google Map"
                   ></iframe>
+
                 </div>
+                <MapComponent center={defaultCenter} height="600px" zoom={14} />
               </div>
             </div>
             <div className={`${step === 3 ? "" : "display-none"}`}>
