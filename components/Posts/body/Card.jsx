@@ -44,8 +44,6 @@ const Card = ({ post }) => {
           src={post?.property_image[0]?.image_url}
           alt="Property cover image"
         />
-
-        
         <div className="flat-info">
           <h2 className="line-limit sm:min-h-[72px]">
             {/* {textResizer(
