@@ -115,6 +115,7 @@ export default function index() {
   const [listings, setListings] = useState([]);
 
   async function fetchLists() {
+   
     setloading(true);
     let url = "";
     if(lowPrice!=null){
@@ -143,8 +144,27 @@ export default function index() {
     main
       .PropertyListing(url)
       .then((r) => {
+        const data = r?.data?.data;
+        let filteredListings = [];
+  
+        if (Array.isArray(data)) {
+          data.forEach(item => {
+            if (item?.status === 1 &&  item?.step_completed === 9) {
+              console.log("item",item)
+              filteredListings.push(item);
+            }
+          });
+        }
+  
+        if (filteredListings.length > 0) {
+          setListings(filteredListings);
+          console.log(filteredListings);
+        } else {
+          console.log("No listings match the status and step conditions.");
+        }
+        
         setloading(false);
-        setListings(r?.data?.data);
+     
       })
       .catch((err) => {
         setloading(false);

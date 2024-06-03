@@ -7,13 +7,11 @@ import Nodata from "../hook/NoRecord";
 import userprofile from "../../../public/admin/userprofile.png";
 import Link from "next/link";
 import { formatMultiPrice } from "../../../hooks/ValueData";
-
 export default function Index() {
   const [loading, setLoading] = useState(false);
   const [content, setContent] = useState([]);
   const [page, setPage] = useState(1);
   const [hasmore, setHasMore] = useState(true);
-
   // const fetchData = async (pg) => {
   //   setLoading(true);
   //   try {
@@ -34,9 +32,6 @@ export default function Index() {
   //     setLoading(false);
   //   }
   // };
-
-
-
   function fetchData(pg) {
     setLoading(true);
     const main = new Listing();

@@ -73,7 +73,7 @@ export default function Index() {
       console.error("Error deleting property:", error);
     });
   };
-
+  // const [step, setStep] = useState(step_completed === 9 ? 0 : step_completed);
   const handleConfirmation = () => {
     deleteProperty(selectedProperty);
     setShowConfirmation(false);
