@@ -3,7 +3,6 @@ import Heart from "../../../public/_svgs/Heart";
 import LeftArrow2 from "../../../public/_svgs/LeftArrow2";
 import RightArrow from "../../../public/_svgs/RightArrow";
 import Times from "../../../public/_svgs/Times";
-import Image from "next/image";
 
 const ImageViewer = ({ selectedImage, isSaved, images, setImageViewer }) => {
   console.log("selectedImage",selectedImage)
