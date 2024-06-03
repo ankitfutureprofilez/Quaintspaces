@@ -74,63 +74,7 @@ export default function Test1() {
     setImages(updatedImages);
   };
 
-  const DropdownMenu = ({ index, isFirst, isLast }) => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const toggleDropdown = () => {
-      setIsOpen(!isOpen);
-    };
-
-    const handleActionClick = (action) => {
-      handleAction(action, index);
-      setIsOpen(false);
-    };
-
-    return (
-      <div className="relative">
-        <button
-          onClick={toggleDropdown}
-          className="bg-white text-xl text-black rounded-lg px-3 py-1 mx-1 mt-1 shadow-lg"
-        >
-          :
-        </button>
-        {isOpen && (
-          <ul className="absolute text-sm right-0 w-32 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
-            <li
-              className="cursor-pointer px-2 py-2 hover:bg-gray-200"
-              onClick={() => handleActionClick("remove")}
-            >
-              Remove
-            </li>
-            {!isFirst && (
-              <>
-                <li
-                  className="cursor-pointer px-2 py-2 hover:bg-gray-200"
-                  onClick={() => handleActionClick("makeCover")}
-                >
-                  Make Cover
-                </li>
-                <li
-                  className="cursor-pointer px-2 py-2 hover:bg-gray-200"
-                  onClick={() => handleActionClick("moveForward")}
-                >
-                  Move Forward
-                </li>
-              </>
-            )}
-            {!isLast && (
-              <li
-                className="cursor-pointer px-2 py-2 hover:bg-gray-200"
-                onClick={() => handleActionClick("moveBackward")}
-              >
-                Move Backward
-              </li>
-            )}
-          </ul>
-        )}
-      </div>
-    );
-  };
+ 
 
   return (
     <div className={"max-w-[600px] m-auto"}>

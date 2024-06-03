@@ -309,9 +309,9 @@ const Book = () => {
     record.append("property_uid", listingID);
     record.append("check_in", infos.checkin);
     record.append("check_out", infos.checkout);
-    // record.append("adults", guests?.adults?.value);
-    // record.append("children", guests?.children?.value);
-    record.append("guests", guests?.adults?.value + guests?.children?.value);
+    record.append("adults", guests?.adults?.value);
+    record.append("children", guests?.children?.value);
+    // record.append("guests", guests?.adults?.value + guests?.children?.value);
     record.append("doc_type", formData.selectOption);
     record.append("front_doc", formData.fornt);
     record.append("no_of_pet", guests?.pets?.value);

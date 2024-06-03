@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef,useCallback } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import Listing from "../../api/Listing";
 import Router, { useRouter } from "next/router";
 import Image from 'next/image'
@@ -42,8 +42,8 @@ const propertyTypes = [
 ];
 
 const mapContainerStyle = {
-width: "100%",
-height: "450px",
+  width: "100%",
+  height: "450px",
 };
 
 
@@ -53,9 +53,9 @@ const libraries = ['places'];
 
 export default function Property(props) {
 
-  const [coordinates, setCoordinates] = useState({ });
-  console.log("coordinates",coordinates)
-  console.log("coordinates.lat",coordinates.lat)
+  const [coordinates, setCoordinates] = useState({});
+  console.log("coordinates", coordinates)
+  console.log("coordinates.lat", coordinates.lat)
 
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
@@ -71,7 +71,7 @@ export default function Property(props) {
 
 
 
-  
+
   const { isEdit, p, onClose, fetchProperties } = props;
   const {
     uuid,
@@ -91,17 +91,81 @@ export default function Property(props) {
   } = p ? p : {};
 
 
-  const onMarkerDragEnd = useCallback((event) => {
-    const newLat = event.latLng.lat();
-    const newLng = event.latLng.lng();
-    setMarkerPosition({ lat: newLat, lng: newLng });
-    console.log("New position: ", { lat: newLat, lng: newLng });
-  }, []);
+  const [images, setImages] = useState([]);
+  const [dragId, setDragId] = useState("");
+
+  const handleFileChange = async (e) => {
+    let files = Array.from(e?.target?.files);
+    setImages([...images, ...files]);
+  };
+
+  const removeImage = (f) => {
+    const filteredImages = images.filter((file) => file !== f);
+    setImages(filteredImages);
+  };
+
+  const moveImageToFront = (index) => {
+    const updatedImages = [...images];
+    const [movedImage] = updatedImages?.splice(index, 1);
+    updatedImages?.unshift(movedImage);
+    setImages(updatedImages);
+  };
+
+  const moveImageBackward = (index) => {
+    if (index < images?.length - 1) {
+      const updatedImages = [...images];
+      [updatedImages[index], updatedImages[index + 1]] = [
+        updatedImages[index + 1],
+        updatedImages[index],
+      ];
+      setImages(updatedImages);
+    }
+  };
+
+  const moveImageForward = (index) => {
+    if (index > 0) {
+      const updatedImages = [...images];
+      [updatedImages[index], updatedImages[index - 1]] = [
+        updatedImages[index - 1],
+        updatedImages[index],
+      ];
+      setImages(updatedImages);
+    }
+  };
+
+  const handleAction = (action, index) => {
+    if (action === "remove") removeImage(images[index]);
+    if (action === "makeCover") moveImageToFront(index);
+    if (action === "moveForward") moveImageForward(index);
+    if (action === "moveBackward") moveImageBackward(index);
+  };
+
+  const handleDrag = (ev) => {
+    setDragId(ev?.currentTarget?.id);
+  };
+
+  const handleOver = (ev) => {
+    ev.preventDefault();
+  };
+
+  const handleDrop = (ev) => {
+    ev.preventDefault();
+    const dragImage = images?.find((image) => image.name === dragId);
+    const dropImage = images?.find(
+      (image) => image.name === ev.currentTarget.id
+    );
+    const dragIndex = images?.indexOf(dragImage);
+    const dropIndex = images?.indexOf(dropImage);
+    const updatedImages = [...images];
+    updatedImages?.splice(dragIndex, 1);
+    updatedImages?.splice(dropIndex, 0, dragImage);
+    setImages(updatedImages);
+  };
+
   console.log("p", p)
   const router = useRouter();
   const [step, setStep] = useState(step_completed || 0);
   const [Loading, setLoading] = useState(false);
-  const [images, setImages] = useState([]);
   const [PType, setPType] = useState(properties_type || "flat");
   const lstring = location ? JSON.parse(location.replace('/\\"/g', '"')) : null;
   const l = JSON?.parse(lstring);
@@ -150,19 +214,19 @@ export default function Property(props) {
     setItem({ ...item, [name]: value });
   };
 
-  const handleFileChange = async (e) => {
-    let files = Array.from(e.target.files);
-    let arr = [];
-    files.forEach((element) => {
-      arr.push(element);
-    });
-    setImages([...images, ...arr]);
-  };
+  // const handleFileChange = async (e) => {
+  //   let files = Array.from(e.target.files);
+  //   let arr = [];
+  //   files.forEach((element) => {
+  //     arr.push(element);
+  //   });
+  //   setImages([...images, ...arr]);
+  // };
 
-  const removeImage = (f) => {
-    const filter = images && images?.filter((file, index) => file !== f);
-    setImages(filter);
-  };
+  // const removeImage = (f) => {
+  //   const filter = images && images?.filter((file, index) => file !== f);
+  //   setImages(filter);
+  // };
   function stringToArray(inputString) {
     return inputString.split(",");
   }
@@ -432,17 +496,67 @@ export default function Property(props) {
       });
   }
 
+  const DropdownMenu = ({ index, isFirst, isLast }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleDropdown = () => {
+      setIsOpen(!isOpen);
+    };
+
+    const handleActionClick = (action) => {
+      handleAction(action, index);
+      setIsOpen(false);
+    };
+
+    return (
+      <div className="relative">
+        <button
+          onClick={toggleDropdown}
+          className="bg-white text-xl text-black rounded-lg px-3 py-1 mx-1 mt-1 shadow-lg"
+        >
+          :
+        </button>
+        {isOpen && (
+          <ul className="absolute text-sm right-0 w-32 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+            <li
+              className="cursor-pointer px-2 py-2 hover:bg-gray-200"
+              onClick={() => handleActionClick("remove")}
+            >
+              Remove
+            </li>
+            {!isFirst && (
+              <>
+                <li
+                  className="cursor-pointer px-2 py-2 hover:bg-gray-200"
+                  onClick={() => handleActionClick("makeCover")}
+                >
+                  Make Cover
+                </li>
+                <li
+                  className="cursor-pointer px-2 py-2 hover:bg-gray-200"
+                  onClick={() => handleActionClick("moveForward")}
+                >
+                  Move Forward
+                </li>
+              </>
+            )}
+            {!isLast && (
+              <li
+                className="cursor-pointer px-2 py-2 hover:bg-gray-200"
+                onClick={() => handleActionClick("moveBackward")}
+              >
+                Move Backward
+              </li>
+            )}
+          </ul>
+        )}
+      </div>
+    );
+  };
+
   useEffect(() => { }, [images]);
   const [propertyDuplicated, setpropertyDuplicated] = useState(false);
-  const [selectedEditOption, setSelectedEditOption] = useState(null);
-
-  const handleEditEntireProperty = () => {
-    setStep(0)
-  };
-
-  const handleEditImage = () => {
-    setStep(5)
-  };
+ 
   const defaultCenter = {
     lat: 37.7749, // Default latitude
     lng: -122.4194, // Default longitude
@@ -458,7 +572,9 @@ export default function Property(props) {
       // .property-type:checked + label h2 { color :#000 !important;border-color:#000 !important;}
     `}</style>
 
-      {isEdit ? (
+
+
+{isEdit ? (
         !propertyDuplicated ? (
           <>
           <div
@@ -515,14 +631,25 @@ export default function Property(props) {
       )}
 
 
+<>
+         
+{  isEdit && step >= 8 ? (
+          <> </>
+        ) : (
+          <div className="flex justify-end mt-5">
+            <button
+              onClick={handleSubmit}
+              className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+            >
+              {Loading ? "Processing..." : "Save/Exit"}
+            </button>
+          </div>
+        )
+      }
 
-      <div className={`w-full  flex items-center justify-center px-6 py-8 `}>
-        <div className="max-w-4xl w-full space-y-8 w-full ">
+          </>
+
           <div
-            className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
-          >
-          
-            <div
               className={`${step === 0 ? "" : "display-none"
                 } max-w-[100%] m-auto table w-full`}
             >
@@ -606,8 +733,15 @@ export default function Property(props) {
               {/* </> : '' } */}
             </div>
 
+  
 
 
+
+      <div className={`w-full  flex items-center justify-center px-6 py-8 `}>
+        <div className="max-w-4xl w-full space-y-8 w-full ">
+          <div
+            className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
+          >
             <div
               className={`${step === 1 ? "" : "display-none"
                 } max-w-[100%] m-auto table w-full`}
@@ -779,7 +913,6 @@ export default function Property(props) {
                   ></iframe>
 
                 </div>
-                <MapComponent center={defaultCenter} height="600px" zoom={14} />
               </div>
             </div>
             <div className={`${step === 3 ? "" : "display-none"}`}>
@@ -805,11 +938,11 @@ export default function Property(props) {
                 changes later.
               </p>
 
-              {isEdit ? (
-                <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
+              <div className={"max-w-[600px] m-auto"}>
+                <div className="flex items-center justify-center w-full mt-5 mb-4 justify-center">
                   <label
                     htmlFor="dropzone-file"
-                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
+                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer"
                   >
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
                       <Add size="100" color="#ccc" />
@@ -817,7 +950,7 @@ export default function Property(props) {
                         <span className="font-semibold">Click to upload</span>
                       </p>
                       <p className="text-normal text-gray-500 text-gray-400">
-                        Choose atleast 5 images
+                        Choose at least 5 images
                       </p>
                       <p className="text-normal text-gray-500 text-gray-400">
                         (jpg, jpeg, png, gif, bmp, tif, tiff, svg, webp, avif)
@@ -835,37 +968,66 @@ export default function Property(props) {
                     />
                   </label>
                 </div>
-              ) : (
-                <div className="flex items-center justify-center w-full mt-5 mb-4   justify-center">
-                  <label
-                    htmlFor="dropzone-file"
-                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  "
-                  >
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <Add size="100" color="#ccc" />
-                      <p className="mb-2 text-lg text-gray-500 text-gray-400">
-                        <span className="font-semibold">Click to upload</span>
-                      </p>
-                      <p className="text-normal text-gray-500 text-gray-400">
-                        Choose atleast 5 images
-                      </p>
-                      <p className="text-normal text-gray-500 text-gray-400">
-                        (jpg, jpeg, png, gif, bmp, tif, tiff, svg, webp, avif)
-                      </p>
-                    </div>
-                    <input
-                      id="dropzone-file"
-                      type="file"
-                      className="hidden"
-                      accept=".jpg, .jpeg, .png, .gif, .bmp, .tif, .tiff, .svg, .webp, .avif"
-                      onChange={handleFileChange}
-                      name="images"
-                      required
-                      multiple
-                    />
-                  </label>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
+                  {isEdit ? (
+                    images &&
+                    images.map((file, index) => (
+                      <div key={index} className="relative">
+                        <Image
+                          src={URL.createObjectURL(file)}
+                          width={200}
+                          height={200}
+                          alt={`Preview ${index}`}
+                          className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                          onLoad={() => URL.revokeObjectURL(file)}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeImage(file)}
+                          className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ))
+                  ) : (
+                    images &&
+                    images.map((file, index) => (
+                      <div
+                        key={index}
+                        id={file.name}
+                        draggable
+                        onDragStart={handleDrag}
+                        onDragOver={handleOver}
+                        onDrop={handleDrop}
+                        className="relative"
+                      >
+                        <Image
+                          src={URL.createObjectURL(file)}
+                          width={200}
+                          height={200}
+                          alt={`Preview ${index}`}
+                          className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                          onLoad={() => URL.revokeObjectURL(file)}
+                        />
+                        {index === 0 && (
+                          <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
+                            <p className="text-xs text-gray-700">Cover Letter</p>
+                          </div>
+                        )}
+                        <div className="absolute right-2 top-2">
+                          <DropdownMenu
+                            index={index}
+                            isFirst={index === 0}
+                            isLast={index === images.length - 1}
+                          />
+                        </div>
+                      </div>
+                    ))
+                  )}
                 </div>
-              )}
+              </div>
+
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4  mt-16 ">
                 {isEdit
@@ -889,26 +1051,6 @@ export default function Property(props) {
                   ))
                   : ""}
 
-                {images &&
-                  images.map((file, index) => (
-                    <div key={index} className="relative">
-                      <Image
-                        src={URL.createObjectURL(file)}
-                        width={200}
-                        height={200}
-                        alt={`Preview ${index}`}
-                        className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
-                        onLoad={() => URL.revokeObjectURL(file)}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeImage(file)}
-                        className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  ))}
               </div>
             </div>
             <div className={`${step === 6 ? "" : "display-none"}`}>
@@ -1079,7 +1221,6 @@ export default function Property(props) {
 
               <div className="max-w-[100%] m-auto w-full mt-10">
                 <h2 className="text-2xl font-bold mb-4 capitalize">Please select an option</h2>
-
                 <div className="flex items-center space-x-4 mb-8">
                   <label className="flex items-center space-x-2 text-xl font-normal   ">
                     <input
@@ -1107,12 +1248,10 @@ export default function Property(props) {
 
             <div className={`${step === 7 ? "" : "display-none"}`}>
               <CancelPolicy showFirm={showFirm} setShowFirm={setShowFirm} setShowFlexible={setShowFlexible} selectedPolicy={selectedPolicy} setSelectedPolicy={setSelectedPolicy} showFlexible={showFlexible} longTermPolicy={longTermPolicy} setLongTermPolicy={setLongTermPolicy} />
-
             </div>
 
             <div className={`${step === 8 ? "" : "display-none"}`}>
               <HouseRules petsAllowed={petsAllowed} setPetsAllowed={setPetsAllowed} quietHours={quietHours} setEventsAllowed={setEventsAllowed} setQuietHours={setQuietHours} eventsAllowed={eventsAllowed} PhotographyAllowed={PhotographyAllowed} setPhotographyAllowed={setPhotographyAllowed} smokingAllowed={smokingAllowed} setSmokingAllowed={setSmokingAllowed} />
-
               <div className="flex flex-col  py-4">
                 <label htmlFor="directions" className="block font-medium text-gray-700">
                   Additonal Rules
@@ -1221,10 +1360,8 @@ export default function Property(props) {
               )}
             </div>
           </div>
-
         </div>
       </div>
-
     </>
   );
 }
