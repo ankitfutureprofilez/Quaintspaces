@@ -94,8 +94,8 @@ const Book = () => {
       min: 0,
     },
   });
-  console.log("infos", infos);
-  console.log("guests", guests);
+  // console.log("infos", infos);
+  // console.log("guests", guests);
 
   useEffect(() => {
     const url = router.query;
@@ -162,14 +162,12 @@ const Book = () => {
     }
   };
 
-  console.log();
-
   useEffect(() => {
     if (infos.checkout && infos.checkin && listing) {
       let calculatedPriceRate =
         +listing.price *
         differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
-
+        calculatedPriceRate += listing?.cleaning_fee;
       if (listing?.guests < guests?.adults?.value + guests?.children?.value) {
         calculatedPriceRate +=
           (guests?.adults?.value +
@@ -177,12 +175,11 @@ const Book = () => {
             listing?.guests) *
           listing?.extra_guest_fee;
         }
-        console.log("Hello")
       if(guests?.pets?.value>0)
         {
           calculatedPriceRate += guests?.pets?.value * listing?.pet_fee;
         }
-      setPriceRate(formatMultiPrice(calculatedPriceRate));
+      setPriceRate(calculatedPriceRate);
     } else {
       setPriceRate(0);
     }
@@ -252,12 +249,7 @@ const Book = () => {
     const main = new Listings();
     const record = new FormData();
     record.append(
-      "price",
-      infos.checkout &&
-        infos.checkin &&
-        +listing?.price *
-          differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
-    );
+      "price", pricerate);
     record.append("currency", "INR");
     record.append("payment_date", formData?.date);
 
@@ -317,8 +309,9 @@ const Book = () => {
     record.append("property_uid", listingID);
     record.append("check_in", infos.checkin);
     record.append("check_out", infos.checkout);
-    record.append("adults", guests?.adults?.value);
-    record.append("children", guests?.children?.value);
+    // record.append("adults", guests?.adults?.value);
+    // record.append("children", guests?.children?.value);
+    record.append("guests", guests?.adults?.value + guests?.children?.value);
     record.append("doc_type", formData.selectOption);
     record.append("front_doc", formData.fornt);
     record.append("no_of_pet", guests?.pets?.value);
@@ -596,6 +589,16 @@ const Book = () => {
                     </span>
                   </div>
                 </div>
+                <div className="flex gap-3 mt-2">
+                  <div className="flex items-center justify-between w-full">
+                    <span className="block text-blackColor">
+                      Cleaning Fees
+                    </span>
+                    <span className="block text-blackColor font-medium confirm-price">
+                      {formatMultiPrice(listing?.cleaning_fee)}
+                    </span>
+                  </div>
+                </div>
                 {listing?.guests < guests?.adults?.value + guests?.children?.value ? (
                   <div className="flex gap-3 mt-2">
                     <div className="flex items-center justify-between w-full">
@@ -644,7 +647,7 @@ const Book = () => {
               </div>
               <div className="pt-4 flex items-center justify-between confirm-total">
                 <span className="font-bold">Total(INR)</span>
-                <span className="text-md font-medium">{pricerate}</span>
+                <span className="text-md font-medium">{formatMultiPrice(pricerate)}</span>
               </div>
             </div>
           </div>
