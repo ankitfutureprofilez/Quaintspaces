@@ -17,11 +17,13 @@ export default function Index() {
   const [selectedButton, setSelectedButton] = useState("upcoming");
   const [listings, setListings] = useState([]);
   const router = useRouter();
-  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
-  const [selectedBooking, setSelectedBooking] = useState(null);
   const [selectedOption, setSelectedOption] = useState("All Dates");
   const [fetch, setFetch] = useState(false);
+
+
+
   const currentYear = new Date().getFullYear();
+
   const years = Array.from(
     { length: currentYear - 2023 },
     (_, index) => currentYear - index
@@ -30,23 +32,65 @@ export default function Index() {
 
   const [SelectBooking, SetSelectBooking] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
-
   const [refend, setRefend] = useState("")
+  const [houseRule, SetHouseRules] = useState({})
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+
+
+  console.log("houseRule", houseRule)
+
+  const handleHouseRules = (uuid) => {
+    if (!uuid || !uuid.id || !uuid.properties_id) {
+      console.error("Invalid UUID object");
+      return;
+    }
+    handleSubmit({
+      booking_id: uuid.id,
+      property_id: uuid.properties_id,
+    });
+    setIsConfirmOpen(true);
+  };
+
+
+  const handleSubmit = (houseBook) => {
+    const main = new Listings();
+    const response = main.user_house_rule(houseBook);
+    response
+      .then((res) => {
+        console.log("res", res);
+        if (res && res.data && res.data.status) {
+          SetHouseRules(res?.data?.data)
+        }
+      })
+      .catch((error) => {
+        console.log("error", error);
+        toast.error(error.message);
+        if (error.response && error.response.data) {
+          toast.error(error.response.data);
+        }
+        setLoading(false); // Ensure setLoading is defined in your component's state
+      });
+  };
+
+
+
   const handleCanceled = (uuid) => {
-    setRefend(uuid?.refund_amount)
     SetSelectBooking(uuid);
     setShowConfirmation(true);
+    setRefend(uuid?.refund_amount)
   };
 
   const handleConfirmation = () => {
     cancelBooking(SelectBooking?.id);
     setShowConfirmation(false);
   };
+
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
     setFetch(!fetch);
     setIsOpen(false);
   };
+
 
   const openModal = () => {
     setIsOpen(true);
@@ -58,6 +102,7 @@ export default function Index() {
 
   const handleCancel = () => {
     setShowConfirmation(false);
+    setIsConfirmOpen(false);
   };
 
   const handleGroupChange = (buttonType) => {
@@ -119,8 +164,8 @@ export default function Index() {
   }, [selectedButton, fetch]);
 
 
-
   // booking-cancel/42
+
 
   const cancelBooking = async (id) => {
     setLoading(true);
@@ -174,6 +219,7 @@ export default function Index() {
                       <th>Status</th>
                       <th>Price</th>
                       <th>Action</th>
+                      <th>House details</th>
                     </tr>
                   </thead>
                   {listings.map((item, index) => (
@@ -216,6 +262,9 @@ export default function Index() {
                             </p>
                           )}
 
+                        </td>
+                        <td className="px-4 py-2">
+                          <span className="text-4xl ml-1" style={{ cursor: "pointer" }} onClick={() => handleHouseRules(item)}>🛈</span>
                         </td>
                       </tr>
                     </tbody>
@@ -333,32 +382,68 @@ export default function Index() {
       </div>
 
       {
-        refend ? (
-          showConfirmation && (
-            <Modal isOpen={showConfirmation} onClose={handleCancel}>
-              <p className="text-lg font-semibold mb-4 mt-6">
-                Are you sure you want to cancel your booking?
-              </p>
-              <p className="text-lg font-semibold mb-4 mt-6 capatalize">
-                your Refended  amount this  {refend}
-              </p>
-              <div className="flex justify-center mb-5">
-                <button
-                  className="bg-red-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-red-700"
-                  onClick={handleConfirmation}
-                >
-                  Cancel
-                </button>
-                <button
-                  className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400"
-                  onClick={handleCancel}
-                >
-                  Remove
-                </button>
-              </div>
-            </Modal>
-          )
-        ) : (<></>)
+        showConfirmation && (
+          <Modal isOpen={showConfirmation} onClose={handleCancel}>
+            <p className="text-lg font-semibold mb-4 mt-6">
+              Are you sure you want to cancel your booking?
+            </p>
+            <p className="text-lg font-semibold mb-4 mt-6 capatalize">
+              your Refended  amount this  {refend}
+            </p>
+            <div className="flex justify-center mb-5">
+              <button
+                className="bg-red-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-red-700"
+                onClick={handleConfirmation}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400"
+                onClick={handleCancel}
+              >
+                Remove
+              </button>
+            </div>
+          </Modal>
+        )
+      }
+      {
+        isConfirmOpen && (
+          <Modal isOpen={isConfirmOpen} onClose={handleCancel}>
+            <p className="text-lg font-semibold mb-4 mt-6">
+              House Rules
+            </p>
+            <div className="">
+              {(houseRule?.check_in) ?
+                (
+                  <>
+                    <p className="text-sm  font-normal  mb-4 mt-6">
+                      Wifi-Username :- {houseRule?.property_rules?.wifi_username}
+                    </p>
+                    <p className="text-sm  font-normal  mb-4 mt-6 capatalize">
+                      Password :-{houseRule?.property_rules?.wifi_password}
+                    </p>
+
+                    <p className="text-sm  font-normal  mb-4 mt-6">
+                      house manuals :- {houseRule?.property_rules?.house_manuals}
+                    </p>
+                  </>
+                ) : (
+                  <></>
+                )}
+              {(houseRule?.booking_date) ?
+                (
+                  <>
+                    <p className="text-sm  font-normal  mb-4 mt-6">
+                      Direction :-{houseRule?.property_rules?.direction}
+                    </p>
+                  </>
+                ) : (
+                  <h2>sjssj</h2>
+                )}
+            </div>
+          </Modal>
+        )
       }
     </AuthLayout>
 

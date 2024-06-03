@@ -5,15 +5,14 @@ import RightArrow from "../../../public/_svgs/RightArrow";
 import Times from "../../../public/_svgs/Times";
 import Image from "next/image";
 
-
 const ImageViewer = ({ selectedImage, isSaved, images, setImageViewer }) => {
+  console.log("selectedImage",selectedImage)
   const [counter, setCounter] = useState(selectedImage);
   const [currrentImage, setCurrentImage] = useState(images[selectedImage]);
 
   useEffect(() => {
     setCurrentImage(images[counter]);
   }, [counter]);
-
   return (
     <section className="fixed top-0 left-0 w-full h-full z-40 bg-black p-10 select-none">
       <header className="flex items-center justify-between">
