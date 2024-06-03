@@ -36,7 +36,6 @@ class Listings extends Component {
   async BookingHistory(page,data) {
     return Api.get(`/user-booking-history?page=${page}&` + data);
   }
-
   async Booking_cancel(id) {
     return Api.get(`/booking-cancel/${id}`);
   }
@@ -53,7 +52,6 @@ class Listings extends Component {
     return Api.get("/property-list?" + data);
   }
   async PropertyDetail(uuid) {
-    
     return Api.get("/property-details/" + uuid);
   }
   async AddRating(data) {
@@ -62,18 +60,20 @@ class Listings extends Component {
   async GetUserReview(data) {
     return Api.get("/rating-Review-listing/"+ data);
   }
-
   async AllReviews(data, page =1) {
     return Api.get(`/property-Rating/${data}?page=${page}`);
   }
-
   async PaymentHistory(page) {
     return Api.get(`/user-payment-history?page=${page}`);
   }
-
   async user_success_payment(data) {
     return Api.post("/user-success-payment",data);
   }
+  async user_house_rule(data) {
+    return Api.post("/user-house-rule-detail",data);
+  }
+
+  
 
   render() {
     return (
