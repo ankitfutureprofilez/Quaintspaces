@@ -20,12 +20,12 @@ function Modal({ isOpen, onClose, children, width }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="modal-backdrop absolute inset-0 bg-gray-800 opacity-50"></div>
-      <div className={`modal-content bg-white max-h-[90vh] overflow-y-auto px-8 w-full rounded shadow-lg z-50 relative rounded-lg max-w-${width || 'md'}`}>
+      <div className={`modal-content bg-white  overflow-y-auto w-full rounded shadow-lg z-50 relative rounded-lg max-w-${width || 'md'}`}>
         <button onClick={onClose} className="absolute top-0 right-0 m-4 text-gray-600 hover:text-gray-800">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
+            className="h-6 w-6 text-white"
+            
             viewBox="0 0 24 24"
             stroke="currentColor"
           >

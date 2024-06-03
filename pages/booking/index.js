@@ -216,6 +216,7 @@ export default function Index() {
                       <th>Booking Number</th>
                       <th>Title</th>
                       <th>Check In & Out</th>
+                      <th>Check In & Out</th>
                       <th>Status</th>
                       <th>Price</th>
                       <th>Action</th>
@@ -238,11 +239,13 @@ export default function Index() {
                             </div>
                           </div>
                         </td>
-                        <td className="px-4 py-2">{item?.check_in} || {item?.check_out}</td>
+                        <td className="px-4 py-2">{item?.check_in} </td>
+                        <td className="px-4 py-2"> {item?.check_out}</td>
+
                         <td className="px-4 py-2 capitalize">
                           <Button
                             text={`${item?.booking_status}`}
-                            design="font-inter capitalize text-blue-700 font-medium leading-tight text-center w-32 p-3 rounded-full"
+                            design="font-inter capitalize text-blue-700 font-medium leading-tight text-center px-5 p-3 rounded-full"
                           />
                         </td>
                         <td className="px-4 py-2">
@@ -251,7 +254,7 @@ export default function Index() {
                         <td className="px-4 py-2">
                           {item?.booking_status !== "cancelled" ? (
                             <button
-                              className="font-inter text-red-700 font-medium leading-tight text-center w-32 border-red-500 p-3 rounded-full"
+                              className="font-inter text-red-700 font-medium leading-tight text-center px-5 border-red-500 p-3 rounded-full"
                               onClick={() => handleCanceled(item)}
                             >
                               {loading ? ("loading") : ("Cancel")}
@@ -384,11 +387,11 @@ export default function Index() {
       {
         showConfirmation && (
           <Modal isOpen={showConfirmation} onClose={handleCancel}>
-            <p className="text-lg font-semibold mb-4 mt-6">
+            <p className="text-lg text-white font-semibold p-6 py-4 bg-[#c48b58]">
               Are you sure you want to cancel your booking?
             </p>
-            <p className="text-lg font-semibold mb-4 mt-6 capatalize">
-              your Refended  amount this  {refend}
+            <p className="text-xl text-center font-semibold  py-8  capatalize">
+              Your Refended  amount this  <span className="text-green-600">{refend}</span>
             </p>
             <div className="flex justify-center mb-5">
               <button
@@ -410,21 +413,21 @@ export default function Index() {
       {
         isConfirmOpen && (
           <Modal isOpen={isConfirmOpen} onClose={handleCancel}>
-            <p className="text-lg font-semibold mb-4 mt-6">
+            <p className="text-lg text-white font-semibold p-6 py-4 bg-[#c48b58]">
               House Rules
             </p>
-            <div className="">
+            <div className="p-6">
               {(houseRule?.check_in) ?
                 (
                   <>
-                    <p className="text-sm  font-normal  mb-4 mt-6">
+                    <p className="text-sm  font-normal  mb-4 ">
                       Wifi-Username :- {houseRule?.property_rules?.wifi_username}
                     </p>
-                    <p className="text-sm  font-normal  mb-4 mt-6 capatalize">
+                    <p className="text-sm  font-normal  mb-4 capatalize">
                       Password :-{houseRule?.property_rules?.wifi_password}
                     </p>
 
-                    <p className="text-sm  font-normal  mb-4 mt-6">
+                    <p className="text-sm  font-normal  mb-4">
                       house manuals :- {houseRule?.property_rules?.house_manuals}
                     </p>
                   </>
@@ -434,7 +437,7 @@ export default function Index() {
               {(houseRule?.booking_date) ?
                 (
                   <>
-                    <p className="text-sm  font-normal  mb-4 mt-6">
+                    <p className="text-sm  font-normal  mb-4">
                       Direction :-{houseRule?.property_rules?.direction}
                     </p>
                   </>

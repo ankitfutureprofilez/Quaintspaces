@@ -184,7 +184,7 @@ export default function Index() {
           <div className="fixed inset-0 z-50 flex items-center justify-center mt-6 mb-6">
             <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
             <div className="bg-white px-8  rounded shadow-lg z-50 relative rounded-lg max-w-[33%]">
-              <p className="text-lg font-semibold mb-4 mt-6">
+              <p className="text-lg font-semibold mb-4 mt-4">
                 Are you sure you want to delete this property?
               </p>
               <div className="flex justify-center mb-5">
