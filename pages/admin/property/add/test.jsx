@@ -1547,7 +1547,7 @@ Help your place stand out to get booked faster and earn your first reviews.
                 <button
                   type="button"
                   onClick={prevStep}
-                  className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                  className="inline-flex mx-2 justify-center py-3 px-5 border border-gray-300 rounded-xl text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
                 >
                   Back
                 </button>
@@ -1557,7 +1557,7 @@ Help your place stand out to get booked faster and earn your first reviews.
                 <button
                   type="button"
                   onClick={nextStep}
-                  className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 "
+                  className="inline-flex mx-2 justify-center py-3 px-8 border border-gray-300 rounded-xl text-sm font-medium rounded-xl text-white bg-violet-700 hover:bg-blue-700 "
                 >
                   Next
                 </button>
@@ -1565,7 +1565,7 @@ Help your place stand out to get booked faster and earn your first reviews.
                 <button
                   type="submit"
                   onClick={handleSubmit}
-                  className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 "
+                  className="inline-flex mx-2 justify-center py-3 px-8 border border-gray-300 shadow-sm text-sm font-medium rounded-xl text-white bg-violet-700 hover:bg-blue-700 "
                 >
                   {Loading ? "processing.. " : "Submit"}
                 </button>
