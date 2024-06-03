@@ -630,7 +630,7 @@ button.submint-btn {
 }
 
 .booking-table th {
-  padding: 18px
+  padding: 10px
 }
 
 .booking-table tbody tr td:first-child,.booking-table thead tr th:first-child {
@@ -638,7 +638,7 @@ button.submint-btn {
 }
 
 .booking-table td {
-  padding: 30px;
+  padding: 10px;
   text-align: center;
   font-weight: 400;
   color: #3f2a17
@@ -646,7 +646,7 @@ button.submint-btn {
 
 .booking-table td,.booking-table thead tr th {
   font-family: Inter,sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 22px;
   letter-spacing: 0
 }
@@ -812,6 +812,7 @@ button.submint-btn {
 }
 .booking-table {
   min-width: 990px;
+  width: -webkit-fill-available;
 }
 .table-responisve {
   overflow: auto;
