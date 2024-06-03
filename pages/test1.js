@@ -7,7 +7,7 @@ export default function Test1() {
   const [dragId, setDragId] = useState("");
 
   const handleFileChange = async (e) => {
-    let files = Array.from(e.target.files);
+    let files = Array.from(e?.target?.files);
     setImages([...images, ...files]);
   };
 
@@ -18,13 +18,13 @@ export default function Test1() {
 
   const moveImageToFront = (index) => {
     const updatedImages = [...images];
-    const [movedImage] = updatedImages.splice(index, 1);
-    updatedImages.unshift(movedImage);
+    const [movedImage] = updatedImages?.splice(index, 1);
+    updatedImages?.unshift(movedImage);
     setImages(updatedImages);
   };
 
   const moveImageBackward = (index) => {
-    if (index < images.length - 1) {
+    if (index < images?.length - 1) {
       const updatedImages = [...images];
       [updatedImages[index], updatedImages[index + 1]] = [
         updatedImages[index + 1],
@@ -53,7 +53,7 @@ export default function Test1() {
   };
 
   const handleDrag = (ev) => {
-    setDragId(ev.currentTarget.id);
+    setDragId(ev?.currentTarget?.id);
   };
 
   const handleOver = (ev) => {
@@ -62,15 +62,15 @@ export default function Test1() {
 
   const handleDrop = (ev) => {
     ev.preventDefault();
-    const dragImage = images.find((image) => image.name === dragId);
-    const dropImage = images.find(
+    const dragImage = images?.find((image) => image.name === dragId);
+    const dropImage = images?.find(
       (image) => image.name === ev.currentTarget.id
     );
-    const dragIndex = images.indexOf(dragImage);
-    const dropIndex = images.indexOf(dropImage);
+    const dragIndex = images?.indexOf(dragImage);
+    const dropIndex = images?.indexOf(dropImage);
     const updatedImages = [...images];
-    updatedImages.splice(dragIndex, 1);
-    updatedImages.splice(dropIndex, 0, dragImage);
+    updatedImages?.splice(dragIndex, 1);
+    updatedImages?.splice(dropIndex, 0, dragImage);
     setImages(updatedImages);
   };
 
@@ -172,7 +172,7 @@ export default function Test1() {
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
         {images &&
-          images.map((file, index) => (
+          images?.map((file, index) => (
             <div
               key={index}
               id={file.name}

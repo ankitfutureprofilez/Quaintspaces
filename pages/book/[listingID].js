@@ -77,17 +77,6 @@ const Book = () => {
   //   });
   // }, [router.asPath]);
 
-  useEffect(() => {
-    if (infos.checkout && infos.checkin && listing) {
-      const calculatedPriceRate =
-        +listing.price *
-        differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
-      setPriceRate(formatMultiPrice(calculatedPriceRate));
-    } else {
-      setPriceRate(0);
-    }
-  }, [infos.checkout, infos.checkin, listing]);
-
   const [guests, setGuests] = useState({
     adults: {
       value: +infos.adults || 0,
@@ -105,8 +94,8 @@ const Book = () => {
       min: 0,
     },
   });
-  console.log("infos",infos)
-  console.log("guests",guests)
+  console.log("infos", infos);
+  console.log("guests", guests);
 
   useEffect(() => {
     const url = router.query;
@@ -162,30 +151,42 @@ const Book = () => {
       "avif",
     ];
     const formData = e.target.files[0];
-    const type=formData.type?.split('/');
-    if(imageFormats.includes(type[1])){
+    const type = formData.type?.split("/");
+    if (imageFormats.includes(type[1])) {
       setFormData((prevState) => ({
         ...prevState,
         fornt: formData,
       }));
-    }
-    else{
-      toast.error("Invalid Image type! Only jpg, svg, png, avif are accepted")
+    } else {
+      toast.error("Invalid Image type! Only jpg, svg, png, avif are accepted");
     }
   };
 
-  console.log()
+  console.log();
 
   useEffect(() => {
     if (infos.checkout && infos.checkin && listing) {
-      const calculatedPriceRate =
+      let calculatedPriceRate =
         +listing.price *
         differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
+
+      if (listing?.guests < guests?.adults?.value + guests?.children?.value) {
+        calculatedPriceRate +=
+          (guests?.adults?.value +
+            guests?.children?.value -
+            listing?.guests) *
+          listing?.extra_guest_fee;
+        }
+        console.log("Hello")
+      if(guests?.pets?.value>0)
+        {
+          calculatedPriceRate += guests?.pets?.value * listing?.pet_fee;
+        }
       setPriceRate(formatMultiPrice(calculatedPriceRate));
     } else {
       setPriceRate(0);
     }
-  }, [infos.checkout, infos.checkin, listing]);
+  }, [infos.checkout, infos.checkin, listing, guests]);
 
   //   record.append("front_doc", formData.fornt);
   //   record.append("no_of_pet", infos.numberOfPets);
@@ -595,12 +596,56 @@ const Book = () => {
                     </span>
                   </div>
                 </div>
+                {listing?.guests < guests?.adults?.value + guests?.children?.value ? (
+                  <div className="flex gap-3 mt-2">
+                    <div className="flex items-center justify-between w-full">
+                      <div className="flex flex-col">
+                      <span className="block text-blackColor">
+                        Extra Guest Fees
+                      </span>
+                      <span className="block !text-[15px] text-blackColor">
+                      {guests?.adults?.value +
+                          guests?.children?.value -
+                          listing?.guests}
+                        {" x "}
+                        {formatMultiPrice(listing?.extra_guest_fee)}
+                        </span>
+                      </div>
+                      <span className="block text-blackColor font-medium confirm-price">
+                        {formatMultiPrice(
+                          (guests?.adults?.value +
+                            guests?.children?.value -
+                            listing?.guests) *
+                            listing?.extra_guest_fee
+                        )}
+                      </span>
+                    </div>
+                  </div>
+                ) : null}
+                {guests?.pets?.value >0 ? (
+                  <div className="flex gap-3 mt-2">
+                    <div className="flex items-center justify-between w-full">
+                      <div className="flex flex-col">
+                      <span className="block text-blackColor">
+                        Pet Fees
+                      </span>
+                      <span className="block !text-[15px] text-blackColor">
+                      {guests?.pets?.value}
+                        {" x "}
+                        {formatMultiPrice(listing?.pet_fee)}
+                        </span>
+                      </div>
+                      <span className="block text-blackColor font-medium confirm-price">
+                        {formatMultiPrice(guests?.pets?.value * listing?.pet_fee)}
+                      </span>
+                    </div>
+                  </div>
+                ) : null}
               </div>
               <div className="pt-4 flex items-center justify-between confirm-total">
                 <span className="font-bold">Total(INR)</span>
                 <span className="text-md font-medium">{pricerate}</span>
               </div>
-
             </div>
           </div>
           {guestsModel && (
