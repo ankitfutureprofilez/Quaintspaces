@@ -54,6 +54,7 @@ const Card = ({ post }) => {
           )} */}
             {record?.location}
             {/* {post?.location} */}
+            
           </h2>
           <h3 className="line-limit" style={{ WebkitLineClamp: 1 }}>
             {capitalizeFirstLetter(post?.name)}
