@@ -967,13 +967,13 @@ export default function Property(props) {
                     <label className="block mb-2 font-semibold">Check-in window</label>
                     <div className="flex justify-between space-x-4">
                       <div className="w-1/2 relative">
-                        <label className="absolute top-1 left-1 text-xs text-gray-500">
+                        <label className="absolute -top-1 left-1 text-xs text-gray-500">
                           Start time
                         </label>
                         <select
                           value={checkinStart}
                           onChange={(e) => setCheckinStart(e.target.value)}
-                          className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
+                          className="block w-full px-3 py-3 border border-gray-300 bg-white rounded-xl shadow-sm sm:text-sm mt-3"
                         >
                           <option value="00:00:00">12:00 AM</option>
                           <option value="01:00:00">1:00 AM</option>
@@ -1003,13 +1003,13 @@ export default function Property(props) {
                         </select>
                       </div>
                       <div className="w-1/2 relative">
-                        <label className="absolute top-1 left-1 text-xs text-gray-500">
+                        <label className="absolute -top-1 left-1 text-xs text-gray-500">
                           End time
                         </label>
                         <select
                           value={checkinEnd}
                           onChange={(e) => setCheckinEnd(e.target.value)}
-                          className="block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
+                          className="block w-full px-3 py-3 border border-gray-300 bg-white rounded-xl shadow-sm sm:text-sm mt-3"
                         >
                           <option value="flexible">Flexible</option>
                           <option value="00:00">12:00 AM</option>
@@ -1045,7 +1045,7 @@ export default function Property(props) {
                     <select
                       value={checkout}
                       onChange={(e) => setCheckout(e.target.value)}
-                      className="mt-1 block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm sm:text-sm"
+                      className="mt-1 block w-full px-3 py-3 border border-gray-300 bg-white rounded-xl shadow-sm sm:text-sm mt-5"
                     >
                       <option value="00:00:00">12:00 AM</option>
                       <option value="01:00:00">1:00 AM</option>
@@ -1113,7 +1113,7 @@ export default function Property(props) {
             <div className={`${step === 8 ? "" : "display-none"}`}>
               <HouseRules petsAllowed={petsAllowed} setPetsAllowed={setPetsAllowed} quietHours={quietHours} setEventsAllowed={setEventsAllowed} setQuietHours={setQuietHours} eventsAllowed={eventsAllowed} PhotographyAllowed={PhotographyAllowed} setPhotographyAllowed={setPhotographyAllowed} smokingAllowed={smokingAllowed} setSmokingAllowed={setSmokingAllowed} />
 
-              <div className="flex flex-col items-center p-4">
+              <div className="flex flex-col  py-4">
                 <label htmlFor="directions" className="block font-medium text-gray-700">
                   Additonal Rules
                 </label>
@@ -1130,9 +1130,9 @@ export default function Property(props) {
             </div>
 
             <div className={`${step === 9 ? "" : "display-none"
-              } max-w-[100%] m-auto table w-full`}>
+              } max-w-[100%] m-auto table w-full p-8 rounded-2xl border border-slate-400`}>
 
-              <div className="flex flex-col items-center p-4">
+              <div className="flex flex-col mb-2">
                 <label htmlFor="directions" className="block font-medium text-gray-700">
                   Directions
                 </label>
@@ -1146,7 +1146,7 @@ export default function Property(props) {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="flex flex-col items-center p-4">
+              <div className="flex flex-col mb-2">
                 <label htmlFor="directions" className="block font-medium text-gray-700">
                   House Manual
                 </label>
@@ -1154,14 +1154,14 @@ export default function Property(props) {
                   id="manual"
                   name="housemanual"
                   rows={5}
-                  className="shadow-sm p-4 w-4/5 mt-1 block sm:text-sm border rounded-xl"
+                  className="shadow-sm p-4 w-full mt-1 block sm:text-sm border rounded-xl"
                   placeholder="Enter some instructions for your guest..."
                   value={item?.housemanual}
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="flex flex-col items-center p-4">
-                <h1 className="capitalize text-lg font-bold my-8">Please enter your wifi details</h1>
+              <div className="flex flex-col  ">
+                <h1 className="capitalize text-lg font-bold my-4">Please enter your wifi details</h1>
                 <label htmlFor="directions" className="block font-medium text-gray-700 my-2">
                   Wifi Name
                 </label>
@@ -1169,7 +1169,7 @@ export default function Property(props) {
                   id="wifi"
                   name="wifi"
                   type="text"
-                  className="shadow-sm p-4 w-4/5 mt-1 block sm:text-sm border rounded-xl"
+                  className="shadow-sm p-4 w-full mt-1 block sm:text-sm border rounded-xl"
                   placeholder="Enter your wifi name..."
                   value={item?.wifi}
                   onChange={handleInputChange}
@@ -1181,7 +1181,7 @@ export default function Property(props) {
                   id="wifiPassword"
                   name="wifiPassword"
                   type="password"
-                  className="shadow-sm p-4 w-4/5 mt-1 block sm:text-sm border rounded-xl"
+                  className="shadow-sm p-4 w-full mt-1 block sm:text-sm border rounded-xl"
                   placeholder="Enter your wifi Password here..."
                   value={item?.wifiPassword}
                   onChange={handleInputChange}
@@ -1196,7 +1196,7 @@ export default function Property(props) {
                 <button
                   type="button"
                   onClick={prevStep}
-                  className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                  className="inline-flex mx-2 justify-center py-3 px-8 border border-gray-300 shadow-sm text-sm font-medium rounded-xl text-gray-700 bg-white hover:bg-gray-50"
                 >
                   Back
                 </button>
@@ -1206,7 +1206,7 @@ export default function Property(props) {
                 <button
                   type="button"
                   onClick={nextStep}
-                  className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 "
+                  className="inline-flex mx-2 justify-center py-3 px-8 border border-gray-300 shadow-sm text-sm font-medium rounded-xl text-white bg-violet-700 hover:bg-blue-700 "
                 >
                   Next
                 </button>
@@ -1214,7 +1214,7 @@ export default function Property(props) {
                 <button
                   type="submit"
                   onClick={handleSubmit}
-                  className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 "
+                  className="inline-flex mx-2 justify-center py-3 px-8 border border-gray-300 shadow-sm text-sm font-medium rounded-xl text-white bg-violet-700 hover:bg-blue-700 "
                 >
                   {Loading ? "processing.. " : "Submit"}
                 </button>
