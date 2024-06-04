@@ -3,13 +3,13 @@ import Element from "../element";
 import Listing from "../api/Listing";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import Property from "./add/Property"
-import Modal from "../hook/Modal"
-import NoRecord from "../hook/NoRecord"
+import Property from "./add/Property";
+import Modal from "../hook/Modal";
+import NoRecord from "../hook/NoRecord";
 import AdminLayout from "../AdminLayout";
-import Loading from "../hook/loading"
+import Loading from "../hook/loading";
 import { useRouter } from "next/router";
-import { formatMultiPrice } from "../../../hooks/ValueData"
+import { formatMultiPrice } from "../../../hooks/ValueData";
 
 export default function Index() {
   const router = useRouter();
@@ -26,7 +26,7 @@ export default function Index() {
     main.Adminproperty()
       .then((res) => {
         let properties = res?.data?.data;
-        console.log("properties", properties)
+        console.log("properties", properties);
         if (properties) {
           setRecord(properties);
           setIsLoading(false);
@@ -39,7 +39,7 @@ export default function Index() {
         console.error("Error fetching properties:", error);
         setIsLoading(false);
       });
-  }
+  };
 
   useEffect(() => {
     fetchProperties();
@@ -58,16 +58,18 @@ export default function Index() {
 
   const deleteProperty = (uuid) => {
     const main = new Listing();
-    main.propertydelete(uuid).then((response) => {
-      if (response.data.status === true) {
-        toast.success(response.data.message);
-        setRecord(record.filter((item) => item.uuid !== uuid));
-      } else {
-        toast.error(response.data.message);
-      }
-    }).catch((error) => {
-      console.error("Error deleting property:", error);
-    });
+    main.propertydelete(uuid)
+      .then((response) => {
+        if (response.data.status === true) {
+          toast.success(response.data.message);
+          setRecord(record.filter((item) => item.uuid !== uuid));
+        } else {
+          toast.error(response.data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting property:", error);
+      });
   };
 
   const handleConfirmation = () => {
@@ -80,12 +82,7 @@ export default function Index() {
   };
 
   const handleEditEntireProperty = (uuid) => {
-router.push(`/admin/property/edit/${uuid}`)
-  };
-
-  const handleEditImage = () => {
-    setStep(2);
-    setIsPopupOpen(true);
+    router.push(`/admin/property/edit/${uuid}`);
   };
 
   return (
@@ -108,11 +105,11 @@ router.push(`/admin/property/edit/${uuid}`)
                     />
                     <button className="absolute text-xs top-3 right-3 bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-700" onClick={() => handleDelete(item?.uuid)}>Remove</button>
                     {item?.step_completed !== 9 ? (
-                      <button className="absolute text-xs top-3 left-3 bg-indigo-600 text-white px-3 py-2 rounded-md " >
+                      <button className="absolute text-xs top-3 left-3 bg-indigo-600 text-white px-3 py-2 rounded-md">
                         In Progress
                       </button>
                     ) : (
-                      <button className="absolute text-xs top-3 left-3 bg-green-600 text-white px-3 py-2 rounded-md " >
+                      <button className="absolute text-xs top-3 left-3 bg-green-600 text-white px-3 py-2 rounded-md">
                         Completed
                       </button>
                     )}
@@ -125,29 +122,18 @@ router.push(`/admin/property/edit/${uuid}`)
                         {item?.type ? `${item?.type?.replace("_", " ")} .` : ""}
                         {item.bedrooms} Bedrooms· {item.beds} Beds
                       </p>
-                      <p className="text-sm text-gray-600 mt-3 font-bold">{
-                        formatMultiPrice(item?.price)
-                      } Night</p>
+                      <p className="text-sm text-gray-600 mt-3 font-bold">
+                        {formatMultiPrice(item?.price)} Night
+                      </p>
                       <div className="mt-4">
                         <Link href={`/admin/property/${item?.uuid}`}>
-                          <div className="text-normal text-underline btn sort rounded text-gray-500 w-full mt-3 px-5 py-2 cursor-pointer font-medium 0" >Public View</div>
+                          <div className="text-normal text-underline btn sort rounded text-gray-500 w-full mt-3 px-5 py-2 cursor-pointer font-medium">
+                            Public View
+                          </div>
                         </Link>
-                        <button className="text-normal text-underline btn sort rounded text-gray-500 px-5 py-2 w-full mt-3 cursor-pointer font-medium 0" onClick={() => handleEditEntireProperty(item?.uuid)}>Edit Property</button>
-                        {isPopupOpen && selectedProperty === item.uuid && (
-                          <>
-                            <div className="fixed inset-0 z-50 bg-opacity-50"></div>
-                            <div className="fixed updateproperty bg-white inset-0 flex justify-center items-center py-16 overflow-x-auto">
-                              <div className="fixed top-4 right-4 p-2 cursor-pointer" onClick={() => togglePopup(null)}>&times; Close</div>
-                              <div className="rounded-lg flex flex-col items-center justify-center p-8 property-popup">
-                                {isPropertyLoading ? (
-                                  <Loading />
-                                ) : (
-                                  <Property fetchProperties={fetchProperties} isEdit={true} p={item} onClose={() => togglePopup(null)} step={step} />
-                                )}
-                              </div>
-                            </div>
-                          </>
-                        )}
+                        <button className="text-normal text-underline btn sort rounded text-gray-500 px-5 py-2 w-full mt-3 cursor-pointer font-medium" onClick={() => togglePopup(item?.uuid)}>
+                          Edit Property
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -182,9 +168,28 @@ router.push(`/admin/property/edit/${uuid}`)
             </div>
           </div>
         )}
+        {isPopupOpen && (
+          <Modal isOpen={isPopupOpen} onClose={togglePopup}>
+            <div className="p-6">
+              <h2 className="text-lg font-medium mb-4">Edit Property</h2>
+              <button
+                className="border-gray border-2 px-8 py-4 rounded-full w-full capitalize mb-4"
+                onClick={() => {
+                  router.push("/admin/property/add");
+                }}
+              >
+                Add New Property
+              </button>
+              <button
+                className="border-gray border-2 px-8 py-4 rounded-full w-full capitalize"
+                onClick={() => handleEditEntireProperty(selectedProperty)}
+              >
+                Edit Entire Property
+              </button>
+            </div>
+          </Modal>
+        )}
       </AdminLayout>
-
-     
     </>
   );
 }

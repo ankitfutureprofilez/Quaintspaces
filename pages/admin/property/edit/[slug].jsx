@@ -37,14 +37,18 @@ export default function Edit() {
     fetchProperty(slug);
   }, [slug]);
 
+
+
   return (
     <>
       {loading ? (
         <p>Loading...</p>
       ) : (
+        
         <Property
           fetchProperties={() => fetchProperty(slug)}
           isEdit={true}
+          stepdata={true}
           p={record.data}
         />
       )}
