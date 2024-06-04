@@ -442,13 +442,14 @@ export default function Property(props) {
             onClose();
             toast.success(res.data.message);
             fetchProperties && fetchProperties();
+          router.push("/admin/property");
+
           } else {
             router.push("/admin/property");
             toast.success(res.data.message);
           }
         } else {
           toast.error(res.data.message);
-          router.push("/admin/property");
         }
         setLoading(false);
       })
