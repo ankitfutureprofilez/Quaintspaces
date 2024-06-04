@@ -131,7 +131,7 @@ export default function Index() {
                             Public View
                           </div>
                         </Link>
-                        <button className="text-normal text-underline btn sort rounded text-gray-500 px-5 py-2 w-full mt-3 cursor-pointer font-medium" onClick={() => togglePopup(item?.uuid)}>
+                        <button className="text-normal text-underline btn sort rounded text-gray-500 px-5 py-2 w-full mt-3 cursor-pointer font-medium" onClick={() => handleEditEntireProperty(item?.uuid)}>
                           Edit Property
                         </button>
                       </div>
@@ -168,7 +168,7 @@ export default function Index() {
             </div>
           </div>
         )}
-        {isPopupOpen && (
+        {/* {isPopupOpen && (
           <Modal isOpen={isPopupOpen} onClose={togglePopup}>
             <div className="p-6">
               <h2 className="text-lg font-medium mb-4">Edit Property</h2>
@@ -188,7 +188,7 @@ export default function Index() {
               </button>
             </div>
           </Modal>
-        )}
+        )} */}
       </AdminLayout>
     </>
   );
