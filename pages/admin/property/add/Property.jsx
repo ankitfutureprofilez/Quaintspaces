@@ -4,7 +4,7 @@ import Router, { useRouter } from "next/router";
 import Image from 'next/image'
 import toast from "react-hot-toast";
 import axios from "axios";
-import Amenities from "./Amenities";
+import amenities from "./amenities";
 import HouseRules from "./HouseRules";
 import CancelPolicy from "./CancelPolicy";
 import { House, Add } from "iconsax-react";
@@ -825,7 +825,7 @@ export default function Property(props) {
             </div>
 
             <div className={`${step === 4 ? "" : "display-none"}`}>
-              <Amenities selectedAmenity={selectedAmenity} standoutAmenity={standoutAmenity} Amenity={Amenity} setAmenity={setAmenity} setstandoutAmenity={setstandoutAmenity} setSelectedAmenity={setSelectedAmenity} />
+              <amenities selectedAmenity={selectedAmenity} standoutAmenity={standoutAmenity} Amenity={Amenity} setAmenity={setAmenity} setstandoutAmenity={setstandoutAmenity} setSelectedAmenity={setSelectedAmenity} />
             </div>
 
             <div
