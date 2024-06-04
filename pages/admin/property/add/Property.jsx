@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import Listing from "../../api/Listing";
-import Router, { useRouter } from "next/router";
+import  { useRouter } from "next/router";
 import Image from 'next/image'
 import toast from "react-hot-toast";
 import axios from "axios";
