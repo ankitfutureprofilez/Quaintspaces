@@ -918,7 +918,7 @@ export default function Property(props) {
                         />
                         {index === 0 && (
                           <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
-                            <p className="text-xs text-gray-700">Cover Letter</p>
+                            <p className="text-xs text-gray-700">Cover Photo</p>
                           </div>
                         )}
                         <div className="absolute right-2 top-2">
