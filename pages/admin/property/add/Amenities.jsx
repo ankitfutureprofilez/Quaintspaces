@@ -118,7 +118,7 @@ safety_amenity: [
   
 };
 
-export default function amenities({selectedAmenity, setSelectedAmenity,standoutAmenity, setstandoutAmenity, Amenity, setAmenity}) {
+export default function Amenities({selectedAmenity, setSelectedAmenity,standoutAmenity, setstandoutAmenity, Amenity, setAmenity}) {
   
 
   const toggleSelectedAmenity = (amenityValue) => {
