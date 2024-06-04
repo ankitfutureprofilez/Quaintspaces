@@ -126,7 +126,7 @@ export default function Property(props) {
 
   console.log("p", p)
   const router = useRouter();
-  const [step, setStep] = useState(step_completed || 0);
+  const [step, setStep] = useState(step_completed === 9 ? 0 : step_completed || 0);
   const [Loading, setLoading] = useState(false);
   const [PType, setPType] = useState(properties_type || "flat");
   const lstring = location ? JSON.parse(location.replace('/\\"/g', '"')) : null;
@@ -448,6 +448,7 @@ export default function Property(props) {
           }
         } else {
           toast.error(res.data.message);
+          router.push("/admin/property");x
         }
         setLoading(false);
       })
