@@ -175,14 +175,14 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
             <div key={i} className="">
               <div
                 onClick={() => toggleSelectedAmenity(amenity?.value)}
-                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${selectedAmenity.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
+                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${selectedAmenity?.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
                   }`}
               >
                 {amenity?.icons}
                 <h2
-                  className={`text-lg mt-4 font-bold text-left  capitalize ${selectedAmenity.includes(amenity.value)
-                      ? "text-slate-700"
-                      : "text-slate-700"
+                  className={`text-lg mt-4 font-bold text-left  capitalize ${selectedAmenity?.includes(amenity.value)
+                    ? "text-slate-700"
+                    : "text-slate-700"
                     }`}
                 >
                   {amenity.title}
@@ -202,14 +202,14 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
             <div key={i} className="">
               <div
                 onClick={() => togglestandoutAmenity(amenity.value)}
-                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${standoutAmenity.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
+                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${standoutAmenity?.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
                   }`}
               >
                 {amenity.icons}
                 <h2
-                  className={`text-lg mt-4 font-bold text-left  capitalize ${standoutAmenity.includes(amenity.value)
-                      ? "text-white-300"
-                      : "text-white-600"
+                  className={`text-lg mt-4 font-bold text-left  capitalize ${standoutAmenity?.includes(amenity.value)
+                    ? "text-white-300"
+                    : "text-white-600"
                     }`}
                 >
                   {amenity.title}
@@ -229,14 +229,14 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
             <div key={i} className="">
               <div
                 onClick={() => toggleAmenity(amenity.value)}
-                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${Amenity.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
+                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${Amenity?.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
                   }`}
               >
                 {amenity.icons}
                 <h2
-                  className={`text-lg mt-4 font-bold text-left  capitalize ${Amenity.includes(amenity.value)
-                      ? "text-white-300"
-                      : "text-white-600"
+                  className={`text-lg mt-4 font-bold text-left  capitalize ${Amenity?.includes(amenity.value)
+                    ? "text-white-300"
+                    : "text-white-600"
                     }`}
                 >
                   {amenity.title}

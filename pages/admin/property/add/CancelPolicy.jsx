@@ -1,7 +1,4 @@
-import { useState } from "react";
-
 function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, selectedPolicy, setSelectedPolicy, longTermPolicy, setLongTermPolicy }) {
-
     const handlePolicyChanges = (policy) => {
         setLongTermPolicy(longTermPolicy === policy ? "" : policy);
     };
