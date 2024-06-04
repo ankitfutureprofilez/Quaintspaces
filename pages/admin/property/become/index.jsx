@@ -12,11 +12,9 @@ function Index() {
     const Admin = "Admin name"
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [isimage, setisimage] = useState(false);
-
     const [record, setRecord] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
-
     useEffect(() => {
         const main = new Listing();
         main.Adminproperty()
@@ -26,11 +24,11 @@ function Index() {
                 if (Array.isArray(data)) {
                     data.forEach(item => {
                         if (item?.step_completed !== 9) {
-                            filteredListings.push(item);
+                            filteredListings?.push(item);
                         }
                     });
                 }
-                if (filteredListings.length > 0) {
+                if (filteredListings?.length > 0) {
                     setRecord(filteredListings);
                     console.log(filteredListings);
                 } else {
@@ -52,13 +50,14 @@ function Index() {
         setIsPopupOpen(!isPopupOpen);
     };
 
+    
+
     const toggleimagePopup = () => {
         setisimage(!isimage);
     };
 
     return (
         <AdminLayout heading="Properties List">
-
             <>
                 {isLoading ? (
                     <p>Loading...</p>
@@ -104,7 +103,6 @@ function Index() {
                         <h2 className="text-lg font-medium mb-4">Choose listing</h2>
                         <div>
                             {record && record.map((item, index) => (
-
                                 <div key={index} style={{ cursor: "pointer" }} >
                                     {item?.property_image[0]?.image_url ? (
                                         <Image
@@ -122,9 +120,7 @@ function Index() {
                                     )}
                                     <h2 className="text-lg font-medium mb-2 heading-property">{item.name || "please name"}</h2>
                                 </div>
-
                             ))}
-
                         </div>
                     </div>
                 </Modal>
