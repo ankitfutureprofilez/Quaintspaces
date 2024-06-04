@@ -130,6 +130,7 @@ function Index() {
                 )}
             </>
             {isPopupOpen && (
+                <div className="w-[600px] py-8 mx-auto">
                 <Modal isOpen={isPopupOpen} onClose={togglePopup}>
                     <div className="w-[600px] py-8 mx-auto">
                         <h2 className="text-lg font-medium mb-4">Choose listing</h2>
@@ -163,6 +164,7 @@ function Index() {
                             </div>
                     </div>
                 </Modal>
+                </div>
             )}
 
             {isimage && (
