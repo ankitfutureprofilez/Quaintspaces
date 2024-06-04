@@ -84,13 +84,12 @@ export default function Index() {
             <Loading />
           </div>
         ) : (
-
           <>
-            <div className="text-right  " >
+            {/* <div className="text-right  " >
               <MdAdd onClick={() => {
                 router.push("/admin/property/become");
               }} />
-            </div>
+            </div> */}
             <div className="flex flex-wrap px-4 py-5 pt-0">
               {record.length ? (
                 record.map((item, index) => (
@@ -118,7 +117,7 @@ export default function Index() {
                         </h3>
                         <p className="text-sm text-gray-600 mt-3 capitalize">
                           {item?.type ? `${item?.type?.replace("_", " ")} .` : ""}
-                          {item.bedrooms} Bedrooms· {item.beds} Beds
+                          {item.bedrooms} Bedrooms· 
                         </p>
                         <p className="text-sm text-gray-600 mt-3 font-bold">
                           {formatMultiPrice(item?.price)} Night
