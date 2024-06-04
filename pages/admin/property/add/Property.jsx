@@ -448,7 +448,7 @@ export default function Property(props) {
           }
         } else {
           toast.error(res.data.message);
-          router.push("/admin/property");x
+          router.push("/admin/property");
         }
         setLoading(false);
       })
