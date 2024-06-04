@@ -553,6 +553,7 @@ export default function Property(props) {
           </button>
         </div>
       )}
+      <div class="max-w-4xl w-full space-y-8 m-auto w-full px-2 ">
       <div
         className={`${step === 0 ? "" : "display-none"
           } max-w-[100%] m-auto table w-full`}
@@ -579,7 +580,7 @@ export default function Property(props) {
         <h2 className="text-3xl text-center mt-4 font-bold mb-8">
           Which of these best describes your place?
         </h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
           {propertyTypes &&
             propertyTypes.map((p, i) => (
               <div key={i} className="">
@@ -635,6 +636,7 @@ export default function Property(props) {
         </div>
 
         {/* </> : '' } */}
+      </div>
       </div>
 
 
