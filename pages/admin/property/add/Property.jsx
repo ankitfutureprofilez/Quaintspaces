@@ -21,13 +21,6 @@ import {
   FaCouch,
 } from "react-icons/fa";
 import Guest from "./Guest";
-import Map from "./Map";
-import MapComponent from "./Map";
-const mapStyles = {
-  width: '100%',
-  height: '400px',
-};
-
 
 const propertyTypes = [
   { value: "flat", label: "Flat & Apartment" },
@@ -41,37 +34,8 @@ const propertyTypes = [
   { value: "breakfast", label: "Bed & Breakfast" },
 ];
 
-const mapContainerStyle = {
-  width: "100%",
-  height: "450px",
-};
-
-
-
-
-const libraries = ['places'];
 
 export default function Property(props) {
-
-  const [coordinates, setCoordinates] = useState({});
-  console.log("coordinates", coordinates)
-  console.log("coordinates.lat", coordinates.lat)
-
-  const onMapLoad = useCallback((map) => {
-    mapRef.current = map;
-  }, []);
-
-
-  const center = coordinates;
-  console.log(center, "center")
-  const [markerPosition, setMarkerPosition] = useState(center);
-  const mapRef = useRef();
-
-
-
-
-
-
   const { isEdit, p, onClose, fetchProperties } = props;
   const {
     uuid,
@@ -213,33 +177,14 @@ export default function Property(props) {
     const { name, value } = e.target;
     setItem({ ...item, [name]: value });
   };
-
-  // const handleFileChange = async (e) => {
-  //   let files = Array.from(e.target.files);
-  //   let arr = [];
-  //   files.forEach((element) => {
-  //     arr.push(element);
-  //   });
-  //   setImages([...images, ...arr]);
-  // };
-
-  // const removeImage = (f) => {
-  //   const filter = images && images?.filter((file, index) => file !== f);
-  //   setImages(filter);
-  // };
   function stringToArray(inputString) {
     return inputString.split(",");
   }
-
   const [selectedOption, setSelectedOption] = useState(status || 1);
-
-  console.log("selectedOption", selectedOption);
-
   const handleOptionChange = (event) => {
     const option = parseInt(event.target.value, 10);
     setSelectedOption(selectedOption === option ? "" : option);
   };
-  console.log("status", status)
   const [Guests, setGuests] = useState(guests || 1);
   const [Bedrooms, setBedrooms] = useState(bedrooms || 1);
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
@@ -435,8 +380,7 @@ export default function Property(props) {
     const main = new Listing();
     const formData = new FormData();
     formData.append("type", typeHere);
-    formData.append("properties_type", PType
-    );
+    formData.append("properties_type", PType);
     formData.append("name", item?.name);
     formData.append("no_of_pet_allowed", pets);
     formData.append("description", item?.about);
@@ -556,13 +500,20 @@ export default function Property(props) {
 
   useEffect(() => { }, [images]);
   const [propertyDuplicated, setpropertyDuplicated] = useState(false);
- 
-  const defaultCenter = {
-    lat: 37.7749, // Default latitude
-    lng: -122.4194, // Default longitude
+  const [editImage, setEditImage] = useState(false);
+  const [EditEntireProperty, setEditEntireProperty] = useState(false);
+
+  const handleEditEntireProperty = () => {
+    setStep(0)
+    setEditEntireProperty(true);
+    setEditImage(false);
   };
 
-
+  const handleEditImage = () => {
+    setStep(5)
+    setEditImage(true);
+    setEditEntireProperty(false);
+  };
 
   return (
     <>
@@ -572,17 +523,15 @@ export default function Property(props) {
       // .property-type:checked + label h2 { color :#000 !important;border-color:#000 !important;}
     `}</style>
 
-
-
-{isEdit ? (
+      {isEdit ? (
         !propertyDuplicated ? (
-          <>
-          <div
-            className={`${step === 0 ? "" : "display-none"
-              } max-w-[100%] m-auto table w-full`}
-          >
-             <div className="flex flex-col items-center space-y-4 mb-8">
-            <button className="border-gray border-2 px-8 py-8 rounded-full w-3/5 capitalize" onClick={() => { Router.push("/admin/property/add") }}>
+          <div className="flex flex-col items-center space-y-4 mb-8">
+            <button
+              className="border-gray border-2 px-8 py-8 rounded-full w-3/5 capitalize"
+              onClick={() => {
+                Router.push("/admin/property/add");
+              }}
+            >
               Add New Property
             </button>
             <button
@@ -593,47 +542,27 @@ export default function Property(props) {
             >
               Duplicate Existing Property
             </button>
-             </div>
           </div>
-        
-          </>
-        ) :(
-          <div className="max-w-[100%] m-auto w-full mt-10">
-          <div className="flex flex-col items-center space-y-4 mb-8">
-            <button
-              onClick={handleEditEntireProperty}
-              className="border-gray border-2 px-8 py-4 rounded-full w-3/5 capitalize"
-            >
-              Edit Entire Property
-            </button>
-            <button
-              onClick={handleEditImage}
-              className="border-gray border-2 px-8 py-4 rounded-full w-3/5 capitalize"
-            >
-              Only Edit Image
-            </button>
-          </div>
-        </div>
-        ) 
-      ) : (
-        (step >= 8 ? (
-          <> </>
         ) : (
-          <div className="flex justify-end mt-5">
-            <button
-              onClick={handleSubmit}
-              className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-            >
-              {Loading ? "Processing..." : "Save/Exit"}
-            </button>
+          <div className="max-w-[100%] m-auto w-full mt-10">
+            <div className="flex flex-col items-center space-y-4 mb-8">
+              <button
+                onClick={handleEditEntireProperty}
+                className="border-gray border-2 px-8 py-4 rounded-full w-3/5 capitalize"
+              >
+                Edit Entire Property
+              </button>
+              <button
+                onClick={handleEditImage}
+                className="border-gray border-2 px-8 py-4 rounded-full w-3/5 capitalize"
+              >
+                Only Edit Image
+              </button>
+            </div>
           </div>
-        ))
-      )}
-
-
-<>
-         
-{  isEdit && step >= 8 ? (
+        )
+      ) : (
+        step >= 8 ? (
           <> </>
         ) : (
           <div className="flex justify-end mt-5">
@@ -645,96 +574,69 @@ export default function Property(props) {
             </button>
           </div>
         )
-      }
+      )}
 
-          </>
-
-          <div
-              className={`${step === 0 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
-            >
-              {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
-               <div className="grid grid-cols-3 gap-4 m-auto table  " >
-                <div className="" >
-                      <div onClick={(e)=>setTypeHere("single_room")} className={`${typeHere === "single_room" ? "bg-gray-500" : ''} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
-            
-                        <House size="52" color="#dedede" /> 
-                        <h2 className="text-xl mt-4 font-normal text-gray-400" >Single Room</h2>
-                      </div>
+      {step === 0 && !editImage && !EditEntireProperty && (
+        <div className="max-w-[100%] m-auto table w-full">
+          <h2 className="text-3xl text-center mt-4 font-bold mb-8">
+            Which of these best describes your place?
+          </h2>
+          <div className="grid grid-cols-3 gap-4">
+            {propertyTypes &&
+              propertyTypes.map((p, i) => (
+                <div key={i} className="">
+                  <div
+                    onClick={() => setPType(p?.value)}
+                    className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-slate-100 border-slate-700 text-slate-700" : ""
+                      }`}
+                  >
+                    {p.value === "flat" && (
+                      <FaBuilding
+                        style={{ color: "black", fontSize: "40px" }}
+                      />
+                    )}
+                    {p.value === "house" && (
+                      <FaHome
+                        style={{ color: "black", fontSize: "40px" }}
+                      />
+                    )}
+                    {p.value === "unique_space" && <House size={40} />}
+                    {p.value === "guest_house" && (
+                      <FaDoorOpen
+                        style={{ color: "black", fontSize: "40px" }}
+                      />
+                    )}
+                    {p.value === "hotel" && (
+                      <FaHotel
+                        style={{ color: "black", fontSize: "40px" }}
+                      />
+                    )}
+                    {p.value === "single_room" && (
+                      <FaBed style={{ color: "black", fontSize: "40px" }} />
+                    )}
+                    {p.value === "boutique_hotel" && (
+                      <FaCouch
+                        style={{ color: "black", fontSize: "40px" }}
+                      />
+                    )}
+                    {p.value === "breakfast" && (
+                      <MdOutlineFreeBreakfast size={40} />
+                    )}
+                    {p.value === "farm" && <FaWarehouse size={40} />}
+                    <h2
+                      className={`text-xl mt-4 font-normal ${p.value === PType
+                        ? "text-gray-600"
+                        : "text-gray-400"
+                        }`}
+                    >
+                      {p.label}
+                    </h2>
                   </div>
-                <div className="" >
-                      <label onClick={(e)=>setTypeHere("entire_place")}
-                      className={`${typeHere === "entire_place" ? "bg-gray-500" : ''} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
-                        <House size="52" color="#dedede" /> 
-                        <h2 className="text-xl mt-4 font-normal text-gray-400" >Entire Place</h2>
-                      </label>
-                  </div>
-               </div> */}
-
-              {/* {typeHere === "entire_place" ?  <> */}
-              <h2 className="text-3xl text-center mt-4 font-bold mb-8">
-                Which of these best describes your place?
-              </h2>
-              <div className="grid grid-cols-3 gap-4">
-                {propertyTypes &&
-                  propertyTypes.map((p, i) => (
-                    <div key={i} className="">
-                      <div
-                        onClick={() => setPType(p?.value)}
-                        className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-slate-100 border-slate-700 text-slate-700" : ""
-                          }`}
-                      >
-                        {p.value === "flat" && (
-                          <FaBuilding
-                            style={{ color: "black", fontSize: "40px" }}
-                          />
-                        )}
-                        {p.value === "house" && (
-                          <FaHome
-                            style={{ color: "black", fontSize: "40px" }}
-                          />
-                        )}
-                        {p.value === "unique_space" && <House size={40} />}
-                        {p.value === "guest_house" && (
-                          <FaDoorOpen
-                            style={{ color: "black", fontSize: "40px" }}
-                          />
-                        )}
-                        {p.value === "hotel" && (
-                          <FaHotel
-                            style={{ color: "black", fontSize: "40px" }}
-                          />
-                        )}
-                        {p.value === "single_room" && (
-                          <FaBed style={{ color: "black", fontSize: "40px" }} />
-                        )}
-                        {p.value === "boutique_hotel" && (
-                          <FaCouch
-                            style={{ color: "black", fontSize: "40px" }}
-                          />
-                        )}
-                        {p.value === "breakfast" && (
-                          <MdOutlineFreeBreakfast size={40} />
-                        )}
-                        {p.value === "farm" && <FaWarehouse size={40} />}
-                        <h2
-                          className={`text-xl mt-4 font-normal ${p.value === PType
-                            ? "text-gray-600"
-                            : "text-gray-400"
-                            }`}
-                        >
-                          {p.label}
-                        </h2>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-
-              {/* </> : '' } */}
-            </div>
-
-  
-
+                </div>
+              ))}
+          </div>
+        </div>
+      )}
 
 
       <div className={`w-full  flex items-center justify-center px-6 py-8 `}>

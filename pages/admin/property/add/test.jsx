@@ -368,6 +368,8 @@ export default function Property(props) {
 
   useEffect(() => {}, [images]);
 
+ 
+
   return (
     <>
       <style>{`
