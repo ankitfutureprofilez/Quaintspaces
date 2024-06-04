@@ -56,7 +56,6 @@ function Index() {
         setisimage(!isimage);
     };
 
-
     return (
         <AdminLayout heading="Properties List">
             <>
@@ -130,43 +129,33 @@ function Index() {
                 )}
             </>
             {isPopupOpen && (
-                <div className="w-[600px] py-8 mx-auto">
                 <Modal isOpen={isPopupOpen} onClose={togglePopup}>
-                    <div className="w-[600px] py-8 mx-auto">
+                    <div className="p-6">
                         <h2 className="text-lg font-medium mb-4">Choose listing</h2>
-                        <div className="">
-                                <h2 className="text-[32px] font-bold text-black mb-3">Welcome back, {Admin}</h2>
-                                <p className="text-[22px]  text-black mb-3">Finish your listing</p>
-                                <div >
-                                    {record && record.map((item, index) => (
-                                        <div className="p-4 border rounded-xl mb-2 flex items-center" key={index} style={{ cursor: "pointer" }} onClick={() => handleEditEntireProperty(item?.uuid)}>
-
-                                            {item?.property_image[0]?.image_url ? (
-                                                <div className="w-[60px] h-[40px] object-cover">
-                                                    <Image
-                                                        width={20}
-                                                        height={20}
-                                                        layout="responsive"
-                                                        src={item?.property_image[0]?.image_url}
-                                                        alt="Property cover image"
-                                                        onClick={() => {
-                                                            toggleimagePopup()
-                                                        }}
-                                                    />
-                                                </div>
-                                            ) : (
-                                                <FaHouse />
-                                            )}
-                                            <h2 className="text-lg font-medium ml-4 heading-property">{item.name || "please name "}</h2>
-                                        </div>
-                                    ))}
+                        <div>
+                            {record && record.map((item, index) => (
+                                <div className="text-uppercase" key={index} style={{ cursor: "pointer" }} onClick={() => handleEditEntireProperty(item?.uuid)}>
+                                    {item?.property_image[0]?.image_url ? (
+                                        <Image
+                                            width={100}
+                                            height={300}
+                                            layout="responsive"
+                                            src={item?.property_image[0]?.image_url}
+                                            alt="Property cover image"
+                                            onClick={() => {
+                                                toggleimagePopup()
+                                            }}
+                                        />
+                                    ) : (
+                                        <FaHouse />
+                                    )}
+                                    <h2 className="text-lg font-medium mb-2 heading-property">{item.name || "please name"}</h2>
                                 </div>
-                            </div>
+                            ))}
+                        </div>
                     </div>
                 </Modal>
-                </div>
             )}
-
             {isimage && (
                 <Modal isOpen={isimage} onClose={toggleimagePopup}>
                     <div className="p-6">

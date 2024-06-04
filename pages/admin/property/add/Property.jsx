@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Listing from "../../api/Listing";
-import  { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Image from 'next/image'
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -49,7 +49,8 @@ export default function Property(props) {
     guests, pet_fee, extra_guest_fee, flexible_check_in, check_in,
     bathrooms, cleaning_fee,
     amenities, check_out,
-    property_image, status
+    property_image, status, quite_hours_in_time,
+    quite_hours_out_time
   } = p ? p : {};
 
 
@@ -153,6 +154,8 @@ export default function Property(props) {
 
 
   const [checkinStart, setCheckinStart] = useState(check_in || "00:00");
+  const [checkinquet, setCheckinquiet] = useState(quite_hours_in_time || "00:00");
+  const [checkoutquet, setCheckoutquiet] = useState(quite_hours_out_time || "00:00");
   const [checkinEnd, setCheckinEnd] = useState(flexible_check_in || "flexible");
   const [checkout, setCheckout] = useState(check_out || "00:00");
   const [item, setItem] = useState({
@@ -429,6 +432,8 @@ export default function Property(props) {
     formData.append("quiet_hours_allowed", quietHours);
     formData.append("photography_allowed", PhotographyAllowed);
     formData.append("additional_rules", item?.additonalrule);
+    formData.append("quite_hours_in_time", checkinquet);
+    formData.append("quite_hours_out_time", checkoutquet);
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
@@ -442,7 +447,7 @@ export default function Property(props) {
             onClose();
             toast.success(res.data.message);
             fetchProperties && fetchProperties();
-          router.push("/admin/property");
+            router.push("/admin/property");
 
           } else {
             router.push("/admin/property");
@@ -539,11 +544,11 @@ export default function Property(props) {
         </div>
       )}
       <div class="max-w-4xl w-full space-y-8 m-auto w-full px-2 ">
-      <div
-        className={`${step === 0 ? "" : "display-none"
-          } max-w-[100%] m-auto table w-full`}
-      >
-        {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
+        <div
+          className={`${step === 0 ? "" : "display-none"
+            } max-w-[100%] m-auto table w-full`}
+        >
+          {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
     <div className="grid grid-cols-3 gap-4 m-auto table  " >
      <div className="" >
            <div onClick={(e)=>setTypeHere("single_room")} className={`${typeHere === "single_room" ? "bg-gray-500" : ''} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
@@ -561,67 +566,67 @@ export default function Property(props) {
        </div>
     </div> */}
 
-        {/* {typeHere === "entire_place" ?  <> */}
-        <h2 className="text-3xl text-center mt-4 font-bold mb-8">
-          Which of these best describes your place?
-        </h2>
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
-          {propertyTypes &&
-            propertyTypes.map((p, i) => (
-              <div key={i} className="">
-                <div
-                  onClick={() => setPType(p?.value)}
-                  className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-slate-100 border-slate-700 text-slate-700" : ""
-                    }`}
-                >
-                  {p.value === "flat" && (
-                    <FaBuilding
-                      style={{ color: "black", fontSize: "40px" }}
-                    />
-                  )}
-                  {p.value === "house" && (
-                    <FaHome
-                      style={{ color: "black", fontSize: "40px" }}
-                    />
-                  )}
-                  {p.value === "unique_space" && <House size={40} />}
-                  {p.value === "guest_house" && (
-                    <FaDoorOpen
-                      style={{ color: "black", fontSize: "40px" }}
-                    />
-                  )}
-                  {p.value === "hotel" && (
-                    <FaHotel
-                      style={{ color: "black", fontSize: "40px" }}
-                    />
-                  )}
-                  {p.value === "single_room" && (
-                    <FaBed style={{ color: "black", fontSize: "40px" }} />
-                  )}
-                  {p.value === "boutique_hotel" && (
-                    <FaCouch
-                      style={{ color: "black", fontSize: "40px" }}
-                    />
-                  )}
-                  {p.value === "breakfast" && (
-                    <MdOutlineFreeBreakfast size={40} />
-                  )}
-                  {p.value === "farm" && <FaWarehouse size={40} />}
-                  <h2
-                    className={`text-xl mt-4 font-normal ${p.value === PType
-                      ? "text-gray-600"
-                      : "text-gray-400"
+          {/* {typeHere === "entire_place" ?  <> */}
+          <h2 className="text-3xl text-center mt-4 font-bold mb-8">
+            Which of these best describes your place?
+          </h2>
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
+            {propertyTypes &&
+              propertyTypes.map((p, i) => (
+                <div key={i} className="">
+                  <div
+                    onClick={() => setPType(p?.value)}
+                    className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-slate-100 border-slate-700 text-slate-700" : ""
                       }`}
                   >
-                    {p.label}
-                  </h2>
+                    {p.value === "flat" && (
+                      <FaBuilding
+                        style={{ color: "black", fontSize: "40px" }}
+                      />
+                    )}
+                    {p.value === "house" && (
+                      <FaHome
+                        style={{ color: "black", fontSize: "40px" }}
+                      />
+                    )}
+                    {p.value === "unique_space" && <House size={40} />}
+                    {p.value === "guest_house" && (
+                      <FaDoorOpen
+                        style={{ color: "black", fontSize: "40px" }}
+                      />
+                    )}
+                    {p.value === "hotel" && (
+                      <FaHotel
+                        style={{ color: "black", fontSize: "40px" }}
+                      />
+                    )}
+                    {p.value === "single_room" && (
+                      <FaBed style={{ color: "black", fontSize: "40px" }} />
+                    )}
+                    {p.value === "boutique_hotel" && (
+                      <FaCouch
+                        style={{ color: "black", fontSize: "40px" }}
+                      />
+                    )}
+                    {p.value === "breakfast" && (
+                      <MdOutlineFreeBreakfast size={40} />
+                    )}
+                    {p.value === "farm" && <FaWarehouse size={40} />}
+                    <h2
+                      className={`text-xl mt-4 font-normal ${p.value === PType
+                        ? "text-gray-600"
+                        : "text-gray-400"
+                        }`}
+                    >
+                      {p.label}
+                    </h2>
+                  </div>
                 </div>
-              </div>
-            ))}
-        </div>
+              ))}
+          </div>
 
-        {/* </> : '' } */}
-      </div>
+          {/* </> : '' } */}
+        </div>
       </div>
 
 
@@ -1141,7 +1146,10 @@ export default function Property(props) {
             </div>
 
             <div className={`${step === 8 ? "" : "display-none"}`}>
-              <HouseRules petsAllowed={petsAllowed} setPetsAllowed={setPetsAllowed} quietHours={quietHours} setEventsAllowed={setEventsAllowed} setQuietHours={setQuietHours} eventsAllowed={eventsAllowed} PhotographyAllowed={PhotographyAllowed} setPhotographyAllowed={setPhotographyAllowed} smokingAllowed={smokingAllowed} setSmokingAllowed={setSmokingAllowed} />
+              <HouseRules petsAllowed={petsAllowed} setPetsAllowed={setPetsAllowed} quietHours={quietHours}
+              pets={pets} setPets={setPets}
+                checkinTime={checkinquet} setCheckinTime={setCheckinquiet} checkoutTime={checkoutquet} setCheckoutTime={setCheckoutquiet}
+                setEventsAllowed={setEventsAllowed} setQuietHours={setQuietHours} eventsAllowed={eventsAllowed} PhotographyAllowed={PhotographyAllowed} setPhotographyAllowed={setPhotographyAllowed} smokingAllowed={smokingAllowed} setSmokingAllowed={setSmokingAllowed} />
               <div className="flex flex-col  py-4">
                 <label htmlFor="directions" className="block font-medium text-gray-700">
                   Additonal Rules
