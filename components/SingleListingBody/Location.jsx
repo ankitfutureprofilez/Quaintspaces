@@ -6,6 +6,7 @@ const Location = React.forwardRef(({ listing }, ref) => {
     width: "100%",
     height: "400px",
   };
+
   let record;
   try {
     record = JSON?.parse(JSON?.parse(listing?.location));
@@ -18,18 +19,22 @@ const Location = React.forwardRef(({ listing }, ref) => {
     lng: parseFloat(record?.longitude),
   };
 
-  // const center =  {
-  //   lat:26.9372,
-  //   lng:75.7993,
-  // };
-
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY,
   });
 
   // URL to the home icon
-  const homeIconUrl = "https://raw.githubusercontent.com/encharm/Font-Awesome-SVG-PNG/master/black/svg/home.svg";
+  const homeIconUrl =
+    "https://raw.githubusercontent.com/encharm/Font-Awesome-SVG-PNG/master/black/svg/home.svg";
+
+  // Define the options conditionally
+  const mapOptions = !listing?.user_booking_exists
+    ? {
+        zoomControl: false, // Disable zoom control UI
+        gestureHandling: 'none', // Disable all gestures
+      }
+    : {};
 
   return (
     <div ref={ref} className="py-8">
@@ -40,9 +45,10 @@ const Location = React.forwardRef(({ listing }, ref) => {
           mapContainerStyle={containerStyle}
           mapContainerClassName="map max-h-[500px]"
           center={center}
-          zoom={15}
+          zoom={listing?.user_booking_exists ? 15 : 11}
+          options={mapOptions} // Apply the conditional options
         >
-          <Marker 
+          <Marker
             position={center}
             icon={{
               url: homeIconUrl,
