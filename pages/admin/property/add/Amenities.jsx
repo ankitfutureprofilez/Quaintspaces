@@ -1,5 +1,5 @@
 import React from "react";
-import { PiHairDryerBold, PiFireExtinguisherThin, PiPicnicTableThin,} from "react-icons/pi";
+import { PiHairDryerBold, PiFireExtinguisherThin, PiPicnicTableThin, } from "react-icons/pi";
 import { CgGym } from "react-icons/cg";
 import { MdBeachAccess } from "react-icons/md";
 import { TbBrandCarbon, TbAirConditioning } from "react-icons/tb";
@@ -24,27 +24,33 @@ import { BiSolidAlarmExclamation } from "react-icons/bi";
 import { FaPersonSkiingNordic } from "react-icons/fa6";
 import { GiPoolTableCorner, GiKitchenKnives } from "react-icons/gi";
 import { VscPiano } from "react-icons/vsc";
-import { PiTelevision,PiWashingMachine  } from "react-icons/pi";
+import { PiTelevision, PiWashingMachine } from "react-icons/pi";
 const amenitiesData = {
   amenities: [
-    { value: "wifi",
-     title: "Wifi",
-      icons: <FaWifi style={{ color: "black", fontSize: "40px" }} /> },
-    { value: "tv",
-     title: "TV", 
-    icons: <PiTelevision style={{ color: "black", fontSize: "40px" }} /> },
-    { value: "kitchen",
-     title: "Kitchen", 
-    icons: <GiKitchenKnives style={{ color: "black", fontSize: "40px" }} />},
+    {
+      value: "wifi",
+      title: "Wifi",
+      icons: <FaWifi style={{ color: "black", fontSize: "40px" }} />
+    },
+    {
+      value: "tv",
+      title: "TV",
+      icons: <PiTelevision style={{ color: "black", fontSize: "40px" }} />
+    },
+    {
+      value: "kitchen",
+      title: "Kitchen",
+      icons: <GiKitchenKnives style={{ color: "black", fontSize: "40px" }} />
+    },
     {
       value: "washing_machine",
       title: "Washing machine",
-      icons: <PiWashingMachine  style={{ color: "black", fontSize: "40px" }} />,
+      icons: <PiWashingMachine style={{ color: "black", fontSize: "40px" }} />,
     },
     {
       value: "free_parking_on_premises",
       title: "Free parking ",
-      icons:  <FaParking style={{ color: "black", fontSize: "40px" }} />,
+      icons: <FaParking style={{ color: "black", fontSize: "40px" }} />,
     },
     {
       value: "paid_parking_on_premises",
@@ -66,14 +72,14 @@ const amenitiesData = {
     { value: "pool", title: "Pool", icons: <MdPool style={{ color: "black", fontSize: "40px" }} /> },
     { value: "hot_tub", title: "Hot tub", icons: <FaHotTubPerson style={{ color: "black", fontSize: "40px" }} /> },
     { value: "patio", title: "Patio", icons: <BiChair style={{ color: "black", fontSize: "40px" }} /> },
-    { value: "bbq_grill", title: "BBQ grill", icons:  <MdOutdoorGrill style={{ color: "black", fontSize: "40px" }} /> },
+    { value: "bbq_grill", title: "BBQ grill", icons: <MdOutdoorGrill style={{ color: "black", fontSize: "40px" }} /> },
     {
       value: "outdoor_dining_area",
       title: "Outdoor dining area",
       icons: <PiPicnicTableThin style={{ color: "black", fontSize: "40px" }} />,
     },
     { value: "firepit", title: "Firepit", icons: <FaFireBurner style={{ color: "black", fontSize: "40px" }} /> },
-    { value: "pool_table", title: "Pool table", icons:  <GiPoolTableCorner style={{ color: "black", fontSize: "40px" }} /> },
+    { value: "pool_table", title: "Pool table", icons: <GiPoolTableCorner style={{ color: "black", fontSize: "40px" }} /> },
     {
       value: "indoor_fireplace",
       title: "Indoor fireplace",
@@ -83,21 +89,21 @@ const amenitiesData = {
     {
       value: "exercise_equipment",
       title: "Exercise equipment",
-      icons:  <CgGym style={{ color: "black", fontSize: "40px" }} />,
+      icons: <CgGym style={{ color: "black", fontSize: "40px" }} />,
     },
     {
       value: "lake_access",
       title: "Lake access",
       icons: <FaArrowUpFromWaterPump style={{ color: "black", fontSize: "40px" }} />,
     },
-    { value: "beach_access", title: "Beach access", icons: <MdBeachAccess style={{ color: "black", fontSize: "40px" }} />  },
-    { value: "ski_in_out", title: "Ski-in/out", icons: <FaPersonSkiingNordic  style={{ color: "black", fontSize: "40px" }} /> },
-    { value: "hair_dryer", title: "Hair dryer", icons: <PiHairDryerBold style={{ color: "black", fontSize: "40px" }} />},
+    { value: "beach_access", title: "Beach access", icons: <MdBeachAccess style={{ color: "black", fontSize: "40px" }} /> },
+    { value: "ski_in_out", title: "Ski-in/out", icons: <FaPersonSkiingNordic style={{ color: "black", fontSize: "40px" }} /> },
+    { value: "hair_dryer", title: "Hair dryer", icons: <PiHairDryerBold style={{ color: "black", fontSize: "40px" }} /> },
     { value: "outdoor_shower", title: "Outdoor shower", icons: <FaShower style={{ color: "black", fontSize: "40px" }} /> },
   ],
 
-safety_amenity: [
-    { value: "smoke_alarm", title: "Smoke alarm", icons: <BiSolidAlarmExclamation style={{ color: "black", fontSize: "40px" }}  />},
+  safety_amenity: [
+    { value: "smoke_alarm", title: "Smoke alarm", icons: <BiSolidAlarmExclamation style={{ color: "black", fontSize: "40px" }} /> },
     {
       value: "first_aid_kit",
       title: "First aid kit",
@@ -106,7 +112,7 @@ safety_amenity: [
     {
       value: "fire_extinguisher",
       title: "Fire extinguisher",
-      icons:  <PiFireExtinguisherThin style={{ color: "black", fontSize: "40px" }} />,
+      icons: <PiFireExtinguisherThin style={{ color: "black", fontSize: "40px" }} />,
     },
     {
       value: "carbon_monoxide_alarm",
@@ -115,17 +121,17 @@ safety_amenity: [
     },
   ],
 
-  
+
 };
 
-export default function Amenities({selectedAmenity, setSelectedAmenity,standoutAmenity, setstandoutAmenity, Amenity, setAmenity}) {
-  
+export default function Amenities({ selectedAmenity, setSelectedAmenity, standoutAmenity, setstandoutAmenity, Amenity, setAmenity }) {
+
 
   const toggleSelectedAmenity = (amenityValue) => {
-    const isSelected = selectedAmenity.includes(amenityValue);
+    const isSelected = selectedAmenity?.includes(amenityValue);
     if (isSelected) {
       setSelectedAmenity((prevSelected) =>
-        prevSelected.filter((item) => item !== amenityValue)
+        prevSelected?.filter((item) => item !== amenityValue)
       );
     } else {
       setSelectedAmenity((prevSelected) => [...prevSelected, amenityValue]);
@@ -133,10 +139,10 @@ export default function Amenities({selectedAmenity, setSelectedAmenity,standoutA
   };
 
   const toggleAmenity = (amenityValue) => {
-    const isSelected = Amenity.includes(amenityValue);
+    const isSelected = Amenity?.includes(amenityValue);
     if (isSelected) {
       setAmenity((prevSelected) =>
-        prevSelected.filter((item) => item !== amenityValue)
+        prevSelected?.filter((item) => item !== amenityValue)
       );
     } else {
       setAmenity((prevSelected) => [...prevSelected, amenityValue]);
@@ -144,10 +150,10 @@ export default function Amenities({selectedAmenity, setSelectedAmenity,standoutA
   };
 
   const togglestandoutAmenity = (amenityValue) => {
-    const isSelected = standoutAmenity.includes(amenityValue);
+    const isSelected = standoutAmenity?.includes(amenityValue);
     if (isSelected) {
       setstandoutAmenity((prevSelected) =>
-        prevSelected.filter((item) => item !== amenityValue)
+        prevSelected?.filter((item) => item !== amenityValue)
       );
     } else {
       setstandoutAmenity((prevSelected) => [...prevSelected, amenityValue]);
@@ -168,18 +174,16 @@ export default function Amenities({selectedAmenity, setSelectedAmenity,standoutA
           amenitiesData?.amenities?.map((amenity, i) => (
             <div key={i} className="">
               <div
-                onClick={() => toggleSelectedAmenity(amenity.value)}
-                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${
-                  selectedAmenity.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
-                }`}
+                onClick={() => toggleSelectedAmenity(amenity?.value)}
+                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${selectedAmenity.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
+                  }`}
               >
-               {amenity?.icons}
+                {amenity?.icons}
                 <h2
-                  className={`text-lg mt-4 font-bold text-left  capitalize ${
-                    selectedAmenity.includes(amenity.value)
+                  className={`text-lg mt-4 font-bold text-left  capitalize ${selectedAmenity.includes(amenity.value)
                       ? "text-slate-700"
                       : "text-slate-700"
-                  }`}
+                    }`}
                 >
                   {amenity.title}
                 </h2>
@@ -198,17 +202,15 @@ export default function Amenities({selectedAmenity, setSelectedAmenity,standoutA
             <div key={i} className="">
               <div
                 onClick={() => togglestandoutAmenity(amenity.value)}
-                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${
-                  standoutAmenity.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
-                }`}
+                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${standoutAmenity.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
+                  }`}
               >
-                  {amenity.icons}
+                {amenity.icons}
                 <h2
-                  className={`text-lg mt-4 font-bold text-left  capitalize ${
-                    standoutAmenity.includes(amenity.value)
+                  className={`text-lg mt-4 font-bold text-left  capitalize ${standoutAmenity.includes(amenity.value)
                       ? "text-white-300"
                       : "text-white-600"
-                  }`}
+                    }`}
                 >
                   {amenity.title}
                 </h2>
@@ -227,17 +229,15 @@ export default function Amenities({selectedAmenity, setSelectedAmenity,standoutA
             <div key={i} className="">
               <div
                 onClick={() => toggleAmenity(amenity.value)}
-                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${
-                  Amenity.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
-                }`}
+                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${Amenity.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
+                  }`}
               >
-                 {amenity.icons}
+                {amenity.icons}
                 <h2
-                  className={`text-lg mt-4 font-bold text-left  capitalize ${
-                    Amenity.includes(amenity.value)
+                  className={`text-lg mt-4 font-bold text-left  capitalize ${Amenity.includes(amenity.value)
                       ? "text-white-300"
                       : "text-white-600"
-                  }`}
+                    }`}
                 >
                   {amenity.title}
                 </h2>
