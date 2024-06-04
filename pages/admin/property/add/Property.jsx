@@ -518,23 +518,6 @@ export default function Property(props) {
   };
 
   useEffect(() => { }, [images]);
-  const [propertyDuplicated, setpropertyDuplicated] = useState(false);
-
-  const defaultCenter = {
-    lat: 37.7749, // Default latitude
-    lng: -122.4194, // Default longitude
-  };
-
-  const [stepdata, SetStepdata] = useState(false);
-  const handleEditEntireProperty = () => {
-    setStep(0)
-    SetStepdata(true)
-  };
-
-  const handleEditImage = () => {
-    setStep(5)
-    SetStepdata(true)
-  };
 
   return (
     <>
