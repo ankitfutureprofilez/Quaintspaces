@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from "react";
-import Element from "../element";
 import Listing from "../api/Listing";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import Property from "./add/Property";
-import Modal from "../hook/Modal";
 import NoRecord from "../hook/NoRecord";
 import AdminLayout from "../AdminLayout";
 import Loading from "../hook/loading";
 import { useRouter } from "next/router";
+import { MdAdd } from "react-icons/md";
 import { formatMultiPrice } from "../../../hooks/ValueData";
 
 export default function Index() {
   const router = useRouter();
   const [record, setRecord] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isPropertyLoading, setIsPropertyLoading] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [step, setStep] = useState(0);
 
   const fetchProperties = () => {
     const main = new Listing();
@@ -50,11 +45,7 @@ export default function Index() {
     setShowConfirmation(true);
   };
 
-  const togglePopup = (uuid, step = 0) => {
-    setSelectedProperty(uuid);
-    setStep(step);
-    setIsPopupOpen(!isPopupOpen);
-  };
+
 
   const deleteProperty = (uuid) => {
     const main = new Listing();
@@ -93,56 +84,64 @@ export default function Index() {
             <Loading />
           </div>
         ) : (
-          <div className="flex flex-wrap px-4 py-5 pt-0">
-            {record.length ? (
-              record.map((item, index) => (
-                <div className="w-full sm:w-1/2 md:w-1/3 xl:w-1/4 px-3 mt-4" key={index}>
-                  <div className="relative border rounded-lg overflow-hidden shadow-md">
-                    <img
-                      className="w-full h-48 object-cover object-center"
-                      src={item?.property_image[0]?.image_url}
-                      alt={item?.name}
-                    />
-                    <button className="absolute text-xs top-3 right-3 bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-700" onClick={() => handleDelete(item?.uuid)}>Remove</button>
-                    {item?.step_completed !== 9 ? (
-                      <button className="absolute text-xs top-3 left-3 bg-indigo-600 text-white px-3 py-2 rounded-md">
-                        In Progress
-                      </button>
-                    ) : (
-                      <button className="absolute text-xs top-3 left-3 bg-green-600 text-white px-3 py-2 rounded-md">
-                        Completed
-                      </button>
-                    )}
-                    <div className="p-4">
-                      <h2 className="text-lg font-medium mb-2 heading-property">{item.name}</h2>
-                      <h3 className="text-sm font-medium desc-property">
-                        {item.description}
-                      </h3>
-                      <p className="text-sm text-gray-600 mt-3 capitalize">
-                        {item?.type ? `${item?.type?.replace("_", " ")} .` : ""}
-                        {item.bedrooms} Bedrooms· {item.beds} Beds
-                      </p>
-                      <p className="text-sm text-gray-600 mt-3 font-bold">
-                        {formatMultiPrice(item?.price)} Night
-                      </p>
-                      <div className="mt-4">
-                        <Link href={`/admin/property/${item?.uuid}`}>
-                          <div className="text-normal text-underline btn sort rounded text-gray-500 w-full mt-3 px-5 py-2 cursor-pointer font-medium">
-                            Public View
-                          </div>
-                        </Link>
-                        <button className="text-normal text-underline btn sort rounded text-gray-500 px-5 py-2 w-full mt-3 cursor-pointer font-medium" onClick={() => handleEditEntireProperty(item?.uuid)}>
-                          Edit Property
+
+          <>
+            <div className="text-right  " >
+              <MdAdd onClick={() => {
+                router.push("/admin/property/become");
+              }} />
+            </div>
+            <div className="flex flex-wrap px-4 py-5 pt-0">
+              {record.length ? (
+                record.map((item, index) => (
+                  <div className="w-full sm:w-1/2 md:w-1/3 xl:w-1/4 px-3 mt-4" key={index}>
+                    <div className="relative border rounded-lg overflow-hidden shadow-md">
+                      <img
+                        className="w-full h-48 object-cover object-center"
+                        src={item?.property_image[0]?.image_url}
+                        alt={item?.name}
+                      />
+                      <button className="absolute text-xs top-3 right-3 bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-700" onClick={() => handleDelete(item?.uuid)}>Remove</button>
+                      {item?.step_completed !== 9 ? (
+                        <button className="absolute text-xs top-3 left-3 bg-indigo-600 text-white px-3 py-2 rounded-md">
+                          In Progress
                         </button>
+                      ) : (
+                        <button className="absolute text-xs top-3 left-3 bg-green-600 text-white px-3 py-2 rounded-md">
+                          Completed
+                        </button>
+                      )}
+                      <div className="p-4">
+                        <h2 className="text-lg font-medium mb-2 heading-property">{item.name}</h2>
+                        <h3 className="text-sm font-medium desc-property">
+                          {item.description}
+                        </h3>
+                        <p className="text-sm text-gray-600 mt-3 capitalize">
+                          {item?.type ? `${item?.type?.replace("_", " ")} .` : ""}
+                          {item.bedrooms} Bedrooms· {item.beds} Beds
+                        </p>
+                        <p className="text-sm text-gray-600 mt-3 font-bold">
+                          {formatMultiPrice(item?.price)} Night
+                        </p>
+                        <div className="mt-4">
+                          <Link href={`/admin/property/${item?.uuid}`}>
+                            <div className="text-normal text-underline btn sort rounded text-gray-500 w-full mt-3 px-5 py-2 cursor-pointer font-medium">
+                              Public View
+                            </div>
+                          </Link>
+                          <button className="text-normal text-underline btn sort rounded text-gray-500 px-5 py-2 w-full mt-3 cursor-pointer font-medium" onClick={() => handleEditEntireProperty(item?.uuid)}>
+                            Edit Property
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))
-            ) : (
-              <NoRecord heading={"No Record Found !!"} />
-            )}
-          </div>
+                ))
+              ) : (
+                <NoRecord heading={"No Record Found !!"} />
+              )}
+            </div>
+          </>
         )}
         {showConfirmation && (
           <div className="fixed inset-0 z-50 flex items-center justify-center mt-6 mb-6">
@@ -168,27 +167,7 @@ export default function Index() {
             </div>
           </div>
         )}
-        {/* {isPopupOpen && (
-          <Modal isOpen={isPopupOpen} onClose={togglePopup}>
-            <div className="p-6">
-              <h2 className="text-lg font-medium mb-4">Edit Property</h2>
-              <button
-                className="border-gray border-2 px-8 py-4 rounded-full w-full capitalize mb-4"
-                onClick={() => {
-                  router.push("/admin/property/add");
-                }}
-              >
-                Add New Property
-              </button>
-              <button
-                className="border-gray border-2 px-8 py-4 rounded-full w-full capitalize"
-                onClick={() => handleEditEntireProperty(selectedProperty)}
-              >
-                Edit Entire Property
-              </button>
-            </div>
-          </Modal>
-        )} */}
+
       </AdminLayout>
     </>
   );
