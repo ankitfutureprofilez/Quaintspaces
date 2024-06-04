@@ -14,11 +14,8 @@ import { formatMultiPrice } from "../../../hooks/ValueData";
 export default function Index() {
   const [loading, setLoading] = useState(true);
   const [content, setContent] = useState();
-
   const [hasmore, setHasMore] = useState(true);
-
   const [page, setPage] = useState(0);
-
   const fetchData = async (pg) => {
     setLoading(true);
     try {
