@@ -50,11 +50,12 @@ function Index() {
         setIsPopupOpen(!isPopupOpen);
     };
 
-    
+
 
     const toggleimagePopup = () => {
         setisimage(!isimage);
     };
+    
 
     return (
         <AdminLayout heading="Properties List">
@@ -125,6 +126,7 @@ function Index() {
                     </div>
                 </Modal>
             )}
+            
             {isimage && (
                 <Modal isOpen={isimage} onClose={toggleimagePopup}>
                     <div className="p-6">
