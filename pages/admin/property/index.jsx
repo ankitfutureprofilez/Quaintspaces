@@ -117,7 +117,7 @@ export default function Index() {
                         </h3>
                         <p className="text-sm text-gray-600 mt-3 capitalize">
                           {item?.type ? `${item?.type?.replace("_", " ")} .` : ""}
-                          {item.bedrooms} Bedrooms· {item.beds} Beds
+                          {item.bedrooms} Bedrooms· 
                         </p>
                         <p className="text-sm text-gray-600 mt-3 font-bold">
                           {formatMultiPrice(item?.price)} Night
