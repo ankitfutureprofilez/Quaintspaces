@@ -12,26 +12,6 @@ export default function Index() {
   const [content, setContent] = useState([]);
   const [page, setPage] = useState(1);
   const [hasmore, setHasMore] = useState(true);
-  // const fetchData = async (pg) => {
-  //   setLoading(true);
-  //   try {
-  //     const main = new Listing();
-  //     const response = await main.all_user_payment_history(pg);
-  //     const newdata = response?.data?.data?.data || [];
-  //     setContent((prevData) => {
-  //       if (pg === 1) {
-  //         return newdata;
-  //       } else {
-  //         return [...prevData, ...newdata];
-  //       }
-  //     });
-  //     setLoading(false);
-  //     setHasMore(response?.data?.current_page < response?.data?.last_page);
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //     setLoading(false);
-  //   }
-  // };
   function fetchData(pg) {
     setLoading(true);
     const main = new Listing();
@@ -47,7 +27,7 @@ export default function Index() {
           }
         });
         setHasMore(res?.data?.current_page < res?.data?.last_page);
-        setPage(res?.data?.current_page);
+        setPage(pg);
         setLoading(false);
       })
       .catch((error) => {
@@ -58,7 +38,7 @@ export default function Index() {
 
   useEffect(() => {
     if (content && content?.length < 1) {
-      fetchData(page + 1);
+      fetchData(page);
     }
   }, []);
 
@@ -67,6 +47,13 @@ export default function Index() {
       fetchData(page + 1);
     }
   };
+
+
+  useEffect(() => {
+    fetchData(1); // Fetch initial 15 items
+  }, []);
+
+
 
   return (
     <AdminLayout heading={"Payment History"}>
@@ -185,22 +172,32 @@ export default function Index() {
                           </td>
                           <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
                             <td
-                              className={` capitalize inline-flex w-max items-center rounded-full py-2 px-3 text-xs text-white ${
-                                item?.payment_status === "success"
-                                  ? "bg-green-600"
-                                  : item?.payment_status === "cancelled"
+                              className={` capitalize inline-flex w-max items-center rounded-full py-2 px-3 text-xs text-white ${item?.payment_status === "success"
+                                ? "bg-green-600"
+                                : item?.payment_status === "cancelled"
                                   ? "bg-red-600"
                                   : item?.payment_status === "confirm"
-                                  ? "bg-green-600"
-                                  : "bg-blue-600"
-                              }`}
+                                    ? "bg-green-600"
+                                    : "bg-blue-600"
+                                }`}
                             >
                               {item?.payment_status}
                             </td>
                           </td>
 
                           <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-                            {formatMultiPrice(item?.price)}
+                            <td
+                              className={`   ${item?.payment_status === "success"
+                                ? "text-green-600"
+                                : item?.payment_status === "cancelled"
+                                  ? "text-red-600"
+                                  : item?.payment_status === "confirm"
+                                    ? "text-green-600"
+                                    : "text-blue-600"
+                                }`}
+                            >
+                              {formatMultiPrice(item?.price)}
+                            </td>
                           </td>
                         </tr>
                       ))}
@@ -213,20 +210,13 @@ export default function Index() {
           </div>
         </div>
       )}
-      {!loading && hasmore && (
+      {content?.length > 0 && !loading && hasmore && (
         <div className="flex justify-center">
           <div
-            className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-600 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+            className="font-inter font-lg leading-tight text-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-600 border-0 p-4 rounded-full mt-10 mb-12 text-white"
             onClick={loadMore}
           >
             Load More
-          </div>
-        </div>
-      )}
-      {!loading && !hasmore && (
-        <div className="flex justify-center">
-          <div className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white">
-            No More Data
           </div>
         </div>
       )}

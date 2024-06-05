@@ -380,13 +380,7 @@ export default function Index() {
               </div>
             </div>
           )}
-          {content?.length > 0 && !loading && !hasmore && (
-            <div className="flex justify-center">
-              <div className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white">
-                No More Data
-              </div>
-            </div>
-          )}
+       
         </section>
       </AdminLayout>
     </>

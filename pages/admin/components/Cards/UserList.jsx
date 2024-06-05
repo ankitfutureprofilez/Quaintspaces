@@ -29,21 +29,21 @@ function UserList({totaluser}) {
   return (
     <>
     {loading ? (
-      <div className="border bg-lightBorderColor h-[30vh] w-full p-3 rounded-2xl "></div>
+      <div className="border bg-gray-100 h-[30vh] w-full p-3 rounded-2xl "></div>
     ) : (
     <div className="border text-gray-500 w-full p-3 rounded-2xl space-y-4">
       {/* header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center text-sm gap-2">
           <MagicStar size={18} />
-          <p className="text-gray-800 font-medium">Top Booking Users({totaluser})</p>
+          <p className="text-gray-800 font-medium">Most  Booking Users </p>
         </div>
         <Link
           href="/admin/user-history"
           className="border flex items-center gap-1 px-2 py-1 rounded-lg text-xs"
         >
           <Send2 size={14} />
-          All
+         See  All {totaluser}
         </Link>
       </div>
 
@@ -55,16 +55,14 @@ function UserList({totaluser}) {
         {record && record?.length >0 ? (
           record?.map((item) => (
             <div className="flex items-center justify-between w-full select-none cursor-pointer">
-              <div className="flex items-center gap-2 proerty-img">
-                <Image
+              <div className="flex items-center gap-2 img-book">
+                <img
                   src={
                     item?.image_url
                       ? item?.image_url
                       : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
                   }
                   alt="profile-image for user"
-                  height={30}
-                  width={30}
                   className="rounded-full"
                 />
                 <div className="font-medium">

@@ -9,7 +9,7 @@ import Listing from "../../api/Listing";
 import { formatMultiPrice } from "../../../../hooks/ValueData";
 import DashboardNoData from "../../hook/DashboardNoData";
 
-function StatusTracker({ property_count }) {
+function StatusTracker() {
   const [propertylist, setPropertylist] = useState([]);
   const [proerty_count, setPropertyCount] = useState("");
   const [loading, setLoading] = useState(true);
@@ -29,7 +29,7 @@ function StatusTracker({ property_count }) {
   return (
     <>
       {loading ? (
-        <div className="border bg-lightBorderColor h-[40vh] w-full p-3 rounded-2xl "></div>
+        <div className="border  bg-gray-100  h-[40vh] w-full p-3 rounded-2xl "></div>
       ) : (
         <div className="border text-gray-500 h-full w-full p-3 rounded-2xl">
           {/* header */}
@@ -37,14 +37,14 @@ function StatusTracker({ property_count }) {
             <div className="flex items-center text-sm gap-2">
               <House size={18} />
               <p className="text-gray-800 font-medium">
-                Top Properties({property_count})
+                Top Properties
               </p>
             </div>
             <Link
               href="/admin/property"
               className="border px-2 py-1 rounded-lg text-xs"
             >
-              See all
+              See all {proerty_count}
             </Link>
           </div>
           <hr className="bg-gray-400 my-4" />
@@ -53,16 +53,14 @@ function StatusTracker({ property_count }) {
               propertylist.map((item) => (
                 <div className="space-y-3" key={item.uuid}>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 proerty-img">
-                      <Image
+                    <div className="flex items-center gap-2 img-book ">
+                      <img
                         src={
                           item?.image
                             ? item?.image
                             : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
                         }
                         alt="Property"
-                        height={30}
-                        width={30}
                         className="rounded-full"
                       />
                       <div className="font-medium">
