@@ -47,13 +47,9 @@ export default function Index() {
       fetchData(page + 1);
     }
   };
-
-
   useEffect(() => {
-    fetchData(1); // Fetch initial 15 items
+    fetchData(1);
   }, []);
-
-
 
   return (
     <AdminLayout heading={"Payment History"}>
