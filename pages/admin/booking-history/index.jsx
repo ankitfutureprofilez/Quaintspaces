@@ -125,7 +125,6 @@ export default function index() {
         <Spinner />
       ) : content && content.length > 0 ? (
         <>
-
           <div className="flex text-xs font-large relative bg-gray-100 p-2 rounded-lg py-1">
             <button
               onClick={() => setActiveTab('upcoming')}
