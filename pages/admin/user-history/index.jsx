@@ -403,35 +403,17 @@ export default function Index() {
         </div>
       </div>
 
-      {/* {!loading && (
-        <div className="flex justify-center">
-          <div
-            className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
-            onClick={loadMore}
-          >
-            Load More
-          </div>
-        </div>
-      )} */}
-      {!loading ? (
-        !hasmore ? (
-          <div className="flex justify-center">
-            <div className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white">
-              No Data Available
+      {record?.length > 0 && !loading && hasmore && (
+            <div className="flex justify-center">
+              <div
+                className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+                onClick={loadMore}
+              >
+                Load More
+              </div>
             </div>
-          </div>
-        ) : (
-          // If hasmore is true
-          <div className="flex justify-center">
-            <div
-              className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
-              onClick={loadMore} // Call loadMore function on click
-            >
-              Load More
-            </div>
-          </div>
-        )
-      ) : null}
+          )}
+        
       {isOpen && (
         <Modal isOpen={openModal} onClose={closeModal}>
           <div className="my-3 lg:my-6 flex flex-col">

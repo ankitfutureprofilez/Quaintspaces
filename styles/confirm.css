@@ -85,3 +85,10 @@ img.side-img {
     box-shadow: 0 0 17px -5px #ccc;
     border-radius: 5px;
 }
+
+.img-book img.rounded-full {
+  border-radius: 16px;
+  width: 79px !important;
+  height: 76px !important;
+  object-fit: cover;
+}

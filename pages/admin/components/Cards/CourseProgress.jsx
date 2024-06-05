@@ -23,7 +23,7 @@ function CourseProgress() {
   return (
     <>
       {loading ? (
-        <div className="border bg-lightBorderColor h-[30vh] w-full p-3 rounded-2xl "></div>
+        <div className="border bg-gray-100 h-[30vh] w-full p-3 rounded-2xl "></div>
       ) : (
     <div className="border text-gray-500 w-full p-3 rounded-2xl">
       {/* header */}
