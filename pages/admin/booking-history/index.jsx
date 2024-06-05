@@ -16,20 +16,15 @@ export default function index() {
   const [message, setMessage] = useState("");
   const [document, setDocument] = useState();
   const [selectedBooking, setSelectedBooking] = useState(null);
-  const [bookingstatus, setBookingStatus] = useState("upcoming")
+  const [activeTab, setActiveTab] = useState("upcoming");
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [imageOpen, setimageOpen] = useState(false);
-  console.log("bookingstatus",bookingstatus)
-
   const [hasmore, setHasMore] = useState(true);
-
   const [page, setPage] = useState(0);
-
   const openConfirmModal = (booking) => {
     setSelectedBooking(booking);
     setIsConfirmOpen(true);
   };
-
   const closeConfirmModal = () => {
     setIsConfirmOpen(false);
     fetchData(page);
@@ -50,10 +45,15 @@ export default function index() {
     setMessage(e?.target?.value);
   };
 
+
+
   function fetchData(pg) {
+    if (loading) {
+      return false;
+    }
     setLoading(true);
     const main = new Listing();
-    const response = main.bookinghistory(pg);
+    const response = main.bookinghistory(activeTab, pg);
     response
       .then((res) => {
         const newdata = res?.data?.data?.data || [];
@@ -74,11 +74,16 @@ export default function index() {
       });
   }
 
+  // useEffect(() => {
+  //   if (content && content?.length < 1) {
+  //     fetchData(page + 1);
+  //   }
+  // }, []);
+
   useEffect(() => {
-    if (content && content?.length < 1) {
-      fetchData(page + 1);
-    }
-  }, []);
+    fetchData(1);
+  }, [activeTab]);
+
 
   const loadMore = () => {
     if (!loading && page) {
@@ -121,17 +126,36 @@ export default function index() {
       ) : content && content.length > 0 ? (
         <>
 
-          <form className="max-w-sm mx-auto">
-            <label for="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-            <select  value={bookingstatus}
-                          onChange={(e) => setBookingStatus(e.target.value)} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              <option selected>Choose a country</option>
-              <option value="upcoming">upcoming</option>
-              <option value="completed">completed</option>
-              <option value="cancelled">cancelled</option>
-              <option value="current">current</option>
-            </select>
-          </form>
+          <div className="flex text-xs font-large relative bg-gray-100 p-2 rounded-lg py-1">
+            <button
+              onClick={() => setActiveTab('upcoming')}
+              className={`z-10 w-full px-2 py-1 rounded-lg ${activeTab === "upcoming" ? "bg-white text-blue-600" : "text-black"
+                }`}
+            >
+              Upcoming
+            </button>
+            <button
+              onClick={() => setActiveTab('completed')}
+              className={`z-10 w-full px-2 py-1 rounded-lg ${activeTab === "completed" ? "bg-white text-green-600" : "text-black"
+                }`}
+            >
+              Completed
+            </button>
+            <button
+              onClick={() => setActiveTab('cancelled')}
+              className={`z-10 w-full px-2 py-1 rounded-lg ${activeTab === "cancelled" ? "bg-white text-red-600" : "text-black"
+                }`}
+            >
+              Cancelled
+            </button>
+            <button
+              onClick={() => setActiveTab('current')}
+              className={`z-10 w-full px-2 py-1 rounded-lg ${activeTab === "current" ? "bg-black text-white" : "text-black"
+                }`}
+            >
+              Current
+            </button>
+          </div>
           <div className="overflow-x-auto mt-3">
             <div className="w-full">
               <div className="overflow-x-auto border border-gray-200 md:rounded-lg mt-2">
@@ -146,6 +170,9 @@ export default function index() {
                       </th>
                       <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
                         Booking Number
+                      </th>
+                      <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
+                        Check in & check  Out
                       </th>
                       <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
                         Stay
@@ -176,6 +203,9 @@ export default function index() {
                         </td>
                         <td className="px-4 py-4 text-sm text-gray-500">
                           {item?.booking_number}
+                        </td>
+                        <td className="px-4 py-4 text-sm text-gray-500">
+                          {item?.check_in} & {item?.check_out}
                         </td>
                         <td className="px-4 py-4 text-sm text-gray-500">
                           <Link
@@ -316,7 +346,7 @@ export default function index() {
                   className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
                   onClick={loadMore}
                 >
-                {loading ? "Loading..." : "Load More"}
+                  {loading ? "Loading..." : "Load More"}
                 </div>
               </div>
             )}

@@ -96,8 +96,8 @@ async forgetopt(data) {
     return  Api.post("admin/verify-reset-password-otp" ,data)
 } 
 
-async bookinghistory(page){
-    return Api.get(`admin/booking-history?page=${page}`)
+async bookinghistory(booking_status ,page  ){
+    return Api.get(`admin/booking-history/${booking_status}?page=${page}`)
 }
 
 async statistics(){

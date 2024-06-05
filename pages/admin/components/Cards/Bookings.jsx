@@ -17,7 +17,6 @@ function Bookings() {
   const [bookingCount, setBookingCount] = useState("");
   const [loading, setLoading] = useState(true);
   const [dataLoading, setDataLoading] = useState(false);
-
   useEffect(() => {
     setDataLoading(true);
     const main = new Listing();
