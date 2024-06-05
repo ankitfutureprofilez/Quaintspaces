@@ -48,7 +48,7 @@ export default function Edit() {
         <Property
           fetchProperties={() => fetchProperty(slug)}
           isEdit={true}
-          stepdata={true}
+          stepdata={false}
           p={record.data}
         />
       )}
