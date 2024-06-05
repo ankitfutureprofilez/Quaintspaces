@@ -34,7 +34,7 @@ const propertyTypes = [
 ];
 export default function Property(props) {
 
-  const { isEdit, p, onClose, fetchProperties } = props;
+  const { isEdit, p, onClose, fetchProperties, stepdata } = props;
   const {
     uuid,
     location,
@@ -130,8 +130,8 @@ export default function Property(props) {
   const [step, setStep] = useState(step_completed === 9 ? 0 : step_completed || 0);
   const [Loading, setLoading] = useState(false);
   const [PType, setPType] = useState(properties_type || "flat");
-  const lstring = location ? JSON.parse(location.replace('/\\"/g', '"')) : null;
-  const l = JSON?.parse(lstring);
+  const lstring = location ? (location.replace('/\\"/g', '"')) : null;
+  const l = (lstring);
 
   const [address, setAddress] = useState({
     street_address: l && l.street_address ? l.street_address : "",
@@ -437,14 +437,14 @@ export default function Property(props) {
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
-    const response = isEdit
+    const response = isEdit && !stepdata
       ? main.propertyedit(uuid, formData)
       : main.addproperty(formData);
     response
       .then((res) => {
-        if (res?.data?.status === true) {
-          if (isEdit) {
-            onClose();
+        if (res?.data?.status) {
+          if (isEdit && !stepdata) {
+            // onClose();
             toast.success(res.data.message);
             fetchProperties && fetchProperties();
             router.push("/admin/property");
@@ -524,6 +524,10 @@ export default function Property(props) {
 
   useEffect(() => { }, [images]);
 
+  // if (stepdata) {
+  //   setImages([...images, imageproperty]);
+  // }
+  
   return (
     <>
       <style>{`
@@ -531,7 +535,7 @@ export default function Property(props) {
       // .property-type:checked + label { color :#000 !important;border-color:#000 !important;}
       // .property-type:checked + label h2 { color :#000 !important;border-color:#000 !important;}
     `}</style>
-      {isEdit ? (
+      {isEdit && !stepdata? (
         <> </>
       ) : (
         <div className="flex justify-end mt-5">
@@ -864,7 +868,7 @@ export default function Property(props) {
                   </label>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
-                  {isEdit ? (
+                  {isEdit? (
                     images &&
                     images.map((file, index) => (
                       <div key={index} className="relative">
