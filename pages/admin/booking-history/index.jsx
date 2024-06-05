@@ -132,6 +132,7 @@ export default function index() {
               className={`z-10 w-full px-2 py-1 rounded-lg ${activeTab === "upcoming" ? "bg-white text-blue-600" : "text-black"
                 }`}
             >
+              
               Upcoming
             </button>
             <button
