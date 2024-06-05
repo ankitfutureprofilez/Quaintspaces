@@ -147,6 +147,7 @@ function Index() {
                                             }}
                                         />
                                     ) : (
+
                                         <FaHouse />
                                     )}
                                     <h2 className="text-lg font-medium mb-2 heading-property">{item.name || "please name"}</h2>
