@@ -15,6 +15,7 @@ function Index() {
   const [isimage, setisimage] = useState(false);
   const [openAddPage, setOpenAddPage] = useState(false);
   const [record, setRecord] = useState([]);
+  const [useExistingImages, setUseExistingImages] = useState(false);
   const [filteredRecord, setFilteredRecord] = useState([]);
   const [uuid, setuuid] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +32,7 @@ function Index() {
       .Adminproperty()
       .then((res) => {
         const data = res?.data?.data;
-        setRecord(res?.data?.data)
+        setRecord(res?.data?.data);
         console.log("record", data);
         let filteredListings = [];
         if (Array.isArray(data)) {
@@ -42,7 +43,7 @@ function Index() {
           });
         }
         if (filteredListings?.length > 0) {
-            setFilteredRecord(filteredListings);
+          setFilteredRecord(filteredListings);
           console.log(filteredListings);
         } else {
           console.log("No listings match the status and step conditions.");
@@ -76,8 +77,8 @@ function Index() {
     }
   };
 
-  const f = async () => {
-      fetchProperty(uuid);
+  const duplicateProperty = async () => {
+    fetchProperty(uuid);
     setIsLoading(false);
     setIsPopupOpen(false);
     setisimage(false);
@@ -273,23 +274,33 @@ function Index() {
             <div className="flex flex-col items-start space-y-1">
               <button
                 onClick={() => {
-                  f();
+                  setUseExistingImages(true);
+                  duplicateProperty();
                 }}
               >
                 {" "}
                 With Image
               </button>
-              <button> Without Image</button>
+              <button
+                onClick={() => {
+                  setUseExistingImages(false);
+                  duplicateProperty();
+                }}
+              >
+                {" "}
+                Without Image
+              </button>
             </div>
           </div>
         </Modal>
       )}
       {openAddPage ? (
         <Property
-        //   fetchProperties={() => fetchProperty(uuid)}
+          //   fetchProperties={() => fetchProperty(uuid)}
           isEdit={true}
           stepdata={true}
           p={data?.data}
+          useExistingImages={useExistingImages}
         />
       ) : (
         <></>

@@ -34,7 +34,7 @@ const propertyTypes = [
 ];
 export default function Property(props) {
 
-  const { isEdit, p, onClose, fetchProperties, stepdata } = props;
+  const { isEdit, p, onClose, fetchProperties, stepdata, useExistingImages } = props;
   const {
     uuid,
     location,
@@ -868,7 +868,7 @@ export default function Property(props) {
                   </label>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
-                  {isEdit? (
+                  {isEdit && useExistingImages? (
                     images &&
                     images.map((file, index) => (
                       <div key={index} className="relative">
@@ -929,7 +929,7 @@ export default function Property(props) {
 
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4  mt-16 ">
-                {isEdit
+                {isEdit && useExistingImages
                   ? imageproperty?.map((item, index) => (
                     <div key={index} className="relative isedits">
                       <Image

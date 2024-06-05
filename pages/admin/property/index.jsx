@@ -87,7 +87,7 @@ export default function Index() {
           <>
             <div className="flex flex-wrap px-4 py-5 justify-between" >
             <h3 className="text-xl font-bold text-black">Your listings</h3>
-              <div className="bg-slate-200 rounded-3xl w-9 h-9 flex justify-center items-center">
+              <div className="bg-slate-200 rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer">
               <MdAdd onClick={() => {
                 router.push("/admin/property/become");
               }} />

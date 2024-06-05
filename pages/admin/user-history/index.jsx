@@ -11,6 +11,7 @@ import Modal from "../hook/Modal";
 export default function Index() {
   const [popupOpen, setPopupOpen] = useState(null);
   const [selectedRowData, setSelectedRowData] = useState(null);
+  const [loadingButton, setLoadingButton] = useState(false);
   const [record, setRecord] = useState([]);
   const [page, setPage] = useState(1);
   const [hasmore, setHasMore] = useState(true);
@@ -21,7 +22,8 @@ export default function Index() {
 
   const fetchData = async (pg) => {
     try {
-      setLoading(true);
+      if(pg==1){setLoading(true);}
+      setLoadingButton(true);
       const main = new Listing();
       const response = await main.userListing(pg);
       if (response?.data?.data) {
@@ -41,6 +43,7 @@ export default function Index() {
     } catch (error) {
       console.log("error", error);
     } finally {
+      setLoadingButton(false);
       setLoading(false);
     }
   };
@@ -406,10 +409,10 @@ export default function Index() {
       {record?.length > 0 && !loading && hasmore && (
             <div className="flex justify-center">
               <div
-                className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+                className="font-inter font-lg leading-tight bg-indigo-600 text-center w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white cursor-pointer"
                 onClick={loadMore}
               >
-                Load More
+                {loadingButton ? "Loading...": "Load More"}
               </div>
             </div>
           )}

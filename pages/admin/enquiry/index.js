@@ -8,6 +8,7 @@ import Modal from "../hook/Modal";
 
 export default function Index() {
   const [loading, setLoading] = useState(true);
+  const [loadingButton, setLoadingButton] = useState(false);
   const [content, setContent] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
@@ -17,7 +18,8 @@ export default function Index() {
 
   // Function to fetch data from server
   const fetchData = async (pg) => {
-    setLoading(true);
+    if(pg==1){setLoading(true);}
+    setLoadingButton(true);
     try {
       const main = new Listing();
       const response = await main.UserMessages(pg);
@@ -31,8 +33,10 @@ export default function Index() {
       });
       setHasMore(response?.data?.current_page < response?.data?.last_page);
       setPage(response?.data?.current_page);
+      setLoadingButton(false);
       setLoading(false);
     } catch (error) {
+      setLoadingButton(false);
       setLoading(false);
       console.error("Error fetching data:", error);
     }
@@ -198,7 +202,7 @@ export default function Index() {
                 className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
                 onClick={loadMore}
               >
-                {loading ? "Loading..." : "Load More"}
+                {loadingButton ? "Loading...": "Load More"}
               </button>
             </div>
           )}
