@@ -8,7 +8,7 @@ const HouseRules = ({ petsAllowed, setPetsAllowed, eventsAllowed, pets, setPets,
     setPets((prev) => Math.max(0, prev - 1))
   const increments = (Bathrooms) => () => setPets((prev) => prev + 1);
   return (
-    <div className='p-8 rounded-2xl border border-slate-400'>
+    <div className=''>
       <h2 className="text-left  font-bold text-2xl text-slate-900 mt-3 mb-4">House  Rules</h2>
       <p className="text-left  font-sm text-lg text-slate-500 mt-3 mb-4">
         Guests are expected to follow your rules and may be removed from Airbnb if they don't.
@@ -33,8 +33,8 @@ const HouseRules = ({ petsAllowed, setPetsAllowed, eventsAllowed, pets, setPets,
         </div>
       </div>
       {petsAllowed ? (
-        <div className="flex items-center pt-4 pb-4 justify-between border-b-2 border-black-600 p-2 ">
-          <span className="font-normal leading-snug text-lg ">Pets</span>
+        <div className="flex p-4 px-6  justify-between bg-slate-100 rounded-full mb-2 ">
+          <span className="font-normal  text-right  text-lg text-slate-600 ">Pets</span>
           <div className="flex items-center space-x-2  ">
             <button
               onClick={decrements(setPets)}
@@ -91,20 +91,16 @@ const HouseRules = ({ petsAllowed, setPetsAllowed, eventsAllowed, pets, setPets,
         </div>
       </div>
       {quietHours ? (
-        <div className="max-w-[100%] m-auto w-full mt-10 ">
-          <h2 className="text-2xl font-bold mb-4">Check-in & checkout times</h2>
-          <div className="flex justify-between mb-4 space-x-4">
+        <div className=" p-2 px-6  justify-between bg-slate-100 rounded-full mb-2">
+         
+          <div className="flex justify-between space-x-4">
             <div className="w-1/2">
-              <label className="block mb-2 font-semibold">Check-in window</label>
               <div className="flex justify-between space-x-4">
-                <div className="w-1/2 relative">
-                  <label className="absolute -top-1 left-1 text-xs text-gray-500">
-                    Start time
-                  </label>
+                <div className="w-full relative">
                   <select
                     value={checkinTime}
                     onChange={(e) => setCheckinTime(e.target.value)}
-                    className="block w-full px-3 py-3 border border-gray-300 bg-white rounded-xl shadow-sm sm:text-sm mt-3"
+                    className="block w-full px-3 py-3 border-0 rounded-xl sm:text-sm "
                   >
                     <option value="00:00:00">12:00 AM</option>
                     <option value="01:00:00">1:00 AM</option>
@@ -136,11 +132,10 @@ const HouseRules = ({ petsAllowed, setPetsAllowed, eventsAllowed, pets, setPets,
               </div>
             </div>
             <div className="w-1/2">
-              <label className="block mb-2 font-semibold">Checkout time</label>
               <select
                 value={checkoutTime}
                 onChange={(e) => setCheckoutTime(e.target.value)}
-                className="mt-1 block w-full px-3 py-3 border border-gray-300 bg-white rounded-xl shadow-sm sm:text-sm mt-5"
+                className=" block w-full px-3 py-3 border-0 bg-white rounded-xl sm:text-sm "
               >
                 <option value="00:00:00">12:00 AM</option>
                 <option value="01:00:00">1:00 AM</option>

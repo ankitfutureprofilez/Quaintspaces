@@ -634,11 +634,9 @@ export default function Property(props) {
 
       <div className={`w-full  flex items-center justify-center px-6 py-8 `}>
         <div className="max-w-4xl w-full space-y-8 w-full ">
-          <div
-            className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
-          >
-            <div
-              className={`${step === 1 ? "" : "display-none"
+          <div className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `} >
+          <div className="p-8 rounded-2xl border ">
+            <div className={`${step === 1 ? "" : "display-none"
                 } max-w-[100%] m-auto table w-full`}
             >
               <h2 className="text-3xl text-center font-bold mb-8">
@@ -695,8 +693,8 @@ export default function Property(props) {
                 </div>
               </div>
             </div>
-
             <div className={`${step === 2 ? "" : "display-none"}`}>
+        
               <h2 className="text-3xl text-center font-bold mb-2">
                 Where's your place located?
               </h2>
@@ -704,7 +702,7 @@ export default function Property(props) {
                 Your address is only shared with guests after they’ve made a
                 reservation.
               </p>
-              <div className="table w-full m-auto max-w-[500px] space-y-4 text-center">
+              <div className="table w-full m-auto  space-y-4 text-center">
                 <p>{address?.location}</p>
                 <div class="w-full mt-4">
                   <button
@@ -785,7 +783,7 @@ export default function Property(props) {
                 </div>
               </div>
               <div>
-                <h2 className="text-3xl text-center font-bold mb-2 mt-5 capitalize">
+                <h2 className="text-2xl text-center font-bold mb-2 mt-8 capitalize">
                   Show your specific location
                 </h2>
                 <p className="text-normal text-center text-gray-500 mb-8 mt-4">
@@ -815,13 +813,10 @@ export default function Property(props) {
                 Bedrooms={Bedrooms} setBedrooms={setBedrooms} Bathrooms={Bathrooms} setBathrooms={setBathrooms} pets={pets} setPets={setPets}
               />
             </div>
-
             <div className={`${step === 4 ? "" : "display-none"}`}>
               <Amenities selectedAmenity={selectedAmenity} standoutAmenity={standoutAmenity} Amenity={Amenity} setAmenity={setAmenity} setstandoutAmenity={setstandoutAmenity} setSelectedAmenity={setSelectedAmenity} />
             </div>
-
-            <div
-              className={`${step === 5 ? "" : "display-none"
+            <div className={`${step === 5 ? "" : "display-none"
                 } max-w-[600px] m-auto`}
             >
               <h2 className="text-3xl text-center font-bold mb-2">
@@ -1010,7 +1005,7 @@ export default function Property(props) {
                         <select
                           value={checkinStart}
                           onChange={(e) => setCheckinStart(e.target.value)}
-                          className="block w-full px-3 py-3 border border-gray-300 bg-white rounded-xl shadow-sm sm:text-sm mt-3"
+                          className="block w-full px-3 py-3 border bg-white rounded-xl shadow-sm sm:text-sm mt-3"
                         >
                           <option value="00:00:00">12:00 AM</option>
                           <option value="01:00:00">1:00 AM</option>
@@ -1046,7 +1041,7 @@ export default function Property(props) {
                         <select
                           value={checkinEnd}
                           onChange={(e) => setCheckinEnd(e.target.value)}
-                          className="block w-full px-3 py-3 border border-gray-300 bg-white rounded-xl shadow-sm sm:text-sm mt-3"
+                          className="block w-full px-3 py-3 border  bg-white rounded-xl shadow-sm sm:text-sm mt-3"
                         >
                           <option value="flexible">Flexible</option>
                           <option value="00:00">12:00 AM</option>
@@ -1140,11 +1135,9 @@ export default function Property(props) {
                 </div>
               </div>
             </div>
-
             <div className={`${step === 7 ? "" : "display-none"}`}>
               <CancelPolicy showFirm={showFirm} setShowFirm={setShowFirm} setShowFlexible={setShowFlexible} selectedPolicy={selectedPolicy} setSelectedPolicy={setSelectedPolicy} showFlexible={showFlexible} longTermPolicy={longTermPolicy} setLongTermPolicy={setLongTermPolicy} />
             </div>
-
             <div className={`${step === 8 ? "" : "display-none"}`}>
               <HouseRules petsAllowed={petsAllowed} setPetsAllowed={setPetsAllowed} quietHours={quietHours}
               pets={pets} setPets={setPets}
@@ -1165,9 +1158,8 @@ export default function Property(props) {
                 />
               </div>
             </div>
-
             <div className={`${step === 9 ? "" : "display-none"
-              } max-w-[100%] m-auto table w-full p-8 rounded-2xl border border-slate-400`}>
+              } max-w-[100%] m-auto table w-full `}>
 
               <div className="flex flex-col mb-2">
                 <label htmlFor="directions" className="block font-medium text-gray-700">
@@ -1225,7 +1217,7 @@ export default function Property(props) {
                 />
               </div>
             </div>
-
+            
             <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
               {step == 0 ? (
                 <> </>
@@ -1257,6 +1249,8 @@ export default function Property(props) {
                 </button>
               )}
             </div>
+            </div>
+            
           </div>
         </div>
       </div>
