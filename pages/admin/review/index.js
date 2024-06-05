@@ -13,11 +13,13 @@ import { formatMultiPrice } from "../../../hooks/ValueData";
 
 export default function Index() {
   const [loading, setLoading] = useState(true);
+  const [loadingButton, setLoadingButton] = useState(false);
   const [content, setContent] = useState();
   const [hasmore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const fetchData = async (pg) => {
-    setLoading(true);
+    if(pg==1){setLoading(true);}
+    setLoadingButton(true);
     try {
       const Main = new Listing();
       const response = await Main.getrating(pg);
@@ -32,9 +34,11 @@ export default function Index() {
       setHasMore(response?.data?.current_page < response?.data?.last_page);
       setPage(response?.data?.current_page);
       setLoading(false);
+      setLoadingButton(false);
     } catch (error) {
       console.log("errr", error);
       setLoading(false);
+      setLoadingButton(false);
     }
   };
 
@@ -86,7 +90,7 @@ export default function Index() {
               </div>
             ) : (
               <div>
-                {content.length > 0 ? (
+                {content && content?.length > 0 ? (
                   <div className="overflow-x-auto mt-3">
                     <div className="inline-block align-middle w-full">
                       <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
@@ -376,7 +380,7 @@ export default function Index() {
                 className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
                 onClick={loadMore}
               >
-                Load More
+                {loadingButton ? "Loading...": "Load More"}
               </div>
             </div>
           )}
