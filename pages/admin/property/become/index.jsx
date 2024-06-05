@@ -105,7 +105,9 @@ function Index() {
         openAddPage ? (
           <></>
         ) : (
-          <p>Loading...</p>
+          <div className="fixed top-0 left-0 w-full h-full bg-[#ffffff47] text-center flex justify-center items-center z-50">
+            <p>Loading...</p>
+          </div>
         )
       ) : (
         <div className="w-[600px] py-8 mx-auto">
@@ -233,18 +235,15 @@ function Index() {
       )}
       {isPopupOpen && (
         <Modal isOpen={isPopupOpen} onClose={togglePopup}>
+          <div className="headar-box">
+            <h2 className="text-lg font-medium px-6 py-4 bg-indigo-600 text-white">Choose listing</h2>
+          </div>
           <div className="p-6">
-            <h2 className="text-lg font-medium mb-4">Choose listing</h2>
             <div>
-              {record &&
-                record.map((item, index) => (
-                  <div
-                    className="text-uppercase"
-                    key={index}
-                    style={{ cursor: "pointer" }}
-                    // onClick={() => handleEditEntireProperty(item?.uuid)}
-                  >
-                    {item?.property_image[0]?.image_url ? (
+              {record && record.map((item, index) => (
+                <div className="flex mb-3 pb-3 border-b" key={index} style={{ cursor: "pointer" }}>
+                  {item?.property_image[0]?.image_url ? (
+                    <div className="w-[60px] h-[40px] object-cover mr-2">
                       <Image
                         width={100}
                         height={300}
@@ -255,24 +254,29 @@ function Index() {
                           toggleimagePopup(item?.uuid);
                         }}
                       />
-                    ) : (
-                      <FaHouse />
-                    )}
-                    <h2 className="text-lg font-medium mb-2 heading-property">
-                      {item.name || "please name"}
-                    </h2>
-                  </div>
-                ))}
+                    </div>
+                  ) : (
+                    <div className="w-[30px] h-[20px] object-cover mr-2" style={{ cursor: "pointer" }}>
+                      <FaHouse      size={30}
+                        />
+                    </div>
+                  )}
+                  <h2 className="text-lg font-medium mb-2 ">{item.name || "please name"}</h2>
+                </div>
+              ))}
             </div>
           </div>
         </Modal>
       )}
       {isimage && (
         <Modal isOpen={isimage} onClose={toggleimagePopup}>
+          <div className="headar-box">
+            <h2 className="text-lg font-medium px-6 py-4 bg-indigo-600 text-white">Choose Image </h2>
+          </div>
           <div className="p-6">
-            <h2 className="text-lg font-medium mb-4">Choose listing</h2>
-            <div className="flex flex-col items-start space-y-1">
-              <button
+            <div className="flex flex-col items-start space-y-1  mb-3 pb-3 border-b" style={{ cursor: "pointer" }} >
+              <div
+                style={{ cursor: "pointer" }}
                 onClick={() => {
                   setUseExistingImages(true);
                   duplicateProperty();
@@ -280,8 +284,9 @@ function Index() {
               >
                 {" "}
                 With Image
-              </button>
-              <button
+              </div>
+              <div
+                style={{ cursor: "pointer" }}
                 onClick={() => {
                   setUseExistingImages(false);
                   duplicateProperty();
@@ -289,7 +294,7 @@ function Index() {
               >
                 {" "}
                 Without Image
-              </button>
+              </div>
             </div>
           </div>
         </Modal>

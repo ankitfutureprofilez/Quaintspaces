@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function Guest({
-  Guests, setGuests, Bedrooms, setBedrooms, Bathrooms, setBathrooms,
+  Guests, setGuests, Bedrooms, setBedrooms, Bathrooms, setBathrooms, Beds, setBeds
 }) {
   const decrement = (setter) => () => setter((prev) => Math.max(0, prev - 1));
   const increment = (setter) => () => setter((prev) => prev + 1);
@@ -67,6 +67,25 @@ export default function Guest({
             <span>{Bathrooms}</span>
             <button
               onClick={increments(setBathrooms)}
+              className="rounded-full border border-black-600  px-3 py-1"
+            >
+              +
+            </button>
+          </div>
+        </div>
+
+        <div className="flex items-center pt-4 pb-4 justify-between border-b-2 border-black-600 p-2">
+          <span className="font-normal leading-snug text-lg ">Beds</span>
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={decrement(setBeds)}
+              className="rounded-full border-black-600  border px-3 py-1"
+            >
+              -
+            </button>
+            <span>{Beds}</span>
+            <button
+              onClick={increment(setBeds)}
               className="rounded-full border border-black-600  px-3 py-1"
             >
               +

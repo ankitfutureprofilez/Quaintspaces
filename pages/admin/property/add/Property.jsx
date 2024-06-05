@@ -7,7 +7,12 @@ import axios from "axios";
 import Amenities from "./Amenities";
 import HouseRules from "./HouseRules";
 import CancelPolicy from "./CancelPolicy";
+import { IoMdArrowRoundBack } from "react-icons/io";
 import { House, Add } from "iconsax-react";
+import { MdPhonelinkLock } from "react-icons/md";
+import { MdOutlineKeyboardAlt } from "react-icons/md";
+import { RiDoorLockBoxLine } from "react-icons/ri";
+import { GrUserWorker } from "react-icons/gr";
 import {
   MdOutlineFreeBreakfast,
 } from "react-icons/md";
@@ -38,25 +43,76 @@ export default function Property(props) {
   const {
     uuid,
     location,
+    discount_offer,
     properties_type,
     name,
     no_of_pet_allowed,
     price,
     description,
-    bedrooms,
+    bedrooms, beds,
     safety_amenity, standout_amenity,
     property_rule, step_completed,
     guests, pet_fee, extra_guest_fee, flexible_check_in, check_in,
     bathrooms, cleaning_fee,
     amenities, check_out,
     property_image, status, quite_hours_in_time,
-    quite_hours_out_time
+    quite_hours_out_time, custom_link
   } = p ? p : {};
 
-
+  const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
+  const [pets, setPets] = useState(no_of_pet_allowed || 1);
+  const [selectedAmenity, setSelectedAmenity] = useState(amenities ? stringToArray(amenities) : []);
+  const [Amenity, setAmenity] = useState(safety_amenity ? stringToArray(safety_amenity) : []);
+  const [standoutAmenity, setstandoutAmenity] = useState(standout_amenity ? stringToArray(standout_amenity) : []);
+  const [longTermPolicy, setLongTermPolicy] = useState(property_rule?.long_term_policy || null);
+  const [selectedPolicy, setSelectedPolicy] = useState(property_rule?.standard_policy || null);
+  const [showFlexible, setShowFlexible] = useState(true);
+  const [showFirm, setShowFirm] = useState(false);
+  const [petsAllowed, setPetsAllowed] = useState(property_rule?.pet_allowed || 0);
+  const [eventsAllowed, setEventsAllowed] = useState(property_rule?.events_allowed || 0);
+  const [smokingAllowed, setSmokingAllowed] = useState(property_rule?.smoking_allowed || 0);
+  const [quietHours, setQuietHours] = useState(property_rule?.quiet_hours_allowed || 0);
+  const [PhotographyAllowed, setPhotographyAllowed] = useState(property_rule?.photography_allowed || 0);
   const [images, setImages] = useState([]);
   const [dragId, setDragId] = useState("");
+  const [typeHere, setTypeHere] = useState("entire_place");
+  const [checkinStart, setCheckinStart] = useState(check_in || "00:00");
+  const [checkinquet, setCheckinquiet] = useState(quite_hours_in_time || "00:00");
+  const [checkoutquet, setCheckoutquiet] = useState(quite_hours_out_time || "00:00");
+  const [checkinEnd, setCheckinEnd] = useState(flexible_check_in || "flexible");
+  const [checkout, setCheckout] = useState(check_out || "00:00");
+  const [Guests, setGuests] = useState(guests || 1);
+  const [Beds, setBeds] = useState(beds || 1);
+  const [Bedrooms, setBedrooms] = useState(bedrooms || 1);
 
+  const [selectedMethod, setSelectedMethod] = useState("smartlock");
+  const [checkdescrtion, setcheckdescrtion] = useState("");
+  console.log("checkdescrtion",checkdescrtion)
+
+  const options = [
+    {
+      item: "smartlock",
+      data: "Guests will use a code or app to open a wifi-connected lock.",
+      icon: <MdPhonelinkLock size={24} />,
+    },
+    {
+      item: "keypad",
+      data: "Guests will use the code you provide to open an electronic lock.",
+      icon: <MdOutlineKeyboardAlt size={24} />,
+    },
+    {
+      item: "lockbox",
+      data: "Guests will use a code you provide to open a small safe that has a key inside.",
+      icon: <RiDoorLockBoxLine size={24} />,
+    },
+    {
+      item: "staff",
+      data: "Someone will be available 24 hours a day to let guests in.",
+      icon: <GrUserWorker size={24} />,
+    },
+  ];
+
+  console.log("selectedMethod",selectedMethod)
   const handleFileChange = async (e) => {
     let files = Array.from(e?.target?.files);
     setImages([...images, ...files]);
@@ -125,7 +181,6 @@ export default function Property(props) {
     setImages(updatedImages);
   };
 
-  console.log("p", p)
   const router = useRouter();
   const [step, setStep] = useState(step_completed === 9 ? 0 : step_completed || 0);
   const [Loading, setLoading] = useState(false);
@@ -150,14 +205,7 @@ export default function Property(props) {
     const { name, value } = e.target;
     setAddress({ ...address, [name]: value });
   };
-  const [typeHere, setTypeHere] = useState("entire_place");
 
-
-  const [checkinStart, setCheckinStart] = useState(check_in || "00:00");
-  const [checkinquet, setCheckinquiet] = useState(quite_hours_in_time || "00:00");
-  const [checkoutquet, setCheckoutquiet] = useState(quite_hours_out_time || "00:00");
-  const [checkinEnd, setCheckinEnd] = useState(flexible_check_in || "flexible");
-  const [checkout, setCheckout] = useState(check_out || "00:00");
   const [item, setItem] = useState({
     name: name || "",
     about: description || "",
@@ -173,54 +221,27 @@ export default function Property(props) {
     wifi: property_rule?.wifiusername || '',
     additonalrule: property_rule?.additional_rules || "",
     wifiPassword: property_rule?.wifiPassword || '',
+    discount: discount_offer || "",
+    customLink: custom_link || ""
   });
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setItem({ ...item, [name]: value });
   };
 
-  // const handleFileChange = async (e) => {
-  //   let files = Array.from(e.target.files);
-  //   let arr = [];
-  //   files.forEach((element) => {
-  //     arr.push(element);
-  //   });
-  //   setImages([...images, ...arr]);
-  // };
-
-  // const removeImage = (f) => {
-  //   const filter = images && images?.filter((file, index) => file !== f);
-  //   setImages(filter);
-  // };
   function stringToArray(inputString) {
     return inputString.split(",");
   }
 
   const [selectedOption, setSelectedOption] = useState(status || 1);
 
-  console.log("selectedOption", selectedOption);
 
   const handleOptionChange = (event) => {
     const option = parseInt(event.target.value, 10);
     setSelectedOption(selectedOption === option ? "" : option);
   };
-  console.log("status", status)
-  const [Guests, setGuests] = useState(guests || 1);
-  const [Bedrooms, setBedrooms] = useState(bedrooms || 1);
-  const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
-  const [pets, setPets] = useState(no_of_pet_allowed || 1);
-  const [selectedAmenity, setSelectedAmenity] = useState(amenities ? stringToArray(amenities) : []);
-  const [Amenity, setAmenity] = useState(safety_amenity ? stringToArray(safety_amenity) : []);
-  const [standoutAmenity, setstandoutAmenity] = useState(standout_amenity ? stringToArray(standout_amenity) : []);
-  const [longTermPolicy, setLongTermPolicy] = useState(property_rule?.long_term_policy || null);
-  const [selectedPolicy, setSelectedPolicy] = useState(property_rule?.standard_policy || null);
-  const [showFlexible, setShowFlexible] = useState(false);
-  const [showFirm, setShowFirm] = useState(false);
-  const [petsAllowed, setPetsAllowed] = useState(property_rule?.pet_allowed || 0);
-  const [eventsAllowed, setEventsAllowed] = useState(property_rule?.events_allowed || 0);
-  const [smokingAllowed, setSmokingAllowed] = useState(property_rule?.smoking_allowed || 0);
-  const [quietHours, setQuietHours] = useState(property_rule?.quiet_hours_allowed || 0);
-  const [PhotographyAllowed, setPhotographyAllowed] = useState(property_rule?.photography_allowed || 0);
+
+
   const prevStep = () => setStep((prev) => prev - 1);
 
   const nextStep = async () => {
@@ -387,8 +408,10 @@ export default function Property(props) {
       });
   };
 
+const baseurl = "quantstay.com/h/"
+const fulllink = baseurl+item?.customLink
 
-
+console.log("fulllink",fulllink)
   async function handleSubmit(e) {
     if (step === 9 && (item?.Direction === "" || item?.wifi === " " || item?.wifiPassword === " " || item?.housemanual === " ")) {
       toast.error(`All fields are required.`);
@@ -408,6 +431,8 @@ export default function Property(props) {
     formData.append("bedrooms", Bedrooms);
     formData.append("bathrooms", Bathrooms);
     formData.append("guests", Guests);
+    formData.append("beds", Beds);
+    formData.append("custom_link", fulllink);
     formData.append("address", JSON.stringify(address));
     formData.append("amenities", selectedAmenity);
     formData.append("standout_amenity", standoutAmenity);
@@ -814,6 +839,7 @@ export default function Property(props) {
               </div>
               <div className={`${step === 3 ? "" : "display-none"}`}>
                 <Guest Guests={Guests} setGuests={setGuests}
+                  Beds={Beds} setBeds={setBeds}
                   Bedrooms={Bedrooms} setBedrooms={setBedrooms} Bathrooms={Bathrooms} setBathrooms={setBathrooms} pets={pets} setPets={setPets}
                 />
               </div>
@@ -1222,6 +1248,84 @@ export default function Property(props) {
                 </div>
               </div>
 
+
+              <div className={`${step === 10 ? "" : "display-none"
+                } max-w-[100%] m-auto table w-full `}>
+
+                <div className="flex flex-col mb-2">
+                  <label htmlFor="customLink" className="block font-medium text-gray-700">
+                    Custom Link
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-0 top-0 h-full pl-4 flex items-center text-gray-500">
+                      {baseurl +item.customLink }
+                    </span>
+                    <textarea
+                      id="customLink"
+                      name="customLink"
+                      rows={5}
+                      className="shadow-sm p-4 pl-[10rem] w-4/5 mt-1 block sm:text-sm border rounded-xl"
+                      placeholder="Enter your custom link here"
+                      value={ item.customLink}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="text-right text-sm text-gray-500">
+                    {baseurl.length + item.customLink.length}/{100}
+                  </div>
+
+                </div>
+                <div className="flex flex-col mb-2">
+                  <div className="flex flex-col md:flex-row min-h-screen p-4">
+                    {/* Left Panel */}
+                    <div className="md:w-2/3 px-16 flex flex-col mt-4">
+                      <div className="flex space-x-4 items-center">
+                        <IoMdArrowRoundBack size={24} />
+                        <h2 className="text-3xl font-bold">Select a check-in method</h2>
+                      </div>
+                      <div className="space-y-8 mt-8 w-full">
+                        {options && options.map((item, index) => (
+                          <div
+                            key={index}
+                            className={`p-4 border rounded-lg cursor-pointer ${selectedMethod === item?.item ? "border-black" : "border-gray-300"
+                              }`}
+                            onClick={() => setSelectedMethod(item?.item)}
+                          >
+                            {item?.icon}
+                            <span className="my-4 text-xl font-semibold capitalize">
+                              {item?.item}
+                            </span>
+                            <p className="text-gray-500" onClick={()=>{setcheckdescrtion(item?.data)}}>
+                              {item?.data}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Right Panel */}
+                    <div className="md:w-2/3 p-4">
+                      <h2 className="text-2xl font-bold mb-4 capitalize">
+                        Add {selectedMethod} details
+                      </h2>
+                      <textarea
+                        className="w-full p-2 border border-gray-300 rounded-lg"
+                        rows="10"
+                        placeholder={`Add any important details for getting inside your place. This info will be shared with guests 24-48 hours before check-in.`}
+                      />
+                      <div className="flex justify-between items-center mt-4">
+                        <p className="text-gray-500">Shared 48 hours before check-in</p>
+                        <div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col  ">
+              
+                </div>
+              </div>
+
               <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
                 {step == 0 ? (
                   <> </>
@@ -1235,7 +1339,7 @@ export default function Property(props) {
                   </button>
                 )}
 
-                {step < 9 ? (
+                {step < 10 ? (
                   <button
                     type="button"
                     onClick={nextStep}

@@ -7,6 +7,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 
 export default function test() {
   const [selectedMethod, setSelectedMethod] = useState("smartlock");
+
   const options = [
     {
       item: "smartlock",

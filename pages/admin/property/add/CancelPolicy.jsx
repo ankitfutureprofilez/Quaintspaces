@@ -1,4 +1,4 @@
-function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, selectedPolicy, setSelectedPolicy, longTermPolicy, setLongTermPolicy }) {
+function CancelPolicy({ showFirm, setShowFirm,  showFlexible , setShowFlexible, selectedPolicy, setSelectedPolicy, longTermPolicy, setLongTermPolicy }) {
     const handlePolicyChanges = (policy) => {
         setLongTermPolicy(longTermPolicy === policy ? "" : policy);
     };
@@ -70,7 +70,7 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                 </div>
             </div>
             <div className="w-1/2 pl-2">
-                {showFlexible && (
+                {showFlexible ===true && (
                     <div className="rounded-lg border text-center overflow-hidden border-indigo-600">
                     <h2 className="text-xl bg-indigo-600 text-white font-semibold p-4">Choose your standard policy</h2>
                     <div className="p-4">
