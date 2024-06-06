@@ -246,10 +246,11 @@ function Index() {
                     <div className="w-[60px] h-[40px] object-cover mr-2">
                       <Image
                         width={100}
-                        height={300}
+                        height={100}
                         layout="responsive"
                         src={item?.property_image[0]?.image_url || "https://th.bing.com/th/id/OIP.F4eiZn0Wjgp4EFtocph2BAAAAA?rs=1&pid=ImgDetMain"}
                         alt="Property cover image"
+                        className="!h-full object-cover"
                         onClick={() => {
                           toggleimagePopup(item?.uuid);
                         }}
@@ -273,26 +274,26 @@ function Index() {
             <h2 className="text-lg font-medium px-6 py-4 bg-indigo-600 text-white">Choose Image </h2>
           </div>
           <div className="p-6">
-            <div className="flex flex-col items-start space-y-1  mb-3 pb-3 border-b" style={{ cursor: "pointer" }} >
-              <div
-                style={{ cursor: "pointer" }}
+            <div className="flex flex-col items-start space-y-1  mb-3 pb-3 border-b " style={{ cursor: "pointer" }} >
+              <div className="border flex w-full p-4 items-center rounded-md hover:border-[#4f46e5] mb-3 " style={{ cursor: "pointer" }}
                 onClick={() => {
                   setUseExistingImages(true);
                   duplicateProperty();
                 }}
               >
                 {" "}
-                With Image
+                <svg className="mr-3 w-[50px]" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" ><path d="M27 3a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H5a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM8.89 19.04l-.1.08L3 24.92V25a2 2 0 0 0 1.85 2H18.1l-7.88-7.88a1 1 0 0 0-1.32-.08zm12.5-6-.1.08-7.13 7.13L20.92 27H27a2 2 0 0 0 2-1.85v-5.73l-6.3-6.3a1 1 0 0 0-1.31-.08zM27 5H5a2 2 0 0 0-2 2v15.08l4.38-4.37a3 3 0 0 1 4.1-.14l.14.14 1.13 1.13 7.13-7.13a3 3 0 0 1 4.1-.14l.14.14L29 16.59V7a2 2 0 0 0-1.85-2zM8 7a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm0 2a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"></path></svg>
+                <h3 className="text-lg text-black">With Image</h3>
               </div>
-              <div
-                style={{ cursor: "pointer" }}
+              <div className="border flex w-full p-4 items-center rounded-md hover:border-[#4f46e5]" style={{ cursor: "pointer" }}
                 onClick={() => {
                   setUseExistingImages(false);
                   duplicateProperty();
                 }}
               >
                 {" "}
-                Without Image
+                <svg className="mr-3 w-[50px]" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false"><path d="M25 5a4 4 0 0 1 4 4v17a5 5 0 0 1-5 5H12a5 5 0 0 1-5-5V10a5 5 0 0 1 5-5h13zm0 2H12a3 3 0 0 0-3 3v16a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V9a2 2 0 0 0-2-2zm-3-6v2H11a6 6 0 0 0-6 5.78V22H3V9a8 8 0 0 1 7.75-8H22z"></path></svg>
+                <h3>Without Image</h3>
               </div>
             </div>
           </div>

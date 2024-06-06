@@ -573,7 +573,7 @@ export default function Property(props) {
       {isEdit && !stepdata ? (
         <> </>
       ) : (
-        <div className="flex justify-end mt-5">
+        <div className="flex justify-end overflow-hidden	 mt-5">
           <button
             onClick={handleSubmit}
             className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
@@ -582,8 +582,14 @@ export default function Property(props) {
           </button>
         </div>
       )}
-      <div class="max-w-4xl w-full space-y-8 m-auto w-full px-2 ">
-        <div
+      <div class="max-w-4xl overflow-hidden	 w-full space-y-8 m-auto w-full px-2 ">
+      
+      </div>
+      <div className={`w-full overflow-hidden	 flex items-center justify-center px-6 py-8 `}>
+        <div className="max-w-4xl w-full space-y-8 w-full ">
+          <div className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `} >
+            <div className="p-8 rounded-2xl border ">
+            <div
           className={`${step === 0 ? "" : "display-none"
             } max-w-[100%] m-auto table w-full`}
         >
@@ -666,15 +672,6 @@ export default function Property(props) {
 
           {/* </> : '' } */}
         </div>
-      </div>
-
-
-
-
-      <div className={`w-full  flex items-center justify-center px-6 py-8 `}>
-        <div className="max-w-4xl w-full space-y-8 w-full ">
-          <div className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `} >
-            <div className="p-8 rounded-2xl border ">
               <div className={`${step === 1 ? "" : "display-none"
                 } max-w-[100%] m-auto table w-full`}
               >

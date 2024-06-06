@@ -42,11 +42,11 @@ function Bookings() {
       case "confirm":
         return "bg-indigo-600  text-white capitalize";
       case "pending":
-        return "bg-blue-600  text-white  capitalize";
+        return "bg-yellow-500  text-white  capitalize";
       case "cancelled":
-        return "bg-red-600  text-white capitalize";
+        return "bg-red-600 text-white capitalize";
       case "upcoming":
-        return "bg-blue-600  text-white capitalize";
+        return "bg-amber-700  text-white capitalize";
       default:
         return "";
     }
@@ -116,7 +116,7 @@ function Bookings() {
               {record && record.length > 0 ? (
                 record.map((item) => (
                   <div key={item.booking_number}>
-                    <div className="flex items-center justify-between w-full select-none cursor-pointer">
+                    <div className="flex items-center justify-between w-full select-none cursor-pointer p-2 relative">
                       <div className="flex items-center gap-2 img-book">
                         <Link href={`/admin/property/${item?.propertyUuid}`}>
                         <img
@@ -133,7 +133,7 @@ function Bookings() {
                             "text-sm ">
                             {item?.userName}
                           </p>
-                          <p className={`text-sm ${getStatusClasses(item?.booking_status)}`}>
+                          <p className={`text-sm absolute top-2 right-2 px-3 rounded-full ${getStatusClasses(item?.booking_status)}`}>
                             {item?.booking_status}
                           </p>
                           <p className="text-xs text-gray line-limit !pb-0 leading-relaxed">
