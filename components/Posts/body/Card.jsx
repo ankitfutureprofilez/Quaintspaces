@@ -15,6 +15,8 @@ const Card = ({ post }) => {
     console.error("Error parsing JSON:", error);
   }
 
+
+ 
   const capitalizeAndReplace = (inputString) => {
     if (!inputString) return "";
     return inputString

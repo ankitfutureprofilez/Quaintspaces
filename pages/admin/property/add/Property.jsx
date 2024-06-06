@@ -26,6 +26,7 @@ import {
   FaCouch,
 } from "react-icons/fa";
 import Guest from "./Guest";
+import Checkout from "./Checkout";
 const propertyTypes = [
   { value: "flat", label: "Flat & Apartment" },
   { value: "house", label: "House" },
@@ -46,7 +47,7 @@ export default function Property(props) {
     discount_offer,
     properties_type,
     name,
-    no_of_pet_allowed,
+    no_of_pet_allowed, check_out_instruction,
     price,
     description,
     bedrooms, beds,
@@ -54,11 +55,10 @@ export default function Property(props) {
     property_rule, step_completed,
     guests, pet_fee, extra_guest_fee, flexible_check_in, check_in,
     bathrooms, cleaning_fee,
-    amenities, check_out,
+    amenities, check_out, check_in_method, check_in_description,
     property_image, status, quite_hours_in_time,
     quite_hours_out_time, custom_link
   } = p ? p : {};
-
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
   const [pets, setPets] = useState(no_of_pet_allowed || 1);
   const [selectedAmenity, setSelectedAmenity] = useState(amenities ? stringToArray(amenities) : []);
@@ -84,10 +84,12 @@ export default function Property(props) {
   const [Guests, setGuests] = useState(guests || 1);
   const [Beds, setBeds] = useState(beds || 1);
   const [Bedrooms, setBedrooms] = useState(bedrooms || 1);
-
-  const [selectedMethod, setSelectedMethod] = useState("smartlock");
-  const [checkdescrtion, setcheckdescrtion] = useState("");
-  console.log("checkdescrtion",checkdescrtion)
+  const [checkoutInstructions, setCheckoutInstructions] = useState([]);
+  const [selectedInstruction, setSelectedInstruction] = useState("");
+  const [showInstructions, setShowInstructions] = useState(false);
+  const [showTextArea, setShowTextArea] = useState(false);
+  const [text, setText] = useState("");
+  const [selectedMethod, setSelectedMethod] = useState(check_in_method || "smartlock");
 
   const options = [
     {
@@ -112,7 +114,6 @@ export default function Property(props) {
     },
   ];
 
-  console.log("selectedMethod",selectedMethod)
   const handleFileChange = async (e) => {
     let files = Array.from(e?.target?.files);
     setImages([...images, ...files]);
@@ -222,8 +223,11 @@ export default function Property(props) {
     additonalrule: property_rule?.additional_rules || "",
     wifiPassword: property_rule?.wifiPassword || '',
     discount: discount_offer || "",
-    customLink: custom_link || ""
+    customLink: custom_link || "",
+    checkdescrtion: check_in_description || "",
   });
+
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setItem({ ...item, [name]: value });
@@ -408,10 +412,10 @@ export default function Property(props) {
       });
   };
 
-const baseurl = "https://quant-stay.vercel.app/property/"
-const fulllink = baseurl+item?.customLink
+  const baseurl = "https://quant-stay.vercel.app/property/"
+  const fulllink = baseurl + item?.customLink
 
-console.log("fulllink",fulllink)
+
   async function handleSubmit(e) {
     if (step === 9 && (item?.Direction === "" || item?.wifi === " " || item?.wifiPassword === " " || item?.housemanual === " ")) {
       toast.error(`All fields are required.`);
@@ -459,6 +463,12 @@ console.log("fulllink",fulllink)
     formData.append("additional_rules", item?.additonalrule);
     formData.append("quite_hours_in_time", checkinquet);
     formData.append("quite_hours_out_time", checkoutquet);
+    formData.append("check_in_method", selectedMethod);
+    formData.append("check_in_description", item?.checkdescrtion);
+    formData.append("check_in_method", selectedMethod);
+    formData.append("check_out_instruction", JSON.stringify(checkoutInstructions));
+    formData.append("discount_offer", discount);
+
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
@@ -1239,7 +1249,7 @@ console.log("fulllink",fulllink)
                   <input
                     id="wifiPassword"
                     name="wifiPassword"
-                    type="password"
+                    type="text"
                     className="shadow-sm p-4 w-full mt-1 block sm:text-sm border rounded-xl"
                     placeholder="Enter your wifi Password here..."
                     value={item?.wifiPassword}
@@ -1247,6 +1257,8 @@ console.log("fulllink",fulllink)
                   />
                 </div>
               </div>
+
+
 
 
               <div className={`${step === 10 ? "" : "display-none"
@@ -1258,7 +1270,7 @@ console.log("fulllink",fulllink)
                   </label>
                   <div className="relative">
                     <span className="absolute left-0 top-0 h-full pl-4 flex items-center text-gray-500">
-                      {baseurl +item.customLink }
+                      {baseurl + item.customLink}
                     </span>
                     <textarea
                       id="customLink"
@@ -1266,7 +1278,7 @@ console.log("fulllink",fulllink)
                       rows={5}
                       className="shadow-sm p-4 pl-[10rem] w-4/5 mt-1 block sm:text-sm border rounded-xl"
                       placeholder="Enter your custom link here"
-                      value={ item.customLink}
+                      value={item.customLink}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -1295,7 +1307,7 @@ console.log("fulllink",fulllink)
                             <span className="my-4 text-xl font-semibold capitalize">
                               {item?.item}
                             </span>
-                            <p className="text-gray-500" onClick={()=>{setcheckdescrtion(item?.data)}}>
+                            <p className="text-gray-500" >
                               {item?.data}
                             </p>
                           </div>
@@ -1311,6 +1323,9 @@ console.log("fulllink",fulllink)
                       <textarea
                         className="w-full p-2 border border-gray-300 rounded-lg"
                         rows="10"
+                        name="checkdescrtion"
+                        value={item.checkdescrtion}
+                        onChange={handleInputChange}
                         placeholder={`Add any important details for getting inside your place. This info will be shared with guests 24-48 hours before check-in.`}
                       />
                       <div className="flex justify-between items-center mt-4">
@@ -1322,7 +1337,30 @@ console.log("fulllink",fulllink)
                   </div>
                 </div>
                 <div className="flex flex-col  ">
-              
+
+                </div>
+              </div>
+
+              <div className={`${step === 11 ? "" : "display-none"
+                } max-w-[100%] m-auto table w-full `}>
+                <div className="flex flex-col mb-2">
+                  <Checkout selectedInstruction={selectedInstruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />
+                </div>
+                <div className="flex flex-col mb-2">
+                  <label className="flex items-center space-x-2 text-xl font-normal">
+                    <input
+                      className="shadow-sm p-4 w-full mt-1 block sm:text-sm border rounded-xl"
+                      placeholder="Enter your wifi name..."
+                      type="text"
+                      name="discount"
+                      value={item?.discount}
+                      onChange={handleInputChange}
+                    />
+                    <span>% discount offer</span>
+                  </label>
+                </div>
+                <div className="flex flex-col  ">
+
                 </div>
               </div>
 
@@ -1339,7 +1377,7 @@ console.log("fulllink",fulllink)
                   </button>
                 )}
 
-                {step < 10 ? (
+                {step < 11 ? (
                   <button
                     type="button"
                     onClick={nextStep}

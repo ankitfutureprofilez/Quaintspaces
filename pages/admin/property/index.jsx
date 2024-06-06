@@ -63,6 +63,7 @@ export default function Index() {
       });
   };
 
+
   const handleConfirmation = () => {
     deleteProperty(selectedProperty);
     setShowConfirmation(false);
