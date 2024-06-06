@@ -256,9 +256,8 @@ function Index() {
                       />
                     </div>
                   ) : (
-                    <div className="w-[30px] h-[20px] object-cover mr-2" style={{ cursor: "pointer" }}>
-                      <FaHouse      size={30}
-                        />
+                    <div className="w-[30px] h-[20px] object-cover mr-2" style={{ cursor: "pointer" }} >
+                      <FaHouse size={30} />
                     </div>
                   )}
                   <h2 className="text-lg font-medium mb-2 ">{item.name || "please name"}</h2>
