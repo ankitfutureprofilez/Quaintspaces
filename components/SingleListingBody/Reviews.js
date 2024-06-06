@@ -148,7 +148,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
               </div>
               <span>
                 {parseFloat(
-                  data && data?.check_in && data?.check_in?.toFixed(1)
+                  data && data?.check_in && data?.check_in
                 )}
               </span>
             </div>

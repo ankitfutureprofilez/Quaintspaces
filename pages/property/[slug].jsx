@@ -15,17 +15,17 @@ import { GiConsoleController } from "react-icons/gi";
 const Listing = () => {
   const router = useRouter();
   const { slug } = router.query;
+  console.log("slug",slug)
   const { wishlist, setWishlist } = useContext(Context);
   const [overlay, setOverlay] = useState(false);
   const [selection, setSelection] = useState(null);
   const [headerSearch, setHeaderSearch] = useState(false);
   const [loading, setLoading] = useState(true);
+  const[customlink, setCustomlink] =useState("")
   const [record, setrecord] = useState({
     loading: true,
     data: {},
   });
-  // listingData
-
   useEffect(() => {
     if (slug) {
       setLoading(true);
@@ -33,6 +33,32 @@ const Listing = () => {
       main
         .PropertyDetail(slug || "")
         .then((r) => {
+          setrecord({
+            loading: false,
+            data: r?.data?.data,
+          });
+          setCustomlink(r?.data?.data?.custom_link)
+          setLoading(false);
+        })
+        .catch((err) => {
+          setrecord({
+            loading: true,
+          });
+          console.log(err);
+          setLoading(false);
+        });
+    }
+  }, [slug]);
+
+
+  useEffect(() => {
+    if (slug) {
+      setLoading(true);
+      const main = new Listings();
+      main
+        .Propertycustom(slug || "")
+        .then((r) => {
+          console.log("r?.data?.data", r);
           setrecord({
             loading: false,
             data: r?.data?.data,

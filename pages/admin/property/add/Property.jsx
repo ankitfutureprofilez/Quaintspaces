@@ -408,7 +408,7 @@ export default function Property(props) {
       });
   };
 
-const baseurl = "quantstay.com/h/"
+const baseurl = "https://quant-stay.vercel.app/property/"
 const fulllink = baseurl+item?.customLink
 
 console.log("fulllink",fulllink)
@@ -432,7 +432,7 @@ console.log("fulllink",fulllink)
     formData.append("bathrooms", Bathrooms);
     formData.append("guests", Guests);
     formData.append("beds", Beds);
-    formData.append("custom_link", fulllink);
+    formData.append("custom_link", item?.customLink);
     formData.append("address", JSON.stringify(address));
     formData.append("amenities", selectedAmenity);
     formData.append("standout_amenity", standoutAmenity);
