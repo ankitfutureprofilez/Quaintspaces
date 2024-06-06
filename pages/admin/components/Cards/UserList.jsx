@@ -54,7 +54,7 @@ function UserList({totaluser}) {
         {/* comment 1 */}
         {record && record?.length >0 ? (
           record?.map((item) => (
-            <div className="flex items-center justify-between w-full select-none cursor-pointer">
+            <div className="flex items-center justify-between w-full select-none cursor-pointer ">
               <div className="flex items-center gap-2 img-book">
                 <img
                   src={

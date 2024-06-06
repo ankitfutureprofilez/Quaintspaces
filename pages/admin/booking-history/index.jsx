@@ -121,14 +121,10 @@ export default function index() {
 
   return (
     <AdminLayout heading={"Booking Management"}>
-      {loading ? (
-        <Spinner />
-      ) : content && content.length > 0 ? (
-        <>
-          <div className="flex text-xs font-large relative bg-gray-100 p-2 rounded-lg py-1">
+        <div className="flex max-w-lg text-md font-large relative bg-gray-100 p-2 rounded-lg mt-3">
             <button
               onClick={() => setActiveTab('upcoming')}
-              className={`z-10 w-full px-2 py-1 rounded-lg ${activeTab === "upcoming" ? "bg-white text-blue-600" : "text-black"
+              className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "upcoming" ? "bg-amber-700  text-white" : "text-black"
                 }`}
             >
               
@@ -136,26 +132,31 @@ export default function index() {
             </button>
             <button
               onClick={() => setActiveTab('completed')}
-              className={`z-10 w-full px-2 py-1 rounded-lg ${activeTab === "completed" ? "bg-white text-green-600" : "text-black"
+              className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "completed" ? "bg-green-600 text-white" : "text-black"
                 }`}
             >
               Completed
             </button>
             <button
               onClick={() => setActiveTab('cancelled')}
-              className={`z-10 w-full px-2 py-1 rounded-lg ${activeTab === "cancelled" ? "bg-white text-red-600" : "text-black"
+              className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "cancelled" ? "bg-red-600 text-white" : "text-black"
                 }`}
             >
               Cancelled
             </button>
             <button
               onClick={() => setActiveTab('current')}
-              className={`z-10 w-full px-2 py-1 rounded-lg ${activeTab === "current" ? "bg-black text-white" : "text-black"
+              className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "current" ? "bg-black text-white" : "text-black"
                 }`}
             >
               Current
             </button>
           </div>
+      {loading ? (
+        <Spinner />
+      ) : content && content.length > 0 ? (
+        <>
+      
           <div className="overflow-x-auto mt-3">
             <div className="w-full">
               <div className="overflow-x-auto border border-gray-200 md:rounded-lg mt-2">
