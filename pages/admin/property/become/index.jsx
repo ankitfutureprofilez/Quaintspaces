@@ -242,25 +242,25 @@ function Index() {
             <div>
               {record && record.map((item, index) => (
                 <div className="flex mb-3 pb-3 border-b" key={index} style={{ cursor: "pointer" }}>
-                  {item?.property_image[0]?.image_url ? (
+                  {/* {item?.property_image[0]?.image_url ? ( */}
                     <div className="w-[60px] h-[40px] object-cover mr-2">
                       <Image
                         width={100}
                         height={300}
                         layout="responsive"
-                        src={item?.property_image[0]?.image_url}
+                        src={item?.property_image[0]?.image_url || "https://th.bing.com/th/id/OIP.F4eiZn0Wjgp4EFtocph2BAAAAA?rs=1&pid=ImgDetMain"}
                         alt="Property cover image"
                         onClick={() => {
                           toggleimagePopup(item?.uuid);
                         }}
                       />
                     </div>
-                  ) : (
-                    <div className="w-[30px] h-[20px] object-cover mr-2" style={{ cursor: "pointer" }} >
+                  {/*  ) : ( */}
+                    {/* <div className="w-[30px] h-[20px] object-cover mr-2" style={{ cursor: "pointer" }} >
                       <FaHouse size={30} />
-                    </div>
-                  )}
-                  <h2 className="text-lg font-medium mb-2 ">{item.name || "please name"}</h2>
+                    </div> */}
+                  {/* )} */}
+                  <h2 className="text-lg font-medium mb-2 ">{item?.name || "please name"}</h2>
                 </div>
               ))}
             </div>
