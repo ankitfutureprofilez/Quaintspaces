@@ -13,9 +13,7 @@ import { MdPhonelinkLock } from "react-icons/md";
 import { MdOutlineKeyboardAlt } from "react-icons/md";
 import { RiDoorLockBoxLine } from "react-icons/ri";
 import { GrUserWorker } from "react-icons/gr";
-import {
-  MdOutlineFreeBreakfast,
-} from "react-icons/md";
+import {MdOutlineFreeBreakfast} from "react-icons/md";
 import {
   FaBuilding,
   FaHome,
@@ -305,6 +303,7 @@ export default function Property(props) {
     setStep((prev) => prev + 1);
   };
   const [locationupdate, setLocationupdate] = useState([]);
+  console.log("locationupdate",locationupdate)
   const getNavigator = () => {
     if (typeof navigator !== "undefined") {
       return navigator;
@@ -330,6 +329,7 @@ export default function Property(props) {
                 `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
               );
               locationData = response.data;
+              console.log("locationData",locationData)
             } else {
               const response = await axios.get(
                 `https://nominatim.openstreetmap.org/reverse?lat=${address?.latitude}&lon=${address?.longitude}&format=json`
@@ -337,10 +337,6 @@ export default function Property(props) {
               locationData = response.data;
               setLocationupdate(locationData?.address);
             }
-            setCoordinates({
-              lat: latitude.toString(),
-              long: longitude.toString(),
-            })
             setAddress({
               location: locationData.display_name,
               latitude: latitude.toString(),
@@ -467,7 +463,7 @@ export default function Property(props) {
     formData.append("check_in_description", item?.checkdescrtion);
     formData.append("check_in_method", selectedMethod);
     formData.append("check_out_instruction", JSON.stringify(checkoutInstructions));
-    formData.append("discount_offer", discount);
+    formData.append("discount_offer", item?.discount);
 
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
@@ -583,17 +579,17 @@ export default function Property(props) {
         </div>
       )}
       <div class="max-w-4xl overflow-hidden	 w-full space-y-8 m-auto w-full px-2 ">
-      
+
       </div>
       <div className={`w-full overflow-hidden	 flex items-center justify-center px-6 py-8 `}>
         <div className="max-w-4xl w-full space-y-8 w-full ">
           <div className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `} >
             <div className="p-8 rounded-2xl border ">
-            <div
-          className={`${step === 0 ? "" : "display-none"
-            } max-w-[100%] m-auto table w-full`}
-        >
-          {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
+              <div
+                className={`${step === 0 ? "" : "display-none"
+                  } max-w-[100%] m-auto table w-full`}
+              >
+                {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
     <div className="grid grid-cols-3 gap-4 m-auto table  " >
      <div className="" >
            <div onClick={(e)=>setTypeHere("single_room")} className={`${typeHere === "single_room" ? "bg-gray-500" : ''} block propety-type-wrap cursor-pointer p-4 border rounded-xl`} >
@@ -611,67 +607,67 @@ export default function Property(props) {
        </div>
     </div> */}
 
-          {/* {typeHere === "entire_place" ?  <> */}
-          <h2 className="text-3xl text-center mt-4 font-bold mb-8">
-            Which of these best describes your place?
-          </h2>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
-            {propertyTypes &&
-              propertyTypes.map((p, i) => (
-                <div key={i} className="">
-                  <div
-                    onClick={() => setPType(p?.value)}
-                    className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-slate-100 border-slate-700 text-slate-700" : ""
-                      }`}
-                  >
-                    {p.value === "flat" && (
-                      <FaBuilding
-                        style={{ color: "black", fontSize: "40px" }}
-                      />
-                    )}
-                    {p.value === "house" && (
-                      <FaHome
-                        style={{ color: "black", fontSize: "40px" }}
-                      />
-                    )}
-                    {p.value === "unique_space" && <House size={40} />}
-                    {p.value === "guest_house" && (
-                      <FaDoorOpen
-                        style={{ color: "black", fontSize: "40px" }}
-                      />
-                    )}
-                    {p.value === "hotel" && (
-                      <FaHotel
-                        style={{ color: "black", fontSize: "40px" }}
-                      />
-                    )}
-                    {p.value === "single_room" && (
-                      <FaBed style={{ color: "black", fontSize: "40px" }} />
-                    )}
-                    {p.value === "boutique_hotel" && (
-                      <FaCouch
-                        style={{ color: "black", fontSize: "40px" }}
-                      />
-                    )}
-                    {p.value === "breakfast" && (
-                      <MdOutlineFreeBreakfast size={40} />
-                    )}
-                    {p.value === "farm" && <FaWarehouse size={40} />}
-                    <h2
-                      className={`text-xl mt-4 font-normal ${p.value === PType
-                        ? "text-gray-600"
-                        : "text-gray-400"
-                        }`}
-                    >
-                      {p.label}
-                    </h2>
-                  </div>
+                {/* {typeHere === "entire_place" ?  <> */}
+                <h2 className="text-3xl text-center mt-4 font-bold mb-8">
+                  Which of these best describes your place?
+                </h2>
+                <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
+                  {propertyTypes &&
+                    propertyTypes.map((p, i) => (
+                      <div key={i} className="">
+                        <div
+                          onClick={() => setPType(p?.value)}
+                          className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-slate-100 border-slate-700 text-slate-700" : ""
+                            }`}
+                        >
+                          {p.value === "flat" && (
+                            <FaBuilding
+                              style={{ color: "black", fontSize: "40px" }}
+                            />
+                          )}
+                          {p.value === "house" && (
+                            <FaHome
+                              style={{ color: "black", fontSize: "40px" }}
+                            />
+                          )}
+                          {p.value === "unique_space" && <House size={40} />}
+                          {p.value === "guest_house" && (
+                            <FaDoorOpen
+                              style={{ color: "black", fontSize: "40px" }}
+                            />
+                          )}
+                          {p.value === "hotel" && (
+                            <FaHotel
+                              style={{ color: "black", fontSize: "40px" }}
+                            />
+                          )}
+                          {p.value === "single_room" && (
+                            <FaBed style={{ color: "black", fontSize: "40px" }} />
+                          )}
+                          {p.value === "boutique_hotel" && (
+                            <FaCouch
+                              style={{ color: "black", fontSize: "40px" }}
+                            />
+                          )}
+                          {p.value === "breakfast" && (
+                            <MdOutlineFreeBreakfast size={40} />
+                          )}
+                          {p.value === "farm" && <FaWarehouse size={40} />}
+                          <h2
+                            className={`text-xl mt-4 font-normal ${p.value === PType
+                              ? "text-gray-600"
+                              : "text-gray-400"
+                              }`}
+                          >
+                            {p.label}
+                          </h2>
+                        </div>
+                      </div>
+                    ))}
                 </div>
-              ))}
-          </div>
 
-          {/* </> : '' } */}
-        </div>
+                {/* </> : '' } */}
+              </div>
               <div className={`${step === 1 ? "" : "display-none"
                 } max-w-[100%] m-auto table w-full`}
               >
@@ -819,29 +815,33 @@ export default function Property(props) {
                   </div>
                 </div>
                 <div>
-                  <h2 className="text-2xl text-center font-bold mb-2 mt-8 capitalize">
-                    Show your specific location
-                  </h2>
-                  <p className="text-normal text-center text-gray-500 mb-8 mt-4">
-                    Make it clear to guests where your place is located. We'll
-                    only share your address after they've made a reservation
-                  </p>
+                  {address?.location && (
+                    <>
+                      <h2 className="text-2xl text-center font-bold mb-2 mt-8 capitalize">
+                        Show your specific location
+                      </h2>
+                      <p className="text-normal text-center text-gray-500 mb-8 mt-4">
+                        Make it clear to guests where your place is located. We'll
+                        only share your address after they've made a reservation
+                      </p>
+                      <div>
+                        <iframe
+                          src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
+                            ` ${address?.location}`
+                          )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
+                          width="100%"
+                          height="450"
+                          style={{ border: "0" }}
+                          allowFullScreen=""
+                          loading="lazy"
+                          referrerPolicy="no-referrer-when-downgrade"
+                          title="Google Map"
+                        ></iframe>
 
-                  <div>
-                    <iframe
-                      src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
-                        ` ${address?.location}`
-                      )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
-                      width="100%"
-                      height="450"
-                      style={{ border: "0" }}
-                      allowFullScreen=""
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title="Google Map"
-                    ></iframe>
+                      </div>
+                    </>
+                  )}
 
-                  </div>
                 </div>
               </div>
               <div className={`${step === 3 ? "" : "display-none"}`}>
@@ -1341,7 +1341,7 @@ export default function Property(props) {
               <div className={`${step === 11 ? "" : "display-none"
                 } max-w-[100%] m-auto table w-full `}>
                 <div className="flex flex-col mb-2">
-                  <Checkout selectedInstruction={selectedInstruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />
+                  <Checkout selectedInstruction={selectedInstruction} checoutdata={check_out_instruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />
                 </div>
                 <div className="flex flex-col mb-2">
                   <label className="flex items-center space-x-2 text-xl font-normal">
@@ -1393,7 +1393,6 @@ export default function Property(props) {
                 )}
               </div>
             </div>
-
           </div>
         </div>
       </div>

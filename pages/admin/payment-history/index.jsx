@@ -14,7 +14,7 @@ export default function Index() {
   const [page, setPage] = useState(1);
   const [hasmore, setHasMore] = useState(true);
   function fetchData(pg) {
-    if(pg==1){setLoading(true);}
+    if (pg == 1) { setLoading(true); }
     setLoadingButton(true);
     const main = new Listing();
     const response = main.all_user_payment_history(pg);
@@ -54,7 +54,7 @@ export default function Index() {
   useEffect(() => {
     fetchData(1);
   }, []);
-  
+
   return (
     <AdminLayout heading={"Payment History"}>
       {loading ? (
@@ -187,17 +187,24 @@ export default function Index() {
 
                           <td className="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell whitespace-nowrap">
                             <td
-                              className={`   ${item?.payment_status === "success"
-                                ? "text-green-600"
-                                : item?.payment_status === "cancelled"
-                                  ? "text-red-600"
-                                  : item?.payment_status === "confirm"
-                                    ? "text-green-600"
-                                    : "text-blue-600"
+                              className={`${item?.payment_status === "success" || item?.payment_status === "confirm"
+                                  ? "text-green-600"
+                                  : item?.payment_status === "cancelled"
+                                    ? "text-red-600"
+                                    : "text-red-600"
                                 }`}
                             >
-                              {formatMultiPrice(item?.price)}
+                               {
+                              item?.payment_status === "success" || item?.payment_status === "confirm" ?(
+                             ` + ${formatMultiPrice(item?.price)}` 
+                              ) :(
+                                ` - ${formatMultiPrice(item?.price)}` 
+                              ) 
+                              }
+                              
+
                             </td>
+
                           </td>
                         </tr>
                       ))}
@@ -216,7 +223,7 @@ export default function Index() {
             className="font-inter font-lg leading-tight text-center w-full sm:w-96 bg-indigo-600 border-0 p-4 rounded-full mt-10 mb-12 text-white cursor-pointer"
             onClick={loadMore}
           >
-           {loadingButton ? "Loading...": "Load More"} 
+            {loadingButton ? "Loading..." : "Load More"}
           </div>
         </div>
       )}

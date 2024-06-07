@@ -13,6 +13,7 @@ export default function index() {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [loadingButton, setLoadingButton] = useState(false);
   const [message, setMessage] = useState("");
   const [document, setDocument] = useState();
   const [selectedBooking, setSelectedBooking] = useState(null);
@@ -48,10 +49,8 @@ export default function index() {
 
 
   function fetchData(pg) {
-    if (loading) {
-      return false;
-    }
-    setLoading(true);
+    if (pg == 1) { setLoading(true); }
+    setLoadingButton(true);
     const main = new Listing();
     const response = main.bookinghistory(activeTab, pg);
     response
@@ -67,10 +66,12 @@ export default function index() {
         setHasMore(res?.data?.current_page < res?.data?.last_page);
         setPage(res?.data?.current_page);
         setLoading(false);
+        setLoadingButton(false);
       })
       .catch((error) => {
         console.log("error", error);
         setLoading(false);
+        setLoadingButton(false);
       });
   }
 
@@ -121,42 +122,42 @@ export default function index() {
 
   return (
     <AdminLayout heading={"Booking Management"}>
-        <div className="flex max-w-lg text-md font-large relative bg-gray-100 p-2 rounded-lg mt-3">
-            <button
-              onClick={() => setActiveTab('upcoming')}
-              className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "upcoming" ? "bg-amber-700  text-white" : "text-black"
-                }`}
-            >
-              
-              Upcoming
-            </button>
-            <button
-              onClick={() => setActiveTab('completed')}
-              className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "completed" ? "bg-green-600 text-white" : "text-black"
-                }`}
-            >
-              Completed
-            </button>
-            <button
-              onClick={() => setActiveTab('cancelled')}
-              className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "cancelled" ? "bg-red-600 text-white" : "text-black"
-                }`}
-            >
-              Cancelled
-            </button>
-            <button
-              onClick={() => setActiveTab('current')}
-              className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "current" ? "bg-black text-white" : "text-black"
-                }`}
-            >
-              Current
-            </button>
-          </div>
+      <div className="flex max-w-lg text-md font-large relative bg-gray-100 p-2 rounded-lg mt-3">
+        <button
+          onClick={() => setActiveTab('upcoming')}
+          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "upcoming" ? "bg-amber-700  text-white" : "text-black"
+            }`}
+        >
+
+          Upcoming
+        </button>
+        <button
+          onClick={() => setActiveTab('completed')}
+          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "completed" ? "bg-green-600 text-white" : "text-black"
+            }`}
+        >
+          Completed
+        </button>
+        <button
+          onClick={() => setActiveTab('cancelled')}
+          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "cancelled" ? "bg-red-600 text-white" : "text-black"
+            }`}
+        >
+          Cancelled
+        </button>
+        <button
+          onClick={() => setActiveTab('current')}
+          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "current" ? "bg-black text-white" : "text-black"
+            }`}
+        >
+          Current
+        </button>
+      </div>
       {loading ? (
         <Spinner />
       ) : content && content.length > 0 ? (
         <>
-      
+
           <div className="overflow-x-auto mt-3">
             <div className="w-full">
               <div className="overflow-x-auto border border-gray-200 md:rounded-lg mt-2">
@@ -331,7 +332,20 @@ export default function index() {
                           </td>
                           :
                           <td className="px-4 py-2 text-sm text-gray-500">
-                            Already Taken
+                            <td
+                              className={`capitalize inline-flex items-center rounded-full py-3 w-max px-4 text-xs text-white  ${item?.booking_status === "completed"
+                                ? "bg-green-700"
+                                : item?.booking_status === "cancelled"
+                                  ? "bg-red-600"
+                                  : item?.booking_status === "confirm"
+                                    ? "bg-green-600"
+                                    : item?.booking_status === "pending"
+                                      ? "bg-slate-600"
+                                      : "bg-blue-600"
+                                }`}
+                            >
+                              {item?.booking_status}
+                            </td>
                           </td>
                         }
                       </tr>
@@ -341,13 +355,13 @@ export default function index() {
               </div>
             </div>
 
-            {!loading && hasmore && (
+            {content?.length > 0 && !loading && hasmore && (
               <div className="flex justify-center">
                 <div
                   className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
                   onClick={loadMore}
                 >
-                  {loading ? "Loading..." : "Load More"}
+                  {loadingButton ? "Loading..." : "Load More"}
                 </div>
               </div>
             )}
@@ -355,7 +369,10 @@ export default function index() {
         </>
 
       ) : (
-        <Nodata heading={"No Booking"} />
+        <div className="mt-5 ">
+
+          <Nodata heading={"No Booking"} />
+        </div>
       )}
 
       {selectedBooking && (

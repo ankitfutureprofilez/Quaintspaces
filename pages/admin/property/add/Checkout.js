@@ -10,7 +10,8 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { MdPhonelinkLock, MdOutlineKeyboardAlt } from "react-icons/md";
 
 import { FaClock } from "react-icons/fa";
-function Checkout({ checkoutInstructions, setCheckoutInstructions, selectedInstruction, setSelectedInstruction, showInstructions, setShowInstructions, showTextArea, setShowTextArea, text, setText }) {
+function Checkout({ checoutdata, checkoutInstructions, setCheckoutInstructions, selectedInstruction, setSelectedInstruction, showInstructions, setShowInstructions, showTextArea, setShowTextArea, text, setText }) {
+ console.log("checoutdata",checoutdata)
   const options = [
     {
       item: "smartlock",
@@ -224,6 +225,19 @@ function Checkout({ checkoutInstructions, setCheckoutInstructions, selectedInstr
             </div>
           </>
         )}
+
+        {checoutdata && checoutdata?.map((item,index)=>(
+           <div
+           key={index}
+           className="flex items-center space-x-4 px-4 py-4 font-semibold rounded-md border-[1px] border-gray-300 hover:border-black"
+          
+         >
+           {item?.icon}
+           <button className="text-black text-md ">
+             {item?.option}
+           </button>
+         </div>
+        ))}
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import NoRecord from "../hook/NoRecord";
 import AdminLayout from "../AdminLayout";
 import Loading from "../hook/loading";
 import { useRouter } from "next/router";
+import propertyimage from "../components/assets/property.png"
 import { MdAdd } from "react-icons/md";
 import { formatMultiPrice } from "../../../hooks/ValueData";
 
@@ -101,7 +102,7 @@ export default function Index() {
                     <div className="relative border rounded-lg overflow-hidden shadow-md">
                       <img
                         className="w-full h-48 object-cover object-center"
-                        src={item?.property_image[0]?.image_url}
+                        src={item?.property_image[0]?.image_url ?item?.property_image[0]?.image_url : propertyimage }
                         alt={item?.name}
                       />
                       <button className="absolute text-xs top-3 right-3 bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-700" onClick={() => handleDelete(item?.uuid)}>Remove</button>
