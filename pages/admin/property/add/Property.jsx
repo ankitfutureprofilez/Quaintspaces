@@ -241,70 +241,70 @@ export default function Property(props) {
   const prevStep = () => setStep((prev) => prev - 1);
 
   const nextStep = async () => {
-    if (step === 0 && PType == '') {
-      toast.error("Please choose a property type which one you want to list.");
-    }
-    if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
-      toast.error("Property description is too short. Description should be a minimum of 100 words.");
-      return false;
-    }
-    if (step === 2 && (
-      address?.pin === "" || address?.pin?.length < 5 ||
-      address?.state === "" ||
-      address?.city === "" ||
-      address?.street_address === "" ||
-      address?.district === "")) {
-      toast.error(`Incomplete address. Please enter complete address.`);
-      return false;
-    }
-    if (step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (step == 4 && selectedAmenity && Amenity && standoutAmenity && (selectedAmenity.length + Amenity.length + standoutAmenity.length < 4)) {
-      toast.error("Please choose at least 4 amenities.");
-      return false;
-    }
+    // if (step === 0 && PType == '') {
+    //   toast.error("Please choose a property type which one you want to list.");
+    // }
+    // if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
+    //   toast.error("Property description is too short. Description should be a minimum of 100 words.");
+    //   return false;
+    // }
+    // if (step === 2 && (
+    //   address?.pin === "" || address?.pin?.length < 5 ||
+    //   address?.state === "" ||
+    //   address?.city === "" ||
+    //   address?.street_address === "" ||
+    //   address?.district === "")) {
+    //   toast.error(`Incomplete address. Please enter complete address.`);
+    //   return false;
+    // }
+    // if (step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (step == 4 && selectedAmenity && Amenity && standoutAmenity && (selectedAmenity.length + Amenity.length + standoutAmenity.length < 4)) {
+    //   toast.error("Please choose at least 4 amenities.");
+    //   return false;
+    // }
 
 
-    if (!isEdit && step === 5 && images?.length < 5) {
-      toast.error("Please select at least five images.");
-      return false;
-    }
-    if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
-      toast.error("Please select at least five images.");
-      return false;
-    }
-    if (step === 6 && (checkout === " " || checkinStart === " " || selectedOption === "" || checkinEnd === "" || item?.cleaning === "" || item?.extra_guest === "" || item?.pet === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (step === 7 && (longTermPolicy === null && selectedPolicy === null)) {
-      toast.error(`At least one field is required.`);
-      return false;
-    }
-    if (step === 8 && (item?.additonalrule === "" || petsAllowed === " " || smokingAllowed === " " || eventsAllowed === "" || quietHours === "" || PhotographyAllowed === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (step === 9 && (item?.Direction === "" || item?.wifi === " " || item?.wifiPassword === " " || item?.housemanual === " " || item?.discount === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (!isEdit && step === 5 && images?.length < 5) {
+    //   toast.error("Please select at least five images.");
+    //   return false;
+    // }
+    // if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
+    //   toast.error("Please select at least five images.");
+    //   return false;
+    // }
+    // if (step === 6 && (checkout === " " || checkinStart === " " || selectedOption === "" || checkinEnd === "" || item?.cleaning === "" || item?.extra_guest === "" || item?.pet === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (step === 7 && (longTermPolicy === null && selectedPolicy === null)) {
+    //   toast.error(`At least one field is required.`);
+    //   return false;
+    // }
+    // if (step === 8 && (item?.additonalrule === "" || petsAllowed === " " || smokingAllowed === " " || eventsAllowed === "" || quietHours === "" || PhotographyAllowed === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (step === 9 && (item?.Direction === "" || item?.wifi === " " || item?.wifiPassword === " " || item?.housemanual === " " || item?.discount === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
-    if (step === 10 && (item?.customLink === "" || item?.selectedInstruction === " " || selectedMethod === " ")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (step === 10 && (item?.customLink === "" || item?.selectedInstruction === " " || selectedMethod === " ")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
-    if (step === 11 && (checkoutInstructions === ""   )) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (step === 11 && (checkoutInstructions === ""   )) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
     setStep((prev) => prev + 1);
   };
@@ -897,11 +897,10 @@ export default function Property(props) {
                     </label>
                   </div>
                   <div className="flex flex-wrap  mt-16">
-                    {isEdit && useExistingImages ? (
+                    {isEdit && !useExistingImages ? (
                       images &&
                       images.map((file, index) => (
                         <div key={index} className="relative w-full sm:w-1/2 md:w-1/3 p-1">
-
                           <Image
                             src={URL.createObjectURL(file)}
                             width={200}
@@ -950,7 +949,6 @@ export default function Property(props) {
                               />
                             </div>
                           </div>
-
                           {images.slice(1).map((file, index) => (
                             <div
                               key={index + 1}
@@ -985,34 +983,60 @@ export default function Property(props) {
                           ))}
                         </>
                       )
-
                     )}
                   </div>
                 </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
+                  {!useExistingImages ? (
+                    <></>
+                  ) :(
+                     isEdit  &&  (
+                      imageproperty?.map((item, index) => (
+                        <div key={index} className="relative isedits">
+                          <Image
+                            className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
+                            src={item?.image_url || ""}
+                            width={200}
+                            height={200}
+                            alt={`Preview ${index}`}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => deletePropertyImage(uuid, item?.uuid)}
+                            className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      ))
+                    )
+                  ) }
+                 
+                </div>
 
-
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4  mt-16 ">
-                  {isEdit && useExistingImages
-                    ? imageproperty?.map((item, index) => (
-                      <div key={index} className="relative isedits">
-                        <Image
-                          className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
-                          src={item?.image_url || ""}
-                          width={200}
-                          height={200}
-                          alt={`Preview ${index}`}
-                        />
-                        <button
-                          type="button"
-                          onClick={() => deletePropertyImage(uuid, item?.uuid)}
-                          className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    ))
-                    : ""}
-
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
+                  {!useExistingImages  &&
+                     isEdit  &&  (
+                      imageproperty?.map((item, index) => (
+                        <div key={index} className="relative isedits">
+                          <Image
+                            className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
+                            src={item?.image_url || ""}
+                            width={200}
+                            height={200}
+                            alt={`Preview ${index}`}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => deletePropertyImage(uuid, item?.uuid)}
+                            className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      ))
+                  ) }
+                 
                 </div>
               </div>
               <div className={`${step === 6 ? "" : "display-none"}`}>
