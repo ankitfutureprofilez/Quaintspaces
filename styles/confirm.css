@@ -86,4 +86,5 @@ img.side-img {
     border-radius: 5px;
 }
 
-.img-book img.rounded-full { border-radius: 10px; width: 70px !important; height: 60px !important; -o-object-fit: cover; object-fit: cover; }
+.img-book img.rounded-full { border-radius: 10px; width: 70px; height: 60px ; -o-object-fit: cover; object-fit: cover; }
+.break-inside-avoid-column .admin-user-img { border-radius: 50px !important; height: 50px !important; width: 50px !important; }
