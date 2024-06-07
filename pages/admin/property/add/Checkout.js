@@ -10,8 +10,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { MdPhonelinkLock, MdOutlineKeyboardAlt } from "react-icons/md";
 
 import { FaClock } from "react-icons/fa";
-function Checkout({ checkoutdata, checkoutInstructions, isEdit, setCheckoutInstructions, selectedInstruction, setSelectedInstruction, showInstructions, setShowInstructions, showTextArea, setShowTextArea, text, setText }) {
-  console.log("checkoutdata", checkoutdata)
+function Checkout({ checkoutInstructions, checkoutdata, isEdit, setCheckoutInstructions, selectedInstruction, setSelectedInstruction, showInstructions, setShowInstructions, showTextArea, setShowTextArea, text, setText }) {
 
   const record = JSON?.parse(checkoutdata)
   const options = [
@@ -92,7 +91,6 @@ function Checkout({ checkoutdata, checkoutInstructions, isEdit, setCheckoutInstr
     <div className="mb-4">
       <div className="flex flex-col space-y-8  ">
         <div className="flex space-x-4 items-center">
-          <IoMdArrowRoundBack size={24} />
           <h2 className="text-2xl font-bold">Checkout Instructions</h2>
         </div>
         <p className="text-gray-600 mb-4">
@@ -171,9 +169,9 @@ function Checkout({ checkoutdata, checkoutInstructions, isEdit, setCheckoutInstr
                       setShowTextArea(true);
                     }}
                   >
-                    
+
                     <button className="flex w-full items-center space-x-4 px-4 py-4 h-[55px] font-semibold rounded-md border-[1px] border-gray-300 hover:border-black text-md ">
-                    <i className="mr-2">{item?.icon}</i>
+                      <i className="mr-2">{item?.icon}</i>
                       {item?.option}
                     </button>
                   </div>
@@ -228,21 +226,19 @@ function Checkout({ checkoutdata, checkoutInstructions, isEdit, setCheckoutInstr
             </div>
           </>
         )}
+      </>
 
-        {isEdit && record && record.map((item, index) => (
-          <div
-            key={index}
-            className=" items-center space-x-4 px-4 py-4 font-semibold rounded-md border-[1px] border-gray-300 hover:border-black"
-
-          >
-            {item?.instruction}
-            <button className="text-black text-md ">
-              {item?.details}
-            </button>
-          </div>
-        ))}
-
-      </div>
+      {isEdit && record && record.map((item, index) => (
+        <div
+          key={index}
+          className=" items-center space-x-4 px-4 py-4 font-semibold rounded-md border-[1px] border-gray-300 hover:border-black"
+        >
+          <button className="flex w-full items-center space-x-4 px-4 py-4 h-[55px] font-semibold rounded-md border-[1px] border-gray-300 hover:border-black text-md ">
+            <i className="mr-2">{item?.instruction}</i>
+            {item?.details}
+          </button>
+        </div>
+      ))}
     </div>
   );
 }
