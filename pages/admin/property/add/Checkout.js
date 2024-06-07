@@ -11,8 +11,15 @@ import { MdPhonelinkLock, MdOutlineKeyboardAlt } from "react-icons/md";
 
 import { FaClock } from "react-icons/fa";
 function Checkout({ checkoutInstructions, checkoutdata, isEdit, setCheckoutInstructions, selectedInstruction, setSelectedInstruction, showInstructions, setShowInstructions, showTextArea, setShowTextArea, text, setText }) {
-
-  const record = JSON?.parse(checkoutdata)
+  let record = null;
+  
+  if (isEdit && checkoutdata) {
+    try {
+      record = JSON.parse(checkoutdata);
+    } catch (error) {
+      console.error("Failed to parse checkoutdata:", error);
+    }
+  }
   const options = [
     {
       item: "smartlock",

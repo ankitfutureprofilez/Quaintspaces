@@ -7,14 +7,13 @@ import axios from "axios";
 import Amenities from "./Amenities";
 import HouseRules from "./HouseRules";
 import CancelPolicy from "./CancelPolicy";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import { House, Add } from "iconsax-react";
 import { MdPhonelinkLock } from "react-icons/md";
 import { MdOutlineKeyboardAlt } from "react-icons/md";
 import { RiDoorLockBoxLine } from "react-icons/ri";
 import { GrUserWorker } from "react-icons/gr";
 import { MdOutlineFreeBreakfast } from "react-icons/md";
-import { FaBuilding,FaHome,FaWarehouse,FaDoorOpen,FaHotel, FaBed,FaCouch} from "react-icons/fa";
+import { FaBuilding, FaHome, FaWarehouse, FaDoorOpen, FaHotel, FaBed, FaCouch } from "react-icons/fa";
 import Guest from "./Guest";
 import Checkout from "./Checkout";
 const propertyTypes = [
@@ -242,58 +241,70 @@ export default function Property(props) {
   const prevStep = () => setStep((prev) => prev - 1);
 
   const nextStep = async () => {
-    // if (step === 0 && PType == '') {
-    //   toast.error("Please choose a property type which one you want to list.");
-    // }
-    // if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
-    //   toast.error("Property description is too short. Description should be a minimum of 100 words.");
-    //   return false;
-    // }
-    // if (step === 2 && (
-    //   address?.pin === "" || address?.pin?.length < 5 ||
-    //   address?.state === "" ||
-    //   address?.city === "" ||
-    //   address?.street_address === "" ||
-    //   address?.district === "")) {
-    //   toast.error(`Incomplete address. Please enter complete address.`);
-    //   return false;
-    // }
-    // if (step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (step == 4 && selectedAmenity && Amenity && standoutAmenity && (selectedAmenity.length + Amenity.length + standoutAmenity.length < 4)) {
-    //   toast.error("Please choose at least 4 amenities.");
-    //   return false;
-    // }
+    if (step === 0 && PType == '') {
+      toast.error("Please choose a property type which one you want to list.");
+    }
+    if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
+      toast.error("Property description is too short. Description should be a minimum of 100 words.");
+      return false;
+    }
+    if (step === 2 && (
+      address?.pin === "" || address?.pin?.length < 5 ||
+      address?.state === "" ||
+      address?.city === "" ||
+      address?.street_address === "" ||
+      address?.district === "")) {
+      toast.error(`Incomplete address. Please enter complete address.`);
+      return false;
+    }
+    if (step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (step == 4 && selectedAmenity && Amenity && standoutAmenity && (selectedAmenity.length + Amenity.length + standoutAmenity.length < 4)) {
+      toast.error("Please choose at least 4 amenities.");
+      return false;
+    }
 
 
-    // if (!isEdit && step === 5 && images?.length < 5) {
-    //   toast.error("Please select at least five images.");
-    //   return false;
-    // }
-    // if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
-    //   toast.error("Please select at least five images.");
-    //   return false;
-    // }
-    // if (step === 6 && (checkout === " " || checkinStart === " " || selectedOption === "" || checkinEnd === "" || item?.cleaning === "" || item?.extra_guest === "" || item?.pet === "")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (step === 7 && (longTermPolicy === null && selectedPolicy === null)) {
-    //   toast.error(`At least one field is required.`);
-    //   return false;
-    // }
+    if (!isEdit && step === 5 && images?.length < 5) {
+      toast.error("Please select at least five images.");
+      return false;
+    }
+    if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
+      toast.error("Please select at least five images.");
+      return false;
+    }
+    if (step === 6 && (checkout === " " || checkinStart === " " || selectedOption === "" || checkinEnd === "" || item?.cleaning === "" || item?.extra_guest === "" || item?.pet === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (step === 7 && (longTermPolicy === null && selectedPolicy === null)) {
+      toast.error(`At least one field is required.`);
+      return false;
+    }
+    if (step === 8 && (item?.additonalrule === "" || petsAllowed === " " || smokingAllowed === " " || eventsAllowed === "" || quietHours === "" || PhotographyAllowed === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (step === 9 && (item?.Direction === "" || item?.wifi === " " || item?.wifiPassword === " " || item?.housemanual === " " || item?.discount === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
 
-    // if (step === 8 && (item?.additonalrule === "" || petsAllowed === " " || smokingAllowed === " " || eventsAllowed === "" || quietHours === "" || PhotographyAllowed === "")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
+    if (step === 10 && (item?.customLink === "" || item?.selectedInstruction === " " || selectedMethod === " ")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
 
+    if (step === 11 && (checkoutInstructions === ""   )) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
 
     setStep((prev) => prev + 1);
   };
@@ -407,10 +418,7 @@ export default function Property(props) {
 
 
   async function handleSubmit(e) {
-    if (step === 9 && (item?.Direction === "" || item?.wifi === " " || item?.wifiPassword === " " || item?.housemanual === " ")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+
     e.preventDefault();
 
     setLoading(true);
@@ -913,70 +921,70 @@ export default function Property(props) {
                       ))
                     ) : (
                       images && images.length > 0 && (
-  <>
-    <div
-      key={0}
-      id={images[0].name}
-      draggable
-      onDragStart={handleDrag}
-      onDragOver={handleOver}
-      onDrop={handleDrop}
-      className="relative w-full  p-1"
-    >
-      <Image
-        src={URL.createObjectURL(images[0])}
-        width={200}
-        height={200}
-        alt={`Preview 0`}
-        className="image-preview h-full object-cover border min-h-[170px] max-h-[250px] w-full max-w-full rounded-lg"
-        onLoad={() => URL.revokeObjectURL(images[0])}
-      />
-      <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
-        <p className="text-xs text-gray-700">Cover Photo</p>
-      </div>
-      <div className="absolute right-2 top-2">
-        <DropdownMenu
-          index={0}
-          isFirst={true}
-          isLast={images.length === 1}
-        />
-      </div>
-    </div>
+                        <>
+                          <div
+                            key={0}
+                            id={images[0].name}
+                            draggable
+                            onDragStart={handleDrag}
+                            onDragOver={handleOver}
+                            onDrop={handleDrop}
+                            className="relative w-full  p-1"
+                          >
+                            <Image
+                              src={URL.createObjectURL(images[0])}
+                              width={200}
+                              height={200}
+                              alt={`Preview 0`}
+                              className="image-preview h-full object-cover border min-h-[170px] max-h-[250px] w-full max-w-full rounded-lg"
+                              onLoad={() => URL.revokeObjectURL(images[0])}
+                            />
+                            <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
+                              <p className="text-xs text-gray-700">Cover Photo</p>
+                            </div>
+                            <div className="absolute right-2 top-2">
+                              <DropdownMenu
+                                index={0}
+                                isFirst={true}
+                                isLast={images.length === 1}
+                              />
+                            </div>
+                          </div>
 
-    {images.slice(1).map((file, index) => (
-      <div
-        key={index + 1}
-        id={file.name}
-        draggable
-        onDragStart={handleDrag}
-        onDragOver={handleOver}
-        onDrop={handleDrop}
-        className="relative w-full sm:w-1/2 md:w-1/3 p-1"
-      >
-        <Image
-          src={URL.createObjectURL(file)}
-          width={200}
-          height={200}
-          alt={`Preview ${index + 1}`}
-          className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
-          onLoad={() => URL.revokeObjectURL(file)}
-        />
-        {index + 1 === 0 && (
-          <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
-            <p className="text-xs text-gray-700">Cover Photo</p>
-          </div>
-        )}
-        <div className="absolute right-2 top-2">
-          <DropdownMenu
-            index={index + 1}
-            isFirst={false}
-            isLast={index + 1 === images.length - 1}
-          />
-        </div>
-      </div>
-    ))}
-  </>
-)
+                          {images.slice(1).map((file, index) => (
+                            <div
+                              key={index + 1}
+                              id={file.name}
+                              draggable
+                              onDragStart={handleDrag}
+                              onDragOver={handleOver}
+                              onDrop={handleDrop}
+                              className="relative w-full sm:w-1/2 md:w-1/3 p-1"
+                            >
+                              <Image
+                                src={URL.createObjectURL(file)}
+                                width={200}
+                                height={200}
+                                alt={`Preview ${index + 1}`}
+                                className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                                onLoad={() => URL.revokeObjectURL(file)}
+                              />
+                              {index + 1 === 0 && (
+                                <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
+                                  <p className="text-xs text-gray-700">Cover Photo</p>
+                                </div>
+                              )}
+                              <div className="absolute right-2 top-2">
+                                <DropdownMenu
+                                  index={index + 1}
+                                  isFirst={false}
+                                  isLast={index + 1 === images.length - 1}
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </>
+                      )
 
                     )}
                   </div>
@@ -1282,7 +1290,7 @@ export default function Property(props) {
                 </div>
 
                 <div className="flex flex-col mb-2">
-                <h1 className="capitalize text-lg font-bold my-4">Discount offer </h1>
+                  <h1 className="capitalize text-lg font-bold my-4">Discount offer </h1>
                   <label className="flex items-center space-x-2 text-xl font-normal">
                     <input
                       className="p-4  mt-1 block sm:text-sm border border-{#ccc} rounded-md"
@@ -1322,10 +1330,10 @@ export default function Property(props) {
                     </div>
                     <span className="w-full p-4 pr-12 border rounded-xl my-3 flex items-center text-gray-500 relative">
                       {baseurl + item.customLink}
-                      <svg className="h-7 w-7 absolute right-3 top-3" viewBox="0 0 448 512"><path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z"/></svg>
+                      <svg className="h-7 w-7 absolute right-3 top-3" viewBox="0 0 448 512"><path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" /></svg>
                     </span>
                   </div>
-                  
+
 
                 </div>
                 <div className="flex flex-col mb-2">
@@ -1333,7 +1341,7 @@ export default function Property(props) {
                     {/* Left Panel */}
                     <div className="md:w-1/2 pr-2 flex flex-col">
                       <div className=" items-center">
-                      
+
                         <h2 className="text-2xl font-bold">Select a check-in method</h2>
                       </div>
                       <div className="space-y-4 mt-4 w-full">
@@ -1387,7 +1395,7 @@ export default function Property(props) {
                 <div className="flex flex-col mb-2">
                   <Checkout selectedInstruction={selectedInstruction} isEdit={true} checkoutdata={check_out_instruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />
                 </div>
-             
+
                 <div className="flex flex-col  ">
 
                 </div>
