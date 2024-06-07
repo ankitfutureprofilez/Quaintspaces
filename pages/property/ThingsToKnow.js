@@ -2,7 +2,6 @@ import Link from "next/link";
 import React from "react";
 
 export default function ThingsToKnow({ record, isAdmin }) {
-  console.log("guests", record)
   const safetyAmenities = record?.data?.safety_amenity?.split(',') || [];
   return (
     <div className="container mx-auto">
