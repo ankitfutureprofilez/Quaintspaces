@@ -41,7 +41,7 @@ const Card = ({ post }) => {
           width={100}
           height={300}
           layout="responsive"
-          src={post?.property_image[0]?.image_url}
+          src={post?.property_image[0]?.image_url ? (post?.property_image[0]?.image_url) : ("https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg") }
           alt="Property cover image"
         />
         <div className="flat-info">

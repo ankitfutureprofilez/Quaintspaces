@@ -13,16 +13,8 @@ import { MdPhonelinkLock } from "react-icons/md";
 import { MdOutlineKeyboardAlt } from "react-icons/md";
 import { RiDoorLockBoxLine } from "react-icons/ri";
 import { GrUserWorker } from "react-icons/gr";
-import {MdOutlineFreeBreakfast} from "react-icons/md";
-import {
-  FaBuilding,
-  FaHome,
-  FaWarehouse,
-  FaDoorOpen,
-  FaHotel,
-  FaBed,
-  FaCouch,
-} from "react-icons/fa";
+import { MdOutlineFreeBreakfast } from "react-icons/md";
+import { FaBuilding,FaHome,FaWarehouse,FaDoorOpen,FaHotel, FaBed,FaCouch} from "react-icons/fa";
 import Guest from "./Guest";
 import Checkout from "./Checkout";
 const propertyTypes = [
@@ -38,9 +30,10 @@ const propertyTypes = [
 ];
 export default function Property(props) {
 
-  const { isEdit, p, onClose, fetchProperties, stepdata, useExistingImages } = props;
+  const { isEdit, p, fetchProperties, stepdata, useExistingImages } = props;
   const {
     uuid,
+    type,
     location,
     discount_offer,
     properties_type,
@@ -54,8 +47,7 @@ export default function Property(props) {
     guests, pet_fee, extra_guest_fee, flexible_check_in, check_in,
     bathrooms, cleaning_fee,
     amenities, check_out, check_in_method, check_in_description,
-    property_image, status, quite_hours_in_time,
-    quite_hours_out_time, custom_link
+    property_image, status, custom_link
   } = p ? p : {};
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
   const [pets, setPets] = useState(no_of_pet_allowed || 1);
@@ -73,10 +65,12 @@ export default function Property(props) {
   const [PhotographyAllowed, setPhotographyAllowed] = useState(property_rule?.photography_allowed || 0);
   const [images, setImages] = useState([]);
   const [dragId, setDragId] = useState("");
-  const [typeHere, setTypeHere] = useState("entire_place");
+  const [typeHere, setTypeHere] = useState(type || "entire_place");
   const [checkinStart, setCheckinStart] = useState(check_in || "00:00");
-  const [checkinquet, setCheckinquiet] = useState(quite_hours_in_time || "00:00");
-  const [checkoutquet, setCheckoutquiet] = useState(quite_hours_out_time || "00:00");
+  const [checkinquet, setCheckinquiet] = useState(
+    property_rule?.quite_hours_in_time || "00:00");
+  const [checkoutquet, setCheckoutquiet] = useState(
+    property_rule?.quite_hours_out_time || "00:00");
   const [checkinEnd, setCheckinEnd] = useState(flexible_check_in || "flexible");
   const [checkout, setCheckout] = useState(check_out || "00:00");
   const [Guests, setGuests] = useState(guests || 1);
@@ -181,7 +175,7 @@ export default function Property(props) {
   };
 
   const router = useRouter();
-  const [step, setStep] = useState(step_completed === 9 ? 0 : step_completed || 0);
+  const [step, setStep] = useState(step_completed === 11 ? 0 : step_completed || 0);
   const [Loading, setLoading] = useState(false);
   const [PType, setPType] = useState(properties_type || "flat");
   const lstring = location ? (location.replace('/\\"/g', '"')) : null;
@@ -206,6 +200,7 @@ export default function Property(props) {
   };
 
   const [item, setItem] = useState({
+
     name: name || "",
     about: description || "",
     price: price || "",
@@ -217,9 +212,9 @@ export default function Property(props) {
     extra_guest: extra_guest_fee || "",
     Direction: property_rule?.direction || "",
     housemanual: property_rule?.house_manuals || "",
-    wifi: property_rule?.wifiusername || '',
+    wifi: property_rule?.wifi_username || '',
     additonalrule: property_rule?.additional_rules || "",
-    wifiPassword: property_rule?.wifiPassword || '',
+    wifiPassword: property_rule?.wifi_password || '',
     discount: discount_offer || "",
     customLink: custom_link || "",
     checkdescrtion: check_in_description || "",
@@ -303,7 +298,6 @@ export default function Property(props) {
     setStep((prev) => prev + 1);
   };
   const [locationupdate, setLocationupdate] = useState([]);
-  console.log("locationupdate",locationupdate)
   const getNavigator = () => {
     if (typeof navigator !== "undefined") {
       return navigator;
@@ -329,7 +323,7 @@ export default function Property(props) {
                 `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
               );
               locationData = response.data;
-              console.log("locationData",locationData)
+              console.log("locationData", locationData)
             } else {
               const response = await axios.get(
                 `https://nominatim.openstreetmap.org/reverse?lat=${address?.latitude}&lon=${address?.longitude}&format=json`
@@ -475,10 +469,9 @@ export default function Property(props) {
       .then((res) => {
         if (res?.data?.status) {
           if (isEdit && !stepdata) {
-            // onClose();
             toast.success(res.data.message);
-            fetchProperties && fetchProperties();
             router.push("/admin/property");
+            fetchProperties && fetchProperties();
 
           } else {
             router.push("/admin/property");
@@ -1341,7 +1334,7 @@ export default function Property(props) {
               <div className={`${step === 11 ? "" : "display-none"
                 } max-w-[100%] m-auto table w-full `}>
                 <div className="flex flex-col mb-2">
-                  <Checkout selectedInstruction={selectedInstruction} checoutdata={check_out_instruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />
+                  <Checkout selectedInstruction={selectedInstruction} isEdit={true} checkoutdata={check_out_instruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />
                 </div>
                 <div className="flex flex-col mb-2">
                   <label className="flex items-center space-x-2 text-xl font-normal">

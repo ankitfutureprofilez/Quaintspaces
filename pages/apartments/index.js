@@ -149,8 +149,7 @@ export default function index() {
   
         if (Array.isArray(data)) {
           data.forEach(item => {
-            if (item?.status === 1 &&  item?.step_completed === 9) {
-              console.log("item",item)
+            if (item?.status === 1 ) {
               filteredListings.push(item);
             }
           });

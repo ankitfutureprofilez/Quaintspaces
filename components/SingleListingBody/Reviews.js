@@ -95,7 +95,7 @@ const Reviews = React.forwardRef(({ data }, ref) => {
           ".0"
         :null}
         </p>
-        <StartRating size={26} value={parseFloat(data && data?.rating && data?.rating?.toFixed(2))} /> 
+        {/* <StartRating size={26} value={parseFloat(data && data?.rating && data?.rating?.toFixed(2))} />  */}
         
         </span>
           <span>

@@ -76,7 +76,7 @@ const Listings = () => {
           </Link>
         </div>
         <SingleListingBody isAdmin={true} loading={loading} listing={record} />
-        <ThingsToKnow guests={record?.data?.guests} />
+        <ThingsToKnow  isAdmin={true} record={record} />
         {/* <Footer /> */}
         {overlay && (
           <div

@@ -16,7 +16,7 @@ export default function RoomListings() {
       let filteredListings = [];
       if (Array.isArray(data)) {
         data.forEach(item => {
-          if (item?.status === 1 && item?.step_completed === 9) {
+          if (item?.status === 1) {
             filteredListings.push(item);
           }
         });

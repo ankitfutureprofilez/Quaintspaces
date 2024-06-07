@@ -48,11 +48,6 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                 {" . "}
                 {listing?.data?.guests > 0 && `${listing?.data?.guests} Guests`}
                 {" · "}
-                {listing?.data?.adults > 0 && `${listing?.data?.adults} Adults`}
-                {" · "}
-                {listing?.data?.children > 0 &&
-                  `${listing?.data?.children} Children`}
-                {" · "}
                 {listing?.data?.no_of_pet_allowed > 0 &&
                   `${listing?.data?.no_of_pet_allowed} Pets`}
                 {" · "}

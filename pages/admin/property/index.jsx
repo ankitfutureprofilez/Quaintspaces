@@ -6,7 +6,6 @@ import NoRecord from "../hook/NoRecord";
 import AdminLayout from "../AdminLayout";
 import Loading from "../hook/loading";
 import { useRouter } from "next/router";
-import propertyimage from "../components/assets/property.png"
 import { MdAdd } from "react-icons/md";
 import { formatMultiPrice } from "../../../hooks/ValueData";
 
@@ -88,11 +87,11 @@ export default function Index() {
         ) : (
           <>
             <div className="flex flex-wrap px-4 py-5 justify-between" >
-            <h3 className="text-xl font-bold text-black">Your listings</h3>
+              <h3 className="text-xl font-bold text-black">Your listings</h3>
               <div className="bg-slate-200 rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer">
-              <MdAdd onClick={() => {
-                router.push("/admin/property/become");
-              }} />
+                <MdAdd onClick={() => {
+                  router.push("/admin/property/become");
+                }} />
               </div>
             </div>
             <div className="flex flex-wrap px-4 py-5 pt-0">
@@ -102,11 +101,11 @@ export default function Index() {
                     <div className="relative border rounded-lg overflow-hidden shadow-md">
                       <img
                         className="w-full h-48 object-cover object-center"
-                        src={item?.property_image[0]?.image_url ?item?.property_image[0]?.image_url : propertyimage }
+                        src={item?.property_image[0]?.image_url ? item?.property_image[0]?.image_url : "https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg"}
                         alt={item?.name}
                       />
                       <button className="absolute text-xs top-3 right-3 bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-700" onClick={() => handleDelete(item?.uuid)}>Remove</button>
-                      {item?.step_completed !== 9 ? (
+                      {item?.step_completed !== 11 ? (
                         <button className="absolute text-xs top-3 left-3 bg-indigo-600 text-white px-3 py-2 rounded-md">
                           In Progress
                         </button>
@@ -122,7 +121,7 @@ export default function Index() {
                         </h3>
                         <p className="text-sm text-gray-600 mt-3 capitalize">
                           {item?.type ? `${item?.type?.replace("_", " ")} .` : ""}
-                          {item.bedrooms} Bedrooms· 
+                          {item.bedrooms} Bedrooms·
                         </p>
                         <p className="text-sm text-gray-600 mt-3 font-bold">
                           {formatMultiPrice(item?.price)} Night
@@ -130,7 +129,7 @@ export default function Index() {
                         <div className="mt-4">
                           <Link href={`/admin/property/${item?.uuid}`}>
                             <div className="text-normal text-underline btn sort rounded text-gray-500 w-full mt-3 px-5 py-2 cursor-pointer font-medium">
-                              Public View
+                               View
                             </div>
                           </Link>
                           <button className="text-normal text-underline btn sort rounded text-gray-500 px-5 py-2 w-full mt-3 cursor-pointer font-medium" onClick={() => handleEditEntireProperty(item?.uuid)}>

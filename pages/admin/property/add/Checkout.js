@@ -10,8 +10,10 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { MdPhonelinkLock, MdOutlineKeyboardAlt } from "react-icons/md";
 
 import { FaClock } from "react-icons/fa";
-function Checkout({ checoutdata, checkoutInstructions, setCheckoutInstructions, selectedInstruction, setSelectedInstruction, showInstructions, setShowInstructions, showTextArea, setShowTextArea, text, setText }) {
- console.log("checoutdata",checoutdata)
+function Checkout({ checkoutdata, checkoutInstructions, isEdit, setCheckoutInstructions, selectedInstruction, setSelectedInstruction, showInstructions, setShowInstructions, showTextArea, setShowTextArea, text, setText }) {
+  console.log("checkoutdata", checkoutdata)
+
+  const record = JSON?.parse(checkoutdata)
   const options = [
     {
       item: "smartlock",
@@ -226,18 +228,19 @@ function Checkout({ checoutdata, checkoutInstructions, setCheckoutInstructions, 
           </>
         )}
 
-        {checoutdata && checoutdata?.map((item,index)=>(
-           <div
-           key={index}
-           className="flex items-center space-x-4 px-4 py-4 font-semibold rounded-md border-[1px] border-gray-300 hover:border-black"
-          
-         >
-           {item?.icon}
-           <button className="text-black text-md ">
-             {item?.option}
-           </button>
-         </div>
+        {isEdit && record && record.map((item, index) => (
+          <div
+            key={index}
+            className=" items-center space-x-4 px-4 py-4 font-semibold rounded-md border-[1px] border-gray-300 hover:border-black"
+
+          >
+            {item?.instruction}
+            <button className="text-black text-md ">
+              {item?.details}
+            </button>
+          </div>
         ))}
+
       </div>
     </div>
   );
