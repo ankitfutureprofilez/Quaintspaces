@@ -63,7 +63,7 @@ function UserList({totaluser}) {
                       : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
                   }
                   alt="profile-image for user"
-                  className="rounded-full"
+                  className="rounded-full admin-user-img"
                 />
                 <div className="font-medium">
                   <p className="text-xxs text-gray-500">{item?.name}</p>

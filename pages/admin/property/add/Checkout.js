@@ -89,11 +89,11 @@ function Checkout({ checkoutdata, checkoutInstructions, isEdit, setCheckoutInstr
   };
   return (
 
-    <div className="flex p-4 mt-4">
-      <div className="flex flex-col space-y-12 w-2/3 px-32 py-4 border-r">
+    <div className="mb-4">
+      <div className="flex flex-col space-y-8  ">
         <div className="flex space-x-4 items-center">
           <IoMdArrowRoundBack size={24} />
-          <h2 className="text-3xl font-bold">Checkout Instructions</h2>
+          <h2 className="text-2xl font-bold">Checkout Instructions</h2>
         </div>
         <p className="text-gray-600 mb-4">
           Explain what’s essential for guests to do before they leave. Anyone
@@ -149,11 +149,11 @@ function Checkout({ checkoutdata, checkoutInstructions, isEdit, setCheckoutInstr
           </div>
         ))}
       </div>
-      <div className="w-1/3 p-4">
+      <>
         {showInstructions && (
-          <>
-            <h3 className="text-3xl font-bold">Choose an instruction</h3>
-            <div className="flex flex-col space-y-4 mt-8">
+          <div className="w-full py-4">
+            <h3 className="text-2xl font-bold">Choose an instruction</h3>
+            <div className="flex flex-wrap  mt-3">
               {instructionSet
                 ?.filter(
                   (item) =>
@@ -164,15 +164,16 @@ function Checkout({ checkoutdata, checkoutInstructions, isEdit, setCheckoutInstr
                 ?.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-center space-x-4 px-4 py-4 font-semibold rounded-md border-[1px] border-gray-300 hover:border-black"
+                    className="w-full sm:w-1/2 xl:w-1/3 px-1 mb-2"
                     onClick={() => {
                       setSelectedInstruction(item?.option);
                       setShowInstructions(false);
                       setShowTextArea(true);
                     }}
                   >
-                    {item?.icon}
-                    <button className="text-black text-md ">
+                    
+                    <button className="flex w-full items-center space-x-4 px-4 py-4 h-[55px] font-semibold rounded-md border-[1px] border-gray-300 hover:border-black text-md ">
+                    <i className="mr-2">{item?.icon}</i>
                       {item?.option}
                     </button>
                   </div>
@@ -186,16 +187,16 @@ function Checkout({ checkoutdata, checkoutInstructions, isEdit, setCheckoutInstr
                 Cancel
               </button>
             </div>
-          </>
+          </div>
         )}
         {showTextArea && (
           <>
-            <h2 className="text-2xl font-bold mb-4 capitalize">
+            <h2 className="text-2xl mt-6 font-bold mb-4 capitalize">
               {selectedInstruction}
             </h2>
             <textarea
-              className="w-full p-2 rounded-lg"
-              rows="20"
+              className="w-full p-2 border rounded-lg"
+              rows="10"
               placeholder={`140 characters available \nAdd optional details.`}
               value={text}
               onChange={changeText}

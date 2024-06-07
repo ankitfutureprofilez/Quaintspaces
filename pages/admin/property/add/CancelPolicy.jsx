@@ -82,7 +82,7 @@ function CancelPolicy({ showFirm, setShowFirm,  showFlexible , setShowFlexible, 
                         <div className="flex flex-wrap ">
                             {policies.map(({ policy, description }) => (
                                 <div  key={policy}
-                                    className={`flex mb-4 p-4 border-2 relative w-full md:w-full cursor-pointer ${selectedPolicy === policy ? "border-black" : "border-gray-200" }`}  >
+                                    className={`flex mb-4 p-4 border-2 relative w-full md:w-full cursor-pointer ${selectedPolicy === policy ? "border-indigo-600" : "border-gray-200" }`}  >
                                     <div className=" " >
                                         <label className=" text-lg mb-3">
                                             {policy}
@@ -118,7 +118,7 @@ function CancelPolicy({ showFirm, setShowFirm,  showFlexible , setShowFlexible, 
                         </p>
                         <div className="">
                             <div
-                                className={`flex justify-center mb-4 p-4 relative items-center border-2 cursor-pointer ${longTermPolicy === "Flexible" ? "border-black" : "border-gray-200"
+                                className={`flex justify-center mb-4 p-4 relative items-center border-2 cursor-pointer ${longTermPolicy === "Flexible" ? "border-indigo-600" : "border-gray-200"
                                     }`}
                             >
                                 <div className="flex flex-col">
@@ -137,7 +137,7 @@ function CancelPolicy({ showFirm, setShowFirm,  showFlexible , setShowFlexible, 
                                 />
                             </div>
                             <div
-                                className={`flex justify-center p-4 mb-4 relative items-center border-2 cursor-pointer ${longTermPolicy === "Strict" ? "border-black" : "border-gray-200"
+                                className={`flex justify-center p-4 mb-4 relative items-center border-2 cursor-pointer ${longTermPolicy === "Strict" ? "border-indigo-600" : "border-gray-200"
                                     }`}
                             >
                                 <div className="flex flex-col">

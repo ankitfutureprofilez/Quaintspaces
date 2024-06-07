@@ -888,11 +888,12 @@ export default function Property(props) {
                       />
                     </label>
                   </div>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
+                  <div className="flex flex-wrap  mt-16">
                     {isEdit && useExistingImages ? (
                       images &&
                       images.map((file, index) => (
-                        <div key={index} className="relative">
+                        <div key={index} className="relative w-full sm:w-1/2 md:w-1/3 p-1">
+
                           <Image
                             src={URL.createObjectURL(file)}
                             width={200}
@@ -911,39 +912,72 @@ export default function Property(props) {
                         </div>
                       ))
                     ) : (
-                      images &&
-                      images.map((file, index) => (
-                        <div
-                          key={index}
-                          id={file.name}
-                          draggable
-                          onDragStart={handleDrag}
-                          onDragOver={handleOver}
-                          onDrop={handleDrop}
-                          className="relative"
-                        >
-                          <Image
-                            src={URL.createObjectURL(file)}
-                            width={200}
-                            height={200}
-                            alt={`Preview ${index}`}
-                            className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
-                            onLoad={() => URL.revokeObjectURL(file)}
-                          />
-                          {index === 0 && (
-                            <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
-                              <p className="text-xs text-gray-700">Cover Photo</p>
-                            </div>
-                          )}
-                          <div className="absolute right-2 top-2">
-                            <DropdownMenu
-                              index={index}
-                              isFirst={index === 0}
-                              isLast={index === images.length - 1}
-                            />
-                          </div>
-                        </div>
-                      ))
+                      images && images.length > 0 && (
+  <>
+    <div
+      key={0}
+      id={images[0].name}
+      draggable
+      onDragStart={handleDrag}
+      onDragOver={handleOver}
+      onDrop={handleDrop}
+      className="relative w-full  p-1"
+    >
+      <Image
+        src={URL.createObjectURL(images[0])}
+        width={200}
+        height={200}
+        alt={`Preview 0`}
+        className="image-preview h-full object-cover border min-h-[170px] max-h-[250px] w-full max-w-full rounded-lg"
+        onLoad={() => URL.revokeObjectURL(images[0])}
+      />
+      <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
+        <p className="text-xs text-gray-700">Cover Photo</p>
+      </div>
+      <div className="absolute right-2 top-2">
+        <DropdownMenu
+          index={0}
+          isFirst={true}
+          isLast={images.length === 1}
+        />
+      </div>
+    </div>
+
+    {images.slice(1).map((file, index) => (
+      <div
+        key={index + 1}
+        id={file.name}
+        draggable
+        onDragStart={handleDrag}
+        onDragOver={handleOver}
+        onDrop={handleDrop}
+        className="relative w-full sm:w-1/2 md:w-1/3 p-1"
+      >
+        <Image
+          src={URL.createObjectURL(file)}
+          width={200}
+          height={200}
+          alt={`Preview ${index + 1}`}
+          className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+          onLoad={() => URL.revokeObjectURL(file)}
+        />
+        {index + 1 === 0 && (
+          <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
+            <p className="text-xs text-gray-700">Cover Photo</p>
+          </div>
+        )}
+        <div className="absolute right-2 top-2">
+          <DropdownMenu
+            index={index + 1}
+            isFirst={false}
+            isLast={index + 1 === images.length - 1}
+          />
+        </div>
+      </div>
+    ))}
+  </>
+)
+
                     )}
                   </div>
                 </div>
@@ -983,7 +1017,7 @@ export default function Property(props) {
                       <label>Cleaning Fees</label>
                       <input
                         required
-                        type="number"
+                        type="text"
                         name="cleaning"
                         placeholder="Cleaning Fees Per Day"
                         id="cleaning"
@@ -996,7 +1030,7 @@ export default function Property(props) {
                     <div className="flex flex-col w-1/3">
                       <label>Pet Fees</label>
                       <input
-                        type="number"
+                        type="text"
                         name="pet"
                         placeholder="Pet Fees"
                         id="pet"
@@ -1010,7 +1044,7 @@ export default function Property(props) {
                       <label>Extra Guest Fees (Per Guest)</label>
                       <input
                         required
-                        type="number"
+                        type="text"
                         name="extra_guest"
                         placeholder="Extra Guest Fees"
                         id="guest"
@@ -1191,8 +1225,8 @@ export default function Property(props) {
               <div className={`${step === 9 ? "" : "display-none"
                 } max-w-[100%] m-auto table w-full `}>
 
-                <div className="flex flex-col mb-2">
-                  <label htmlFor="directions" className="block font-medium text-gray-700">
+                <div className="flex flex-col mb-4">
+                  <label htmlFor="directions" className="capitalize text-lg font-bold my-1">
                     Directions
                   </label>
                   <textarea
@@ -1205,8 +1239,8 @@ export default function Property(props) {
                     onChange={handleInputChange}
                   />
                 </div>
-                <div className="flex flex-col mb-2">
-                  <label htmlFor="directions" className="block font-medium text-gray-700">
+                <div className="flex flex-col mb-4">
+                  <label htmlFor="directions" className="capitalize text-lg font-bold my-1">
                     House Manual
                   </label>
                   <textarea
@@ -1246,6 +1280,21 @@ export default function Property(props) {
                     onChange={handleInputChange}
                   />
                 </div>
+
+                <div className="flex flex-col mb-2">
+                <h1 className="capitalize text-lg font-bold my-4">Discount offer </h1>
+                  <label className="flex items-center space-x-2 text-xl font-normal">
+                    <input
+                      className="p-4  mt-1 block sm:text-sm border border-{#ccc} rounded-md"
+                      placeholder="Discount offer"
+                      type="text"
+                      name="discount"
+                      value={item?.discount}
+                      onChange={handleInputChange}
+                    />
+                    <span>% discount offer</span>
+                  </label>
+                </div>
               </div>
 
 
@@ -1255,41 +1304,43 @@ export default function Property(props) {
                 } max-w-[100%] m-auto table w-full `}>
 
                 <div className="flex flex-col mb-2">
-                  <label htmlFor="customLink" className="block font-medium text-gray-700">
+                  <label htmlFor="customLink" className="text-2xl font-bold">
                     Custom Link
                   </label>
                   <div className="relative">
-                    <span className="absolute left-0 top-0 h-full pl-4 flex items-center text-gray-500">
-                      {baseurl + item.customLink}
-                    </span>
                     <textarea
                       id="customLink"
                       name="customLink"
                       rows={5}
-                      className="shadow-sm p-4 pl-[10rem] w-4/5 mt-1 block sm:text-sm border rounded-xl"
+                      className="shadow-sm p-4  w-full mt-1 block sm:text-sm border rounded-xl"
                       placeholder="Enter your custom link here"
                       value={item.customLink}
                       onChange={handleInputChange}
                     />
+                    <div className="text-right text-sm text-gray-500">
+                      {baseurl.length + item.customLink.length}/{100}
+                    </div>
+                    <span className="w-full p-4 pr-12 border rounded-xl my-3 flex items-center text-gray-500 relative">
+                      {baseurl + item.customLink}
+                      <svg className="h-7 w-7 absolute right-3 top-3" viewBox="0 0 448 512"><path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z"/></svg>
+                    </span>
                   </div>
-                  <div className="text-right text-sm text-gray-500">
-                    {baseurl.length + item.customLink.length}/{100}
-                  </div>
+                  
 
                 </div>
                 <div className="flex flex-col mb-2">
-                  <div className="flex flex-col md:flex-row min-h-screen p-4">
+                  <div className="flex flex-col md:flex-row ">
                     {/* Left Panel */}
-                    <div className="md:w-2/3 px-16 flex flex-col mt-4">
-                      <div className="flex space-x-4 items-center">
-                        <IoMdArrowRoundBack size={24} />
-                        <h2 className="text-3xl font-bold">Select a check-in method</h2>
+                    <div className="md:w-1/2 pr-2 flex flex-col">
+                      <div className=" items-center">
+                      
+                        <h2 className="text-2xl font-bold">Select a check-in method</h2>
                       </div>
-                      <div className="space-y-8 mt-8 w-full">
+                      <div className="space-y-4 mt-4 w-full">
                         {options && options.map((item, index) => (
                           <div
                             key={index}
-                            className={`p-4 border rounded-lg cursor-pointer ${selectedMethod === item?.item ? "border-black" : "border-gray-300"
+                            className={`p-4 border rounded-lg cursor-pointer ${selectedMethod === item?.item ? "border-indigo-600" : "border-gray-300"
                               }`}
                             onClick={() => setSelectedMethod(item?.item)}
                           >
@@ -1306,7 +1357,7 @@ export default function Property(props) {
                     </div>
 
                     {/* Right Panel */}
-                    <div className="md:w-2/3 p-4">
+                    <div className="md:w-1/2 pl-2">
                       <h2 className="text-2xl font-bold mb-4 capitalize">
                         Add {selectedMethod} details
                       </h2>
@@ -1318,7 +1369,7 @@ export default function Property(props) {
                         onChange={handleInputChange}
                         placeholder={`Add any important details for getting inside your place. This info will be shared with guests 24-48 hours before check-in.`}
                       />
-                      <div className="flex justify-between items-center mt-4">
+                      <div className="flex justify-between items-center ">
                         <p className="text-gray-500">Shared 48 hours before check-in</p>
                         <div>
                         </div>
@@ -1336,19 +1387,7 @@ export default function Property(props) {
                 <div className="flex flex-col mb-2">
                   <Checkout selectedInstruction={selectedInstruction} isEdit={true} checkoutdata={check_out_instruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />
                 </div>
-                <div className="flex flex-col mb-2">
-                  <label className="flex items-center space-x-2 text-xl font-normal">
-                    <input
-                      className="shadow-sm p-4 w-full mt-1 block sm:text-sm border rounded-xl"
-                      placeholder="Enter your wifi name..."
-                      type="text"
-                      name="discount"
-                      value={item?.discount}
-                      onChange={handleInputChange}
-                    />
-                    <span>% discount offer</span>
-                  </label>
-                </div>
+             
                 <div className="flex flex-col  ">
 
                 </div>
