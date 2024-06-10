@@ -1,8 +1,11 @@
 import Link from "next/link";
 import React from "react";
 
-export default function ThingsToKnow({ record, isAdmin }) {
-  const safetyAmenities = record?.data?.safety_amenity?.split(',') || [];
+export default function ThingsToKnow({ record, isAdmin , content}) {
+  console.log("record",record)
+  console.log("content",content)
+  const safetyAmenities = record?.data?.safety_amenity?.split(',') || record?.safety_amenity?.split(',');
+  console.log("safetyAmenities",record?.data?.safety_amenity)
   return (
     <div className="container mx-auto">
       <h1 className="listing-heading text-left !mb-0">Things to know</h1>
@@ -21,7 +24,7 @@ export default function ThingsToKnow({ record, isAdmin }) {
           <h2 className="font-semibold mb-2">Safety & Property </h2>
           <p className="mb-2 text-gray-500 flex ">
             <div>
-              {safetyAmenities.map((amenity, index) => (
+              {safetyAmenities?.map((amenity, index) => (
                 <p key={index} className="mb-2 text-gray-500 capitalize ">
                   {amenity?.replaceAll("_", " ") || "Carbon monoxide alarm"}
                 </p>

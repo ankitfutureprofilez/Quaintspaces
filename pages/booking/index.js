@@ -421,14 +421,23 @@ export default function Index() {
                 (
                   <>
                     <p className="text-sm  font-normal  mb-4 ">
-                      Wifi-Username :- {houseRule?.property_rules?.wifi_username}
+                      <span className="font-bold">
+                        Wifi-Username :-
+                      </span>
+                      {houseRule?.property_rules?.wifi_username}
                     </p>
                     <p className="text-sm  font-normal  mb-4 capatalize">
-                      Password :-{houseRule?.property_rules?.wifi_password}
+                      <span className="font-bold">
+                        Password :-
+                      </span>
+                      {houseRule?.property_rules?.wifi_password}
                     </p>
 
                     <p className="text-sm  font-normal  mb-4">
-                      house manuals :- {houseRule?.property_rules?.house_manuals}
+                      <span className="font-bold">
+                        house manuals :-
+                      </span>
+                      {houseRule?.property_rules?.house_manuals}
                     </p>
                   </>
                 ) : (
@@ -438,12 +447,34 @@ export default function Index() {
                 (
                   <>
                     <p className="text-sm  font-normal  mb-4">
-                      Direction :-{houseRule?.property_rules?.direction}
+                      <span className="font-bold">
+                        Direction :-
+                      </span>
+                      {houseRule?.property_rules?.direction}
+                    </p>
+                    <p className="text-sm  font-normal  mb-4">
+                      <span className="font-bold">
+                        check-in method                      :-
+                      </span>
+                      {houseRule?.property_rules?.direction}
+                    </p>
+
+                  </>
+                ) : (
+                  <> </>)}
+
+              {(houseRule?.check_out) ?
+                (
+                  <>
+                    <p className="text-sm  font-normal  mb-4">
+                      <span className="font-bold">
+                        Direction :-
+                      </span>
+                      {houseRule?.property_rules?.direction}
                     </p>
                   </>
                 ) : (
-                  <h2>sjssj</h2>
-                )}
+                  <> </>)}
             </div>
           </Modal>
         )

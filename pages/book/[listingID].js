@@ -615,12 +615,12 @@ const Book = () => {
                   <div className="flex items-center justify-between w-full">
                     <span className="block text-blackColor">
                       Discount price Per Nights
-                      ({formatMultiPrice(discountedPrice)}) *  {infos.checkout &&
+                      ({formatMultiPrice(discountedPrice)} *  {infos.checkout &&
                         infos.checkin &&
                         differenceInDays(
                           new Date(infos.checkout),
                           new Date(infos.checkin)
-                        )}
+                        )})
                     </span>
                     <span className="block text-blackColor font-medium confirm-price">
                       <div className="flex justify-center">

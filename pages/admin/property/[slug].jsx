@@ -20,6 +20,11 @@ const Listings = () => {
     data: {},
   });
 
+  const [content, setContent] = useState({
+    loading: false,
+    data: {},
+  });
+
   useEffect(() => {
     if (slug) {
       setLoading(true);
@@ -29,6 +34,10 @@ const Listings = () => {
         .then((r) => {
           console.log("r?.data?.data", r?.data?.data);
           setrecord({
+            loading: false,
+            data: r?.data?.data,
+          });
+          setContent({
             loading: false,
             data: r?.data?.data,
           });
@@ -76,7 +85,7 @@ const Listings = () => {
           </Link>
         </div>
         <SingleListingBody isAdmin={true} loading={loading} listing={record} />
-        <ThingsToKnow  isAdmin={true} record={record} />
+        <ThingsToKnow  isAdmin={true} record={record} content={content} />
         {/* <Footer /> */}
         {overlay && (
           <div

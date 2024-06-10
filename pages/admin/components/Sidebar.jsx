@@ -53,6 +53,13 @@ function Sidebar() {
     }
   }, []);
 
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+    getAuth(signal);
+    return () => controller.abort();
+}, []);
+
   return (
     <div
       className={` shrink-0 md:block h-screen sticky top-0 overflow-hidden ${

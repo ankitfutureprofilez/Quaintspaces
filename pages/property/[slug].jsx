@@ -100,7 +100,7 @@ const Listing = () => {
         setHeaderSearch={setHeaderSearch}
       /> */}
         <SingleListingBody loading={loading} listing={record} />
-        <ThingsToKnow guests={record?.data?.guests} />
+        <ThingsToKnow record={record} />
         {/* <Footer /> */}
         {overlay && (
           <div
