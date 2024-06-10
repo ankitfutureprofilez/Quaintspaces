@@ -37,6 +37,11 @@ const Card = ({ post }) => {
     <div className="banipark-box rounded-lg">
       {post?.uuid ? (
         <Link className="block" href={`/property/${post?.uuid}`}>
+           {post?.discount_offer && (
+        <div className="absolute bg-red-500 text-white px-2 py-1 rounded-tr-lg rounded-bl-lg">
+          {post?.discount_offer}% 
+        </div>
+      )}
         <Image
           width={100}
           height={300}

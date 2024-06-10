@@ -35,6 +35,8 @@ const Book = () => {
   const [pricerate, setPriceRate] = useState(0);
   const [orderId, setOrderId] = useState("");
 
+
+  console.log("pricerate", pricerate)
   const recorddate = Moment(new Date())?.format("DD-MM-YYYY");
   const [formData, setFormData] = useState({
     selectOption: "",
@@ -162,23 +164,31 @@ const Book = () => {
     }
   };
 
+  const calculateDiscountedPrice = (price, discountPercentage) => {
+    const discountAmount = (price * discountPercentage) / 100;
+    return price - discountAmount;
+  };
+  // Assuming listing?.price and listing?.discount_offer are numbers
+  const originalPrice = listing?.price ?? 0;
+  const discountPercentage = listing?.discount_offer ?? 0;
+  const discountedPrice = discountPercentage > 0 ? calculateDiscountedPrice(originalPrice, discountPercentage) : originalPrice;
+
   useEffect(() => {
     if (infos.checkout && infos.checkin && listing) {
       let calculatedPriceRate =
-        +listing.price *
+        +discountedPrice *
         differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
-        calculatedPriceRate += listing?.cleaning_fee;
+      calculatedPriceRate += listing?.cleaning_fee * differenceInDays(new Date(infos.checkout), new Date(infos.checkin));;
       if (listing?.guests < guests?.adults?.value + guests?.children?.value) {
         calculatedPriceRate +=
           (guests?.adults?.value +
             guests?.children?.value -
             listing?.guests) *
           listing?.extra_guest_fee;
-        }
-      if(guests?.pets?.value>0)
-        {
-          calculatedPriceRate += guests?.pets?.value * listing?.pet_fee;
-        }
+      }
+      if (guests?.pets?.value > 0) {
+        calculatedPriceRate += guests?.pets?.value * listing?.pet_fee;
+      }
       setPriceRate(calculatedPriceRate);
     } else {
       setPriceRate(0);
@@ -320,9 +330,9 @@ const Book = () => {
     record.append(
       "price",
       infos.checkout &&
-        infos.checkin &&
-        +listing?.price *
-          differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
+      infos.checkin &&
+      +listing?.price *
+      differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
     );
     main
       .bookingpayment(record)
@@ -341,6 +351,8 @@ const Book = () => {
       })
       .finally(() => setLoading(false));
   };
+
+
 
   return (
     <AuthLayout>
@@ -361,12 +373,10 @@ const Book = () => {
               <div className="flex items-center justify-between w-full py-2">
                 <div>
                   <h3 className="text-lg  font-medium item-heading ">Dates</h3>
-                  <p className="text-md item-paragraph">{`${
-                    infos?.checkin && format(new Date(infos.checkin), "MMM dd")
-                  } - ${
-                    infos?.checkout &&
+                  <p className="text-md item-paragraph">{`${infos?.checkin && format(new Date(infos.checkin), "MMM dd")
+                    } - ${infos?.checkout &&
                     format(new Date(infos.checkout), "MMM dd")
-                  }`}</p>
+                    }`}</p>
                 </div>
                 <button
                   onClick={() => setDateModel(true)}
@@ -379,17 +389,14 @@ const Book = () => {
                 <div>
                   <h5 className="text-lg font-medium item-heading">Guests</h5>
                   <p className="text-md item-paragrapg">
-                    {`${
-                      +guests?.adults?.value + +guests?.children?.value
-                    } guests ${
-                      +infos.numberOfInfants
+                    {`${+guests?.adults?.value + +guests?.children?.value
+                      } guests ${+infos.numberOfInfants
                         ? ", " + infos.numberOfInfants + " infants"
                         : ""
-                    } ${
-                      +guests?.pets?.value
+                      } ${+guests?.pets?.value
                         ? ", " + guests?.pets?.value + " pets"
                         : ""
-                    }`}
+                      }`}
                   </p>
                 </div>
                 <button
@@ -582,36 +589,82 @@ const Book = () => {
                 <div className="flex gap-3 mt-2">
                   <div className="flex items-center justify-between w-full">
                     <span className="block text-blackColor">
-                      Charges Per Day
+                      Charges Per Nights
+                      ({formatMultiPrice(originalPrice)} * {infos.checkout &&
+                        infos.checkin &&
+                        differenceInDays(
+                          new Date(infos.checkout),
+                          new Date(infos.checkin)
+                        )} )
                     </span>
                     <span className="block text-blackColor font-medium confirm-price">
-                      {formatMultiPrice(listing?.price)}
+                      <div className="flex justify-center">
+                        <>
+                          <div className="text-red-700 border-b-2 border-red-700">
+                            {
+                              formatMultiPrice(originalPrice *
+                                differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))}
+                          </div>
+                        </>
+                      </div>
                     </span>
                   </div>
                 </div>
+
                 <div className="flex gap-3 mt-2">
                   <div className="flex items-center justify-between w-full">
                     <span className="block text-blackColor">
-                      Cleaning Fees
+                      Discount price Per Nights
+                      ({formatMultiPrice(discountedPrice)}) *  {infos.checkout &&
+                        infos.checkin &&
+                        differenceInDays(
+                          new Date(infos.checkout),
+                          new Date(infos.checkin)
+                        )}
                     </span>
                     <span className="block text-blackColor font-medium confirm-price">
-                      {formatMultiPrice(listing?.cleaning_fee)}
+                      <div className="flex justify-center">
+                        {
+                          formatMultiPrice(discountedPrice *
+                            differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))
+                        }
+                      </div>
+
                     </span>
                   </div>
                 </div>
+
+                <div className="flex gap-3 mt-2">
+                  <div className="flex items-center justify-between w-full">
+                    <span className="block text-blackColor">
+                      Cleaning Fees Per Nights (
+                      {formatMultiPrice(listing?.cleaning_fee)} *  {infos.checkout &&
+                        infos.checkin &&
+                        differenceInDays(
+                          new Date(infos.checkout),
+                          new Date(infos.checkin)
+                        )}
+                      )
+                    </span>
+                    <span className="block text-blackColor font-medium confirm-price">
+                      {formatMultiPrice(listing?.cleaning_fee * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))}
+                    </span>
+                  </div>
+                </div>
+
                 {listing?.guests < guests?.adults?.value + guests?.children?.value ? (
                   <div className="flex gap-3 mt-2">
                     <div className="flex items-center justify-between w-full">
                       <div className="flex flex-col">
-                      <span className="block text-blackColor">
-                        Extra Guest Fees
-                      </span>
-                      <span className="block !text-[15px] text-blackColor">
-                      {guests?.adults?.value +
-                          guests?.children?.value -
-                          listing?.guests}
-                        {" x "}
-                        {formatMultiPrice(listing?.extra_guest_fee)}
+                        <span className="block text-blackColor">
+                          Extra Guest Fees
+                        </span>
+                        <span className="block !text-[15px] text-blackColor">
+                          {guests?.adults?.value +
+                            guests?.children?.value -
+                            listing?.guests}
+                          {" x "}
+                          {formatMultiPrice(listing?.extra_guest_fee)}
                         </span>
                       </div>
                       <span className="block text-blackColor font-medium confirm-price">
@@ -619,23 +672,23 @@ const Book = () => {
                           (guests?.adults?.value +
                             guests?.children?.value -
                             listing?.guests) *
-                            listing?.extra_guest_fee
+                          listing?.extra_guest_fee
                         )}
                       </span>
                     </div>
                   </div>
                 ) : null}
-                {guests?.pets?.value >0 ? (
+                {guests?.pets?.value > 0 ? (
                   <div className="flex gap-3 mt-2">
                     <div className="flex items-center justify-between w-full">
                       <div className="flex flex-col">
-                      <span className="block text-blackColor">
-                        Pet Fees
-                      </span>
-                      <span className="block !text-[15px] text-blackColor">
-                      {guests?.pets?.value}
-                        {" x "}
-                        {formatMultiPrice(listing?.pet_fee)}
+                        <span className="block text-blackColor">
+                          Pet Fees
+                        </span>
+                        <span className="block !text-[15px] text-blackColor">
+                          {guests?.pets?.value}
+                          {" x "}
+                          {formatMultiPrice(listing?.pet_fee)}
                         </span>
                       </div>
                       <span className="block text-blackColor font-medium confirm-price">

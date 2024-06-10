@@ -241,7 +241,9 @@ function Checkout({ checkoutInstructions, checkoutdata, isEdit, setCheckoutInstr
           className=" items-center space-x-4 px-4 py-4 font-semibold rounded-md border-[1px] border-gray-300 hover:border-black"
         >
           <button className="flex w-full items-center space-x-4 px-4 py-4 h-[55px] font-semibold rounded-md border-[1px] border-gray-300 hover:border-black text-md ">
-            <i className="mr-2">{item?.instruction}</i>
+            <i className="mr-2">
+            {item?.instruction}
+            </i>
             {item?.details}
           </button>
         </div>

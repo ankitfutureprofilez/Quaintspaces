@@ -70,6 +70,7 @@ export default function Property(props) {
     property_rule?.quite_hours_in_time || "00:00");
   const [checkoutquet, setCheckoutquiet] = useState(
     property_rule?.quite_hours_out_time || "00:00");
+  const [selectedOption, setSelectedOption] = useState(status || 1);
   const [checkinEnd, setCheckinEnd] = useState(flexible_check_in || "flexible");
   const [checkout, setCheckout] = useState(check_out || "00:00");
   const [Guests, setGuests] = useState(guests || 1);
@@ -81,6 +82,17 @@ export default function Property(props) {
   const [showTextArea, setShowTextArea] = useState(false);
   const [text, setText] = useState("");
   const [selectedMethod, setSelectedMethod] = useState(check_in_method || "smartlock");
+  const[checkdescrtion , setcheckdescrtion] = useState(check_in_description || "")
+  console.log("property_rule",property_rule)
+
+  const handleMethodSelect = (method) => {
+    setSelectedMethod(method);
+    setcheckdescrtion(''); 
+  };
+
+  const handlecheckChange = (e) => {
+    setcheckdescrtion(e.target.value);
+  };
 
   const options = [
     {
@@ -172,7 +184,6 @@ export default function Property(props) {
     updatedImages?.splice(dropIndex, 0, dragImage);
     setImages(updatedImages);
   };
-
   const router = useRouter();
   const [step, setStep] = useState(step_completed === 11 ? 0 : step_completed || 0);
   const [Loading, setLoading] = useState(false);
@@ -199,7 +210,6 @@ export default function Property(props) {
   };
 
   const [item, setItem] = useState({
-
     name: name || "",
     about: description || "",
     price: price || "",
@@ -216,8 +226,16 @@ export default function Property(props) {
     wifiPassword: property_rule?.wifi_password || '',
     discount: discount_offer || "",
     customLink: custom_link || "",
-    checkdescrtion: check_in_description || "",
   });
+
+  const copyToClipboard = () => {
+    const textToCopy = `${baseurl}${item?.customLink}`;
+    console.log("textToCopy",textToCopy)
+    navigator.clipboard.writeText(textToCopy).then(() => {
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
+  };
 
 
   const handleInputChange = (e) => {
@@ -229,17 +247,12 @@ export default function Property(props) {
     return inputString.split(",");
   }
 
-  const [selectedOption, setSelectedOption] = useState(status || 1);
-
 
   const handleOptionChange = (event) => {
     const option = parseInt(event.target.value, 10);
     setSelectedOption(selectedOption === option ? "" : option);
   };
-
-
   const prevStep = () => setStep((prev) => prev - 1);
-
   const nextStep = async () => {
     // if (step === 0 && PType == '') {
     //   toast.error("Please choose a property type which one you want to list.");
@@ -461,7 +474,7 @@ export default function Property(props) {
     formData.append("additional_rules", item?.additonalrule);
     formData.append("quite_hours_in_time", checkinquet);
     formData.append("quite_hours_out_time", checkoutquet);
-    formData.append("check_in_description", item?.checkdescrtion);
+    formData.append("check_in_description", checkdescrtion);
     formData.append("check_in_method", selectedMethod);
     formData.append("check_out_instruction", JSON.stringify(checkoutInstructions));
     formData.append("discount_offer", item?.discount);
@@ -847,7 +860,7 @@ export default function Property(props) {
               <div className={`${step === 3 ? "" : "display-none"}`}>
                 <Guest Guests={Guests} setGuests={setGuests}
                   Beds={Beds} setBeds={setBeds}
-                  Bedrooms={Bedrooms} setBedrooms={setBedrooms} Bathrooms={Bathrooms} setBathrooms={setBathrooms} pets={pets} setPets={setPets}
+                  Bedrooms={Bedrooms} setBedrooms={setBedrooms} Bathrooms={Bathrooms} setBathrooms={setBathrooms} 
                 />
               </div>
               <div className={`${step === 4 ? "" : "display-none"}`}>
@@ -896,28 +909,9 @@ export default function Property(props) {
                     </label>
                   </div>
                   <div className="flex flex-wrap  mt-16">
-                    {isEdit && !useExistingImages ? (
-                      images &&
-                      images.map((file, index) => (
-                        <div key={index} className="relative w-full sm:w-1/2 md:w-1/3 p-1">
-                          <Image
-                            src={URL.createObjectURL(file)}
-                            width={200}
-                            height={200}
-                            alt={`Preview ${index}`}
-                            className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
-                            onLoad={() => URL.revokeObjectURL(file)}
-                          />
-                          <button
-                            type="button"
-                            onClick={() => removeImage(file)}
-                            className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
-                          >
-                            Remove
-                          </button>
-                        </div>
-                      ))
-                    ) : (
+                    { useExistingImages || isEdit  ?
+                    (<> </>)
+                     :  (
                       images && images.length > 0 && (
                         <>
                           <div
@@ -984,37 +978,106 @@ export default function Property(props) {
                       )
                     )}
                   </div>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
-                  {!useExistingImages ? (
-                    <></>
-                  ) : (
-                    isEdit && (
-                      imageproperty?.map((item, index) => (
-                        <div key={index} className="relative isedits">
+
+                  <div className="flex flex-wrap  mt-16">
+                    { useExistingImages || !isEdit  ?
+                    (<> </>)
+                     :  (
+                      images && images.length > 0 && (
+                        <>
+                          <div
+                            key={0}
+                            id={images[0].name}
+                            draggable
+                            onDragStart={handleDrag}
+                            onDragOver={handleOver}
+                            onDrop={handleDrop}
+                            className="relative w-full  p-1"
+                          >
+                            <Image
+                              src={URL.createObjectURL(images[0])}
+                              width={200}
+                              height={200}
+                              alt={`Preview 0`}
+                              className="image-preview h-full object-cover border min-h-[170px] max-h-[250px] w-full max-w-full rounded-lg"
+                              onLoad={() => URL.revokeObjectURL(images[0])}
+                            />
+                            <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
+                              <p className="text-xs text-gray-700">Cover Photo</p>
+                            </div>
+                            <div className="absolute right-2 top-2">
+                              <DropdownMenu
+                                index={0}
+                                isFirst={true}
+                                isLast={images.length === 1}
+                              />
+                            </div>
+                          </div>
+                          {images.slice(1).map((file, index) => (
+                            <div
+                              key={index + 1}
+                              id={file.name}
+                              draggable
+                              onDragStart={handleDrag}
+                              onDragOver={handleOver}
+                              onDrop={handleDrop}
+                              className="relative w-full sm:w-1/2 md:w-1/3 p-1"
+                            >
+                              <Image
+                                src={URL.createObjectURL(file)}
+                                width={200}
+                                height={200}
+                                alt={`Preview ${index + 1}`}
+                                className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                                onLoad={() => URL.revokeObjectURL(file)}
+                              />
+                              {index + 1 === 0 && (
+                                <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
+                                  <p className="text-xs text-gray-700">Cover Photo</p>
+                                </div>
+                              )}
+                              <div className="absolute right-2 top-2">
+                                <DropdownMenu
+                                  index={index + 1}
+                                  isFirst={false}
+                                  isLast={index + 1 === images.length - 1}
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </>
+                      )
+                    )}
+                  </div>
+
+                  <div className="flex flex-wrap  mt-16">
+                    {useExistingImages === false || !isEdit  && (
+                      images &&
+                      images.map((file, index) => (
+                        <div key={index} className="relative w-full sm:w-1/2 md:w-1/3 p-1">
                           <Image
-                            className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
-                            src={item?.image_url || ""}
+                            src={URL.createObjectURL(file)}
                             width={200}
                             height={200}
                             alt={`Preview ${index}`}
+                            className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                            onLoad={() => URL.revokeObjectURL(file)}
                           />
                           <button
                             type="button"
-                            onClick={() => deletePropertyImage(uuid, item?.uuid)}
+                            onClick={() => removeImage(file)}
                             className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
                           >
-                            Delete
+                            Remove
                           </button>
                         </div>
                       ))
-                    )
-                  )}
+                    )}
+                  </div>
 
                 </div>
-
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
-                  {!useExistingImages &&
+                  {useExistingImages === false || 
                     isEdit && (
                       imageproperty?.map((item, index) => (
                         <div key={index} className="relative isedits">
@@ -1037,6 +1100,7 @@ export default function Property(props) {
                     )}
 
                 </div>
+
               </div>
               <div className={`${step === 6 ? "" : "display-none"}`}>
                 <div className="max-w-[100%] m-auto w-full mt-10">
@@ -1063,7 +1127,7 @@ export default function Property(props) {
                       <input
                         type="text"
                         name="pet"
-                        placeholder="Pet Fees"
+                        placeholder="Per Pet Fees"
                         id="pet"
                         className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
                         value={item?.pet}
@@ -1077,7 +1141,7 @@ export default function Property(props) {
                         required
                         type="text"
                         name="extra_guest"
-                        placeholder="Extra Guest Fees"
+                        placeholder="Extra Guest Fees per Guest"
                         id="guest"
                         className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
                         value={item?.extra_guest}
@@ -1328,9 +1392,6 @@ export default function Property(props) {
                 </div>
               </div>
 
-
-
-
               <div className={`${step === 10 ? "" : "display-none"
                 } max-w-[100%] m-auto table w-full `}>
 
@@ -1353,7 +1414,7 @@ export default function Property(props) {
                     </div>
                     <span className="w-full p-4 pr-12 border rounded-xl my-3 flex items-center text-gray-500 relative">
                       {baseurl + item.customLink}
-                      <svg className="h-7 w-7 absolute right-3 top-3" viewBox="0 0 448 512"><path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" /></svg>
+                      <svg  onClick={copyToClipboard}  className="cursor-pointer  h-7 w-7 absolute right-3 top-3" viewBox="0 0 448 512"><path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" /></svg>
                     </span>
                   </div>
 
@@ -1373,7 +1434,7 @@ export default function Property(props) {
                             key={index}
                             className={`p-4 border rounded-lg cursor-pointer ${selectedMethod === item?.item ? "border-indigo-600" : "border-gray-300"
                               }`}
-                            onClick={() => setSelectedMethod(item?.item)}
+                              onClick={() => handleMethodSelect(item?.item)}
                           >
                             {item?.icon}
                             <span className="my-4 text-xl font-semibold capitalize">
@@ -1386,7 +1447,6 @@ export default function Property(props) {
                         ))}
                       </div>
                     </div>
-
                     {/* Right Panel */}
                     <div className="md:w-1/2 pl-2">
                       <h2 className="text-2xl font-bold mb-4 capitalize">
@@ -1396,8 +1456,8 @@ export default function Property(props) {
                         className="w-full p-2 border border-gray-300 rounded-lg"
                         rows="10"
                         name="checkdescrtion"
-                        value={item.checkdescrtion}
-                        onChange={handleInputChange}
+                        value={checkdescrtion}
+                        onChange={handlecheckChange}
                         placeholder={`Add any important details for getting inside your place. This info will be shared with guests 24-48 hours before check-in.`}
                       />
                       <div className="flex justify-between items-center ">
@@ -1418,7 +1478,6 @@ export default function Property(props) {
                 <div className="flex flex-col mb-2">
                   <Checkout selectedInstruction={selectedInstruction} isEdit={true} checkoutdata={check_out_instruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />
                 </div>
-
                 <div className="flex flex-col  ">
 
                 </div>
