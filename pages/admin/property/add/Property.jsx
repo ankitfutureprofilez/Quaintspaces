@@ -82,12 +82,12 @@ export default function Property(props) {
   const [showTextArea, setShowTextArea] = useState(false);
   const [text, setText] = useState("");
   const [selectedMethod, setSelectedMethod] = useState(check_in_method || "smartlock");
-  const[checkdescrtion , setcheckdescrtion] = useState(check_in_description || "")
-  console.log("property_rule",property_rule)
+  const [checkdescrtion, setcheckdescrtion] = useState(check_in_description || "")
+  console.log("property_rule", property_rule)
 
   const handleMethodSelect = (method) => {
     setSelectedMethod(method);
-    setcheckdescrtion(''); 
+    setcheckdescrtion('');
   };
 
   const handlecheckChange = (e) => {
@@ -230,7 +230,7 @@ export default function Property(props) {
 
   const copyToClipboard = () => {
     const textToCopy = `${baseurl}${item?.customLink}`;
-    console.log("textToCopy",textToCopy)
+    console.log("textToCopy", textToCopy)
     navigator.clipboard.writeText(textToCopy).then(() => {
     }).catch(err => {
       console.error('Failed to copy: ', err);
@@ -860,7 +860,7 @@ export default function Property(props) {
               <div className={`${step === 3 ? "" : "display-none"}`}>
                 <Guest Guests={Guests} setGuests={setGuests}
                   Beds={Beds} setBeds={setBeds}
-                  Bedrooms={Bedrooms} setBedrooms={setBedrooms} Bathrooms={Bathrooms} setBathrooms={setBathrooms} 
+                  Bedrooms={Bedrooms} setBedrooms={setBedrooms} Bathrooms={Bathrooms} setBathrooms={setBathrooms}
                 />
               </div>
               <div className={`${step === 4 ? "" : "display-none"}`}>
@@ -908,7 +908,7 @@ export default function Property(props) {
                       />
                     </label>
                   </div>
-                  <div className="flex flex-wrap  mt-16">
+                  {/* <div className="flex flex-wrap  mt-16">
                     { useExistingImages || isEdit  ?
                     (<> </>)
                      :  (
@@ -977,108 +977,118 @@ export default function Property(props) {
                         </>
                       )
                     )}
-                  </div>
+                  </div> */}
 
                   <div className="flex flex-wrap  mt-16">
-                    { useExistingImages || !isEdit  ?
-                    (<> </>)
-                     :  (
-                      images && images.length > 0 && (
-                        <>
-                          <div
-                            key={0}
-                            id={images[0].name}
-                            draggable
-                            onDragStart={handleDrag}
-                            onDragOver={handleOver}
-                            onDrop={handleDrop}
-                            className="relative w-full  p-1"
-                          >
-                            <Image
-                              src={URL.createObjectURL(images[0])}
-                              width={200}
-                              height={200}
-                              alt={`Preview 0`}
-                              className="image-preview h-full object-cover border min-h-[170px] max-h-[250px] w-full max-w-full rounded-lg"
-                              onLoad={() => URL.revokeObjectURL(images[0])}
-                            />
-                            <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
-                              <p className="text-xs text-gray-700">Cover Photo</p>
-                            </div>
-                            <div className="absolute right-2 top-2">
-                              <DropdownMenu
-                                index={0}
-                                isFirst={true}
-                                isLast={images.length === 1}
-                              />
-                            </div>
-                          </div>
-                          {images.slice(1).map((file, index) => (
+                    {useExistingImages === false || isEdit === false ?
+                      (<> </>)
+                      : (
+                        images && images.length > 0 && (
+                          <>
                             <div
-                              key={index + 1}
-                              id={file.name}
+                              key={0}
+                              id={images[0].name}
                               draggable
                               onDragStart={handleDrag}
                               onDragOver={handleOver}
                               onDrop={handleDrop}
-                              className="relative w-full sm:w-1/2 md:w-1/3 p-1"
+                              className="relative w-full  p-1"
                             >
                               <Image
-                                src={URL.createObjectURL(file)}
+                                src={URL.createObjectURL(images[0])}
                                 width={200}
                                 height={200}
-                                alt={`Preview ${index + 1}`}
-                                className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
-                                onLoad={() => URL.revokeObjectURL(file)}
+                                alt={`Preview 0`}
+                                className="image-preview h-full object-cover border min-h-[170px] max-h-[250px] w-full max-w-full rounded-lg"
+                                onLoad={() => URL.revokeObjectURL(images[0])}
                               />
-                              {index + 1 === 0 && (
-                                <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
-                                  <p className="text-xs text-gray-700">Cover Photo</p>
-                                </div>
-                              )}
+                              <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
+                                <p className="text-xs text-gray-700">Cover Photo</p>
+                              </div>
                               <div className="absolute right-2 top-2">
                                 <DropdownMenu
-                                  index={index + 1}
-                                  isFirst={false}
-                                  isLast={index + 1 === images.length - 1}
+                                  index={0}
+                                  isFirst={true}
+                                  isLast={images.length === 1}
                                 />
                               </div>
                             </div>
-                          ))}
-                        </>
-                      )
-                    )}
+                            {images.slice(1).map((file, index) => (
+                              <div
+                                key={index + 1}
+                                id={file.name}
+                                draggable
+                                onDragStart={handleDrag}
+                                onDragOver={handleOver}
+                                onDrop={handleDrop}
+                                className="relative w-full sm:w-1/2 md:w-1/3 p-1"
+                              >
+                                <Image
+                                  src={URL.createObjectURL(file)}
+                                  width={200}
+                                  height={200}
+                                  alt={`Preview ${index + 1}`}
+                                  className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                                  onLoad={() => URL.revokeObjectURL(file)}
+                                />
+                                {index + 1 === 0 && (
+                                  <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
+                                    <p className="text-xs text-gray-700">Cover Photo</p>
+                                  </div>
+                                )}
+                                <div className="absolute right-2 top-2">
+                                  <DropdownMenu
+                                    index={index + 1}
+                                    isFirst={false}
+                                    isLast={index + 1 === images.length - 1}
+                                  />
+                                </div>
+                              </div>
+                            ))}
+                          </>
+                        )
+                      )}
+
                   </div>
 
                   <div className="flex flex-wrap  mt-16">
-                    {useExistingImages === false || isEdit  && (
-                      images &&
-                      images.map((file, index) => (
-                        <div key={index} className="relative w-full sm:w-1/2 md:w-1/3 p-1">
-                          <Image
-                            src={URL.createObjectURL(file)}
-                            width={200}
-                            height={200}
-                            alt={`Preview ${index}`}
-                            className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
-                            onLoad={() => URL.revokeObjectURL(file)}
-                          />
-                          <button
-                            type="button"
-                            onClick={() => removeImage(file)}
-                            className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
-                          >
-                            Remove
-                          </button>
-                        </div>
-                      ))
-                    )}
+                    {useExistingImages === false || isEdit === true ? (
+                      (
+                        images &&
+                        images.map((file, index) => (
+                          <div key={index} className="relative w-full sm:w-1/2 md:w-1/3 p-1">
+                            <Image
+                              src={URL.createObjectURL(file)}
+                              width={200}
+                              height={200}
+                              alt={`Preview ${index}`}
+                              className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                              onLoad={() => URL.revokeObjectURL(file)}
+                            />
+                            <button
+                              type="button"
+                              onClick={() => removeImage(file)}
+                              className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        ))
+                      )
+                    ) : (
+                      <> </>
+                    )
+
+
+                    }
                   </div>
 
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
-                  {useExistingImages === false || 
-                    isEdit && (
+                  {useExistingImages === false ||
+                    isEdit === true ? (
+
+                    (
                       imageproperty?.map((item, index) => (
                         <div key={index} className="relative isedits">
                           <Image
@@ -1097,7 +1107,11 @@ export default function Property(props) {
                           </button>
                         </div>
                       ))
-                    )}
+                    )
+                  ) : (
+                    <> </>
+                  )
+                  }
 
                 </div>
 
@@ -1414,7 +1428,7 @@ export default function Property(props) {
                     </div>
                     <span className="w-full p-4 pr-12 border rounded-xl my-3 flex items-center text-gray-500 relative">
                       {baseurl + item.customLink}
-                      <svg  onClick={copyToClipboard}  className="cursor-pointer  h-7 w-7 absolute right-3 top-3" viewBox="0 0 448 512"><path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" /></svg>
+                      <svg onClick={copyToClipboard} className="cursor-pointer  h-7 w-7 absolute right-3 top-3" viewBox="0 0 448 512"><path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" /></svg>
                     </span>
                   </div>
 
@@ -1434,7 +1448,7 @@ export default function Property(props) {
                             key={index}
                             className={`p-4 border rounded-lg cursor-pointer ${selectedMethod === item?.item ? "border-indigo-600" : "border-gray-300"
                               }`}
-                              onClick={() => handleMethodSelect(item?.item)}
+                            onClick={() => handleMethodSelect(item?.item)}
                           >
                             {item?.icon}
                             <span className="my-4 text-xl font-semibold capitalize">
