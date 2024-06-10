@@ -329,9 +329,10 @@ export default function Property(props) {
       return null;
     }
   };
+  const[loadinglocation , setLoadinglocation] = useState("false")
 
   const fetchLocationData = async () => {
-    setLoading(true);
+  setLoadinglocation(true);
     const navigatorObj = getNavigator();
 
     if (navigatorObj && navigatorObj.geolocation) {
@@ -368,14 +369,14 @@ export default function Property(props) {
               state: locationData?.address?.state || locationupdate?.state,
               pin: locationData?.address?.postcode || locationupdate?.postcode,
             });
-            setLoading(false);
+            setLoadinglocation(false);
           } catch (error) {
-            setLoading(false);
+             setLoadinglocation(false);
             console.log("Error fetching data:", error);
           }
         },
         () => {
-          setLoading(false);
+          setLoadinglocation(false);
           console.log("Geolocation failed");
         }
       );
@@ -755,7 +756,8 @@ export default function Property(props) {
                       className="btn sort w-full"
                       onClick={fetchLocationData}
                     >
-                      {Loading ? "...." : "Use Current Location"}
+
+                      {loadinglocation ?".... " : "Use Current Location" }
                     </button>
                   </div>
                   <div class="flex items-center justify-center space-x-4">
