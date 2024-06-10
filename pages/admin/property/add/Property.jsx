@@ -48,6 +48,10 @@ export default function Property(props) {
     amenities, check_out, check_in_method, check_in_description,
     property_image, status, custom_link
   } = p ? p : {};
+
+  console.log("location",location)
+  console.log("p",p)
+
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
   const [pets, setPets] = useState(no_of_pet_allowed || 1);
   const [selectedAmenity, setSelectedAmenity] = useState(amenities ? stringToArray(amenities) : []);
@@ -83,10 +87,6 @@ export default function Property(props) {
   const [text, setText] = useState("");
   const [selectedMethod, setSelectedMethod] = useState(check_in_method || "smartlock");
   const [checkdescrtion, setcheckdescrtion] = useState(check_in_description || "")
-  console.log("property_rule", property_rule)
-  console.log("isEdit", isEdit)
-  console.log("useExistingImages", useExistingImages)
-
   const handleMethodSelect = (method) => {
     setSelectedMethod(method);
     setcheckdescrtion('');
@@ -190,26 +190,30 @@ export default function Property(props) {
   const [step, setStep] = useState(step_completed === 11 ? 0 : step_completed || 0);
   const [Loading, setLoading] = useState(false);
   const [PType, setPType] = useState(properties_type || "flat");
-  const lstring = location ? (location.replace('/\\"/g', '"')) : null;
-  const l = (lstring);
+  const lstring = location ? JSON.parse(location.replace("/\\\"/g", '"')) : null;
+  const l = JSON.parse(lstring);
+console.log("lstring",lstring)
+console.log("l",l)
 
-  const [address, setAddress] = useState({
-    street_address: l && l.street_address ? l.street_address : "",
-    flat_house: l && l.flat_house ? l.flat_house : "",
-    district: l && l.district ? l.district : "",
-    nearby: l && l.nearby ? l.nearby : "",
-    city: l && l.city ? l.city : "",
-    state: l && l.state ? l.state : "",
-    pin: l && l.pin ? l.pin : "",
-    location: l && l.location ? l.location : "",
-    latitude: l && l.latitude ? l.latitude : "",
-    longitude: l && l.longitude ? l.longitude : "",
-  });
+const [address, setAddress] = useState({
+  street_address: l && l.street_address ? l.street_address : "",
+  flat_house: l && l.flat_house ? l.flat_house : "",
+  district: l && l.district ? l.district : "",
+  nearby: l && l.nearby ? l.nearby : "",
+  city: l && l.city ? l.city : "",
+  state: l && l.state ? l.state : "",
+  pin: l && l.pin ? l.pin : "",
+  location: l && l.location ? l.location : "",
+  latitude: l && l.latitude ? l.latitude : '',
+  longitude: l && l.longitude ? l.longitude : "",
+});
 
-  const handleAddress = (e) => {
-    const { name, value } = e.target;
-    setAddress({ ...address, [name]: value });
-  };
+// console.log("address", address)
+
+const handleAddress = (e) => {
+  const { name, value } = e.target;
+  setAddress({ ...address, [name]: value });
+};
 
   const [item, setItem] = useState({
     name: name || "",
@@ -329,9 +333,12 @@ export default function Property(props) {
       return null;
     }
   };
-  const[loadinglocation , setLoadinglocation] = useState("false")
+  const[loadinglocation , setLoadinglocation] = useState(false)
 
   const fetchLocationData = async () => {
+    if(loadinglocation){
+      return;
+    }
   setLoadinglocation(true);
     const navigatorObj = getNavigator();
 
@@ -757,7 +764,7 @@ export default function Property(props) {
                       onClick={fetchLocationData}
                     >
 
-                      {loadinglocation ?".... " : "Use Current Location" }
+                      {loadinglocation ? ".... " : "Use Current Location" }
                     </button>
                   </div>
                   <div class="flex items-center justify-center space-x-4">
