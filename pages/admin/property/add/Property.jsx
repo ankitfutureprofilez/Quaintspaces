@@ -84,6 +84,8 @@ export default function Property(props) {
   const [selectedMethod, setSelectedMethod] = useState(check_in_method || "smartlock");
   const [checkdescrtion, setcheckdescrtion] = useState(check_in_description || "")
   console.log("property_rule", property_rule)
+  console.log("isEdit",isEdit)
+  console.log("useExistingImages", useExistingImages)
 
   const handleMethodSelect = (method) => {
     setSelectedMethod(method);
@@ -1052,7 +1054,7 @@ export default function Property(props) {
                   </div>
 
                   <div className="flex flex-wrap  mt-16">
-                    {useExistingImages === false || isEdit === true ? (
+                    {useExistingImages === true || isEdit === true ? (
                       (
                         images &&
                         images.map((file, index) => (
@@ -1085,7 +1087,7 @@ export default function Property(props) {
 
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
-                  {useExistingImages === false ||
+                  {useExistingImages === true ||
                     isEdit === true ? (
 
                     (
