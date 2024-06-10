@@ -1051,7 +1051,7 @@ export default function Property(props) {
                   </div>
 
                   <div className="flex flex-wrap  mt-16">
-                    {useExistingImages === false || !isEdit  && (
+                    {useExistingImages === false || isEdit  && (
                       images &&
                       images.map((file, index) => (
                         <div key={index} className="relative w-full sm:w-1/2 md:w-1/3 p-1">
