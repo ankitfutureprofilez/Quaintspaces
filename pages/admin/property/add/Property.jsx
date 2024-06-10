@@ -461,7 +461,6 @@ export default function Property(props) {
     formData.append("additional_rules", item?.additonalrule);
     formData.append("quite_hours_in_time", checkinquet);
     formData.append("quite_hours_out_time", checkoutquet);
-    formData.append("check_in_method", selectedMethod);
     formData.append("check_in_description", item?.checkdescrtion);
     formData.append("check_in_method", selectedMethod);
     formData.append("check_out_instruction", JSON.stringify(checkoutInstructions));
@@ -989,8 +988,8 @@ export default function Property(props) {
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
                   {!useExistingImages ? (
                     <></>
-                  ) :(
-                     isEdit  &&  (
+                  ) : (
+                    isEdit && (
                       imageproperty?.map((item, index) => (
                         <div key={index} className="relative isedits">
                           <Image
@@ -1010,13 +1009,13 @@ export default function Property(props) {
                         </div>
                       ))
                     )
-                  ) }
-                 
+                  )}
+
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
-                  {!useExistingImages  &&
-                     isEdit  &&  (
+                  {!useExistingImages &&
+                    isEdit && (
                       imageproperty?.map((item, index) => (
                         <div key={index} className="relative isedits">
                           <Image
@@ -1035,8 +1034,8 @@ export default function Property(props) {
                           </button>
                         </div>
                       ))
-                  ) }
-                 
+                    )}
+
                 </div>
               </div>
               <div className={`${step === 6 ? "" : "display-none"}`}>
