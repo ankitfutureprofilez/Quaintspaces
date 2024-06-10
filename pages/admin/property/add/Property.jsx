@@ -1060,7 +1060,6 @@ const handleAddress = (e) => {
                       )}
 
                     {useExistingImages === false ?
-
                       (
                         images && images.length > 0 && (
                           <>
@@ -1134,7 +1133,7 @@ const handleAddress = (e) => {
                   </div>
 
                   <div className="flex flex-wrap  mt-16">
-                    {useExistingImages === true || isEdit === true ? (
+                    { isEdit === true ? (
                       (
                         images &&
                         images.map((file, index) => (
