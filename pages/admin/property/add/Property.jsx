@@ -84,7 +84,7 @@ export default function Property(props) {
   const [selectedMethod, setSelectedMethod] = useState(check_in_method || "smartlock");
   const [checkdescrtion, setcheckdescrtion] = useState(check_in_description || "")
   console.log("property_rule", property_rule)
-  console.log("isEdit",isEdit)
+  console.log("isEdit", isEdit)
   console.log("useExistingImages", useExistingImages)
 
   const handleMethodSelect = (method) => {
@@ -982,7 +982,7 @@ export default function Property(props) {
                   </div> */}
 
                   <div className="flex flex-wrap  mt-16">
-                    {useExistingImages === false || isEdit === false ?
+                    {useExistingImages === false || isEdit === true ?
                       (<> </>)
                       : (
                         images && images.length > 0 && (
@@ -1050,6 +1050,78 @@ export default function Property(props) {
                           </>
                         )
                       )}
+
+                    {useExistingImages === false ?
+
+                      (
+                        images && images.length > 0 && (
+                          <>
+                            <div
+                              key={0}
+                              id={images[0].name}
+                              draggable
+                              onDragStart={handleDrag}
+                              onDragOver={handleOver}
+                              onDrop={handleDrop}
+                              className="relative w-full  p-1"
+                            >
+                              <Image
+                                src={URL.createObjectURL(images[0])}
+                                width={200}
+                                height={200}
+                                alt={`Preview 0`}
+                                className="image-preview h-full object-cover border min-h-[170px] max-h-[250px] w-full max-w-full rounded-lg"
+                                onLoad={() => URL.revokeObjectURL(images[0])}
+                              />
+                              <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
+                                <p className="text-xs text-gray-700">Cover Photo</p>
+                              </div>
+                              <div className="absolute right-2 top-2">
+                                <DropdownMenu
+                                  index={0}
+                                  isFirst={true}
+                                  isLast={images.length === 1}
+                                />
+                              </div>
+                            </div>
+                            {images.slice(1).map((file, index) => (
+                              <div
+                                key={index + 1}
+                                id={file.name}
+                                draggable
+                                onDragStart={handleDrag}
+                                onDragOver={handleOver}
+                                onDrop={handleDrop}
+                                className="relative w-full sm:w-1/2 md:w-1/3 p-1"
+                              >
+                                <Image
+                                  src={URL.createObjectURL(file)}
+                                  width={200}
+                                  height={200}
+                                  alt={`Preview ${index + 1}`}
+                                  className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                                  onLoad={() => URL.revokeObjectURL(file)}
+                                />
+                                {index + 1 === 0 && (
+                                  <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
+                                    <p className="text-xs text-gray-700">Cover Photo</p>
+                                  </div>
+                                )}
+                                <div className="absolute right-2 top-2">
+                                  <DropdownMenu
+                                    index={index + 1}
+                                    isFirst={false}
+                                    isLast={index + 1 === images.length - 1}
+                                  />
+                                </div>
+                              </div>
+                            ))}
+                          </>
+                        )
+                      )
+                      :
+                      (<> </>)
+                    }
 
                   </div>
 

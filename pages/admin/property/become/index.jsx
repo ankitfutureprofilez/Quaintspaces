@@ -302,8 +302,6 @@ function Index() {
       {openAddPage ? (
         <Property
           //   fetchProperties={() => fetchProperty(uuid)}
-          isEdit={true}
-          stepdata={true}
           p={data?.data}
           useExistingImages={useExistingImages}
         />
