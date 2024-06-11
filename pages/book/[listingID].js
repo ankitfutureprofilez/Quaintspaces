@@ -565,6 +565,7 @@ const Book = () => {
                   alt="Apartment"
                   width={200}
                   height={200}
+                  className="object-cover"
                 />
 
                 <div>
@@ -585,7 +586,7 @@ const Book = () => {
               </div>
               <div className="py-4 border-b border-borderColor confirm-details">
                 <h1 className="">Price Details</h1>{" "}
-                <div className="flex gap-3 mt-2">
+                <div className="flex gap-3 mt-2 border-b pb-2">
                   <div className="flex items-center justify-between w-full">
                     <span className="block text-blackColor">Nights</span>
                     <span className="block text-blackColor font-medium">
@@ -598,7 +599,7 @@ const Book = () => {
                     </span>
                   </div>
                 </div>
-                <div className="flex gap-3 mt-2">
+                <div className="flex gap-3 mt-2 border-b pb-2">
                   <div className="flex items-center justify-between w-full">
                     <span className="block text-blackColor">
                       Charges Per Nights
@@ -623,7 +624,7 @@ const Book = () => {
                   </div>
                 </div>
 
-                <div className="flex gap-3 mt-2">
+                <div className="flex gap-3 mt-2 border-b pb-2">
                   <div className="flex items-center justify-between w-full">
                     <span className="block text-blackColor">
                       Discount price Per Nights
@@ -646,7 +647,7 @@ const Book = () => {
                   </div>
                 </div>
 
-                <div className="flex gap-3 mt-2">
+                <div className="flex gap-3 mt-2 border-b pb-2">
                   <div className="flex items-center justify-between w-full">
                     <span className="block text-blackColor">
                       Cleaning Fees Per Nights (
@@ -665,13 +666,13 @@ const Book = () => {
                 </div>
 
                 {listing?.guests < guests?.adults?.value + guests?.children?.value ? (
-                  <div className="flex gap-3 mt-2">
+                  <div className="flex gap-3 mt-2 border-b pb-2">
                     <div className="flex items-center justify-between w-full">
                       <div className="flex flex-col">
-                        <span className="block text-blackColor">
+                        <span className="block text-blackColor text-sm">
                           Extra Guest Fees
                         </span>
-                        <span className="block !text-[15px] text-blackColor">
+                        <span className="block !text-[15px] text-blackColor text-sm">
                           {guests?.adults?.value +
                             guests?.children?.value -
                             listing?.guests}
@@ -691,13 +692,13 @@ const Book = () => {
                   </div>
                 ) : null}
                 {guests?.pets?.value > 0 ? (
-                  <div className="flex gap-3 mt-2">
+                  <div className="flex gap-3 mt-2 border-b pb-2">
                     <div className="flex items-center justify-between w-full">
                       <div className="flex flex-col">
-                        <span className="block text-blackColor">
+                        <span className="block text-blackColor text-sm">
                           Pet Fees
                         </span>
-                        <span className="block !text-[15px] text-blackColor">
+                        <span className="block !text-[15px] text-blackColor text-sm">
                           {guests?.pets?.value}
                           {" x "}
                           {formatMultiPrice(listing?.pet_fee)}
