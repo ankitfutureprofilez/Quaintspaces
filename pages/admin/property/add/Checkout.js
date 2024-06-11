@@ -129,7 +129,7 @@ function Checkout({ checkoutInstructions, checkoutdata, handlesubmit, isEdit, se
   return (
 
     <div className="mb-4">
-      <div className="flex flex-col space-y-8  ">
+      <div className="flex flex-col space-y-8  mb-2">
         <div className="flex space-x-4 items-center">
           <h2 className="text-2xl font-bold">Checkout Instructions</h2>
         </div>
@@ -272,49 +272,62 @@ function Checkout({ checkoutInstructions, checkoutdata, handlesubmit, isEdit, se
         isEdit && checkout && checkout.map((item, index) => (
           <div
             key={index}
-            className="items-center space-x-4 px-4 py-4 font-semibold rounded-md border-[1px] border-gray-300 hover:border-black"
+            className="text-left relative space-x-4 px-4 py-4 font-semibold rounded-md border-[1px] border-gray-300 hover:border-black mb-2"
           >
-            <button
-              className="flex w-full items-center space-x-4 px-4 py-4 h-[55px] font-semibold rounded-md border-[1px] border-gray-300 hover:border-black text-md"
-            >
+            
               {item?.instruction === "Gather used towels" && (
+                <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
 
                 <MdPhonelinkLock size={24} />
+                </div>
               )}
               {item?.instruction === "Throw rubbish away" && (
+                <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
 
                 <FaRegTrashAlt size={28} />
+                </div>
               )}
               {item?.instruction === "Turn things off" && (
 
+                <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
                 <FaPowerOff size={24} />
+                </div>
               )}
 
               {item?.instruction === "Additional requests" && (
+                <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
 
                 <VscRequestChanges size={24} />
+                </div>
               )}
-
+              
               {item?.instruction === "Return keys" && (
-
+                <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
                 <IoKeyOutline size={24} />
+                </div>
               )}
-              {item?.instruction === "Lock up" && (
-                <MdLockOpen size={24} />
-              )}
-              <i className="mr-2">
+              
+                {item?.instruction === "Lock up" && (
+                  <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
+                  <MdLockOpen size={24} />
+                  </div>
+                )}
+             
+              <div className="!ml-0 !mb-3 !mt-2">
                 {item?.instruction}
-              </i>
+              </div>
+              <div className="!ml-0">
               {item?.details}
+              </div>
               <button
-                className="text-black text-md"
+                className="absolute top-3 right-3 "
                 onClick={() => {
                   handleDelete(slug, index)
                 }} >
                 <AiOutlineDelete
                   size={24} />
               </button>
-            </button>
+           
           </div>
         ))
       }
