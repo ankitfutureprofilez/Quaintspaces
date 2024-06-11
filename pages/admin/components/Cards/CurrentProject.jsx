@@ -51,7 +51,7 @@ function CurrentProject() {
               href="/admin/payment-history"
               className="border px-2 py-1 rounded-lg text-xs"
             >
-              See all {toppayemnt}
+              See all ({toppayemnt})
             </Link>
           </div>
 

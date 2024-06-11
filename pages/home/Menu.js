@@ -78,7 +78,7 @@ export default function Menu() {
                     fill="#1C274C"
                   />
                 </svg>
-                <span>Booking History</span>
+                <span>Bookings History</span>
               </Link>
 
               <Link

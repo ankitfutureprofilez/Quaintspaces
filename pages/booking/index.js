@@ -391,7 +391,8 @@ export default function Index() {
               Are you sure you want to cancel your booking?
             </p>
             <p className="text-xl text-center font-semibold  py-8  capatalize">
-              Your Refended  amount this  <span className="text-green-600">{refend}</span>
+              Your Refended  amount this  <span className="text-green-600">{formatMultiPrice(refend)
+              }</span>
             </p>
             <div className="flex justify-center mb-5">
               <button

@@ -183,9 +183,6 @@ export default function index() {
                         Amount
                       </th>
                       <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
-                        Status
-                      </th>
-                      <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
                         Document & its Type
                       </th>
                       <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
@@ -249,22 +246,6 @@ export default function index() {
                         </td>
                         <td className="px-4 py-4 text-sm text-gray-500">
                           {formatMultiPrice(item?.price)}
-                        </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
-                          <td
-                            className={`capitalize inline-flex items-center rounded-full py-3 w-max px-4 text-xs text-white  ${item?.booking_status === "completed"
-                              ? "bg-green-700"
-                              : item?.booking_status === "cancelled"
-                                ? "bg-red-600"
-                                : item?.booking_status === "confirm"
-                                  ? "bg-green-600"
-                                  : item?.booking_status === "pending"
-                                    ? "bg-slate-600"
-                                    : "bg-blue-600"
-                              }`}
-                          >
-                            {item?.booking_status}
-                          </td>
                         </td>
                         <td className="px-4 py-4 text-sm text-gray-500">
                           <div
@@ -412,7 +393,7 @@ export default function index() {
 
       {imageOpen && (
         <Modal isOpen={openImageModal} onClose={CloseImageModal}>
-          <div className="my-4 mx-4 lg:my-6 flex flex-col">
+          <div className="my-4 mx-4 lg:my-6 flex flex-col p-4">
             <img
               src={document}
               alt="Document Image"

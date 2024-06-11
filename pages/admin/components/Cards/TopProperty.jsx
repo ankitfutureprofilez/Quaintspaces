@@ -44,7 +44,7 @@ function StatusTracker() {
               href="/admin/property"
               className="border px-2 py-1 rounded-lg text-xs"
             >
-              See all {proerty_count}
+              See all ({proerty_count})
             </Link>
           </div>
           <hr className="bg-gray-400 my-4" />
