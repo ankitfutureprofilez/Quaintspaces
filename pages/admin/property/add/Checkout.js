@@ -7,12 +7,18 @@ import { VscRequestChanges } from "react-icons/vsc";
 import { RiDoorLockBoxLine } from "react-icons/ri";
 import { GrUserWorker } from "react-icons/gr";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { AiOutlineDelete } from "react-icons/ai";
 import { MdPhonelinkLock, MdOutlineKeyboardAlt } from "react-icons/md";
 
 import { FaClock } from "react-icons/fa";
+import Listing from "../../api/Listing";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import toast from "react-hot-toast";
 function Checkout({ checkoutInstructions, checkoutdata, isEdit, setCheckoutInstructions, selectedInstruction, setSelectedInstruction, showInstructions, setShowInstructions, showTextArea, setShowTextArea, text, setText }) {
   let record = null;
-  
+  const router = useRouter();
+  const slug = router.query.slug;
   if (isEdit && checkoutdata) {
     try {
       record = JSON.parse(checkoutdata);
@@ -92,6 +98,28 @@ function Checkout({ checkoutInstructions, checkoutdata, isEdit, setCheckoutInstr
     setShowInstructions(false);
     setSelectedInstruction("");
     setText("");
+  };
+
+  const [loading, setLoading] = useState(false)
+
+  const handleDelete = async (slug, instruction) => {
+    setLoading(true);
+    const main = new Listing();
+    const formdata = new FormData();
+    formdata.append("checkout_instruction_key", instruction);
+    try {
+      const res = await main.checkoutApi(slug, formdata);
+      if (res?.data?.status === true) {
+        toast.success(res.data.message);
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log("error", error);
+      toast.error("An error occurred. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
   return (
 
@@ -238,16 +266,54 @@ function Checkout({ checkoutInstructions, checkoutdata, isEdit, setCheckoutInstr
       {isEdit && record && record.map((item, index) => (
         <div
           key={index}
-          className=" items-center space-x-4 px-4 py-4 font-semibold rounded-md border-[1px] border-gray-300 hover:border-black"
+          className="items-center space-x-4 px-4 py-4 font-semibold rounded-md border-[1px] border-gray-300 hover:border-black"
         >
-          <button className="flex w-full items-center space-x-4 px-4 py-4 h-[55px] font-semibold rounded-md border-[1px] border-gray-300 hover:border-black text-md ">
+          <button
+            className="flex w-full items-center space-x-4 px-4 py-4 h-[55px] font-semibold rounded-md border-[1px] border-gray-300 hover:border-black text-md"
+          >
+            {item?.instruction === "Gather used towels" && (
+
+              <MdPhonelinkLock size={24} />
+            )}
+            {item?.instruction === "Throw rubbish away" && (
+
+              <FaRegTrashAlt size={28} />
+            )}
+            {item?.instruction === "Turn things off" && (
+
+              <FaPowerOff size={24} />
+            )}
+
+            {item?.instruction === "Additional requests" && (
+
+              <VscRequestChanges size={24} />
+            )}
+
+            {item?.instruction === "Return keys" && (
+
+              <IoKeyOutline size={24} />
+            )}
+
+            {item?.instruction === "Lock up" && (
+
+              <MdLockOpen size={24} />
+            )}
             <i className="mr-2">
-            {item?.instruction}
+              {item?.instruction}
             </i>
             {item?.details}
+            <button
+              className="text-black text-md"
+              onClick={() => {
+                handleDelete(slug, index)
+              }} >
+              <AiOutlineDelete
+                size={24} />
+            </button>
           </button>
         </div>
       ))}
+
     </div>
   );
 }

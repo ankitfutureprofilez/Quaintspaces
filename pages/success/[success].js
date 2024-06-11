@@ -1,9 +1,10 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import AuthLayout from "../layout/AuthLayout";
 import { formatMultiPrice } from "../../hooks/ValueData";
 import { useRouter } from "next/router";
 import Listings from "../api/laravel/Listings";
 import toast from "react-hot-toast";
+import DateComponent from "../admin/hook/Dateformat";
 
 
 function calculateTotalDays(checkInDate, checkOutDate) {
@@ -11,7 +12,7 @@ function calculateTotalDays(checkInDate, checkOutDate) {
   const checkOut = new Date(checkOutDate);
   const differenceMs = checkOut - checkIn;
   const days = differenceMs / (1000 * 60 * 60 * 24);
-  return Math.round(days);
+  return Math?.round(days);
 }
 
 
@@ -47,7 +48,7 @@ const success = () => {
       });
   };
 
-const totalStay = calculateTotalDays(record?.check_in, record?.check_out);
+  const totalStay = calculateTotalDays(record?.check_in, record?.check_out);
 
 
 
@@ -100,14 +101,13 @@ const totalStay = calculateTotalDays(record?.check_in, record?.check_out);
             We have sent your booking information to your email address.
           </p>
 
-          <div className=" pt-16 sm:text-xl text-sm 
-          flex flex-wrap justify-center m-auto max-w-[600px]">
+          <div className=" pt-16 sm:text-xl text-sm   flex flex-wrap justify-center m-auto max-w-[600px]">
             <div className="w-full flex justify-between mb-4 flex-wrap  ">
               <p className="text-black-400 font-bold ">Booking Number</p>
               <p className="text-start text-black-400 font-bold font-semibold">{record?.booking_number}</p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
-              <p className="text-black-400 font-bold">Date :</p>
+              <p className="text-black-400 font-bold">Booking Date </p>
               <p className="text-start text-black-400 font-bold font-semibold">
                 {record?.payment_date}
               </p>
@@ -121,12 +121,20 @@ const totalStay = calculateTotalDays(record?.check_in, record?.check_out);
               <p className="text-start text-black-400 font-bold font-semibold">{record?.property_name}</p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
+              <p className="text-black-400 font-bold">Check in </p>
+              <p className="text-start text-black-400 font-bold font-semibold">{DateComponent(record?.check_in)} </p>
+            </div>
+            <div className="w-full flex justify-between mb-4 flex-wrap ">
+              <p className="text-black-400 font-bold">Check  out </p>
+              <p className="text-start text-black-400 font-bold font-semibold">{DateComponent(record?.check_out)}</p>
+            </div>
+            <div className="w-full flex justify-between mb-4 flex-wrap ">
               <p className="text-black-400 font-bold">Amount Paid</p>
               <p className="text-start text-black-400 font-bold font-semibold">{formatMultiPrice(record?.price)}</p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
-              <p className="text-black-400 font-bold">Total Members (Guests )</p>
-              <p className="text-start text-black-400 font-bold font-semibold">{record?.guests} </p>
+              <p className="text-black-400 font-bold">Total Members (Guests & infants)</p>
+              <p className="text-start text-black-400 font-bold font-semibold">{record?.guests} & {record?.infants} </p>
             </div>
             <div className="w-full flex justify-between mb-4 flex-wrap ">
               <p className="text-black-400 font-bold">Total Pets</p>

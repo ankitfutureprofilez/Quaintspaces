@@ -147,6 +147,10 @@ async DeleteUser(id, message){
     return Api.post(`admin/delete-user/${id}`,message)
 }
 
+async checkoutApi(uuid, instruction){
+    return Api.post(`admin/delete-property-checkout-instruction/${uuid}`,instruction)
+}
+
 // user-payment-history/4
   render() {
     return (

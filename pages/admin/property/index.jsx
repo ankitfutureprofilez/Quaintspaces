@@ -121,7 +121,8 @@ export default function Index() {
                         </h3>
                         <p className="text-sm text-gray-600 mt-3 capitalize">
                           {item?.type ? `${item?.type?.replace("_", " ")} .` : ""}
-                          {item.bedrooms} Bedrooms·
+                          {item.bedrooms} Bedrooms. {item.beds} Beds. {item.guests} guests. {item.bathrooms} Bathrooms.
+                          {item.no_of_pet_allowed} Pets
                         </p>
                         <p className="text-sm text-gray-600 mt-3 font-bold">
                           {formatMultiPrice(item?.price)} Night
@@ -129,7 +130,7 @@ export default function Index() {
                         <div className="mt-4">
                           <Link href={`/admin/property/${item?.uuid}`}>
                             <div className="text-normal text-underline btn sort rounded text-gray-500 w-full mt-3 px-5 py-2 cursor-pointer font-medium">
-                               View
+                              View
                             </div>
                           </Link>
                           <button className="text-normal text-underline btn sort rounded text-gray-500 px-5 py-2 w-full mt-3 cursor-pointer font-medium" onClick={() => handleEditEntireProperty(item?.uuid)}>

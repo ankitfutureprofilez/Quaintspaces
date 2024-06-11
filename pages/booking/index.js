@@ -424,20 +424,20 @@ export default function Index() {
                       <span className="font-bold">
                         Wifi-Username :-
                       </span>
-                      {houseRule?.property_rules?.wifi_username}
+                      {houseRule?.property_details?.property_rule?.wifi_username}
                     </p>
                     <p className="text-sm  font-normal  mb-4 capatalize">
                       <span className="font-bold">
                         Password :-
                       </span>
-                      {houseRule?.property_rules?.wifi_password}
+                      {houseRule?.property_details?.property_rule?.wifi_password}
                     </p>
 
                     <p className="text-sm  font-normal  mb-4">
                       <span className="font-bold">
                         house manuals :-
                       </span>
-                      {houseRule?.property_rules?.house_manuals}
+                      {houseRule?.property_details?.property_rule?.house_manuals}
                     </p>
                   </>
                 ) : (
@@ -450,13 +450,14 @@ export default function Index() {
                       <span className="font-bold">
                         Direction :-
                       </span>
-                      {houseRule?.property_rules?.direction}
+                      {houseRule?.property_details?.property_rule?.direction}
                     </p>
                     <p className="text-sm  font-normal  mb-4">
                       <span className="font-bold">
-                        check-in method                      :-
+                        check-in method:-
                       </span>
-                      {houseRule?.property_rules?.direction}
+                      {houseRule?.property_details?.check_in_method}
+                      and  {houseRule?.property_details?.check_in_description}
                     </p>
 
                   </>
@@ -470,7 +471,7 @@ export default function Index() {
                       <span className="font-bold">
                         Direction :-
                       </span>
-                      {houseRule?.property_rules?.direction}
+                      {houseRule?.property_details?.property_rule?.direction}
                     </p>
                   </>
                 ) : (
@@ -480,7 +481,5 @@ export default function Index() {
         )
       }
     </AuthLayout>
-
-
   );
 }

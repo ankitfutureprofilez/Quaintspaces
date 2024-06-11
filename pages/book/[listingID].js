@@ -96,6 +96,8 @@ const Book = () => {
       min: 0,
     },
   });
+
+  console.log("guests",guests)
   // console.log("infos", infos);
   // console.log("guests", guests);
 
@@ -137,6 +139,7 @@ const Book = () => {
   }, [router.asPath]);
 
   console.log("guests",guests)
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -253,6 +256,9 @@ const Book = () => {
       );
       return;
     }
+    console.log("listing?.no_of_pet_allowed",listing?.no_of_pet_allowed)
+    console.log("guests?.pets?.value",guests?.pets?.value)
+
     if (guests?.pets?.value > listing?.no_of_pet_allowed) {
       toast.error(
         `Number of pets exceeds the allowed limit ${listing?.no_of_pet_allowed}`
@@ -327,7 +333,7 @@ const Book = () => {
     record.append("check_out", infos.checkout);
     record.append("adults", guests?.adults?.value);
     record.append("children", guests?.children?.value);
-    // record.append("guests", guests?.adults?.value + guests?.children?.value);
+    record.append("infants", guests?.infants?.value );
     record.append("doc_type", formData.selectOption);
     record.append("front_doc", formData.fornt);
     record.append("no_of_pet", guests?.pets?.value);

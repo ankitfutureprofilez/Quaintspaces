@@ -10,7 +10,8 @@ const Card = ({ post }) => {
   const [isSaved, changeWishlist] = useWishlist(post, wishlist);
   let record;
   try {
-    record = JSON.parse(JSON.parse(post?.location));
+    record = JSON?.parse(JSON?.parse(post?.location));
+    console.log("record",record?.location)
   } catch (error) {
     console.error("Error parsing JSON:", error);
   }
@@ -37,11 +38,11 @@ const Card = ({ post }) => {
     <div className="banipark-box rounded-lg">
       {post?.uuid ? (
         <Link className="block" href={`/property/${post?.uuid}`}>
-           {post?.discount_offer && (
+           {post?.discount_offer ? (
         <div className="absolute bg-red-500 text-white px-2 py-1 rounded-tr-lg rounded-bl-lg">
           {post?.discount_offer}% 
         </div>
-      )}
+      ) :(<> </>)}
         <Image
           width={100}
           height={300}
@@ -57,8 +58,8 @@ const Card = ({ post }) => {
             {capitalizeFirstLetter(post?.name)}
           </h3>
           <p>
-            {post?.bedrooms} Bedrooms · {post?.beds} Bed
-            <span className="ml-2">{capitalizeAndReplace(post?.type)}</span>
+            <span className="ml-2">{capitalizeAndReplace(post?.type)}</span> &nbsp;
+            {post?.bedrooms} Bedrooms · {post?.beds} Bed .  {post?.guests} Guests . {post?.no_of_pet_allowed} Pets
           </p>
           <h4>
             <span className="card-price">
