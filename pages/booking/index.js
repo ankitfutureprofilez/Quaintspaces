@@ -418,7 +418,7 @@ export default function Index() {
               House Rules
             </p>
             <div className="p-6">
-              {(houseRule?.check_in) ?
+              {(houseRule?.check_in) === new Date() ?
                 (
                   <>
                     <p className="text-sm  font-normal  mb-4 ">
@@ -442,9 +442,10 @@ export default function Index() {
                     </p>
                   </>
                 ) : (
-                  <></>
+                  <>
+                  </>
                 )}
-              {(houseRule?.booking_date) ?
+              {(houseRule?.booking_date === new Date()) ?
                 (
                   <>
                     <p className="text-sm  font-normal  mb-4">
@@ -465,7 +466,7 @@ export default function Index() {
                 ) : (
                   <> </>)}
 
-              {(houseRule?.check_out) ?
+              {(houseRule?.check_out === new Date() ) ?
                 (
                   <>
                     <p className="text-sm  font-normal  mb-4">

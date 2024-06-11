@@ -67,7 +67,7 @@ export default function index() {
                 className="flex items-center border-b-2 border-orange-300 "
               >
                 <p className="text-sm mr-2" style={{ color: "#fdba74" }}>
-                  Learn More
+                  View More
                 </p>
                 <svg
                   width="8"
@@ -115,7 +115,7 @@ export default function index() {
                 className="flex items-center border-b-2 border-orange-300 "
               >
                 <p className="text-sm mr-2" style={{ color: "#fdba74" }}>
-                  Learn More
+                  View More
                 </p>
                 <svg
                   width="8"
@@ -163,7 +163,7 @@ export default function index() {
                 className="flex items-center border-b-2 border-orange-300  "
               >
                 <p className="text-sm mr-2" style={{ color: "#fdba74" }}>
-                  Learn More
+                  View More
                 </p>
                 <svg
                   width="8"
