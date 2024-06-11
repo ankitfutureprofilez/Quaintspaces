@@ -2,6 +2,8 @@ import { guestsHandler } from "../../utils/guestPickerUtils";
 import GuestCard from "../GuestPickerCard";
 
 const GuestsPicker = ({ css, guests, setGuests }) => {
+  console.log(guests)
+  console.log("guests.adults.value",guests.adults.value)
   return (
     <div
       className={`${
@@ -57,7 +59,7 @@ const GuestsPicker = ({ css, guests, setGuests }) => {
           />
         </div>
       </div>
-      {/* <div className="flex items-center justify-between my-6">
+      <div className="flex items-center justify-between my-6">
         <div>
           <h6 className="text-md font-medium">Infants</h6>
           <p className="text-sm font-normal text-gray-600 mt-1">Under 2</p>
@@ -79,7 +81,7 @@ const GuestsPicker = ({ css, guests, setGuests }) => {
             setGuests={setGuests}
           />
         </div>
-      </div> */}
+      </div>
       <div className="flex items-center justify-between my-6">
         <div>
           <h6 className="text-md font-medium">Pets</h6>

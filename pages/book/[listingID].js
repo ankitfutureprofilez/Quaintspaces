@@ -118,6 +118,11 @@ const Book = () => {
         max: listing?.adults || 10,
         min: 0,
       },
+      infants: {
+        value: +url.infants || 0,
+        max: listing?.infants || 2,
+        min: 0,
+      },
       children: {
         value: +url.numberOfChildren || 0,
         max: listing?.children || 10,
@@ -131,6 +136,7 @@ const Book = () => {
     });
   }, [router.asPath]);
 
+  console.log("guests",guests)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
