@@ -456,7 +456,7 @@ const Book = () => {
                 Required for your trip
               </h3>
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
-                <div className="ml-3 mt-4">
+                <div className=" mt-4">
                   <h1 className="text-lg  item-heading mb-2">
                     Message the host
                   </h1>
@@ -491,7 +491,7 @@ const Book = () => {
                   </div>
 
                   <h1 className="text-lg item-heading mb-2">
-                    Phone number <span className="text-red-700">*</span>
+                    Number <span className="text-red-700">*</span>
                   </h1>
                   <div className="flex flex-wrap justify-between">
                     <p className="item-pargraph">
@@ -528,7 +528,7 @@ const Book = () => {
                 </div>
               </div>
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
-                <div className="ml-3 mt-4 w-full">
+                <div className="mt-4 w-full">
                   <h1 className="text-lg heading-data mb-4">
                     Cancellation policy
                   </h1>
@@ -548,7 +548,7 @@ const Book = () => {
                 <Button
                   text={loading ? "Processing..." : "Confirm & Pay"}
                   design={
-                    "font-inter  font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 p-4 rounded-full"
+                    "font-inter hover:bg-[#000] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 p-4 rounded-full"
                   }
                   onClick={handleSubmit}
                 />
@@ -613,7 +613,7 @@ const Book = () => {
                     <span className="block text-blackColor font-medium confirm-price">
                       <div className="flex justify-center">
                         <>
-                          <div className="text-red-700 border-b-2 border-red-700">
+                          <div className="text-red-700 line-through ml-3">
                             {
                               formatMultiPrice(originalPrice *
                                 differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))}
@@ -635,7 +635,7 @@ const Book = () => {
                           new Date(infos.checkin)
                         )})
                     </span>
-                    <span className="block text-blackColor font-medium confirm-price">
+                    <span className="block text-blackColor font-medium confirm-price ml-3">
                       <div className="flex justify-center">
                         {
                           formatMultiPrice(discountedPrice *
@@ -659,7 +659,7 @@ const Book = () => {
                         )}
                       )
                     </span>
-                    <span className="block text-blackColor font-medium confirm-price">
+                    <span className="block text-blackColor font-medium confirm-price ml-3">
                       {formatMultiPrice(listing?.cleaning_fee * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))}
                     </span>
                   </div>
@@ -680,7 +680,7 @@ const Book = () => {
                           {formatMultiPrice(listing?.extra_guest_fee)}
                         </span>
                       </div>
-                      <span className="block text-blackColor font-medium confirm-price">
+                      <span className="block text-blackColor font-medium confirm-price ml-3">
                         {formatMultiPrice(
                           (guests?.adults?.value +
                             guests?.children?.value -
@@ -704,7 +704,7 @@ const Book = () => {
                           {formatMultiPrice(listing?.pet_fee)}
                         </span>
                       </div>
-                      <span className="block text-blackColor font-medium confirm-price">
+                      <span className="block text-blackColor font-medium confirm-price ml-3">
                         {formatMultiPrice(guests?.pets?.value * listing?.pet_fee)}
                       </span>
                     </div>

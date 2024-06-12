@@ -162,14 +162,14 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
 
   return (
     <>
-      <h2 className="text-3xl text-center font-bold mt-5  mb-2 mt-5">
+      <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
         Tell guests what your place has to offer
       </h2>
       <p className="text-normal text-center text-gray-500 mb-8">
         You can add more amenities after you publish your listing.
       </p>
 
-      <div className="grid grid-cols-4  gap-1   ">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4    ">
         {amenitiesData &&
           amenitiesData?.amenities?.map((amenity, i) => (
             <div key={i} className="">
@@ -196,7 +196,7 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
         Do you have any standout amenities?
       </p>
 
-      <div className="grid grid-cols-4 gap-4   ">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4   ">
         {amenitiesData &&
           amenitiesData?.standout_amenity?.map((amenity, i) => (
             <div key={i} className="">
@@ -223,7 +223,7 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
         Do you have any of these safety items?
       </p>
 
-      <div className="grid grid-cols-4 gap-4   ">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4    ">
         {amenitiesData &&
           amenitiesData?.safety_amenity?.map((amenity, i) => (
             <div key={i} className="">

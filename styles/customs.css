@@ -1276,6 +1276,9 @@ button.submint-btn {
   .signup-form {
     max-height: 100% !important;
   }
+  .swiper-button-next:after, .swiper-button-prev:after {
+     font-size: 14px; }
+     .swiper-button-next, .swiper-button-prev { padding: 18px !IMPORTANT; }
 }
 
 /* Button Group in Apartment Page */
@@ -1301,9 +1304,10 @@ button.submint-btn {
 }
 .filter {
   background: #c48b58;
-  border: 2px solid #c48b58;
+
   color: #fff;
 }
+.filter:hover{background-color: #000; }
 
 .image-data img {
   width: 100px;

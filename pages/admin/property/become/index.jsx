@@ -110,17 +110,17 @@ function Index() {
           </div>
         )
       ) : (
-        <div className="w-[600px] py-8 mx-auto">
+        <div className="max-w-[600px] w-full py-4 md:py-8 mx-auto">
           <div className="">
-            <h2 className="text-[32px] font-bold text-black mb-3">
+            <h2 className="text-[22px] md:text-[32px] font-bold text-black sm:mb-3">
               Welcome back, {Admin}
             </h2>
-            <p className="text-[22px]  text-black mb-3">Finish your listing</p>
+            <p className="text-[16px] md:text-[22px]  text-black mb-3">Finish your listing</p>
             <div>
               {filteredRecord &&
                 filteredRecord.map((item, index) => (
                   <div
-                    className="p-4 border rounded-xl mb-2 flex items-center"
+                    className="p-3 sm:p-4 border rounded-xl mb-2 flex items-center"
                     key={index}
                     style={{ cursor: "pointer" }}
                     onClick={() => handleEditEntireProperty(item?.uuid)}
@@ -128,28 +128,29 @@ function Index() {
                     {item?.property_image[0]?.image_url ? (
                       <div className="w-[60px] h-[40px] object-cover">
                         <Image
-                          width={20}
-                          height={20}
+                          width={100}
+                          height={100}
                           layout="responsive"
                           src={item?.property_image[0]?.image_url}
                           alt="Property cover image"
                           onClick={() => {
                             toggleimagePopup();
                           }}
+                          className="w-full !h-full object-cover"
                         />
                       </div>
                     ) : (
                       <FaHouse />
                     )}
-                    <h2 className="text-lg font-medium ml-4 heading-property">
+                    <h2 className="text-[17px] sm:text-lg font-medium ml-4 heading-property">
                       {item.name || "please name "}
                     </h2>
                   </div>
                 ))}
             </div>
           </div>
-          <div className="mt-8">
-            <h2 className="text-[22px]  text-black mb-3">
+          <div className="mt-4 md:mt-8">
+            <h2 className="text-[20px] sm:text-[22px]  text-black sm:mb-3">
               Start a new listing
             </h2>
             <div

@@ -11,7 +11,7 @@ const GuestsPicker = ({ css, guests, setGuests }) => {
         "w-full rounded-3xl bg-white relative z-10 px-8 py-2 shadow border border-borderColor"
       }`}
     >
-      <div className="flex items-center justify-between my-6">
+      <div className="flex items-center justify-between mb-6 mt-2">
         <div>
           <h6 className="text-md font-medium">Adults</h6>
           <p className="text-sm font-normal text-gray-600 mt-1">

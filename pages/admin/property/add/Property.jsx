@@ -603,10 +603,10 @@ const handleAddress = (e) => {
       <div class="max-w-4xl overflow-hidden	 w-full space-y-8 m-auto w-full px-2 ">
 
       </div>
-      <div className={`w-full overflow-hidden	 flex items-center justify-center px-6 py-8 `}>
+      <div className={`w-full overflow-hidden	 flex items-center justify-center py-4 md:py-8 `}>
         <div className="max-w-4xl w-full space-y-8 w-full ">
           <div className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `} >
-            <div className="p-8 rounded-2xl border ">
+            <div className="p-3 sm:p-4 md:p-8 rounded-2xl border ">
               <div
                 className={`${step === 0 ? "" : "display-none"
                   } max-w-[100%] m-auto table w-full`}
@@ -630,7 +630,7 @@ const handleAddress = (e) => {
     </div> */}
 
                 {/* {typeHere === "entire_place" ?  <> */}
-                <h2 className="text-3xl text-center mt-4 font-bold mb-8">
+                <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                   Which of these best describes your place?
                 </h2>
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
@@ -676,7 +676,7 @@ const handleAddress = (e) => {
                           )}
                           {p.value === "farm" && <FaWarehouse size={40} />}
                           <h2
-                            className={`text-xl mt-4 font-normal ${p.value === PType
+                            className={`md:text-xl text-lg mt-4 font-normal ${p.value === PType
                               ? "text-gray-600"
                               : "text-gray-400"
                               }`}
@@ -693,10 +693,10 @@ const handleAddress = (e) => {
               <div className={`${step === 1 ? "" : "display-none"
                 } max-w-[100%] m-auto table w-full`}
               >
-                <h2 className="text-3xl text-center font-bold mb-8">
+                <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                   Describes your place?
                 </h2>
-                <div className="mt-4">
+                <div className="mt-2 md:mt-4">
                   <input
                     required
                     type="text"
@@ -709,7 +709,7 @@ const handleAddress = (e) => {
                   />
                 </div>
 
-                <div className="relative mt-4 text-sm font-medium text-gray-700">
+                <div className="relative mt-2 md:mt-4 text-sm font-medium text-gray-700">
                   <input
                     required
                     type="number"
@@ -720,7 +720,7 @@ const handleAddress = (e) => {
                     value={item?.price}
                     onChange={handleInputChange}
                   />
-                  <div className="mt-4">
+                  <div className="mt-2 md:mt-4">
                     <textarea
                       required
                       id="about"
@@ -749,16 +749,16 @@ const handleAddress = (e) => {
               </div>
               <div className={`${step === 2 ? "" : "display-none"}`}>
 
-                <h2 className="text-3xl text-center font-bold mb-2">
+                <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                   Where's your place located?
                 </h2>
                 <p className="text-normal text-center text-gray-500 mb-8">
                   Your address is only shared with guests after they’ve made a
                   reservation.
                 </p>
-                <div className="table w-full m-auto  space-y-4 text-center">
+                <div className="table w-full m-auto space-y-2  md:space-y-4 text-center">
                   <p>{address?.location}</p>
-                  <div class="w-full mt-4">
+                  <div class="w-full mt-2 md:mt-4">
                     <button
                       className="btn sort w-full"
                       onClick={fetchLocationData}
@@ -840,7 +840,7 @@ const handleAddress = (e) => {
                 <div>
                   {address?.location && (
                     <>
-                      <h2 className="text-2xl text-center font-bold mb-2 mt-8 capitalize">
+                      <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                         Show your specific location
                       </h2>
                       <p className="text-normal text-center text-gray-500 mb-8 mt-4">
@@ -879,11 +879,11 @@ const handleAddress = (e) => {
               <div className={`${step === 5 ? "" : "display-none"
                 } max-w-[600px] m-auto`}
               >
-                <h2 className="text-3xl text-center font-bold mb-2">
+                <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                   Add some photos of your{" "}
                   {PType ? PType.replace("_", " ") : "house"}
                 </h2>
-                <p className="text-normal text-center text-gray-500 mb-8">
+                <p className="text-[16px] text-center text-gray-500 mb-8">
                   You'll need 5 photos to get started. You can add more or make
                   changes later.
                 </p>
@@ -902,7 +902,7 @@ const handleAddress = (e) => {
                         <p className="text-normal text-gray-500 text-gray-400">
                           Choose at least 5 images
                         </p>
-                        <p className="text-normal text-gray-500 text-gray-400">
+                        <p className="text-normal text-gray-500 px-2 text-gray-400">
                           (jpg, jpeg, png, gif, bmp, tif, tiff, svg, webp, avif)
                         </p>
                       </div>
@@ -960,14 +960,14 @@ const handleAddress = (e) => {
                               onDragStart={handleDrag}
                               onDragOver={handleOver}
                               onDrop={handleDrop}
-                              className="relative w-full sm:w-1/2 md:w-1/3 p-1"
+                              className="relative w-1/2 md:w-1/3 p-1"
                             >
                               <Image
                                 src={URL.createObjectURL(file)}
                                 width={200}
                                 height={200}
                                 alt={`Preview ${index + 1}`}
-                                className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                                className="image-preview h-full object-cover border min-h-[120px] sm:min-h-[150px]  max-h-[200px] w-full max-w-full rounded-lg"
                                 onLoad={() => URL.revokeObjectURL(file)}
                               />
                               {index + 1 === 0 && (
@@ -989,7 +989,7 @@ const handleAddress = (e) => {
                     )}
                   </div> */}
 
-                  <div className="flex flex-wrap  mt-16">
+                  <div className="flex flex-wrap  mt-2">
                     {useExistingImages === false || isEdit === true ?
                       (<> </>)
                       : (
@@ -1031,14 +1031,14 @@ const handleAddress = (e) => {
                                 onDragStart={handleDrag}
                                 onDragOver={handleOver}
                                 onDrop={handleDrop}
-                                className="relative w-full sm:w-1/2 md:w-1/3 p-1"
+                                className="relative w-1/2 md:w-1/3 p-1"
                               >
                                 <Image
                                   src={URL.createObjectURL(file)}
                                   width={200}
                                   height={200}
                                   alt={`Preview ${index + 1}`}
-                                  className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                                  className="image-preview h-full object-cover border min-h-[120px] sm:min-h-[150px]  max-h-[200px] w-full max-w-full rounded-lg"
                                   onLoad={() => URL.revokeObjectURL(file)}
                                 />
                                 {index + 1 === 0 && (
@@ -1099,14 +1099,14 @@ const handleAddress = (e) => {
                                 onDragStart={handleDrag}
                                 onDragOver={handleOver}
                                 onDrop={handleDrop}
-                                className="relative w-full sm:w-1/2 md:w-1/3 p-1"
+                                className="relative w-1/2 md:w-1/3 p-1"
                               >
                                 <Image
                                   src={URL.createObjectURL(file)}
                                   width={200}
                                   height={200}
                                   alt={`Preview ${index + 1}`}
-                                  className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                                  className="image-preview h-full object-cover border min-h-[120px] sm:min-h-[150px]  max-h-[200px] w-full max-w-full rounded-lg"
                                   onLoad={() => URL.revokeObjectURL(file)}
                                 />
                                 {index + 1 === 0 && (
@@ -1132,18 +1132,18 @@ const handleAddress = (e) => {
 
                   </div>
 
-                  <div className="flex flex-wrap  mt-16">
+                  <div className="flex flex-wrap  mt-2">
                     { isEdit === true ? (
                       (
                         images &&
                         images.map((file, index) => (
-                          <div key={index} className="relative w-full sm:w-1/2 md:w-1/3 p-1">
+                          <div key={index} className="relative w-1/2 md:w-1/3 p-1">
                             <Image
                               src={URL.createObjectURL(file)}
                               width={200}
                               height={200}
                               alt={`Preview ${index}`}
-                              className="image-preview h-full object-cover border min-h-[150px] max-h-[200px] w-full max-w-full rounded-lg"
+                              className="image-preview h-full object-cover border min-h-[120px] sm:min-h-[150px]  max-h-[200px] w-full max-w-full rounded-lg"
                               onLoad={() => URL.revokeObjectURL(file)}
                             />
                             <button
@@ -1165,7 +1165,7 @@ const handleAddress = (e) => {
                   </div>
 
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-2">
                   {useExistingImages === true ||
                     isEdit === true ? (
 
@@ -1198,12 +1198,12 @@ const handleAddress = (e) => {
 
               </div>
               <div className={`${step === 6 ? "" : "display-none"}`}>
-                <div className="max-w-[100%] m-auto w-full mt-10">
-                  <h2 className="text-2xl font-bold mb-4">
+                <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4">
+                  <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                     Please enter the following details
                   </h2>
-                  <div className="flex justify-between mt-4 text-sm font-medium text-gray-700 space-x-4">
-                    <div className="flex flex-col w-1/3">
+                  <div className="flex flex- flex-wrap justify-between mt-4 text-sm font-medium text-gray-700 ">
+                    <div className="flex flex-col w-full md:w-1/3 md:mb-0 mb-2">
                       <label>Cleaning Fees</label>
                       <input
                         required
@@ -1217,7 +1217,7 @@ const handleAddress = (e) => {
                       />
                     </div>
 
-                    <div className="flex flex-col w-1/3">
+                    <div className="flex flex-col w-full md:w-1/3 md:mb-0 mb-2">
                       <label>Pet Fees</label>
                       <input
                         type="text"
@@ -1230,7 +1230,7 @@ const handleAddress = (e) => {
                       />
                     </div>
 
-                    <div className="flex flex-col w-1/3">
+                    <div className="flex flex-col w-full md:w-1/3 md:mb-0 mb-2">
                       <label>Extra Guest Fees (Per Guest)</label>
                       <input
                         required
@@ -1246,10 +1246,10 @@ const handleAddress = (e) => {
                   </div>
                 </div>
 
-                <div className="max-w-[100%] m-auto w-full mt-10 ">
-                  <h2 className="text-2xl font-bold mb-4">Check-in & checkout times</h2>
-                  <div className="flex justify-between mb-4 space-x-4">
-                    <div className="w-2/3">
+                <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4 ">
+                  <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">Check-in & checkout times</h2>
+                  <div className="flex flex- flex-wrap justify-between mt-4 text-sm font-medium text-gray-700 ">
+                    <div className="w-full md:w-2/3 mb-2">
                       <label className="block mb-2 font-semibold">Check-in window</label>
                       <div className="flex justify-between space-x-4">
                         <div className="w-1/2 relative">
@@ -1326,12 +1326,12 @@ const handleAddress = (e) => {
                         </div>
                       </div>
                     </div>
-                    <div className="w-1/3">
+                    <div className="w-full md:w-1/3 mb-2">
                       <label className="block mb-2 font-semibold">Checkout time</label>
                       <select
                         value={checkout}
                         onChange={(e) => setCheckout(e.target.value)}
-                        className="mt-1 block w-full px-3 py-3 border border-gray-300 bg-white rounded-xl shadow-sm sm:text-sm mt-5"
+                        className="mt-1 block w-full px-3 py-3 border border-gray-300 bg-white rounded-xl shadow-sm sm:text-sm mt-2"
                       >
                         <option value="00:00:00">12:00 AM</option>
                         <option value="01:00:00">1:00 AM</option>
@@ -1363,10 +1363,10 @@ const handleAddress = (e) => {
                   </div>
                 </div>
 
-                <div className="max-w-[100%] m-auto w-full mt-10">
-                  <h2 className="text-2xl font-bold mb-4 capitalize">Please select an option</h2>
-                  <div className="flex items-center space-x-4 mb-8">
-                    <label className="flex items-center space-x-2 text-xl font-normal   ">
+                <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4">
+                  <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-2 font-bold md:mb-8 mb-4">Please select an option</h2>
+                  <div className="flex items-center space-x-4 md-4 md:mb-8">
+                    <label className="flex items-center space-x-2 sm:text-xl text-[17px] font-normal   ">
                       <input
                         type="radio"
                         value={1}
@@ -1376,7 +1376,7 @@ const handleAddress = (e) => {
                       />
                       <span className="">List Property</span>
                     </label>
-                    <label className="flex items-center space-x-2 text-xl font-normal">
+                    <label className="flex items-center space-x-2 sm:text-xl text-[17px] font-normal">
                       <input
                         type="radio"
                         value={0}
@@ -1405,7 +1405,7 @@ const handleAddress = (e) => {
                     id="directions"
                     name="additonalrule"
                     rows={5}
-                    className="shadow-sm p-4 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
+                    className="shadow-sm p-4 py-2 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
                     placeholder="Enter directions here..."
                     value={item?.additonalrule}
                     onChange={handleInputChange}
@@ -1413,7 +1413,7 @@ const handleAddress = (e) => {
                 </div>
               </div>
               <div className={`${step === 9 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full `}>
+                } max-w-[100%] m-auto  w-full `}>
 
                 <div className="flex flex-col mb-4">
                   <label htmlFor="directions" className="capitalize text-lg font-bold my-1">
@@ -1423,7 +1423,7 @@ const handleAddress = (e) => {
                     id="directions"
                     name="Direction"
                     rows={5}
-                    className="shadow-sm p-4 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
+                    className="shadow-sm p-4 py-2 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
                     placeholder="Enter directions here..."
                     value={item?.Direction}
                     onChange={handleInputChange}
@@ -1437,7 +1437,7 @@ const handleAddress = (e) => {
                     id="manual"
                     name="housemanual"
                     rows={5}
-                    className="shadow-sm p-4 w-full mt-1 block sm:text-sm border rounded-xl"
+                    className="shadow-sm p-4 py-2 w-full mt-1 block sm:text-sm border rounded-xl"
                     placeholder="Enter some instructions for your guest..."
                     value={item?.housemanual}
                     onChange={handleInputChange}
@@ -1452,7 +1452,7 @@ const handleAddress = (e) => {
                     id="wifi"
                     name="wifi"
                     type="text"
-                    className="shadow-sm p-4 w-full mt-1 block sm:text-sm border rounded-xl"
+                    className="shadow-sm p-4 py-2 w-full mt-1 block sm:text-sm border rounded-xl"
                     placeholder="Enter your wifi name..."
                     value={item?.wifi}
                     onChange={handleInputChange}
@@ -1464,7 +1464,7 @@ const handleAddress = (e) => {
                     id="wifiPassword"
                     name="wifiPassword"
                     type="text"
-                    className="shadow-sm p-4 w-full mt-1 block sm:text-sm border rounded-xl"
+                    className="shadow-sm p-4 py-2 w-full mt-1 block text-[16px] md:text-lg border rounded-xl"
                     placeholder="Enter your wifi Password here..."
                     value={item?.wifiPassword}
                     onChange={handleInputChange}
@@ -1475,23 +1475,23 @@ const handleAddress = (e) => {
                   <h1 className="capitalize text-lg font-bold my-4">Discount offer </h1>
                   <label className="flex items-center space-x-2 text-xl font-normal">
                     <input
-                      className="p-4  mt-1 block sm:text-sm border border-{#ccc} rounded-md"
+                      className="p-4 py-2 w-36 md:w-full mt-1 block text-[16px] md:text-lg border border-{#ccc} rounded-md"
                       placeholder="Discount offer"
                       type="text"
                       name="discount"
                       value={item?.discount}
                       onChange={handleInputChange}
                     />
-                    <span>% discount offer</span>
+                    <span className="text-[16px] md:text-lg">% discount offer</span>
                   </label>
                 </div>
               </div>
 
               <div className={`${step === 10 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full `}>
+                } max-w-[100%] m-auto w-full `}>
 
                 <div className="flex flex-col mb-2">
-                  <label htmlFor="customLink" className="text-2xl font-bold">
+                  <label htmlFor="customLink" className="text-[20px] md:text-2xl font-bold">
                     Custom Link
                   </label>
                   <div className="relative">
@@ -1518,10 +1518,10 @@ const handleAddress = (e) => {
                 <div className="flex flex-col mb-2">
                   <div className="flex flex-col md:flex-row ">
                     {/* Left Panel */}
-                    <div className="md:w-1/2 pr-2 flex flex-col">
+                    <div className="md:w-1/2 pr-2 flex flex-col mb-3">
                       <div className=" items-center">
 
-                        <h2 className="text-2xl font-bold">Select a check-in method</h2>
+                        <h2 className="text-[20px] md:text-2xl font-bold">Select a check-in method</h2>
                       </div>
                       <div className="space-y-4 mt-4 w-full">
                         {options && options.map((item, index) => (
@@ -1544,7 +1544,7 @@ const handleAddress = (e) => {
                     </div>
                     {/* Right Panel */}
                     <div className="md:w-1/2 pl-2">
-                      <h2 className="text-2xl font-bold mb-4 capitalize">
+                      <h2 className="text-[20px] md:text-2xl font-bold mb-2 sm:mb-4 capitalize">
                         Add {selectedMethod} details
                       </h2>
                       <textarea
@@ -1569,8 +1569,8 @@ const handleAddress = (e) => {
               </div>
 
               <div className={`${step === 11 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full `}>
-                <div className="flex flex-col mb-2">
+                } max-w-[100%] m-auto w-full `}>
+                <div className="flex  flex-col mb-2">
                   <Checkout handleSubmit={handleSubmit}  selectedInstruction={selectedInstruction} isEdit={true} checkoutdata={check_out_instruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />
                 </div>
                 <div className="flex flex-col  ">
@@ -1578,7 +1578,7 @@ const handleAddress = (e) => {
                 </div>
               </div>
 
-              <div className="pt-6 flex justify-between max-w-[500px] table m-auto">
+              <div className="pt-2 flex justify-between max-w-[500px] table m-auto">
                 {step == 0 ? (
                   <> </>
                 ) : (

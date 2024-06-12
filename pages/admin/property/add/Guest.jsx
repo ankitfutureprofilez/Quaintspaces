@@ -9,15 +9,15 @@ export default function Guest({
     setBathrooms((prev) => Math.max(0, prev - 0.5));
   const increments = (Bathrooms) => () => setBathrooms((prev) => prev + 0.5);
   return (
-    <div className="h-full  w-full p-7">
-      <h2 className="text-3xl text-center font-bold mb-4">
+    <div className="h-full  w-full ">
+      <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
         Share some basics about your place
       </h2>
-      <h2 className="text-xl text-center mb-8">
+      <h2 className="text-[16px] text-center mb-4">
         You'll add more details later, such as bed types.
       </h2>
-      <div className="grid  m-auto table gap-y-4  mt-5 ">
-        <div className="flex items-center mt-5 pt-4 pb-4  justify-between border-b-2 border-black-600 p-2">
+      <div className="grid  m-auto table gap-y-2  mt-5 ">
+        <div className="flex items-center  py-3 sm:py-4  justify-between border-b-2 border-black-600 px-2">
           <span className="font-normal leading-snug text-lg   ">Guests</span>
           <div className="flex items-center space-x-2">
             <button
