@@ -7,16 +7,21 @@ import { format } from "date-fns";
 
 const DatesModel = ({ infos, setDateModel }) => {
   const router = useRouter();
-  const [selectedDay, setSelectedDay] = useState(
-    infos.checkin
-      ? new Date(new Date(infos.checkin).toLocaleDateString() + ", 00:00:00")
-      : null
-  );
-  const [selectEnd, setSelectEnd] = useState(
-    infos.checkout
-      ? new Date(new Date(infos.checkout).toLocaleDateString() + ", 00:00:00")
-      : null
-  );
+
+  const [selectedDay, setSelectedDay] = useState(() => {
+    if (!infos.checkin) return null;
+    const date = new Date(infos.checkin);
+    date.setHours(0, 0, 0, 0);
+    return date;
+  });
+
+  const [selectEnd, setSelectEnd] = useState(() => {
+    if (!infos.checkout) return null;
+    const date = new Date(infos.checkout);
+    date.setHours(0, 0, 0, 0);
+    return date;
+  });
+
   const sectionRef = useRef(null);
   const overlayRef = useRef(null);
 
