@@ -54,7 +54,7 @@ const Date_GuestsPickerCard = React.forwardRef(
                 </span>
               </div>
 
-              <div className="rounded-lg border border-orange-300 mb-6 relative">
+              <div className="rounded-lg border border-orange-300  mb-6 relative">
                 <Dates
                   selection={selection}
                   setSelection={setSelection}
@@ -76,7 +76,7 @@ const Date_GuestsPickerCard = React.forwardRef(
               <div ref={ref}>
                 {auth && auth?.name ? (
                   <button
-                    className="filter mx-2 btn w-full "
+                    className="filter mx-2 btn w-full hover:bg-[#000] hover:border-[#000]"
                     onClick={() => {
                       if (selectedDay == null || selectEnd == null) {
                         toast.error("Date not selected");
@@ -103,7 +103,7 @@ const Date_GuestsPickerCard = React.forwardRef(
                 ) : (
                   <button
                     onClick={() => setOpenLogin(true)}
-                    className="filter mx-2 btn w-full "
+                    className="filter mx-2 btn w-full hover:bg-[#000] hover:border-[#000]"
                   >
                     {" "}
                     Check Availability
@@ -111,7 +111,7 @@ const Date_GuestsPickerCard = React.forwardRef(
                 )}
 
                 <button
-                  className="sort mx-2 btn w-full mt-4"
+                  className="sort mx-2 btn w-full mt-4 hover:bg-[#000] hover:border-[#000] hover:text-[#fff]"
                   onClick={() => {
                     router.push(`/contact`);
                   }}

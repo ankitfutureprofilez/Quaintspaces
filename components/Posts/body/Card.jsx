@@ -37,9 +37,9 @@ const Card = ({ post }) => {
   return (
     <div className="banipark-box rounded-lg">
       {post?.uuid ? (
-        <Link className="block" href={`/property/${post?.uuid}`}>
+        <Link className="block relative overflow-hidden" href={`/property/${post?.uuid}`}>
            {post?.discount_offer ? (
-        <div className="absolute bg-red-500 text-white px-2 py-1 rounded-tr-lg rounded-bl-lg">
+        <div className="absolute bg-red-500 -rotate-45 text-white px-2 py-1 w-32 text-center -left-[32px] top-[18px] shadow-[0_0_17px_-5px_#3c3c3c;]">
           {post?.discount_offer}% 
         </div>
       ) :(<> </>)}
@@ -49,6 +49,8 @@ const Card = ({ post }) => {
           layout="responsive"
           src={post?.property_image[0]?.image_url ? (post?.property_image[0]?.image_url) : ("https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg") }
           alt="Property cover image"
+          className="!rounded-[7px_7px_0px_0px]"
+        
         />
         <div className="flat-info">
           <h2 className="line-limit sm:min-h-[72px]">

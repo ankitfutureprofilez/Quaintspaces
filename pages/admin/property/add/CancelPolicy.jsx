@@ -37,15 +37,15 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
     };
 
     return (
-        <div className="  flex">
-            <div className="w-1/2 pr-2 ">
-                <h2 className="text-center font-bold text-2xl text-slate-900 mt-3 mb-4">Cancellation policy</h2>
-                <div className="p-4 mb-4 pb-6 mt-3 border-b">
+        <div className="  flex flex-wrap">
+            <div className="w-full md:w-1/2 pr-2 ">
+                <h2 className="text-center font-bold text-2xl text-slate-900 mt-3 md:mb-4">Cancellation policy</h2>
+                <div className="p-4 mb-4 pb-6 md:mt-3 border-b">
                     <p className="text-center font-normal text-lg text-slate-700 mt-3 mb-4">Standard policy</p>
                     <p className="text-center font-normal text-sm text-slate-500 mt-3 mb-4">Applies to any stays under 28 nights.</p>
                     <div
                         onClick={toggleFlexible}
-                        className={`flex flex-col border-2 p-3 cursor-pointer ${showFlexible === true ? "border-indigo-600" : "border-gray-200"}`}
+                        className={`flex flex-col border-2 p-3  cursor-pointer ${showFlexible === true ? "border-indigo-600" : "border-gray-200"}`}
                     >
 
                         <label className="flex items-center cursor-pointer mx-auto text-center">Flexible</label>
@@ -69,7 +69,7 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                     </div>
                 </div>
             </div>
-            <div className="w-1/2 pl-2">
+            <div className="w-full md:w-1/2 pl-2">
                 {showFlexible && (
                     <div className="rounded-lg border text-center overflow-hidden border-indigo-600">
                         <h2 className="text-xl bg-indigo-600 text-white font-semibold p-4">Choose your standard policy</h2>

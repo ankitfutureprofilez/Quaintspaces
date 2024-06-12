@@ -72,7 +72,7 @@ function Home() {
 
           <div className="flex">
             <div className="w-full ">
-              <div className="p-4 md:p-6 space-y-4 columns-1 sm:columns-2 lg:columns-3">
+              <div className="py-4 md:p-6 space-y-4 columns-1 xl:columns-3 lg:columns-2">
                 <div className="break-inside-avoid-column space-y-4">
                   <TopProperty property_count={record?.property}/>
                 </div>

@@ -86,7 +86,7 @@ export default function Index() {
           </div>
         ) : (
           <>
-            <div className="flex flex-wrap px-4 py-5 justify-between" >
+            <div className="flex flex-wrap  pt-4 justify-between" >
               <h3 className="text-xl font-bold text-black">Your listings</h3>
               <div className="bg-slate-200 rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer">
                 <MdAdd onClick={() => {
@@ -94,10 +94,10 @@ export default function Index() {
                 }} />
               </div>
             </div>
-            <div className="flex flex-wrap px-4 py-5 pt-0">
+            <div className="flex flex-wrap  py-5 pt-0">
               {record.length ? (
                 record.map((item, index) => (
-                  <div className="w-full sm:w-1/2 md:w-1/3 xl:w-1/4 px-3 mt-4" key={index}>
+                  <div className="w-full sm:w-1/2  lg:w-1/3 xl:w-1/4 sm:px-3 mt-4" key={index}>
                     <div className="relative border rounded-lg overflow-hidden shadow-md">
                       <img
                         className="w-full h-48 object-cover object-center"

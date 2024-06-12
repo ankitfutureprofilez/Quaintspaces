@@ -8,7 +8,7 @@ export default function HeroBanner() {
       <h1>Live the luxury in jaipur</h1>
       <p>Book the most luxuries and aesthetically pleasing place, Jaipur city has to offer</p>
       <Link href="#places">
-      <Button text={"EXPLORE APARTMENTS"} design={"font-inter text-base font-medium leading-tight text-center text-white w-[405px] border-2 border-white p-[18px] rounded-[30px]"} id="hero" />
+      <Button text={"EXPLORE APARTMENTS"} design={"font-inter text-base font-medium leading-tight text-center text-white w-[405px] border-2 border-white p-[18px] rounded-[30px] hover:bg-[#000] hover:border-[#000]"} id="hero" />
       </Link>
     </div>
   );

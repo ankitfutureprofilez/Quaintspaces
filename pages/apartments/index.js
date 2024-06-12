@@ -28,7 +28,7 @@ export default function index() {
           <span className="rounded-md shadow-sm">
             <button
               type="button"
-              className="sort btn flex mr-2"
+              className="sort btn flex mr-2 hover:bg-[#000] hover:border-[#000] hover:text-[#fff]"
               id="options-menu"
               aria-haspopup="true"
               aria-expanded="true"

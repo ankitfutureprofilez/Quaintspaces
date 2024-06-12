@@ -133,7 +133,7 @@ function Checkout({ checkoutInstructions, checkoutdata, handlesubmit, isEdit, se
         <div className="flex space-x-4 items-center">
           <h2 className="text-2xl font-bold">Checkout Instructions</h2>
         </div>
-        <p className="text-gray-600 mb-4">
+        <p className="text-gray-600 ">
           Explain what’s essential for guests to do before they leave. Anyone
           can read these before they book.{" "}
           <span className="cursor-pointer font-bold underline">
@@ -160,7 +160,7 @@ function Checkout({ checkoutInstructions, checkoutdata, handlesubmit, isEdit, se
               setShowInstructions(false);
             }}
           >
-            <div className="flex items-center space-x-2">
+            <div className="flex items-left space-x-2">
               {instruction.instruction === "Gather used towels" && (
                 <PiTowelDuotone size={28} />
               )}

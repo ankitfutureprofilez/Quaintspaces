@@ -15,7 +15,7 @@ const HouseRules = ({ petsAllowed, setPetsAllowed, eventsAllowed, pets, setPets,
       </p>
 
       <div className='flex p-4 px-6  justify-between bg-slate-100 rounded-full mb-2'>
-        <label className='font-normal  text-right  text-lg text-slate-600 ' style={{ marginRight: '10px' }}>
+        <label className='font-normal  text-right text-[16px] md:text-lg text-slate-600 ' style={{ marginRight: '10px' }}>
           Pets allowed:
         </label>
 
@@ -34,7 +34,7 @@ const HouseRules = ({ petsAllowed, setPetsAllowed, eventsAllowed, pets, setPets,
       </div>
       {petsAllowed ? (
         <div className="flex p-4 px-6  justify-between bg-slate-100 rounded-full mb-2 ">
-          <span className="font-normal  text-right  text-lg text-slate-600 ">Pets</span>
+          <span className="font-normal  text-right text-[16px] md:text-lg text-slate-600 ">Pets</span>
           <div className="flex items-center space-x-2  ">
             <button
               onClick={decrements(setPets)}
@@ -54,7 +54,7 @@ const HouseRules = ({ petsAllowed, setPetsAllowed, eventsAllowed, pets, setPets,
       ) : (<> </>)}
 
       <div className='flex p-4 px-6  justify-between bg-slate-100 rounded-full mb-2'>
-        <label className='font-normal  text-right  text-lg text-slate-600 ' style={{ marginRight: '10px' }}>
+        <label className='font-normal  text-right  text-[16px] md:text-lg text-slate-600 ' style={{ marginRight: '10px' }}>
 
           Events Allowed :
         </label>
@@ -73,7 +73,7 @@ const HouseRules = ({ petsAllowed, setPetsAllowed, eventsAllowed, pets, setPets,
       </div>
 
       <div className='flex p-4 px-6  justify-between bg-slate-100 rounded-full mb-2'>
-        <label className='font-normal  text-right  text-lg text-slate-600 ' style={{ marginRight: '10px' }}>
+        <label className='font-normal  text-right text-[16px] md:text-lg text-slate-600 ' style={{ marginRight: '10px' }}>
 
           Quiet Hours:
         </label>
@@ -173,7 +173,7 @@ const HouseRules = ({ petsAllowed, setPetsAllowed, eventsAllowed, pets, setPets,
 
 
       <div className='flex p-4 px-6  justify-between bg-slate-100 rounded-full mb-2'>
-        <label className='font-normal  text-right  text-lg text-slate-600' style={{ marginRight: '10px' }}>
+        <label className='font-normal  text-right  md:text-lg text-[16px] text-slate-600' style={{ marginRight: '10px' }}>
           Smoking Allowed:
         </label>
         <div className='flex'>
@@ -191,7 +191,7 @@ const HouseRules = ({ petsAllowed, setPetsAllowed, eventsAllowed, pets, setPets,
       </div>
 
       <div className='flex p-4 px-6  justify-between bg-slate-100 rounded-full mb-2'>
-        <label className='font-normal  text-right  text-lg text-slate-600' style={{ marginRight: '10px' }}>
+        <label className='font-normal  text-right  md:text-lg text-[16px] text-slate-600' style={{ marginRight: '10px' }}>
 
           Photography Allowed :
         </label>

@@ -133,7 +133,7 @@ function Bookings() {
                             "text-sm ">
                             {item?.userName}
                           </p>
-                          <p className={`text-sm absolute top-2 right-2 px-3 rounded-full ${getStatusClasses(item?.booking_status)}`}>
+                          <p className={`text-[12px] absolute top-2 right-2 px-3 rounded-full ${getStatusClasses(item?.booking_status)}`}>
                             {item?.booking_status === "confirm" ? ("confirmed") :(item?.booking_status) }
                           </p>
                           <p className="text-xs text-gray line-limit !pb-0 leading-relaxed">
