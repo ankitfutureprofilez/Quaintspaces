@@ -417,6 +417,7 @@ export default function Index() {
             <p className="text-lg text-white font-semibold p-6 py-4 bg-[#c48b58]">
               House Rules
             </p>
+            
             <div className="p-6">
               {(houseRule?.check_in) === new Date() ?
                 (
