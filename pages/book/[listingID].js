@@ -500,7 +500,7 @@ const Book = () => {
                   </div>
                   <div className="mt-2 mb-2 sm:mb-4 flex">
                     <input
-                      type="tel"
+                      type="number"
                       id="phone"
                       name="phone"
                       maxLength="10"

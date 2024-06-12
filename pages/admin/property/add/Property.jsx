@@ -16,6 +16,7 @@ import { MdOutlineFreeBreakfast } from "react-icons/md";
 import { FaBuilding, FaHome, FaWarehouse, FaDoorOpen, FaHotel, FaBed, FaCouch } from "react-icons/fa";
 import Guest from "./Guest";
 import Checkout from "./Checkout";
+import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api'
 const propertyTypes = [
   { value: "flat", label: "Flat & Apartment" },
   { value: "house", label: "House" },
@@ -28,6 +29,8 @@ const propertyTypes = [
   { value: "breakfast", label: "Bed & Breakfast" },
 ];
 export default function Property(props) {
+
+
 
   const { isEdit, p, fetchProperties, stepdata, useExistingImages } = props;
   const {
@@ -49,8 +52,11 @@ export default function Property(props) {
     property_image, status, custom_link
   } = p ? p : {};
 
-  console.log("location",location)
-  console.log("p",p)
+  console.log("location", location)
+  console.log("p", p)
+
+  const latitude = 51.5074; // Example latitude
+  const longitude = -0.1278; // Example longitude
 
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
   const [pets, setPets] = useState(no_of_pet_allowed || 1);
@@ -192,28 +198,28 @@ export default function Property(props) {
   const [PType, setPType] = useState(properties_type || "flat");
   const lstring = location ? JSON.parse(location.replace("/\\\"/g", '"')) : null;
   const l = JSON.parse(lstring);
-console.log("lstring",lstring)
-console.log("l",l)
+  console.log("lstring", lstring)
+  console.log("l", l)
 
-const [address, setAddress] = useState({
-  street_address: l && l.street_address ? l.street_address : "",
-  flat_house: l && l.flat_house ? l.flat_house : "",
-  district: l && l.district ? l.district : "",
-  nearby: l && l.nearby ? l.nearby : "",
-  city: l && l.city ? l.city : "",
-  state: l && l.state ? l.state : "",
-  pin: l && l.pin ? l.pin : "",
-  location: l && l.location ? l.location : "",
-  latitude: l && l.latitude ? l.latitude : '',
-  longitude: l && l.longitude ? l.longitude : "",
-});
+  const [address, setAddress] = useState({
+    street_address: l && l.street_address ? l.street_address : "",
+    flat_house: l && l.flat_house ? l.flat_house : "",
+    district: l && l.district ? l.district : "",
+    nearby: l && l.nearby ? l.nearby : "",
+    city: l && l.city ? l.city : "",
+    state: l && l.state ? l.state : "",
+    pin: l && l.pin ? l.pin : "",
+    location: l && l.location ? l.location : "",
+    latitude: l && l.latitude ? l.latitude : '',
+    longitude: l && l.longitude ? l.longitude : "",
+  });
 
-// console.log("address", address)
+  // console.log("address", address)
 
-const handleAddress = (e) => {
-  const { name, value } = e.target;
-  setAddress({ ...address, [name]: value });
-};
+  const handleAddress = (e) => {
+    const { name, value } = e.target;
+    setAddress({ ...address, [name]: value });
+  };
 
   const [item, setItem] = useState({
     name: name || "",
@@ -325,6 +331,7 @@ const handleAddress = (e) => {
     setStep((prev) => prev + 1);
   };
   const [locationupdate, setLocationupdate] = useState([]);
+
   const getNavigator = () => {
     if (typeof navigator !== "undefined") {
       return navigator;
@@ -333,13 +340,15 @@ const handleAddress = (e) => {
       return null;
     }
   };
-  const[loadinglocation , setLoadinglocation] = useState(false)
-
+  const [loadinglocation, setLoadinglocation] = useState(false)
+  const [markerPosition, setMarkerPosition] = useState({ lat: 0, lng: 0 });
+  const [inputLocation, setInputLocation] = useState('');
+  const [center, setCenter] = useState({ lat: 0, lng: 0 });
   const fetchLocationData = async () => {
-    if(loadinglocation){
+    if (loadinglocation) {
       return;
     }
-  setLoadinglocation(true);
+    setLoadinglocation(true);
     const navigatorObj = getNavigator();
 
     if (navigatorObj && navigatorObj.geolocation) {
@@ -362,6 +371,15 @@ const handleAddress = (e) => {
               locationData = response.data;
               setLocationupdate(locationData?.address);
             }
+            setMarkerPosition({
+              lat: latitude,
+              lng: longitude,
+            });
+            setCenter({
+              lat: latitude,
+              lng: longitude,
+            });
+
             setAddress({
               location: locationData.display_name,
               latitude: latitude.toString(),
@@ -378,7 +396,7 @@ const handleAddress = (e) => {
             });
             setLoadinglocation(false);
           } catch (error) {
-             setLoadinglocation(false);
+            setLoadinglocation(false);
             console.log("Error fetching data:", error);
           }
         },
@@ -390,9 +408,6 @@ const handleAddress = (e) => {
     }
   };
 
-
-
-
   const fetchLocation = async () => {
     const formattedAddress = `${address.street_address}, ${address.nearby}, ${address.district}, ${address.city}, ${address.state}, ${address.pin}`;
     try {
@@ -403,6 +418,14 @@ const handleAddress = (e) => {
       );
       const { results } = response.data;
       if (results && results.length > 0) {
+        setMarkerPosition({
+          lat: results[0]?.geometry?.location?.lat,
+          lng: results[0]?.geometry?.location?.lng,
+        });
+        setCenter({
+          lat: results[0]?.geometry?.location?.lat,
+          lng: results[0]?.geometry?.location?.lng,
+        });
         setAddress({
           ...address,
           location: results[0]?.formatted_address,
@@ -414,6 +437,51 @@ const handleAddress = (e) => {
       console.error("Error fetching location:", error);
     }
   };
+
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDzPG91wtUKY3vd_iD3QWorkUCSdofTS58&libraries=places`;
+    script.async = true;
+    script.defer = true;
+    script.onload = initializeMap;
+    document.head.appendChild(script);
+    return () => {
+      document.head.removeChild(script);
+    }
+  }, []);
+
+  function initializeMap() {
+    const map = new window.google.maps.Map(document.getElementById("map"), {
+      zoom: 12,
+      center: markerPosition,
+    });
+
+    console.log("map", map)
+    const marker = new window.google.maps.Marker({
+      position: markerPosition,
+      map: map,
+      draggable: true,
+    });
+    console.log("marker", marker)
+
+    window.google.maps.event.addListener(marker, 'dragend', function (event) {
+      setMarkerPosition({ lat: event.latLng.lat(), lng: event.latLng.lng() });
+    });
+
+    if (inputLocation) {
+      const geocoder = new window.google.maps.Geocoder();
+      geocoder.geocode({ address: inputLocation }, (results, status) => {
+        if (status === 'OK' && results[0]) {
+          const location = results[0].geometry.location;
+          setMarkerPosition({ lat: location.lat(), lng: location.lng() });
+          map.setCenter(location);
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+    }
+  }
 
   const [imageproperty, setImagesproperty] = useState(property_image);
 
@@ -608,7 +676,7 @@ const handleAddress = (e) => {
           <div className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `} >
             <div className="p-8 rounded-2xl border ">
               <div
-                className={`${step === 0 ? "" : "display-none"
+                className={`${step === 2 ? "" : "display-none"
                   } max-w-[100%] m-auto table w-full`}
               >
                 {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
@@ -747,7 +815,7 @@ const handleAddress = (e) => {
                   </div>
                 </div>
               </div>
-              <div className={`${step === 2 ? "" : "display-none"}`}>
+              <div className={`${step === 0 ? "" : "display-none"}`}>
 
                 <h2 className="text-3xl text-center font-bold mb-2">
                   Where's your place located?
@@ -764,7 +832,7 @@ const handleAddress = (e) => {
                       onClick={fetchLocationData}
                     >
 
-                      {loadinglocation ? ".... " : "Use Current Location" }
+                      {loadinglocation ? ".... " : "Use Current Location"}
                     </button>
                   </div>
                   <div class="flex items-center justify-center space-x-4">
@@ -850,7 +918,7 @@ const handleAddress = (e) => {
                       <div>
                         <iframe
                           src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
-                            ` ${address?.location}`
+                            address?.location
                           )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
                           width="100%"
                           height="450"
@@ -860,7 +928,7 @@ const handleAddress = (e) => {
                           referrerPolicy="no-referrer-when-downgrade"
                           title="Google Map"
                         ></iframe>
-
+                        <div id="map" style={{ width: '100%', height: '450px' }}></div>
                       </div>
                     </>
                   )}
@@ -1133,7 +1201,7 @@ const handleAddress = (e) => {
                   </div>
 
                   <div className="flex flex-wrap  mt-16">
-                    { isEdit === true ? (
+                    {isEdit === true ? (
                       (
                         images &&
                         images.map((file, index) => (
@@ -1571,7 +1639,7 @@ const handleAddress = (e) => {
               <div className={`${step === 11 ? "" : "display-none"
                 } max-w-[100%] m-auto table w-full `}>
                 <div className="flex flex-col mb-2">
-                  <Checkout handleSubmit={handleSubmit}  selectedInstruction={selectedInstruction} isEdit={true} checkoutdata={check_out_instruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />
+                  <Checkout handleSubmit={handleSubmit} selectedInstruction={selectedInstruction} isEdit={true} checkoutdata={check_out_instruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />
                 </div>
                 <div className="flex flex-col  ">
 
