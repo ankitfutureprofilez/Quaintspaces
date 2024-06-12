@@ -584,7 +584,7 @@ const Book = () => {
                   </span>
                 </div>
               </div>
-              <div className="py-4 border-b border-borderColor confirm-details">
+              <div className="py-4 confirm-details">
                 <h1 className="">Price Details</h1>{" "}
                 <div className="flex gap-3 mt-2 border-b pb-2">
                   <div className="flex items-center justify-between w-full">
@@ -646,7 +646,9 @@ const Book = () => {
                     </span>
                   </div>
                 </div>
-
+                <div className="pt-4 flex items-center border-b pb-2 justify-between confirm-total">
+                <span className="font-bold text-center ">Extra Charges </span>
+              </div>
                 <div className="flex gap-3 mt-2 border-b pb-2">
                   <div className="flex items-center justify-between w-full">
                     <span className="block text-blackColor">
@@ -664,7 +666,6 @@ const Book = () => {
                     </span>
                   </div>
                 </div>
-
                 {listing?.guests < guests?.adults?.value + guests?.children?.value ? (
                   <div className="flex gap-3 mt-2 border-b pb-2">
                     <div className="flex items-center justify-between w-full">
