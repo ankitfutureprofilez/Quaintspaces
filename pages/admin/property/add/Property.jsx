@@ -49,8 +49,8 @@ export default function Property(props) {
     property_image, status, custom_link
   } = p ? p : {};
 
-  console.log("location",location)
-  console.log("p",p)
+  console.log("location", location)
+  console.log("p", p)
 
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
   const [pets, setPets] = useState(no_of_pet_allowed || 1);
@@ -192,28 +192,28 @@ export default function Property(props) {
   const [PType, setPType] = useState(properties_type || "flat");
   const lstring = location ? JSON.parse(location.replace("/\\\"/g", '"')) : null;
   const l = JSON.parse(lstring);
-console.log("lstring",lstring)
-console.log("l",l)
+  console.log("lstring", lstring)
+  console.log("l", l)
 
-const [address, setAddress] = useState({
-  street_address: l && l.street_address ? l.street_address : "",
-  flat_house: l && l.flat_house ? l.flat_house : "",
-  district: l && l.district ? l.district : "",
-  nearby: l && l.nearby ? l.nearby : "",
-  city: l && l.city ? l.city : "",
-  state: l && l.state ? l.state : "",
-  pin: l && l.pin ? l.pin : "",
-  location: l && l.location ? l.location : "",
-  latitude: l && l.latitude ? l.latitude : '',
-  longitude: l && l.longitude ? l.longitude : "",
-});
+  const [address, setAddress] = useState({
+    street_address: l && l.street_address ? l.street_address : "",
+    flat_house: l && l.flat_house ? l.flat_house : "",
+    district: l && l.district ? l.district : "",
+    nearby: l && l.nearby ? l.nearby : "",
+    city: l && l.city ? l.city : "",
+    state: l && l.state ? l.state : "",
+    pin: l && l.pin ? l.pin : "",
+    location: l && l.location ? l.location : "",
+    latitude: l && l.latitude ? l.latitude : '',
+    longitude: l && l.longitude ? l.longitude : "",
+  });
 
-// console.log("address", address)
+  // console.log("address", address)
 
-const handleAddress = (e) => {
-  const { name, value } = e.target;
-  setAddress({ ...address, [name]: value });
-};
+  const handleAddress = (e) => {
+    const { name, value } = e.target;
+    setAddress({ ...address, [name]: value });
+  };
 
   const [item, setItem] = useState({
     name: name || "",
@@ -333,13 +333,19 @@ const handleAddress = (e) => {
       return null;
     }
   };
-  const[loadinglocation , setLoadinglocation] = useState(false)
+  const [loadinglocation, setLoadinglocation] = useState(false)
+  const [markerPosition, setMarkerPosition] = useState({ lat: 0, lng: 0 });
+  const [inputLocation, setInputLocation] = useState('');
+  const [center, setCenter] = useState({ lat: 0, lng: 0 });
+  const [locationName, setLocationName] = useState('');
+  const [infoWindow, setInfoWindow] = useState(null); // For handling InfoWindow instance
+  const [map, setMap] = useState(null); 
 
   const fetchLocationData = async () => {
-    if(loadinglocation){
+    if (loadinglocation) {
       return;
     }
-  setLoadinglocation(true);
+    setLoadinglocation(true);
     const navigatorObj = getNavigator();
 
     if (navigatorObj && navigatorObj.geolocation) {
@@ -376,9 +382,18 @@ const handleAddress = (e) => {
               state: locationData?.address?.state || locationupdate?.state,
               pin: locationData?.address?.postcode || locationupdate?.postcode,
             });
+            setMarkerPosition({
+              lat: latitude,
+              lng: longitude,
+            });
+            setCenter({
+              lat: latitude,
+              lng: longitude,
+            });
+            setLocationName(locationData.display_name);
             setLoadinglocation(false);
           } catch (error) {
-             setLoadinglocation(false);
+            setLoadinglocation(false);
             console.log("Error fetching data:", error);
           }
         },
@@ -403,16 +418,98 @@ const handleAddress = (e) => {
       );
       const { results } = response.data;
       if (results && results.length > 0) {
+        setMarkerPosition({
+          lat: results[0]?.geometry?.location?.lat,
+          lng: results[0]?.geometry?.location?.lng,
+        });
+        setCenter({
+          lat: results[0]?.geometry?.location?.lat,
+          lng: results[0]?.geometry?.location?.lng,
+        });
         setAddress({
           ...address,
           location: results[0]?.formatted_address,
           latitude: results[0]?.geometry?.location?.lat,
           longitude: results[0]?.geometry?.location?.lng,
-        });
+          });
+        setLocationName(results[0].formatted_address);
       }
     } catch (error) {
       console.error("Error fetching location:", error);
     }
+  };
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDzPG91wtUKY3vd_iD3QWorkUCSdofTS58&libraries=places`;
+    script.async = true;
+    script.defer = true;
+    script.onload = initializeMap;
+    document.head.appendChild(script);
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, [markerPosition]);
+
+  const initializeMap = () => {
+    const map = new window.google.maps.Map(document.getElementById('map'), {
+      zoom: 16, // Higher zoom level
+      center: markerPosition,
+    });
+
+    const marker = new window.google.maps.Marker({
+      position: markerPosition,
+      map: map,
+      draggable: true,
+    });
+
+    // Initialize InfoWindow
+    const infoWindow = new window.google.maps.InfoWindow({
+      content: locationName,
+    });
+
+    // Set InfoWindow instance to state
+    setInfoWindow(infoWindow);
+
+    // Show location info when marker is clicked
+    marker.addListener('click', () => {
+      infoWindow.setContent(locationName);
+      infoWindow.open(map, marker);
+    });
+
+    // Update marker position and address on drag end
+    window.google.maps.event.addListener(marker, 'dragend', function (event) {
+      const newLat = event.latLng.lat();
+      const newLng = event.latLng.lng();
+      setMarkerPosition({ lat: newLat, lng: newLng });
+      setCenter({ lat: newLat, lng: newLng });
+
+      // Fetch the new address
+      axios
+        .get(
+          `https://nominatim.openstreetmap.org/reverse?lat=${newLat}&lon=${newLng}&format=json`
+        )
+        .then((response) => {
+          const locationData = response.data;
+          setAddress((prev) => ({
+            ...prev,
+            location: locationData.display_name,
+            latitude: newLat,
+            longitude: newLng,
+            street_address: locationData?.address?.road || '',
+            district: locationData?.address?.state_district || '',
+            nearby: locationData?.address?.suburb || '',
+            city: locationData?.address?.city || '',
+            state: locationData?.address?.state || '',
+            pin: locationData?.address?.postcode || '',
+          }));
+          setLocationName(locationData.display_name); // Update the location name
+          infoWindow.setContent(locationData.display_name); // Update the info window content
+        })
+        .catch((error) => {
+          console.error('Error fetching new address:', error);
+        });
+    });
   };
 
   const [imageproperty, setImagesproperty] = useState(property_image);
@@ -764,7 +861,7 @@ const handleAddress = (e) => {
                       onClick={fetchLocationData}
                     >
 
-                      {loadinglocation ? ".... " : "Use Current Location" }
+                      {loadinglocation ? ".... " : "Use Current Location"}
                     </button>
                   </div>
                   <div class="flex items-center justify-center space-x-4">
@@ -848,7 +945,11 @@ const handleAddress = (e) => {
                         only share your address after they've made a reservation
                       </p>
                       <div>
-                        <iframe
+
+                        <div id="map" style={{ width: '100%', height: '450px' }}></div>
+
+
+                        {/* <iframe
                           src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
                             ` ${address?.location}`
                           )}&t=&z=14&ie=UTF8&iwloc=B&output=embed`}
@@ -859,7 +960,7 @@ const handleAddress = (e) => {
                           loading="lazy"
                           referrerPolicy="no-referrer-when-downgrade"
                           title="Google Map"
-                        ></iframe>
+                        ></iframe> */}
 
                       </div>
                     </>
@@ -918,76 +1019,6 @@ const handleAddress = (e) => {
                       />
                     </label>
                   </div>
-                  {/* <div className="flex flex-wrap  mt-16">
-                    { useExistingImages || isEdit  ?
-                    (<> </>)
-                     :  (
-                      images && images.length > 0 && (
-                        <>
-                          <div
-                            key={0}
-                            id={images[0].name}
-                            draggable
-                            onDragStart={handleDrag}
-                            onDragOver={handleOver}
-                            onDrop={handleDrop}
-                            className="relative w-full  p-1"
-                          >
-                            <Image
-                              src={URL.createObjectURL(images[0])}
-                              width={200}
-                              height={200}
-                              alt={`Preview 0`}
-                              className="image-preview h-full object-cover border min-h-[170px] max-h-[250px] w-full max-w-full rounded-lg"
-                              onLoad={() => URL.revokeObjectURL(images[0])}
-                            />
-                            <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
-                              <p className="text-xs text-gray-700">Cover Photo</p>
-                            </div>
-                            <div className="absolute right-2 top-2">
-                              <DropdownMenu
-                                index={0}
-                                isFirst={true}
-                                isLast={images.length === 1}
-                              />
-                            </div>
-                          </div>
-                          {images.slice(1).map((file, index) => (
-                            <div
-                              key={index + 1}
-                              id={file.name}
-                              draggable
-                              onDragStart={handleDrag}
-                              onDragOver={handleOver}
-                              onDrop={handleDrop}
-                              className="relative w-1/2 md:w-1/3 p-1"
-                            >
-                              <Image
-                                src={URL.createObjectURL(file)}
-                                width={200}
-                                height={200}
-                                alt={`Preview ${index + 1}`}
-                                className="image-preview h-full object-cover border min-h-[120px] sm:min-h-[150px]  max-h-[200px] w-full max-w-full rounded-lg"
-                                onLoad={() => URL.revokeObjectURL(file)}
-                              />
-                              {index + 1 === 0 && (
-                                <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
-                                  <p className="text-xs text-gray-700">Cover Photo</p>
-                                </div>
-                              )}
-                              <div className="absolute right-2 top-2">
-                                <DropdownMenu
-                                  index={index + 1}
-                                  isFirst={false}
-                                  isLast={index + 1 === images.length - 1}
-                                />
-                              </div>
-                            </div>
-                          ))}
-                        </>
-                      )
-                    )}
-                  </div> */}
 
                   <div className="flex flex-wrap  mt-2">
                     {useExistingImages === false || isEdit === true ?
@@ -1133,7 +1164,7 @@ const handleAddress = (e) => {
                   </div>
 
                   <div className="flex flex-wrap  mt-2">
-                    { isEdit === true ? (
+                    {isEdit === true ? (
                       (
                         images &&
                         images.map((file, index) => (
@@ -1571,7 +1602,7 @@ const handleAddress = (e) => {
               <div className={`${step === 11 ? "" : "display-none"
                 } max-w-[100%] m-auto w-full `}>
                 <div className="flex  flex-col mb-2">
-                  <Checkout handleSubmit={handleSubmit}  selectedInstruction={selectedInstruction} isEdit={true} checkoutdata={check_out_instruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />
+                  <Checkout handleSubmit={handleSubmit} selectedInstruction={selectedInstruction} isEdit={true} checkoutdata={check_out_instruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />
                 </div>
                 <div className="flex flex-col  ">
 
