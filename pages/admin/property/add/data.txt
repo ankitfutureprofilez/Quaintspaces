@@ -450,6 +450,7 @@ data:[
         "title": "Outdoor Dining Area",
         "icons": "<RiTableLine style={{ color: 'black', fontSize: '40px' }} />"
       },
+      
       {
         "value": "outdoor_furniture",
         "title": "Outdoor Furniture",
