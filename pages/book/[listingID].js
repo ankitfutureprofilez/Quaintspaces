@@ -421,7 +421,7 @@ const Book = () => {
               <h3 className="text-xl mb-4 font-medium mt-10 heading-data">
                 Upload ID
               </h3>
-              <div className=" border-b border-borderColor pb-11">
+              <div className=" border-b border-borderColor pb-4 md:pb-11">
                 <form>
                   <div className="mb-4">
                     <select
@@ -452,14 +452,14 @@ const Book = () => {
                   </div>
                 </form>
               </div>
-              <h3 className="text-xl mb-4 font-medium mt-11 heading-data">
+              <h2 className="text-[22px] mb-4 font-medium mt-11 heading-data">
                 Required for your trip
-              </h3>
+              </h2>
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
-                <div className=" mt-4">
-                  <h1 className="text-lg  item-heading mb-2">
+                <div className=" ">
+                  <h3 className="text-[18px]  item-heading mb-2">
                     Message the host
-                  </h1>
+                  </h3>
                   <div className="flex flex-wrap justify-between mb-5">
                     <p className="item-pargraph">
                       {" "}
@@ -473,7 +473,7 @@ const Book = () => {
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      className="mt-1 mr-1 p-4 border rounded w-full"
+                      className="mt-1 mr-1 p-2 sm:p-4 border rounded w-full"
                       placeholder="Enter a message for your host"
                     ></textarea>
                     {/* <button
@@ -548,14 +548,14 @@ const Book = () => {
                 <Button
                   text={loading ? "Processing..." : "Confirm & Pay"}
                   design={
-                    "font-inter hover:bg-[#000] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 p-4 rounded-full"
+                    "font-inter hover:bg-[#fff] border-[#c48b58] border hover:text-[#c48b58] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 sm:p-4 p-3 rounded-full"
                   }
                   onClick={handleSubmit}
                 />
               </div>
             </div>
-            <div className="w-4/12  rounded-xl shadow py-8 px-5 h-fit golden-border">
-              <div className="flex gap-3 pb-4 border-b border-borderColor image-data">
+            <div className="w-4/12  rounded-xl shadow py-8 px-5 h-fit golden-border sticky top-4">
+              <div className="flex sm:flex-col lg:flex-row gap-3 pb-4 border-b border-borderColor image-data">
                 <Image
                   src={
                     listing?.property_image && listing.property_image.length > 0

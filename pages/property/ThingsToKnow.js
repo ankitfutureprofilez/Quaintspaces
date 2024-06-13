@@ -10,7 +10,7 @@ export default function ThingsToKnow({ record, isAdmin , content}) {
     <div className="container mx-auto">
       <h1 className="listing-heading text-left !mb-0">Things to know</h1>
       <div className="flex justify-between house-rule-text">
-        <div className="flex flex-col mt-3 sm:mt-2 mr-4 w-1/3">
+        <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
           <h2 className="font-semibold mb-2">Time Management</h2>
           <p className="mb-2 text-gray-500">Check-in starts after {record?.data?.check_in}</p>
           <p className="mb-2 text-gray-500">Flexible/check-in ends after {record?.data?.flexible_check_in}</p>
@@ -20,7 +20,7 @@ export default function ThingsToKnow({ record, isAdmin , content}) {
 
         </div>
 
-        <div className="flex flex-col mt-3 sm:mt-2 mr-4 w-1/3">
+        <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
           <h2 className="font-semibold mb-2">Safety & Property </h2>
           <p className="mb-2 text-gray-500 flex ">
             <div>
@@ -33,7 +33,7 @@ export default function ThingsToKnow({ record, isAdmin , content}) {
 
           </p>
         </div>
-        <div className="flex flex-col mt-3 sm:mt-2 mr-4 w-1/3">
+        <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
           <h2 className="font-semibold mb-2">House Rules</h2>
           <p className="mb-2 text-gray-500 capitalize ">
             {record?.data?.property_rule?.pet_allowed === 1 ? "Pet is allowed." : "Pet is not allowed."}

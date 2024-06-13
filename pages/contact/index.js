@@ -70,8 +70,8 @@ export default function index() {
       </div>
       <div className="bg-orange-300 justify-between w-full py-6 md:py-12 my-6 md:my-12">
         <div className="container mx-auto">
-          <div className="flex justify-between flex-wrap sm:flex-nowrap">
-            <div className="flex items-center w-full mb-3 sm:mb-0">
+          <div className="flex justify-between justify-center flex-wrap sm:flex-nowrap">
+            <div className="flex items-center w-full sm:justify-center mb-3 sm:mb-0">
               <svg
                 width="50"
                 height="50"
@@ -86,10 +86,10 @@ export default function index() {
                 />
               </svg>
               <a href="tel:+98-9745678912">
-                <span className="ml-2 font-medium">+98-9745678912</span>
+                <span className="ml-2 text-[#fff] font-medium">+98-9745678912</span>
               </a>
             </div>
-            <div className="flex items-center w-full mb-3 sm:mb-0">
+            <div className="flex items-center sm:justify-center w-full mb-3 sm:mb-0">
               <svg
                 width="50"
                 height="50"
@@ -104,10 +104,10 @@ export default function index() {
                 />
               </svg>
               <a href="mailto:quaintstay@gmail.com">
-                <span className="ml-2 font-medium">quaintstay@gmail.com</span>
+                <span className="ml-2 text-[#fff] font-medium">quaintstay@gmail.com</span>
               </a>
             </div>
-            <div className="flex items-center w-full mb-3 sm:mb-0">
+            <div className="flex items-center sm:justify-center w-full mb-3 sm:mb-0">
               <svg
                 width="50"
                 height="50"
@@ -135,7 +135,7 @@ export default function index() {
                 </g>
               </svg>
               <a href="https://wa.me/989745678912">
-                <span className="ml-2 font-medium">+98-9745678912</span>
+                <span className="ml-2 text-[#fff] font-medium">+98-9745678912</span>
               </a>
             </div>
           </div>
@@ -205,7 +205,7 @@ export default function index() {
                   rows={4} // Set the number of rows as needed
                 />
               </div>
-              <button className="filter btn w-7/12 !py-2 lg:!py-3 flex mx-auto justify-center">
+              <button className=" hover:bg-[#fff] border border-[#c48b58] bg-[#c48b58] text-[#fff] hover:text-[#c48b58] btn w-7/12 !py-2 lg:!py-3 flex mx-auto justify-center">
                 {loading ? "Submitting..." : "Submit"}
               </button>
 

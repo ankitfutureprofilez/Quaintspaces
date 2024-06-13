@@ -336,6 +336,7 @@ footer {
   text-align: center;
   justify-content: center;
   border-top: 1px solid #c48b58;
+  color: #c48b58;
   margin-top: 25px;
 }
 .explor-btn .explore {
@@ -617,9 +618,7 @@ button.submint-btn {
   border: 1px solid #ececec;
   background: #ececec;
 }
-.upcomming-box {
-  margin-bottom: 40px !important;
-}
+
 .table-responsive {
   overflow-x: auto;
 }
@@ -811,7 +810,7 @@ button.submint-btn {
   color: #666666 !important;
 }
 .booking-table {
-  min-width: 990px;
+  min-width: 1090px;
   width: -webkit-fill-available;
 }
 .table-responisve {
@@ -1247,13 +1246,8 @@ button.submint-btn {
   .booking-more .px-1 {
     margin-top: 20px !important ;
   }
-  .upcomming-box button {
-    font-size: 14px !important ;
-    margin-left: 6px !important;
-  }
-  .upcomming-box {
-    margin-bottom: 20px !important;
-  }
+  .booking-table td, .booking-table thead tr th {font-size: 14px;  }
+
   .profile-border {
     padding-bottom: 25px !important;
     margin-bottom: 25px !important;
@@ -1307,7 +1301,7 @@ button.submint-btn {
 
   color: #fff;
 }
-.filter:hover{background-color: #000; }
+
 
 .image-data img {
   width: 100px;

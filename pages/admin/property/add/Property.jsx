@@ -604,12 +604,12 @@ const handleAddress = (e) => {
 
       </div>
       <div className={`w-full overflow-hidden	 flex items-center justify-center py-4 md:py-8 `}>
-        <div className="max-w-4xl w-full space-y-8 w-full ">
+        <div className="max-w-4xl w-full space-y-8 w-full px-2">
           <div className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `} >
             <div className="p-3 sm:p-4 md:p-8 rounded-2xl border ">
               <div
                 className={`${step === 0 ? "" : "display-none"
-                  } max-w-[100%] m-auto table w-full`}
+                  } max-w-[100%] m-auto mb-8 table w-full`}
               >
                 {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
     <div className="grid grid-cols-3 gap-4 m-auto table  " >
@@ -748,7 +748,7 @@ const handleAddress = (e) => {
                 </div>
               </div>
               <div className={`${step === 2 ? "" : "display-none"}`}>
-
+<div className="mb-8">
                 <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                   Where's your place located?
                 </h2>
@@ -836,6 +836,7 @@ const handleAddress = (e) => {
                       className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
                     />
                   </div>
+                </div>
                 </div>
                 <div>
                   {address?.location && (
@@ -1203,7 +1204,8 @@ const handleAddress = (e) => {
                     Please enter the following details
                   </h2>
                   <div className="flex flex- flex-wrap justify-between mt-4 text-sm font-medium text-gray-700 ">
-                    <div className="flex flex-col w-full md:w-1/3 md:mb-0 mb-2">
+                  <div className="w-full px-1 md:w-1/3 ">
+                    <div className="flex flex-col w-full md:mb-0 mb-2">
                       <label>Cleaning Fees</label>
                       <input
                         required
@@ -1216,8 +1218,9 @@ const handleAddress = (e) => {
                         onChange={handleInputChange}
                       />
                     </div>
-
-                    <div className="flex flex-col w-full md:w-1/3 md:mb-0 mb-2">
+                    </div>
+                    <div className="w-full px-1 md:w-1/3">
+                    <div className="flex flex-col w-full md:mb-0 mb-2">
                       <label>Pet Fees</label>
                       <input
                         type="text"
@@ -1229,8 +1232,9 @@ const handleAddress = (e) => {
                         onChange={handleInputChange}
                       />
                     </div>
-
-                    <div className="flex flex-col w-full md:w-1/3 md:mb-0 mb-2">
+                    </div>
+                    <div className="w-full px-1 md:w-1/3">
+                    <div className="flex flex-col w-full md:mb-0 mb-2">
                       <label>Extra Guest Fees (Per Guest)</label>
                       <input
                         required
@@ -1243,15 +1247,16 @@ const handleAddress = (e) => {
                         onChange={handleInputChange}
                       />
                     </div>
+                    </div>
                   </div>
                 </div>
 
                 <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4 ">
                   <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">Check-in & checkout times</h2>
                   <div className="flex flex- flex-wrap justify-between mt-4 text-sm font-medium text-gray-700 ">
-                    <div className="w-full md:w-2/3 mb-2">
+                    <div className="w-full md:w-2/3 mb-2 pr-2">
                       <label className="block mb-2 font-semibold">Check-in window</label>
-                      <div className="flex justify-between space-x-4">
+                      <div className="flex justify-between space-x-2">
                         <div className="w-1/2 relative">
                           <label className="absolute -top-1 left-1 text-xs text-gray-500">
                             Start time
@@ -1326,8 +1331,8 @@ const handleAddress = (e) => {
                         </div>
                       </div>
                     </div>
-                    <div className="w-full md:w-1/3 mb-2">
-                      <label className="block mb-2 font-semibold">Checkout time</label>
+                    <div className="w-full md:w-1/3 ">
+                      <label className="block mb-2 font-semibold sm:mb-[20px]">Checkout time</label>
                       <select
                         value={checkout}
                         onChange={(e) => setCheckout(e.target.value)}
@@ -1585,7 +1590,7 @@ const handleAddress = (e) => {
                   <button
                     type="button"
                     onClick={prevStep}
-                    className="inline-flex mx-2 justify-center py-3 px-8 border border-gray-300 shadow-sm text-sm font-medium rounded-xl text-gray-700 bg-white hover:bg-gray-50"
+                    className=" mx-2 py-2 rounded-xl px-8 mt-4 hover:bg-[#c48b58] text-[#c48b58] border-2 border-[#c48b58] hover:border-[#c48b58] hover:text-[#fff]"
                   >
                     Back
                   </button>
@@ -1595,7 +1600,7 @@ const handleAddress = (e) => {
                   <button
                     type="button"
                     onClick={nextStep}
-                    className="inline-flex mx-2 justify-center py-3 px-8 border border-gray-300 shadow-sm text-sm font-medium rounded-xl text-white bg-violet-700 hover:bg-blue-700 "
+                    className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#fff] bg-[#c48b58] text-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58]  "
                   >
                     Next
                   </button>
@@ -1603,7 +1608,7 @@ const handleAddress = (e) => {
                   <button
                     type="submit"
                     onClick={handleSubmit}
-                    className="inline-flex mx-2 justify-center py-3 px-8 border border-gray-300 shadow-sm text-sm font-medium rounded-xl text-white bg-violet-700 hover:bg-blue-700 "
+                    className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#fff] bg-[#c48b58] text-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58]  "
                   >
                     {Loading ? "processing.. " : "Submit"}
                   </button>

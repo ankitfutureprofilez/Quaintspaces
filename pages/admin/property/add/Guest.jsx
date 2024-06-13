@@ -16,7 +16,7 @@ export default function Guest({
       <h2 className="text-[16px] text-center mb-4">
         You'll add more details later, such as bed types.
       </h2>
-      <div className="grid  m-auto table gap-y-2  mt-5 ">
+      <div className="grid  m-auto table gap-y-2  my-5 ">
         <div className="flex items-center  py-3 sm:py-4  justify-between border-b-2 border-black-600 px-2">
           <span className="font-normal leading-snug text-lg   ">Guests</span>
           <div className="flex items-center space-x-2">
