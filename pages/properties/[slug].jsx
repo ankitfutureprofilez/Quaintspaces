@@ -52,11 +52,11 @@ const Listing = () => {
     }
   }, [slug]);
 
-  useEffect(() => {
-    if (listingData) {
-      setrecord(listingData);
-    }
-  }, [listingData]);
+  // useEffect(() => {
+  //   if (listingData) {
+  //     setrecord(listingData);
+  //   }
+  // }, [listingData]);
 
   return (
     <>
