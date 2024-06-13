@@ -59,17 +59,18 @@ const DropReview = ({ closeModal, listing, getSelfreview }) => {
   };
 
   return (
-    <div className="mt-6 flex flex-col align-center w-full">
+    <div className=" flex flex-col align-center w-full">
       {/* <h1 className="mb-8 mx-auto align-center sm:text-2xl text-md font-medium text-bold">
         Please drop your review
       </h1> */}
 
       <h2
-        className="mr-4 w-full align-center pt-8 text-lg text-center text-base font-medium"
-        style={{ color: "#3F2A17" }}
+        className=" w-full p-4 bg-[#c48b58] text-[#fff] align-center text-lg text-base font-medium"
+      
       >
         Overall Rating
       </h2>
+      <div className="p-5 ">
 
       <div className="flex flex-col">
         <RatingStar
@@ -182,9 +183,10 @@ const DropReview = ({ closeModal, listing, getSelfreview }) => {
         />
       </div>
 
-      <button onClick={handleSubmit} className="filter btn mb-4 mx-auto">
+      <button onClick={handleSubmit} className="filter btn px-6 mx-auto">
         {loading ? "Submitting..." : "Submit"}
       </button>
+      </div>
     </div>
   );
 };

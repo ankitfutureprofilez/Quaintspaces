@@ -356,10 +356,10 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between">
-          <div className="  flex align-items-center my-4 py-2 space-x-4 upcomming-box">
+        <div className="flex  flex-col md:flex-row justify-between mb-6">
+          <div className="flex-wrap  flex align-items-center py-2 sm:space-x-4 space-x-1 upcomming-box">
             <Button
-              design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${selectedButton === "upcoming"
+              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 rounded-full ${selectedButton === "upcoming"
                 ? "bg-orange-300 text-white"
                 : "text-black"
                 }`}
@@ -369,7 +369,7 @@ export default function Index() {
 
             <Button
               text={"Completed"}
-              design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${selectedButton === "completed"
+              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 rounded-full ${selectedButton === "completed"
                 ? "bg-orange-300 text-white"
                 : "text-black"
                 } `}
@@ -377,7 +377,7 @@ export default function Index() {
             />
 
             <Button
-              design={`font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full ${selectedButton === "cancelled"
+              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 rounded-full ${selectedButton === "cancelled"
                 ? "bg-orange-300 text-white"
                 : "text-black"
                 } `}
@@ -385,14 +385,17 @@ export default function Index() {
               text={"Cancelled"}
             />
           </div>
-          <div className="me-2 my-4 py-2">
-            <button className="font-inter text-gray-400 font-medium leading-tight text-center w-52 border-2 p-3 rounded-full bg-orange-300 text-white " onClick={openModal}>
+          <div className=" py-2">
+            <button className="font-inter text-[#fff] sm:text-[16px] text-[14px] bg-orange-300 font-medium leading-tight text-center border-[#c48b58] lg:w-[auto] px-6 border-2 p-3 rounded-full " onClick={openModal}>
               Filter By Booking Date
             </button>
             <Modal isOpen={isOpen} onClose={closeModal}>
-              <div className="mb-4 mt-10">
+            <p className="text-lg text-white font-semibold p-6 py-4 bg-[#c48b58]">
+            Filter By Booking Date
+            </p>
+              <div className=" ">
                 {["All Dates", "Last 30 Days", "Last 3 Months", "Last 1 Year"].map((option) => (
-                  <div key={option} className="mb-2">
+                  <div  key={option} className="px-6 py-2">
                     <input
                       type="radio"
                       id={option}
@@ -405,6 +408,7 @@ export default function Index() {
                     <label htmlFor={option}>{option}</label>
                   </div>
                 ))}
+                <div   className="px-6 py-2">
                 {years.map((year) => (
                   <div key={year} className="mb-2">
                     <input
@@ -419,6 +423,7 @@ export default function Index() {
                     <label htmlFor={`year${year}`}>{year}</label>
                   </div>
                 ))}
+                </div>
               </div>
               <div className="mb-4 flex justify-center"></div>
             </Modal>

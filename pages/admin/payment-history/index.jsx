@@ -106,7 +106,7 @@ export default function Index() {
                             <Link
                               href={`/admin/user-history/${item?.booking_history?.booking_user[0]?.id}`}
                             >
-                              <div className="flex gap-2 items-center img-data  text-sm p-2 ">
+                              <div className="flex gap-2 items-center img-data  text-sm  ">
                                 <Image
                                   width={35}
                                   height={35}
@@ -220,7 +220,7 @@ export default function Index() {
       {content?.length > 0 && !loading && hasmore && (
         <div className="flex justify-center">
           <div
-            className="font-inter font-lg leading-tight text-center w-full sm:w-96 bg-indigo-600 border-0 p-4 rounded-full mt-10 mb-12 text-white cursor-pointer"
+            className=" mt-4 py-2 px-5 rounded-full text-[#c48b58] hover:bg-[#c48b58] hover:text-[#fff] border-2 bg-color-[#c48b58] border-[#c48b58] "
             onClick={loadMore}
           >
             {loadingButton ? "Loading..." : "Load More"}

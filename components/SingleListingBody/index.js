@@ -202,7 +202,7 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
               </div>
             </div>
             <button
-              className="filter mx-2 btn w-full"
+              className="filter mx-2 btn w-full h-11"
               onClick={() => {
                 if (selectedDay == null || selectEnd == null) {
                   toast.error("Date not selected");

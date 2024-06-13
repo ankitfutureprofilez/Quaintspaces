@@ -28,7 +28,7 @@ export default function index() {
           <span className="rounded-md shadow-sm">
             <button
               type="button"
-              className="sort btn flex mr-2 hover:bg-[#000] hover:border-[#000] hover:text-[#fff]"
+              className="sort btn flex mr-2 hover:bg-[#c48b58] hover:border-[#c48b58] hover:text-[#fff]"
               id="options-menu"
               aria-haspopup="true"
               aria-expanded="true"
@@ -38,7 +38,7 @@ export default function index() {
               {sortingOptions.find((option) => option.key === sortBy).label}
               {/* Icon to indicate dropdown */}
               <svg
-                className="-mr-1 mt-1.25 sml-2 h-5 w-5"
+                className="-mr-1 mt-1.3 sml-2 h-5 w-5"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -194,7 +194,7 @@ export default function index() {
                 sortingOptions={sortingOptions}
               />
               {/* Filter button to open the modal */}
-              <button className="filter btn ms-2" onClick={openModal}>
+              <button className="filter btn ms-2 hover:bg-[#fff] border-[#c48b58] hover:text-[#c48b58] border-2 text-[14px]" onClick={openModal}>
                 Filter
               </button>
             </div>

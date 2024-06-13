@@ -30,15 +30,17 @@ const Title = ({ isSaved, listing, loading }) => {
       ) : (
         
         <>
-          <div className="mt-2.5 flex font-medium mb-2 peora-title">
+        <div className=" pt-4 sm:pt-8 md:pt-12 pb-3 sm:pb-6 md:pb-10">
+          <div className="flex flex-wrap items-center">
             <div className={"backtag"} ></div>
               <Back />
               {/* {listing.data?.title.slice(0, 1).toUpperCase() +
               listing.data?.title.slice(1, listing.data?.title.length)} */}
-              <span className="text-2xl lg:text-3xl">
+              <span className="text-xl sm:text-2xl lg:text-3xl">
               {capitalizeFirstLetter(listing?.data?.name)}
               </span>
           </div>
+        </div>
         </>
       )}
     </>

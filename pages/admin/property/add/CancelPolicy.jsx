@@ -57,7 +57,7 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
     };
 
     return (
-        <div className="  flex flex-wrap">
+        <div className="  flex flex-wrap mb-4">
             <div className="w-full md:w-1/2 pr-2 ">
                 <h2 className="text-center font-bold text-2xl text-slate-900 mt-3 md:mb-4">Cancellation policy</h2>
                 <div className="p-4 mb-4 pb-6 md:mt-3 border-b">
