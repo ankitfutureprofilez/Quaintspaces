@@ -16,7 +16,7 @@ export default function index() {
     localStorage && localStorage.removeItem("token");
     setAuth(null);
     toast.success("Logout Successfully !!");
-    router.push("/");
+    router.push("/login");
   };
   return (
     <AuthLayout>

@@ -21,7 +21,6 @@ export default function Index() {
     main.Adminproperty()
       .then((res) => {
         let properties = res?.data?.data;
-        console.log("properties", properties);
         if (properties) {
           setRecord(properties);
           setIsLoading(false);
@@ -77,6 +76,22 @@ export default function Index() {
     router.push(`/admin/property/edit/${uuid}`);
   };
 
+
+  const parseLocation = (location) => {
+    if (!location) {
+      return "Location not available";
+    }
+    try {
+      const parsedLocation = JSON.parse(location);
+      const detailedLocation = JSON.parse(parsedLocation.location);
+      return detailedLocation;
+    } catch (error) {
+      console.error("Error parsing location:", error);
+      return "Invalid location";
+    }
+  };
+  
+
   return (
     <>
       <AdminLayout heading="Properties">
@@ -97,7 +112,7 @@ export default function Index() {
             <div className="flex flex-wrap  py-5 pt-0">
               {record.length ? (
                 record.map((item, index) => (
-                  <div className="w-full sm:w-1/2  lg:w-1/3 xl:w-1/4 sm:px-3 mt-4" key={index}>
+                  <div className="w-full sm:w-1/1  lg:w-1/2 xl:w-1/3 sm:px-3 mt-4" key={index}>
                     <div className="relative border rounded-lg overflow-hidden shadow-md">
                       <img
                         className="w-full h-48 object-cover object-center"
@@ -117,7 +132,8 @@ export default function Index() {
                       <div className="p-4">
                         <h2 className="text-lg font-medium mb-2 heading-property">{item.name}</h2>
                         <h3 className="text-sm font-medium desc-property">
-                          {item.description}
+                        {/* {parseLocation(item?.location)} */}
+                        {item?.description}
                         </h3>
                         <p className="text-sm text-gray-600 mt-3 capitalize">
                           {item?.type ? `${item?.type?.replace("_", " ")} .` : ""}
