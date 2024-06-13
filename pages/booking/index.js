@@ -19,7 +19,48 @@ export default function Index() {
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState("All Dates");
   const [fetch, setFetch] = useState(false);
+  const [SelectBooking, SetSelectBooking] = useState(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [refend, setRefend] = useState("")
+  const [houseRule, SetHouseRules] = useState({})
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  
+  const [longpolicy, setLongpolicy] = useState();
+  const [standardpolicy, setstandardpolicy] = useState();
 
+  const policies = [
+    {
+      policy: 'Flexible',
+      description: 'Guests get a full refund if they cancel up to a day before check-in.'
+    },
+    {
+      policy: 'Moderate',
+      description: 'Guests get a full refund if they cancel up to 5 days before check-in.'
+    },
+    {
+      policy: 'Firm',
+      description: 'Guests get a full refund if they cancel up to 30 days before check-in, except in certain cases.'
+    },
+    {
+      policy: 'Strict',
+      description: 'Guests get a full refund if they cancel within 48 hours of booking and at least 14 days before check-in.'
+    }
+  ];
+
+
+  const policiesies = [
+    {
+      policy: 'Flexible',
+      description: 'First 30 days are non-refundable. Full refund up to 30 days before check-in.'
+    },
+    {
+      policy: 'Strict',
+      description: 'Guests get a full refund if they cancel within 48 hours of booking and at least 14 days before check-in.'
+    }
+  ];
+
+  const matchedPolicy = policiesies.find(p => p.policy === longpolicy);
+  const matchedPolicies = policies.find(p => p.policy === standardpolicy);
 
 
   const currentYear = new Date().getFullYear();
@@ -30,14 +71,9 @@ export default function Index() {
   );
 
 
-  const [SelectBooking, SetSelectBooking] = useState(null);
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [refend, setRefend] = useState("")
-  const [houseRule, SetHouseRules] = useState({})
-  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
 
-  console.log("houseRule", houseRule)
+
 
   const handleHouseRules = (uuid) => {
     if (!uuid || !uuid.id || !uuid.properties_id) {
@@ -77,7 +113,9 @@ export default function Index() {
   const handleCanceled = (uuid) => {
     SetSelectBooking(uuid);
     setShowConfirmation(true);
-    setRefend(uuid?.refund_amount)
+    setRefend(uuid?.refund_amount);
+    setLongpolicy(uuid?.booking_property?.property_rule?.long_term_policy);
+    setstandardpolicy(uuid?.standard_policy)
   };
 
   const handleConfirmation = () => {
@@ -140,6 +178,7 @@ export default function Index() {
       .then((r) => {
         setLoading(false);
         const newdata = r?.data?.data?.data || [];
+        console.log(newdata)
         setListings((prevData) => {
           if (pg === 1) {
             return newdata;
@@ -276,15 +315,15 @@ export default function Index() {
               </div>
             ) : (
               <NoData
-               url={"/apartments"}
+                url={"/apartments"}
                 Heading={"Booking History Not Found"}
                 content={
-                  selectedButton ==="cancelled"? (
-                  "You have not cancelled any booking yet."
-                  ) :(
-                  "You have not done any bookings yet. Click below to go to the  page"
+                  selectedButton === "cancelled" ? (
+                    "You have not cancelled any booking yet."
+                  ) : (
+                    "You have not made any bookings yet. Please click the link below to visit the apartment page."
                   )}
-                  
+
               />
             )}
           </>
@@ -400,6 +439,12 @@ export default function Index() {
             <p className="text-xl text-center font-semibold  py-8  capatalize">
               Your Refended  amount this  <span className="text-green-600">{formatMultiPrice(refend)
               }</span>
+
+
+            </p>
+            <p>
+              Note:- {matchedPolicy && matchedPolicy?.description}
+              {matchedPolicies &&matchedPolicies?.description}
             </p>
             <div className="flex justify-center mb-5">
               <button
@@ -473,7 +518,7 @@ export default function Index() {
                 ) : (
                   <> </>)}
 
-              {(houseRule?.check_out === new Date() ) ?
+              {(houseRule?.check_out === new Date()) ?
                 (
                   <>
                     <p className="text-sm  font-normal  mb-4">

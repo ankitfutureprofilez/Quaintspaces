@@ -1,16 +1,11 @@
 import { differenceInDays, format } from "date-fns";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import LeftArrow from "../../public/_svgs/LeftArrow";
-import Logo from "../../public/_svgs/Logo";
 import Star from "../../public/_svgs/star";
 import Link from "next/link";
 import DatesModel from "../../components/book/DatesModel";
 import GuestsModel from "../../components/book/GuestsModel";
 import Head from "next/head";
-import Footer from "../../components/Footer";
-import { getParams } from "../../utils/handlers";
-import postsData from "../../bot/data.json";
 import Heading from "../elements/Heading";
 import Moment from "moment";
 import Image from "next/image";
@@ -97,7 +92,7 @@ const Book = () => {
     },
   });
 
-  console.log("guests",guests)
+  console.log("guests", guests)
   // console.log("infos", infos);
   // console.log("guests", guests);
 
@@ -138,8 +133,8 @@ const Book = () => {
     });
   }, [router.asPath]);
 
-  console.log("guests",guests)
-  
+  console.log("guests", guests)
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -204,28 +199,6 @@ const Book = () => {
     }
   }, [infos.checkout, infos.checkin, listing, guests]);
 
-  //   record.append("front_doc", formData.fornt);
-  //   record.append("no_of_pet", infos.numberOfPets);
-  //   record.append("phone_no", formData.phone);
-  //   record.append("razorpay_order_id", orderId);
-  //   record.append(
-  //     "price",
-  //     infos.checkout && infos.checkin &&
-  //     +listing?.price * differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
-  //   );
-  //   main.bookingpayment(record)
-  //     .then((res) => {
-  //       if (res) {
-  //         toast.success(res?.data?.message);
-  //       } else {
-  //         toast.error(res?.data?.message);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       // Errors(error);
-  //     })
-  //     .finally(() => setLoading(false));
-  // };
 
   const handleSubmit = () => {
     if (!formData.selectOption) {
@@ -256,8 +229,8 @@ const Book = () => {
       );
       return;
     }
-    console.log("listing?.no_of_pet_allowed",listing?.no_of_pet_allowed)
-    console.log("guests?.pets?.value",guests?.pets?.value)
+    console.log("listing?.no_of_pet_allowed", listing?.no_of_pet_allowed)
+    console.log("guests?.pets?.value", guests?.pets?.value)
 
     if (guests?.pets?.value > listing?.no_of_pet_allowed) {
       toast.error(
@@ -266,7 +239,6 @@ const Book = () => {
       return;
     }
     if (loading) return;
-
     setLoading(true);
     const main = new Listings();
     const record = new FormData();
@@ -287,18 +259,17 @@ const Book = () => {
             description: "Payment for services",
             order_id: res?.data?.orderId,
             handler: function (response) {
+              paymentsubmit(res?.data?.orderId);
               toast.success("Payment Successful");
               setOrderId(res?.data?.orderId);
               // return false;
               localStorage &&
                 localStorage.setItem("response", JSON.stringify(response));
-              paymentsubmit(res?.data?.orderId);
-            router.push(`/success/${listingID}`);
             },
             prefill: {
               name: "Customer Name",
               email: "customer@example.com",
-              contact: "8824744976",
+              contact: "1234567890",
             },
             notes: {
               address: "Razorpay Corporate Office",
@@ -309,7 +280,7 @@ const Book = () => {
           };
           const rzp = new Razorpay(options);
           rzp.on("payment.failed", function (response) {
-            paymentsubmit(res?.data?.orderId);
+            console.log(res?.data?.orderId)
             toast.error("Payment Failed");
             router.push(`/cancel/${listingID}`);
           });
@@ -319,13 +290,14 @@ const Book = () => {
         }
       })
       .catch((error) => {
-       Errors(error);
-        toast.error("Error creating order",error);
+        //  Errors(error);
+        toast.error("Error creating order", error);
       })
       .finally(() => setLoading(false));
   };
-
+  const [payloaing, setpayloading] = useState(false)
   const paymentsubmit = (orderId) => {
+    setpayloading(true);
     // Receive orderId as a parameter
     const main = new Listings();
     const record = new FormData();
@@ -334,39 +306,38 @@ const Book = () => {
     record.append("check_out", infos.checkout);
     record.append("adults", guests?.adults?.value);
     record.append("children", guests?.children?.value);
-    record.append("infants", guests?.infants?.value );
+    record.append("infants", 2);
     record.append("doc_type", formData.selectOption);
     record.append("front_doc", formData.fornt);
     record.append("no_of_pet", guests?.pets?.value);
     record.append("phone_no", formData.phone);
     record.append("razorpay_order_id", orderId);
-    record.append(
-      "price",
-      infos.checkout &&
-      infos.checkin &&
-      +listing?.price *
-      differenceInDays(new Date(infos.checkout), new Date(infos.checkin))
-    );
+    record.append( "price",pricerate);
     main
       .bookingpayment(record)
       .then((res) => {
         if (res) {
           if (res?.data?.status == true) {
             toast.success(res?.data?.message);
+            router.push(`/success/${listingID}`);
+            setpayloading(false);
+          } else {
+            toast.error(res?.data?.message);
+            setpayloading(false);
           }
         } else {
           toast.error(res?.data?.message);
+          setpayloading(false);
         }
       })
       .catch((error) => {
-        console.log("error",error)
-        Errors(error);
+        console.log("error", error)
+
+        setpayloading(false);
+        // Errors(error);
       })
       .finally(() => setLoading(false));
   };
-
-
-
   return (
     <AuthLayout>
       <div>
@@ -546,13 +517,25 @@ const Book = () => {
                 </div>
               </div>
               <div className="mt-11">
-                <Button
+                {payloaing ? (
+                    <Button
+                    text={"Loading .."}
+                    design={
+                      "font-inter hover:bg-[#000] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 p-4 rounded-full"
+                    }
+                  />
+                ) : (
+                  
+                  <Button
                   text={loading ? "Processing..." : "Confirm & Pay"}
                   design={
                     "font-inter hover:bg-[#000] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 p-4 rounded-full"
                   }
                   onClick={handleSubmit}
                 />
+
+                )}
+              
               </div>
             </div>
             <div className="w-4/12  rounded-xl shadow py-8 px-5 h-fit golden-border">
@@ -648,8 +631,8 @@ const Book = () => {
                   </div>
                 </div>
                 <div className="pt-4 flex items-center border-b pb-2 justify-between confirm-total">
-                <span className="font-bold text-center ">Extra Charges </span>
-              </div>
+                  <span className="font-bold text-center ">Extra Charges </span>
+                </div>
                 <div className="flex gap-3 mt-2 border-b pb-2">
                   <div className="flex items-center justify-between w-full">
                     <span className="block text-blackColor">

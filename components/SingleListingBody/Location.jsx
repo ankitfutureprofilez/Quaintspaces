@@ -29,12 +29,12 @@ const Location = React.forwardRef(({ listing }, ref) => {
     "https://raw.githubusercontent.com/encharm/Font-Awesome-SVG-PNG/master/black/svg/home.svg";
 
   // Define the options conditionally
-  const mapOptions = !listing?.user_booking_exists
-    ? {
+  const mapOptions = 
+     {
         zoomControl: false, // Disable zoom control UI
         gestureHandling: 'none', // Disable all gestures
-      }
-    : {};
+      };
+    
 
   return (
     <div ref={ref} className="py-8">
@@ -45,7 +45,7 @@ const Location = React.forwardRef(({ listing }, ref) => {
           mapContainerStyle={containerStyle}
           mapContainerClassName="map max-h-[500px]"
           center={center}
-          zoom={listing?.user_booking_exists ? 15 : 11}
+          zoom={15}
           options={mapOptions} // Apply the conditional options
         >
           <Marker

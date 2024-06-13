@@ -81,7 +81,6 @@ function StatusTracker() {
             ) : (
               <DashboardNoData />
             )}
-            <hr className="bg-gray-400" />
           </div>
         </div>
       )}

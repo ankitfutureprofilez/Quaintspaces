@@ -7,6 +7,7 @@ import Image from "next/image";
 const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
   const [amenitiesModal, setAmenitiesModal] = useState(false);
 
+  console.log("amenities", listing)
   function capitalizeAndReplace(inputString) {
     let words = inputString && inputString?.split("_");
     for (let i = 0; i < words?.length; i++) {
@@ -116,23 +117,47 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                   <span className="ms-1">{formatAmenities(amenity)}</span>
                 </div>
               ))}
-        </div>
 
+          {listing?.data?.standout_amenity &&
+            listing?.data?.standout_amenity
+              ?.split(",")
+              ?.slice(0, 6) // Limit to first 6 elements
+              ?.map((amenity) => (
+                <div className="flex items-center mt-4" key={amenity?.trim()}>
+                  <Image
+                    src={`/icons/${amenity
+                      ?.toLowerCase()
+                      ?.trim()
+                      ?.replaceAll(" ", "_")}.png`}
+                    alt="amenity icon"
+                    width={24}
+                    height={24}
+                    className="w-6 h-6"
+                  />
+                  <span className="ms-1">{formatAmenities(amenity)}</span>
+                </div>
+              ))}
+        </div>
         <button
           className="btn-normal mt-8 capitalize"
           onClick={() => setAmenitiesModal(true)}
         >
           See all{" "}
           {
-            stringToArray(
-              (listing && listing?.data && listing?.data?.amenities) || ""
-            )?.length
-          }{" "}
+            (() => {
+              const amenitiesLength = stringToArray((listing && listing?.data && listing?.data?.amenities) || "").length;
+              const standoutAmenityLength = stringToArray((listing && listing?.data && listing?.data?.standout_amenity) || "").length;
+              return amenitiesLength + standoutAmenityLength;
+            })()
+          }
+          {" "}
           amenities
         </button>
+
         {amenitiesModal && (
           <AmenitiesModal
             amenities={stringToArray(listing?.data?.amenities)}
+            standout_amenity={stringToArray(listing?.data?.standout_amenity)}
             setAmenitiesModal={setAmenitiesModal}
           />
         )}
@@ -155,7 +180,7 @@ function formatAmenities(input) {
   return formattedWords?.join(", ");
 }
 
-const AmenitiesModal = ({ amenities, setAmenitiesModal }) => {
+const AmenitiesModal = ({ amenities, setAmenitiesModal, standout_amenity }) => {
   return (
     <div className="fixed w-screen h-screen inset-0 z-30 flex items-center justify-center px-2">
       <div
@@ -165,8 +190,8 @@ const AmenitiesModal = ({ amenities, setAmenitiesModal }) => {
       <div className="w-[50rem] h-full max-h-[calc(100vh-110px)] bg-white z-40 relative rounded-xl animation_primary">
         <header className="flex items-center py-6 px-4">
           <button
-          className="absolute right-[23px] top-[20px]"
-           onClick={() => setAmenitiesModal(false)}>
+            className="absolute right-[23px] top-[20px]"
+            onClick={() => setAmenitiesModal(false)}>
             <Times />
           </button>
         </header>
@@ -174,6 +199,25 @@ const AmenitiesModal = ({ amenities, setAmenitiesModal }) => {
           <h1 className="text-2xl font-semibold">What this place offers?</h1>
           <div className="h-full w-full">
             {amenities?.map((e) => (
+              <li
+                className="w-full py-4 md:py-6 border-b border-borderColor flex gap-2 items-center my-2"
+                key={uuidv4()}
+              >
+                <Image
+                  src={`/icons/${e
+                    ?.toLowerCase()
+                    ?.trim()
+                    ?.replaceAll(" ", "_")}.png`}
+                  alt="amenity icon"
+                  width={24} // adjust width as needed
+                  height={24} // adjust height as needed
+                  className="w-6 h-6 mt-1"
+                />
+                {formatAmenities(e)}
+              </li>
+            ))}
+
+            {standout_amenity?.map((e) => (
               <li
                 className="w-full py-4 md:py-6 border-b border-borderColor flex gap-2 items-center my-2"
                 key={uuidv4()}
