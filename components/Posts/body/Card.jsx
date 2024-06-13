@@ -76,7 +76,7 @@ const Card = ({ post }) => {
       </Link>
    
       ) : (
-        <Link className="block" href={`/property/${post?.custom_link}`}>
+        <Link className="block" href={`/properties/${post?.custom_link}`}>
         <Image
           width={100}
           height={300}

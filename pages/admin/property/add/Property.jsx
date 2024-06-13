@@ -530,7 +530,7 @@ export default function Property(props) {
       });
   };
 
-  const baseurl = "https://quant-stay.vercel.app/property/"
+  const baseurl = "https://quant-stay.vercel.app/properties/"
   const fulllink = baseurl + item?.customLink
 
 

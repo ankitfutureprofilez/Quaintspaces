@@ -21,23 +21,25 @@ const Listing = () => {
   const [selection, setSelection] = useState(null);
   const [headerSearch, setHeaderSearch] = useState(false);
   const [loading, setLoading] = useState(true);
-  const[customlink, setCustomlink] =useState("")
   const [record, setrecord] = useState({
     loading: true,
     data: {},
   });
+ 
+
+
   useEffect(() => {
     if (slug) {
       setLoading(true);
       const main = new Listings();
       main
-        .PropertyDetail(slug || "")
+        .Propertycustom(slug || "")
         .then((r) => {
+          console.log("r?.data?.data", r);
           setrecord({
             loading: false,
             data: r?.data?.data,
           });
-          setCustomlink(r?.data?.data?.custom_link)
           setLoading(false);
         })
         .catch((err) => {
@@ -50,36 +52,11 @@ const Listing = () => {
     }
   }, [slug]);
 
-
-  // useEffect(() => {
-  //   if (slug) {
-  //     setLoading(true);
-  //     const main = new Listings();
-  //     main
-  //       .Propertycustom(slug || "")
-  //       .then((r) => {
-  //         console.log("r?.data?.data", r);
-  //         setrecord({
-  //           loading: false,
-  //           data: r?.data?.data,
-  //         });
-  //         setLoading(false);
-  //       })
-  //       .catch((err) => {
-  //         setrecord({
-  //           loading: true,
-  //         });
-  //         console.log(err);
-  //         setLoading(false);
-  //       });
-  //   }
-  // }, [slug]);
-
-  // useEffect(() => {
-  //   if (listingData) {
-  //     setrecord(listingData);
-  //   }
-  // }, [listingData]);
+  useEffect(() => {
+    if (listingData) {
+      setrecord(listingData);
+    }
+  }, [listingData]);
 
   return (
     <>

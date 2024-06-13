@@ -1,0 +1,75 @@
+import { useEffect, useState } from "react";
+import Head from "next/head";
+import axios from "axios";
+import Layout from "../layout/Layout.js";
+import SingleListingBody from "../../components/SingleListingBody"; // Update import path as needed
+import ThingsToKnow from "./ThingsToKnow.js";
+import Listings from "../api/laravel/Listings.js";
+import { useRouter } from "next/router";
+
+export default function Listing({ initialData }) {
+  const router = useRouter();
+  const { slug } = router.query;
+  const [loading, setLoading] = useState(false);
+  const [record, setRecord] = useState(initialData);
+
+  useEffect(() => {
+    if (!record.data || (slug && record.data.slug !== slug)) {
+      setLoading(true);
+      const main = new Listings();
+      main
+        .PropertyDetail(slug || "")
+        .then((r) => {
+          setRecord({
+            loading: false,
+            data: r?.data?.data,
+          });
+          setLoading(false);
+        })
+        .catch((err) => {
+          setRecord({
+            loading: true,
+          });
+          console.log(err);
+          setLoading(false);
+        });
+    }
+  }, [slug]);
+
+  return (
+    <>
+      <Layout>
+        <Head>
+          <title>
+            House rent in {record?.loading ? "..." : record?.data?.name} -
+            QS Jaipur
+          </title>
+        </Head>
+        <SingleListingBody loading={loading} listing={record} />
+        <ThingsToKnow guests={record?.data?.guests} />
+      </Layout>
+    </>
+  );
+}
+
+export async function getServerSideProps(context) {
+  try {
+    const slug = context.query.slug;
+    const main = new Listings();
+    const response = await main.PropertyDetail(slug || "");
+    const initialData = {
+      loading: false,
+      data: response?.data?.data,
+    };
+    return {
+      props: {
+        initialData,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching listing data:", error);
+    return {
+      notFound: true,
+    };
+  }
+}
