@@ -420,6 +420,7 @@ export default function Index() {
                       onChange={handleOptionChange}
                       className="mr-2"
                     />
+                    
                     <label htmlFor={`year${year}`}>{year}</label>
                   </div>
                 ))}
