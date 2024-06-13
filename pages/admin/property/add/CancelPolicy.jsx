@@ -26,6 +26,26 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
         }
     ];
 
+
+    const policiesies = [
+        {
+            policy: 'Flexible',
+            description: '  First 30 days are non-refundable. Full refund up to 30 days before check-in.'
+        },
+        {
+            policy: 'Moderate',
+            description: 'Guests get a full refund if they cancel up to 5 days before check-in.'
+        },
+        {
+            policy: 'Firm',
+            description: 'Guests get a full refund if they cancel up to 30 days before check-in, except in certain cases.'
+        },
+        {
+            policy: 'Strict',
+            description: 'Guests get a full refund if they cancel within 48 hours of booking and at least 14 days before check-in.'
+        }
+    ];
+
     const toggleFlexible = () => {
         setShowFlexible(true);
         setShowFirm(false);

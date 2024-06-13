@@ -1,16 +1,12 @@
 
 import React, { useEffect, useState } from "react";
-import Button from "./elements/Button.js";
 import Heading from "./elements/Heading.js";
 import { useRouter } from "next/router";
 import Listings from "./api/laravel/Listings.js";
 import AuthLayout from "./layout/AuthLayout.js";
-import Modal from "./elements/Modal.js";
 import NoData from "./elements/NoData.js";
 import Link from "next/link";
 import { formatMultiPrice } from "../hooks/ValueData.js";
-import Image from "next/image";
-import DateComponent from "./admin/hook/Dateformat.jsx";
 import Head from "next/head";
 
 export default function paymentHistory() {
@@ -144,9 +140,10 @@ export default function paymentHistory() {
             <BookingTable />
           ) : (
             <NoData
+            url={"/apartments"}
               Heading={"No Data Found"}
               content={
-                "You have not done any payment yet. Click below to go to the home page"
+                "You have not done any payment yet. Click below to go to the  page"
               }
             />
           )}

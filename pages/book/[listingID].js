@@ -293,6 +293,7 @@ const Book = () => {
               localStorage &&
                 localStorage.setItem("response", JSON.stringify(response));
               paymentsubmit(res?.data?.orderId);
+            router.push(`/success/${listingID}`);
             },
             prefill: {
               name: "Customer Name",
@@ -318,8 +319,8 @@ const Book = () => {
         }
       })
       .catch((error) => {
-        // Errors(error);
-        toast.error("Error creating order");
+       Errors(error);
+        toast.error("Error creating order",error);
       })
       .finally(() => setLoading(false));
   };
@@ -352,14 +353,14 @@ const Book = () => {
         if (res) {
           if (res?.data?.status == true) {
             toast.success(res?.data?.message);
-            router.push(`/success/${listingID}`);
           }
         } else {
           toast.error(res?.data?.message);
         }
       })
       .catch((error) => {
-        // Errors(error);
+        console.log("error",error)
+        Errors(error);
       })
       .finally(() => setLoading(false));
   };

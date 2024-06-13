@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Listings from "../api/laravel/Listings";
 import toast from "react-hot-toast";
 import DateComponent from "../admin/hook/Dateformat";
+import LoadingSpinner from "../admin/hook/spinner";
 
 
 function calculateTotalDays(checkInDate, checkOutDate) {
@@ -16,7 +17,9 @@ function calculateTotalDays(checkInDate, checkOutDate) {
 }
 
 
+
 const success = () => {
+  const [loading, setloading] = useState(false);
   const [record, setRecord] = useState("")
 
   useEffect(() => {
@@ -29,6 +32,7 @@ const success = () => {
 
 
   const handleSubmit = (main, data) => {
+    setloading(true);
     const parsedData = JSON.parse(data);
     const { razorpay_payment_id, razorpay_order_id } = parsedData;
     main.user_success_payment({
@@ -39,8 +43,10 @@ const success = () => {
         if (res && res.data && res.data.status) {
           toast.success(res.data.message);
           setRecord(res?.data?.data);
+          setloading(false);
         } else {
           toast.error(res?.data.message);
+          setloading(false);
         }
       })
       .catch((error) => {
@@ -50,11 +56,11 @@ const success = () => {
 
   const totalStay = calculateTotalDays(record?.check_in, record?.check_out);
 
-
-
   return (
     <AuthLayout>
-      <div className=" container mx-auto">
+      {loading ? (
+        <LoadingSpinner />
+      ) : (<div className=" container mx-auto">
         <div className="pt-16 pb-16">
           <div className="flex items-center justify-center">
             <svg
@@ -146,7 +152,8 @@ const success = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div>)}
+
     </AuthLayout>
   );
 };

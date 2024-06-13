@@ -276,8 +276,15 @@ export default function Index() {
               </div>
             ) : (
               <NoData
-                Heading={"Booking History not found"}
-                content={"You have not done any bookings yet. Click below to go to the home page"}
+               url={"/apartments"}
+                Heading={"Booking History Not Found"}
+                content={
+                  selectedButton ==="cancelled"? (
+                  "You have not cancelled any booking yet."
+                  ) :(
+                  "You have not done any bookings yet. Click below to go to the  page"
+                  )}
+                  
               />
             )}
           </>
