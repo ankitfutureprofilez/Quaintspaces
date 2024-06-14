@@ -640,7 +640,7 @@ button.submint-btn {
   padding: 10px;
   text-align: center;
   font-weight: 400;
-  color: #3f2a17
+  /* color: #3f2a17 */
 }
 
 .booking-table td,.booking-table thead tr th {

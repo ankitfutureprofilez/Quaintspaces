@@ -236,8 +236,7 @@ export default function index() {
                                     : ""}
                                 </div>
                                 <div className="text-sm">
-                                  {item?.booking_property?.adults} adults ||{" "}
-                                  {item?.booking_property?.children} children ||{" "}
+                                  {item?.booking_property?.guests} guests ||{" "}
                                   {item?.booking_property?.no_of_pet_allowed} pet{" "}
                                 </div>
                               </div>

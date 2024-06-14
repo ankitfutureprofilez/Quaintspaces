@@ -59,6 +59,7 @@ async userStauts(id,newStatus){
     return  Api.get(`/admin/user-active-inactive/${id}/${newStatus}`)
 }
 
+
 async propertyImagedelete (uuId ,imgUid){
     return Api.get(`/admin/property-image-delete/${uuId}/${imgUid}` 
    )

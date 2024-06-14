@@ -7,7 +7,6 @@ import Image from "next/image";
 const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
   const [amenitiesModal, setAmenitiesModal] = useState(false);
 
-  console.log("amenities", listing)
   function capitalizeAndReplace(inputString) {
     let words = inputString && inputString?.split("_");
     for (let i = 0; i < words?.length; i++) {

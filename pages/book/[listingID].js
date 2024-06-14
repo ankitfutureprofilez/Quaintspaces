@@ -15,13 +15,13 @@ import AuthLayout from "../layout/AuthLayout";
 import toast from "react-hot-toast";
 import { formatMultiPrice } from "../../hooks/ValueData";
 import useRazorpay from "react-razorpay";
+import Modal from "../elements/Modal";
 
 const Book = () => {
   const router = useRouter();
   const [Razorpay] = useRazorpay();
   const RAZOPAY_KEY = process.env.NEXT_PUBLIC_RAZOPAY_KEY;
   const { listingID } = router.query;
-
   const [listing, setListing] = useState([]);
   const [infos, setInfos] = useState({});
   const [dateModel, setDateModel] = useState(false);
@@ -31,7 +31,7 @@ const Book = () => {
   const [orderId, setOrderId] = useState("");
 
 
-  console.log("pricerate", pricerate)
+
   const recorddate = Moment(new Date())?.format("DD-MM-YYYY");
   const [formData, setFormData] = useState({
     selectOption: "",
@@ -41,38 +41,35 @@ const Book = () => {
     date: recorddate,
   });
 
-  // useEffect(() => {
-  //   const url = router.query;
-  //   setInfos(url);
-  //   const main = new Listings();
-  //   main
-  //     .PropertyDetail(url.listingID)
-  //     .then((r) => {
-  //       setListing(r?.data?.data);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  //     console.log("booking page",listing)
 
-  //   setGuests({
-  //     adults: {
-  //       value: +url.numberOfAdults || 0,
-  //       max: listing?.adults || 5,
-  //       min: 0,
-  //     },
-  //     children: {
-  //       value: +url.numberOfChildren || 0,
-  //       max: listing?.children || 5,
-  //       min: 0,
-  //     },
-  //     pets: {
-  //       value: +url.numberOfPets || 0,
-  //       max: listing?.no_of_pet_allowed || 5,
-  //       min: 0,
-  //     },
-  //   });
-  // }, [router.asPath]);
+  const [cancelpolicy, setCancelpolicy] = useState([])
+  const formattedCheckIn = `${infos?.checkin} ${listing?.check_in} `;
+  const handleCancelPolicy = () => {
+    const main = new Listings();
+    const formData = new FormData();
+    formData.append("uuid", listingID);
+    formData.append("check_in", formattedCheckIn);
+    const response = main.cancelpolicy(formData);
+    response.then((res) => {
+      if (res && res?.data && res?.data?.status) {
+        setCancelpolicy(res?.data?.data)
+        console.log("res", res);
+      } else {
+        toast.error(res.data.message);
+      }
+    })
+      .catch((error) => {
+        console.log("error", error);
+      });
+
+  };
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+    handleCancelPolicy(signal);
+    return () => controller.abort();
+  }, [infos?.checkin, listing?.check_in]);
 
   const [guests, setGuests] = useState({
     adults: {
@@ -92,9 +89,7 @@ const Book = () => {
     },
   });
 
-  console.log("guests", guests)
-  // console.log("infos", infos);
-  // console.log("guests", guests);
+
 
   useEffect(() => {
     const url = router.query;
@@ -133,7 +128,6 @@ const Book = () => {
     });
   }, [router.asPath]);
 
-  console.log("guests", guests)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -229,8 +223,6 @@ const Book = () => {
       );
       return;
     }
-    console.log("listing?.no_of_pet_allowed", listing?.no_of_pet_allowed)
-    console.log("guests?.pets?.value", guests?.pets?.value)
 
     if (guests?.pets?.value > listing?.no_of_pet_allowed) {
       toast.error(
@@ -280,7 +272,6 @@ const Book = () => {
           };
           const rzp = new Razorpay(options);
           rzp.on("payment.failed", function (response) {
-            console.log(res?.data?.orderId)
             toast.error("Payment Failed");
             router.push(`/cancel/${listingID}`);
           });
@@ -312,7 +303,7 @@ const Book = () => {
     record.append("no_of_pet", guests?.pets?.value);
     record.append("phone_no", formData.phone);
     record.append("razorpay_order_id", orderId);
-    record.append( "price",pricerate);
+    record.append("price", pricerate);
     main
       .bookingpayment(record)
       .then((res) => {
@@ -338,6 +329,16 @@ const Book = () => {
       })
       .finally(() => setLoading(false));
   };
+
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <AuthLayout>
       <div>
@@ -506,36 +507,36 @@ const Book = () => {
                   </h1>
                   <div className="flex flex-wrap justify-between">
                     <p className="item-pargraph">
-                      This reservation is non-refundable.
+                      {cancelpolicy?.text}
                     </p>
-                    <Link href="/terms" target="blank">
-                      <p className="underline edit-color font-bold">
-                        Learn More
-                      </p>
-                    </Link>
+                    {/* <Link href="/terms" target="blank"> */}
+                    <p className="underline edit-color font-bold" style={{ cursor: "pointer" }} onClick={openModal} >
+                      Learn More
+                    </p>
+                    {/* </Link> */}
                   </div>
                 </div>
               </div>
               <div className="mt-11">
                 {payloaing ? (
-                    <Button
+                  <Button
                     text={"Loading .."}
                     design={
                       "font-inter hover:bg-[#000] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 p-4 rounded-full"
                     }
                   />
                 ) : (
-                  
+
                   <Button
-                  text={loading ? "Processing..." : "Confirm & Pay"}
-                  design={
-                    "font-inter hover:bg-[#fff] border-[#c48b58] border hover:text-[#c48b58] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 sm:p-4 p-3 rounded-full"
-                  }
-                  onClick={handleSubmit}
-                />
+                    text={loading ? "Processing..." : "Confirm & Pay"}
+                    design={
+                      "font-inter hover:bg-[#fff] border-[#c48b58] border hover:text-[#c48b58] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 sm:p-4 p-3 rounded-full"
+                    }
+                    onClick={handleSubmit}
+                  />
 
                 )}
-              
+
               </div>
             </div>
             <div className="w-4/12  rounded-xl shadow py-8 px-5 h-fit golden-border sticky top-4">
@@ -713,6 +714,53 @@ const Book = () => {
           {dateModel && (
             <DatesModel infos={infos} setDateModel={setDateModel} />
           )}
+
+          {isOpen && (
+            <Modal isOpen={isOpen} onClose={closeModal}>
+              <p className="text-lg text-white font-semibold p-7 py-4 bg-[#c48b58]">
+              Cancellation policy
+              </p>
+              <div className=" ">
+                <div>
+                  <h6>   {cancelpolicy?.date === new Date() ? "After" :"Before"}</h6>
+
+                  <h6>
+                    {cancelpolicy?.date ? ("")  :(formattedCheckIn && "After") }
+                  </h6>
+                  <p>
+                    {cancelpolicy?.date ? (cancelpolicy?.date) : (formattedCheckIn)}
+                  </p>
+
+                  <h6>
+                    {cancelpolicy?.date === new Date() ? "": "Full Refund"}
+                  </h6>
+                  <h6>
+                  {cancelpolicy?.date ? ("")  :(formattedCheckIn && "No Refund") }
+                    {}
+                  </h6>
+                  <p>
+                    {cancelpolicy?.text}
+                  </p>
+                </div>
+                {cancelpolicy?.date2 &&
+                  <div>
+                    {cancelpolicy?.date2 === new Date() ?  "After" :"Before"}
+                    <p>
+                      {cancelpolicy?.date2}
+                    </p>
+                    <p>
+                      {cancelpolicy?.text2}
+                    </p>
+                  </div>}
+
+
+                <p className="font-normal   capitalize" >Cleaning fees are refunded if you cancel before check-in. </p>
+                <p className="underline  font-bold cursor-pointer  text-[#c48b58]" >Learn more about <Link href="/terms">cancellation policies</Link></p>
+              </div>
+              <div className="mb-4 flex justify-center"></div>
+            </Modal>
+          )
+          }
         </main>
       </div>
     </AuthLayout>

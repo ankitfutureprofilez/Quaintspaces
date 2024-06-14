@@ -30,7 +30,6 @@ class Listings extends Component {
     return Api.post("/contact-us", data);
   }
   async PropertyBooking(data) {
-   // return Api.post("/add-booking", data);
     return Api.post("/booking", data);
   }
   async BookingHistory(page,data) {
@@ -57,6 +56,10 @@ class Listings extends Component {
 
   async Propertycustom(customlink) {
     return Api.get(`/property-custom-link-details/${customlink}` );
+  }
+
+  async cancelpolicy(data) {
+    return Api.post("/check-cancellation-policy-before-booking" ,data);
   }
   
   async AddRating(data) {

@@ -24,7 +24,7 @@ export default function Index() {
   const [refend, setRefend] = useState("")
   const [houseRule, SetHouseRules] = useState({})
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
-  
+
   const [longpolicy, setLongpolicy] = useState();
   const [standardpolicy, setstandardpolicy] = useState();
 
@@ -62,17 +62,12 @@ export default function Index() {
   const matchedPolicy = policiesies.find(p => p.policy === longpolicy);
   const matchedPolicies = policies.find(p => p.policy === standardpolicy);
 
-
   const currentYear = new Date().getFullYear();
 
   const years = Array.from(
     { length: currentYear - 2023 },
     (_, index) => currentYear - index
   );
-
-
-
-
 
 
   const handleHouseRules = (uuid) => {
@@ -149,7 +144,8 @@ export default function Index() {
 
   const [hasmore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
-
+  const [key, setKey] = useState("")
+  console.log(key)
   const fetching = async (pg) => {
     setLoading(true);
     let url = "";
@@ -168,7 +164,10 @@ export default function Index() {
       url += "booking_event=upcoming&";
     } else if (selectedButton === "completed") {
       url += "booking_event=completed&";
-    } else {
+    } else if (selectedButton === "ongoing") {
+      url += "booking_event=ongoing&";
+    }
+    else {
       url += "booking_status=cancelled&";
     }
 
@@ -177,6 +176,7 @@ export default function Index() {
       .BookingHistory(pg, url)
       .then((r) => {
         setLoading(false);
+        setKey(r?.data?.request_key);
         const newdata = r?.data?.data?.data || [];
         console.log(newdata)
         setListings((prevData) => {
@@ -254,12 +254,15 @@ export default function Index() {
                       <th>Booking Date</th>
                       <th>Booking Number</th>
                       <th>Title</th>
-                      <th>Check In & Out</th>
-                      <th>Check In & Out</th>
+                      <th>Check In</th>
+                      <th>Check Out</th>
                       <th>Status</th>
                       <th>Price</th>
-                      <th>Action</th>
-                      <th>House details</th>
+                      {key !== "ongoing" && (
+                        <th>Action</th>
+                      )}
+                      {key === "ongoing" &&
+                        <th>House details</th>}
                     </tr>
                   </thead>
                   {listings.map((item, index) => (
@@ -281,33 +284,52 @@ export default function Index() {
                         <td className="px-4 py-2">{item?.check_in} </td>
                         <td className="px-4 py-2"> {item?.check_out}</td>
 
-                        <td className="px-4 py-2 capitalize">
-                          <Button
-                            text={`${item?.booking_status}`}
-                            design="font-inter capitalize text-blue-700 font-medium leading-tight text-center px-5 p-3 rounded-full"
-                          />
+                        <td className="px-4 py-2 ">
+                          <td
+                            className={`capitalize inline-flex items-center rounded-full py-3 w-max px-4 text-xs text-white  ${item?.booking_status === "completed"
+                              ? "bg-green-700"
+                              : item?.booking_status === "cancelled"
+                                ? "bg-red-600"
+                                : item?.booking_status === "confirmed"
+                                  ? "bg-green-600"
+                                  : item?.booking_status === "pending"
+                                    ? "bg-slate-600"
+                                    : "bg-blue-600"
+                              }`}
+                          >
+                            {item?.booking_status}
+                          </td>
                         </td>
                         <td className="px-4 py-2">
                           {formatMultiPrice(item?.price)}
                         </td>
-                        <td className="px-4 py-2">
-                          {item?.booking_status !== "cancelled" ? (
-                            <button
-                              className="font-inter text-red-700 font-medium leading-tight text-center px-5 border-red-500 p-3 rounded-full"
-                              onClick={() => handleCanceled(item)}
-                            >
-                              {loading ? ("loading") : ("Cancel")}
-                            </button>
-                          ) : (
-                            <p className="title capitalize">
-                              AllReady Taken
-                            </p>
-                          )}
+                        {key !== "ongoing" &&
+                          (
+                            <td className="px-4 py-2">
+                              {
 
-                        </td>
-                        <td className="px-4 py-2">
-                          <span className="text-4xl ml-1" style={{ cursor: "pointer" }} onClick={() => handleHouseRules(item)}>🛈</span>
-                        </td>
+                                item?.booking_status !== "cancelled" ? (
+                                  <button
+                                    className="font-inter text-red-700 font-medium leading-tight text-center px-5 border-red-500 p-3 rounded-full"
+                                    onClick={() => handleCanceled(item)}
+                                  >
+                                    {loading ? ("loading") : ("Cancel")}
+                                  </button>
+                                ) : (
+                                  <p className="title capitalize">
+                                    AllReady Taken
+                                  </p>
+                                )
+                              }
+
+
+                            </td>)}
+                        {key === "ongoing" &&
+
+                          <td className="px-4 py-2">
+                            <span className="text-4xl ml-1" style={{ cursor: "pointer" }} onClick={() => handleHouseRules(item)}>🛈</span>
+                          </td>}
+
                       </tr>
                     </tbody>
                   ))}
@@ -366,7 +388,6 @@ export default function Index() {
               onClick={() => handleGroupChange("upcoming")}
               text={"Upcoming"}
             />
-
             <Button
               text={"Completed"}
               design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 rounded-full ${selectedButton === "completed"
@@ -375,7 +396,6 @@ export default function Index() {
                 } `}
               onClick={() => handleGroupChange("completed")}
             />
-
             <Button
               design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 rounded-full ${selectedButton === "cancelled"
                 ? "bg-orange-300 text-white"
@@ -384,18 +404,26 @@ export default function Index() {
               onClick={() => handleGroupChange("cancelled")}
               text={"Cancelled"}
             />
+            <Button
+              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 rounded-full ${selectedButton === "ongoing"
+                ? "bg-orange-300 text-white"
+                : "text-black"
+                } `}
+              onClick={() => handleGroupChange("ongoing")}
+              text={"Ongoing"}
+            />
           </div>
           <div className=" py-2">
             <button className="font-inter text-[#fff] sm:text-[16px] text-[14px] bg-orange-300 font-medium leading-tight text-center border-[#c48b58] lg:w-[auto] px-6 border-2 p-3 rounded-full " onClick={openModal}>
               Filter By Booking Date
             </button>
             <Modal isOpen={isOpen} onClose={closeModal}>
-            <p className="text-lg text-white font-semibold p-6 py-4 bg-[#c48b58]">
-            Filter By Booking Date
-            </p>
+              <p className="text-lg text-white font-semibold p-6 py-4 bg-[#c48b58]">
+                Filter By Booking Date
+              </p>
               <div className=" ">
                 {["All Dates", "Last 30 Days", "Last 3 Months", "Last 1 Year"].map((option) => (
-                  <div  key={option} className="px-6 py-2">
+                  <div key={option} className="px-6 py-2">
                     <input
                       type="radio"
                       id={option}
@@ -408,22 +436,22 @@ export default function Index() {
                     <label htmlFor={option}>{option}</label>
                   </div>
                 ))}
-                <div   className="px-6 py-2">
-                {years.map((year) => (
-                  <div key={year} className="mb-2">
-                    <input
-                      type="radio"
-                      id={`${year}`}
-                      name="option"
-                      value={`${year}`}
-                      checked={selectedOption === `${year}`}
-                      onChange={handleOptionChange}
-                      className="mr-2"
-                    />
-                    
-                    <label htmlFor={`year${year}`}>{year}</label>
-                  </div>
-                ))}
+                <div className="px-6 py-2">
+                  {years.map((year) => (
+                    <div key={year} className="mb-2">
+                      <input
+                        type="radio"
+                        id={`${year}`}
+                        name="option"
+                        value={`${year}`}
+                        checked={selectedOption === `${year}`}
+                        onChange={handleOptionChange}
+                        className="mr-2"
+                      />
+
+                      <label htmlFor={`year${year}`}>{year}</label>
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className="mb-4 flex justify-center"></div>
@@ -445,13 +473,8 @@ export default function Index() {
             <p className="text-xl text-center font-semibold  py-8  capatalize">
               Your Refended  amount this  <span className="text-green-600">{formatMultiPrice(refend)
               }</span>
-
-
             </p>
-            <p>
-              Note:- {matchedPolicy && matchedPolicy?.description}
-              {matchedPolicies &&matchedPolicies?.description}
-            </p>
+
             <div className="flex justify-center mb-5">
               <button
                 className="bg-red-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-red-700"
@@ -476,7 +499,7 @@ export default function Index() {
               House Rules
             </p>
             <div className="p-6">
-              {(houseRule?.check_in) === new Date() ?
+              {(houseRule?.check_in)  ?
                 (
                   <>
                     <p className="text-sm  font-normal  mb-4 ">
@@ -503,7 +526,7 @@ export default function Index() {
                   <>
                   </>
                 )}
-              {(houseRule?.booking_date === new Date()) ?
+              {houseRule?.booking_date ?
                 (
                   <>
                     <p className="text-sm  font-normal  mb-4">
@@ -516,15 +539,17 @@ export default function Index() {
                       <span className="font-bold">
                         check-in method:-
                       </span>
-                      {houseRule?.property_details?.check_in_method}
+                      <span>
+                      {houseRule?.property_details?.check_in_method} &nbsp;
+                      </span> 
                       and  {houseRule?.property_details?.check_in_description}
                     </p>
 
                   </>
                 ) : (
-                  <> </>)}
+                  <p> Show in check in Date  </p>)}
 
-              {(houseRule?.check_out === new Date()) ?
+              {(houseRule?.check_out ) ?
                 (
                   <>
                     <p className="text-sm  font-normal  mb-4">
