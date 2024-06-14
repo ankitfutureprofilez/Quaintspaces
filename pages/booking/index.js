@@ -499,7 +499,7 @@ export default function Index() {
               House Rules
             </p>
             <div className="p-6">
-              {(houseRule?.check_in)  ?
+              {(houseRule?.check_in) ?
                 (
                   <>
                     <p className="text-sm  font-normal  mb-4 ">
@@ -540,16 +540,14 @@ export default function Index() {
                         check-in method:-
                       </span>
                       <span>
-                      {houseRule?.property_details?.check_in_method} &nbsp;
-                      </span> 
+                        {houseRule?.property_details?.check_in_method} &nbsp;
+                      </span>
                       and  {houseRule?.property_details?.check_in_description}
                     </p>
-
                   </>
                 ) : (
                   <p> Show in check in Date  </p>)}
-
-              {(houseRule?.check_out ) ?
+              {(houseRule?.check_out) ?
                 (
                   <>
                     <p className="text-sm  font-normal  mb-4">
