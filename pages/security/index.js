@@ -102,82 +102,86 @@ export default function index() {
           </div>
         </div>
         <div className="container mx-auto">
-          <div className="my-3 sm:my-6 md:my-12 profile-text">
+        <div className="md:w-9/12 m-auto md:p-12 sm:p-8 p-6 shadow-[0_0_17px_-6px_#ccc;] md:rounded-3xl rounded-2xl md:mt-6 mt-4">
+          <div className="mb-6 profile-text">
             <h1>Update Password</h1>
             <p className="security-text">
               Increase the security of your account by updating password etc.
             </p>
+          
           </div>
-        </div>
-        <div className=" container mx-auto">
-          <div className="w-full sm:w-3/5 security-box-form">
-            <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label
-                  htmlFor="email"
-                  className="block text-lg font-medium text-gray-700 "
-                >
-                  Current password
-                </label>
-                <input
-                  type="password"
-                  id="email"
-                  name="current_password"
-                  value={formData?.current_password}
-                  onChange={handleChange}
-                  className="mt-1 p-4 border rounded-full w-full"
-                  required
+          
+            <div className="w-full  security-box-form">
+              <form onSubmit={handleSubmit}>
+                <div className="mb-4">
+                  <label
+                    htmlFor="email"
+                    className="block text-lg font-medium text-gray-700 "
+                  >
+                    Current password
+                  </label>
+                  <input
+                    type="password"
+                    id="email"
+                    name="current_password"
+                    value={formData?.current_password}
+                    onChange={handleChange}
+                    className="mt-1 p-4 border rounded-full w-full"
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label
+                    htmlFor="email"
+                    className="block text-lg font-medium text-gray-700"
+                  >
+                    New password
+                  </label>
+                  <input
+                    type="password"
+                    id="email"
+                    name="new_password"
+                    value={formData?.new_password}
+                    onChange={handleChange}
+                    className="mt-1 p-4 border rounded-full w-full"
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label
+                    htmlFor="email"
+                    className="block text-lg font-medium text-gray-700"
+                  >
+                    Confirm password
+                  </label>
+                  <input
+                    type="password"
+                    id="email"
+                    name="confirm_password"
+                    value={formData?.confirm_password}
+                    onChange={handleChange}
+                    className="mt-1 p-4 border rounded-full w-full"
+                    required
+                  />
+                </div>
+<div className="flex justify-center">
+<Button
+                  text={loading ? "Updating..." : "Update Password"}
+                  design={
+                    "font-inter hover:bg-[#fff] border-[#c48b58] border hover:text-[#c48b58] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 sm:p-4 p-3 rounded-full mb-6 mt-6"
+                  }
                 />
-              </div>
-              <div className="mb-4">
-                <label
-                  htmlFor="email"
-                  className="block text-lg font-medium text-gray-700"
-                >
-                  New password
-                </label>
-                <input
-                  type="password"
-                  id="email"
-                  name="new_password"
-                  value={formData?.new_password}
-                  onChange={handleChange}
-                  className="mt-1 p-4 border rounded-full w-full"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  htmlFor="email"
-                  className="block text-lg font-medium text-gray-700"
-                >
-                  Confirm password
-                </label>
-                <input
-                  type="password"
-                  id="email"
-                  name="confirm_password"
-                  value={formData?.confirm_password}
-                  onChange={handleChange}
-                  className="mt-1 p-4 border rounded-full w-full"
-                  required
-                />
-              </div>
-              <Button
-                text={loading ? "Updating..." : "Update Password"}
-                design={
-                  "font-inter font-lg leading-tight update-btn text-center text-black-400 w-full sm:w-96 bg-orange-300  border-0 p-4 rounded-full mt-10 mb-12"
-                }
-              />
-            </form>
-            <div className="border-b-2 border-solid border-zinc-300"></div>
-            <div className="mt-12 profile-text">
-              <h1 className="text-lg ">Deactivate Account</h1>
-              <div className="flex flex-wrap justify-between">
-                <p className="security-text">Deactivate your account here</p>
-                <button onClick={openModal} className="edit-color underline ">
-                  Deactivate
-                </button>
+</div>
+              </form>
+              <div className="border-b-2 border-solid border-zinc-300"></div>
+              <div className="mt-6 profile-text">
+                <h1 className="text-lg ">Deactivate Account</h1>
+                <div className="flex flex-wrap justify-between">
+                  <p className="security-text">Deactivate your account here</p>
+                  <button onClick={openModal} className="edit-color underline ">
+                    Deactivate
+                  </button>
+                </div>
               </div>
             </div>
           </div>

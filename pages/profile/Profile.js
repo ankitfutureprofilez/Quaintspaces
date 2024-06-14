@@ -195,15 +195,18 @@ export default function Profile() {
         </div>
       </div>
       <div className="container mx-auto mt-5 perso-form">
+
+      <div className="md:w-9/12 m-auto md:p-12 sm:p-8 p-6 shadow-[0_0_17px_-6px_#ccc;] md:rounded-3xl rounded-2xl md:mt-6 mt-4">
         <div className="pers-info ">
           <h3>Personal Information</h3>
           <p>Update your personal information here </p>
         </div>
-        <div className="w-full md:w-9/12 ">
+        <div className="w-full">
           <form
             onSubmit={handleSubmit}
-            className="grid sm:grid-cols-2 grid-cols-1 gap-4"
+           
           >
+          <div className="grid sm:grid-cols-2 grid-cols-1 gap-4">
             <div className="mb-2 sm:mb-4">
               <label
                 htmlFor="email"
@@ -274,15 +277,19 @@ export default function Profile() {
                 required
               />
             </div>
+            </div>
+            <div className="flex justify-center">
             <Button
               text={loading ? "Updating..." : "Update Details"}
               design={
-                "font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-orange-300   p-4 rounded-full mt-14"
+                "font-inter font-lg leading-tight text-center text-[#fff] w-full sm:w-96 bg-orange-300 border-2  border-[#c48b58] hover:bg-[#fff] hover:text-[#c48b58]  p-4 rounded-full mt-12"
               }
             />
+            </div>
           </form>
         </div>
-        <div className="border-bottom-form"></div>
+
+        </div>
       </div>
     </>
   );

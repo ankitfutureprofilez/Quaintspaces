@@ -395,14 +395,15 @@ const Book = () => {
                 Upload ID
               </h3>
               <div className=" border-b border-borderColor pb-4 md:pb-11">
-                <form>
+                <form >
                   <div className="mb-4">
+                  <div className="w-ful mt-1 pr-4 border rounded-full ">
                     <select
                       id="selectOption"
                       name="selectOption"
                       value={formData.selectOption}
                       onChange={handleChange}
-                      className="mt-1 p-4 border rounded-full w-full"
+                      className="p-4 w-full rounded-full outline-none"
                       required
                     >
                       <option value="">Choose...</option>
@@ -410,6 +411,8 @@ const Book = () => {
                       <option value="pan">PAN Card</option>
                       <option value="voterid">Voter ID</option>
                     </select>
+                  </div> 
+
                   </div>
 
                   <div className="mb-4">
@@ -720,42 +723,25 @@ const Book = () => {
               <p className="text-lg text-white font-semibold p-7 py-4 bg-[#c48b58]">
               Cancellation policy
               </p>
-              <div className=" ">
+              <div className=" py-4 px-6">
                 <div>
-                  <h6>   {cancelpolicy?.date === new Date() ? "After" :"Before"}</h6>
-
-                  <h6>
-                    {cancelpolicy?.date ? ("")  :(formattedCheckIn && "After") }
-                  </h6>
-                  <p>
-                    {cancelpolicy?.date ? (cancelpolicy?.date) : (formattedCheckIn)}
-                  </p>
-
-                  <h6>
-                    {cancelpolicy?.date === new Date() ? "": "Full Refund"}
-                  </h6>
-                  <h6>
-                  {cancelpolicy?.date ? ("")  :(formattedCheckIn && "No Refund") }
-                    {}
-                  </h6>
-                  <p>
-                    {cancelpolicy?.text}
-                  </p>
+                  <p className="mb-1" >{cancelpolicy?.date === new Date() ? "After" :"Before"}</p>
+                  <p className="mb-1" >{cancelpolicy?.date ? ("")  :(formattedCheckIn && "After") }</p>
+                  <p className="mb-1" >{cancelpolicy?.date ? (cancelpolicy?.date) : (formattedCheckIn)}</p>
+                  <p className="mb-1" >{cancelpolicy?.date === new Date() ? "": "Full Refund"}</p>
+                  <p className="mb-1" >{cancelpolicy?.date ? ("")  :(formattedCheckIn && "No Refund") }</p>
+                  <p className="mb-1">{cancelpolicy?.text}</p>
                 </div>
                 {cancelpolicy?.date2 &&
-                  <div>
-                    {cancelpolicy?.date2 === new Date() ?  "After" :"Before"}
-                    <p>
-                      {cancelpolicy?.date2}
-                    </p>
-                    <p>
-                      {cancelpolicy?.text2}
-                    </p>
-                  </div>}
+                <div>
+                  <p className="mb-1" >{cancelpolicy?.date2 === new Date() ?  "After" :"Before"}</p>
+                  <p className="mb-1" >{cancelpolicy?.date2}</p>
+                  <p className="mb-1" >{cancelpolicy?.text2}</p>
+                </div>}
 
 
                 <p className="font-normal   capitalize" >Cleaning fees are refunded if you cancel before check-in. </p>
-                <p className="underline  font-bold cursor-pointer  text-[#c48b58]" >Learn more about <Link href="/terms">cancellation policies</Link></p>
+                <p className="underline mt-2 font-bold cursor-pointer  text-[#c48b58]" >Learn more about <Link href="/terms">cancellation policies</Link></p>
               </div>
               <div className="mb-4 flex justify-center"></div>
             </Modal>
