@@ -76,7 +76,7 @@ const Date_GuestsPickerCard = React.forwardRef(
               <div ref={ref}>
                 {auth && auth?.name ? (
                   <button
-                    className="filter mx-2 btn w-full hover:bg-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58] "
+                    className="filter btn w-full hover:bg-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58] "
                     onClick={() => {
                       if (selectedDay == null || selectEnd == null) {
                         toast.error("Date not selected");
@@ -103,7 +103,7 @@ const Date_GuestsPickerCard = React.forwardRef(
                 ) : (
                   <button
                     onClick={() => setOpenLogin(true)}
-                    className=" mx-2 btn w-full hover:bg-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] hover:border-[#c48b58]"
+                    className=" btn w-full hover:bg-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] hover:border-[#c48b58]"
                   >
                     {" "}
                     Check Availability
@@ -111,7 +111,7 @@ const Date_GuestsPickerCard = React.forwardRef(
                 )}
 
                 <button
-                  className=" mx-2 btn w-full mt-4 hover:bg-[#c48b58] border-2 border-[#c48b58] hover:border-[#c48b58] text-[#c48b58] hover:text-[#fff]"
+                  className=" btn w-full mt-4 hover:bg-[#c48b58] border-2 border-[#c48b58] hover:border-[#c48b58] text-[#c48b58] hover:text-[#fff]"
                   onClick={() => {
                     router.push(`/contact`);
                   }}
