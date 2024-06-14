@@ -134,6 +134,7 @@ export default function Index() {
                         <h3 className="text-sm font-medium desc-property">
                         {/* {parseLocation(item?.location)} */}
                         {item?.description}
+                        
                         </h3>
                         <p className="text-sm text-gray-600 mt-3 capitalize">
                           {item?.type ? `${item?.type?.replace("_", " ")} .` : ""}
