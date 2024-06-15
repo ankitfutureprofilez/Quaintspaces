@@ -1,8 +1,11 @@
 import Link from "next/link";
 import React from "react";
 
-export default function ThingsToKnow({ record, isAdmin , content}) {
+export default function ThingsToKnow({ record, isAdmin, content }) {
   const safetyAmenities = record?.data?.safety_amenity?.split(',') || record?.safety_amenity?.split(',');
+  const jsonString = record?.data?.check_out_instruction; // Fetch the JSON string from your data
+
+  const instructions = jsonString ? JSON.parse(jsonString) : []; // Parse JSON string to JavaScript object
   return (
     <div className="container mx-auto">
       <h1 className="listing-heading text-left !mb-0">Things to know</h1>
@@ -59,44 +62,71 @@ export default function ThingsToKnow({ record, isAdmin , content}) {
         </div>
       </div>
       {isAdmin &&
+        <>
 
-        <div className="flex justify-between house-rule-text">
-          <div className="flex flex-col mt-3 sm:mt-2 mr-4 ">
-            <h2 className="font-semibold mb-2 w-1/3">Direction</h2>
-            <p className="mb-2 text-gray-500 justify ">{
-              record?.data?.property_rule?.direction}</p>
-          </div>
-
-          <div className="flex flex-col mt-3 sm:mt-2 mr-4">
-            <h2 className="font-semibold mb-2">House Manuals </h2>
-            <p className="mb-2 text-gray-500 flex ">
+          <div className="flex justify-between house-rule-text">
+            <div className="flex flex-col mt-3 sm:mt-2 mr-4 ">
+              <h2 className="font-semibold mb-2 w-1/3">Direction</h2>
+              <p className="mb-2 text-gray-500 justify ">{
+                record?.data?.property_rule?.direction}</p>
+            </div>
+            <div className="flex flex-col mt-3 sm:mt-2 mr-4">
+              <h2 className="font-semibold mb-2">House Manuals </h2>
+              <p className="mb-2 text-gray-500 flex ">
+                <div>
+                  <p className="mb-2 text-gray-500 justify ">{
+                    record?.data?.property_rule?.house_manuals}</p>
+                </div>
+              </p>
+            </div>
+            <div className="flex flex-col mt-3 sm:mt-2 mr-4">
               <div>
+                <h2 className="font-semibold mb-2">Wifi Details </h2>
                 <p className="mb-2 text-gray-500 justify ">{
-                  record?.data?.property_rule?.house_manuals}</p>
+                  record?.data?.property_rule?.wifi_username}</p>
+                <p className="mb-2 text-gray-500 justify ">{
+                  record?.data?.property_rule?.wifi_password}</p>
+                {/* <p className="mb-2 text-gray-500">This reservation is non-refundable.</p> */}
               </div>
-            </p>
-          </div>
-          <div className="flex flex-col mt-3 sm:mt-2 mr-4">
-            <div>
-              <h2 className="font-semibold mb-2">Wifi Details </h2>
-              <p className="mb-2 text-gray-500 justify ">{
-                record?.data?.property_rule?.wifi_username}</p>
-              <p className="mb-2 text-gray-500 justify ">{
-                record?.data?.property_rule?.wifi_password}</p>
-              {/* <p className="mb-2 text-gray-500">This reservation is non-refundable.</p> */}
-            </div>
-            <div>
-              <h2 className="font-semibold mb-2">Custom Link </h2>
-              {record?.data?.custom_link && (
-                <p className="mb-2 text-gray-500 text-justify ">
-                  <Link href={`https://quant-stay.vercel.app/properties/${record?.data?.custom_link}` }  className="text-blue-500 hover:underline" >
-                    {`https://quant-stay.vercel.app/properties/${record?.data?.custom_link}`}
-                  </Link>
-                </p>
-              )}
+              <div>
+                <h2 className="font-semibold mb-2">Custom Link </h2>
+                {record?.data?.custom_link && (
+                  <p className="mb-2 text-gray-500 text-justify ">
+                    <Link href={`https://quant-stay.vercel.app/properties/${record?.data?.custom_link}`} className="text-blue-500 hover:underline" >
+                      {`https://quant-stay.vercel.app/properties/${record?.data?.custom_link}`}
+                    </Link>
+                  </p>
+                )}
+              </div>
             </div>
           </div>
-        </div>}
+
+          <div className="flex justify-between house-rule-text">
+            <div className="flex flex-col mt-3 sm:mt-2 mr-4 ">
+              <h2 className="font-semibold mb-2 w-1/3">Checkout Instruction</h2>
+              {instructions.map((item, index) => (
+                <div key={index} className="mb-4">
+                  <p className="mb-2 text-gray-500 justify">
+                    {item?.instruction}
+                  </p>
+                  <p>
+                    {item?.details}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col mt-3 sm:mt-2 mr-4 ">
+              <h2 className="font-semibold mb-2 w-1/3">Policy</h2>
+              <p className="mb-2 text-gray-500 justify">
+              {record?.data?.property_rule?.long_term_policy ===null ? (record?.data?.property_rule?.long_term_policy) :(record?.data?.property_rule?.standard_policy) }
+
+                  </p>
+            </div>
+          </div>
+
+        </>
+      }
 
     </div>
   );

@@ -299,7 +299,7 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
           </div>
 
           <div id="reviews">
-            <Reviews data={listing?.data} ref={ReviewsRef} />
+            <Reviews data={listing?.data} ref={ReviewsRef} isAdmin={true} />
           </div>
           <Location listing={listing?.data} ref={LocationRef} />
         </div>

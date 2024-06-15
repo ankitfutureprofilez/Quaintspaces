@@ -11,7 +11,8 @@ import { Context } from "../../pages/_app";
 import toast from "react-hot-toast";
 import StartRating from "../../pages/elements/StartRating";
 
-const Reviews = React.forwardRef(({ data }, ref) => {
+const Reviews = React.forwardRef(({ data,isAdmin }, ref ) => {
+
   const { auth } = useContext(Context);
 
   const router = useRouter();
@@ -235,19 +236,22 @@ const Reviews = React.forwardRef(({ data }, ref) => {
         ) : null}
 
         {/* Add review option */}
-        <button
-          className="btn-normal mt-8 capitalize"
-          onClick={() => {
-            if (auth) {
-              openModal();
-            } else {
-              toast.error("You are not logged in!");
-              router.push("/login");
-            }
-          }}
-        >
-          {selfReview && selfReview?.id ? "Edit your review" : "Drop a review"}
-        </button>
+        {}
+       
+            <button
+            className="btn-normal mt-8 capitalize"
+            onClick={() => {
+              if (auth) {
+                openModal();
+              } else {
+                toast.error("You are not logged in!");
+                router.push("/login");
+              }
+            }}
+          >
+            { (selfReview && selfReview?.id ? "Edit your review" : "Drop a review")}
+          </button>
+      
 
         <Modal width="lg" isOpen={isOpen} onClose={closeModal}>
           <DropReview

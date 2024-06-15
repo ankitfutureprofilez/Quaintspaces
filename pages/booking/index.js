@@ -128,7 +128,7 @@ export default function Index() {
       url += "booking_event=ongoing&";
     }
     else {
-      url += "booking_status=cancelled&";
+      url += "booking_event=cancelled&";
     }
 
     const main = new Listings();
@@ -217,9 +217,8 @@ export default function Index() {
                       <th>Check Out</th>
                       <th>Status</th>
                       <th>Price</th>
-                      {key !== "ongoing" && (
-                        <th>Action</th>
-                      )}
+                      {(key !== "ongoing" && key !== "cancelled") && <th>Action</th>}
+                      {/* {} */}
                       {key === "ongoing" &&
                         <th>House details</th>}
                     </tr>
@@ -270,7 +269,7 @@ export default function Index() {
                         <td className="px-4 py-2">
                           {formatMultiPrice(item?.price)}
                         </td>
-                        {key !== "ongoing" &&
+                        {key !== "ongoing" && key !== "cancelled" &&
                           (
                             <td className="px-4 py-2">
                               {
@@ -447,13 +446,13 @@ export default function Index() {
                 className="bg-red-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-red-700"
                 onClick={handleConfirmation}
               >
-                Cancel
+                Cancel Booking  
               </button>
               <button
                 className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400"
                 onClick={handleCancel}
               >
-                Remove
+                Back 
               </button>
             </div>
           </Modal>
