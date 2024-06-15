@@ -310,7 +310,7 @@ export default function Property(props) {
       toast.error(`All fields are required.`);
       return false;
     }
-    if (step === 9 && (item?.Direction === "" || item?.wifi === " " || item?.wifiPassword === " " || item?.housemanual === " " || item?.discount === "")) {
+    if (step === 9 && (item?.Direction === "" || item?.wifi === " " || item?.wifiPassword === " " || item?.housemanual === " " )) {
       toast.error(`All fields are required.`);
       return false;
     }

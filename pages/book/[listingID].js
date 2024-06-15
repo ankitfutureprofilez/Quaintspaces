@@ -589,7 +589,46 @@ const Book = () => {
                     </span>
                   </div>
                 </div>
-                <div className="flex gap-3 mt-2 border-b pb-2">
+                {discountPercentage !==0   ? (
+                     <div className="flex gap-3 mt-2 border-b pb-2">
+                     <div className="flex items-center justify-between w-full">
+                       <span className="block text-blackColor">
+                         Charges Per Nights
+                         ({formatMultiPrice(originalPrice)} * {infos.checkout &&
+                           infos.checkin &&
+                           differenceInDays(
+                             new Date(infos.checkout),
+                             new Date(infos.checkin)
+                           )} )
+                       </span>
+                       <span className="block text-blackColor font-medium confirm-price">
+                         <div className="flex justify-center">
+                           <>
+                             <div className="flex flex-col items-center">
+                               <div className="text-lg font-bold">
+                                 {
+                                   formatMultiPrice(discountedPrice * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))
+                                 }
+                               </div>
+                               <div className="text-red-700 line-through mt-1">
+                                 {
+                                   formatMultiPrice(originalPrice * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))
+                                 }
+                               </div>
+                               {discountPercentage && (
+                                 <div className="text-red-700 mt-1">
+                                   {`${discountPercentage} % off`}
+                                 </div>
+                               )}
+                             </div>
+   
+                           </>
+                         </div>
+                       </span>
+                     </div>
+                   </div>
+                ) :( 
+                  <div className="flex gap-3 mt-2 border-b pb-2">
                   <div className="flex items-center justify-between w-full">
                     <span className="block text-blackColor">
                       Charges Per Nights
@@ -603,39 +642,22 @@ const Book = () => {
                     <span className="block text-blackColor font-medium confirm-price">
                       <div className="flex justify-center">
                         <>
-                          <div className="text-red-700 line-through ml-3">
-                            {
-                              formatMultiPrice(originalPrice *
-                                differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))}
+                          <div className="flex flex-col items-center">
+                            <div className="text-lg font-bold">
+                            </div>
+                            <div className="  mt-1">
+                              {
+                                formatMultiPrice(originalPrice * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))
+                              }
+                            </div>
+                          
                           </div>
                         </>
                       </div>
                     </span>
                   </div>
                 </div>
-
-                <div className="flex gap-3 mt-2 border-b pb-2">
-                  <div className="flex items-center justify-between w-full">
-                    <span className="block text-blackColor">
-                      Discount price Per Nights
-                      ({formatMultiPrice(discountedPrice)} *  {infos.checkout &&
-                        infos.checkin &&
-                        differenceInDays(
-                          new Date(infos.checkout),
-                          new Date(infos.checkin)
-                        )})
-                    </span>
-                    <span className="block text-blackColor font-medium confirm-price ml-3">
-                      <div className="flex justify-center">
-                        {
-                          formatMultiPrice(discountedPrice *
-                            differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))
-                        }
-                      </div>
-
-                    </span>
-                  </div>
-                </div>
+                )}
                 <div className="pt-4 flex items-center border-b pb-2 justify-between confirm-total">
                   <span className="font-bold text-center ">Extra Charges </span>
                 </div>
@@ -727,24 +749,24 @@ const Book = () => {
                   Cancellation policy
                 </p>
                 <div className="py-4 px-6">
+                  
                   <div className="flex ">
                     <div className="w-1/2">
-                      <h6 className="mb-1" >{
-
-                        cancelpolicy?.date === new Date() ? "After" : "Before"}</h6>
-                      <h6 className="mb-1" >{cancelpolicy?.date ? ("") : (formattedCheckIn && "After")}</h6>
+                      <h6 className="mb-1" >
+                        {cancelpolicy?.date && (cancelpolicy?.date === new Date() ? "After" : "Before")  }</h6>
+                      <h6 className="mb-1" >{cancelpolicy?.date ? ("") : ( <Dateformat item=  {formattedCheckIn}/> && "After")}</h6>
                     </div>
                     <div className="w-1/2">
-                      <h6 className="mb-1" >{cancelpolicy?.date === new Date() ? "" : "Full Refund"}</h6>
-                      <h6 className="mb-1" >{cancelpolicy?.date ? ("") : (formattedCheckIn && "No Refund")}</h6>
+                      <h6 className="mb-1" >{cancelpolicy?.date && (cancelpolicy?.date === new Date() ? "" : "Full Refund")}</h6>
+                      <h6 className="mb-1" >{ cancelpolicy?.date ? ("") : (
+                        <Dateformat item={formattedCheckIn}/> && "No Refund")}</h6>
                     </div>
-
                   </div>
 
                   <div className="flex">
                     <p className="mb-1" >{cancelpolicy?.date ?
                       <Dateformat item={cancelpolicy?.date} />
-                      : (formattedCheckIn)}</p>
+                      : (<Dateformat item={cancelpolicy}/>)}</p>
                     <p className="mb-1">{cancelpolicy?.text}</p>
                   </div>
 
