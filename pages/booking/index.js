@@ -10,6 +10,7 @@ import NoData from "../elements/NoData.js";
 import { formatMultiPrice } from "../../hooks/ValueData.js";
 import Head from "next/head";
 import { toast } from "react-hot-toast";
+import DateComponent from "../elements/DateFormat.jsx";
 
 export default function Index() {
   const [loading, setLoading] = useState(false);
@@ -24,43 +25,6 @@ export default function Index() {
   const [refend, setRefend] = useState("")
   const [houseRule, SetHouseRules] = useState({})
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
-
-  const [longpolicy, setLongpolicy] = useState();
-  const [standardpolicy, setstandardpolicy] = useState();
-
-  const policies = [
-    {
-      policy: 'Flexible',
-      description: 'Guests get a full refund if they cancel up to a day before check-in.'
-    },
-    {
-      policy: 'Moderate',
-      description: 'Guests get a full refund if they cancel up to 5 days before check-in.'
-    },
-    {
-      policy: 'Firm',
-      description: 'Guests get a full refund if they cancel up to 30 days before check-in, except in certain cases.'
-    },
-    {
-      policy: 'Strict',
-      description: 'Guests get a full refund if they cancel within 48 hours of booking and at least 14 days before check-in.'
-    }
-  ];
-
-
-  const policiesies = [
-    {
-      policy: 'Flexible',
-      description: 'First 30 days are non-refundable. Full refund up to 30 days before check-in.'
-    },
-    {
-      policy: 'Strict',
-      description: 'Guests get a full refund if they cancel within 48 hours of booking and at least 14 days before check-in.'
-    }
-  ];
-
-  const matchedPolicy = policiesies.find(p => p.policy === longpolicy);
-  const matchedPolicies = policies.find(p => p.policy === standardpolicy);
 
   const currentYear = new Date().getFullYear();
 
@@ -88,7 +52,6 @@ export default function Index() {
     const response = main.user_house_rule(houseBook);
     response
       .then((res) => {
-        console.log("res", res);
         if (res && res.data && res.data.status) {
           SetHouseRules(res?.data?.data)
         }
@@ -109,8 +72,6 @@ export default function Index() {
     SetSelectBooking(uuid);
     setShowConfirmation(true);
     setRefend(uuid?.refund_amount);
-    setLongpolicy(uuid?.booking_property?.property_rule?.long_term_policy);
-    setstandardpolicy(uuid?.standard_policy)
   };
 
   const handleConfirmation = () => {
@@ -145,7 +106,6 @@ export default function Index() {
   const [hasmore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [key, setKey] = useState("")
-  console.log(key)
   const fetching = async (pg) => {
     setLoading(true);
     let url = "";
@@ -178,7 +138,6 @@ export default function Index() {
         setLoading(false);
         setKey(r?.data?.request_key);
         const newdata = r?.data?.data?.data || [];
-        console.log(newdata)
         setListings((prevData) => {
           if (pg === 1) {
             return newdata;
@@ -268,7 +227,10 @@ export default function Index() {
                   {listings.map((item, index) => (
                     <tbody key={index}>
                       <tr>
-                        <td className="px-4 py-2">{item?.booking_date}</td>
+                        <td className="px-4 py-2">
+                          <DateComponent item=
+                            {item?.booking_date} />
+                        </td>
                         <td className="px-4 py-2">{item?.booking_number}</td>
                         <td className="px-4 py-2">
                           <div className="flex items-center">
@@ -281,8 +243,13 @@ export default function Index() {
                             </div>
                           </div>
                         </td>
-                        <td className="px-4 py-2">{item?.check_in} </td>
-                        <td className="px-4 py-2"> {item?.check_out}</td>
+                        <td className="px-4 py-2">
+                          <DateComponent item=
+                            {item?.check_in} /> </td>
+                        <td className="px-4 py-2">
+                          <DateComponent item=
+                            {item?.check_out} />
+                        </td>
 
                         <td className="px-4 py-2 ">
                           <td
@@ -559,7 +526,7 @@ export default function Index() {
                   </>
                 ) : (
                   <> </>)}
-                  
+
             </div>
           </Modal>
         )

@@ -38,14 +38,14 @@ const Date_GuestsPickerCard = React.forwardRef(
               <div className="flex items-center justify-between mb-6">
                 <h1 className="text-md font-bold">
                   <span className=" text-theme text-2xl">
-                    {formatMultiPrice(listing?.price)}
+                    {formatMultiPrice(listing?.price) ?? 0}
                   </span>{" "}
                   /Night
                 </h1>
                 <span className="flex items-center gap-1 sm:gap-2">
                   <span className="flex items-center gap-1">
                     <Star />
-                    {parseFloat( listing?.rating && listing?.rating?.toFixed(2))}
+                    {parseFloat( listing?.rating && listing?.rating?.toFixed(2)) ?? 0}
                   </span>
                   {/* <span>·</span>
                   <span className="underline">

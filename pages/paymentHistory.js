@@ -95,7 +95,7 @@ export default function paymentHistory() {
                     {item?.booking_history?.check_in} &  {item?.booking_history?.check_out}
                   </td>
                   <td className="px-2 md:px-4 py-2 capitalize">{item?.method}</td>
-                  <td className="px-2 md:px-4 py-2 capitalize">{item?.payment_status}</td>
+                  <td className={`px-2 md:px-4 py-2 capitalize ${item?.payment_status === "success" ? "text-green" :"text-red"}`}>{item?.payment_status}</td>
                   <td className="px-2 md:px-4 py-2">{formatMultiPrice(item?.price)}</td>
                 </tr>
               </tbody>

@@ -61,8 +61,8 @@ const Cancel = () => {
           </p>
           <div className="flex my-10">
             <button 
-            onClick={() => {router.push(-1)}}
-            className="mx-auto text-white bg-red-500 w-1/4 btn">Go Home</button>
+            onClick={() => {router.push("/apartments")}}
+            className="mx-auto text-white bg-red-500 w-1/4 btn">Go Property</button>
           </div>
         </div>
       </div>

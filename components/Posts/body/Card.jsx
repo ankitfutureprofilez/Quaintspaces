@@ -65,7 +65,7 @@ const Card = ({ post }) => {
           </p>
           <h4>
             <span className="card-price">
-              {formatMultiPrice(post?.price)}
+              {formatMultiPrice(post?.price) ? formatMultiPrice(post?.price)   :0}
             </span>{" "}
             /night
           </h4>

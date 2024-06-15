@@ -136,17 +136,17 @@ const Reviews = React.forwardRef(({ data }, ref) => {
             </div>
           </div>
           <div className="mb-3 flex items-center justify-between">
-            <span>Check-in</span>
+            <span> Check-in</span>
             <div className="flex gap-2 items-center">
               <div className="w-36 h-1 rounded-full bg-borderColor">
                 <span
                   className={`block h-1 rounded-full bg-blackColor`}
-                  style={{ width: `${(data?.check_in / 5) * 100}%` }}
+                  style={{ width: `${(data?.check_in_count / 5) * 100}%` }}
                 ></span>
               </div>
               <span>
                 {parseFloat(
-                  data && data?.check_in && data?.check_in
+                  data && data?.check_in_count && data?.check_in_count
                 )}
               </span>
             </div>

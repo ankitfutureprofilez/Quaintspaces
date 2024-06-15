@@ -7,6 +7,7 @@ import DatesModel from "../../components/book/DatesModel";
 import GuestsModel from "../../components/book/GuestsModel";
 import Head from "next/head";
 import Heading from "../elements/Heading";
+import Dateformat from "../elements/DateFormat"
 import Moment from "moment";
 import Image from "next/image";
 import Button from "../elements/Button";
@@ -52,6 +53,7 @@ const Book = () => {
     const response = main.cancelpolicy(formData);
     response.then((res) => {
       if (res && res?.data && res?.data?.status) {
+        console.log("res", res)
         setCancelpolicy(res?.data?.data)
         console.log("res", res);
       } else {
@@ -397,21 +399,21 @@ const Book = () => {
               <div className=" border-b border-borderColor pb-4 md:pb-11">
                 <form >
                   <div className="mb-4">
-                  <div className="w-ful mt-1 pr-4 border rounded-full ">
-                    <select
-                      id="selectOption"
-                      name="selectOption"
-                      value={formData.selectOption}
-                      onChange={handleChange}
-                      className="p-4 w-full rounded-full outline-none"
-                      required
-                    >
-                      <option value="">Choose...</option>
-                      <option value="aadhar">Aadhar Card</option>
-                      <option value="pan">PAN Card</option>
-                      <option value="voterid">Voter ID</option>
-                    </select>
-                  </div> 
+                    <div className="w-ful mt-1 pr-4 border rounded-full ">
+                      <select
+                        id="selectOption"
+                        name="selectOption"
+                        value={formData.selectOption}
+                        onChange={handleChange}
+                        className="p-4 w-full rounded-full outline-none"
+                        required
+                      >
+                        <option value="">Choose...</option>
+                        <option value="aadhar">Aadhar Card</option>
+                        <option value="pan">PAN Card</option>
+                        <option value="voterid">Voter ID</option>
+                      </select>
+                    </div>
 
                   </div>
 
@@ -641,7 +643,7 @@ const Book = () => {
                   <div className="flex items-center justify-between w-full">
                     <span className="block text-blackColor">
                       Cleaning Fees Per Nights (
-                      {formatMultiPrice(listing?.cleaning_fee)} *  {infos.checkout &&
+                      {formatMultiPrice(listing?.cleaning_fee || 0)} *  {infos.checkout &&
                         infos.checkin &&
                         differenceInDays(
                           new Date(infos.checkout),
@@ -719,32 +721,55 @@ const Book = () => {
           )}
 
           {isOpen && (
-            <Modal isOpen={isOpen} onClose={closeModal}>
-              <p className="text-lg text-white font-semibold p-7 py-4 bg-[#c48b58]">
-              Cancellation policy
-              </p>
-              <div className=" py-4 px-6">
-                <div>
-                  <p className="mb-1" >{cancelpolicy?.date === new Date() ? "After" :"Before"}</p>
-                  <p className="mb-1" >{cancelpolicy?.date ? ("")  :(formattedCheckIn && "After") }</p>
-                  <p className="mb-1" >{cancelpolicy?.date ? (cancelpolicy?.date) : (formattedCheckIn)}</p>
-                  <p className="mb-1" >{cancelpolicy?.date === new Date() ? "": "Full Refund"}</p>
-                  <p className="mb-1" >{cancelpolicy?.date ? ("")  :(formattedCheckIn && "No Refund") }</p>
-                  <p className="mb-1">{cancelpolicy?.text}</p>
+            <div className="max-w-3xl mx-auto">
+              <Modal isOpen={isOpen} onClose={closeModal}>
+                <p className="text-lg text-white font-semibold p-7 py-4 bg-[#c48b58]">
+                  Cancellation policy
+                </p>
+                <div className="py-4 px-6">
+                  <div className="flex ">
+                    <div className="w-1/2">
+                      <h6 className="mb-1" >{
+
+                        cancelpolicy?.date === new Date() ? "After" : "Before"}</h6>
+                      <h6 className="mb-1" >{cancelpolicy?.date ? ("") : (formattedCheckIn && "After")}</h6>
+                    </div>
+                    <div className="w-1/2">
+                      <h6 className="mb-1" >{cancelpolicy?.date === new Date() ? "" : "Full Refund"}</h6>
+                      <h6 className="mb-1" >{cancelpolicy?.date ? ("") : (formattedCheckIn && "No Refund")}</h6>
+                    </div>
+
+                  </div>
+
+                  <div className="flex">
+                    <p className="mb-1" >{cancelpolicy?.date ?
+                      <Dateformat item={cancelpolicy?.date} />
+                      : (formattedCheckIn)}</p>
+                    <p className="mb-1">{cancelpolicy?.text}</p>
+                  </div>
+
+                  {cancelpolicy?.date2 &&
+                    <div className="mt-5 border-t-2  border-[#c48b58]  p-4 ">
+                      <div className="flex justify-between ">
+                        <h6 className="mb-1 font-bold ">{cancelpolicy?.date2 === new Date() ? "After" : "Before"}</h6>
+                        <h6 className="mb-1 font-bold">{cancelpolicy?.date === new Date() ? "" : "Full Refund"}</h6>
+                      </div>
+                      <div className="flex  justify-between">
+                        <p className="mb-1 font-normal ">
+                          <Dateformat item={cancelpolicy?.date2} />
+                        </p>
+                        <p className="mb-1">{cancelpolicy?.text2}</p>
+                      </div>
+                    </div>
+                  }
+
+
+                  <p className="font-normal   capitalize" >Cleaning fees are refunded if you cancel before check-in. </p>
+                  <p className="underline mt-2 font-bold cursor-pointer  text-[#c48b58]" >Learn more about <Link href="/terms">cancellation policies</Link></p>
                 </div>
-                {cancelpolicy?.date2 &&
-                <div>
-                  <p className="mb-1" >{cancelpolicy?.date2 === new Date() ?  "After" :"Before"}</p>
-                  <p className="mb-1" >{cancelpolicy?.date2}</p>
-                  <p className="mb-1" >{cancelpolicy?.text2}</p>
-                </div>}
-
-
-                <p className="font-normal   capitalize" >Cleaning fees are refunded if you cancel before check-in. </p>
-                <p className="underline mt-2 font-bold cursor-pointer  text-[#c48b58]" >Learn more about <Link href="/terms">cancellation policies</Link></p>
-              </div>
-              <div className="mb-4 flex justify-center"></div>
-            </Modal>
+                <div className="mb-4 flex justify-center"></div>
+              </Modal>
+            </div>
           )
           }
         </main>
