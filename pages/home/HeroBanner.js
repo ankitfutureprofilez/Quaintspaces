@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function HeroBanner() {
   return (
-    <div className="justify-center items-center flex flex-col hero-sec">
+    <div className="justify-center items-center flex flex-col hero-sec px-2">
       <h1>Live the luxury in jaipur</h1>
       <p>Book the most luxuries and aesthetically pleasing place, Jaipur city has to offer</p>
       <Link href="#places">

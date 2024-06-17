@@ -111,12 +111,12 @@ function Bookings() {
               <p className="text-base">Loading...</p>
             </div>
           ) : (
-            <div className="space-y-3">
+            <div className="space-y-3 ">
               {/* comment 1 */}
               {record && record.length > 0 ? (
                 record.map((item) => (
-                  <div key={item.booking_number}>
-                    <div className="flex items-center justify-between w-full select-none cursor-pointer p-2 relative">
+                  <div className="!mt-0 border-b last:border-0" key={item.booking_number}>
+                    <div className="flex items-center justify-between w-full select-none cursor-pointer p-2 relative ">
                       <div className="flex items-center gap-2 img-book">
                         <Link href={`/admin/property/${item?.propertyUuid}`}>
                         <img
@@ -150,7 +150,7 @@ function Bookings() {
                         </div>
                       </div>
                     </div>
-                    <hr className="bg-gray-400" />
+                  
                   </div>
                 ))
               ) : (

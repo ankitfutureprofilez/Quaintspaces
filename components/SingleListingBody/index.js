@@ -253,6 +253,7 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
       <section className="w-full sm:px-4">
         <div className="container mx-auto !py-4 sm:py-8">
           <Title
+          isAdmin={true}
             isSaved={isSaved}
             listing={listing}
             addWishlist={changeWishlist}

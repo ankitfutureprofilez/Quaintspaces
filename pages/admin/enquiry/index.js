@@ -218,29 +218,35 @@ export default function Index() {
 
       {selectedEnquiry && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <div className="my-3 lg:my-6 flex flex-col">
+          <div className=" flex flex-col ">
+          <div className="p-4 bg-[#c48b58]">
             <label
               htmlFor="message"
-              className="mx-auto mb-8 block text-lg font-medium text-gray-600"
+              className="mx-auto block text-lg font-medium text-[#fff]"
             >
               Message
             </label>
+            </div>
+            <div className="p-4">
             <textarea
               id="message"
               name="message"
               value={message}
               onChange={handleChange}
-              className="mt-3 p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
+              className="mt-3 p-3 lg:p-4 border rounded-2xl min-h-32 lg:min-h-52 w-full"
               required
               placeholder="Type your response here"
               rows={2}
             />
-            <button
-              className="btn filter mt-8 w-2/4 mx-auto"
-              onClick={() => handleInquiryAcceptance(selectedEnquiry)}
-            >
-              {loading ? "Loading..." : "Proceed"}
-            </button>
+            <div className="flex justify-center">
+              <button
+                className="btn filter mt-6 mb-4 w-2/4 mx-auto"
+                onClick={() => handleInquiryAcceptance(selectedEnquiry)}
+              >
+                {loading ? "Loading..." : "Proceed"}
+              </button>
+            </div>
+            </div>
           </div>
         </Modal>
       )}

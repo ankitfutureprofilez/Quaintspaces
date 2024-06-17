@@ -64,9 +64,9 @@ export default function index() {
             <div className="px-1">
               <Link
                 href="/booking"
-                className="flex items-center border-b-2 border-orange-300 "
+                className="flex items-center border-b-2 border-[#c48b58] "
               >
-                <p className="text-sm mr-2" style={{ color: "#fdba74" }}>
+                <p className="text-sm mr-2" style={{ color: "#c48b58" }}>
                   View More
                 </p>
                 <svg
@@ -112,9 +112,9 @@ export default function index() {
             <div className="px-1">
               <Link
                 href="/profile"
-                className="flex items-center border-b-2 border-orange-300 "
+                className="flex items-center border-b-2 border-[#c48b58] "
               >
-                <p className="text-sm mr-2" style={{ color: "#fdba74" }}>
+                <p className="text-sm mr-2" style={{ color: "#c48b58" }}>
                   View More
                 </p>
                 <svg
@@ -160,9 +160,9 @@ export default function index() {
             <div className="px-1">
               <Link
                 href="/security"
-                className="flex items-center border-b-2 border-orange-300  "
+                className="flex items-center border-b-2 border-[#c48b58]  "
               >
-                <p className="text-sm mr-2" style={{ color: "#fdba74" }}>
+                <p className="text-sm mr-2" style={{ color: "#c48b58" }}>
                   View More
                 </p>
                 <svg

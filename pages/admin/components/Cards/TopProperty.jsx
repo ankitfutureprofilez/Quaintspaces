@@ -51,7 +51,7 @@ function StatusTracker() {
           <div className="space-y-3">
             {propertylist && propertylist?.length > 0 ? (
               propertylist.map((item) => (
-                <div className="space-y-3" key={item.uuid}>
+                <div className="space-y-3 !mt-0 border-b py-2 last:border-0" key={item.uuid}>
                   <div className="flex items-center justify-between ">
                     <div className="flex items-center gap-2 img-book ">
                     

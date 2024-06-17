@@ -100,7 +100,7 @@ const DropReview = ({ closeModal, listing, getSelfreview }) => {
 
       <div className="flex items-center mb-4">
         <h2
-          className="mr-4 w-1/2 align-center text-md text-base font-medium"
+          className=" w-1/2 align-center text-md text-base font-medium"
           style={{ color: "#3F2A17" }}
         >
           Cleanliness
@@ -131,7 +131,7 @@ const DropReview = ({ closeModal, listing, getSelfreview }) => {
       </div>
       <div className="flex items-center mb-4">
         <h2
-          className="mr-4 w-1/2 align-center text-md text-base font-medium"
+          className=" w-1/2 align-center text-md text-base font-medium"
           style={{ color: "#3F2A17" }}
         >
           Check-in
@@ -145,7 +145,7 @@ const DropReview = ({ closeModal, listing, getSelfreview }) => {
       </div>
       <div className="flex items-center mb-4">
         <h2
-          className="mr-4 w-1/2 align-center text-md text-base font-medium"
+          className=" w-1/2 align-center text-md text-base font-medium"
           style={{ color: "#3F2A17" }}
         >
           Accuracy
@@ -159,7 +159,7 @@ const DropReview = ({ closeModal, listing, getSelfreview }) => {
       </div>
       <div className="flex items-center mb-4">
         <h2
-          className="mr-4 w-1/2 align-center text-md text-base font-medium"
+          className=" w-1/2 align-center text-md text-base font-medium"
           style={{ color: "#3F2A17" }}
         >
           Location
@@ -173,7 +173,7 @@ const DropReview = ({ closeModal, listing, getSelfreview }) => {
       </div>
       <div className="flex items-center mb-4">
         <h2
-          className="mr-4 w-1/2 align-center text-md text-base font-medium"
+          className=" w-1/2 align-center text-md text-base font-medium"
           style={{ color: "#3F2A17" }}
         >
           Value

@@ -589,74 +589,76 @@ const Book = () => {
                     </span>
                   </div>
                 </div>
-                {discountPercentage !==0   ? (
-                     <div className="flex gap-3 mt-2 border-b pb-2">
-                     <div className="flex items-center justify-between w-full">
-                       <span className="block text-blackColor">
-                         Charges Per Nights
-                         ({formatMultiPrice(originalPrice)} * {infos.checkout &&
-                           infos.checkin &&
-                           differenceInDays(
-                             new Date(infos.checkout),
-                             new Date(infos.checkin)
-                           )} )
-                       </span>
-                       <span className="block text-blackColor font-medium confirm-price">
-                         <div className="flex justify-center">
-                           <>
-                             <div className="flex flex-col items-center">
-                               <div className="text-lg font-bold">
-                                 {
-                                   formatMultiPrice(discountedPrice * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))
-                                 }
-                               </div>
-                               <div className="text-red-700 line-through mt-1">
-                                 {
-                                   formatMultiPrice(originalPrice * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))
-                                 }
-                               </div>
-                               {discountPercentage && (
-                                 <div className="text-red-700 mt-1">
-                                   {`${discountPercentage} % off`}
-                                 </div>
-                               )}
-                             </div>
-   
-                           </>
-                         </div>
-                       </span>
-                     </div>
-                   </div>
-                ) :( 
+                {discountPercentage !== 0 ? (
                   <div className="flex gap-3 mt-2 border-b pb-2">
-                  <div className="flex items-center justify-between w-full">
-                    <span className="block text-blackColor">
-                      Charges Per Nights
-                      ({formatMultiPrice(originalPrice)} * {infos.checkout &&
-                        infos.checkin &&
-                        differenceInDays(
-                          new Date(infos.checkout),
-                          new Date(infos.checkin)
-                        )} )
-                    </span>
-                    <span className="block text-blackColor font-medium confirm-price">
-                      <div className="flex justify-center">
-                        <>
-                          <div className="flex flex-col items-center">
-                            <div className="text-lg font-bold">
+                    <div className="flex items-center justify-between w-full">
+                      <span className="block text-blackColor">
+                        Charges Per Nights
+                        ({formatMultiPrice(originalPrice)} * {infos.checkout &&
+                          infos.checkin &&
+                          differenceInDays(
+                            new Date(infos.checkout),
+                            new Date(infos.checkin)
+                          )} )
+                      </span>
+                      <span className="block text-blackColor font-medium confirm-price">
+                        <div className="flex justify-center">
+                          <>
+                            <div className="flex flex-col items-center">
+                              <div className="text-lg text-green-800 font-bold">
+                                {
+                                  formatMultiPrice(discountedPrice * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))
+                                }
+                              </div>
+
+                              <p className="text-red-700 text-sm line-through mt-1">
+                                {
+                                  formatMultiPrice(originalPrice * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))
+                                }
+                              </p>
+                              {discountPercentage && (
+                                <p className="text-green-700  mt-1">
+                                  {`( ${discountPercentage}% off )`}
+                                </p>
+                              )}
                             </div>
-                            <div className="  mt-1">
-                              {
-                                formatMultiPrice(originalPrice * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))
-                              }
-                            </div>
-                          
-                          </div>
-                        </>
-                      </div>
-                    </span>
+
+
+                          </>
+                        </div>
+                      </span>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="flex gap-3 mt-2 border-b pb-2">
+                    <div className="flex items-center justify-between w-full">
+                      <span className="block text-blackColor">
+                        Charges Per Nights
+                        ({formatMultiPrice(originalPrice)} * {infos.checkout &&
+                          infos.checkin &&
+                          differenceInDays(
+                            new Date(infos.checkout),
+                            new Date(infos.checkin)
+                          )} )
+                      </span>
+                      <span className="block text-blackColor font-medium confirm-price">
+                        <div className="flex justify-center">
+                          <>
+                            <div className="flex flex-col items-center">
+                              <div className="text-lg font-bold">
+                              </div>
+                              <div className="  mt-1">
+                                {
+                                  formatMultiPrice(originalPrice * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))
+                                }
+                              </div>
+
+                            </div>
+                          </>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
                 )}
                 <div className="pt-4 flex items-center border-b pb-2 justify-between confirm-total">
                   <span className="font-bold text-center ">Extra Charges </span>
@@ -749,38 +751,52 @@ const Book = () => {
                   Cancellation policy
                 </p>
                 <div className="py-4 px-6">
-                  
+
                   <div className="flex ">
-                    <div className="w-1/2">
-                      <h6 className="mb-1" >
-                        {cancelpolicy?.date && (cancelpolicy?.date === new Date() ? "After" : "Before")  }</h6>
-                      <h6 className="mb-1" >{cancelpolicy?.date ? ("") : ( <Dateformat item=  {formattedCheckIn}/> && "After")}</h6>
+                    <div className="w-1/3 ">
+                      <h6 className="mb-2 text-[18px] font-semibold cancel-policy" >
+                        {cancelpolicy?.date && (cancelpolicy?.date === new Date() ? "After" : "Before")}</h6>
+                      <h6 className="mb-2 text-xl font-semibold cancel-policy" >{cancelpolicy?.date ? ("") : (<Dateformat item={formattedCheckIn} /> && "After")}</h6>
                     </div>
-                    <div className="w-1/2">
-                      <h6 className="mb-1" >{cancelpolicy?.date && (cancelpolicy?.date === new Date() ? "" : "Full Refund")}</h6>
-                      <h6 className="mb-1" >{ cancelpolicy?.date ? ("") : (
-                        <Dateformat item={formattedCheckIn}/> && "No Refund")}</h6>
+                    <div className="w-4/6 pl-3 border-l">
+                      <h6 className="mb-2 text-[18px] font-semibold" >{cancelpolicy?.date && (cancelpolicy?.date === new Date() ? "" : "Full Refund")}</h6>
+                      <h6 className="mb-2" >{cancelpolicy?.date ? ("") : (
+                        <Dateformat item={formattedCheckIn} /> && "No Refund")}</h6>
                     </div>
                   </div>
 
-                  <div className="flex">
-                    <p className="mb-1" >{cancelpolicy?.date ?
-                      <Dateformat item={cancelpolicy?.date} />
-                      : (<Dateformat item={cancelpolicy}/>)}</p>
-                    <p className="mb-1">{cancelpolicy?.text}</p>
+                  <div className="flex border-bv border-b mb-4 ">
+                    <div className="w-1/3">
+
+                      <p className="mb-4" >{cancelpolicy?.date ?
+                        <Dateformat item={cancelpolicy?.date} />
+                        : (<Dateformat item={cancelpolicy} />)}</p>
+                    </div>
+                    <div className="w-4/6 pl-3 border-l">
+                      <p className="mb-4">{cancelpolicy?.text}</p>
+                    </div>
                   </div>
 
                   {cancelpolicy?.date2 &&
                     <div className="mt-5 border-t-2  border-[#c48b58]  p-4 ">
-                      <div className="flex justify-between ">
-                        <h6 className="mb-1 font-bold ">{cancelpolicy?.date2 === new Date() ? "After" : "Before"}</h6>
-                        <h6 className="mb-1 font-bold">{cancelpolicy?.date === new Date() ? "" : "Full Refund"}</h6>
+                      <div className="flex justify-between mb-3 border-b">
+                        <div className="w-1/2">
+                          <h6 className="mb-1 font-bold ">{cancelpolicy?.date2 === new Date() ? "After" : "Before"}</h6>
+                        </div>
+                        <div className="w-1/2">
+                          <h6 className="mb-1 font-bold">{cancelpolicy?.date === new Date() ? "" : "Full Refund"}</h6>
+                        </div>
                       </div>
-                      <div className="flex  justify-between">
-                        <p className="mb-1 font-normal ">
-                          <Dateformat item={cancelpolicy?.date2} />
-                        </p>
-                        <p className="mb-1">{cancelpolicy?.text2}</p>
+                      <div className="flex  justify-between mb-3">
+                        <div className="w-1/2">
+
+                          <p className="mb-1 font-normal w-1/2">
+                            <Dateformat item={cancelpolicy?.date2} />
+                          </p>
+                        </div><div className="w-1/2">
+
+                          <p className="mb-1 w-1/2">{cancelpolicy?.text2}</p>
+                        </div>
                       </div>
                     </div>
                   }

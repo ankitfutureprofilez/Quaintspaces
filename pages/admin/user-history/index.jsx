@@ -419,29 +419,35 @@ export default function Index() {
         
       {isOpen && (
         <Modal isOpen={openModal} onClose={closeModal}>
-          <div className="my-3 lg:my-6 flex flex-col">
+          <div className="flex flex-col">
+          <div className="p-4 bg-[#c48b58]">
             <label
               htmlFor="message"
-              className="mx-auto mb-8 block text-lg font-medium text-gray-600"
+              className="mx-auto  block text-lg font-medium text-[#fff]"
             >
-              Message
+              Message 
             </label>
-            <textarea
-              id="message"
-              name="message"
-              value={message}
-              onChange={handleChange}
-              className="mt-3 p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
-              required
-              placeholder="Please enter a reason for account deletion"
-              rows={2}
-            />
-            <button
-              className="btn filter mt-8 w-2/4 mx-auto"
-              onClick={() => deleteAccount(id)}
-            >
-              {loading ? "Processing..." : "Proceed"}
-            </button>
+            </div>
+            <div className="p-4">
+              <textarea
+                id="message"
+                name="message"
+                value={message}
+                onChange={handleChange}
+                className=" p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
+                required
+                placeholder="Please enter a reason for account deletion"
+                rows={2}
+              />
+              <div className="flex justify-center">
+                <button
+                  className="btn filter mt-6 mb-4 w-2/4 mx-auto"
+                  onClick={() => deleteAccount(id)}
+                >
+                  {loading ? "Processing..." : "Proceed"}
+                </button>
+              </div>
+            </div>
           </div>
         </Modal>
       )}

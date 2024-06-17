@@ -685,18 +685,7 @@ export default function Property(props) {
       // .property-type:checked + label { color :#000 !important;border-color:#000 !important;}
       // .property-type:checked + label h2 { color :#000 !important;border-color:#000 !important;}
     `}</style>
-      {isEdit && !stepdata ? (
-        <> </>
-      ) : (
-        <div className="flex justify-end overflow-hidden	 mt-5">
-          <button
-            onClick={handleSubmit}
-            className="inline-flex mx-2 justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-          >
-            {Loading ? "Processing..." : "Save/Exit"}
-          </button>
-        </div>
-      )}
+      
       <div class="max-w-4xl overflow-hidden	 w-full space-y-8 m-auto w-full px-2 ">
 
       </div>
@@ -1649,6 +1638,18 @@ export default function Property(props) {
           </div>
         </div>
       </div>
+      {isEdit && !stepdata ? (
+        <> </>
+      ) : (
+        <div className="max-w-4xl w-full space-y-8 w-full px-2  m-auto w-full px-2">
+          <button
+            onClick={handleSubmit}
+            className="inline-flex mx-2 justify-center py-2 px-8 border-2 border-[#c48b58] shadow-sm text-lg font-medium rounded-full text-white bg-[#c48b58] hover:bg-[#fff] hover:text-[#c48b58]"
+          >
+            {Loading ? "Processing..." : "Save / Exit"}
+          </button>
+        </div>
+      )}
     </>
   );
 }

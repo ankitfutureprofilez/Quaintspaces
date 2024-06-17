@@ -61,7 +61,7 @@ function CurrentProject() {
             {record && record?.length > 0 ?
               record &&
               record?.map((item) => (
-                <div className="space-y-3">
+                <div className="space-y-3 pb-3 border-b last:border-0">
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="flex items-center gap-2 img-book">

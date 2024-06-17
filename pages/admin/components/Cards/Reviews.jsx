@@ -86,7 +86,7 @@ function Reviews() {
                       <div className="flex justify-between items-end">
                         <div className="space-x-2 font-medium">
 
-                          <div className="flex text-xs px-2 py-0.5 rounded-full bg-white-100 text-black">
+                          <div className="flex text-xs pr-2 py-0.5 rounded-full bg-white-100 text-black">
                             <StartRating
                               value={parseFloat(
                                 item && item?.rating && item?.rating?.toFixed(2)

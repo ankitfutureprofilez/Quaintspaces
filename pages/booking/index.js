@@ -347,7 +347,7 @@ export default function Index() {
         <div className="flex  flex-col md:flex-row justify-between mb-6">
           <div className="flex-wrap  flex align-items-center py-2 sm:space-x-4 space-x-1 upcomming-box">
             <Button
-              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 rounded-full ${selectedButton === "upcoming"
+              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "upcoming"
                 ? "bg-orange-300 text-white"
                 : "text-black"
                 }`}
@@ -356,14 +356,14 @@ export default function Index() {
             />
             <Button
               text={"Completed"}
-              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 rounded-full ${selectedButton === "completed"
+              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "completed"
                 ? "bg-orange-300 text-white"
                 : "text-black"
                 } `}
               onClick={() => handleGroupChange("completed")}
             />
             <Button
-              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 rounded-full ${selectedButton === "cancelled"
+              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "cancelled"
                 ? "bg-orange-300 text-white"
                 : "text-black"
                 } `}
@@ -371,7 +371,7 @@ export default function Index() {
               text={"Cancelled"}
             />
             <Button
-              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 rounded-full ${selectedButton === "ongoing"
+              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "ongoing"
                 ? "bg-orange-300 text-white"
                 : "text-black"
                 } `}

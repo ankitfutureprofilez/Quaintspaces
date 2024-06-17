@@ -77,13 +77,13 @@ const Listings = () => {
         headerSearch={headerSearch}
         setHeaderSearch={setHeaderSearch}
       /> */}
-        <div className="absolute top-[6rem] right-[3rem] md:top-[8.5rem] md:right-20">
-          <Link className="ml-8 border-black border-2 rounded-full p-2" 
+        {/* <div className="absolute top-[6rem] right-[3rem] md:top-[8.5rem] md:right-20">
+          <Link className=" filter btn w-auto w-40 hover:bg-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58] " 
           href={`/admin/property/edit/${slug}`}>
             {" "}
             Edit Property
           </Link>
-        </div>
+        </div> */}
         <SingleListingBody isAdmin={true} loading={loading} listing={record} />
         <ThingsToKnow  isAdmin={true} record={record} content={content} />
         {/* <Footer /> */}

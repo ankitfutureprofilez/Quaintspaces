@@ -54,7 +54,7 @@ function UserList({totaluser}) {
         {/* comment 1 */}
         {record && record?.length >0 ? (
           record?.map((item) => (
-            <div className="flex items-center justify-between w-full select-none cursor-pointer ">
+            <div className="flex items-center justify-between w-full select-none cursor-pointer border-b last:border-0 pb-3">
               <div className="flex items-center gap-2 img-book">
                 <img
                   src={
@@ -78,7 +78,7 @@ function UserList({totaluser}) {
           <DashboardNoData/>
         ) }
        
-        <hr className="bg-gray-400" />
+        
 
         {/* comment button */}
         {/* <Link
