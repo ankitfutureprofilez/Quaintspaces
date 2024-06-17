@@ -19,6 +19,7 @@ const Listings = () => {
     loading: true,
     data: {},
   });
+  
 
   const [content, setContent] = useState({
     loading: false,
