@@ -2,8 +2,6 @@ import { guestsHandler } from "../../utils/guestPickerUtils";
 import GuestCard from "../GuestPickerCard";
 
 const GuestsPicker = ({ css, guests, setGuests }) => {
-  console.log(guests)
-  console.log("guests.adults.value",guests.adults.value)
   return (
     <div
       className={`${
@@ -72,7 +70,7 @@ const GuestsPicker = ({ css, guests, setGuests }) => {
             guests={guests}
             setGuests={setGuests}
           />
-          <p className="text-gray-700 font-semibold">{guests.infants.value}</p>
+          <p className="text-gray-700 font-semibold">{guests.infants.value || 2}</p>
           <GuestCard
             guestsHandler={guestsHandler}
             operation={"add"}

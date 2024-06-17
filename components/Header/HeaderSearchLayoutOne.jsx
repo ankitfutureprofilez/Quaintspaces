@@ -89,7 +89,7 @@ const HeaderSearchLayoutOne = ({
               `/s/${destination || "_"}?numberOfAdults=${
                 guests.adults.value
               }&numberOfChildren=${guests.children.value}&numberOfInfants=${
-                guests.infants.value
+                guests.infants.value || 2
               }&numberOfPets=${guests.pets.value}&checkin=${
                 selectedDay ? format(selectedDay, "yyyy-MM-dd") : null
               }&checkout=${

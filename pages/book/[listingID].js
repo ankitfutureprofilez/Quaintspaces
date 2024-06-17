@@ -114,7 +114,7 @@ const Book = () => {
       },
       infants: {
         value: +url.infants || 0,
-        max: listing?.infants || 2,
+        max: 2,
         min: 0,
       },
       children: {
