@@ -102,7 +102,7 @@ export default function Index() {
         ) : (
           <>
             <div className="flex flex-wrap  pt-4 justify-between" >
-              <h3 className="text-xl font-bold text-black">Your listings</h3>
+              <h3 className="text-xl font-bold text-black capitalize">Your listings</h3>
               <div className="bg-slate-200 rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer">
                 <MdAdd onClick={() => {
                   router.push("/admin/property/become");

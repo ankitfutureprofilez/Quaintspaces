@@ -40,11 +40,11 @@ console.log("isAdmin",isAdmin)
             </div>
           
 
-          {isAdmin ===true  ? (
+          {isAdmin ? (
               <Link className="filter btn w-auto mb-2 w-36 sm:w-40 hover:bg-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58]"       href={`/admin/property/edit/${slug}`} >
                 Edit Property
               </Link>
-          ) : (<h2>hdhdh</h2>) }
+          ) : null }
           </div>
         </>
       )}

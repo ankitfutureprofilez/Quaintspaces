@@ -124,7 +124,7 @@ const DatesModel = ({ infos, setDateModel }) => {
               setSelectedDay(null);
               setSelectEnd(null);
             }}
-            className="text-sm underline text-blackColor"
+            className="text-sm underline text-blackColor capitalize"
           >
             Clear dates
           </button>

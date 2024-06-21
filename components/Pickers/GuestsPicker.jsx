@@ -13,7 +13,7 @@ const GuestsPicker = ({ css, guests, setGuests }) => {
         <div>
           <h6 className="text-md font-medium">Adults</h6>
           <p className="text-sm font-normal text-gray-600 mt-1">
-            Ages 13 or above
+            (Age 13 or above)
           </p>
         </div>
         <div className="flex items-center justify-between gap-3">
@@ -37,7 +37,7 @@ const GuestsPicker = ({ css, guests, setGuests }) => {
       <div className="flex items-center justify-between my-6">
         <div>
           <h6 className="text-md font-medium">Children</h6>
-          <p className="text-sm font-normal text-gray-600 mt-1">Ages 2-12</p>
+          <p className="text-sm font-normal text-gray-600 mt-1">(Ages 2-12)</p>
         </div>
         <div className="flex items-center justify-between gap-3">
           <GuestCard
@@ -60,7 +60,7 @@ const GuestsPicker = ({ css, guests, setGuests }) => {
       <div className="flex items-center justify-between my-6">
         <div>
           <h6 className="text-md font-medium">Infants</h6>
-          <p className="text-sm font-normal text-gray-600 mt-1">Under 2</p>
+          <p className="text-sm font-normal text-gray-600 mt-1">(Under 2)</p>
         </div>
         <div className="flex items-center justify-between gap-3">
           <GuestCard
@@ -70,7 +70,7 @@ const GuestsPicker = ({ css, guests, setGuests }) => {
             guests={guests}
             setGuests={setGuests}
           />
-          <p className="text-gray-700 font-semibold">{guests.infants.value || 2}</p>
+          <p className="text-gray-700 font-semibold">{guests.infants.value}</p>
           <GuestCard
             guestsHandler={guestsHandler}
             operation={"add"}

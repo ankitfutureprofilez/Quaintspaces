@@ -92,7 +92,7 @@ const GuestsModel = ({ infos, guests, setGuests, setGuestsModel }) => {
       const formattedCheckout = format(checkoutDate, "yyyy-MM-dd");
       
       router.push(
-        `/book/${router.query.listingID}?numberOfAdults=${guests.adults.value}&numberOfChildren=${guests.children.value}&numberOfInfants=${guests.infants.value ? guests.infants.value :2}&numberOfPets=${guests.pets.value}&checkin=${formattedCheckin}&checkout=${formattedCheckout}`
+        `/book/${router.query.listingID}?numberOfAdults=${guests.adults.value}&numberOfChildren=${guests.children.value}&numberOfInfants=${guests.infants.value}&numberOfPets=${guests.pets.value}&checkin=${formattedCheckin}&checkout=${formattedCheckout}`
       );
     } catch (error) {
       console.error("Error parsing dates:", error);

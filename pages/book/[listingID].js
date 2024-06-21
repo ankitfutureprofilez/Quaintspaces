@@ -31,8 +31,6 @@ const Book = () => {
   const [pricerate, setPriceRate] = useState(0);
   const [orderId, setOrderId] = useState("");
 
-
-
   const recorddate = Moment(new Date())?.format("DD-MM-YYYY");
   const [formData, setFormData] = useState({
     selectOption: "",
@@ -84,6 +82,11 @@ const Book = () => {
       max: 10,
       min: 0,
     },
+    infants: {
+      value: +infos.numberOfInfants || 0,
+      max: 2,
+      min: 0,
+    },
     pets: {
       value: +infos.pets || 0,
       max: 10,
@@ -113,7 +116,7 @@ const Book = () => {
         min: 0,
       },
       infants: {
-        value: +url.infants || 0,
+        value: +url.numberOfInfants || 0,
         max: 2,
         min: 0,
       },
@@ -299,7 +302,7 @@ const Book = () => {
     record.append("check_out", infos.checkout);
     record.append("adults", guests?.adults?.value);
     record.append("children", guests?.children?.value);
-    record.append("infants", 2);
+    record.append("infants", guests?.infants?.value);
     record.append("doc_type", formData.selectOption);
     record.append("front_doc", formData.fornt);
     record.append("no_of_pet", guests?.pets?.value);
@@ -340,6 +343,9 @@ const Book = () => {
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  console.log("guests",guests)
+console.log("infos",infos);
 
   return (
     <AuthLayout>
@@ -507,7 +513,7 @@ const Book = () => {
               </div>
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
                 <div className="mt-4 w-full">
-                  <h1 className="text-lg heading-data mb-4">
+                  <h1 className="text-lg heading-data mb-4 capitalize">
                     Cancellation policy
                   </h1>
                   <div className="flex flex-wrap justify-between">
@@ -747,7 +753,7 @@ const Book = () => {
           {isOpen && (
             <div className="max-w-3xl mx-auto">
               <Modal isOpen={isOpen} onClose={closeModal}>
-                <p className="text-lg text-white font-semibold p-7 py-4 bg-[#c48b58]">
+                <p className="text-lg text-white font-semibold p-7 py-4 bg-[#c48b58] capitalize">
                   Cancellation policy
                 </p>
                 <div className="py-4 px-6">
@@ -803,7 +809,7 @@ const Book = () => {
 
 
                   <p className="font-normal   capitalize" >Cleaning fees are refunded if you cancel before check-in. </p>
-                  <p className="underline mt-2 font-bold cursor-pointer  text-[#c48b58]" >Learn more about <Link href="/terms">cancellation policies</Link></p>
+                  <p className="underline mt-2 font-bold cursor-pointer  text-[#c48b58]" >Learn more about <Link href="/terms" target="_blank">cancellation policies</Link></p>
                 </div>
                 <div className="mb-4 flex justify-center"></div>
               </Modal>

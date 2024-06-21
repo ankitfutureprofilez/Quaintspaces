@@ -1352,7 +1352,7 @@ export default function Property(props) {
                       </div>
                     </div>
                     <div className="w-full md:w-1/3 ">
-                      <label className="block mb-2 font-semibold sm:mb-[20px]">Checkout time</label>
+                      <label className="block mb-2 font-semibold sm:mb-[20px]">Check-out time</label>
                       <select
                         value={checkout}
                         onChange={(e) => setCheckout(e.target.value)}
@@ -1391,7 +1391,7 @@ export default function Property(props) {
                 <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4">
                   <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-2 font-bold md:mb-8 mb-4">Please select an option</h2>
                   <div className="flex items-center space-x-4 md-4 md:mb-8">
-                    <label className="flex items-center space-x-2 sm:text-xl text-[17px] font-normal   ">
+                    <label className="flex items-center space-x-2 sm:text-[1.15rem] text-[17px] font-normal   ">
                       <input
                         type="radio"
                         value={1}
@@ -1401,7 +1401,7 @@ export default function Property(props) {
                       />
                       <span className="">List Property</span>
                     </label>
-                    <label className="flex items-center space-x-2 sm:text-xl text-[17px] font-normal">
+                    <label className="flex items-center space-x-2 sm:text-[1.15rem] text-[17px] font-normal">
                       <input
                         type="radio"
                         value={0}

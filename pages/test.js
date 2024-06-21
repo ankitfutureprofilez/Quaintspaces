@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdPhonelinkLock } from "react-icons/md";
 import { MdOutlineKeyboardAlt } from "react-icons/md";
 import { RiDoorLockBoxLine } from "react-icons/ri";
@@ -12,6 +12,7 @@ import { MdLockOpen } from "react-icons/md";
 import { IoKeyOutline } from "react-icons/io5";
 import { VscRequestChanges } from "react-icons/vsc";
 import { FaClock } from "react-icons/fa";
+import axios from "axios";
 
 const CheckInInstructions = () => {
   const [selectedMethod, setSelectedMethod] = useState("smartlock");
@@ -179,7 +180,7 @@ const CheckoutInstructions = () => {
         {checkoutInstructions.map((instruction, index) => (
           <div
             key={index}
-            className="flex flex-col items-start space-y-2 px-4 py-4 font-semibold rounded-md border-[1px] border-gray-300 hover:border-black"
+            className="flex flex-col items-start space-y-2 px-4 py-4 font-semibold rounded-md"
             onClick={() => {
               setSelectedInstruction(instruction?.instruction);
               setText(instruction?.details);
@@ -298,6 +299,27 @@ const CheckoutInstructions = () => {
 };
 
 export default function test() {
+  const checkApiAuth = async () => {
+    const Api = axios.create({
+        baseURL: 'https://dev-control.tenniskhelo.com/api',
+        headers:{
+            Accept: "application/json"
+        }
+    });
+
+    await Api.post('auth-verify', {username: 'pradeep@fpdemo.com', password:'Pradeep#Fp-Dev09'})
+        .then(resp => {
+            console.log('resp-data', resp.data);
+        }).catch(_err => {
+            console.log('auth-error', _err);
+        });
+}
+
+useEffect(() => {
+    console.clear();
+    console.log('calling-auth-api');
+    setTimeout(() => {checkApiAuth()}, 2000);
+},[]);
   return (
     <>
       {/* <CheckInInstructions /> */}

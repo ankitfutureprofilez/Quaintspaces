@@ -115,7 +115,6 @@ export default function index() {
   const [listings, setListings] = useState([]);
 
   async function fetchLists() {
-   
     setloading(true);
     let url = "";
     if(lowPrice!=null){
@@ -159,6 +158,7 @@ export default function index() {
           setListings(filteredListings);
           console.log(filteredListings);
         } else {
+          setListings(filteredListings);
           console.log("No listings match the status and step conditions.");
         }
         
