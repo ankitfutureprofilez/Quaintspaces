@@ -9,7 +9,7 @@ const Cancel = () => {
     <AuthLayout>
       <div className="container mx-auto flex flex-col justify-center items-center">
         <div className="pt-20 pb-16">
-          <div className="flex items-center justify-center mb-10">
+          <div className="flex items-center justify-center mb-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
@@ -53,13 +53,13 @@ const Cancel = () => {
               ></path>
             </svg>
           </div>
-          <h2 className="text-2xl font-semibold text-center mt-4 mb-4">
+          <h2 className="text-2xl font-semibold text-center mt-2 mb-2">
             Payment Failed!
           </h2>
           <p className="text-gray-400 text-2xl text-center mt-2">
             Your transaction declined. Please try again later
           </p>
-          <div className="flex my-10">
+          <div className="flex my-3">
             <button 
             onClick={() => {router.push("/apartments")}}
             className="mx-auto text-white bg-red-500 w-1/4 btn">Go Property</button>
