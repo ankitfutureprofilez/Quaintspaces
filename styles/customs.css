@@ -1412,7 +1412,10 @@ img.profile-cover-image { width: 100%; height: 100%; object-fit: cover;     bord
  font-size:50px;
 }
 
-
+.profile-image-container {
+  display: flex;
+  margin: 13px;
+}
 
 
 h2.text-center.mt-4 {}

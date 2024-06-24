@@ -172,7 +172,7 @@ const ForgotPassword = () => {
                   />
                 </div>
                 <button type="submit" className="submint-btn">
-                 {loading?"Submitting...":"Submit"} 
+                 {loading? "Submitting..." : "Submit"} 
                 </button>
               </form>
             </div>
@@ -203,7 +203,7 @@ const ForgotPassword = () => {
                   />
                 </div>
                 <button type="submit" className="submint-btn">
-                {loading?"Submitting...":"Submit"}
+                {loading ? "Submitting..." : "Submit"}
                 </button>
               </form>
             </div>
@@ -246,7 +246,7 @@ const ForgotPassword = () => {
                   />
                 </div>
                 <button type="submit" className="submint-btn">
-                {loading?"Submitting...":"Submit"}
+                {loading ? "Submitting..." : "Submit"}
                 </button>
               </form>
             </div>

@@ -62,9 +62,9 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                   <span>
                     <Star />
                   </span>
-                  {parseFloat(
+                  { listing?.data?.rating !==0  ?(parseFloat(
                     listing?.data?.rating && listing?.data?.rating?.toFixed(2)
-                  )}
+                  )) : (<> </>) }
                 </span>
                 <div className="hidden">·</div>
                 <span

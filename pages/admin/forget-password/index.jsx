@@ -165,7 +165,7 @@ export default function Index() {
                         disabled={loading}
                         className="w-full flex justify-center   bg-indigo-600  hover:bg-indigo-500 text-gray-100 p-3 mt-4 rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
                       >
-                        {loading ? "please wait.." : "Reset Password"}
+                        {loading ? "Please Wait.." : "Reset Password"}
                       </button>
                     </div>
                   </>
@@ -195,7 +195,7 @@ export default function Index() {
                         disabled={loading}
                         className="w-full flex justify-center   bg-indigo-600  hover:bg-indigo-500 text-gray-100 p-3 mt-4 rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
                       >
-                        {loading ? "please wait.." : "Submit OTP"}
+                        {loading ? "Please Wait.." : "Submit OTP"}
                       </button>
                     </div>
                   </>
@@ -226,7 +226,7 @@ export default function Index() {
                       type="submit"
                       className="w-full flex justify-center   bg-indigo-600  hover:bg-indigo-500 text-gray-100 p-3 mt-4 rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
                     >
-                      {loading ? "please wait.." : "Email"}
+                      {loading ? "Please Wait.." : "Email"}
                     </button>
                   </div>
                 </>

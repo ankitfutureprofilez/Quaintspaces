@@ -59,10 +59,10 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
     return (
         <div className="  flex flex-wrap mb-4">
             <div className="w-full md:w-1/2 pr-2 ">
-                <h2 className="text-center font-bold text-2xl text-slate-900 mt-3 md:mb-4">Cancellation policy</h2>
+                <h2 className="text-center font-bold text-2xl text-slate-900 mt-3 md:mb-4 capitalize">Cancellation policy</h2>
                 <div className="p-4 mb-4 pb-6 md:mt-3 border-b">
-                    <p className="text-center font-normal text-lg text-slate-700 mt-3 mb-4">Standard policy</p>
-                    <p className="text-center font-normal text-sm text-slate-500 mt-3 mb-4">Applies to any stays under 28 nights.</p>
+                    <p className="text-center font-normal text-lg text-slate-700 mt-3 mb-4 capitalize">Standard policy</p>
+                    <p className="text-center font-normal text-sm text-slate-500 mt-3 mb-4 capitalize">Applies to any stays under 28 nights.</p>
                     <div
                         onClick={toggleFlexible}
                         className={`flex flex-col border-2 p-3  cursor-pointer ${showFlexible === true ? "border-indigo-600" : "border-gray-200"}`}
@@ -75,8 +75,8 @@ function CancelPolicy({ showFirm, setShowFirm, showFlexible, setShowFlexible, se
                     </div>
                 </div>
                 <div className="p-4 mb-5 mt-3 ">
-                    <p className="text-center font-normal text-lg text-slate-700 mt-3 mb-4">Long-term stay policy</p>
-                    <p className="text-center font-normal text-sm text-slate-500 mt-3 mb-4">Applies to stays 28 nights or longer.</p>
+                    <p className="text-center font-normal text-lg text-slate-700 mt-3 mb-4 capitalize">Long-term stay policy</p>
+                    <p className="text-center font-normal text-sm text-slate-500 mt-3 mb-4 capitalize">Applies to stays 28 nights or longer.</p>
 
                     <div
                         onClick={toggleFirm}

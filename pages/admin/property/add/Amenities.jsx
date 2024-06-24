@@ -162,7 +162,7 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
 
   return (
     <div className="mb-8">
-      <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8">
+      <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8">
         Tell guests what your place has to offer
       </h2>
       <p className="text-normal text-center text-gray-500 mb-8">

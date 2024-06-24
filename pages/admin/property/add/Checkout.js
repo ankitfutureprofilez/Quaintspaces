@@ -1,21 +1,32 @@
+import { useState } from "react";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 import { PiTowelDuotone } from "react-icons/pi";
-import { FaRegTrashAlt } from "react-icons/fa";
-import { FaPowerOff } from "react-icons/fa6";
-import { MdLockOpen } from "react-icons/md";
+import { FaRegTrashAlt, FaPowerOff, FaClock } from "react-icons/fa";
+import { MdLockOpen, MdPhonelinkLock, MdOutlineKeyboardAlt } from "react-icons/md";
 import { IoKeyOutline } from "react-icons/io5";
 import { VscRequestChanges } from "react-icons/vsc";
 import { RiDoorLockBoxLine } from "react-icons/ri";
 import { GrUserWorker } from "react-icons/gr";
 import { AiOutlineDelete } from "react-icons/ai";
-import { MdPhonelinkLock, MdOutlineKeyboardAlt } from "react-icons/md";
-
-import { FaClock } from "react-icons/fa";
 import Listing from "../../api/Listing";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import toast from "react-hot-toast";
 import LoadingSpinner from "../../hook/spinner";
-function Checkout({ checkoutInstructions, checkoutdata, handlesubmit, isEdit, setCheckoutInstructions, selectedInstruction, setSelectedInstruction, showInstructions, setShowInstructions, showTextArea, setShowTextArea, text, setText }) {
+
+function Checkout({
+  checkoutInstructions,
+  checkoutdata,
+  handlesubmit,
+  isEdit,
+  setCheckoutInstructions,
+  selectedInstruction,
+  setSelectedInstruction,
+  showInstructions,
+  setShowInstructions,
+  showTextArea,
+  setShowTextArea,
+  text,
+  setText,
+}) {
   let record = null;
   const router = useRouter();
   const slug = router.query.slug;
@@ -99,8 +110,8 @@ function Checkout({ checkoutInstructions, checkoutdata, handlesubmit, isEdit, se
     setSelectedInstruction("");
     setText("");
   };
-  const [loading, setLoading] = useState(false);
 
+  const [loading, setLoading] = useState(false);
   const [checkout, setCheckout] = useState(record);
 
   const handleDelete = async (slug, instruction) => {
@@ -113,9 +124,7 @@ function Checkout({ checkoutInstructions, checkoutdata, handlesubmit, isEdit, se
       const res = await main.checkoutApi(slug, formdata);
       if (res?.data?.status === true) {
         toast.success(res.data.message);
-        setCheckout(
-          checkout.filter((item) => item.instruction !== instruction)
-        );
+        setCheckout(checkout.filter((item) => item.instruction !== instruction));
       } else {
         toast.error(res.data.message);
       }
@@ -126,22 +135,19 @@ function Checkout({ checkoutInstructions, checkoutdata, handlesubmit, isEdit, se
       setLoading(false);
     }
   };
-  return (
 
+  return (
     <div className="mb-4">
-      <div className="flex flex-col space-y-8  mb-2">
+      <div className="flex flex-col space-y-8 mb-2">
         <div className="flex space-x-4 items-center">
-          <h2 className="text-2xl font-bold">Checkout Instructions</h2>
+          <h2 className="text-2xl font-bold capitalize">Checkout Instructions</h2>
         </div>
-        <p className="text-gray-600 ">
-          Explain what’s essential for guests to do before they leave. Anyone
-          can read these before they book.{" "}
-          <span className="cursor-pointer font-bold underline">
-            Learn More.
-          </span>
+        <p className="text-gray-600">
+          Explain what’s essential for guests to do before they leave. Anyone can read these before they book.{" "}
+          <span className="cursor-pointer font-bold underline">Learn More.</span>
         </p>
         <button
-          className="text-black text-md px-4 py-3 mb-4 font-medium rounded-md border-[1px] border-black"
+          className="text-black capitalize text-md px-4 py-3 mb-4 font-medium rounded-md border-[1px] border-black"
           onClick={() => {
             setShowInstructions(true);
             setShowTextArea(false);
@@ -161,29 +167,15 @@ function Checkout({ checkoutInstructions, checkoutdata, handlesubmit, isEdit, se
             }}
           >
             <div className="flex items-left space-x-2">
-              {instruction.instruction === "Gather used towels" && (
-                <PiTowelDuotone size={28} />
-              )}
-              {instruction.instruction === "Throw rubbish away" && (
-                <FaRegTrashAlt size={24} />
-              )}
-              {instruction.instruction === "Turn things off" && (
-                <FaPowerOff size={24} />
-              )}
-              {instruction.instruction === "Lock up" && (
-                <MdLockOpen size={28} />
-              )}
-              {instruction.instruction === "Return keys" && (
-                <IoKeyOutline size={28} />
-              )}
-              {instruction.instruction === "Additional requests" && (
-                <VscRequestChanges size={28} />
-              )}
+              {instruction.instruction === "Gather used towels" && <PiTowelDuotone size={28} />}
+              {instruction.instruction === "Throw rubbish away" && <FaRegTrashAlt size={24} />}
+              {instruction.instruction === "Turn things off" && <FaPowerOff size={24} />}
+              {instruction.instruction === "Lock up" && <MdLockOpen size={28} />}
+              {instruction.instruction === "Return keys" && <IoKeyOutline size={28} />}
+              {instruction.instruction === "Additional requests" && <VscRequestChanges size={28} />}
               <span>{instruction?.instruction}</span>
             </div>
-            <button className="text-black text-md">
-              {instruction?.details}
-            </button>
+            <button className="text-black text-md">{instruction?.details}</button>
           </div>
         ))}
       </div>
@@ -191,7 +183,7 @@ function Checkout({ checkoutInstructions, checkoutdata, handlesubmit, isEdit, se
         {showInstructions && (
           <div className="w-full py-4">
             <h3 className="text-2xl font-bold">Choose an instruction</h3>
-            <div className="flex flex-wrap  mt-3">
+            <div className="flex flex-wrap mt-3">
               {instructionSet
                 ?.filter(
                   (item) =>
@@ -209,21 +201,22 @@ function Checkout({ checkoutInstructions, checkoutdata, handlesubmit, isEdit, se
                       setShowTextArea(true);
                     }}
                   >
-
-                    <button className="flex w-full items-center space-x-4 px-4 py-4 h-[55px] font-semibold rounded-md border-[1px] border-gray-300 hover:border-black text-md ">
+                    <button className="flex w-full items-center space-x-4 px-4 py-4 h-[55px] font-semibold rounded-md border-[1px] border-gray-300 hover:border-black text-md">
                       <i className="mr-2">{item?.icon}</i>
                       {item?.option}
                     </button>
                   </div>
                 ))}
-              <button
-                className="cursor-pointer"
-                onClick={() => {
-                  setShowInstructions(false);
-                }}
-              >
-                Cancel
-              </button>
+              <div className="w-full px-1">
+                <button
+                  className="cursor-pointer flex items-center space-x-4 px-4 py-4 h-[55px] font-semibold rounded-md border-[1px] border-gray-300 hover:border-black text-md"
+                  onClick={() => {
+                    setShowInstructions(false);
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
         )}
@@ -267,71 +260,53 @@ function Checkout({ checkoutInstructions, checkoutdata, handlesubmit, isEdit, se
           </>
         )}
       </>
-
-      {
-        isEdit && checkout && checkout.map((item, index) => (
-          <div
-            key={index}
-            className="text-left relative space-x-4 px-4 py-4 font-semibold rounded-md border-[1px] border-gray-300 hover:border-black mb-2"
+      {isEdit && checkout && checkout.map((item, index) => (
+        <div
+          key={index}
+          className="text-left relative space-x-4 px-4 py-4 font-semibold rounded-md border-[1px] border-gray-300 hover:border-black mb-2"
+        >
+          {item?.instruction === "Gather used towels" && (
+            <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
+              <PiTowelDuotone size={24} />
+            </div>
+          )}
+          {item?.instruction === "Throw rubbish away" && (
+            <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
+              <FaRegTrashAlt size={28} />
+            </div>
+          )}
+          {item?.instruction === "Turn things off" && (
+            <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
+              <FaPowerOff size={24} />
+            </div>
+          )}
+          {item?.instruction === "Additional requests" && (
+            <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
+              <VscRequestChanges size={24} />
+            </div>
+          )}
+          {item?.instruction === "Return keys" && (
+            <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
+              <IoKeyOutline size={24} />
+            </div>
+          )}
+          {item?.instruction === "Lock up" && (
+            <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
+              <MdLockOpen size={24} />
+            </div>
+          )}
+          <div className="!ml-0 !mb-3 !mt-2">{item?.instruction}</div>
+          <div className="!ml-0">{item?.details}</div>
+          <button
+            className="absolute top-3 right-3"
+            onClick={() => {
+              handleDelete(slug, index);
+            }}
           >
-            
-              {item?.instruction === "Gather used towels" && (
-                <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
-
-                <MdPhonelinkLock size={24} />
-                </div>
-              )}
-              {item?.instruction === "Throw rubbish away" && (
-                <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
-
-                <FaRegTrashAlt size={28} />
-                </div>
-              )}
-              {item?.instruction === "Turn things off" && (
-
-                <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
-                <FaPowerOff size={24} />
-                </div>
-              )}
-
-              {item?.instruction === "Additional requests" && (
-                <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
-
-                <VscRequestChanges size={24} />
-                </div>
-              )}
-              
-              {item?.instruction === "Return keys" && (
-                <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
-                <IoKeyOutline size={24} />
-                </div>
-              )}
-              
-                {item?.instruction === "Lock up" && (
-                  <div className="w-14 h-14 flex justify-center items-center rounded-full bg-indigo-200">
-                  <MdLockOpen size={24} />
-                  </div>
-                )}
-             
-              <div className="!ml-0 !mb-3 !mt-2">
-                {item?.instruction}
-              </div>
-              <div className="!ml-0">
-              {item?.details}
-              </div>
-              <button
-                className="absolute top-3 right-3 "
-                onClick={() => {
-                  handleDelete(slug, index)
-                }} >
-                <AiOutlineDelete
-                  size={24} />
-              </button>
-           
-          </div>
-        ))
-      }
-      { }
+            <AiOutlineDelete size={24} />
+          </button>
+        </div>
+      ))}
     </div>
   );
 }

@@ -10,7 +10,7 @@ export default function Guest({
   const increments = (Bathrooms) => () => setBathrooms((prev) => prev + 0.5);
   return (
     <div className="h-full  w-full ">
-      <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+      <h2 className="text-xl md:text-2xl capitalize lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
         Share some basics about your place
       </h2>
       <h2 className="text-[16px] text-center mb-4">

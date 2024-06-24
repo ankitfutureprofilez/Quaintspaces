@@ -7,9 +7,9 @@ import { PostBody } from "../../components";
 import Listings from "../api/laravel/Listings";
 import format from "date-fns/format";
 import Head from "next/head";
-import PwaFooter from "../elements/PwaFooter.js"
+import PwaFooter from "../elements/PwaFooter.js";
 
-export default function index() {
+export default function Index() {
   // Sort By Button Logic
   const SortByButton = ({ sortBy, setSortBy, sortingOptions }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -28,17 +28,16 @@ export default function index() {
           <span className="rounded-md shadow-sm">
             <button
               type="button"
-              className="sort btn flex mr-2 hover:bg-[#c48b58] hover:border-[#c48b58] hover:text-[#fff]"
+              className="sort btn flex items-center mr-2 hover:bg-[#c48b58] hover:border-[#c48b58] hover:text-[#fff]"
               id="options-menu"
               aria-haspopup="true"
               aria-expanded="true"
               onClick={() => setIsOpen(!isOpen)}
             >
-              {/* Sort by:{" "} */}
               {sortingOptions.find((option) => option.key === sortBy).label}
               {/* Icon to indicate dropdown */}
               <svg
-                className="-mr-1 mt-1.3 sml-2 h-5 w-5"
+                className="-mr-1 ml-2 h-5 w-5"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -57,7 +56,7 @@ export default function index() {
         {/* Dropdown menu */}
         {isOpen && (
           <div
-            className="sortlist "
+            className="sortlist absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="options-menu"
@@ -66,7 +65,7 @@ export default function index() {
               {sortingOptions.map((option) => (
                 <button
                   key={option.key}
-                  className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 w-32"
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   role="menuitem"
                   onClick={() => handleSortChange(option.key)}
                 >
@@ -79,6 +78,7 @@ export default function index() {
       </div>
     );
   };
+
   let minVal, maxVal;
 
   const [sortBy, setSortBy] = useState("popularity");
@@ -107,6 +107,7 @@ export default function index() {
     setFetch(!fetch);
     setIsModalOpen(false);
   };
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -117,23 +118,23 @@ export default function index() {
   async function fetchLists() {
     setloading(true);
     let url = "";
-    if(lowPrice!=null){
-      url+=`min_price=${lowPrice}` + `&`;
+    if (lowPrice != null) {
+      url += `min_price=${lowPrice}&`;
     }
-    if(highPrice!=null){
-      url+=`max_price=${highPrice}`+ `&`;
+    if (highPrice != null) {
+      url += `max_price=${highPrice}&`;
     }
     if (selectedDay != null) {
-      url +="check_in="+ format(selectedDay, "yyyy-MM-dd")+"&";
+      url += "check_in=" + format(selectedDay, "yyyy-MM-dd") + "&";
     }
     if (selectEnd != null) {
-      url +="check_out="+ format(selectEnd, "yyyy-MM-dd")+"&";
+      url += "check_out=" + format(selectEnd, "yyyy-MM-dd") + "&";
     }
-    if (sortBy == "popularity") {
+    if (sortBy === "popularity") {
       url += "popularity_sort=desc";
-    } else if (sortBy == "rating") {
+    } else if (sortBy === "rating") {
       url += "rating_sort=desc";
-    } else if (sortBy == "priceLow") {
+    } else if (sortBy === "priceLow") {
       url += "price_sort=asc";
     } else {
       url += "price_sort=desc";
@@ -145,15 +146,15 @@ export default function index() {
       .then((r) => {
         const data = r?.data?.data;
         let filteredListings = [];
-  
+
         if (Array.isArray(data)) {
-          data.forEach(item => {
-            if (item?.status === 1 ) {
+          data.forEach((item) => {
+            if (item?.status === 1) {
               filteredListings.push(item);
             }
           });
         }
-  
+
         if (filteredListings.length > 0) {
           setListings(filteredListings);
           console.log(filteredListings);
@@ -161,9 +162,8 @@ export default function index() {
           setListings(filteredListings);
           console.log("No listings match the status and step conditions.");
         }
-        
+
         setloading(false);
-     
       })
       .catch((err) => {
         setloading(false);
@@ -181,12 +181,10 @@ export default function index() {
   return (
     <Layout>
       <PwaFooter />
-      <div className="container mx-auto ">
+      <div className="container mx-auto">
         <div className="mt-6 sm:mt-10">
           <div className="flex justify-between mb-10 filter-box">
-            <h2 className="listing-heading text-left">
-              Explore our Apartments
-            </h2>
+            <h2 className="listing-heading text-left">Explore our Apartments</h2>
             <div className="button-group filter-btn-select">
               <SortByButton
                 sortBy={sortBy}
@@ -194,7 +192,10 @@ export default function index() {
                 sortingOptions={sortingOptions}
               />
               {/* Filter button to open the modal */}
-              <button className="filter btn ms-2 hover:bg-[#fff] border-[#c48b58] hover:text-[#c48b58] border-2 text-[14px]" onClick={openModal}>
+              <button
+                className="filter btn ms-2 hover:bg-[#fff] border-[#c48b58] hover:text-[#c48b58] border-2 text-[14px]"
+                onClick={openModal}
+              >
                 Filter
               </button>
             </div>
@@ -206,8 +207,8 @@ export default function index() {
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50">
           <div className="bg-white pb-2 pt-4 sm:p-6 rounded-lg shadow-lg filter-popup">
-            <div className="relative ">
-              <h2 className="listing-heading  text-center">Filter</h2>
+            <div className="relative">
+              <h2 className="listing-heading text-center">Filter</h2>
               <div className="absolute top-0 right-0">
                 <button
                   className="text-gray-600 hover:text-gray-800 focus:outline-none"
@@ -243,9 +244,6 @@ export default function index() {
               onChange={({ min, max }) => {
                 minVal = min;
                 maxVal = max;
-                // setLowPrice(min);
-                // setHighPrice(max);
-                // console.log(`min = ${min}, max = ${max}`);
               }}
             />
           </div>

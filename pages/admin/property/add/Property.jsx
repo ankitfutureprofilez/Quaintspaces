@@ -260,65 +260,65 @@ export default function Property(props) {
   };
   const prevStep = () => setStep((prev) => prev - 1);
   const nextStep = async () => {
-    if (step === 0 && PType == '') {
-      toast.error("Please choose a property type which one you want to list.");
-    }
-    if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
-      toast.error("Property description is too short. Description should be a minimum of 100 words.");
-      return false;
-    }
-    if (step === 2 && (
-      address?.pin === "" || address?.pin?.length < 5 ||
-      address?.state === "" ||
-      address?.city === "" ||
-      address?.street_address === "" ||
-      address?.district === "")) {
-      toast.error(`Incomplete address. Please enter complete address.`);
-      return false;
-    }
-    if (step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (step == 4 && selectedAmenity && Amenity && standoutAmenity && (selectedAmenity.length + Amenity.length + standoutAmenity.length < 4)) {
-      toast.error("Please choose at least 4 amenities.");
-      return false;
-    }
+    // if (step === 0 && PType == '') {
+    //   toast.error("Please choose a property type which one you want to list.");
+    // }
+    // if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
+    //   toast.error("Property description is too short. Description should be a minimum of 100 words.");
+    //   return false;
+    // }
+    // if (step === 2 && (
+    //   address?.pin === "" || address?.pin?.length < 5 ||
+    //   address?.state === "" ||
+    //   address?.city === "" ||
+    //   address?.street_address === "" ||
+    //   address?.district === "")) {
+    //   toast.error(`Incomplete address. Please enter complete address.`);
+    //   return false;
+    // }
+    // if (step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (step == 4 && selectedAmenity && Amenity && standoutAmenity && (selectedAmenity.length + Amenity.length + standoutAmenity.length < 4)) {
+    //   toast.error("Please choose at least 4 amenities.");
+    //   return false;
+    // }
 
 
-    if (!isEdit && step === 5 && images?.length < 5) {
-      toast.error("Please select at least five images.");
-      return false;
-    }
-    if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
-      toast.error("Please select at least five images.");
-      return false;
-    }
-    if (step === 6 && (checkout === " " || checkinStart === " " || selectedOption === "" || checkinEnd === "" || item?.cleaning === "" || item?.extra_guest === "" || item?.pet === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (step === 7 && (longTermPolicy === null && selectedPolicy === null)) {
-      toast.error(`At least one field is required.`);
-      return false;
-    }
-    if (step === 8 && (item?.additonalrule === "" || petsAllowed === " " || smokingAllowed === " " || eventsAllowed === "" || quietHours === "" || PhotographyAllowed === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (step === 9 && (item?.Direction === "" || item?.wifi === " " || item?.wifiPassword === " " || item?.housemanual === " " )) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (!isEdit && step === 5 && images?.length < 5) {
+    //   toast.error("Please select at least five images.");
+    //   return false;
+    // }
+    // if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
+    //   toast.error("Please select at least five images.");
+    //   return false;
+    // }
+    // if (step === 6 && (checkout === " " || checkinStart === " " || selectedOption === "" || checkinEnd === "" || item?.cleaning === "" || item?.extra_guest === "" || item?.pet === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (step === 7 && (longTermPolicy === null && selectedPolicy === null)) {
+    //   toast.error(`At least one field is required.`);
+    //   return false;
+    // }
+    // if (step === 8 && (item?.additonalrule === "" || petsAllowed === " " || smokingAllowed === " " || eventsAllowed === "" || quietHours === "" || PhotographyAllowed === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (step === 9 && (item?.Direction === "" || item?.wifi === " " || item?.wifiPassword === " " || item?.housemanual === " ")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
-    if (step === 10 && (item?.customLink === "" || item?.selectedInstruction === " " || selectedMethod === " ")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (step === 10 && (item?.customLink === "" || item?.selectedInstruction === " " || selectedMethod === " ")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
 
 
@@ -339,7 +339,7 @@ export default function Property(props) {
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
   const [locationName, setLocationName] = useState('');
   const [infoWindow, setInfoWindow] = useState(null); // For handling InfoWindow instance
-  const [map, setMap] = useState(null); 
+  const [map, setMap] = useState(null);
 
   const fetchLocationData = async () => {
     if (loadinglocation) {
@@ -431,7 +431,7 @@ export default function Property(props) {
           location: results[0]?.formatted_address,
           latitude: results[0]?.geometry?.location?.lat,
           longitude: results[0]?.geometry?.location?.lng,
-          });
+        });
         setLocationName(results[0].formatted_address);
       }
     } catch (error) {
@@ -685,7 +685,7 @@ export default function Property(props) {
       // .property-type:checked + label { color :#000 !important;border-color:#000 !important;}
       // .property-type:checked + label h2 { color :#000 !important;border-color:#000 !important;}
     `}</style>
-      
+
       <div class="max-w-4xl overflow-hidden	 w-full space-y-8 m-auto w-full px-2 ">
 
       </div>
@@ -716,7 +716,7 @@ export default function Property(props) {
     </div> */}
 
                 {/* {typeHere === "entire_place" ?  <> */}
-                <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+                <h2 className="text-xl md:text-2xl capitalize lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                   Which of these best describes your place?
                 </h2>
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
@@ -779,7 +779,7 @@ export default function Property(props) {
               <div className={`${step === 1 ? "" : "display-none"
                 } max-w-[100%] m-auto table w-full`}
               >
-                <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+                <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                   Describes your place?
                 </h2>
                 <div className="mt-2 md:mt-4">
@@ -834,103 +834,103 @@ export default function Property(props) {
                 </div>
               </div>
               <div className={`${step === 2 ? "" : "display-none"}`}>
-<div className="mb-8">
-                <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
-                  Where's your place located?
-                </h2>
-                <p className="text-normal text-center text-gray-500 mb-8">
-                  Your address is only shared with guests after they’ve made a
-                  reservation.
-                </p>
-                <div className="table w-full m-auto space-y-2  md:space-y-4 text-center">
-                  <p>{address?.location}</p>
-                  <div class="w-full mt-2 md:mt-4">
-                    <button
-                      className="btn sort w-full"
-                      onClick={fetchLocationData}
-                    >
+                <div className="mb-8">
+                  <h2 className="text-xl md:text-2xl capitalize lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+                    Where's your place located?
+                  </h2>
+                  <p className="text-normal text-center text-gray-500 mb-8">
+                    Your address is only shared with guests after they’ve made a
+                    reservation.
+                  </p>
+                  <div className="table w-full m-auto space-y-2  md:space-y-4 text-center">
+                    <p>{address?.location}</p>
+                    <div class="w-full mt-2 md:mt-4">
+                      <button
+                        className="btn sort w-full"
+                        onClick={fetchLocationData}
+                      >
 
-                      {loadinglocation ? ".... " : "Use Current Location"}
-                    </button>
-                  </div>
-                  <div class="flex items-center justify-center space-x-4">
-                    <div class="font-semibold text-gray-400 py-3 text-center">
-                      OR
+                        {loadinglocation ? ".... " : "Use Current Location"}
+                      </button>
+                    </div>
+                    <div class="flex items-center justify-center space-x-4">
+                      <div class="font-semibold text-gray-400 py-3 text-center">
+                        OR
+                      </div>
+                    </div>
+                    <div className="w-full border border-gray-300 rounded-lg overflow-hidden">
+                      <input
+                        value={address.flat_house}
+                        name="flat_house"
+                        onChange={handleAddress}
+                        type="text"
+                        placeholder="Flat, house, etc. (if applicable)"
+                        className="w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                      />
+                      <input
+                        onBlur={fetchLocation}
+                        value={address.street_address}
+                        name="street_address"
+                        onChange={handleAddress}
+                        type="text"
+                        placeholder="Street Address"
+                        className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                      />
+                      <input
+                        onBlur={fetchLocation}
+                        value={address.nearby}
+                        name="nearby"
+                        onChange={handleAddress}
+                        type="text"
+                        placeholder="Nearby Landmark (if applicable)"
+                        className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                      />
+                      <input
+                        onBlur={fetchLocation}
+                        value={address.district}
+                        name="district"
+                        onChange={handleAddress}
+                        type="text"
+                        placeholder="District/Locality"
+                        className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                      />
+                      <input
+                        onBlur={fetchLocation}
+                        value={address.city}
+                        name="city"
+                        onChange={handleAddress}
+                        type="text"
+                        placeholder="City/Town"
+                        className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                      />
+                      <input
+                        onBlur={fetchLocation}
+                        value={address.state}
+                        name="state"
+                        onChange={handleAddress}
+                        type="text"
+                        placeholder="State"
+                        className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                      />
+                      <input
+                        onBlur={fetchLocation}
+                        value={address.pin}
+                        name="pin"
+                        onChange={handleAddress}
+                        type="text"
+                        placeholder="PIN Code"
+                        className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
+                      />
                     </div>
                   </div>
-                  <div className="w-full border border-gray-300 rounded-lg overflow-hidden">
-                    <input
-                      value={address.flat_house}
-                      name="flat_house"
-                      onChange={handleAddress}
-                      type="text"
-                      placeholder="Flat, house, etc. (if applicable)"
-                      className="w-full border border-gray-300 rounded-0 border-t-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-                    />
-                    <input
-                      onBlur={fetchLocation}
-                      value={address.street_address}
-                      name="street_address"
-                      onChange={handleAddress}
-                      type="text"
-                      placeholder="Street Address"
-                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-                    />
-                    <input
-                      onBlur={fetchLocation}
-                      value={address.nearby}
-                      name="nearby"
-                      onChange={handleAddress}
-                      type="text"
-                      placeholder="Nearby Landmark (if applicable)"
-                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-                    />
-                    <input
-                      onBlur={fetchLocation}
-                      value={address.district}
-                      name="district"
-                      onChange={handleAddress}
-                      type="text"
-                      placeholder="District/Locality"
-                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-                    />
-                    <input
-                      onBlur={fetchLocation}
-                      value={address.city}
-                      name="city"
-                      onChange={handleAddress}
-                      type="text"
-                      placeholder="City/Town"
-                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-                    />
-                    <input
-                      onBlur={fetchLocation}
-                      value={address.state}
-                      name="state"
-                      onChange={handleAddress}
-                      type="text"
-                      placeholder="State"
-                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-                    />
-                    <input
-                      onBlur={fetchLocation}
-                      value={address.pin}
-                      name="pin"
-                      onChange={handleAddress}
-                      type="text"
-                      placeholder="PIN Code"
-                      className="w-full border border-gray-300 rounded-0 border-b-0 border-s-0 border-r-0 p-3 focus:outline-none"
-                    />
-                  </div>
-                </div>
                 </div>
                 <div>
                   {address?.location && (
                     <>
-                      <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+                      <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                         Show your specific location
                       </h2>
-                      <p className="text-normal text-center text-gray-500 mb-8 mt-4">
+                      <p className="text-normal capitalize text-center text-gray-500 mb-8 mt-4">
                         Make it clear to guests where your place is located. We'll
                         only share your address after they've made a reservation
                       </p>
@@ -970,7 +970,7 @@ export default function Property(props) {
               <div className={`${step === 5 ? "" : "display-none"
                 } max-w-[600px] m-auto`}
               >
-                <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+                <h2 className="text-xl md:text-2xl  capitalize lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                   Add some photos of your{" "}
                   {PType ? PType.replace("_", " ") : "house"}
                 </h2>
@@ -1220,59 +1220,59 @@ export default function Property(props) {
               </div>
               <div className={`${step === 6 ? "" : "display-none"}`}>
                 <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4">
-                  <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+                  <h2 className="text-xl md:text-2xl lg:text-3xl capitalize text-center mt-4 font-bold md:mb-8 mb-4">
                     Please enter the following details
                   </h2>
                   <div className="flex flex- flex-wrap justify-between mt-4 text-sm font-medium text-gray-700 ">
-                  <div className="w-full px-1 md:w-1/3 ">
-                    <div className="flex flex-col w-full md:mb-0 mb-2">
-                      <label>Cleaning Fees</label>
-                      <input
-                        required
-                        type="text"
-                        name="cleaning"
-                        placeholder="Cleaning Fees Per Day"
-                        id="cleaning"
-                        className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
-                        value={item?.cleaning}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                    </div>
-                    <div className="w-full px-1 md:w-1/3">
-                    <div className="flex flex-col w-full md:mb-0 mb-2">
-                      <label>Pet Fees</label>
-                      <input
-                        type="text"
-                        name="pet"
-                        placeholder="Per Pet Fees"
-                        id="pet"
-                        className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
-                        value={item?.pet}
-                        onChange={handleInputChange}
-                      />
-                    </div>
+                    <div className="w-full px-1 md:w-1/3 ">
+                      <div className="flex flex-col w-full md:mb-0 mb-2">
+                        <label>Cleaning Fees ( Per Day Fees) </label>
+                        <input
+                          required
+                          type="text"
+                          name="cleaning"
+                          placeholder="Cleaning Fees Per Day"
+                          id="cleaning"
+                          className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                          value={item?.cleaning}
+                          onChange={handleInputChange}
+                        />
+                      </div>
                     </div>
                     <div className="w-full px-1 md:w-1/3">
-                    <div className="flex flex-col w-full md:mb-0 mb-2">
-                      <label>Extra Guest Fees (Per Guest)</label>
-                      <input
-                        required
-                        type="text"
-                        name="extra_guest"
-                        placeholder="Extra Guest Fees per Guest"
-                        id="guest"
-                        className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
-                        value={item?.extra_guest}
-                        onChange={handleInputChange}
-                      />
+                      <div className="flex flex-col w-full md:mb-0 mb-2">
+                        <label>Pet Fees (Per Pet Fees)</label>
+                        <input
+                          type="text"
+                          name="pet"
+                          placeholder="Per Pet Fees"
+                          id="pet"
+                          className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                          value={item?.pet}
+                          onChange={handleInputChange}
+                        />
+                      </div>
                     </div>
+                    <div className="w-full px-1 md:w-1/3">
+                      <div className="flex flex-col w-full md:mb-0 mb-2">
+                        <label>Extra Guest Fees (Per Guest)</label>
+                        <input
+                          required
+                          type="text"
+                          name="extra_guest"
+                          placeholder="Extra Guest Fees per Guest"
+                          id="guest"
+                          className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                          value={item?.extra_guest}
+                          onChange={handleInputChange}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4 ">
-                  <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">Check-in & checkout times</h2>
+                  <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4 capitalize">Check-in & checkout times</h2>
                   <div className="flex flex- flex-wrap justify-between mt-4 text-sm font-medium text-gray-700 ">
                     <div className="w-full md:w-2/3 mb-2 pr-2">
                       <label className="block mb-2 font-semibold">Check-in window</label>
@@ -1287,28 +1287,27 @@ export default function Property(props) {
                             className="block w-full px-3 py-3 border bg-white rounded-xl shadow-sm sm:text-sm mt-3"
                           >
                             <option value="00:00:00">12:00 AM</option>
-                            <option value="01:00:00">1:00 AM</option>
-                            <option value="02:00:00">2:00 AM</option>
-                            <option value="03:00:00">3:00 AM</option>
-                            <option value="04:00:00">4:00 AM</option>
-                            <option value="05:00:00">5:00 AM</option>
-                            <option value="06:00:00">6:00 AM</option>
-                            <option value="07:00:00">7:00 AM</option>
-                            <option value="08:00:00">8:00 AM</option>
-                            <option value="09:00:00">9:00 AM</option>
+                            <option value="01:00:00">01:00 AM</option>
+                            <option value="02:00:00">02:00 AM</option>
+                            <option value="03:00:00">03:00 AM</option>
+                            <option value="04:00:00">04:00 AM</option>
+                            <option value="05:00:00">05:00 AM</option>
+                            <option value="06:00:00">06:00 AM</option>
+                            <option value="07:00:00">07:00 AM</option>
+                            <option value="08:00:00">08:00 AM</option>
+                            <option value="09:00:00">09:00 AM</option>
                             <option value="10:00:00">10:00 AM</option>
                             <option value="11:00:00">11:00 AM</option>
                             <option value="12:00:00">12:00 PM</option>
-                            <option value="13:00:00">1:00 PM</option>
-                            <option value="14:00:00">2:00 PM</option>
-                            <option value="14:00:00">2:00 PM</option>
-                            <option value="15:00:00">3:00 PM</option>
-                            <option value="16:00:00">4:00 PM</option>
-                            <option value="17:00:00">5:00 PM</option>
-                            <option value="18:00:00">6:00 PM</option>
-                            <option value="19:00:00">7:00 PM</option>
-                            <option value="20:00:00">8:00 PM</option>
-                            <option value="21:00:00">9:00 PM</option>
+                            <option value="13:00:00">01:00 PM</option>
+                            <option value="14:00:00">02:00 PM</option>
+                            <option value="15:00:00">03:00 PM</option>
+                            <option value="16:00:00">04:00 PM</option>
+                            <option value="17:00:00">05:00 PM</option>
+                            <option value="18:00:00">06:00 PM</option>
+                            <option value="19:00:00">07:00 PM</option>
+                            <option value="20:00:00">08:00 PM</option>
+                            <option value="21:00:00">09:00 PM</option>
                             <option value="22:00:00">10:00 PM</option>
                             <option value="23:00:00">11:00 PM</option>
                           </select>
@@ -1324,27 +1323,27 @@ export default function Property(props) {
                           >
                             <option value="flexible">Flexible</option>
                             <option value="00:00">12:00 AM</option>
-                            <option value="01:00">1:00 AM</option>
-                            <option value="02:00">2:00 AM</option>
-                            <option value="03:00">3:00 AM</option>
-                            <option value="04:00">4:00 AM</option>
-                            <option value="05:00">5:00 AM</option>
-                            <option value="06:00">6:00 AM</option>
-                            <option value="07:00">7:00 AM</option>
-                            <option value="08:00">8:00 AM</option>
-                            <option value="09:00">9:00 AM</option>
+                            <option value="01:00">01:00 AM</option>
+                            <option value="02:00">02:00 AM</option>
+                            <option value="03:00">03:00 AM</option>
+                            <option value="04:00">04:00 AM</option>
+                            <option value="05:00">05:00 AM</option>
+                            <option value="06:00">06:00 AM</option>
+                            <option value="07:00">07:00 AM</option>
+                            <option value="08:00">08:00 AM</option>
+                            <option value="09:00">09:00 AM</option>
                             <option value="10:00">10:00 AM</option>
                             <option value="11:00">11:00 AM</option>
                             <option value="12:00">12:00 PM</option>
-                            <option value="13:00">1:00 PM</option>
-                            <option value="14:00">2:00 PM</option>
-                            <option value="15:00">3:00 PM</option>
-                            <option value="16:00">4:00 PM</option>
-                            <option value="17:00">5:00 PM</option>
-                            <option value="18:00">6:00 PM</option>
-                            <option value="19:00">7:00 PM</option>
-                            <option value="20:00">8:00 PM</option>
-                            <option value="21:00">9:00 PM</option>
+                            <option value="13:00">01:00 PM</option>
+                            <option value="14:00">02:00 PM</option>
+                            <option value="15:00">03:00 PM</option>
+                            <option value="16:00">04:00 PM</option>
+                            <option value="17:00">05:00 PM</option>
+                            <option value="18:00">06:00 PM</option>
+                            <option value="19:00">07:00 PM</option>
+                            <option value="20:00">08:00 PM</option>
+                            <option value="21:00">09:00 PM</option>
                             <option value="22:00">10:00 PM</option>
                             <option value="23:00">11:00 PM</option>
                           </select>
@@ -1359,28 +1358,28 @@ export default function Property(props) {
                         className="mt-1 block w-full px-3 py-3 border border-gray-300 bg-white rounded-xl shadow-sm sm:text-sm mt-2"
                       >
                         <option value="00:00:00">12:00 AM</option>
-                        <option value="01:00:00">1:00 AM</option>
-                        <option value="02:00:00">2:00 AM</option>
-                        <option value="03:00:00">3:00 AM</option>
-                        <option value="04:00:00">4:00 AM</option>
-                        <option value="05:00:00">5:00 AM</option>
-                        <option value="06:00:00">6:00 AM</option>
-                        <option value="07:00:00">7:00 AM</option>
-                        <option value="08:00:00">8:00 AM</option>
-                        <option value="09:00:00">9:00 AM</option>
+                        <option value="01:00:00">01:00 AM</option>
+                        <option value="02:00:00">02:00 AM</option>
+                        <option value="03:00:00">03:00 AM</option>
+                        <option value="04:00:00">04:00 AM</option>
+                        <option value="05:00:00">05:00 AM</option>
+                        <option value="06:00:00">06:00 AM</option>
+                        <option value="07:00:00">07:00 AM</option>
+                        <option value="08:00:00">08:00 AM</option>
+                        <option value="09:00:00">09:00 AM</option>
                         <option value="10:00:00">10:00 AM</option>
                         <option value="11:00:00">11:00 AM</option>
                         <option value="12:00:00">12:00 PM</option>
-                        <option value="13:00:00">1:00 PM</option>
-                        <option value="14:00:00">2:00 PM</option>
-                        <option value="14:00:00">2:00 PM</option>
-                        <option value="15:00:00">3:00 PM</option>
-                        <option value="16:00:00">4:00 PM</option>
-                        <option value="17:00:00">5:00 PM</option>
-                        <option value="18:00:00">6:00 PM</option>
-                        <option value="19:00:00">7:00 PM</option>
-                        <option value="20:00:00">8:00 PM</option>
-                        <option value="21:00:00">9:00 PM</option>
+                        <option value="13:00:00">01:00 PM</option>
+                        <option value="14:00:00">02:00 PM</option>
+                        <option value="14:00:00">02:00 PM</option>
+                        <option value="15:00:00">03:00 PM</option>
+                        <option value="16:00:00">04:00 PM</option>
+                        <option value="17:00:00">05:00 PM</option>
+                        <option value="18:00:00">06:00 PM</option>
+                        <option value="19:00:00">07:00 PM</option>
+                        <option value="20:00:00">08:00 PM</option>
+                        <option value="21:00:00">09:00 PM</option>
                         <option value="22:00:00">10:00 PM</option>
                         <option value="23:00:00">11:00 PM</option>
                       </select>
@@ -1389,7 +1388,7 @@ export default function Property(props) {
                 </div>
 
                 <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4">
-                  <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-2 font-bold md:mb-8 mb-4">Please select an option</h2>
+                  <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-2 font-bold md:mb-8 mb-4 capitalize">please  select Property Status</h2>
                   <div className="flex items-center space-x-4 md-4 md:mb-8">
                     <label className="flex items-center space-x-2 sm:text-[1.15rem] text-[17px] font-normal   ">
                       <input
@@ -1500,7 +1499,7 @@ export default function Property(props) {
                   <h1 className="capitalize text-lg font-bold my-4">Discount offer </h1>
                   <label className="flex items-center space-x-2 text-xl font-normal">
                     <input
-                      className="p-4 py-2 w-36 md:w-full mt-1 block text-[16px] md:text-lg border border-{#ccc} rounded-md"
+                      className="p-4 py-2 w-36 md:w-full mt-1 block text-[16px] md:text-lg border border-[#ccc] rounded-md"
                       placeholder="% Discount offer"
                       type="number"
                       name="discount"
@@ -1546,7 +1545,7 @@ export default function Property(props) {
                     <div className="md:w-1/2 pr-2 flex flex-col mb-3">
                       <div className=" items-center">
 
-                        <h2 className="text-[20px] md:text-2xl font-bold">Select a check-in method</h2>
+                        <h2 className="text-[20px] md:text-2xl font-bold capitalize">Select a check-in method</h2>
                       </div>
                       <div className="space-y-4 mt-4 w-full">
                         {options && options.map((item, index) => (
@@ -1593,7 +1592,7 @@ export default function Property(props) {
                 </div>
               </div>
 
-              <div className={`${step === 11 ? "" : "display-none"
+              <div className={`${step === 1 ? "" : "display-none"
                 } max-w-[100%] m-auto w-full `}>
                 <div className="flex  flex-col mb-2">
                   <Checkout handleSubmit={handleSubmit} selectedInstruction={selectedInstruction} isEdit={true} checkoutdata={check_out_instruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />

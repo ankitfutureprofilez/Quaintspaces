@@ -12,12 +12,13 @@ export default function index() {
   const { setAuth } = useContext(Context);
   const router = useRouter();
 
-  const handleClick = () => {
+  const HandelLogout = () => {
     localStorage && localStorage.removeItem("token");
     setAuth(null);
     toast.success("Logout Successfully !!");
     router.push("/login");
   };
+
   return (
     <AuthLayout>
       <Head>
@@ -25,10 +26,10 @@ export default function index() {
       </Head>
       <div className="container mx-auto  account-btn">
         <div className="flex justify-between items-center pt-12">
-          <Heading text={"Account"} />
+          <Heading text={"Account"}  handleClick={()=>{router.back(-1)}}/>
           <Button
             text={"Logout"}
-            onClick={handleClick}
+            onClick={HandelLogout}
             design={
               "font-inter text-base font-medium leading-tight text-center text-black w-52 border border-gray-400 p-4 rounded-full"
             }
