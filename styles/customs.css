@@ -1405,3 +1405,35 @@ button.submint-btn {
 img.profile-cover-image { width: 100%; height: 100%; object-fit: cover;     border-radius: 25px 25px 0 0; }
 .profile-payment { box-shadow: 0 0 25px -10px #ccc; padding: 0; border-radius: 30px; }
 .user-profile-img { height: 50px; width: 50px; object-fit: cover; }
+
+
+.thankspage h2 {
+  font-weight: 300!important;
+ font-size:50px;
+}
+
+
+
+
+h2.text-center.mt-4 {}
+
+.thankspage h2 {
+  font-size: 25px;
+  font-weight: 300;
+  color: #000;
+  margin: 10px 0 10px;
+}
+
+.thankspage  p {
+  font-size: 15px;
+  color: #0a8645;
+}
+
+.thankspage .w-full.flex p {
+  font-size: 14px;
+  color: #000;
+}
+
+.thankspage .w-full.flex p.text-start.text-black-400.font-bold.font-semibold {
+  font-weight: 300;
+}

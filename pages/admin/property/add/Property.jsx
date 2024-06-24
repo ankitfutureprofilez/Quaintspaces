@@ -1501,8 +1501,8 @@ export default function Property(props) {
                   <label className="flex items-center space-x-2 text-xl font-normal">
                     <input
                       className="p-4 py-2 w-36 md:w-full mt-1 block text-[16px] md:text-lg border border-{#ccc} rounded-md"
-                      placeholder="Discount offer"
-                      type="text"
+                      placeholder="% Discount offer"
+                      type="number"
                       name="discount"
                       value={item?.discount}
                       onChange={handleInputChange}
