@@ -6,6 +6,7 @@ import Listings from "../api/laravel/Listings";
 import toast from "react-hot-toast";
 import DateComponent from "../admin/hook/Dateformat";
 import LoadingSpinner from "../admin/hook/spinner";
+import { Link } from "iconsax-react";
 
 
 function calculateTotalDays(checkInDate, checkOutDate) {
@@ -110,7 +111,7 @@ const success = () => {
             <div className=" pt-16 sm:text-xl text-sm   flex flex-wrap justify-center m-auto max-w-[600px]">
               <div className="w-full flex justify-between mb-4 flex-wrap  ">
                 <p className="text-black-400 font-bold ">Booking Number</p>
-                <p className="text-start text-black-400 font-bold font-semibold">{record?.booking_number}</p>
+                <Link href="/booking" className="text-start text-black-400 font-bold font-semibold">{record?.booking_number}</Link>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
                 <p className="text-black-400 font-bold">Booking Date </p>
