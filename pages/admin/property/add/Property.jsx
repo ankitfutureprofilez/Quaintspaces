@@ -1024,7 +1024,7 @@ export default function Property(props) {
                               onDragStart={handleDrag}
                               onDragOver={handleOver}
                               onDrop={handleDrop}
-                              className="relative w-full  p-1"
+                              className="relative w-full p-1 cursor-move"
                             >
                               <Image
                                 src={URL.createObjectURL(images[0])}
@@ -1053,7 +1053,7 @@ export default function Property(props) {
                                 onDragStart={handleDrag}
                                 onDragOver={handleOver}
                                 onDrop={handleDrop}
-                                className="relative w-1/2 md:w-1/3 p-1"
+                                className="relative w-1/2 md:w-1/3 p-1 cursor-move"
                               >
                                 <Image
                                   src={URL.createObjectURL(file)}
