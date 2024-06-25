@@ -1496,7 +1496,7 @@ export default function Property(props) {
                 </div>
 
                 <div className="flex flex-col mb-2">
-                  <h1 className="capitalize text-lg font-bold my-4">Discount offer </h1>
+                  <h1 className="capitalize text-lg font-bold my-4">Discount offer (%) </h1>
                   <label className="flex items-center space-x-2 text-xl font-normal">
                     <input
                       className="p-4 py-2 w-36 md:w-full mt-1 block text-[16px] md:text-lg border border-[#ccc] rounded-md"
@@ -1506,7 +1506,6 @@ export default function Property(props) {
                       value={item?.discount}
                       onChange={handleInputChange}
                     />
-                    <span className="text-[16px] md:text-lg">% discount offer</span>
                   </label>
                 </div>
               </div>
