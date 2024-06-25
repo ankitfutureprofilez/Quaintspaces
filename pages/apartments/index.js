@@ -238,8 +238,8 @@ export default function Index() {
               selectEnd={selectEnd}
               setSelectedDay={setSelectedDay}
               setSelectEnd={setSelectEnd}
-              min={1}
-              max={20001}
+              min={0}
+              max={20000}
               onClick={handleClick}
               onChange={({ min, max }) => {
                 minVal = min;

@@ -60,7 +60,7 @@ const Card = ({ post }) => {
             {capitalizeFirstLetter(post?.name)}
           </h3>
           <p>
-            <span className="ml-2">{capitalizeAndReplace(post?.type)}</span> &nbsp;
+            <span>{capitalizeAndReplace(post?.type)}</span> &nbsp;
             {post?.bedrooms} Bedrooms · {post?.beds} Bed .  {post?.guests} Guests . {post?.no_of_pet_allowed} Pets
           </p>
           <h4>
