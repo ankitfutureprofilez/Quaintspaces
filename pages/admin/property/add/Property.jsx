@@ -1229,7 +1229,7 @@ export default function Property(props) {
                         <label>Cleaning Fees ( Per Day Fees) </label>
                         <input
                           required
-                          type="text"
+                          type="number"
                           name="cleaning"
                           placeholder="Cleaning Fees Per Day"
                           id="cleaning"
@@ -1243,7 +1243,7 @@ export default function Property(props) {
                       <div className="flex flex-col w-full md:mb-0 mb-2">
                         <label>Pet Fees (Per Pet Fees)</label>
                         <input
-                          type="text"
+                          type="number"
                           name="pet"
                           placeholder="Per Pet Fees"
                           id="pet"
@@ -1258,7 +1258,7 @@ export default function Property(props) {
                         <label>Extra Guest Fees (Per Guest)</label>
                         <input
                           required
-                          type="text"
+                          type="number"
                           name="extra_guest"
                           placeholder="Extra Guest Fees per Guest"
                           id="guest"
