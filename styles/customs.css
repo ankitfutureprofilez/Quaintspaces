@@ -55,6 +55,30 @@ h3.text-sm.font-medium.desc-property {
     width: 90%; 
     max-width: 90%; 
   }
+
+  .nav-bar a {
+    display: block;
+    padding: 6px 2px;
+    text-align: left;
+    border-bottom: 1px solid #dfdfdf;
+    width: 100%;
+    font-size: 13px;
+  }
+  
+  .menu-items {
+    gap: inherit;
+  }
+  
+  .profile-image img {width: 25px;height: 25px;}
+  
+  .profile-image-container.items-center {
+    margin: 0!important;
+    font-size: 13px;
+  }
+  
+  .profile-image {
+    padding: 6px 0 0;
+  }
 }
 
 .explor-btn-link {
@@ -1441,26 +1465,3 @@ h2.text-center.mt-4 {}
   font-weight: 300;
 }
 
-/* .nav-bar a {
-  display: block;
-  padding: 6px 2px;
-  text-align: left;
-  border-bottom: 1px solid #dfdfdf;
-  width: 100%;
-  font-size: 13px;
-}
-
-.menu-items {
-  gap: inherit;
-}
-
-.profile-image img {width: 25px;height: 25px;}
-
-.profile-image-container.items-center {
-  margin: 0!important;
-  font-size: 13px;
-}
-
-.profile-image {
-  padding: 6px 0 0;
-} */

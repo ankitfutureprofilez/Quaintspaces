@@ -124,6 +124,7 @@ const success = () => {
                 <p className="text-start text-black-400 font-bold font-semibold">{record?.name}</p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
+
                 <p className="text-black-400 font-bold">Property  Name:</p>
                 <p className="text-start text-black-400 font-bold font-semibold">{record?.property_name}</p>
               </div>
