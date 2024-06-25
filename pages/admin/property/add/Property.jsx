@@ -12,6 +12,7 @@ import { MdPhonelinkLock } from "react-icons/md";
 import { MdOutlineKeyboardAlt } from "react-icons/md";
 import { RiDoorLockBoxLine } from "react-icons/ri";
 import { GrUserWorker } from "react-icons/gr";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdOutlineFreeBreakfast } from "react-icons/md";
 import { FaBuilding, FaHome, FaWarehouse, FaDoorOpen, FaHotel, FaBed, FaCouch } from "react-icons/fa";
 import Guest from "./Guest";
@@ -632,7 +633,7 @@ export default function Property(props) {
           onClick={toggleDropdown}
           className="bg-white text-xl text-black rounded-lg px-3 py-1 mx-1 mt-1 shadow-lg"
         >
-          :
+          <BsThreeDotsVertical />
         </button>
         {isOpen && (
           <ul className="absolute text-sm right-0 w-32 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
