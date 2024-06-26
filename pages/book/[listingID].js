@@ -607,7 +607,7 @@ console.log("infos",infos);
                             new Date(infos.checkin)
                           )} )
                       </span>
-                      <span className="block text-blackColor font-medium confirm-price">
+                      <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
                         <div className="flex justify-center">
                           <>
                             <div className="flex flex-col items-center">
@@ -647,7 +647,7 @@ console.log("infos",infos);
                             new Date(infos.checkin)
                           )} )
                       </span>
-                      <span className="block text-blackColor font-medium confirm-price">
+                      <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
                         <div className="flex justify-center">
                           <>
                             <div className="flex flex-col items-center">
@@ -681,7 +681,7 @@ console.log("infos",infos);
                         )}
                       )
                     </span>
-                    <span className="block text-blackColor font-medium confirm-price ml-3">
+                    <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
                       {formatMultiPrice(listing?.cleaning_fee * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))}
                     </span>
                   </div>
@@ -701,7 +701,7 @@ console.log("infos",infos);
                           {formatMultiPrice(listing?.extra_guest_fee)}
                         </span>
                       </div>
-                      <span className="block text-blackColor font-medium confirm-price ml-3">
+                      <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
                         {formatMultiPrice(
                           (guests?.adults?.value +
                             guests?.children?.value -
@@ -725,7 +725,7 @@ console.log("infos",infos);
                           {formatMultiPrice(listing?.pet_fee)}
                         </span>
                       </div>
-                      <span className="block text-blackColor font-medium confirm-price ml-3">
+                      <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
                         {formatMultiPrice(guests?.pets?.value * listing?.pet_fee)}
                       </span>
                     </div>

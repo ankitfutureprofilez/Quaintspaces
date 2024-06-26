@@ -10,7 +10,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
     <div className="container mx-auto">
       <h1 className="listing-heading text-left !mb-0">Things to know</h1>
       <div className="flex justify-between house-rule-text">
-        <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
+        <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full md:w-1/3 w-full">
           <h2 className="font-semibold mb-2">Time Management</h2>
           <p className="mb-2 text-gray-500">Check-in starts after {record?.data?.check_in}</p>
           <p className="mb-2 text-gray-500">Flexible/check-in ends after {record?.data?.flexible_check_in}</p>
@@ -20,7 +20,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
 
         </div>
 
-        <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
+        <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full md:w-1/3 w-full">
           <h2 className="font-semibold mb-2">Safety & Property </h2>
           <p className="mb-2 text-gray-500 flex ">
             <div>
@@ -33,7 +33,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
 
           </p>
         </div>
-        <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
+        <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full md:w-1/3 w-full">
           <h2 className="font-semibold mb-2">House Rules</h2>
           <p className="mb-2 text-gray-500 capitalize ">
             {record?.data?.property_rule?.pet_allowed === 1 ? "Pet is allowed." : "Pet is not allowed."}
@@ -65,12 +65,12 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
         <>
 
           <div className="flex justify-between house-rule-text">
-            <div className="flex flex-col mt-3 sm:mt-2 mr-4 ">
+            <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full ">
               <h2 className="font-semibold mb-2 w-1/3">Direction</h2>
               <p className="mb-2 text-gray-500 justify ">{
                 record?.data?.property_rule?.direction}</p>
             </div>
-            <div className="flex flex-col mt-3 sm:mt-2 mr-4">
+            <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
               <h2 className="font-semibold mb-2">House Manuals </h2>
               <p className="mb-2 text-gray-500 flex ">
                 <div>
@@ -79,7 +79,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
                 </div>
               </p>
             </div>
-            <div className="flex flex-col mt-3 sm:mt-2 mr-4">
+            <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
               <div>
                 <h2 className="font-semibold mb-2">Wifi Details </h2>
                 <p className="mb-2 text-gray-500 justify ">{
@@ -102,8 +102,8 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
           </div>
 
           <div className="flex justify-between house-rule-text">
-            <div className="flex flex-col mt-3 sm:mt-2 mr-4 ">
-              <h2 className="font-semibold mb-2 w-1/3">Checkout Instruction</h2>
+            <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/2 w-full ">
+              <h2 className="font-semibold mb-2 ">Checkout Instruction</h2>
               {instructions.map((item, index) => (
                 <div key={index} className="mb-4">
                   <p className="mb-2 text-gray-500 justify">
@@ -116,8 +116,8 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
               ))}
             </div>
 
-            <div className="flex flex-col mt-3 sm:mt-2 mr-4 ">
-              <h2 className="font-semibold mb-2 w-1/3">Policy</h2>
+            <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/2 w-full ">
+              <h2 className="font-semibold mb-2">Policy</h2>
               <p className="mb-2 text-gray-500 justify">
               {record?.data?.property_rule?.long_term_policy ===null ? (record?.data?.property_rule?.long_term_policy) :(record?.data?.property_rule?.standard_policy) }
 

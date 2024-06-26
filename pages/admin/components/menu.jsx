@@ -27,7 +27,7 @@ export default function menu({ isOpen, record }) {
               height={35}
             />
             <div className="space-y-2 flex flex-col flex-1 truncate">
-              <div className="font-medium relative text-xl leading-tight text-gray-900">
+              <div className="font-[18px] sm:font-medium relative text-xl leading-tight text-gray-900">
                 <span className="flex">
                   <span className=" relative pr-8 capitalize	">
                     {record?.name}

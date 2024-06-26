@@ -338,7 +338,7 @@ export default function index() {
             {content?.length > 0 && !loading && hasmore && (
               <div className="flex justify-center">
                 <div
-                  className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+                  className="font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 !p-4 rounded-full mt-10 mb-12 text-white cursor-pointer hover:bg-[#000]  filter btn"
                   onClick={loadMore}
                 >
                   {loadingButton ? "Loading..." : "Load More"}
@@ -400,11 +400,14 @@ export default function index() {
 
       {imageOpen && (
         <Modal isOpen={openImageModal} onClose={CloseImageModal}>
-          <div className="my-4 mx-4 lg:my-6 flex flex-col p-4">
+          <div className=" flex flex-col ">
+          <h3 className="bg-[#c48b58] text-white p-4"> Document Image</h3>
+          <div className="p-4">
             <img
-              src={document}
-              alt="Document Image"
-            />
+                src={document}
+                alt="Document Image"
+              />
+          </div>
           </div>
         </Modal>
       )}
