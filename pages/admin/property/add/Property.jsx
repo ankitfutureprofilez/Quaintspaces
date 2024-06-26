@@ -12,6 +12,7 @@ import { MdPhonelinkLock } from "react-icons/md";
 import { MdOutlineKeyboardAlt } from "react-icons/md";
 import { RiDoorLockBoxLine } from "react-icons/ri";
 import { GrUserWorker } from "react-icons/gr";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdOutlineFreeBreakfast } from "react-icons/md";
 import { FaBuilding, FaHome, FaWarehouse, FaDoorOpen, FaHotel, FaBed, FaCouch } from "react-icons/fa";
 import Guest from "./Guest";
@@ -260,65 +261,65 @@ export default function Property(props) {
   };
   const prevStep = () => setStep((prev) => prev - 1);
   const nextStep = async () => {
-    // if (step === 0 && PType == '') {
-    //   toast.error("Please choose a property type which one you want to list.");
-    // }
-    // if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
-    //   toast.error("Property description is too short. Description should be a minimum of 100 words.");
-    //   return false;
-    // }
-    // if (step === 2 && (
-    //   address?.pin === "" || address?.pin?.length < 5 ||
-    //   address?.state === "" ||
-    //   address?.city === "" ||
-    //   address?.street_address === "" ||
-    //   address?.district === "")) {
-    //   toast.error(`Incomplete address. Please enter complete address.`);
-    //   return false;
-    // }
-    // if (step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (step == 4 && selectedAmenity && Amenity && standoutAmenity && (selectedAmenity.length + Amenity.length + standoutAmenity.length < 4)) {
-    //   toast.error("Please choose at least 4 amenities.");
-    //   return false;
-    // }
+    if (step === 0 && PType == '') {
+      toast.error("Please choose a property type which one you want to list.");
+    }
+    if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
+      toast.error("Property description is too short. Description should be a minimum of 100 words.");
+      return false;
+    }
+    if (step === 2 && (
+      address?.pin === "" || address?.pin?.length < 5 ||
+      address?.state === "" ||
+      address?.city === "" ||
+      address?.street_address === "" ||
+      address?.district === "")) {
+      toast.error(`Incomplete address. Please enter complete address.`);
+      return false;
+    }
+    if (step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (step == 4 && selectedAmenity && Amenity && standoutAmenity && (selectedAmenity.length + Amenity.length + standoutAmenity.length < 4)) {
+      toast.error("Please choose at least 4 amenities.");
+      return false;
+    }
 
 
-    // if (!isEdit && step === 5 && images?.length < 5) {
-    //   toast.error("Please select at least five images.");
-    //   return false;
-    // }
-    // if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
-    //   toast.error("Please select at least five images.");
-    //   return false;
-    // }
-    // if (step === 6 && (checkout === " " || checkinStart === " " || selectedOption === "" || checkinEnd === "" || item?.cleaning === "" || item?.extra_guest === "" || item?.pet === "")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (step === 7 && (longTermPolicy === null && selectedPolicy === null)) {
-    //   toast.error(`At least one field is required.`);
-    //   return false;
-    // }
-    // if (step === 8 && (item?.additonalrule === "" || petsAllowed === " " || smokingAllowed === " " || eventsAllowed === "" || quietHours === "" || PhotographyAllowed === "")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (step === 9 && (item?.Direction === "" || item?.wifi === " " || item?.wifiPassword === " " || item?.housemanual === " ")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
+    if (!isEdit && step === 5 && images?.length < 5) {
+      toast.error("Please select at least five images.");
+      return false;
+    }
+    if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
+      toast.error("Please select at least five images.");
+      return false;
+    }
+    if (step === 6 && (checkout === " " || checkinStart === " " || selectedOption === "" || checkinEnd === "" || item?.cleaning === "" || item?.extra_guest === "" || item?.pet === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (step === 7 && (longTermPolicy === null && selectedPolicy === null)) {
+      toast.error(`At least one field is required.`);
+      return false;
+    }
+    if (step === 8 && (item?.additonalrule === "" || petsAllowed === " " || smokingAllowed === " " || eventsAllowed === "" || quietHours === "" || PhotographyAllowed === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (step === 9 && (item?.Direction === "" || item?.wifi === " " || item?.wifiPassword === " " || item?.housemanual === " ")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
 
-    // if (step === 10 && (item?.customLink === "" || item?.selectedInstruction === " " || selectedMethod === " ")) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
+    if (step === 10 && (item?.customLink === "" || item?.selectedInstruction === " " || selectedMethod === " ")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
 
 
 
@@ -632,7 +633,7 @@ export default function Property(props) {
           onClick={toggleDropdown}
           className="bg-white text-xl text-black rounded-lg px-3 py-1 mx-1 mt-1 shadow-lg"
         >
-          :
+          <BsThreeDotsVertical />
         </button>
         {isOpen && (
           <ul className="absolute text-sm right-0 w-32 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
@@ -1229,7 +1230,7 @@ export default function Property(props) {
                         <label>Cleaning Fees ( Per Day Fees) </label>
                         <input
                           required
-                          type="text"
+                          type="number"
                           name="cleaning"
                           placeholder="Cleaning Fees Per Day"
                           id="cleaning"
@@ -1243,7 +1244,7 @@ export default function Property(props) {
                       <div className="flex flex-col w-full md:mb-0 mb-2">
                         <label>Pet Fees (Per Pet Fees)</label>
                         <input
-                          type="text"
+                          type="number"
                           name="pet"
                           placeholder="Per Pet Fees"
                           id="pet"
@@ -1258,7 +1259,7 @@ export default function Property(props) {
                         <label>Extra Guest Fees (Per Guest)</label>
                         <input
                           required
-                          type="text"
+                          type="number"
                           name="extra_guest"
                           placeholder="Extra Guest Fees per Guest"
                           id="guest"
@@ -1496,7 +1497,7 @@ export default function Property(props) {
                 </div>
 
                 <div className="flex flex-col mb-2">
-                  <h1 className="capitalize text-lg font-bold my-4">Discount offer </h1>
+                  <h1 className="capitalize text-lg font-bold my-4">Discount offer (%) </h1>
                   <label className="flex items-center space-x-2 text-xl font-normal">
                     <input
                       className="p-4 py-2 w-36 md:w-full mt-1 block text-[16px] md:text-lg border border-[#ccc] rounded-md"
@@ -1506,7 +1507,6 @@ export default function Property(props) {
                       value={item?.discount}
                       onChange={handleInputChange}
                     />
-                    <span className="text-[16px] md:text-lg">% discount offer</span>
                   </label>
                 </div>
               </div>
@@ -1592,7 +1592,7 @@ export default function Property(props) {
                 </div>
               </div>
 
-              <div className={`${step === 1 ? "" : "display-none"
+              <div className={`${step === 11 ? "" : "display-none"
                 } max-w-[100%] m-auto w-full `}>
                 <div className="flex  flex-col mb-2">
                   <Checkout handleSubmit={handleSubmit} selectedInstruction={selectedInstruction} isEdit={true} checkoutdata={check_out_instruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />

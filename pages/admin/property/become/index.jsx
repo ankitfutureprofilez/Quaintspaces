@@ -37,7 +37,7 @@ function Index() {
         let filteredListings = [];
         if (Array.isArray(data)) {
           data.forEach((item) => {
-            if (item?.step_completed !== 9) {
+            if (item?.step_completed !== 11) {
               filteredListings?.push(item);
             }
           });

@@ -30,7 +30,7 @@ console.log("isAdmin",isAdmin)
         </>
       ) : (
         <>
-          <div className="pt-4 flex justify-between flex-wrap sm:pt-8 md:pt-12 pb-3 sm:pb-6 md:pb-10">
+          <div className=" flex justify-between flex-wrap ">
             <div className="flex flex-wrap items-center mb-2">
               <div className="backtag"></div>
               <Back />

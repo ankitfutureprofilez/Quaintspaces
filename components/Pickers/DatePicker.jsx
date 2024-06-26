@@ -214,7 +214,7 @@ const DatePicker = ({
             onClick={() => datePickerFunction()}
             className="rounded-md border border-gray-700 bg-black text-white transition duration-200 px-4 py-2 text-sm"
           >
-            Close
+            Apply
           </button>
         </div>
       )}
