@@ -15,7 +15,7 @@ function CourseProgress() {
       .then((res) => {
         setActiveUser(res?.data?.activeUser);
         setLoading(false);
-      })
+      }) 
       .catch((error) => {
         console.log("error", error);
       });
