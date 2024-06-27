@@ -129,10 +129,9 @@ function Bookings() {
                         />
                         </Link>
                         <div className="font-medium">
-                          <p className=
-                            "text-sm ">
+                          <Link href={`/admin/user-history/${item.user_id}`} className="text-sm ">
                             {item?.userName}
-                          </p>
+                          </Link>
                           <p className={`text-[12px] absolute top-2 right-2 px-3 rounded-full ${getStatusClasses(item?.booking_status)}`}>
                             {item?.booking_status === "confirm" ? ("confirmed") :(item?.booking_status) }
                           </p>

@@ -46,6 +46,8 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
               <div className="flex items-center gap-1 text-md">
                 {capitalizeAndReplace(listing?.data?.type)}
                 {" . "}
+                {capitalizeAndReplace(listing?.data?.properties_type)}
+                {" . "}
                 {listing?.data?.guests > 0 && `${listing?.data?.guests} Guests`}
                 {" · "}
                 {listing?.data?.no_of_pet_allowed > 0 &&

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Listing from "../../api/Listing";
 import { useRouter } from "next/router";
-import Image from 'next/image'
+import Image from "next/image";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Amenities from "./Amenities";
@@ -14,7 +14,15 @@ import { RiDoorLockBoxLine } from "react-icons/ri";
 import { GrUserWorker } from "react-icons/gr";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdOutlineFreeBreakfast } from "react-icons/md";
-import { FaBuilding, FaHome, FaWarehouse, FaDoorOpen, FaHotel, FaBed, FaCouch } from "react-icons/fa";
+import {
+  FaBuilding,
+  FaHome,
+  FaWarehouse,
+  FaDoorOpen,
+  FaHotel,
+  FaBed,
+  FaCouch,
+} from "react-icons/fa";
 import Guest from "./Guest";
 import Checkout from "./Checkout";
 const propertyTypes = [
@@ -29,7 +37,6 @@ const propertyTypes = [
   { value: "breakfast", label: "Bed & Breakfast" },
 ];
 export default function Property(props) {
-
   const { isEdit, p, fetchProperties, stepdata, useExistingImages } = props;
   const {
     uuid,
@@ -38,43 +45,79 @@ export default function Property(props) {
     discount_offer,
     properties_type,
     name,
-    no_of_pet_allowed, check_out_instruction,
+    no_of_pet_allowed,
+    check_out_instruction,
     price,
     description,
-    bedrooms, beds,
-    safety_amenity, standout_amenity,
-    property_rule, step_completed,
-    guests, pet_fee, extra_guest_fee, flexible_check_in, check_in,
-    bathrooms, cleaning_fee,
-    amenities, check_out, check_in_method, check_in_description,
-    property_image, status, custom_link
+    bedrooms,
+    beds,
+    safety_amenity,
+    standout_amenity,
+    property_rule,
+    step_completed,
+    guests,
+    pet_fee,
+    extra_guest_fee,
+    flexible_check_in,
+    check_in,
+    bathrooms,
+    cleaning_fee,
+    amenities,
+    check_out,
+    check_in_method,
+    check_in_description,
+    property_image,
+    status,
+    custom_link,
   } = p ? p : {};
 
-  console.log("location", location)
-  console.log("p", p)
+  console.log("location", location);
+  console.log("p", p);
 
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
   const [pets, setPets] = useState(no_of_pet_allowed || 1);
-  const [selectedAmenity, setSelectedAmenity] = useState(amenities ? stringToArray(amenities) : []);
-  const [Amenity, setAmenity] = useState(safety_amenity ? stringToArray(safety_amenity) : []);
-  const [standoutAmenity, setstandoutAmenity] = useState(standout_amenity ? stringToArray(standout_amenity) : []);
-  const [longTermPolicy, setLongTermPolicy] = useState(property_rule?.long_term_policy || null);
-  const [selectedPolicy, setSelectedPolicy] = useState(property_rule?.standard_policy || null);
+  const [selectedAmenity, setSelectedAmenity] = useState(
+    amenities ? stringToArray(amenities) : []
+  );
+  const [Amenity, setAmenity] = useState(
+    safety_amenity ? stringToArray(safety_amenity) : []
+  );
+  const [standoutAmenity, setstandoutAmenity] = useState(
+    standout_amenity ? stringToArray(standout_amenity) : []
+  );
+  const [longTermPolicy, setLongTermPolicy] = useState(
+    property_rule?.long_term_policy || null
+  );
+  const [selectedPolicy, setSelectedPolicy] = useState(
+    property_rule?.standard_policy || null
+  );
   const [showFlexible, setShowFlexible] = useState(true);
   const [showFirm, setShowFirm] = useState(false);
-  const [petsAllowed, setPetsAllowed] = useState(property_rule?.pet_allowed || 0);
-  const [eventsAllowed, setEventsAllowed] = useState(property_rule?.events_allowed || 0);
-  const [smokingAllowed, setSmokingAllowed] = useState(property_rule?.smoking_allowed || 0);
-  const [quietHours, setQuietHours] = useState(property_rule?.quiet_hours_allowed || 0);
-  const [PhotographyAllowed, setPhotographyAllowed] = useState(property_rule?.photography_allowed || 0);
+  const [petsAllowed, setPetsAllowed] = useState(
+    property_rule?.pet_allowed || 0
+  );
+  const [eventsAllowed, setEventsAllowed] = useState(
+    property_rule?.events_allowed || 0
+  );
+  const [smokingAllowed, setSmokingAllowed] = useState(
+    property_rule?.smoking_allowed || 0
+  );
+  const [quietHours, setQuietHours] = useState(
+    property_rule?.quiet_hours_allowed || 0
+  );
+  const [PhotographyAllowed, setPhotographyAllowed] = useState(
+    property_rule?.photography_allowed || 0
+  );
   const [images, setImages] = useState([]);
   const [dragId, setDragId] = useState("");
   const [typeHere, setTypeHere] = useState(type || "entire_place");
   const [checkinStart, setCheckinStart] = useState(check_in || "00:00");
   const [checkinquet, setCheckinquiet] = useState(
-    property_rule?.quite_hours_in_time || "00:00");
+    property_rule?.quite_hours_in_time || "00:00"
+  );
   const [checkoutquet, setCheckoutquiet] = useState(
-    property_rule?.quite_hours_out_time || "00:00");
+    property_rule?.quite_hours_out_time || "00:00"
+  );
   const [selectedOption, setSelectedOption] = useState(status || 1);
   const [checkinEnd, setCheckinEnd] = useState(flexible_check_in || "flexible");
   const [checkout, setCheckout] = useState(check_out || "00:00");
@@ -86,11 +129,15 @@ export default function Property(props) {
   const [showInstructions, setShowInstructions] = useState(false);
   const [showTextArea, setShowTextArea] = useState(false);
   const [text, setText] = useState("");
-  const [selectedMethod, setSelectedMethod] = useState(check_in_method || "smartlock");
-  const [checkdescrtion, setcheckdescrtion] = useState(check_in_description || "")
+  const [selectedMethod, setSelectedMethod] = useState(
+    check_in_method || "smartlock"
+  );
+  const [checkdescrtion, setcheckdescrtion] = useState(
+    check_in_description || ""
+  );
   const handleMethodSelect = (method) => {
     setSelectedMethod(method);
-    setcheckdescrtion('');
+    setcheckdescrtion("");
   };
 
   const handlecheckChange = (e) => {
@@ -188,13 +235,15 @@ export default function Property(props) {
     setImages(updatedImages);
   };
   const router = useRouter();
-  const [step, setStep] = useState(step_completed === 11 ? 0 : step_completed || 0);
+  const [step, setStep] = useState(
+    step_completed === 11 ? 0 : step_completed || 0
+  );
   const [Loading, setLoading] = useState(false);
   const [PType, setPType] = useState(properties_type || "flat");
-  const lstring = location ? JSON.parse(location.replace("/\\\"/g", '"')) : null;
+  const lstring = location ? JSON.parse(location.replace('/\\"/g', '"')) : null;
   const l = JSON.parse(lstring);
-  console.log("lstring", lstring)
-  console.log("l", l)
+  console.log("lstring", lstring);
+  console.log("l", l);
 
   const [address, setAddress] = useState({
     street_address: l && l.street_address ? l.street_address : "",
@@ -205,7 +254,7 @@ export default function Property(props) {
     state: l && l.state ? l.state : "",
     pin: l && l.pin ? l.pin : "",
     location: l && l.location ? l.location : "",
-    latitude: l && l.latitude ? l.latitude : '',
+    latitude: l && l.latitude ? l.latitude : "",
     longitude: l && l.longitude ? l.longitude : "",
   });
 
@@ -228,22 +277,23 @@ export default function Property(props) {
     extra_guest: extra_guest_fee || "",
     Direction: property_rule?.direction || "",
     housemanual: property_rule?.house_manuals || "",
-    wifi: property_rule?.wifi_username || '',
+    wifi: property_rule?.wifi_username || "",
     additonalrule: property_rule?.additional_rules || "",
-    wifiPassword: property_rule?.wifi_password || '',
+    wifiPassword: property_rule?.wifi_password || "",
     discount: discount_offer || "",
     customLink: custom_link || "",
   });
 
   const copyToClipboard = () => {
     const textToCopy = `${baseurl}${item?.customLink}`;
-    console.log("textToCopy", textToCopy)
-    navigator.clipboard.writeText(textToCopy).then(() => {
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-    });
+    console.log("textToCopy", textToCopy);
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {})
+      .catch((err) => {
+        console.error("Failed to copy: ", err);
+      });
   };
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -254,42 +304,67 @@ export default function Property(props) {
     return inputString.split(",");
   }
 
-
   const handleOptionChange = (event) => {
     const option = parseInt(event.target.value, 10);
     setSelectedOption(selectedOption === option ? "" : option);
   };
   const prevStep = () => setStep((prev) => prev - 1);
   const nextStep = async () => {
-    if (step === 0 && PType == '') {
+    if (step === 0 && PType == "") {
       toast.error("Please choose a property type which one you want to list.");
     }
-    if (step === 1 && (item?.name === "" || item?.price === "" || item?.about === "")) {
+    if (
+      step === 1 &&
+      (item?.name === "" || item?.price === "" || item?.about === "")
+    ) {
       toast.error(`All fields are required.`);
       return false;
     }
-    if (step === 1 && (!item?.about || item?.about?.trim()?.length === 0 || item?.about?.length < 100)) {
-      toast.error("Property description is too short. Description should be a minimum of 100 words.");
+    if (
+      step === 1 && item?.price != "" && item?.price < 0 ) {
+      toast.error(`Invalid Price`);
       return false;
     }
-    if (step === 2 && (
-      address?.pin === "" || address?.pin?.length < 5 ||
-      address?.state === "" ||
-      address?.city === "" ||
-      address?.street_address === "" ||
-      address?.district === "")) {
+    if (
+      step === 1 &&
+      (!item?.about ||
+        item?.about?.trim()?.length === 0 ||
+        item?.about?.length < 100)
+    ) {
+      toast.error(
+        "Property description is too short. Description should be a minimum of 100 words."
+      );
+      return false;
+    }
+    if (
+      step === 2 &&
+      (address?.pin === "" ||
+        address?.pin?.length < 5 ||
+        address?.state === "" ||
+        address?.city === "" ||
+        address?.street_address === "" ||
+        address?.district === "")
+    ) {
       toast.error(`Incomplete address. Please enter complete address.`);
       return false;
     }
-    if (step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
+    if (
+      step === 3 &&
+      (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")
+    ) {
       toast.error(`All fields are required.`);
       return false;
     }
-    if (step == 4 && selectedAmenity && Amenity && standoutAmenity && (selectedAmenity.length + Amenity.length + standoutAmenity.length < 4)) {
+    if (
+      step == 4 &&
+      selectedAmenity &&
+      Amenity &&
+      standoutAmenity &&
+      selectedAmenity.length + Amenity.length + standoutAmenity.length < 4
+    ) {
       toast.error("Please choose at least 4 amenities.");
       return false;
     }
-
 
     if (!isEdit && step === 5 && images?.length < 5) {
       toast.error("Please select at least five images.");
@@ -299,29 +374,55 @@ export default function Property(props) {
       toast.error("Please select at least five images.");
       return false;
     }
-    if (step === 6 && (checkout === " " || checkinStart === " " || selectedOption === "" || checkinEnd === "" || item?.cleaning === "" || item?.extra_guest === "" || item?.pet === "")) {
+    if (
+      step === 6 &&
+      (checkout === " " ||
+        checkinStart === " " ||
+        selectedOption === "" ||
+        checkinEnd === "" ||
+        item?.cleaning === "" ||
+        item?.extra_guest === "" ||
+        item?.pet === "")
+    ) {
       toast.error(`All fields are required.`);
       return false;
     }
-    if (step === 7 && (longTermPolicy === null && selectedPolicy === null)) {
+    if (step === 7 && longTermPolicy === null && selectedPolicy === null) {
       toast.error(`At least one field is required.`);
       return false;
     }
-    if (step === 8 && (item?.additonalrule === "" || petsAllowed === " " || smokingAllowed === " " || eventsAllowed === "" || quietHours === "" || PhotographyAllowed === "")) {
+    if (
+      step === 8 &&
+      (item?.additonalrule === "" ||
+        petsAllowed === " " ||
+        smokingAllowed === " " ||
+        eventsAllowed === "" ||
+        quietHours === "" ||
+        PhotographyAllowed === "")
+    ) {
       toast.error(`All fields are required.`);
       return false;
     }
-    if (step === 9 && (item?.Direction === "" || item?.wifi === " " || item?.wifiPassword === " " || item?.housemanual === " ")) {
+    if (
+      step === 9 &&
+      (item?.Direction === "" ||
+        item?.wifi === " " ||
+        item?.wifiPassword === " " ||
+        item?.housemanual === " ")
+    ) {
       toast.error(`All fields are required.`);
       return false;
     }
 
-    if (step === 10 && (item?.customLink === "" || item?.selectedInstruction === " " || selectedMethod === " ")) {
+    if (
+      step === 10 &&
+      (item?.customLink === "" ||
+        item?.selectedInstruction === " " ||
+        selectedMethod === " ")
+    ) {
       toast.error(`All fields are required.`);
       return false;
     }
-
-
 
     setStep((prev) => prev + 1);
   };
@@ -334,11 +435,11 @@ export default function Property(props) {
       return null;
     }
   };
-  const [loadinglocation, setLoadinglocation] = useState(false)
+  const [loadinglocation, setLoadinglocation] = useState(false);
   const [markerPosition, setMarkerPosition] = useState({ lat: 0, lng: 0 });
-  const [inputLocation, setInputLocation] = useState('');
+  const [inputLocation, setInputLocation] = useState("");
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
-  const [locationName, setLocationName] = useState('');
+  const [locationName, setLocationName] = useState("");
   const [infoWindow, setInfoWindow] = useState(null); // For handling InfoWindow instance
   const [map, setMap] = useState(null);
 
@@ -361,7 +462,7 @@ export default function Property(props) {
                 `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
               );
               locationData = response.data;
-              console.log("locationData", locationData)
+              console.log("locationData", locationData);
             } else {
               const response = await axios.get(
                 `https://nominatim.openstreetmap.org/reverse?lat=${address?.latitude}&lon=${address?.longitude}&format=json`
@@ -406,9 +507,6 @@ export default function Property(props) {
     }
   };
 
-
-
-
   const fetchLocation = async () => {
     const formattedAddress = `${address.street_address}, ${address.nearby}, ${address.district}, ${address.city}, ${address.state}, ${address.pin}`;
     try {
@@ -441,7 +539,7 @@ export default function Property(props) {
   };
 
   useEffect(() => {
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDzPG91wtUKY3vd_iD3QWorkUCSdofTS58&libraries=places`;
     script.async = true;
     script.defer = true;
@@ -453,7 +551,7 @@ export default function Property(props) {
   }, [markerPosition]);
 
   const initializeMap = () => {
-    const map = new window.google.maps.Map(document.getElementById('map'), {
+    const map = new window.google.maps.Map(document.getElementById("map"), {
       zoom: 16, // Higher zoom level
       center: markerPosition,
     });
@@ -473,13 +571,13 @@ export default function Property(props) {
     setInfoWindow(infoWindow);
 
     // Show location info when marker is clicked
-    marker.addListener('click', () => {
+    marker.addListener("click", () => {
       infoWindow.setContent(locationName);
       infoWindow.open(map, marker);
     });
 
     // Update marker position and address on drag end
-    window.google.maps.event.addListener(marker, 'dragend', function (event) {
+    window.google.maps.event.addListener(marker, "dragend", function (event) {
       const newLat = event.latLng.lat();
       const newLng = event.latLng.lng();
       setMarkerPosition({ lat: newLat, lng: newLng });
@@ -497,18 +595,18 @@ export default function Property(props) {
             location: locationData.display_name,
             latitude: newLat,
             longitude: newLng,
-            street_address: locationData?.address?.road || '',
-            district: locationData?.address?.state_district || '',
-            nearby: locationData?.address?.suburb || '',
-            city: locationData?.address?.city || '',
-            state: locationData?.address?.state || '',
-            pin: locationData?.address?.postcode || '',
+            street_address: locationData?.address?.road || "",
+            district: locationData?.address?.state_district || "",
+            nearby: locationData?.address?.suburb || "",
+            city: locationData?.address?.city || "",
+            state: locationData?.address?.state || "",
+            pin: locationData?.address?.postcode || "",
           }));
           setLocationName(locationData.display_name); // Update the location name
           infoWindow.setContent(locationData.display_name); // Update the info window content
         })
         .catch((error) => {
-          console.error('Error fetching new address:', error);
+          console.error("Error fetching new address:", error);
         });
     });
   };
@@ -531,13 +629,12 @@ export default function Property(props) {
       });
   };
 
-  const baseurl = "https://quant-stay.vercel.app/properties/"
-  const fulllink = baseurl + item?.customLink
-
+  const baseurl = "https://quant-stay.vercel.app/properties/";
+  const fulllink = baseurl + item?.customLink;
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (step === 11 && (checkoutInstructions === "")) {
+    if (step === 11 && checkoutInstructions === "") {
       toast.error(`All fields are required.`);
       return false;
     }
@@ -583,15 +680,19 @@ export default function Property(props) {
     formData.append("quite_hours_out_time", checkoutquet);
     formData.append("check_in_description", checkdescrtion);
     formData.append("check_in_method", selectedMethod);
-    formData.append("check_out_instruction", JSON.stringify(checkoutInstructions));
+    formData.append(
+      "check_out_instruction",
+      JSON.stringify(checkoutInstructions)
+    );
     formData.append("discount_offer", item?.discount);
 
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
-    const response = isEdit && !stepdata
-      ? main.propertyedit(uuid, formData)
-      : main.addproperty(formData);
+    const response =
+      isEdit && !stepdata
+        ? main.propertyedit(uuid, formData)
+        : main.addproperty(formData);
     response
       .then((res) => {
         if (res?.data?.status) {
@@ -599,7 +700,6 @@ export default function Property(props) {
             toast.success(res.data.message);
             router.push("/admin/property");
             fetchProperties && fetchProperties();
-
           } else {
             router.push("/admin/property");
             toast.success(res.data.message);
@@ -631,7 +731,7 @@ export default function Property(props) {
       <div className="relative">
         <button
           onClick={toggleDropdown}
-          className="bg-white text-xl text-black rounded-lg px-3 py-1 mx-1 mt-1 shadow-lg"
+          className="bg-white text-xl text-black rounded-lg px-2 py-1 mx-1 mt-1 shadow-lg"
         >
           <BsThreeDotsVertical />
         </button>
@@ -673,7 +773,7 @@ export default function Property(props) {
     );
   };
 
-  useEffect(() => { }, [images]);
+  useEffect(() => {}, [images]);
 
   // if (stepdata) {
   //   setImages([...images, imageproperty]);
@@ -687,16 +787,19 @@ export default function Property(props) {
       // .property-type:checked + label h2 { color :#000 !important;border-color:#000 !important;}
     `}</style>
 
-      <div class="max-w-4xl overflow-hidden	 w-full space-y-8 m-auto w-full px-2 ">
-
-      </div>
-      <div className={`w-full overflow-hidden	 flex items-center justify-center py-4 md:py-8 `}>
+      <div class="max-w-4xl overflow-hidden	 w-full space-y-8 m-auto w-full px-2 "></div>
+      <div
+        className={`w-full overflow-hidden	 flex items-center justify-center py-4 md:py-8 `}
+      >
         <div className="max-w-4xl w-full space-y-8 w-full px-2">
-          <div className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `} >
+          <div
+            className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
+          >
             <div className="p-3 sm:p-4 md:p-8 rounded-2xl border ">
               <div
-                className={`${step === 0 ? "" : "display-none"
-                  } max-w-[100%] m-auto mb-8 table w-full`}
+                className={`${
+                  step === 0 ? "" : "display-none"
+                } max-w-[100%] m-auto mb-8 table w-full`}
               >
                 {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
     <div className="grid grid-cols-3 gap-4 m-auto table  " >
@@ -726,8 +829,11 @@ export default function Property(props) {
                       <div key={i} className="">
                         <div
                           onClick={() => setPType(p?.value)}
-                          className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType ? "bg-slate-100 border-slate-700 text-slate-700" : ""
-                            }`}
+                          className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${
+                            p?.value === PType
+                              ? "bg-slate-100 border-slate-700 text-slate-700"
+                              : ""
+                          }`}
                         >
                           {p.value === "flat" && (
                             <FaBuilding
@@ -751,7 +857,9 @@ export default function Property(props) {
                             />
                           )}
                           {p.value === "single_room" && (
-                            <FaBed style={{ color: "black", fontSize: "40px" }} />
+                            <FaBed
+                              style={{ color: "black", fontSize: "40px" }}
+                            />
                           )}
                           {p.value === "boutique_hotel" && (
                             <FaCouch
@@ -763,10 +871,11 @@ export default function Property(props) {
                           )}
                           {p.value === "farm" && <FaWarehouse size={40} />}
                           <h2
-                            className={`md:text-xl text-lg mt-4 font-normal ${p.value === PType
-                              ? "text-gray-600"
-                              : "text-gray-400"
-                              }`}
+                            className={`md:text-xl text-lg mt-4 font-normal ${
+                              p.value === PType
+                                ? "text-gray-600"
+                                : "text-gray-400"
+                            }`}
                           >
                             {p.label}
                           </h2>
@@ -777,11 +886,13 @@ export default function Property(props) {
 
                 {/* </> : '' } */}
               </div>
-              <div className={`${step === 1 ? "" : "display-none"
+              <div
+                className={`${
+                  step === 1 ? "" : "display-none"
                 } max-w-[100%] m-auto table w-full`}
               >
                 <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
-                  Describes your place?
+                  Describe your place?
                 </h2>
                 <div className="mt-2 md:mt-4">
                   <input
@@ -804,6 +915,7 @@ export default function Property(props) {
                     placeholder="Property Price Per Night"
                     id="name"
                     className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                    min="0"
                     value={item?.price}
                     onChange={handleInputChange}
                   />
@@ -850,7 +962,6 @@ export default function Property(props) {
                         className="btn sort w-full"
                         onClick={fetchLocationData}
                       >
-
                         {loadinglocation ? ".... " : "Use Current Location"}
                       </button>
                     </div>
@@ -932,13 +1043,15 @@ export default function Property(props) {
                         Show your specific location
                       </h2>
                       <p className="text-normal capitalize text-center text-gray-500 mb-8 mt-4">
-                        Make it clear to guests where your place is located. We'll
-                        only share your address after they've made a reservation
+                        Make it clear to guests where your place is located.
+                        We'll only share your address after they've made a
+                        reservation
                       </p>
                       <div>
-
-                        <div id="map" style={{ width: '100%', height: '450px' }}></div>
-
+                        <div
+                          id="map"
+                          style={{ width: "100%", height: "450px" }}
+                        ></div>
 
                         {/* <iframe
                           src={`https://maps.google.com/maps?width=100%25&height=600&hl=en&q=${encodeURIComponent(
@@ -952,23 +1065,36 @@ export default function Property(props) {
                           referrerPolicy="no-referrer-when-downgrade"
                           title="Google Map"
                         ></iframe> */}
-
                       </div>
                     </>
                   )}
-
                 </div>
               </div>
               <div className={`${step === 3 ? "" : "display-none"}`}>
-                <Guest Guests={Guests} setGuests={setGuests}
-                  Beds={Beds} setBeds={setBeds}
-                  Bedrooms={Bedrooms} setBedrooms={setBedrooms} Bathrooms={Bathrooms} setBathrooms={setBathrooms}
+                <Guest
+                  Guests={Guests}
+                  setGuests={setGuests}
+                  Beds={Beds}
+                  setBeds={setBeds}
+                  Bedrooms={Bedrooms}
+                  setBedrooms={setBedrooms}
+                  Bathrooms={Bathrooms}
+                  setBathrooms={setBathrooms}
                 />
               </div>
               <div className={`${step === 4 ? "" : "display-none"}`}>
-                <Amenities selectedAmenity={selectedAmenity} standoutAmenity={standoutAmenity} Amenity={Amenity} setAmenity={setAmenity} setstandoutAmenity={setstandoutAmenity} setSelectedAmenity={setSelectedAmenity} />
+                <Amenities
+                  selectedAmenity={selectedAmenity}
+                  standoutAmenity={standoutAmenity}
+                  Amenity={Amenity}
+                  setAmenity={setAmenity}
+                  setstandoutAmenity={setstandoutAmenity}
+                  setSelectedAmenity={setSelectedAmenity}
+                />
               </div>
-              <div className={`${step === 5 ? "" : "display-none"
+              <div
+                className={`${
+                  step === 5 ? "" : "display-none"
                 } max-w-[600px] m-auto`}
               >
                 <h2 className="text-xl md:text-2xl  capitalize lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
@@ -1012,212 +1138,209 @@ export default function Property(props) {
                   </div>
 
                   <div className="flex flex-wrap  mt-2">
-                    {useExistingImages === false || isEdit === true ?
-                      (<> </>)
-                      : (
-                        images && images.length > 0 && (
-                          <>
+                    {useExistingImages === false || isEdit === true ? (
+                      <> </>
+                    ) : (
+                      images &&
+                      images.length > 0 && (
+                        <>
+                          <div
+                            key={0}
+                            id={images[0].name}
+                            draggable
+                            onDragStart={handleDrag}
+                            onDragOver={handleOver}
+                            onDrop={handleDrop}
+                            className="relative w-full p-1 cursor-move"
+                          >
+                            <Image
+                              src={URL.createObjectURL(images[0])}
+                              width={200}
+                              height={200}
+                              alt={`Preview 0`}
+                              className="image-preview h-full object-cover border min-h-[170px] max-h-[250px] w-full max-w-full rounded-lg"
+                              onLoad={() => URL.revokeObjectURL(images[0])}
+                            />
+                            <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
+                              <p className="text-xs text-gray-700">
+                                Cover Photo
+                              </p>
+                            </div>
+                            <div className="absolute right-2 top-2">
+                              <DropdownMenu
+                                index={0}
+                                isFirst={true}
+                                isLast={images.length === 1}
+                              />
+                            </div>
+                          </div>
+                          {images.slice(1).map((file, index) => (
                             <div
-                              key={0}
-                              id={images[0].name}
+                              key={index + 1}
+                              id={file.name}
                               draggable
                               onDragStart={handleDrag}
                               onDragOver={handleOver}
                               onDrop={handleDrop}
-                              className="relative w-full p-1 cursor-move"
+                              className="relative w-1/2 md:w-1/3 p-1 cursor-move"
                             >
                               <Image
-                                src={URL.createObjectURL(images[0])}
+                                src={URL.createObjectURL(file)}
                                 width={200}
                                 height={200}
-                                alt={`Preview 0`}
-                                className="image-preview h-full object-cover border min-h-[170px] max-h-[250px] w-full max-w-full rounded-lg"
-                                onLoad={() => URL.revokeObjectURL(images[0])}
+                                alt={`Preview ${index + 1}`}
+                                className="image-preview h-full object-cover border min-h-[120px] sm:min-h-[150px]  max-h-[200px] w-full max-w-full rounded-lg"
+                                onLoad={() => URL.revokeObjectURL(file)}
                               />
-                              <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
-                                <p className="text-xs text-gray-700">Cover Photo</p>
-                              </div>
+                              {index + 1 === 0 && (
+                                <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
+                                  <p className="text-xs text-gray-700">
+                                    Cover Photo
+                                  </p>
+                                </div>
+                              )}
                               <div className="absolute right-2 top-2">
                                 <DropdownMenu
-                                  index={0}
-                                  isFirst={true}
-                                  isLast={images.length === 1}
+                                  index={index + 1}
+                                  isFirst={false}
+                                  isLast={index + 1 === images.length - 1}
                                 />
                               </div>
                             </div>
-                            {images.slice(1).map((file, index) => (
-                              <div
-                                key={index + 1}
-                                id={file.name}
-                                draggable
-                                onDragStart={handleDrag}
-                                onDragOver={handleOver}
-                                onDrop={handleDrop}
-                                className="relative w-1/2 md:w-1/3 p-1 cursor-move"
-                              >
-                                <Image
-                                  src={URL.createObjectURL(file)}
-                                  width={200}
-                                  height={200}
-                                  alt={`Preview ${index + 1}`}
-                                  className="image-preview h-full object-cover border min-h-[120px] sm:min-h-[150px]  max-h-[200px] w-full max-w-full rounded-lg"
-                                  onLoad={() => URL.revokeObjectURL(file)}
-                                />
-                                {index + 1 === 0 && (
-                                  <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
-                                    <p className="text-xs text-gray-700">Cover Photo</p>
-                                  </div>
-                                )}
-                                <div className="absolute right-2 top-2">
-                                  <DropdownMenu
-                                    index={index + 1}
-                                    isFirst={false}
-                                    isLast={index + 1 === images.length - 1}
-                                  />
-                                </div>
-                              </div>
-                            ))}
-                          </>
-                        )
-                      )}
-
-                    {useExistingImages === false ?
-                      (
-                        images && images.length > 0 && (
-                          <>
-                            <div
-                              key={0}
-                              id={images[0].name}
-                              draggable
-                              onDragStart={handleDrag}
-                              onDragOver={handleOver}
-                              onDrop={handleDrop}
-                              className="relative w-full  p-1"
-                            >
-                              <Image
-                                src={URL.createObjectURL(images[0])}
-                                width={200}
-                                height={200}
-                                alt={`Preview 0`}
-                                className="image-preview h-full object-cover border min-h-[170px] max-h-[250px] w-full max-w-full rounded-lg"
-                                onLoad={() => URL.revokeObjectURL(images[0])}
-                              />
-                              <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
-                                <p className="text-xs text-gray-700">Cover Photo</p>
-                              </div>
-                              <div className="absolute right-2 top-2">
-                                <DropdownMenu
-                                  index={0}
-                                  isFirst={true}
-                                  isLast={images.length === 1}
-                                />
-                              </div>
-                            </div>
-                            {images.slice(1).map((file, index) => (
-                              <div
-                                key={index + 1}
-                                id={file.name}
-                                draggable
-                                onDragStart={handleDrag}
-                                onDragOver={handleOver}
-                                onDrop={handleDrop}
-                                className="relative w-1/2 md:w-1/3 p-1"
-                              >
-                                <Image
-                                  src={URL.createObjectURL(file)}
-                                  width={200}
-                                  height={200}
-                                  alt={`Preview ${index + 1}`}
-                                  className="image-preview h-full object-cover border min-h-[120px] sm:min-h-[150px]  max-h-[200px] w-full max-w-full rounded-lg"
-                                  onLoad={() => URL.revokeObjectURL(file)}
-                                />
-                                {index + 1 === 0 && (
-                                  <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
-                                    <p className="text-xs text-gray-700">Cover Photo</p>
-                                  </div>
-                                )}
-                                <div className="absolute right-2 top-2">
-                                  <DropdownMenu
-                                    index={index + 1}
-                                    isFirst={false}
-                                    isLast={index + 1 === images.length - 1}
-                                  />
-                                </div>
-                              </div>
-                            ))}
-                          </>
-                        )
+                          ))}
+                        </>
                       )
-                      :
-                      (<> </>)
-                    }
+                    )}
 
+                    {useExistingImages === false ? (
+                      images &&
+                      images.length > 0 && (
+                        <>
+                          <div
+                            key={0}
+                            id={images[0].name}
+                            draggable
+                            onDragStart={handleDrag}
+                            onDragOver={handleOver}
+                            onDrop={handleDrop}
+                            className="relative w-full  p-1"
+                          >
+                            <Image
+                              src={URL.createObjectURL(images[0])}
+                              width={200}
+                              height={200}
+                              alt={`Preview 0`}
+                              className="image-preview h-full object-cover border min-h-[170px] max-h-[250px] w-full max-w-full rounded-lg"
+                              onLoad={() => URL.revokeObjectURL(images[0])}
+                            />
+                            <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
+                              <p className="text-xs text-gray-700">
+                                Cover Photo
+                              </p>
+                            </div>
+                            <div className="absolute right-2 top-2">
+                              <DropdownMenu
+                                index={0}
+                                isFirst={true}
+                                isLast={images.length === 1}
+                              />
+                            </div>
+                          </div>
+                          {images.slice(1).map((file, index) => (
+                            <div
+                              key={index + 1}
+                              id={file.name}
+                              draggable
+                              onDragStart={handleDrag}
+                              onDragOver={handleOver}
+                              onDrop={handleDrop}
+                              className="relative w-1/2 md:w-1/3 p-1"
+                            >
+                              <Image
+                                src={URL.createObjectURL(file)}
+                                width={200}
+                                height={200}
+                                alt={`Preview ${index + 1}`}
+                                className="image-preview h-full object-cover border min-h-[120px] sm:min-h-[150px]  max-h-[200px] w-full max-w-full rounded-lg"
+                                onLoad={() => URL.revokeObjectURL(file)}
+                              />
+                              {index + 1 === 0 && (
+                                <div className="absolute left-2 top-2 bg-white p-2 rounded shadow">
+                                  <p className="text-xs text-gray-700">
+                                    Cover Photo
+                                  </p>
+                                </div>
+                              )}
+                              <div className="absolute right-2 top-2">
+                                <DropdownMenu
+                                  index={index + 1}
+                                  isFirst={false}
+                                  isLast={index + 1 === images.length - 1}
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </>
+                      )
+                    ) : (
+                      <> </>
+                    )}
                   </div>
 
                   <div className="flex flex-wrap  mt-2">
                     {isEdit === true ? (
-                      (
-                        images &&
-                        images.map((file, index) => (
-                          <div key={index} className="relative w-1/2 md:w-1/3 p-1">
-                            <Image
-                              src={URL.createObjectURL(file)}
-                              width={200}
-                              height={200}
-                              alt={`Preview ${index}`}
-                              className="image-preview h-full object-cover border min-h-[120px] sm:min-h-[150px]  max-h-[200px] w-full max-w-full rounded-lg"
-                              onLoad={() => URL.revokeObjectURL(file)}
-                            />
-                            <button
-                              type="button"
-                              onClick={() => removeImage(file)}
-                              className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
-                            >
-                              Remove
-                            </button>
-                          </div>
-                        ))
-                      )
-                    ) : (
-                      <> </>
-                    )
-
-
-                    }
-                  </div>
-
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-2">
-                  {useExistingImages === true ||
-                    isEdit === true ? (
-
-                    (
-                      imageproperty?.map((item, index) => (
-                        <div key={index} className="relative isedits">
+                      images &&
+                      images.map((file, index) => (
+                        <div
+                          key={index}
+                          className="relative w-1/2 md:w-1/3 p-1"
+                        >
                           <Image
-                            className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
-                            src={item?.image_url || ""}
+                            src={URL.createObjectURL(file)}
                             width={200}
                             height={200}
                             alt={`Preview ${index}`}
+                            className="image-preview h-full object-cover border min-h-[120px] sm:min-h-[150px]  max-h-[200px] w-full max-w-full rounded-lg"
+                            onLoad={() => URL.revokeObjectURL(file)}
                           />
                           <button
                             type="button"
-                            onClick={() => deletePropertyImage(uuid, item?.uuid)}
+                            onClick={() => removeImage(file)}
                             className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
                           >
-                            Delete
+                            Remove
                           </button>
                         </div>
                       ))
-                    )
+                    ) : (
+                      <> </>
+                    )}
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-2">
+                  {useExistingImages === true || isEdit === true ? (
+                    imageproperty?.map((item, index) => (
+                      <div key={index} className="relative isedits">
+                        <Image
+                          className="image-preview object-cover border min-h-[150px] max-h-[200px] h-full w-full max-w-full rounded-lg"
+                          src={item?.image_url || ""}
+                          width={200}
+                          height={200}
+                          alt={`Preview ${index}`}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => deletePropertyImage(uuid, item?.uuid)}
+                          className="absolute text-xs right-2 top-2 bg-red-500 text-white rounded-lg px-3 py-1 m-1"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    ))
                   ) : (
                     <> </>
-                  )
-                  }
-
+                  )}
                 </div>
-
               </div>
               <div className={`${step === 6 ? "" : "display-none"}`}>
                 <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4">
@@ -1273,10 +1396,14 @@ export default function Property(props) {
                 </div>
 
                 <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4 ">
-                  <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4 capitalize">Check-in & checkout times</h2>
+                  <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4 capitalize">
+                    Check-in & checkout times
+                  </h2>
                   <div className="flex flex- flex-wrap justify-between mt-4 text-sm font-medium text-gray-700 ">
                     <div className="w-full md:w-2/3 mb-2 pr-2">
-                      <label className="block mb-2 font-semibold">Check-in window</label>
+                      <label className="block mb-2 font-semibold">
+                        Check-in window
+                      </label>
                       <div className="flex justify-between space-x-2">
                         <div className="w-1/2 relative">
                           <label className="absolute -top-1 left-1 text-xs text-gray-500">
@@ -1352,7 +1479,9 @@ export default function Property(props) {
                       </div>
                     </div>
                     <div className="w-full md:w-1/3 ">
-                      <label className="block mb-2 font-semibold sm:mb-[20px]">Check-out time</label>
+                      <label className="block mb-2 font-semibold sm:mb-[20px]">
+                        Check-out time
+                      </label>
                       <select
                         value={checkout}
                         onChange={(e) => setCheckout(e.target.value)}
@@ -1389,7 +1518,9 @@ export default function Property(props) {
                 </div>
 
                 <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4">
-                  <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-2 font-bold md:mb-8 mb-4 capitalize">please  select Property Status</h2>
+                  <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-2 font-bold md:mb-8 mb-4 capitalize">
+                    please select Property Status
+                  </h2>
                   <div className="flex items-center space-x-4 md-4 md:mb-8">
                     <label className="flex items-center space-x-2 sm:text-[1.15rem] text-[17px] font-normal   ">
                       <input
@@ -1415,15 +1546,41 @@ export default function Property(props) {
                 </div>
               </div>
               <div className={`${step === 7 ? "" : "display-none"}`}>
-                <CancelPolicy showFirm={showFirm} setShowFirm={setShowFirm} setShowFlexible={setShowFlexible} selectedPolicy={selectedPolicy} setSelectedPolicy={setSelectedPolicy} showFlexible={showFlexible} longTermPolicy={longTermPolicy} setLongTermPolicy={setLongTermPolicy} />
+                <CancelPolicy
+                  showFirm={showFirm}
+                  setShowFirm={setShowFirm}
+                  setShowFlexible={setShowFlexible}
+                  selectedPolicy={selectedPolicy}
+                  setSelectedPolicy={setSelectedPolicy}
+                  showFlexible={showFlexible}
+                  longTermPolicy={longTermPolicy}
+                  setLongTermPolicy={setLongTermPolicy}
+                />
               </div>
               <div className={`${step === 8 ? "" : "display-none"}`}>
-                <HouseRules petsAllowed={petsAllowed} setPetsAllowed={setPetsAllowed} quietHours={quietHours}
-                  pets={pets} setPets={setPets}
-                  checkinTime={checkinquet} setCheckinTime={setCheckinquiet} checkoutTime={checkoutquet} setCheckoutTime={setCheckoutquiet}
-                  setEventsAllowed={setEventsAllowed} setQuietHours={setQuietHours} eventsAllowed={eventsAllowed} PhotographyAllowed={PhotographyAllowed} setPhotographyAllowed={setPhotographyAllowed} smokingAllowed={smokingAllowed} setSmokingAllowed={setSmokingAllowed} />
+                <HouseRules
+                  petsAllowed={petsAllowed}
+                  setPetsAllowed={setPetsAllowed}
+                  quietHours={quietHours}
+                  pets={pets}
+                  setPets={setPets}
+                  checkinTime={checkinquet}
+                  setCheckinTime={setCheckinquiet}
+                  checkoutTime={checkoutquet}
+                  setCheckoutTime={setCheckoutquiet}
+                  setEventsAllowed={setEventsAllowed}
+                  setQuietHours={setQuietHours}
+                  eventsAllowed={eventsAllowed}
+                  PhotographyAllowed={PhotographyAllowed}
+                  setPhotographyAllowed={setPhotographyAllowed}
+                  smokingAllowed={smokingAllowed}
+                  setSmokingAllowed={setSmokingAllowed}
+                />
                 <div className="flex flex-col  py-4">
-                  <label htmlFor="directions" className="block font-medium text-gray-700">
+                  <label
+                    htmlFor="directions"
+                    className="block font-medium text-gray-700"
+                  >
                     Additonal Rules
                   </label>
                   <textarea
@@ -1437,11 +1594,16 @@ export default function Property(props) {
                   />
                 </div>
               </div>
-              <div className={`${step === 9 ? "" : "display-none"
-                } max-w-[100%] m-auto  w-full `}>
-
+              <div
+                className={`${
+                  step === 9 ? "" : "display-none"
+                } max-w-[100%] m-auto  w-full `}
+              >
                 <div className="flex flex-col mb-4">
-                  <label htmlFor="directions" className="capitalize text-lg font-bold my-1">
+                  <label
+                    htmlFor="directions"
+                    className="capitalize text-lg font-bold my-1"
+                  >
                     Directions
                   </label>
                   <textarea
@@ -1455,7 +1617,10 @@ export default function Property(props) {
                   />
                 </div>
                 <div className="flex flex-col mb-4">
-                  <label htmlFor="directions" className="capitalize text-lg font-bold my-1">
+                  <label
+                    htmlFor="directions"
+                    className="capitalize text-lg font-bold my-1"
+                  >
                     House Manual
                   </label>
                   <textarea
@@ -1469,8 +1634,13 @@ export default function Property(props) {
                   />
                 </div>
                 <div className="flex flex-col  ">
-                  <h1 className="capitalize text-lg font-bold my-4">Please enter your wifi details</h1>
-                  <label htmlFor="directions" className="block font-medium text-gray-700 my-2">
+                  <h1 className="capitalize text-lg font-bold my-4">
+                    Please enter your wifi details
+                  </h1>
+                  <label
+                    htmlFor="directions"
+                    className="block font-medium text-gray-700 my-2"
+                  >
                     Wifi Name
                   </label>
                   <input
@@ -1482,7 +1652,10 @@ export default function Property(props) {
                     value={item?.wifi}
                     onChange={handleInputChange}
                   />
-                  <label htmlFor="directions" className="block font-medium text-gray-700 my-2">
+                  <label
+                    htmlFor="directions"
+                    className="block font-medium text-gray-700 my-2"
+                  >
                     Wifi Password
                   </label>
                   <input
@@ -1497,7 +1670,9 @@ export default function Property(props) {
                 </div>
 
                 <div className="flex flex-col mb-2">
-                  <h1 className="capitalize text-lg font-bold my-4">Discount offer (%) </h1>
+                  <h1 className="capitalize text-lg font-bold my-4">
+                    Discount offer (%){" "}
+                  </h1>
                   <label className="flex items-center space-x-2 text-xl font-normal">
                     <input
                       className="p-4 py-2 w-36 md:w-full mt-1 block text-[16px] md:text-lg border border-[#ccc] rounded-md"
@@ -1511,59 +1686,74 @@ export default function Property(props) {
                 </div>
               </div>
 
-              <div className={`${step === 10 ? "" : "display-none"
-                } max-w-[100%] m-auto w-full `}>
-
+              <div
+                className={`${
+                  step === 10 ? "" : "display-none"
+                } max-w-[100%] m-auto w-full `}
+              >
                 <div className="flex flex-col mb-2">
-                  <label htmlFor="customLink" className="text-[20px] md:text-2xl font-bold">
+                  <label
+                    htmlFor="customLink"
+                    className="text-[20px] md:text-2xl font-bold"
+                  >
                     Custom Link
                   </label>
-                  <div className="relative">
-                    <textarea
-                      id="customLink"
-                      name="customLink"
-                      rows={5}
-                      className="shadow-sm p-4  w-full mt-1 block sm:text-sm border rounded-xl"
-                      placeholder="Enter your custom link here"
-                      value={item.customLink}
-                      onChange={handleInputChange}
-                    />
+                  <div className="relative mt-2 mb-4">
+                    <div className="flex w-full">
+                      <span className="inline-block bg-gray-200 p-2 rounded-l flex-shrink-0">
+                        {baseurl}
+                      </span>
+                      <input
+                        type="text"
+                        className="form-control flex-1 py-2 px-4 border border-l-0 rounded-r"
+                        id="customLink"
+                        name="customLink"
+                        aria-describedby="basic-addon3"
+                        placeholder="Enter your custom link here"
+                        value={item.customLink}
+                        onChange={handleInputChange}
+                      />
+                      <svg
+                        onClick={copyToClipboard}
+                        className="cursor-pointer h-7 w-7 absolute right-2 top-2"
+                        viewBox="0 0 448 512"
+                      >
+                        <path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" />
+                      </svg>
+                    </div>
                     <div className="text-right text-sm text-gray-500">
                       {baseurl.length + item.customLink.length}/{100}
                     </div>
-                    <span className="w-full p-4 pr-12 border rounded-xl my-3 flex items-center text-gray-500 relative">
-                      {baseurl + item.customLink}
-                      <svg onClick={copyToClipboard} className="cursor-pointer  h-7 w-7 absolute right-3 top-3" viewBox="0 0 448 512"><path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" /></svg>
-                    </span>
                   </div>
-
-
                 </div>
                 <div className="flex flex-col mb-2">
                   <div className="flex flex-col md:flex-row ">
                     {/* Left Panel */}
                     <div className="md:w-1/2 pr-2 flex flex-col mb-3">
                       <div className=" items-center">
-
-                        <h2 className="text-[20px] md:text-2xl font-bold capitalize">Select a check-in method</h2>
+                        <h2 className="text-[20px] md:text-2xl font-bold capitalize">
+                          Select a check-in method
+                        </h2>
                       </div>
                       <div className="space-y-4 mt-4 w-full">
-                        {options && options.map((item, index) => (
-                          <div
-                            key={index}
-                            className={`p-4 border rounded-lg cursor-pointer ${selectedMethod === item?.item ? "border-indigo-600" : "border-gray-300"
+                        {options &&
+                          options.map((item, index) => (
+                            <div
+                              key={index}
+                              className={`p-4 border rounded-lg cursor-pointer ${
+                                selectedMethod === item?.item
+                                  ? "border-indigo-600"
+                                  : "border-gray-300"
                               }`}
-                            onClick={() => handleMethodSelect(item?.item)}
-                          >
-                            {item?.icon}
-                            <span className="my-4 text-xl font-semibold capitalize">
-                              {item?.item}
-                            </span>
-                            <p className="text-gray-500" >
-                              {item?.data}
-                            </p>
-                          </div>
-                        ))}
+                              onClick={() => handleMethodSelect(item?.item)}
+                            >
+                              {item?.icon}
+                              <span className="my-4 text-xl font-semibold capitalize">
+                                {item?.item}
+                              </span>
+                              <p className="text-gray-500">{item?.data}</p>
+                            </div>
+                          ))}
                       </div>
                     </div>
                     {/* Right Panel */}
@@ -1580,26 +1770,40 @@ export default function Property(props) {
                         placeholder={`Add any important details for getting inside your place. This info will be shared with guests 24-48 hours before check-in.`}
                       />
                       <div className="flex justify-between items-center ">
-                        <p className="text-gray-500">Shared 48 hours before check-in</p>
-                        <div>
-                        </div>
+                        <p className="text-gray-500">
+                          Shared 48 hours before check-in
+                        </p>
+                        <div></div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col  ">
-
-                </div>
+                <div className="flex flex-col  "></div>
               </div>
 
-              <div className={`${step === 11 ? "" : "display-none"
-                } max-w-[100%] m-auto w-full `}>
+              <div
+                className={`${
+                  step === 11 ? "" : "display-none"
+                } max-w-[100%] m-auto w-full `}
+              >
                 <div className="flex  flex-col mb-2">
-                  <Checkout handleSubmit={handleSubmit} selectedInstruction={selectedInstruction} isEdit={true} checkoutdata={check_out_instruction} setShowTextArea={setShowTextArea} showTextArea={showTextArea} text={text} setText={setText} setSelectedInstruction={setSelectedInstruction} setShowInstructions={setShowInstructions} setCheckoutInstructions={setCheckoutInstructions} checkoutInstructions={checkoutInstructions} showInstructions={showInstructions} />
+                  <Checkout
+                    handleSubmit={handleSubmit}
+                    selectedInstruction={selectedInstruction}
+                    isEdit={true}
+                    checkoutdata={check_out_instruction}
+                    setShowTextArea={setShowTextArea}
+                    showTextArea={showTextArea}
+                    text={text}
+                    setText={setText}
+                    setSelectedInstruction={setSelectedInstruction}
+                    setShowInstructions={setShowInstructions}
+                    setCheckoutInstructions={setCheckoutInstructions}
+                    checkoutInstructions={checkoutInstructions}
+                    showInstructions={showInstructions}
+                  />
                 </div>
-                <div className="flex flex-col  ">
-
-                </div>
+                <div className="flex flex-col  "></div>
               </div>
 
               <div className="pt-2 flex justify-between max-w-[500px] table m-auto">

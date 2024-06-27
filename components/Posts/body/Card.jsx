@@ -16,8 +16,6 @@ const Card = ({ post }) => {
     console.error("Error parsing JSON:", error);
   }
 
-
- 
   const capitalizeAndReplace = (inputString) => {
     if (!inputString) return "";
     return inputString
@@ -53,7 +51,7 @@ const Card = ({ post }) => {
         
         />
         <div className="flat-info">
-          <h2 className="line-limit sm:min-h-[72px]">
+          <h2 className="line-limit sm:min-h-[77px]">
             {record?.location}
           </h2>
           <h3 className="line-limit" style={{ WebkitLineClamp: 1 }}>
@@ -61,6 +59,7 @@ const Card = ({ post }) => {
           </h3>
           <p>
             <span>{capitalizeAndReplace(post?.type)}</span> &nbsp;
+            <span>{capitalizeAndReplace(post?.properties_type)}</span> &nbsp;
             {post?.bedrooms} Bedrooms · {post?.beds} Bed .  {post?.guests} Guests . {post?.no_of_pet_allowed} Pets
           </p>
           <h4>
