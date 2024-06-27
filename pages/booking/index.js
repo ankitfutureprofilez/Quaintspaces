@@ -319,7 +319,7 @@ export default function Index() {
 
         {hasmore && !loading && (
           <div className="load-more mt-5 text-center ">
-            <button className="btn btn-outline-success" onClick={loadMore}>
+            <button className="btn btn-outline-success cursor-pointer" onClick={loadMore}>
               Load More
             </button>
           </div>
@@ -464,7 +464,7 @@ export default function Index() {
             <p className="text-lg text-white font-semibold p-6 py-4 bg-[#c48b58]">
               House Rules
             </p>
-            <div className="p-6">
+            <div className="p-6 overflow-auto">
               {(houseRule?.check_in) ?
                 (
                   <>

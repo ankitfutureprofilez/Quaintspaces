@@ -42,7 +42,7 @@ export default function ForgotLayout({ children, showHeader }) {
             :
             null
             }
-            <div className=" align-center mx-auto w-6/12 px-3">{children}</div>
+            <div className=" align-center mx-auto sm:w-6/12 w-full  px-3">{children}</div>
           </div>
         </div>
       </div>

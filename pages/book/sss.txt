@@ -521,7 +521,7 @@ const Book = ({ listingData, listingID }) => {
                     <span className="block text-blackColor">
                       Charges Per Day
                     </span>
-                    <span className="block text-blackColor font-medium confirm-price">
+                    <span className="block text-blackColor font-medium confirm-price ">
                       {formatMultiPrice(listing?.price)}
                     </span>
                   </div>

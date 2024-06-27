@@ -38,7 +38,7 @@ export default function Menu() {
                   height={100}
                 />
                 <div className="space-y-2 flex flex-col flex-1 truncate">
-                  <div className="font-medium relative text-xl leading-tight text-gray-900">
+                  <div className="font-[18px] sm:font-medium relative text-xl leading-tight text-gray-900">
                     <span className="flex">
                       <span className=" relative pr-8 capitalize">
                         {auth?.first_name}
@@ -57,7 +57,7 @@ export default function Menu() {
             <nav className="grid gap-1 px-1">
               <Link
                 href="/booking"
-                className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
+                className="!flex items-center leading-6 space-x-3 py-2 sm:py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
               >
                 <svg
                   width="28"
@@ -83,7 +83,7 @@ export default function Menu() {
 
               <Link
                 href="/paymentHistory"
-                className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
+                className="!flex items-center leading-6 space-x-3 py-2 sm:py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
               >
                 <svg
                   fill="#000000"
@@ -99,7 +99,7 @@ export default function Menu() {
 
               <Link
                 href="/security"
-                className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
+                className="!flex items-center leading-6 space-x-3 py-2 sm:py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
               >
                 <SecurityIcon />
                 <span>Security</span>
@@ -107,7 +107,7 @@ export default function Menu() {
 
               <Link
                 href="/account"
-                className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
+                className="!flex items-center leading-6 space-x-3 py-2 sm:py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

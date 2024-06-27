@@ -54,13 +54,13 @@ export default function Booking(props) {
                   <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
                     Check In & Checkout Time{" "}
                   </td>
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-whi">
+                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
                     Amount
                   </td>
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-whi">
+                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
                     Status
                   </td>
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-whi">
+                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
                     Document Image and Type{" "}
                   </td>
                 </tr>

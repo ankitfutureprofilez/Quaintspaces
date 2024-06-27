@@ -40,7 +40,7 @@ const Card = ({ post }) => {
         <Link className="block relative overflow-hidden" href={`/property/${post?.uuid}`}>
            {post?.discount_offer ? (
         <div className="absolute bg-red-500 -rotate-45 text-white px-2 py-1 w-32 text-center -left-[32px] top-[18px] shadow-[0_0_17px_-5px_#3c3c3c;]">
-          {post?.discount_offer}% 
+          {post?.discount_offer}%  off
         </div>
       ) :(<> </>)}
         <Image

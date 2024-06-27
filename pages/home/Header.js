@@ -68,11 +68,11 @@ export default function Header() {
               />
             </svg>
           </div>
-          <div className={`menu-items flex-col md:flex-row md:flex gap-8 items-center ${isMenuOpen ? 'flex' : 'hidden'} md:flex`}>
-            <Link href="/apartments">
+          <div className={`menu-items flex-col md:flex-row md:flex md:gap-8 items-center ${isMenuOpen ? 'flex' : 'hidden'} md:flex`}>
+            <Link href="/apartments" className="border-b md:border-0">
               <p>Our Apartments</p>
             </Link>
-            <Link href="/#premium">
+            <Link href="/#premium" className="border-b md:border-0">
               <p>Place in Jaipur</p>
             </Link>
             {/* <Link href="/contact">
@@ -92,12 +92,12 @@ export default function Header() {
                 {isDropdownOpen && <Menu />}
               </div>
             ) : (
-              <div className="login-signup-btn flex">
+              <div className="login-signup-btn flex mt-2 md:mt-0">
                 <Link className="login" href="/login">
                   <p>Login</p>
                 </Link>
                 <Link className="signup" href="/signup">
-                  <p>Sign Up</p>
+                  <p className="text-white">Sign Up</p>
                 </Link>
               </div>
             )}

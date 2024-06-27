@@ -105,7 +105,7 @@ export default function paymentHistory() {
 
         {hasmore &&  (
                 <div className="load-more mt-5 text-center ">
-                  <button className="btn btn-outline-success" onClick={loadMore}>
+                  <button className="btn btn-outline-success cursor-pointer" onClick={loadMore}>
                     Load More
                   </button>
                 </div>

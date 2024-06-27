@@ -65,7 +65,7 @@ export default function ThingsToKnow({ record, isAdmin , content}) {
 
         <div className="flex justify-between house-rule-text">
           <div className="flex flex-col mt-3 sm:mt-2 mr-4 ">
-            <h2 className="font-semibold mb-2 w-1/3">Direction</h2>
+            <h2 className="font-semibold mb-2 ">Direction</h2>
             <p className="mb-2 text-gray-500 justify ">{
               record?.data?.property_rule?.direction}</p>
           </div>

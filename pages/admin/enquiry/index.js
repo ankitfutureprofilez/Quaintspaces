@@ -199,7 +199,7 @@ export default function Index() {
           {hasMore && !loading && (
             <div className="flex justify-center">
               <button
-                className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white"
+                className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white cursor-pointer"
                 onClick={loadMore}
               >
                 {loadingButton ? "Loading...": "Load More"}
