@@ -29,4 +29,6 @@ function Modal({ isOpen, onClose, children, width }) {
   );
 }
 
+
+
 export default Modal;
