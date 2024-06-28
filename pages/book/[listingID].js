@@ -607,10 +607,10 @@ console.log("infos",infos);
                             new Date(infos.checkin)
                           )} )
                       </span>
-                      <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
+                      <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex justify-end">
                         <div className="flex justify-center">
                           <>
-                            <div className="flex flex-col items-center">
+                            <div className="flex flex-col items-end">
                               <div className="text-lg text-green-800 font-bold">
                                 {
                                   formatMultiPrice(discountedPrice * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))
@@ -650,7 +650,7 @@ console.log("infos",infos);
                       <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
                         <div className="flex justify-center">
                           <>
-                            <div className="flex flex-col items-center">
+                            <div className="flex flex-col items-center items-end">
                               <div className="text-lg font-bold">
                               </div>
                               <div className="  mt-1">
@@ -681,7 +681,7 @@ console.log("infos",infos);
                         )}
                       )
                     </span>
-                    <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
+                    <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex justify-end">
                       {formatMultiPrice(listing?.cleaning_fee * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))}
                     </span>
                   </div>
@@ -759,12 +759,12 @@ console.log("infos",infos);
                 <div className="py-4 px-6">
 
                   <div className="flex ">
-                    <div className="w-1/3 ">
+                    <div className="w-[45%] ">
                       <h6 className="mb-2 text-[18px] font-semibold cancel-policy" >
                         {cancelpolicy?.date && (cancelpolicy?.date === new Date() ? "After" : "Before")}</h6>
                       <h6 className="mb-2 text-xl font-semibold cancel-policy" >{cancelpolicy?.date ? ("") : (<Dateformat item={formattedCheckIn} /> && "After")}</h6>
                     </div>
-                    <div className="w-4/6 pl-3 border-l">
+                    <div className="w-[55%] pl-3 border-l">
                       <h6 className="mb-2 text-[18px] font-semibold" >{cancelpolicy?.date && (cancelpolicy?.date === new Date() ? "" : "Full Refund")}</h6>
                       <h6 className="mb-2" >{cancelpolicy?.date ? ("") : (
                         <Dateformat item={formattedCheckIn} /> && "No Refund")}</h6>
@@ -772,13 +772,13 @@ console.log("infos",infos);
                   </div>
 
                   <div className="flex border-bv border-b mb-4 ">
-                    <div className="w-1/3">
+                    <div className="w-[45%]">
 
                       <p className="mb-4" >{cancelpolicy?.date ?
                         <Dateformat item={cancelpolicy?.date} />
                         : (<Dateformat item={cancelpolicy} />)}</p>
                     </div>
-                    <div className="w-4/6 pl-3 border-l">
+                    <div className="w-[55%] pl-3 border-l">
                       <p className="mb-4">{cancelpolicy?.text}</p>
                     </div>
                   </div>
