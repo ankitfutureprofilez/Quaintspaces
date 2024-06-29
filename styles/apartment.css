@@ -3,7 +3,17 @@
   opacity: 0;
   display: none;
 }
-.sortlist { border: 2px solid #c48b58; padding: 8px 5px; border-radius: 10px; text-align: center; position: absolute; background-color: #f8f1eb; width: 100%; z-index: 100; min-width: 160px; }
+.sortlist {
+  border: 2px solid #c48b58;
+  padding: 8px 5px;
+  border-radius: 10px;
+  text-align: center;
+  position: absolute;
+  background-color: #f8f1eb;
+  width: 100%;
+  z-index: 100;
+  min-width: 160px;
+}
 
 h2.text-lg.font-medium.mb-2.heading-property {
   overflow: hidden;
@@ -24,7 +34,7 @@ h2.text-lg.font-medium.mb-2.heading-property {
 }
 
 /* /pagintion  */
-.load-more .btn{
+.load-more .btn {
   background-color: initial;
   border: 1px solid #c48b58;
   border-radius: 20px;
@@ -511,6 +521,33 @@ body {
   font-size: 18px;
   color: #333;
 }
-.text-theme{
-  color:#c48b58 !important;
+.text-theme {
+  color: #c48b58 !important;
+}
+
+/* Admin property page hoover over i css */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+.tooltip-container .tooltip-text {
+  display: none;
+  /* width: 120px; */
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  /* padding: 5px 0; */
+  position: absolute;
+  z-index: 1;
+  /* bottom: 125%;  */
+  /* left: 50%; */
+  margin-left: 8px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tooltip-container:hover .tooltip-text {
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
 }
