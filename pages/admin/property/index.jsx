@@ -18,7 +18,8 @@ export default function Index() {
 
   const fetchProperties = () => {
     const main = new Listing();
-    main.Adminproperty()
+    main
+      .Adminproperty()
       .then((res) => {
         let properties = res?.data?.data;
         if (properties) {
@@ -44,11 +45,10 @@ export default function Index() {
     setShowConfirmation(true);
   };
 
-
-
   const deleteProperty = (uuid) => {
     const main = new Listing();
-    main.propertydelete(uuid)
+    main
+      .propertydelete(uuid)
       .then((response) => {
         if (response.data.status === true) {
           toast.success(response.data.message);
@@ -61,7 +61,6 @@ export default function Index() {
         console.error("Error deleting property:", error);
       });
   };
-
 
   const handleConfirmation = () => {
     deleteProperty(selectedProperty);
@@ -76,7 +75,6 @@ export default function Index() {
     router.push(`/admin/property/edit/${uuid}`);
   };
 
-
   const parseLocation = (location) => {
     if (!location) {
       return "Location not available";
@@ -90,7 +88,6 @@ export default function Index() {
       return "Invalid location";
     }
   };
-  
 
   return (
     <>
@@ -101,25 +98,41 @@ export default function Index() {
           </div>
         ) : (
           <>
-            <div className="flex flex-wrap  pt-4 justify-between" >
-              <h3 className="text-xl font-bold text-black capitalize">Your listings</h3>
+            <div className="flex flex-wrap  pt-4 justify-between">
+              <h3 className="text-xl font-bold text-black capitalize">
+                Your listings
+              </h3>
               <div className="bg-slate-200 rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer">
-                <MdAdd onClick={() => {
-                  router.push("/admin/property/become");
-                }} />
+                <MdAdd
+                  onClick={() => {
+                    router.push("/admin/property/become");
+                  }}
+                />
               </div>
             </div>
             <div className="flex flex-wrap  py-5 pt-0">
               {record.length ? (
                 record.map((item, index) => (
-                  <div className="w-full sm:w-1/1  lg:w-1/2 xl:w-1/3 sm:px-3 mt-4" key={index}>
+                  <div
+                    className="w-full sm:w-1/1  lg:w-1/2 xl:w-1/3 sm:px-3 mt-4"
+                    key={index}
+                  >
                     <div className="relative border rounded-lg overflow-hidden shadow-md">
                       <img
                         className="w-full h-48 object-cover object-center"
-                        src={item?.property_image[0]?.image_url ? item?.property_image[0]?.image_url : "https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg"}
+                        src={
+                          item?.property_image[0]?.image_url
+                            ? item?.property_image[0]?.image_url
+                            : "https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg"
+                        }
                         alt={item?.name}
                       />
-                      <button className="absolute text-xs top-3 right-3 bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-700" onClick={() => handleDelete(item?.uuid)}>Remove</button>
+                      <button
+                        className="absolute text-xs top-3 right-3 bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-700"
+                        onClick={() => handleDelete(item?.uuid)}
+                      >
+                        Remove
+                      </button>
                       {item?.step_completed !== 11 ? (
                         <button className="absolute text-xs top-3 left-3 bg-indigo-600 text-white px-3 py-2 rounded-md">
                           In Progress
@@ -130,15 +143,34 @@ export default function Index() {
                         </button>
                       )}
                       <div className="p-4">
-                        <h2 className="text-lg font-medium mb-2 heading-property">{item.name}</h2>
+                        <div className="flex space-x-1">
+                          <h2 className="text-lg font-medium mb-2 heading-property">
+                            {item.name}
+                            {/* <span className="text-base">🛈</span> */}
+                          </h2>
+                          <div className="tooltip-container ">
+                            <span className="text-base">🛈</span>
+                            <div className=" tooltip-text text-sm max-w-fit p-2">
+                              <span>Booking method: Instant </span>
+                              <span>
+                                Property Status:
+                                {item?.step_completed !== 11
+                                  ? "In Progress"
+                                  : "Completed"}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
                         <h3 className="text-sm font-medium desc-property">
-                        {/* {parseLocation(item?.location)} */}
-                        {item?.description}
-                        
+                          {/* {parseLocation(item?.location)} */}
+                          {item?.description}
                         </h3>
                         <p className="text-sm text-gray-600 mt-3 capitalize">
-                          {item?.type ? `${item?.type?.replace("_", " ")} .` : ""}
-                          {item.bedrooms} Bedrooms. {item.beds} Beds. {item.guests} guests. {item.bathrooms} Bathrooms.
+                          {item?.type
+                            ? `${item?.type?.replace("_", " ")} .`
+                            : ""}
+                          {item.bedrooms} Bedrooms. {item.beds} Beds.{" "}
+                          {item.guests} guests. {item.bathrooms} Bathrooms.
                           {item.no_of_pet_allowed} Pets
                         </p>
                         <p className="text-sm text-gray-600 mt-3 font-bold">
@@ -150,7 +182,10 @@ export default function Index() {
                               View
                             </div>
                           </Link>
-                          <button className="text-normal text-underline btn sort rounded text-gray-500 px-5 py-2 w-full mt-3 cursor-pointer font-medium" onClick={() => handleEditEntireProperty(item?.uuid)}>
+                          <button
+                            className="text-normal text-underline btn sort rounded text-gray-500 px-5 py-2 w-full mt-3 cursor-pointer font-medium"
+                            onClick={() => handleEditEntireProperty(item?.uuid)}
+                          >
                             Edit Property
                           </button>
                         </div>
@@ -188,7 +223,6 @@ export default function Index() {
             </div>
           </div>
         )}
-
       </AdminLayout>
     </>
   );
