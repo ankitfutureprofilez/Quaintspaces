@@ -11,7 +11,7 @@ const Card = ({ post }) => {
   let record;
   try {
     record = JSON?.parse(JSON?.parse(post?.location));
-    console.log("record",record?.location)
+    // console.log("record",record?.location)
   } catch (error) {
     console.error("Error parsing JSON:", error);
   }

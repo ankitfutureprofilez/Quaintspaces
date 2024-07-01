@@ -1,6 +1,4 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function ReasonToVisit() {
@@ -14,10 +12,24 @@ export default function ReasonToVisit() {
     "Geyser",
   ];
 
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % reasons.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [reasons.length]);
+
+  const visibleReasons = reasons.slice(currentSlide, currentSlide + 4).concat(
+    reasons.slice(0, Math.max(0, 4 - reasons.slice(currentSlide).length))
+  );
+
   return (
     <div className="visit-us-sec relative">
       <Image
-      blurDataURL="/images/visitbg.jpg?q=1"
+        blurDataURL="/images/visitbg.jpg?q=1"
         src="/images/visitbg.jpg"
         alt="QUAINTSPACES JAIPUR Reason to visit"
         layout="fill"
@@ -28,30 +40,15 @@ export default function ReasonToVisit() {
       <div className="container mx-auto relative z-10">
         <h2>Reason to Visit US</h2>
         <div className="smart-box">
-          <Swiper
-            slidesPerView={2}
-            spaceBetween={30}
-            centeredSlides={false}
-            autoplay={{
-              delay: 1000,
-              disableOnInteraction: false,
-            }}
-            breakpoints={{
-              769: {
-                slidesPerView: 4,
-                slidesPerGroup: 1,
-              },
-            }}
-          >
-            {reasons &&
-              reasons.map((reason, index) => (
-                <SwiperSlide key={index}>
-                  <div className="iteam">
-                    <h3>{reason}</h3>
-                  </div>
-                </SwiperSlide>
+          <div className="carousel-wrapper">
+            <div className="carousel-container" style={{ display: 'flex', transition: 'transform 0.5s ease-in-out' }}>
+              {visibleReasons.map((reason, index) => (
+                <div className="iteam" key={index} style={{ minWidth: '25%', boxSizing: 'border-box', paddingRight: '30px' }}>
+                  <h3>{reason}</h3>
+                </div>
               ))}
-          </Swiper>
+            </div>
+          </div>
         </div>
       </div>
     </div>
