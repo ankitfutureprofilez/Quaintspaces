@@ -1567,6 +1567,7 @@ console.log("step",step)
                     </label>
                   </div>
                 </div>
+                
               </div>
               <div className={`${step === 17 ? "" : "display-none"}`}>
                 <CancelPolicy
