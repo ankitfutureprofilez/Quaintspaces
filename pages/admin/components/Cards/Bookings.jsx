@@ -12,6 +12,20 @@ import Spinner from "../../hook/spinner";
 import DashboardNoData from "../../hook/DashboardNoData";
 
 function Bookings() {
+
+  function Name(data) {
+      const nameParts = data?.split(" ");
+      if (nameParts?.length < 2) {
+          return data;
+      }
+      if(nameParts[0]=="Bye" && nameParts[1]=="Player"){return data;}
+      const firstName = nameParts[0];
+      const lastName = nameParts[1];
+      const abbreviatedLastName = lastName?.length > 3 ? lastName?.substring(0, 3) + "..." : lastName;
+      return firstName + " " + abbreviatedLastName;
+}
+
+
   const [activeTab, setActiveTab] = useState("upcoming");
   const [record, setRecord] = useState("");
   const [bookingCount, setBookingCount] = useState("");
@@ -130,7 +144,7 @@ function Bookings() {
                         </Link>
                         <div className="font-medium">
                           <Link href={`/admin/user-history/${item.user_id}`} className="text-sm ">
-                            {item?.userName}
+                            {Name(item?.userName)}
                           </Link>
                           <p className={`text-[12px] absolute top-2 right-2 px-3 rounded-full ${getStatusClasses(item?.booking_status)}`}>
                             {item?.booking_status === "confirm" ? ("confirmed") :(item?.booking_status) }
