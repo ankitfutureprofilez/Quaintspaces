@@ -514,3 +514,17 @@ body {
 .text-theme{
   color:#c48b58 !important;
 }
+/* Hero banner image transition */
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: opacity 1s ease-in-out;
+}
+
+.image-wrapper img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
