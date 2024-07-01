@@ -7,6 +7,8 @@ import AdminLayout from "../AdminLayout";
 import Loading from "../hook/loading";
 import { useRouter } from "next/router";
 import { MdAdd } from "react-icons/md";
+import { FaTableCellsLarge } from "react-icons/fa6";
+import { CgViewComfortable } from "react-icons/cg";
 import { formatMultiPrice } from "../../../hooks/ValueData";
 
 export default function Index() {
@@ -102,12 +104,41 @@ export default function Index() {
               <h3 className="text-xl font-bold text-black capitalize">
                 Your listings
               </h3>
-              <div className="bg-slate-200 rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer">
-                <MdAdd
-                  onClick={() => {
-                    router.push("/admin/property/become");
-                  }}
+              <div className="flex">
+              <form className="group relative ">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  className="absolute left-3 top-1/2 -mt-2.5 text-slate-400 pointer-events-none group-focus-within:text-blue-500"
+                  aria-hidden="true"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                  />
+                </svg>
+                <input
+                  className="focus:ring-0 bg-[#f7f7f7] focus:ring-blue-0 focus:outline-none appearance-none w-full text-sm leading-6 text-slate-900 placeholder-slate-400 rounded-md py-[6px] pl-10  "
+                  type="text"
+                  aria-label="Filter projects"
+                  placeholder="Filter projects..."
                 />
+              </form>
+                <div className="bg-[#f7f7f7] rounded-3xl w-9 mx-2 h-9 flex justify-center items-center cursor-pointer">
+                  <FaTableCellsLarge />
+                </div>
+                <div className="bg-[#f7f7f7] rounded-3xl w-9 mr-2 h-9 flex justify-center items-center cursor-pointer">
+                  <CgViewComfortable />
+                </div>
+                <div className="bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer">
+                  <MdAdd
+                    onClick={() => {
+                      router.push("/admin/property/become");
+                    }}
+                  />
+                </div>
               </div>
             </div>
             <div className="flex flex-wrap  py-5 pt-0">
