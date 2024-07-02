@@ -85,11 +85,11 @@ export default function Index() {
         <table className="table-auto w-full">
           <thead>
             <tr>
-              <th>Listing</th>
-              <th>Status</th>
-              <th>Location</th>
-              <th>Edit</th>
-              <th>Remove</th>
+              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Listing</th>
+              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Status</th>
+              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Location</th>
+              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Edit</th>
+              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Remove</th>
 
             </tr>
           </thead>
@@ -105,12 +105,12 @@ export default function Index() {
               }
 
               return (
-                <tr key={index}>
-                  <td>
+                <tr key={index} className="hover:bg-[#f5f5f5] rounded-[10px]">
+                  <td className="text-[14px] text-[#222222] font-[600] text-left p-[12px]">
                     <Link href={`/admin/property/edit/${item?.uuid}`}>
                       <Link href={`/admin/property/edit/${item?.uuid}`} className="flex items-center">
                         <img
-                          className="w-16 h-16 object-cover object-center mr-4"
+                          className="w-16 h-16 object-cover rounded-[5px] object-center mr-4"
                           src={
                             item?.property_image[0]?.image_url
                               ? item?.property_image[0]?.image_url
@@ -122,31 +122,31 @@ export default function Index() {
                       </Link>
                     </Link>
                   </td>
-                  <td>
+                  <td className="text-[14px] text-[#222222] font-[600] text-left p-[12px]">
                     {item?.status !== 1 ? (
                       <p>In Progress</p>
                     ) : (
                       <p>Completed</p>
                     )}
                   </td>
-                  <td>
+                  <td className="text-[14px] text-[#222222] font-[600] text-left p-[12px]">
                     {locationdata ? (
                       <p>{locationdata?.location}</p>
                     ) : (
                       <p>Location not provided</p>
                     )}
                   </td>
-                  <td>
+                  <td className="p-[12px]">
                     <button
-                      className="inline-block text-sm px-4 py-2 bg-blue-600 text-white hover:bg-blue-700"
+                      className="inline-block text-[14px] px-4 py-2 bg-blue-600 text-white rounded-[6px] hover:bg-blue-700"
                       onClick={() => handleEditEntireProperty(item?.uuid)}
                     >
                       Edit
                     </button>
                   </td>
-                  <td>
+                  <td className="p-[12px]">
                     <button
-                      className="inline-block text-sm px-4 py-2 bg-blue-600 text-white hover:bg-blue-700"
+                      className="inline-block text-[14px] px-4 rounded-[6px] py-2 bg-blue-600 text-white hover:bg-blue-700"
 
                       onClick={() => setShowConfirmation(true) && setSelectedProperty(item?.uuid)}
                     >
@@ -258,8 +258,8 @@ export default function Index() {
         </div>
       ) : (
         <>
-          <div className="flex flex-wrap pt-4 justify-between">
-            <h3 className="text-xl font-bold text-black capitalize">
+          <div className="flex flex-wrap mt-[40px] justify-between">
+            <h3 className="text-[32px] font-[500] text-[#222222] capitalize  mb-[40px]">
               Your listings
             </h3>
             <div className="flex">
@@ -268,7 +268,7 @@ export default function Index() {
                   width="20"
                   height="20"
                   fill="currentColor"
-                  className="absolute left-3 top-1/2 -mt-2.5 text-slate-400 pointer-events-none group-focus-within:text-blue-500"
+                  className="absolute left-3 top-[20px] -mt-2.5 text-slate-400 pointer-events-none group-focus-within:text-blue-500"
                   aria-hidden="true"
                 >
                   <path

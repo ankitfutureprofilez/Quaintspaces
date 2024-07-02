@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Property from "./Property";
 import AdminLayout from "../../AdminLayout";
 import Metatag from "../../hook/Metatag";
-import Introduction from "./introduction";
+import IntroLayout from "./IntroLayout";
 
 export default function Index() {
   const[showProperty,setShowProperty]=useState(false);
@@ -12,7 +12,7 @@ export default function Index() {
       <AdminLayout heading="Add Property">
         {!showProperty?
         <>
-        <Introduction />
+        <IntroLayout />
         <div className="flex justify-end">
           <button className="bg-[#E51D57] text-white py-3 px-5 rounded-md"
           onClick={()=>{
