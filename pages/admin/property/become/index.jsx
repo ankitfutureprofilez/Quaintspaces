@@ -120,13 +120,13 @@ function Index() {
               {filteredRecord &&
                 filteredRecord.map((item, index) => (
                   <div
-                    className="p-3 sm:p-4 border rounded-xl mb-2 flex items-center"
+                    className="p-3 sm:p-[24px] border rounded-xl mb-2 flex items-center"
                     key={index}
                     style={{ cursor: "pointer" }}
                     onClick={() => handleEditEntireProperty(item?.uuid)}
                   >
                     {item?.property_image[0]?.image_url ? (
-                      <div className="w-[60px] h-[40px] object-cover">
+                      <div className="w-[43px] h-[43px] object-cover">
                         <Image
                           width={100}
                           height={100}
@@ -167,8 +167,8 @@ function Index() {
               </h2>
               <svg
                 className="absolute top-5 right-2"
-                width="18"
-                height="25"
+                width="13"
+                height="18"
                 viewBox="0 0 25 30"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -205,8 +205,8 @@ function Index() {
               </h2>
               <svg
                 className="absolute top-5 right-2"
-                width="18"
-                height="25"
+                width="13"
+                height="18"
                 viewBox="0 0 25 30"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
