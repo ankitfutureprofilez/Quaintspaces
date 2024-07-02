@@ -238,7 +238,7 @@ export default function Property(props) {
   };
   const router = useRouter();
   const [step, setStep] = useState(
-    step_completed === 11 ? 0 : step_completed || 0
+    step_completed === 11 ? 1 : step_completed || 1
   );
 console.log("step",step)
 
@@ -801,13 +801,13 @@ console.log("step",step)
             <div className="p-3 sm:p-4 md:p-8 rounded-2xl border ">
 
 
-              <div
+              {/* <div
                 className={`${step === 0 ? "" : "display-none"
                   }  m-auto table w-full`}
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <Introduction />
-              </div>
+              </div> */}
               <div
                 className={`${step === 1 ? "" : "display-none"
                   }  m-auto table w-full`}
