@@ -210,6 +210,7 @@ h3.text-sm.font-medium.desc-property {
 .luxury-stay-img .img-box {
   width: 33.33%;
   padding: 0 15px;
+  transition: 0.8s !important;
 }
 .luxury-stay-img .img-box img {
   width: 100%;
@@ -380,7 +381,7 @@ footer {
 .banipark-box {
   background: #fff;
 height: 100%;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  /* box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); */
   /* border: 1px solid #c48b58; */
 }
 .banipark-box {
@@ -390,7 +391,7 @@ height: 100%;
 .banipark-box:hover {
   transform: scale(1.02);
 }
-
+.smart-box .carousel-wrapper { width: 1000px; } .smart-box .iteam { margin: 0 10px; }
 .flat-info h4 {
   font-family: "Inter", sans-serif;
   font-size: 13px;

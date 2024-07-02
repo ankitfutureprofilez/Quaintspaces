@@ -1,29 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+import AOS from 'aos';
+import 'aos/dist/aos.css'
 import Luxury1 from "../../public/images/Luxury1.png";
 import Luxury2 from "../../public/images/Luxury2.png";
 import Luxury3 from "../../public/images/Luxury3.png";
 
 export default function LuxuryStay() {
+  useEffect(() => {
+    AOS.init({
+      
+    });
+  }, []);
   return (
     <div className="luxury-stay">
       <div className="container mx-auto">
         <h1>Luxury Stay</h1>
-        <div className="luxury-stay-img">
-          <div className="img-box">
+        <div className="luxury-stay-img" >
+          <div className="img-box" data-aos="fade-right">
             <Image src={Luxury1} alt="QUAINTSPACES JAIPUR" priority="true"
             blurDataURL={Luxury1}/>
           </div>
-         <div className="img-box" id="hero" >
+         <div className="img-box" id="hero" data-aos="fade-up"
+                data-aos-duration="3000" >
             <Image
             src={Luxury2}
             alt="QUAINTSPACES JAIPUR"
             priority="true"
             blurDataURL={Luxury2}
+            
             />
           </div>
-          <div className="img-box">
+          <div className="img-box" data-aos="fade-left">
             <Image src={Luxury3} alt="QUAINTSPACES JAIPUR" priority="true"
             blurDataURL={Luxury3}/>
           </div>

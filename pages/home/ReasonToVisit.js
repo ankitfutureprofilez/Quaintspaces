@@ -43,7 +43,7 @@ export default function ReasonToVisit() {
           <div className="carousel-wrapper">
             <div className="carousel-container" style={{ display: 'flex', transition: 'transform 0.5s ease-in-out' }}>
               {visibleReasons.map((reason, index) => (
-                <div className="iteam" key={index} style={{ minWidth: '25%', boxSizing: 'border-box', paddingRight: '30px' }}>
+                <div className="iteam" key={index} >
                   <h3>{reason}</h3>
                 </div>
               ))}
