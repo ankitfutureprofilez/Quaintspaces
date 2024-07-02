@@ -152,6 +152,13 @@ export default function index() {
         >
           Current
         </button>
+        <button
+          onClick={() => setActiveTab('failed')}
+          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "failed" ? "bg-red text-white" : "text-black"
+            }`}
+        >
+          Failed
+        </button>
       </div>
       {loading ? (
         <Spinner />

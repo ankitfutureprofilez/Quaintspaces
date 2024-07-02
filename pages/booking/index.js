@@ -33,7 +33,7 @@ export default function Index() {
     (_, index) => currentYear - index
   );
 
-
+  console.log("SelectBooking", SelectBooking)
   const handleHouseRules = (uuid) => {
     if (!uuid || !uuid.id || !uuid.properties_id) {
       console.error("Invalid UUID object");
@@ -73,9 +73,10 @@ export default function Index() {
     setShowConfirmation(true);
     setRefend(uuid?.refund_amount);
   };
+  const[amount,setAmount] =useState( SelectBooking?.booking_property?.cleaning_fee * SelectBooking?.days_difference);
 
   const handleConfirmation = () => {
-    cancelBooking(SelectBooking?.id);
+    cancelBooking(SelectBooking?.id,amount);
     setShowConfirmation(false);
   };
 
@@ -164,27 +165,26 @@ export default function Index() {
 
   // booking-cancel/42
 
-
-  const cancelBooking = async (id) => {
+  const cancelBooking = async (id,amount) => {
     setLoading(true);
     const main = new Listings();
-    const response = main.Booking_cancel(id)
-    response.then((res) => {
+    const response = main.Booking_cancel(id,amount);
+    try {
+      const res = await response;
       if (res?.data?.status === true) {
-        setLoading(false);
         toast.success(res?.data?.message);
         fetching(page);
       } else {
-        toast.error(res?.data?.message)
-        setLoading(false);
+        toast.error(res?.data?.message);
       }
-    }).catch((error) => {
+    } catch (error) {
+      console.log("Error:", error);
+      toast.error("An error occurred while canceling the booking.");
+    } finally {
       setLoading(false);
-
-      console.log("eror", error)
-    })
-
-  }
+    }
+  };
+  
 
 
   const loadMore = () => {
@@ -437,8 +437,26 @@ export default function Index() {
               Are you sure you want to cancel your booking?
             </p>
             <p className="text-xl text-center font-semibold  py-8  capatalize">
-              Your Refended  amount this  <span className="text-green-600">{formatMultiPrice(refend)
-              }</span>
+              <div>
+                {refend === 0 ? (
+                  <>
+
+                    <h2>
+                      Only the cleaning fee will be refunded:
+
+                    </h2>
+                    <span className="text-green-600">
+                      {formatMultiPrice(SelectBooking?.booking_property?.cleaning_fee * SelectBooking?.days_difference)}
+                    </span>.
+                  </>
+
+                ) : (
+                  <div>
+                    Your Refunded amount is <span className="text-green-600">{formatMultiPrice(refend)}</span>
+                  </div>
+                )}
+              </div>
+
             </p>
 
             <div className="flex justify-center mb-5">
@@ -446,13 +464,13 @@ export default function Index() {
                 className="bg-red-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-red-700"
                 onClick={handleConfirmation}
               >
-                Cancel Booking  
+                Cancel Booking
               </button>
               <button
                 className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400"
                 onClick={handleCancel}
               >
-                Back 
+                Back
               </button>
             </div>
           </Modal>

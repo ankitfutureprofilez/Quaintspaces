@@ -35,8 +35,8 @@ class Listings extends Component {
   async BookingHistory(page,data) {
     return Api.get(`/user-booking-history?page=${page}&` + data);
   }
-  async Booking_cancel(id) {
-    return Api.get(`/booking-cancel/${id}`);
+  async Booking_cancel(id,amount) {
+    return Api.get(`/booking-cancel/${id}/${amount}`);
   }
   async bookingpayment(data) {
     return Api.post("/payment" , data);
