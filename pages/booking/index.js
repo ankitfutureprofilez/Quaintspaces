@@ -70,11 +70,19 @@ export default function Index() {
 
   const handleCanceled = (uuid) => {
     SetSelectBooking(uuid);
+    setAmount()
     setShowConfirmation(true);
     setRefend(uuid?.refund_amount);
   };
-  const[amount,setAmount] =useState( SelectBooking?.booking_property?.cleaning_fee * SelectBooking?.days_difference);
+  const [amount, setAmount] = useState(0); // Initialize with a default value
 
+  useEffect(() => {
+    if (SelectBooking && SelectBooking.booking_property && SelectBooking.days_difference) {
+      const calculatedAmount = SelectBooking.booking_property.cleaning_fee * SelectBooking.days_difference;
+      setAmount(calculatedAmount);
+    }
+  }, [SelectBooking]);
+  console.log("amount",amount)
   const handleConfirmation = () => {
     cancelBooking(SelectBooking?.id,amount);
     setShowConfirmation(false);
