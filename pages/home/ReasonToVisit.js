@@ -38,7 +38,7 @@ export default function ReasonToVisit() {
         loading="lazy"
       />
       <div className="container mx-auto relative z-10">
-        <h2>Reason to Visit US</h2>
+        <h2>Amenities we offer</h2>
         <div className="smart-box">
           <div className="carousel-wrapper">
             <div className="carousel-container" style={{ display: 'flex', transition: 'transform 0.5s ease-in-out' }}>

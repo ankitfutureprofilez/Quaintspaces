@@ -4,6 +4,8 @@ import Link from "next/link";
 import RoomListings from "../home/RoomListings";
 import Filter from "../home/Filter";
 import { PostBody } from "../../components";
+import { FaAngleDown } from "react-icons/fa";
+import { IoChevronDownSharp } from "react-icons/io5";
 import Listings from "../api/laravel/Listings";
 import format from "date-fns/format";
 import Head from "next/head";
@@ -36,7 +38,8 @@ export default function Index() {
             >
               {sortingOptions.find((option) => option.key === sortBy).label}
               {/* Icon to indicate dropdown */}
-              <svg
+              <IoChevronDownSharp className="-mr-1 ml-[0.25rem] mt-[3.5px] h-4 w-4"/>
+              {/* <svg
                 className="-mr-1 ml-2 h-5 w-5"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
@@ -48,7 +51,7 @@ export default function Index() {
                   d="M10 12a1 1 0 0 1-.707-.293l-4-4a1 1 0 0 1 1.414-1.414L10 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4A1 1 0 0 1 10 12z"
                   clipRule="evenodd"
                 />
-              </svg>
+              </svg> */}
             </button>
           </span>
         </div>

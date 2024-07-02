@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Star1 } from "iconsax-react";
+import { FaStar } from "react-icons/fa6";
 
 const RatingStar = ({ showemoji,rating, setRating, size }) => {
   const [hover, setHover] = useState(null);
@@ -37,7 +37,7 @@ const RatingStar = ({ showemoji,rating, setRating, size }) => {
                 }}
               />
               <label>
-                <Star1
+                <FaStar
                   className="star"
                   size={size || "20"}
                   // color="black"
