@@ -5,10 +5,19 @@ import Link from "next/link";
 export default function HeroBanner() {
   return (
     <div className="justify-center items-center flex flex-col hero-sec px-2">
-      <h1>Live the luxury in jaipur</h1>
-      <p>Book the most luxuries and aesthetically pleasing place, Jaipur city has to offer</p>
+      <h1>Discover Your Perfect Getaway with Us</h1>
+      <p>
+        Experience the comfort and convenience of home, no matter where you are.
+        Our properties are fully equipped to ensure a seamless stay
+      </p>
       <Link href="#places">
-      <Button text={"EXPLORE APARTMENTS"} design={"font-inter text-base font-medium leading-tight text-center text-white w-[405px] border-2 border-white p-[18px] rounded-[30px] hover:bg-[#c48b58] hover:border-[#c48b58]"} id="hero" />
+        <Button
+          text={"EXPLORE APARTMENTS"}
+          design={
+            "font-inter text-base font-medium leading-tight text-center text-white w-[405px] border-2 border-white p-[18px] rounded-[30px] hover:bg-[#c48b58] hover:border-[#c48b58]"
+          }
+          id="hero"
+        />
       </Link>
     </div>
   );
