@@ -16,6 +16,9 @@ import "../styles/apartment.css";
 import "../styles/ImageMover.css";
 import LoginLogic from "./login/LoginLogic";
 import NotLogin from "./login/NotLogin";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 
 export const Context = React.createContext();
 
