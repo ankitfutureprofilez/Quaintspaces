@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Toaster } from "react-hot-toast";
 import PullToRefresh from "../hooks/PulltoRefresh";
-
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+import AOS from 'aos';
+import 'aos/dist/aos.css'
 import "../styles/fonts.css";
 import "../styles/RangeSlider.css";
 import "../styles/confirm.css";
@@ -19,7 +21,11 @@ export const Context = React.createContext();
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
-
+  useEffect(() => {
+    AOS.init({
+      duration: 2000,
+    });
+  }, []);
   const [auth, setAuth] = useState(null);
   const [openLogin, setOpenLogin] = useState(false);
   const [wishlist, setWishlist] = useState(false);

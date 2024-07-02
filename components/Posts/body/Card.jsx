@@ -35,7 +35,7 @@ const Card = ({ post }) => {
   return (
     <div className="banipark-box rounded-lg">
       {post?.uuid ? (
-        <Link className="block relative overflow-hidden" href={`/property/${post?.uuid}`}>
+        <Link className="block relative overflow-hidden relative pb-[85px] h-full" href={`/property/${post?.uuid}`}>
            {post?.discount_offer ? (
         <div className="absolute bg-red-500 -rotate-45 text-white px-2 py-1 w-32 text-center -left-[32px] top-[18px] shadow-[0_0_17px_-5px_#3c3c3c;]">
           {post?.discount_offer}%  off
@@ -69,7 +69,7 @@ const Card = ({ post }) => {
             /night
           </h4>
         </div>
-        <div className="explor-btn">
+        <div className="explor-btn absolute w-full left-0 bottom-0">
           Explore
         </div>
       </Link>

@@ -197,14 +197,14 @@ export default function Index() {
                   </button>
                 )}
                 <div className="p-4">
-                  <div className="flex space-x-1">
+                  <div className="space-x-1">
                     <h2 className="text-lg font-medium mb-2 heading-property">
                       {item.name}
                     </h2>
-                    <div className="tooltip-container">
-                      <span className="text-base">🛈</span>
-                      <div className="tooltip-text text-sm max-w-fit p-2">
-                        <span>Booking method: Instant </span>
+                    <div className="flex tooltip-container">
+                      
+                      <div className="tooltip-text text-sm max-w-fit py-2">
+                        <span><span className="text-base">🛈</span> Booking method: Instant </span>
                         <span>
                           Property Status:
                           {item?.status !== 1
@@ -290,7 +290,7 @@ export default function Index() {
 
               <div
                 onClick={toggleView}
-                className="view-toggle-button hover:bg-gray-400 active:bg-gray-400 cursor-pointer bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center"
+                className="view-toggle-button hover:bg-gray-400 active:bg-gray-400 mx-2 cursor-pointer bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center"
               >
                 {view === 'card' ? <CgViewComfortable /> : <FaTableCellsLarge />}
               </div>
