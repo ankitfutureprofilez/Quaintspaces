@@ -37,7 +37,7 @@ function Index() {
         let filteredListings = [];
         if (Array.isArray(data)) {
           data.forEach((item) => {
-            if (item?.step_completed !== 11) {
+            if (item?.status !== 1) {
               filteredListings?.push(item);
             }
           });
@@ -160,7 +160,7 @@ function Index() {
                 router.push("/admin/property/add");
               }}
             >
-              <BsHouseAdd size={24}/>
+              <BsHouseAdd size={24} />
 
               <h2 className="text-lg font-medium ml-4 heading-property ">
                 Create a new listing
@@ -244,21 +244,21 @@ function Index() {
               {record && record.map((item, index) => (
                 <div className="flex mb-3 pb-3 border-b" key={index} style={{ cursor: "pointer" }}>
                   {/* {item?.property_image[0]?.image_url ? ( */}
-                    <div className="w-[60px] h-[40px] object-cover mr-2">
-                      <Image
-                        width={100}
-                        height={100}
-                        layout="responsive"
-                        src={item?.property_image[0]?.image_url || "https://th.bing.com/th/id/OIP.F4eiZn0Wjgp4EFtocph2BAAAAA?rs=1&pid=ImgDetMain"}
-                        alt="Property cover image"
-                        className="!h-full object-cover"
-                        onClick={() => {
-                          toggleimagePopup(item?.uuid);
-                        }}
-                      />
-                    </div>
+                  <div className="w-[60px] h-[40px] object-cover mr-2">
+                    <Image
+                      width={100}
+                      height={100}
+                      layout="responsive"
+                      src={item?.property_image[0]?.image_url || "https://th.bing.com/th/id/OIP.F4eiZn0Wjgp4EFtocph2BAAAAA?rs=1&pid=ImgDetMain"}
+                      alt="Property cover image"
+                      className="!h-full object-cover"
+                      onClick={() => {
+                        toggleimagePopup(item?.uuid);
+                      }}
+                    />
+                  </div>
                   {/*  ) : ( */}
-                    {/* <div className="w-[30px] h-[20px] object-cover mr-2" style={{ cursor: "pointer" }} >
+                  {/* <div className="w-[30px] h-[20px] object-cover mr-2" style={{ cursor: "pointer" }} >
                       <FaHouse size={30} />
                     </div> */}
                   {/* )} */}

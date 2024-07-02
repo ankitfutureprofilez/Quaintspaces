@@ -3,7 +3,7 @@ import React from "react";
 
 export default function ThingsToKnow({ record, isAdmin , content}) {
   ///custom link
-  console.log("record",record)
+  // console.log("record",record)
   const safetyAmenities = record?.data?.safety_amenity?.split(',') || record?.safety_amenity?.split(',');
   console.log("safetyAmenities",record?.data?.safety_amenity)
   return (
