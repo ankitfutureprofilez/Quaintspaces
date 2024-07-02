@@ -170,6 +170,9 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
       </p>
 
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4    ">
+      <p className="text-bold font-bold text-left text-gray-500 mb-6 mt-6">
+      What about these guest favourites?
+      </p>
         {amenitiesData &&
           amenitiesData?.amenities?.map((amenity, i) => (
             <div key={i} className="">

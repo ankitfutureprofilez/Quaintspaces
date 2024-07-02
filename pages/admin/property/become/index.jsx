@@ -37,7 +37,7 @@ function Index() {
         let filteredListings = [];
         if (Array.isArray(data)) {
           data.forEach((item) => {
-            if (item?.step_completed !== 11) {
+            if (item?.status !== 1) {
               filteredListings?.push(item);
             }
           });
@@ -112,10 +112,10 @@ function Index() {
       ) : (
         <div className="max-w-[600px] w-full py-4 md:py-8 mx-auto">
           <div className="">
-            <h2 className="text-[22px] md:text-[32px] font-bold text-black sm:mb-3">
+            <h2 className="text-[22px] md:text-[28px] font-[550] text-[#222222] sm:mb-[20px]">
               Welcome back, {Admin}
             </h2>
-            <p className="text-[16px] md:text-[22px]  text-black mb-3">Finish your listing</p>
+            <p className="text-[16px] md:text-[20px] font-[500] text-black mb-[16px]">Finish your listing</p>
             <div>
               {filteredRecord &&
                 filteredRecord.map((item, index) => (
@@ -149,10 +149,10 @@ function Index() {
                 ))}
             </div>
           </div>
-          <div className="mt-4 md:mt-8">
-            <h2 className="text-[20px] sm:text-[22px]  text-black sm:mb-3">
+          <div className="mt-4 md:mt-[60px]">
+            <p className="text-[16px] md:text-[20px] font-[500] text-black mb-[16px]">
               Start a new listing
-            </h2>
+            </p>
             <div
               className="p-4 border-b mb-2 flex items-center relative"
               style={{ cursor: "pointer" }}
@@ -160,7 +160,7 @@ function Index() {
                 router.push("/admin/property/add");
               }}
             >
-              <BsHouseAdd />
+              <BsHouseAdd size={24} />
 
               <h2 className="text-lg font-medium ml-4 heading-property ">
                 Create a new listing
@@ -199,7 +199,7 @@ function Index() {
                 togglePopup();
               }}
             >
-              <IoCopyOutline />
+              <IoCopyOutline size={24} />
               <h2 className="text-lg font-medium ml-4 heading-property">
                 Dublicate an existing property
               </h2>
@@ -244,21 +244,21 @@ function Index() {
               {record && record.map((item, index) => (
                 <div className="flex mb-3 pb-3 border-b" key={index} style={{ cursor: "pointer" }}>
                   {/* {item?.property_image[0]?.image_url ? ( */}
-                    <div className="w-[60px] h-[40px] object-cover mr-2">
-                      <Image
-                        width={100}
-                        height={100}
-                        layout="responsive"
-                        src={item?.property_image[0]?.image_url || "https://th.bing.com/th/id/OIP.F4eiZn0Wjgp4EFtocph2BAAAAA?rs=1&pid=ImgDetMain"}
-                        alt="Property cover image"
-                        className="!h-full object-cover"
-                        onClick={() => {
-                          toggleimagePopup(item?.uuid);
-                        }}
-                      />
-                    </div>
+                  <div className="w-[60px] h-[40px] object-cover mr-2">
+                    <Image
+                      width={100}
+                      height={100}
+                      layout="responsive"
+                      src={item?.property_image[0]?.image_url || "https://th.bing.com/th/id/OIP.F4eiZn0Wjgp4EFtocph2BAAAAA?rs=1&pid=ImgDetMain"}
+                      alt="Property cover image"
+                      className="!h-full object-cover"
+                      onClick={() => {
+                        toggleimagePopup(item?.uuid);
+                      }}
+                    />
+                  </div>
                   {/*  ) : ( */}
-                    {/* <div className="w-[30px] h-[20px] object-cover mr-2" style={{ cursor: "pointer" }} >
+                  {/* <div className="w-[30px] h-[20px] object-cover mr-2" style={{ cursor: "pointer" }} >
                       <FaHouse size={30} />
                     </div> */}
                   {/* )} */}

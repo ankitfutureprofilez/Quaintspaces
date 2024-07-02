@@ -14,6 +14,7 @@ import { RiDoorLockBoxLine } from "react-icons/ri";
 import { GrUserWorker } from "react-icons/gr";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdOutlineFreeBreakfast } from "react-icons/md";
+import Step1 from "../components/Video.json";
 import {
   FaBuilding,
   FaHome,
@@ -25,6 +26,8 @@ import {
 } from "react-icons/fa";
 import Guest from "./Guest";
 import Checkout from "./Checkout";
+import Video from "../components/Video";
+import Introduction from "./introduction";
 const propertyTypes = [
   { value: "flat", label: "Flat & Apartment" },
   { value: "house", label: "House" },
@@ -73,7 +76,6 @@ export default function Property(props) {
 
   console.log("location", location);
   console.log("p", p);
-
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
   const [pets, setPets] = useState(no_of_pet_allowed || 1);
   const [selectedAmenity, setSelectedAmenity] = useState(
@@ -238,6 +240,8 @@ export default function Property(props) {
   const [step, setStep] = useState(
     step_completed === 11 ? 0 : step_completed || 0
   );
+console.log("step",step)
+
   const [Loading, setLoading] = useState(false);
   const [PType, setPType] = useState(properties_type || "flat");
   const lstring = location ? JSON.parse(location.replace('/\\"/g', '"')) : null;
@@ -289,7 +293,7 @@ export default function Property(props) {
     console.log("textToCopy", textToCopy);
     navigator.clipboard
       .writeText(textToCopy)
-      .then(() => {})
+      .then(() => { })
       .catch((err) => {
         console.error("Failed to copy: ", err);
       });
@@ -310,119 +314,119 @@ export default function Property(props) {
   };
   const prevStep = () => setStep((prev) => prev - 1);
   const nextStep = async () => {
-    if (step === 0 && PType == "") {
-      toast.error("Please choose a property type which one you want to list.");
-    }
-    if (
-      step === 1 &&
-      (item?.name === "" || item?.price === "" || item?.about === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (
-      step === 1 && item?.price != "" && item?.price < 0 ) {
-      toast.error(`Invalid Price`);
-      return false;
-    }
-    if (
-      step === 1 &&
-      (!item?.about ||
-        item?.about?.trim()?.length === 0 ||
-        item?.about?.length < 100)
-    ) {
-      toast.error(
-        "Property description is too short. Description should be a minimum of 100 words."
-      );
-      return false;
-    }
-    if (
-      step === 2 &&
-      (address?.pin === "" ||
-        address?.pin?.length < 5 ||
-        address?.state === "" ||
-        address?.city === "" ||
-        address?.street_address === "" ||
-        address?.district === "")
-    ) {
-      toast.error(`Incomplete address. Please enter complete address.`);
-      return false;
-    }
-    if (
-      step === 3 &&
-      (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (
-      step == 4 &&
-      selectedAmenity &&
-      Amenity &&
-      standoutAmenity &&
-      selectedAmenity.length + Amenity.length + standoutAmenity.length < 4
-    ) {
-      toast.error("Please choose at least 4 amenities.");
-      return false;
-    }
+    // if (step === 0 && PType == "") {
+    //   toast.error("Please choose a property type which one you want to list.");
+    // }
+    // if (
+    //   step === 1 &&
+    //   (item?.name === "" || item?.price === "" || item?.about === "")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (
+    //   step === 1 && item?.price != "" && item?.price < 0) {
+    //   toast.error(`Invalid Price`);
+    //   return false;
+    // }
+    // if (
+    //   step === 1 &&
+    //   (!item?.about ||
+    //     item?.about?.trim()?.length === 0 ||
+    //     item?.about?.length < 100)
+    // ) {
+    //   toast.error(
+    //     "Property description is too short. Description should be a minimum of 100 words."
+    //   );
+    //   return false;
+    // }
+    // if (
+    //   step === 2 &&
+    //   (address?.pin === "" ||
+    //     address?.pin?.length < 5 ||
+    //     address?.state === "" ||
+    //     address?.city === "" ||
+    //     address?.street_address === "" ||
+    //     address?.district === "")
+    // ) {
+    //   toast.error(`Incomplete address. Please enter complete address.`);
+    //   return false;
+    // }
+    // if (
+    //   step === 3 &&
+    //   (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (
+    //   step == 4 &&
+    //   selectedAmenity &&
+    //   Amenity &&
+    //   standoutAmenity &&
+    //   selectedAmenity.length + Amenity.length + standoutAmenity.length < 4
+    // ) {
+    //   toast.error("Please choose at least 4 amenities.");
+    //   return false;
+    // }
 
-    if (!isEdit && step === 5 && images?.length < 5) {
-      toast.error("Please select at least five images.");
-      return false;
-    }
-    if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
-      toast.error("Please select at least five images.");
-      return false;
-    }
-    if (
-      step === 6 &&
-      (checkout === " " ||
-        checkinStart === " " ||
-        selectedOption === "" ||
-        checkinEnd === "" ||
-        item?.cleaning === "" ||
-        item?.extra_guest === "" ||
-        item?.pet === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (step === 7 && longTermPolicy === null && selectedPolicy === null) {
-      toast.error(`At least one field is required.`);
-      return false;
-    }
-    if (
-      step === 8 &&
-      (item?.additonalrule === "" ||
-        petsAllowed === " " ||
-        smokingAllowed === " " ||
-        eventsAllowed === "" ||
-        quietHours === "" ||
-        PhotographyAllowed === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (
-      step === 9 &&
-      (item?.Direction === "" ||
-        item?.wifi === " " ||
-        item?.wifiPassword === " " ||
-        item?.housemanual === " ")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (!isEdit && step === 5 && images?.length < 5) {
+    //   toast.error("Please select at least five images.");
+    //   return false;
+    // }
+    // if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
+    //   toast.error("Please select at least five images.");
+    //   return false;
+    // }
+    // if (
+    //   step === 6 &&
+    //   (checkout === " " ||
+    //     checkinStart === " " ||
+    //     selectedOption === "" ||
+    //     checkinEnd === "" ||
+    //     item?.cleaning === "" ||
+    //     item?.extra_guest === "" ||
+    //     item?.pet === "")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (step === 7 && longTermPolicy === null && selectedPolicy === null) {
+    //   toast.error(`At least one field is required.`);
+    //   return false;
+    // }
+    // if (
+    //   step === 8 &&
+    //   (item?.additonalrule === "" ||
+    //     petsAllowed === " " ||
+    //     smokingAllowed === " " ||
+    //     eventsAllowed === "" ||
+    //     quietHours === "" ||
+    //     PhotographyAllowed === "")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (
+    //   step === 9 &&
+    //   (item?.Direction === "" ||
+    //     item?.wifi === " " ||
+    //     item?.wifiPassword === " " ||
+    //     item?.housemanual === " ")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
-    if (
-      step === 10 &&
-      (item?.customLink === "" ||
-        item?.selectedInstruction === " " ||
-        selectedMethod === " ")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (
+    //   step === 10 &&
+    //   (item?.customLink === "" ||
+    //     item?.selectedInstruction === " " ||
+    //     selectedMethod === " ")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
     setStep((prev) => prev + 1);
   };
@@ -773,7 +777,7 @@ export default function Property(props) {
     );
   };
 
-  useEffect(() => {}, [images]);
+  useEffect(() => { }, [images]);
 
   // if (stepdata) {
   //   setImages([...images, imageproperty]);
@@ -786,8 +790,7 @@ export default function Property(props) {
       // .property-type:checked + label { color :#000 !important;border-color:#000 !important;}
       // .property-type:checked + label h2 { color :#000 !important;border-color:#000 !important;}
     `}</style>
-
-      <div class="max-w-4xl overflow-hidden	 w-full space-y-8 m-auto w-full px-2 "></div>
+      <div className="max-w-4xl overflow-hidden	 w-full space-y-8 m-auto w-full px-2 "></div>
       <div
         className={`w-full overflow-hidden	 flex items-center justify-center py-4 md:py-8 `}
       >
@@ -796,11 +799,28 @@ export default function Property(props) {
             className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
           >
             <div className="p-3 sm:p-4 md:p-8 rounded-2xl border ">
+
+
               <div
-                className={`${
-                  step === 0 ? "" : "display-none"
-                } max-w-[100%] m-auto mb-8 table w-full`}
+                className={`${step === 0 ? "" : "display-none"
+                  }  m-auto table w-full`}
+                style={{ display: "flex", alignItems: "center" }}
               >
+                <Introduction />
+              </div>
+              <div
+                className={`${step === 1 ? "" : "display-none"
+                  }  m-auto table w-full`}
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                <Video step1={Step1?.step1} />
+              </div>
+              <div
+                className={`${step === 2 ? "" : "display-none"
+                  } max-w-[100%] m-auto mb-8 table w-full`}
+              >
+
+
                 {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
     <div className="grid grid-cols-3 gap-4 m-auto table  " >
      <div className="" >
@@ -829,11 +849,10 @@ export default function Property(props) {
                       <div key={i} className="">
                         <div
                           onClick={() => setPType(p?.value)}
-                          className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${
-                            p?.value === PType
-                              ? "bg-slate-100 border-slate-700 text-slate-700"
-                              : ""
-                          }`}
+                          className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType
+                            ? "bg-slate-100 border-slate-700 text-slate-700"
+                            : ""
+                            }`}
                         >
                           {p.value === "flat" && (
                             <FaBuilding
@@ -871,11 +890,10 @@ export default function Property(props) {
                           )}
                           {p.value === "farm" && <FaWarehouse size={40} />}
                           <h2
-                            className={`md:text-xl text-lg mt-4 font-normal ${
-                              p.value === PType
-                                ? "text-gray-600"
-                                : "text-gray-400"
-                            }`}
+                            className={`md:text-xl text-lg mt-4 font-normal ${p.value === PType
+                              ? "text-gray-600"
+                              : "text-gray-400"
+                              }`}
                           >
                             {p.label}
                           </h2>
@@ -887,9 +905,8 @@ export default function Property(props) {
                 {/* </> : '' } */}
               </div>
               <div
-                className={`${
-                  step === 1 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
+                className={`${step === 15 ? "" : "display-none"
+                  } max-w-[100%] m-auto table w-full`}
               >
                 <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                   Describe your place?
@@ -946,7 +963,7 @@ export default function Property(props) {
                   </div>
                 </div>
               </div>
-              <div className={`${step === 2 ? "" : "display-none"}`}>
+              <div className={`${step === 3 ? "" : "display-none"}`}>
                 <div className="mb-8">
                   <h2 className="text-xl md:text-2xl capitalize lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                     Where's your place located?
@@ -1070,7 +1087,7 @@ export default function Property(props) {
                   )}
                 </div>
               </div>
-              <div className={`${step === 3 ? "" : "display-none"}`}>
+              <div className={`${step === 4 ? "" : "display-none"}`}>
                 <Guest
                   Guests={Guests}
                   setGuests={setGuests}
@@ -1082,7 +1099,14 @@ export default function Property(props) {
                   setBathrooms={setBathrooms}
                 />
               </div>
-              <div className={`${step === 4 ? "" : "display-none"}`}>
+              <div
+                className={`${step === 5 ? "" : "display-none"
+                  }  m-auto table w-full`}
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                 <Video step1={Step1?.step2} />
+              </div>
+              <div className={`${step === 6 ? "" : "display-none"}`}>
                 <Amenities
                   selectedAmenity={selectedAmenity}
                   standoutAmenity={standoutAmenity}
@@ -1093,9 +1117,8 @@ export default function Property(props) {
                 />
               </div>
               <div
-                className={`${
-                  step === 5 ? "" : "display-none"
-                } max-w-[600px] m-auto`}
+                className={`${step === 7 ? "" : "display-none"
+                  } max-w-[600px] m-auto`}
               >
                 <h2 className="text-xl md:text-2xl  capitalize lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                   Add some photos of your{" "}
@@ -1342,7 +1365,7 @@ export default function Property(props) {
                   )}
                 </div>
               </div>
-              <div className={`${step === 6 ? "" : "display-none"}`}>
+              <div className={`${step === 16 ? "" : "display-none"}`}>
                 <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4">
                   <h2 className="text-xl md:text-2xl lg:text-3xl capitalize text-center mt-4 font-bold md:mb-8 mb-4">
                     Please enter the following details
@@ -1544,8 +1567,9 @@ export default function Property(props) {
                     </label>
                   </div>
                 </div>
+                
               </div>
-              <div className={`${step === 7 ? "" : "display-none"}`}>
+              <div className={`${step === 17 ? "" : "display-none"}`}>
                 <CancelPolicy
                   showFirm={showFirm}
                   setShowFirm={setShowFirm}
@@ -1595,9 +1619,8 @@ export default function Property(props) {
                 </div>
               </div>
               <div
-                className={`${
-                  step === 9 ? "" : "display-none"
-                } max-w-[100%] m-auto  w-full `}
+                className={`${step === 9 ? "" : "display-none"
+                  } max-w-[100%] m-auto  w-full `}
               >
                 <div className="flex flex-col mb-4">
                   <label
@@ -1687,9 +1710,8 @@ export default function Property(props) {
               </div>
 
               <div
-                className={`${
-                  step === 10 ? "" : "display-none"
-                } max-w-[100%] m-auto w-full `}
+                className={`${step === 10 ? "" : "display-none"
+                  } max-w-[100%] m-auto w-full `}
               >
                 <div className="flex flex-col mb-2">
                   <label
@@ -1740,11 +1762,10 @@ export default function Property(props) {
                           options.map((item, index) => (
                             <div
                               key={index}
-                              className={`p-4 border rounded-lg cursor-pointer ${
-                                selectedMethod === item?.item
-                                  ? "border-indigo-600"
-                                  : "border-gray-300"
-                              }`}
+                              className={`p-4 border rounded-lg cursor-pointer ${selectedMethod === item?.item
+                                ? "border-indigo-600"
+                                : "border-gray-300"
+                                }`}
                               onClick={() => handleMethodSelect(item?.item)}
                             >
                               {item?.icon}
@@ -1782,9 +1803,8 @@ export default function Property(props) {
               </div>
 
               <div
-                className={`${
-                  step === 11 ? "" : "display-none"
-                } max-w-[100%] m-auto w-full `}
+                className={`${step === 11 ? "" : "display-none"
+                  } max-w-[100%] m-auto w-full `}
               >
                 <div className="flex  flex-col mb-2">
                   <Checkout
