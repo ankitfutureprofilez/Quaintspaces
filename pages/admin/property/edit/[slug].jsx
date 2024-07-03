@@ -11,6 +11,7 @@ export default function Edit() {
     loading: true,
     data: {},
   });
+  console.log("record",record)
 
   const fetchProperty = async (slug) => {
     if (slug) {
@@ -45,12 +46,13 @@ export default function Edit() {
         <p>Loading...</p>
       ) : (
         
-        <Property
-          fetchProperties={() => fetchProperty(slug)}
-          isEdit={true}
-          stepdata={false}
-          p={record.data}
-        />
+        <h2>Hello</h2>
+        // <Property
+        //   fetchProperties={() => fetchProperty(slug)}
+        //   isEdit={true}
+        //   stepdata={false}
+        //   p={record.data}
+        // />
       )}
     </>
   );
