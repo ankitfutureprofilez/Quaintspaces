@@ -73,8 +73,6 @@ export default function Property(props) {
     custom_link,
   } = p ? p : {};
 
-  console.log("location", location);
-  console.log("p", p);
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
   const [pets, setPets] = useState(no_of_pet_allowed || 1);
   const [selectedAmenity, setSelectedAmenity] = useState(
@@ -237,7 +235,7 @@ export default function Property(props) {
   };
   const router = useRouter();
   const [step, setStep] = useState(
-    step_completed === 11 ? 1 : step_completed || 1
+    step_completed === 11 ? 1 : step_completed || 0
   );
   console.log("step", step)
 
@@ -1469,9 +1467,9 @@ export default function Property(props) {
                 </div>
               </div>
 
-                <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                  <div className="bg-[#c48b58] h-2.5 rounded-full" style={{ width: `${progress}%` }}></div>
-                </div>
+              <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                <div className="bg-[#c48b58] h-2.5 rounded-full" style={{ width: `${progress}%` }}></div>
+              </div>
               <div className="pt-2 flex justify-between max-w-[500px] table m-auto">
 
                 {step == 0 ? (
@@ -1500,7 +1498,7 @@ export default function Property(props) {
                     onClick={handleSubmit}
                     className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#fff] bg-[#c48b58] text-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58]  "
                   >
-                    
+
                     {Loading ? "processing.. " : "Submit"}
                   </button>
                 )}

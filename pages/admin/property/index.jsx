@@ -10,7 +10,8 @@ import { MdAdd } from "react-icons/md";
 import { FaTableCellsLarge } from "react-icons/fa6";
 import { CgViewComfortable } from "react-icons/cg";
 import { formatMultiPrice } from "../../../hooks/ValueData";
-
+import { FaEdit } from "react-icons/fa";
+import { AiFillDelete } from "react-icons/ai";
 export default function Index() {
   const router = useRouter();
   const [record, setRecord] = useState([]);
@@ -89,7 +90,7 @@ export default function Index() {
               <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Status</th>
               <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Location</th>
               <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Edit</th>
-              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Remove</th>
+              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Delete</th>
 
             </tr>
           </thead>
@@ -126,7 +127,9 @@ export default function Index() {
                     {item?.status !== 1 ? (
                       <p>In Progress</p>
                     ) : (
-                      <p>Completed</p>
+                      <>
+                        <p>Completed</p>
+                      </>
                     )}
                   </td>
                   <td className="text-[14px] text-[#222222] font-[600] text-left p-[12px]">
@@ -138,19 +141,18 @@ export default function Index() {
                   </td>
                   <td className="p-[12px]">
                     <button
-                      className="inline-block text-[14px] px-4 py-2 bg-blue-600 text-white rounded-[6px] hover:bg-blue-700"
+                      className="inline-block text-[14px] px-4 py-2  text-white rounded-[6px]  bg-black  hover:bg-blue-700"
                       onClick={() => handleEditEntireProperty(item?.uuid)}
                     >
-                      Edit
+                      <FaEdit />
                     </button>
                   </td>
                   <td className="p-[12px]">
                     <button
-                      className="inline-block text-[14px] px-4 rounded-[6px] py-2 bg-blue-600 text-white hover:bg-blue-700"
-
+                      className="inline-block text-[14px] px-4 rounded-[6px] py-2 text-white   bg-black  hover:bg-blue-700 "
                       onClick={() => setShowConfirmation(true) && setSelectedProperty(item?.uuid)}
                     >
-                      Remove
+                      <AiFillDelete />
                     </button>
                   </td>
                 </tr>
@@ -202,7 +204,7 @@ export default function Index() {
                       {item.name}
                     </h2>
                     <div className="flex tooltip-container">
-                      
+
                       <div className="tooltip-text text-sm max-w-fit py-2">
                         <span><span className="text-base">🛈</span> Booking method: Instant </span>
                         <span>
@@ -292,7 +294,7 @@ export default function Index() {
                 onClick={toggleView}
                 className="view-toggle-button hover:bg-gray-400 active:bg-gray-400 mx-2 cursor-pointer bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center"
               >
-                {view === 'card' ? <CgViewComfortable /> : <FaTableCellsLarge />}
+                {view === 'table' ? <CgViewComfortable /> : <FaTableCellsLarge />}
               </div>
               <div className="bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer">
                 <MdAdd
@@ -305,7 +307,7 @@ export default function Index() {
           </div>
           <div className="mt-3">
 
-            {view === 'card' ? <TableView /> : <CardView />}
+            {view === 'table' ? <TableView /> : <CardView />}
           </div >
         </>
       )}
