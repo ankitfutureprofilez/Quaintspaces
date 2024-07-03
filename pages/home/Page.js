@@ -3,9 +3,10 @@ import Header from "./Header.js";
 import HeroBanner from "./HeroBanner.js";
 import LuxuryStay from "./LuxuryStay.js";
 import dynamic from "next/dynamic";
-const PremiumLocation = dynamic(() => import("./PremiumLocation.js"));
+// const PremiumLocation = dynamic(() => import("./PremiumLocation.js"));
 const ReasonToVisit = dynamic(() => import("./ReasonToVisit.js"));
 const HomeRoomsLists = dynamic(() => import("./HomeRoomsLists.js"));
+const Testimonials = dynamic(() => import("./Testimonials.js"));
 import Layout from "../layout/Layout.js";
 import Image from "next/image";
 import Head from "next/head";
@@ -135,6 +136,7 @@ export default function MainPage() {
 
         <LuxuryStay />
         <HomeRoomsLists />
+        <Testimonials/>
         {/* <PremiumLocation /> */}
         <ReasonToVisit />
       </div>

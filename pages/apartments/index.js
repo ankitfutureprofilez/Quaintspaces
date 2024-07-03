@@ -187,7 +187,7 @@ export default function Index() {
       <div className="container mx-auto">
         <div className="mt-6 sm:mt-10">
           <div className="flex justify-between mb-10 filter-box">
-            <h2 className="listing-heading text-left">Explore our Apartments</h2>
+            <h2 className="listing-heading text-left">Our Properties</h2>
             <div className="button-group filter-btn-select justify-end flex">
               <SortByButton
                 sortBy={sortBy}

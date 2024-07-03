@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import QsJaipur from "../../public/images/QsJaipur.png";
 import Link from "next/link";
+import { FaFacebook, FaInstagram } from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -9,16 +10,14 @@ export default function Footer() {
       <div className="container mx-auto flex flex-col justify-between items-center">
         {/* Logo and Brand */}
         <div className="footer-menu">
-          <Link href="/">
-            <div className="flex items-left space-x-4">
-              <Image
-                src={QsJaipur}
-                alt="QS Jaipur Logo"
-                width={80}
-                height={80}
-              />
-            </div>
-          </Link>
+          <div className="flex items-left space-x-4">
+            <Link href="/">
+              <FaFacebook color={"#c48b58"} size={28} />
+            </Link>
+            <Link href="https://www.instagram.com/quaintspacesjaipur">
+              <FaInstagram color={"#c48b58"} size={28} />
+            </Link>
+          </div>
 
           {/* Navigation Links */}
           <nav className="ml-auto flex space-x-4">
@@ -39,7 +38,7 @@ export default function Footer() {
 
         <div className="text-center copy-right">
           {/* Copyright Notice */}
-          <span >&copy; QUAINTSPACES JAIPUR 2024</span>
+          <span>&copy; QUAINTSPACES JAIPUR 2024</span>
         </div>
       </div>
     </footer>

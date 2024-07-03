@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../public/images/QsJaipur.png";
+import logo from "../../public/images/Logo.jpeg";
 import LocalToken from "../../hooks/LocalToken";
 import { useRouter } from "next/router";
 import { Context } from "../_app";
 import { toast } from 'react-hot-toast';
 import Menu from "./Menu";
 import Listings from "../api/laravel/Listings";
+import { IoMdMenu } from "react-icons/io";
 
 export default function Header() {
   const router = useRouter();
@@ -53,26 +54,13 @@ export default function Header() {
         </div>
         <div className="nav-bar flex items-center">
           <div className="menu-icon" onClick={toggleMenu}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 cursor-pointer block md:hidden"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
+           <IoMdMenu/>
           </div>
           <div className={`menu-items flex-col md:flex-row md:flex md:gap-8 items-center ${isMenuOpen ? 'flex' : 'hidden'} md:flex`}>
             <Link href="/apartments" className="border-b md:border-0">
               <p>Our Apartments</p>
             </Link>
-            <Link href="/#premium" className="border-b md:border-0">
+            <Link href="/#testimonials" className="border-b md:border-0">
               <p>Place in Jaipur</p>
             </Link>
             {/* <Link href="/contact">

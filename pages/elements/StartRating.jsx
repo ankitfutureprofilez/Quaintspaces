@@ -6,7 +6,7 @@ export default function StartRating({value, size}) {
 
   return (
     <>
-    <div className='flex'>
+    <div className='flex gap-0.5'>
         {rateing && rateing.map((r, i)=>{ 
             return <FaStar size={size || '16'} color={ value > i ?  "#ffc107" : "#ccc" } variant="Bold"/>
         })}
