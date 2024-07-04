@@ -54,14 +54,14 @@ export default function Header() {
         </div>
         <div className="nav-bar flex items-center">
           <div className="menu-icon" onClick={toggleMenu}>
-           <IoMdMenu/>
+           <IoMdMenu className="h-6 w-6 cursor-pointer block md:hidden"/>
           </div>
           <div className={`menu-items flex-col md:flex-row md:flex md:gap-8 items-center ${isMenuOpen ? 'flex' : 'hidden'} md:flex`}>
             <Link href="/apartments" className="border-b md:border-0">
               <p>Our Apartments</p>
             </Link>
             <Link href="/#testimonials" className="border-b md:border-0">
-              <p>Place in Jaipur</p>
+              <p>Testimonials</p>
             </Link>
             {/* <Link href="/contact">
               <p>Contact</p>

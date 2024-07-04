@@ -4,7 +4,9 @@
 .logo img {
   max-width: 127px;
 }
-.user-img { height: revert-layer; }
+.user-img {
+  height: revert-layer;
+}
 h3.text-sm.font-medium.desc-property {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -32,7 +34,8 @@ h3.text-sm.font-medium.desc-property {
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 999;
-  max-width: 400px; }
+  max-width: 400px;
+}
 
 .popup .popup-content {
   overflow-y: auto;
@@ -42,7 +45,7 @@ h3.text-sm.font-medium.desc-property {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #ddd; 
+  border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
@@ -52,8 +55,8 @@ h3.text-sm.font-medium.desc-property {
 
 @media (max-width: 768px) {
   .popup {
-    width: 90%; 
-    max-width: 90%; 
+    width: 90%;
+    max-width: 90%;
   }
 
   .nav-bar a {
@@ -64,18 +67,21 @@ h3.text-sm.font-medium.desc-property {
     width: 100%;
     font-size: 13px;
   }
-  
+
   .menu-items {
     gap: inherit;
   }
-  
-  .profile-image img {width: 25px;height: 25px;}
-  
+
+  .profile-image img {
+    width: 25px;
+    height: 25px;
+  }
+
   .profile-image-container.items-center {
-    margin: 0!important;
+    margin: 0 !important;
     font-size: 13px;
   }
-  
+
   .profile-image {
     padding: 6px 0 0;
   }
@@ -91,7 +97,7 @@ h3.text-sm.font-medium.desc-property {
 }
 .explor-btn-link a {
   display: flex;
-  align-items: center; 
+  align-items: center;
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
@@ -103,8 +109,6 @@ h3.text-sm.font-medium.desc-property {
 .explor-btn-link a svg {
   margin-left: 10px;
 }
-
-
 
 .login-signup-btn {
   border-left: 1px solid #404040;
@@ -157,7 +161,16 @@ h3.text-sm.font-medium.desc-property {
 .hero-sec {
   padding: 220px 0 270px;
 }
-.hero-sec h1 { font-family: "NewYork"; font-size: 60px; font-weight: 400; line-height: 70px; letter-spacing: 0em; text-align: left; color: #ffffff; margin-bottom: 20px; }
+.hero-sec h1 {
+  font-family: "NewYork";
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 70px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
 .hero-sec p {
   font-size: 22px;
   font-weight: 400;
@@ -180,7 +193,15 @@ h3.text-sm.font-medium.desc-property {
   padding: 18px;
   border-radius: 30px;
 }
-.luxury-stay h1 { font-family: "NewYork"; font-size: 112px; font-weight: 400; line-height: 160px; letter-spacing: 0em; text-align: center; color: #b29584; }
+.luxury-stay h1 {
+  font-family: "NewYork";
+  font-size: 112px;
+  font-weight: 400;
+  line-height: 160px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #b29584;
+}
 .luxury-stay {
   padding: 60px 0 85px;
 }
@@ -198,7 +219,11 @@ h3.text-sm.font-medium.desc-property {
 .luxury-stay-img .img-box img {
   width: 100%;
 }
-h1.in-jaipur { margin-top: -92px; z-index: 1; position: relative; }
+h1.in-jaipur {
+  margin-top: -92px;
+  z-index: 1;
+  position: relative;
+}
 .luxury-stay p {
   font-size: 18px;
   font-weight: 400;
@@ -359,7 +384,7 @@ footer {
 }
 .banipark-box {
   background: #fff;
-height: 100%;
+  height: 100%;
   /* box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); */
   /* border: 1px solid #c48b58; */
 }
@@ -370,7 +395,9 @@ height: 100%;
 .banipark-box:hover {
   transform: scale(1.02);
 }
-.smart-box .carousel-wrapper { width: 1000px; } 
+.smart-box .carousel-wrapper {
+  width: 1000px;
+}
 .flat-info h4 {
   font-family: "Inter", sans-serif;
   font-size: 13px;
@@ -435,9 +462,33 @@ height: 100%;
   margin-top: 40px;
   margin-bottom: -190px;
 }
-.smart-box .iteam { height: 100%; height: 136px; width: 100%; background: #ffffff00; display: flex !important; align-items: center; justify-content: space-evenly; padding: 0 15px;  }
+.smart-box .iteam {
+  height: 100%;
+  height: 136px;
+  width: 100%;
+  background: #ffffff00;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 15px;
+}
 
-.smart-box .iteam h3 { font-family: "NewYork"; font-size: 24px; font-weight: 400; line-height: 29px; letter-spacing: 0em; text-align: center; color: #3f2a17; background: #fff; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;box-shadow: 0px 50px 40px -30px #b2958433; }
+.smart-box .iteam div {
+  font-family: "NewYork";
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #3f2a17;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 50px 40px -30px #b2958433;
+}
 .visit-us-sec {
   background-blend-mode: color;
   background-color: #00000033;
@@ -611,17 +662,18 @@ button.submint-btn {
   overflow-x: auto;
 }
 
-
-.booking-table,.booking-table tr {
-  border: 1px solid #e7e7e7
+.booking-table,
+.booking-table tr {
+  border: 1px solid #e7e7e7;
 }
 
 .booking-table th {
-  padding: 10px
+  padding: 10px;
 }
 
-.booking-table tbody tr td:first-child,.booking-table thead tr th:first-child {
-  text-align: left
+.booking-table tbody tr td:first-child,
+.booking-table thead tr th:first-child {
+  text-align: left;
 }
 
 .booking-table td {
@@ -631,26 +683,27 @@ button.submint-btn {
   /* color: #3f2a17 */
 }
 
-.booking-table td,.booking-table thead tr th {
-  font-family: Inter,sans-serif;
+.booking-table td,
+.booking-table thead tr th {
+  font-family: Inter, sans-serif;
   font-size: 16px;
   line-height: 22px;
-  letter-spacing: 0
+  letter-spacing: 0;
 }
 
 .booking-table thead tr th {
   font-weight: 500;
-  color: #47311d8f
+  color: #47311d8f;
 }
 
 .booking-table td button {
-  font-family: Inter,sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 15px;
   font-weight: 400;
   line-height: 19px;
   letter-spacing: 0;
   border: none;
-  padding: 8px
+  padding: 8px;
 }
 
 .img-data img {
@@ -668,7 +721,7 @@ button.submint-btn {
 }
 .booking-table td button.text-blue-700 {
   color: #2722ea;
-  background: #efefff
+  background: #efefff;
 }
 
 .booking-table td button.text-blue-700 {
@@ -712,7 +765,7 @@ button.submint-btn {
   text-align: left;
   margin-bottom: 10px;
 }
-.security-text{
+.security-text {
   font-family: "Inter", sans-serif;
   font-size: 18px;
   font-weight: 400;
@@ -922,7 +975,7 @@ button.submint-btn {
   }
   .premium-location-slider button {
     padding: 12px;
-    margin: 10px
+    margin: 10px;
   }
   .nav-bar a {
     padding: 8px 10px;
@@ -944,7 +997,7 @@ button.submint-btn {
   .luxury-stay-img .img-box {
     padding: 0 5px;
   }
-  .smart-box .iteam h3 {
+  .smart-box .iteam div {
     font-size: 18px;
     line-height: 26px;
   }
@@ -1234,7 +1287,10 @@ button.submint-btn {
   .booking-more .px-1 {
     margin-top: 20px !important ;
   }
-  .booking-table td, .booking-table thead tr th {font-size: 14px;  }
+  .booking-table td,
+  .booking-table thead tr th {
+    font-size: 14px;
+  }
 
   .profile-border {
     padding-bottom: 25px !important;
@@ -1258,9 +1314,14 @@ button.submint-btn {
   .signup-form {
     max-height: 100% !important;
   }
-  .swiper-button-next:after, .swiper-button-prev:after {
-     font-size: 14px; }
-     .swiper-button-next, .swiper-button-prev { padding: 18px !IMPORTANT; }
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    font-size: 14px;
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    padding: 18px !important;
+  }
 }
 
 /* Button Group in Apartment Page */
@@ -1289,7 +1350,6 @@ button.submint-btn {
 
   color: #fff;
 }
-
 
 .image-data img {
   width: 100px;
@@ -1344,7 +1404,9 @@ button.submint-btn {
   text-align: left;
   color: #61554e;
 }
-.shadow-custom { box-shadow: 0 0 29px -8px #ccc; }
+.shadow-custom {
+  box-shadow: 0 0 29px -8px #ccc;
+}
 
 .confirm-details .confirm-price {
   color: #00860d;
@@ -1366,7 +1428,6 @@ button.submint-btn {
   color: #61554e;
 }
 
-
 .empty-state {
   display: flex;
   justify-content: center;
@@ -1379,8 +1440,8 @@ button.submint-btn {
 }
 
 .empty-state__icon {
-  margin-top : 20px;
-  display :flex ;
+  margin-top: 20px;
+  display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
@@ -1390,14 +1451,26 @@ button.submint-btn {
   color: #555;
 }
 
-img.profile-cover-image { width: 100%; height: 100%; object-fit: cover;     border-radius: 25px 25px 0 0; }
-.profile-payment { box-shadow: 0 0 25px -10px #ccc; padding: 0; border-radius: 30px; }
-.user-profile-img { height: 50px; width: 50px; object-fit: cover; }
-
+img.profile-cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 25px 25px 0 0;
+}
+.profile-payment {
+  box-shadow: 0 0 25px -10px #ccc;
+  padding: 0;
+  border-radius: 30px;
+}
+.user-profile-img {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+}
 
 .thankspage h2 {
-  font-weight: 300!important;
- font-size:50px;
+  font-weight: 300 !important;
+  font-size: 50px;
 }
 
 .profile-image-container {
@@ -1406,8 +1479,8 @@ img.profile-cover-image { width: 100%; height: 100%; object-fit: cover;     bord
   font-size: 0;
 }
 
-
-h2.text-center.mt-4 {}
+h2.text-center.mt-4 {
+}
 
 .thankspage h2 {
   font-size: 25px;
@@ -1416,7 +1489,7 @@ h2.text-center.mt-4 {}
   margin: 10px 0 10px;
 }
 
-.thankspage  p {
+.thankspage p {
   font-size: 15px;
   color: #0a8645;
 }
@@ -1429,4 +1502,3 @@ h2.text-center.mt-4 {}
 .thankspage .w-full.flex p.text-start.text-black-400.font-bold.font-semibold {
   font-weight: 300;
 }
-
