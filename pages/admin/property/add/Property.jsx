@@ -791,14 +791,26 @@ export default function Property(props) {
       // .property-type:checked + label h2 { color :#000 !important;border-color:#000 !important;}
     `}</style>
       <div className="max-w-4xl overflow-hidden	 w-full space-y-8 m-auto w-full px-2 "></div>
+      {isEdit && !stepdata ? (
+        <> </>
+      ) : (
+        <div className=" w-full space-y-8 w-full p-4 flex justify-end  m-auto w-full px-2">
+          <button
+            onClick={handleSubmit}
+            className="inline-flex mx-2 justify-center py-2 px-8 border-2 border-[#4f46e5] shadow-sm text-lg font-medium rounded-full text-white bg-[#4f46e5] hover:bg-[#fff] hover:text-[#4f46e5]"
+          >
+            {Loading ? "Processing..." : "Save / Exit"}
+          </button>
+        </div>
+      )}
       <div
-        className={`w-full overflow-hidden	 flex items-center justify-center py-4 md:py-8 `}
+        className={`w-full overflow-hidden	 flex items-center justify-center pb-4 md:pb-8 `}
       >
-        <div className="max-w-4xl w-full space-y-8 w-full px-2">
+        <div className="">
           <div
             className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
           >
-            <div className="p-3 sm:p-4 md:p-8 rounded-2xl border ">
+            <div className=" lg:px-[200px] md:px-[100px] ">
 
 
               {/* <div
@@ -840,7 +852,7 @@ export default function Property(props) {
     </div> */}
 
                 {/* {typeHere === "entire_place" ?  <> */}
-                <h2 className="text-xl md:text-2xl capitalize lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+                <h2 className="text-[22] md:text-[26px] capitalize lg:text-[32px] text-center mt-4 font-[500] text-[#222222] md:mb-8 mb-4">
                   Which of these best describes your place?
                 </h2>
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
@@ -849,50 +861,50 @@ export default function Property(props) {
                       <div key={i} className="">
                         <div
                           onClick={() => setPType(p?.value)}
-                          className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType
-                            ? "bg-slate-100 border-slate-700 text-slate-700"
+                          className={`property-type-wrap cursor-pointer p-4 hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px] ${p?.value === PType
+                            ? "bg-[#efefef] shadow-[0_0px_0px_1px_#efefef] text-slate-700"
                             : ""
                             }`}
                         >
                           {p.value === "flat" && (
                             <FaBuilding
-                              style={{ color: "black", fontSize: "40px" }}
+                              style={{ color: "#222222", fontSize: "30px" }}
                             />
                           )}
                           {p.value === "house" && (
                             <FaHome
-                              style={{ color: "black", fontSize: "40px" }}
+                              style={{ color: "#222222", fontSize: "30px" }}
                             />
                           )}
-                          {p.value === "unique_space" && <House size={40} />}
+                          {p.value === "unique_space" && <House size={30} />}
                           {p.value === "guest_house" && (
                             <FaDoorOpen
-                              style={{ color: "black", fontSize: "40px" }}
+                              style={{ color: "#222222", fontSize: "30px" }}
                             />
                           )}
                           {p.value === "hotel" && (
                             <FaHotel
-                              style={{ color: "black", fontSize: "40px" }}
+                              style={{ color: "#222222", fontSize: "30px" }}
                             />
                           )}
                           {p.value === "single_room" && (
                             <FaBed
-                              style={{ color: "black", fontSize: "40px" }}
+                              style={{ color: "#222222", fontSize: "30px" }}
                             />
                           )}
                           {p.value === "boutique_hotel" && (
                             <FaCouch
-                              style={{ color: "black", fontSize: "40px" }}
+                              style={{ color: "#222222", fontSize: "30px" }}
                             />
                           )}
                           {p.value === "breakfast" && (
-                            <MdOutlineFreeBreakfast size={40} />
+                            <MdOutlineFreeBreakfast size={30} />
                           )}
-                          {p.value === "farm" && <FaWarehouse size={40} />}
+                          {p.value === "farm" && <FaWarehouse size={30} />}
                           <h2
-                            className={`md:text-xl text-lg mt-4 font-normal ${p.value === PType
-                              ? "text-gray-600"
-                              : "text-gray-400"
+                            className={`text-[16px] mt-[10px] font-normal ${p.value === PType
+                              ? "text-[#222222]"
+                              : "text-[#222222]"
                               }`}
                           >
                             {p.label}
@@ -906,7 +918,7 @@ export default function Property(props) {
               </div>
               <div className={`${step === 2 ? "" : "display-none"}`}>
                 <div className="mb-8">
-                  <h2 className="text-xl md:text-2xl capitalize lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+                  <h2 className="text-[22] md:text-[26px] capitalize lg:text-[32px] text-center mt-4 font-[500] text-[#222222] md:mb-8 mb-4">
                     Where's your place located?
                   </h2>
                   <p className="text-normal text-center text-gray-500 mb-8">
@@ -1467,58 +1479,50 @@ export default function Property(props) {
                 </div>
               </div>
 
-              <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                <div className="bg-[#c48b58] h-2.5 rounded-full" style={{ width: `${progress}%` }}></div>
-              </div>
-              <div className="pt-2 flex justify-between max-w-[500px] table m-auto">
 
-                {step == 0 ? (
-                  <> </>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={prevStep}
-                    className=" mx-2 py-2 rounded-xl px-8 mt-4 hover:bg-[#c48b58] text-[#c48b58] border-2 border-[#c48b58] hover:border-[#c48b58] hover:text-[#fff]"
-                  >
-                    Back
-                  </button>
-                )}
-
-                {step < 10 ? (
-                  <button
-                    type="button"
-                    onClick={nextStep}
-                    className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#fff] bg-[#c48b58] text-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58]  "
-                  >
-                    Next
-                  </button>
-                ) : (
-                  <button
-                    type="submit"
-                    onClick={handleSubmit}
-                    className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#fff] bg-[#c48b58] text-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58]  "
-                  >
-
-                    {Loading ? "processing.. " : "Submit"}
-                  </button>
-                )}
-              </div>
             </div>
           </div>
         </div>
       </div>
-      {isEdit && !stepdata ? (
-        <> </>
-      ) : (
-        <div className="max-w-4xl w-full space-y-8 w-full px-2  m-auto w-full px-2">
-          <button
-            onClick={handleSubmit}
-            className="inline-flex mx-2 justify-center py-2 px-8 border-2 border-[#c48b58] shadow-sm text-lg font-medium rounded-full text-white bg-[#c48b58] hover:bg-[#fff] hover:text-[#c48b58]"
-          >
-            {Loading ? "Processing..." : "Save / Exit"}
-          </button>
+      <div className="bar-btn-dono fixed w-[calc(100%-260px)] bottom-0 right-[20px] bg-[#fff]">
+        <div className="w-full bg-gray-200  h-[6px] dark:bg-gray-700">
+          <div className="bg-[#4f46e5] h-[6px] " style={{ width: `${progress}%` }}></div>
         </div>
-      )}
+        <div className="p-[9px] flex justify-end  m-auto">
+
+          {step == 0 ? (
+            <> </>
+          ) : (
+            <button
+              type="button"
+              onClick={prevStep}
+              className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#4f46e5] text-[#4f46e5] border-2 border-[#4f46e5] hover:border-[#4f46e5] hover:text-[#fff]"
+            >
+              Back
+            </button>
+          )}
+
+          {step < 10 ? (
+            <button
+              type="button"
+              onClick={nextStep}
+              className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#fff] bg-[#4f46e5] text-[#fff] hover:text-[#4f46e5] border-2 bg-color-[#4f46e5] border-[#4f46e5]  "
+            >
+              Next
+            </button>
+          ) : (
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#fff] bg-[#4f46e5] text-[#fff] hover:text-[#4f46e5] border-2 bg-color-[#4f46e5] border-[#4f46e5]  "
+            >
+
+              {Loading ? "processing.. " : "Submit"}
+            </button>
+          )}
+        </div>
+      </div>
+
     </>
   );
 }

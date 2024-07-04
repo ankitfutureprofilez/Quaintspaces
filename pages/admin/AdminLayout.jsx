@@ -62,7 +62,7 @@ const AdminLayout = ({ children, heading }) => {
                 </div>
                 <div className='w-full overflow-x-auto '>
                     <Navbar heading={heading} />
-                    <div className="pt-20 md:pt-24 px-4" >{children}</div>
+                    <div className="pt-20 md:pt-24 px-4 " >{children}</div>
                 </div>
             </div>
         </motion.div>

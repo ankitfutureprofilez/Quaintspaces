@@ -2,13 +2,13 @@ function Video({step1}) {
     return ( 
         <>
         <div className="">
-        <h1 className="text-base font-sans  font-medium text-black-100 text-left md:font-bold mb-2">
+        <h1 className="text-[18px] font-sans  font-medium text-[#222222] text-left md:font-bold mb-2">
         {step1?.title}
         </h1>
-        <h2 classanme="text-3xl  font-sans text-left text-gray-600 mt-4 font-semibold md:font-bold mb-8">
+        <h2 classanme="text-[44px] font-sans  font-medium text-[#222222] text-left md:font-[500] mb-4">
           {step1?.description}
         </h2>
-        <p classanme="text-lg font-sans text-left text-gray-600  font-normal md:font-bold mb-2">
+        <p classanme="text-[16px] font-sans  font-medium text-[#222222] text-left md:font-bold mb-2">
        {step1?.instructions}
         </p>
       </div>
