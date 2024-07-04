@@ -46,13 +46,12 @@ export default function Edit() {
         <p>Loading...</p>
       ) : (
         
-        <h2>Hello</h2>
-        // <Property
-        //   fetchProperties={() => fetchProperty(slug)}
-        //   isEdit={true}
-        //   stepdata={false}
-        //   p={record.data}
-        // />
+        <Property
+          fetchProperties={() => fetchProperty(slug)}
+          isEdit={true}
+          stepdata={false}
+          p={record.data}
+        />
       )}
     </>
   );
