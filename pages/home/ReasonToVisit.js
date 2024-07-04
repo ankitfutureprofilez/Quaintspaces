@@ -48,6 +48,7 @@ export default function ReasonToVisit() {
         layout="fill"
         objectFit="cover"
         style={{ zIndex: -1 }}
+        
         loading="lazy"
       />
       <div className="container capitalize mx-auto relative z-10">
