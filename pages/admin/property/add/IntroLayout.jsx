@@ -2,7 +2,7 @@ function IntroLayout() {
     return (<>
 
         <div className="introdution h-[calc(100vh-11rem)]">
-            <div className="">
+            <div className=" flex h-full items-center">
                 <div className="" style={{ transition: "opacity 0.6s" }}>
                     <div className="">
                         <span style={{ fontSize: 0 }}></span>
