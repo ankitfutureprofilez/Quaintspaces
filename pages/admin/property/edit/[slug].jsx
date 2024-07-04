@@ -11,6 +11,7 @@ export default function Edit() {
     loading: true,
     data: {},
   });
+  console.log("record",record)
 
   const fetchProperty = async (slug) => {
     if (slug) {
