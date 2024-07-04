@@ -97,6 +97,7 @@ const Listings = () => {
               setHeaderSearch(false);
             }}
           ></div>
+          
         )}
         {/* {wishlist && <Wishlist setWishlist={setWishlist} />} */}
       </Layout>
