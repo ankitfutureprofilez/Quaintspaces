@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import amenitiesList from "../../../../aminites.json";
-import Aminiteisdata from "../../../../oldcod.json";
 import Listing from "../../api/Listing";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
