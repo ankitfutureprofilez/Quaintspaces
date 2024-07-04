@@ -45,7 +45,6 @@ export default function Edit() {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        
         <Property
           fetchProperties={() => fetchProperty(slug)}
           isEdit={true}
