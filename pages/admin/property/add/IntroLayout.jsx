@@ -1,7 +1,7 @@
 function IntroLayout() {
     return (<>
 
-        <div className="introdution">
+        <div className="introdution h-[calc(100vh-11rem)]">
             <div className="">
                 <div className="" style={{ transition: "opacity 0.6s" }}>
                     <div className="">
