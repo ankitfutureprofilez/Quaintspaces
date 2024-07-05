@@ -30,94 +30,94 @@ const amenitiesData = {
     {
       value: "wifi",
       title: "Wifi",
-      icons: <FaWifi style={{ color: "black", fontSize: "40px" }} />
+      icons: <FaWifi style={{ color: "#222222", fontSize: "30px" }} />
     },
     {
       value: "tv",
       title: "TV",
-      icons: <PiTelevision style={{ color: "black", fontSize: "40px" }} />
+      icons: <PiTelevision style={{ color: "#222222", fontSize: "30px" }} />
     },
     {
       value: "kitchen",
       title: "Kitchen",
-      icons: <GiKitchenKnives style={{ color: "black", fontSize: "40px" }} />
+      icons: <GiKitchenKnives style={{ color: "#222222", fontSize: "30px" }} />
     },
     {
       value: "washing_machine",
       title: "Washing machine",
-      icons: <PiWashingMachine style={{ color: "black", fontSize: "40px" }} />,
+      icons: <PiWashingMachine style={{ color: "#222222", fontSize: "30px" }} />,
     },
     {
       value: "free_parking_on_premises",
       title: "Free parking ",
-      icons: <FaParking style={{ color: "black", fontSize: "40px" }} />,
+      icons: <FaParking style={{ color: "#222222", fontSize: "30px" }} />,
     },
     {
       value: "paid_parking_on_premises",
       title: "Paid parking ",
-      icons: <MdOutlineLocalParking style={{ color: "black", fontSize: "40px" }} />,
+      icons: <MdOutlineLocalParking style={{ color: "#222222", fontSize: "30px" }} />,
     },
     {
       value: "air_conditioning",
       title: "Air conditioning",
-      icons: <TbAirConditioning style={{ color: "black", fontSize: "40px" }} />,
+      icons: <TbAirConditioning style={{ color: "#222222", fontSize: "30px" }} />,
     },
     {
       value: "dedicated_workspace",
       title: "Dedicated workspace",
-      icons: <BsPersonWorkspace style={{ color: "black", fontSize: "40px" }} />,
+      icons: <BsPersonWorkspace style={{ color: "#222222", fontSize: "30px" }} />,
     },
   ],
   standout_amenity: [
-    { value: "pool", title: "Pool", icons: <MdPool style={{ color: "black", fontSize: "40px" }} /> },
-    { value: "hot_tub", title: "Hot tub", icons: <FaHotTubPerson style={{ color: "black", fontSize: "40px" }} /> },
-    { value: "patio", title: "Patio", icons: <BiChair style={{ color: "black", fontSize: "40px" }} /> },
-    { value: "bbq_grill", title: "BBQ grill", icons: <MdOutdoorGrill style={{ color: "black", fontSize: "40px" }} /> },
+    { value: "pool", title: "Pool", icons: <MdPool style={{ color: "#222222", fontSize: "30px" }} /> },
+    { value: "hot_tub", title: "Hot tub", icons: <FaHotTubPerson style={{ color: "#222222", fontSize: "30px" }} /> },
+    { value: "patio", title: "Patio", icons: <BiChair style={{ color: "#222222", fontSize: "30px" }} /> },
+    { value: "bbq_grill", title: "BBQ grill", icons: <MdOutdoorGrill style={{ color: "#222222", fontSize: "30px" }} /> },
     {
       value: "outdoor_dining_area",
       title: "Outdoor dining area",
-      icons: <PiPicnicTableThin style={{ color: "black", fontSize: "40px" }} />,
+      icons: <PiPicnicTableThin style={{ color: "#222222", fontSize: "30px" }} />,
     },
-    { value: "firepit", title: "Firepit", icons: <FaFireBurner style={{ color: "black", fontSize: "40px" }} /> },
-    { value: "pool_table", title: "Pool table", icons: <GiPoolTableCorner style={{ color: "black", fontSize: "40px" }} /> },
+    { value: "firepit", title: "Firepit", icons: <FaFireBurner style={{ color: "#222222", fontSize: "30px" }} /> },
+    { value: "pool_table", title: "Pool table", icons: <GiPoolTableCorner style={{ color: "#222222", fontSize: "30px" }} /> },
     {
       value: "indoor_fireplace",
       title: "Indoor fireplace",
-      icons: <MdOutlineFireplace style={{ color: "black", fontSize: "40px" }} />,
+      icons: <MdOutlineFireplace style={{ color: "#222222", fontSize: "30px" }} />,
     },
-    { value: "piano", title: "Piano", icons: <VscPiano style={{ color: "black", fontSize: "40px" }} /> },
+    { value: "piano", title: "Piano", icons: <VscPiano style={{ color: "#222222", fontSize: "30px" }} /> },
     {
       value: "exercise_equipment",
       title: "Exercise equipment",
-      icons: <CgGym style={{ color: "black", fontSize: "40px" }} />,
+      icons: <CgGym style={{ color: "#222222", fontSize: "30px" }} />,
     },
     {
       value: "lake_access",
       title: "Lake access",
-      icons: <FaArrowUpFromWaterPump style={{ color: "black", fontSize: "40px" }} />,
+      icons: <FaArrowUpFromWaterPump style={{ color: "#222222", fontSize: "30px" }} />,
     },
-    { value: "beach_access", title: "Beach access", icons: <MdBeachAccess style={{ color: "black", fontSize: "40px" }} /> },
-    { value: "ski_in_out", title: "Ski-in/out", icons: <FaPersonSkiingNordic style={{ color: "black", fontSize: "40px" }} /> },
-    { value: "hair_dryer", title: "Hair dryer", icons: <PiHairDryerBold style={{ color: "black", fontSize: "40px" }} /> },
-    { value: "outdoor_shower", title: "Outdoor shower", icons: <FaShower style={{ color: "black", fontSize: "40px" }} /> },
+    { value: "beach_access", title: "Beach access", icons: <MdBeachAccess style={{ color: "#222222", fontSize: "30px" }} /> },
+    { value: "ski_in_out", title: "Ski-in/out", icons: <FaPersonSkiingNordic style={{ color: "#222222", fontSize: "30px" }} /> },
+    { value: "hair_dryer", title: "Hair dryer", icons: <PiHairDryerBold style={{ color: "#222222", fontSize: "30px" }} /> },
+    { value: "outdoor_shower", title: "Outdoor shower", icons: <FaShower style={{ color: "#222222", fontSize: "30px" }} /> },
   ],
 
   safety_amenity: [
-    { value: "smoke_alarm", title: "Smoke alarm", icons: <BiSolidAlarmExclamation style={{ color: "black", fontSize: "40px" }} /> },
+    { value: "smoke_alarm", title: "Smoke alarm", icons: <BiSolidAlarmExclamation style={{ color: "#222222", fontSize: "30px" }} /> },
     {
       value: "first_aid_kit",
       title: "First aid kit",
-      icons: <RiFirstAidKitFill style={{ color: "black", fontSize: "40px" }} />,
+      icons: <RiFirstAidKitFill style={{ color: "#222222", fontSize: "30px" }} />,
     },
     {
       value: "fire_extinguisher",
       title: "Fire extinguisher",
-      icons: <PiFireExtinguisherThin style={{ color: "black", fontSize: "40px" }} />,
+      icons: <PiFireExtinguisherThin style={{ color: "#222222", fontSize: "30px" }} />,
     },
     {
       value: "carbon_monoxide_alarm",
       title: "Carbon monoxide alarm",
-      icons: <TbBrandCarbon style={{ color: "black", fontSize: "40px" }} />,
+      icons: <TbBrandCarbon style={{ color: "#222222", fontSize: "30px" }} />,
     },
   ],
 
@@ -179,14 +179,14 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
             <div key={i} className="">
               <div
                 onClick={() => toggleSelectedAmenity(amenity?.value)}
-                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${selectedAmenity?.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
+                className={`property-type-wrap cursor-pointer p-4 hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px]  ${selectedAmenity?.includes(amenity.value) ? "bg-[#efefef] shadow-[0_0px_0px_1px_#efefef] text-slate-700 " : ""
                   }`}
               >
                 {amenity?.icons}
                 <h2
-                  className={`text-lg mt-4 font-bold text-left  capitalize ${selectedAmenity?.includes(amenity.value)
-                    ? "text-slate-700"
-                    : "text-slate-700"
+                  className={`text-[16px] mt-[10px] font-normal capitalize ${selectedAmenity?.includes(amenity.value)
+                    ? "text-[#222222]"
+                    : "text-[#222222]"
                     }`}
                 >
                   {amenity.title}
@@ -206,14 +206,14 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
             <div key={i} className="">
               <div
                 onClick={() => togglestandoutAmenity(amenity.value)}
-                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${standoutAmenity?.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
+                className={`property-type-wrap cursor-pointer p-4 hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px] ${standoutAmenity?.includes(amenity.value) ? "bg-[#efefef] shadow-[0_0px_0px_1px_#efefef] text-slate-700" : ""
                   }`}
               >
                 {amenity.icons}
                 <h2
-                  className={`text-lg mt-4 font-bold text-left  capitalize ${standoutAmenity?.includes(amenity.value)
-                    ? "text-white-300"
-                    : "text-white-600"
+                  className={`text-[16px] mt-[10px] font-normal  capitalize ${standoutAmenity?.includes(amenity.value)
+                    ? "text-[#222222]"
+                    : "text-[#222222]"
                     }`}
                 >
                   {amenity.title}
@@ -233,14 +233,14 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
             <div key={i} className="">
               <div
                 onClick={() => toggleAmenity(amenity.value)}
-                className={`property-type-wrap cursor-pointer text-left p-4 border rounded-xl h-full ${Amenity?.includes(amenity.value) ? "bg-slate-100 border-slate-700 text-slate-700 h-full " : ""
+                className={`property-type-wrap cursor-pointer p-4 hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px]  ${Amenity?.includes(amenity.value) ? "bg-[#efefef] shadow-[0_0px_0px_1px_#efefef] text-slate-700 " : ""
                   }`}
               >
                 {amenity.icons}
                 <h2
-                  className={`text-lg mt-4 font-bold text-left  capitalize ${Amenity?.includes(amenity.value)
-                    ? "text-white-300"
-                    : "text-white-600"
+                  className={`text-[16px] mt-[10px] font-normal capitalize ${Amenity?.includes(amenity.value)
+                    ? "text-[#222222]"
+                    : "text-[#222222]"
                     }`}
                 >
                   {amenity.title}
