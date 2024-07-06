@@ -804,13 +804,13 @@ export default function Property(props) {
         </div>
       )}
       <div
-        className={`w-full overflow-hidden	 flex items-center justify-center pb-4 md:pb-8 `}
+        className={`w-full overflow-hidden	min-h-[calc(100vh-201px)] flex items-center justify-center pb-4 md:pb-12 `}
       >
         <div className="">
           <div
             className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
           >
-            <div className=" lg:px-[200px] md:px-[100px] ">
+            <div className=" xl:px-[200px] lg:px-[100px] ">
 
 
               {/* <div
@@ -852,7 +852,7 @@ export default function Property(props) {
     </div> */}
 
                 {/* {typeHere === "entire_place" ?  <> */}
-                <h2 className="text-[22] md:text-[26px] capitalize lg:text-[32px] text-center mt-4 font-[500] text-[#222222] md:mb-8 mb-4">
+                <h2 className="text-[22] md:text-[26px] capitalize lg:text-[32px] text-center mt-4 font-[500] text-[#222222] mb-4">
                   Which of these best describes your place?
                 </h2>
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
@@ -918,7 +918,7 @@ export default function Property(props) {
               </div>
               <div className={`${step === 2 ? "" : "display-none"}`}>
                 <div className="mb-8">
-                  <h2 className="text-[22] md:text-[26px] capitalize lg:text-[32px] text-center mt-4 font-[500] text-[#222222] md:mb-8 mb-4">
+                  <h2 className="text-[22] md:text-[26px] capitalize lg:text-[32px] text-center mt-4 font-[500] text-[#222222] mb-4">
                     Where's your place located?
                   </h2>
                   <p className="text-normal text-center text-gray-500 mb-8">
@@ -929,7 +929,7 @@ export default function Property(props) {
                     <p>{address?.location}</p>
                     <div class="w-full mt-2 md:mt-4">
                       <button
-                        className="btn sort w-full"
+                        className="btn  w-full border font-[500] border-[#4f46e5] text-[#4f46e5]"
                         onClick={fetchLocationData}
                       >
                         {loadinglocation ? ".... " : "Use Current Location"}
@@ -1009,7 +1009,7 @@ export default function Property(props) {
                 <div>
                   {address?.location && (
                     <>
-                      <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+                      <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold mb-4">
                         Is the pin in the right spot?
                       </h2>
                       <p className="text-normal capitalize text-center text-gray-500 mb-8 mt-4">
@@ -1072,7 +1072,7 @@ export default function Property(props) {
                 className={`${step === 6 ? "" : "display-none"
                   } max-w-[600px] m-auto`}
               >
-                <h2 className="text-xl md:text-2xl  capitalize lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+                <h2 className="text-xl md:text-2xl  capitalize lg:text-3xl text-center mt-4 font-bold  mb-4">
                   Add some photos of your{" "}
                   {PType ? PType.replace("_", " ") : "house"}
                 </h2>
@@ -1121,10 +1121,10 @@ export default function Property(props) {
                       images.length > 0 && (
                         <>
                           <div>
-                            <p>
+                            <h3 className="text-[22px]  capitalize text-center mt-4 font-bold  ">
                               Ta-da! How does this look?
-                            </p>
-                            <p>
+                            </h3>
+                            <p className="mb-4 text-[16px] text-[#222222]">
                               Drag to reorder
                             </p>
                           </div>
@@ -1331,7 +1331,7 @@ export default function Property(props) {
                   } max-w-[600px] m-auto`}
               >
                 <div>
-                  <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+                  <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold mb-4">
                     Now, let's give your house a title
                   </h2>
                   <p>
@@ -1385,7 +1385,7 @@ export default function Property(props) {
                 className={`${step === 8 ? "" : "display-none"
                   } max-w-[600px] m-auto`}
               >
-                <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+                <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold mb-4">
                   Create your description
                 </h2>
                 <p>
@@ -1488,7 +1488,7 @@ export default function Property(props) {
         <div className="w-full bg-gray-200  h-[6px] dark:bg-gray-700">
           <div className="bg-[#4f46e5] h-[6px] " style={{ width: `${progress}%` }}></div>
         </div>
-        <div className="p-[9px] flex justify-end  m-auto">
+        <div className="p-[9px] flex justify-between m-auto">
 
           {step == 0 ? (
             <> </>
