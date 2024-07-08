@@ -27,20 +27,9 @@ export default function ReasonToVisit() {
     { name: "Pool / Jacuzzi", icon: <MdOutlinePool /> },
     { name: "TV", icon: <MdTv/> }
   ];
-  const settings = {
-    // dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    cssEase: "linear",
-    arrows: false, 
-  };
 
   return (
-    <div className="visit-us-sec relative">
+    <div className="visit-us-sec relative ">
       <div className="container capitalize mx-auto relative z-10">
         <h2>Amenities we offer</h2>
         <div className="smart-box">
