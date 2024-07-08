@@ -10,27 +10,29 @@ export default function Footer() {
       <div className="container mx-auto flex flex-col justify-between items-center">
         {/* Logo and Brand */}
         <div className="footer-menu">
-          <div className="flex items-left space-x-4">
-            <Link href="/">
-              <FaFacebook color={"#c48b58"} size={28} />
+          <div className="w-4/12">
+              <h3 className="menu-footer mb-3">CONTACT US</h3>
+              <p><Link href="gg"> info@airbnb.com</Link></p>
+              <p><Link href="gg"> 9988776655</Link></p>
+          </div>
+          <nav className="w-4/12">
+          <p className="menu-footer ">
+            <Link href="/terms">
+              TERMS & CONDITION
+            </Link></p> <p className="menu-footer">
+            <Link href="/policy">
+             PRIVACY POLICY
+            </Link></p>
+          </nav>
+          <div className="w-4/12">
+            <h3 className="menu-footer mb-3">Follow US</h3>
+            <p className="flex"><Link href="/">
+              <FaFacebook color={"#c48b58"} size={28} className="mr-3" />
             </Link>
             <Link href="https://www.instagram.com/quaintspacesjaipur">
               <FaInstagram color={"#c48b58"} size={28} />
-            </Link>
+            </Link></p>
           </div>
-
-          {/* Navigation Links */}
-          <nav className="ml-auto flex space-x-4">
-            <Link href="/contact">
-              <p className="menu-footer">CONTACT US</p>
-            </Link>
-            <Link href="/terms">
-              <p className="menu-footer">TERMS & CONDITION</p>
-            </Link>
-            <Link href="/policy">
-              <p className="menu-footer">PRIVACY POLICY</p>
-            </Link>
-          </nav>
         </div>
 
         <div className="text-center copy-right">
