@@ -44,9 +44,7 @@ export default function ReasonToVisit() {
       <div className="container capitalize mx-auto relative z-10">
         <h2>Amenities we offer</h2>
         <div className="smart-box">
-          <div className="carousel-wrapper">
-          <Slider {...settings}>
-              {reasons.map((reason, index) => (
+        {reasons.map((reason, index) => (
                 <div className="iteam" key={index} >
                   <div className="flex flex-col gap-2">
                     {reason?.icon}
@@ -54,8 +52,6 @@ export default function ReasonToVisit() {
                     </div>
                 </div>
               ))}
-            </Slider>
-          </div>
         </div>
       </div>
     </div>
