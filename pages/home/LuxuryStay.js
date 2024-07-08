@@ -15,7 +15,7 @@ export default function LuxuryStay() {
   return (
     <div className="luxury-stay">
       <div className="container mx-auto">
-        <h1>Luxury Stays</h1>
+        <h1>Opulent </h1>
         <div className="luxury-stay-img">
           <div className="img-box" data-aos="fade-right">
             <Image
@@ -47,7 +47,7 @@ export default function LuxuryStay() {
             />
           </div>
         </div>
-        <h1 className="in-jaipur">Oppulent Escapes</h1>
+        <h1 className="in-jaipur"> Escapes</h1>
         <p>
           Stay in the heart of Jaipur's pink city, our modern, well-appointed
           apartments, perfect for business or leisure. We go the extra mile to

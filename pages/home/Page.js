@@ -55,7 +55,7 @@ export default function MainPage() {
     <Layout>
       <div>
         <Head>
-          <title>QS Jaipur</title>
+          <title>Quaintspaces </title>
         </Head>
         <PwaFooter />
         <div className="bg-cover bg-center nav-header-sec relative image-wrapper">

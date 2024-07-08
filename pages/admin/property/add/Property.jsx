@@ -282,7 +282,7 @@ export default function Property(props) {
     wifiPassword: property_rule?.wifi_password || "",
     discount: discount_offer || "",
     customLink: custom_link || "",
-    selectedOption: "instant"
+    selectedOption: "0"
   });
 
   const copyToClipboard = () => {
@@ -309,126 +309,97 @@ export default function Property(props) {
     const option = parseInt(event.target.value, 10);
     setSelectedOption(selectedOption === option ? "" : option);
   };
-  const [selectbooking, setSelectedbooking] = useState('instant');
+  const [selectbooking, setSelectedbooking] = useState(0);
   const handleBookingChange = (option) => {
     setSelectedbooking(option);
   };
+
+  const [selecbhktype, setselecbhktype] = useState(1);
+
+  const handleselecbhktype = (option) => {
+    setselecbhktype(option);
+  };
+
   const prevStep = () => setStep((prev) => prev - 1);
   const nextStep = async () => {
-    // if (step === 0 && PType == "") {
-    //   toast.error("Please choose a property type which one you want to list.");
-    // }
-    // if (
-    //   step === 1 &&
-    //   (item?.name === "" || item?.price === "" || item?.about === "")
-    // ) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (
-    //   step === 1 && item?.price != "" && item?.price < 0) {
-    //   toast.error(`Invalid Price`);
-    //   return false;
-    // }
-    // if (
-    //   step === 1 &&
-    //   (!item?.about ||
-    //     item?.about?.trim()?.length === 0 ||
-    //     item?.about?.length < 100)
-    // ) {
-    //   toast.error(
-    //     "Property description is too short. Description should be a minimum of 100 words."
-    //   );
-    //   return false;
-    // }
-    // if (
-    //   step === 2 &&
-    //   (address?.pin === "" ||
-    //     address?.pin?.length < 5 ||
-    //     address?.state === "" ||
-    //     address?.city === "" ||
-    //     address?.street_address === "" ||
-    //     address?.district === "")
-    // ) {
-    //   toast.error(`Incomplete address. Please enter complete address.`);
-    //   return false;
-    // }
-    // if (
-    //   step === 3 &&
-    //   (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")
-    // ) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (
-    //   step == 4 &&
-    //   selectedAmenity &&
-    //   Amenity &&
-    //   standoutAmenity &&
-    //   selectedAmenity.length + Amenity.length + standoutAmenity.length < 4
-    // ) {
-    //   toast.error("Please choose at least 4 amenities.");
-    //   return false;
-    // }
+    if (step === 1 && PType == "") {
+      toast.error("Please choose a property type which one you want to list.");
+    }
+    if ( step === 2 && (address?.pin === "" ||
+        address?.pin?.length < 5 ||
+        address?.state === "" ||
+        address?.city === "" ||
+        address?.street_address === "" ||
+        address?.district === "")
+    ) {
+      toast.error(`Incomplete address. Please enter complete address.`);
+      return false;
+    }
+    if ( step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
 
-    // if (!isEdit && step === 5 && images?.length < 5) {
+    if ( step == 5 &&selectedAmenity &&    Amenity &&
+      standoutAmenity &&
+      selectedAmenity.length + Amenity.length + standoutAmenity.length < 4
+    ) {
+      toast.error("Please choose at least 4 amenities.");
+      return false;
+    }
+    // if (!isEdit && step === 6 && images?.length < 5) {
     //   toast.error("Please select at least five images.");
     //   return false;
     // }
-    // if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
-    //   toast.error("Please select at least five images.");
-    //   return false;
-    // }
-    // if (
-    //   step === 6 &&
-    //   (checkout === " " ||
-    //     checkinStart === " " ||
-    //     selectedOption === "" ||
-    //     checkinEnd === "" ||
-    //     item?.cleaning === "" ||
-    //     item?.extra_guest === "" ||
-    //     item?.pet === "")
-    // ) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (step === 7 && longTermPolicy === null && selectedPolicy === null) {
-    //   toast.error(`At least one field is required.`);
-    //   return false;
-    // }
-    // if (
-    //   step === 8 &&
-    //   (item?.additonalrule === "" ||
-    //     petsAllowed === " " ||
-    //     smokingAllowed === " " ||
-    //     eventsAllowed === "" ||
-    //     quietHours === "" ||
-    //     PhotographyAllowed === "")
-    // ) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
-    // if (
-    //   step === 9 &&
-    //   (item?.Direction === "" ||
-    //     item?.wifi === " " ||
-    //     item?.wifiPassword === " " ||
-    //     item?.housemanual === " ")
-    // ) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
+    if (isEdit && step === 6 && images?.length + imageproperty?.length < 5) {
+      toast.error("Please select at least five images.");
+      return false;
+    }
 
-    // if (
-    //   step === 10 &&
-    //   (item?.customLink === "" ||
-    //     item?.selectedInstruction === " " ||
-    //     selectedMethod === " ")
-    // ) {
-    //   toast.error(`All fields are required.`);
-    //   return false;
-    // }
+    if (
+      step === 7 &&
+      (!item?.name ||
+        item?.name?.trim()?.length === 0 ||
+        item?.name?.length < 5)
+    ) {
+      toast.error(
+        "Property title is too short. title should be a minimum of 5 words."
+      );
+      return false;
+    }
 
+    if (
+      step === 8 &&
+      (!item?.about ||
+        item?.about?.trim()?.length === 0 ||
+        item?.about?.length < 100)
+    ) {
+      toast.error(
+        "Property description is too short. Description should be a minimum of 100 words."
+      );
+      return false;
+    }
+
+    if (
+      step === 10 &&
+      (item?.cleaning === "" || item?.extra_guest === "" || item?.about === "")
+    ) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (
+      step === 10 && item?.price != "" && item?.price < 0) {
+      toast.error(`Invalid Price`);
+      return false;
+    }
+
+    if (
+      step === 11 &&
+      (selectbooking === "" || selecbhktype === "")
+    ) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
     setStep((prev) => prev + 1);
   };
   const [locationupdate, setLocationupdate] = useState([]);
@@ -632,7 +603,7 @@ export default function Property(props) {
         console.error("Error:", error);
       });
   };
-  const progress = step * 10;
+  const progress = step * 9;
   const baseurl = "https://quant-stay.vercel.app/properties/";
   const fulllink = baseurl + item?.customLink;
 
@@ -655,41 +626,16 @@ export default function Property(props) {
     formData.append("bathrooms", Bathrooms);
     formData.append("guests", Guests);
     formData.append("beds", Beds);
-    formData.append("custom_link", item?.customLink);
+    formData.append("is_instant_booking", selectbooking);
+    formData.append("bhk_type ", selecbhktype)
     formData.append("address", JSON.stringify(address));
     formData.append("amenities", selectedAmenity);
     formData.append("standout_amenity", standoutAmenity);
     formData.append("safety_amenity", Amenity);
     formData.append("cleaning_fee", item?.cleaning);
     formData.append("extra_guest_fee", item?.extra_guest);
-    formData.append("pet_fee", item?.pet);
-    formData.append("flexible_check_in", checkinEnd);
-    formData.append("check_in", checkinStart);
-    formData.append("check_out", checkout);
-    formData.append("status", selectedOption);
     formData.append("step_completed", step);
     formData.append("standard_policy", selectedPolicy);
-    formData.append("wifi_username", item?.wifi);
-    formData.append("wifi_password", item?.wifiPassword);
-    formData.append("long_term_policy", longTermPolicy);
-    formData.append("house_manuals", item?.housemanual);
-    formData.append("pet_allowed", petsAllowed);
-    formData.append("events_allowed", eventsAllowed);
-    formData.append("direction", item?.Direction);
-    formData.append("smoking_allowed", smokingAllowed);
-    formData.append("quiet_hours_allowed", quietHours);
-    formData.append("photography_allowed", PhotographyAllowed);
-    formData.append("additional_rules", item?.additonalrule);
-    formData.append("quite_hours_in_time", checkinquet);
-    formData.append("quite_hours_out_time", checkoutquet);
-    formData.append("check_in_description", checkdescrtion);
-    formData.append("check_in_method", selectedMethod);
-    formData.append(
-      "check_out_instruction",
-      JSON.stringify(checkoutInstructions)
-    );
-    formData.append("discount_offer", item?.discount);
-
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
@@ -1362,24 +1308,6 @@ export default function Property(props) {
                     </div>
                   </div>
                 </div>
-                <div className="relative mt-2 md:mt-4 text-sm font-medium text-gray-700">
-                  <h2>Now, set your price
-                  </h2>
-                  <p>
-                    You can change it anytime.
-                  </p>
-                  <input
-                    required
-                    type="number"
-                    name="price"
-                    placeholder="Property Price Per Night"
-                    id="name"
-                    className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
-                    min="0"
-                    value={item?.price}
-                    onChange={handleInputChange}
-                  />
-                </div>
               </div>
               <div
                 className={`${step === 8 ? "" : "display-none"
@@ -1425,10 +1353,99 @@ export default function Property(props) {
                 <Video step1={Step1?.step3} />
               </div>
               <div className={`${step === 10 ? "" : "display-none"
-                }  m-auto table w-full`}
-                style={{ display: "flex", alignItems: "center" }}
+                }  m-auto table w-full`} >
+                <div className="flex items-center justify-center min-h-screen">
+                  <div className="w-full max-w-md">
+                    <div className="space-y-6">
+                      <div className="text-center">
+                        <div style={{ animationDelay: '400ms' }}>
+                          <h1 className="text-3xl font-bold" tabIndex="-1">Now, set your price</h1>
+                          <div>
+                            <span className="text-gray-500">You can change it anytime.</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-6">
+                        <div style={{ animationDelay: '449.741ms' }}>
+                          <div className="relative" style={{ height: 'auto', visibility: 'var(--view-transition_visibility, visible)', width: '100%' }}>
+                            <div className="text-4xl font-bold" style={{ lineHeight: '86.5981px', letterSpacing: '-2.07663px' }}>
+                              <div className="flex items-center">
+                                <span>₹</span>
+                                <span className="ml-1" aria-hidden="true">{item?.price}</span>
+                                <span className="text-xl font-medium">Price per night</span>
+
+                              </div>
+                              <div>
+                                <label className="block text-left" htmlFor="lys-base-price-input">
+                                  <div className="mt-2 flex items-center">
+
+                                    <input
+                                      data-testid="lys-base-price-input"
+                                      inputMode="numeric"
+                                      className="ml-2 p-2 border border-gray-300 rounded"
+                                      id="lys-base-price-input"
+                                      autoComplete="off"
+                                      type="number"
+                                      aria-describedby=""
+                                      name="price"
+                                      value={item?.price}
+                                      onChange={handleInputChange}
+                                    />
+                                  </div>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div className="">
+                  <h2 className="text-xl md:text-2xl lg:text-3xl capitalize text-center mt-4 font-bold md:mb-8 mb-4">
+                    Please enter the following details
+                  </h2>
+
+                  <div className="flex flex- flex-wrap justify-between mt-4 text-sm font-medium text-gray-700 ">
+                    <div className="w-full px-1 md:w-1/3 ">
+                      <div className="flex flex-col w-full md:mb-0 mb-2">
+                        <label>Cleaning Fees ( Per Day Fees) </label>
+                        <input
+                          required
+                          type="number"
+                          name="cleaning"
+                          placeholder="Cleaning Fees Per Day"
+                          id="cleaning"
+                          className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                          value={item?.cleaning}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="w-full px-1 md:w-1/3">
+                      <div className="flex flex-col w-full md:mb-0 mb-2">
+                        <label>Extra Guest Fees (Per Guest)</label>
+                        <input
+                          required
+                          type="number"
+                          name="extra_guest"
+                          placeholder="Extra Guest Fees per Guest"
+                          id="guest"
+                          className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                          value={item?.extra_guest}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className={`${step === 11 ? "" : "display-none"} m-auto w-full`}
+                style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
               >
-                <div className="transition-opacity duration-600">
+                <div className="transition-opacity duration-600 mb-8">
                   <div className="space-y-4">
                     <div className="flex flex-col items-start space-y-2" style={{ animationDelay: '400ms' }}>
                       <h1 className="text-2xl font-bold" tabIndex="-1">Decide how you’ll confirm reservations</h1>
@@ -1437,14 +1454,14 @@ export default function Property(props) {
                       <div className="flex flex-col space-y-4" role="radiogroup">
                         <div className="flex items-center space-x-4" style={{ '--list_animation-delay': '400ms' }}>
                           <button
-                            className={`flex items-center space-x-4 p-4 border rounded-lg ${selectbooking === 'instant' ? 'border-black' : 'border-gray-300'}`}
+                            className={`flex items-center space-x-4 p-4 border rounded-lg ${selectbooking === 0 ? 'border-black' : 'border-gray-300'}`}
                             type="button"
                             role="radio"
-                            aria-checked={selectbooking === 'instant'}
-                            onClick={() => handleBookingChange('instant')}
+                            aria-checked={selectbooking === 0}
+                            onClick={() => handleBookingChange(0)}
                           >
                             <div className="flex flex-col space-y-1">
-                              <h2 className="text-lg font-semibold">Use Instant Book</h2>
+                              <h2 className="text-lg font-semibold">Use instant Book</h2>
                               <div className="text-gray-600">Guests can book automatically.</div>
                             </div>
                             <div className="flex-shrink-0">
@@ -1456,11 +1473,11 @@ export default function Property(props) {
                         </div>
                         <div className="flex items-center space-x-4" style={{ '--list_animation-delay': '449.7412007086385ms' }}>
                           <button
-                            className={`flex items-center space-x-4 p-4 border rounded-lg ${selectbooking === 'request' ? 'border-black' : 'border-gray-300'}`}
+                            className={`flex items-center space-x-4 p-4 border rounded-lg ${selectbooking === 1 ? 'border-black' : 'border-gray-300'}`}
                             type="button"
                             role="radio"
-                            aria-checked={selectbooking === 'request'}
-                            onClick={() => handleBookingChange('request')}
+                            aria-checked={selectbooking === 1}
+                            onClick={() => handleBookingChange(1)}
                           >
                             <div className="flex flex-col space-y-1">
                               <h2 className="text-lg font-semibold">Approve or decline requests</h2>
@@ -1475,6 +1492,25 @@ export default function Property(props) {
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div className="flex flex-col space-y-2">
+                  <div className="flex flex-col items-start space-y-2" style={{ animationDelay: '400ms' }}>
+                    <h1 className="text-2xl font-bold" tabIndex="-1">Select Proerty Type (BHK)</h1>
+                  </div>
+                  <div className="flex space-x-4">
+                    {[1, 2, 3, 4].map((option) => (
+                      <label key={option} className="flex items-center space-x-2">
+                        <input
+                          type="radio"
+                          value={option}
+                          checked={selecbhktype === option}
+                          onChange={() => handleselecbhktype(option)}
+                          className="form-radio text-blue-600"
+                        />
+                        <span>{option} BHK</span>
+                      </label>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -1502,7 +1538,7 @@ export default function Property(props) {
             </button>
           )}
 
-          {step < 10 ? (
+          {step < 11 ? (
             <button
               type="button"
               onClick={nextStep}

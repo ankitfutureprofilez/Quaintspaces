@@ -21,9 +21,6 @@ export default function Footer() {
 
           {/* Navigation Links */}
           <nav className="ml-auto flex space-x-4">
-            <Link href="/apartments">
-              <p className="menu-footer">OUR APARTMENTS</p>
-            </Link>
             <Link href="/contact">
               <p className="menu-footer">CONTACT US</p>
             </Link>

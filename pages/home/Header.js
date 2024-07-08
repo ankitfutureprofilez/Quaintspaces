@@ -63,6 +63,9 @@ export default function Header() {
             <Link href="/#testimonials" className="border-b md:border-0">
               <p>Testimonials</p>
             </Link>
+            <Link href="/contacts" className="border-b md:border-0">
+              <p>About Us</p>
+            </Link>
             {/* <Link href="/contact">
               <p>Contact</p>
             </Link> */}

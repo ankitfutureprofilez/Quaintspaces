@@ -41,16 +41,6 @@ export default function ReasonToVisit() {
 
   return (
     <div className="visit-us-sec relative">
-      <Image
-        blurDataURL="/images/visitbg.jpg?q=1"
-        src="/images/visitbg.jpg"
-        alt="QUAINTSPACES JAIPUR Reason to visit"
-        layout="fill"
-        objectFit="cover"
-        style={{ zIndex: -1 }}
-        
-        loading="lazy"
-      />
       <div className="container capitalize mx-auto relative z-10">
         <h2>Amenities we offer</h2>
         <div className="smart-box">

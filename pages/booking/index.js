@@ -339,7 +339,7 @@ export default function Index() {
   return (
     <AuthLayout>
       <Head>
-        <title>Bookings - QS Jaipur</title>
+        <title>Bookings - Quaintspaces </title>
       </Head>
       <div className="container mx-auto">
         <div className=" account-btn ">
