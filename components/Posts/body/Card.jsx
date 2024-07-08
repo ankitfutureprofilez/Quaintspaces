@@ -33,7 +33,8 @@ const Card = ({ post }) => {
   };
 
   return (
-    <div className="banipark-box rounded-lg">
+    <>
+    {/* <div className="banipark-box rounded-lg">
       {post?.uuid ? (
         <Link className="block relative overflow-hidden relative pb-[85px] h-full" href={`/property/${post?.uuid}`}>
            {post?.discount_offer ? (
@@ -106,10 +107,12 @@ const Card = ({ post }) => {
         </div>
       </Link>
       )}
-      {/* <Link className="block" href={`/property/${post?.custom_link}`}> */}
 
 
-    </div>
+    </div> */}
+
+    
+    </>
   );
 };
 

@@ -25,12 +25,15 @@ export default function Index() {
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [searchTerm, setSearchTerm] = useState("")
   const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
+    const searchTerm = event.target.value;
+    setSearchTerm(searchTerm);
+    fetchProperties(searchTerm);
   };
-  const fetchProperties = () => {
+  
+  const fetchProperties = (searchTerm) => {
     const main = new Listing();
     main
-      .Adminproperty()
+      .Adminproperty({ name: searchTerm })
       .then((res) => {
         let properties = res?.data?.data;
         if (properties) {
@@ -45,10 +48,11 @@ export default function Index() {
         setIsLoading(false);
       });
   };
-
+  
   useEffect(() => {
-    fetchProperties();
-  }, [router && router.pathname]);
+    fetchProperties(searchTerm);
+  }, [searchTerm, router && router.pathname]);
+  
 
   const deleteProperty = (uuid) => {
     const main = new Listing();
@@ -66,7 +70,7 @@ export default function Index() {
         console.error("Error deleting property:", error);
       });
   };
-console.log("selectedProperty",selectedProperty)
+  console.log("selectedProperty", selectedProperty)
   const handleConfirmation = () => {
     deleteProperty(selectedProperty);
     setShowConfirmation(false);

@@ -4,6 +4,7 @@ import ListingsLoading from "../../Loading/ListingsLoading";
 import Card from "./Card";
 import { v4 as uuidv4 } from "uuid";
 import NoData from "../../../pages/elements/NoData";
+import List from "./List";
 
 const PostBody = ({ listings, loading }) => {
   const child = useRef([]);
@@ -38,7 +39,8 @@ const PostBody = ({ listings, loading }) => {
                 className="w-full sm:w-3/6 md:w-2/6 sm:px-3 mb-5"
                 ref={(el) => (child.current[i] = el)}
               >
-                <Card post={post} />
+                {/* <Card post={post} /> */}
+                <List/>
               </li>
             ))
           : null}
