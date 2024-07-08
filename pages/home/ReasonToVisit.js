@@ -34,12 +34,12 @@ export default function ReasonToVisit() {
         <h2>Amenities we offer</h2>
         <div className="smart-box">
         {reasons.map((reason, index) => (
-                <div className="iteam" key={index} >
-                  <div className="flex flex-col gap-2">
+                <ol className="iteam" key={index} >
+                  <li className="flex flex-col gap-2">
                     {reason?.icon}
                     {reason?.name}
-                    </div>
-                </div>
+                    </li>
+                </ol>
               ))}
         </div>
       </div>
