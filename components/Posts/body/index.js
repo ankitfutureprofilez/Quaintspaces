@@ -39,8 +39,8 @@ const PostBody = ({ listings, loading }) => {
                 className="w-full  sm:px-3 mb-5"
                 ref={(el) => (child.current[i] = el)}
               >
-                {/* <Card post={post} /> */}
-                <List/>
+                <Card />
+                <List  post={post}/>
               </li>
             ))
           : null}
