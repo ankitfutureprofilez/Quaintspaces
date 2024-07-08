@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../public/images/Logo.jpeg";
+import logo from "../../public/images/Logo.png";
 import LocalToken from "../../hooks/LocalToken";
 import { useRouter } from "next/router";
 import { Context } from "../_app";
@@ -63,7 +63,7 @@ export default function Header() {
             <Link href="/#testimonials" className="border-b md:border-0">
               <p>Testimonials</p>
             </Link>
-            <Link href="/contacts" className="border-b md:border-0">
+            <Link href="/contact" className="border-b md:border-0">
               <p>About Us</p>
             </Link>
             {/* <Link href="/contact">
