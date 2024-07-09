@@ -60,7 +60,7 @@ export default function Testimonials() {
             >
               <div className="flex items-center mb-4">
                 {/* Example of an image, replace src with actual image URL */}
-                <img src="" alt={item.title} className="w-12 h-12 rounded-full mr-4" />
+                <img src={item?.image} alt={item.title} className="w-12 h-12 rounded-full mr-4" />
                 <div>
                   <p className="text-2xl font-bold text-rose-600 sm:text-3xl">{item.title}</p>
                   <p className="mt-2 text-sm text-gray-500 flex">
