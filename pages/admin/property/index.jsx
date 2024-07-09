@@ -27,13 +27,14 @@ export default function Index() {
   const handleSearchChange = (event) => {
     const searchTerm = event.target.value;
     setSearchTerm(searchTerm);
-    fetchProperties(searchTerm);
+    // fetchProperties(searchTerm);
   };
   
-  const fetchProperties = (searchTerm) => {
+  // { search: searchTerm }
+  const fetchProperties = () => {
     const main = new Listing();
     main
-      .Adminproperty({ search: searchTerm })
+      .Adminproperty()
       .then((res) => {
         let properties = res?.data?.data;
         if (properties) {
@@ -50,8 +51,8 @@ export default function Index() {
   };
   
   useEffect(() => {
-    fetchProperties(searchTerm);
-  }, [searchTerm, router && router.pathname]);
+    fetchProperties();
+  }, [ router && router.pathname]);
   
 
   const deleteProperty = (uuid) => {
@@ -269,7 +270,7 @@ export default function Index() {
               Your listings
             </h3>
             <div className="flex">
-              <form className="group relative">
+              {/* <form className="group relative">
                 <svg
                   width="20"
                   height="20"
@@ -292,7 +293,7 @@ export default function Index() {
                   onChange={handleSearchChange}
 
                 />
-              </form>
+              </form> */}
 
               <div
                 onClick={toggleView}
