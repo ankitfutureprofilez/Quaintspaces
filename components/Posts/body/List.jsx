@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import useWishlist from "../../../hooks/useWishlist";
 import { Context } from "../../../pages/_app";
 import Link from "next/link";
@@ -30,6 +30,14 @@ function List({ post }) {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   };
+
+  
+  const [expanded, setExpanded] = useState(false);
+
+  const toggleExpanded = () => {
+    setExpanded(!expanded);
+  };
+
   return (
     <>
       {post?.uuid ? (
@@ -83,7 +91,17 @@ function List({ post }) {
                 </div>
               </div>
 
-              <p className="text-[#666360] text-[16px]">{post?.description}</p>
+              <p className="leading-relaxed text-gray-700">
+                    {post.description.length > 400
+                      ? post.description.slice(0, 400) + '...'
+                      : post.description}
+                    <span
+                      className="text-blue-500 cursor-pointer ml-1"
+                      onClick={toggleExpanded}
+                    >
+                      Read more
+                    </span>
+                  </p>
             </div>
           </div>
         </Link>
