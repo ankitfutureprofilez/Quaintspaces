@@ -80,7 +80,7 @@ const DropReview = ({ closeModal, listing, getSelfreview }) => {
           size="40"
           rating={mainRating}
           setRating={setMainRating}
-          showemoji={true}
+          // showemoji={true}
           className="w-1/2"
         />
       </div>
