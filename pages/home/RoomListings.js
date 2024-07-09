@@ -61,7 +61,7 @@ export default function RoomListings() {
               className="!rounded-[7px_7px_0px_0px]"
             />
             <div className="flat-info p-4">
-              <h2 className="line-limit sm:min-h-[77px]">
+              <h2 className="line-limit sm:min-h-[76px]">
                 {
                   parseLocation(item?.location)
 
