@@ -163,7 +163,7 @@ h3.text-sm.font-medium.desc-property {
 }
 .hero-sec h1 {
   font-family: "NewYork";
-  font-size: 60px;
+  font-size: 56px;
   font-weight: 400;
   line-height: 70px;
   letter-spacing: 0em;
@@ -172,7 +172,8 @@ h3.text-sm.font-medium.desc-property {
   margin-bottom: 20px;
 }
 .hero-sec p {
-  font-size: 22px;
+  margin: 0px 20px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 27px;
   letter-spacing: 0em;
