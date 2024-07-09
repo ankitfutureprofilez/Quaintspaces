@@ -49,16 +49,16 @@ function List({ post }) {
               />
             </div>
             <div className="w-8/12 p-6">
-              <h2 className="text-[22px] font-[600] text-[#3F2A17] mb-[10px]">
+              <p className="text-[22px] font-[600] text-[#3F2A17] mb-[10px] text-end">
                 {formatMultiPrice(post?.price) ? formatMultiPrice(post?.price) : 0}
                 /night
-              </h2>
+              </p>
               <h2 className="text-[22px] font-[600] text-[#3F2A17] mb-[10px]">  {capitalizeFirstLetter(post?.name)}</h2>
               <p className="text-[16px] font-[400] text-[#666360] uppercase mb-[15px]"> {record?.location}</p>
 
               <div className="flex mb-[15px]">
-                <span>{capitalizeAndReplace(post?.type)}</span> &nbsp;
-                <span>{capitalizeAndReplace(post?.properties_type)}</span> &nbsp;
+                {/* <span>{capitalizeAndReplace(post?.type)}</span> &nbsp;
+                <span>{capitalizeAndReplace(post?.properties_type)}</span> &nbsp; */}
                 <div className=" mb-2 pr-[40px]">
                   <h3 className="text-[#666360] font-[400] text-[13px]">Bedrooms</h3>
                   <p className="text-[#666360] font-[700] text-[16px]"> {post?.bedrooms} </p>
