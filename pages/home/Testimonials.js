@@ -7,6 +7,8 @@ import Link from 'next/link';
 export default function Testimonials() {
   const testimonials = [
     {
+      image:
+        "/images/2.jpg",
       id: 1,
       title: 'Quaint Suite',
       name: 'Simran',
@@ -16,6 +18,7 @@ export default function Testimonials() {
     },
     {
       id: 2,
+      image: "/images/3.jpg",
       title: 'Quaint Stay',
       name: 'Vivek Mundhra',
       date: '2 years ago',
@@ -23,6 +26,8 @@ export default function Testimonials() {
       message: 'Based on our stay at this property for our weekend trip to Jaipur, we can vouch on the fact that this gorgeous boutique apartment is one of the best Airbnb properties in the city, ‘coz it literally checks ALL the parameters one takes into consideration while booking an accommodation, including:<br/><br/>LOCATION: Just a 15 minutes drive to the city centre with all the prime tourist spots.<br/><br/>THE PROPERTY: Exactly as seen in the pictures (or even better :D) with all the amenities listed.<br/><br/>THE HOST: Not only was Mr. Atul present to personally greet us and show us around the home, but also, was sweet enough to check on us as well as share his recommendations for places to visit in the city.<br/><br/>All in all, if you’re considering this property for your stay in Jaipur, you needn’t even think twice to go ahead with it!'
     },
     {
+      image: "/images/banner4.jpg",
+
       id: 3,
       title: 'Quaint Studio',
       name: 'Mahesh',
@@ -32,7 +37,7 @@ export default function Testimonials() {
     }
   ];
 
-  const [expanded, setExpanded] = useState(false); 
+  const [expanded, setExpanded] = useState(false);
 
   const toggleExpanded = () => {
     setExpanded(!expanded);
