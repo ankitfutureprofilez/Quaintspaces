@@ -62,10 +62,10 @@ export default function Testimonials() {
                 {/* Example of an image, replace src with actual image URL */}
                 <img src={item?.image} alt={item.title} className="w-12 h-12 rounded-full mr-4" />
                 <div>
-                  <p className="text-2xl font-bold text-rose-600 sm:text-3xl">{item.title}</p>
+                  <p className="text-2xl font-bold text-[#464646] sm:text-3xl">{item.title}</p>
                   <p className="mt-2 text-sm text-gray-500 flex">
                     <StartRating size={16} value={item.star} />
-                    <span>
+                    <span className='gap-2'>
                       {item.date}
                     </span>
                   </p>
