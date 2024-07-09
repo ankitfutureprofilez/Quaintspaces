@@ -90,17 +90,8 @@ function List({ post }) {
                   <p className="text-[#666360] font-[700] text-[16px]">{post?.no_of_pet_allowed} </p>
                 </div>
               </div>
-
               <p className="leading-relaxed text-gray-700">
-                    {post.description.length > 400
-                      ? post.description.slice(0, 400) + '...'
-                      : post.description}
-                    <span
-                      className="text-blue-500 cursor-pointer ml-1"
-                      onClick={toggleExpanded}
-                    >
-                      Read more
-                    </span>
+                    {post.description}
                   </p>
             </div>
           </div>
