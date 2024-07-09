@@ -30,9 +30,12 @@ export default function RoomListings() {
     });
   }, []);
   const parseLocation = (location) => {
+    console.log('location',location)
     try {
       const record  = JSON.parse(location);
-      return JSON.parse(record?.location);
+    console.log('record',record)
+    const data = JSON.parse(record)
+      return data?.location;
     } catch (error) {
       console.error("Error parsing JSON:", error);
       return null;
@@ -68,8 +71,8 @@ export default function RoomListings() {
                 {capitalizeFirstLetter(item?.name)}
               </h3>
               <p>
-                <span>{capitalizeAndReplace(item?.type)}</span> &nbsp;
-                <span>{capitalizeAndReplace(item?.properties_type)}</span> &nbsp;
+                <span className="capitalize">{capitalizeAndReplace(item?.type)}</span> &nbsp;
+                <span className="capitalize">{capitalizeAndReplace(item?.properties_type)}</span> &nbsp;
                 {item?.bedrooms} Bedrooms · {item?.beds} Bed · {item?.guests} Guests · {item?.no_of_pet_allowed} Pets
               </p>
               <h4>
