@@ -64,11 +64,7 @@ function List({ post }) {
                   {record?.location}
                 </p>
               </div>
-
-
               <div className="flex mb-[15px]">
-                {/* <span>{capitalizeAndReplace(post?.type)}</span> &nbsp;
-                <span>{capitalizeAndReplace(post?.properties_type)}</span> &nbsp; */}
                 <div className=" mb-2 pr-[40px]">
                   <h3 className="text-[#666360] font-[400] text-[13px]">Bedrooms</h3>
                   <p className="text-[#666360] font-[700] text-[16px]"> {post?.bedrooms} </p>
