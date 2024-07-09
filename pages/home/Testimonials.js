@@ -58,6 +58,7 @@ export default function Testimonials() {
               key={item.id}
               className="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8"
             >
+              
               <div className="flex items-center mb-4">
                 {/* Example of an image, replace src with actual image URL */}
                 <img src={item?.image} alt={item.title} className="w-12 h-12 rounded-full mr-4" />
