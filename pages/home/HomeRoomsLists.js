@@ -39,7 +39,7 @@ export default function Card() {
                   >
                     <path
                       d="M8.6069 1.9997L0 10.6066L1.41421 12.0208L10.0211 3.41391V10.9998H12.0208V0H1.02106L1.02106 1.9997H8.6069Z"
-                      fill="#c48b58"
+                      fill="#E0C4C3"
                     />
                   </svg>
                 </Link>
@@ -69,7 +69,7 @@ export default function Card() {
                   >
                     <path
                       d="M8.6069 1.9997L0 10.6066L1.41421 12.0208L10.0211 3.41391V10.9998H12.0208V0H1.02106L1.02106 1.9997H8.6069Z"
-                      fill="#c48b58"
+                      fill="#E0C4C3"
                     />
                   </svg>
                 </Link>
@@ -99,7 +99,7 @@ export default function Card() {
                   >
                     <path
                       d="M8.6069 1.9997L0 10.6066L1.41421 12.0208L10.0211 3.41391V10.9998H12.0208V0H1.02106L1.02106 1.9997H8.6069Z"
-                      fill="#c48b58"
+                      fill="#E0C4C3"
                     />
                   </svg>
                 </Link>

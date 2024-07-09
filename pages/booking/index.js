@@ -388,11 +388,11 @@ export default function Index() {
             />
           </div>
           <div className=" py-2">
-            <button className="font-inter text-[#fff] sm:text-[16px] text-[14px] bg-orange-300 font-medium leading-tight text-center border-[#c48b58] lg:w-[auto] px-6 border-2 p-3 rounded-full " onClick={openModal}>
+            <button className="font-inter text-[#fff] sm:text-[16px] text-[14px] bg-orange-300 font-medium leading-tight text-center border-[#E0C4C3] lg:w-[auto] px-6 border-2 p-3 rounded-full " onClick={openModal}>
               Filter By Booking Date
             </button>
             <Modal isOpen={isOpen} onClose={closeModal}>
-              <p className="text-lg text-white font-semibold p-6 py-4 bg-[#c48b58]">
+              <p className="text-lg text-white font-semibold p-6 py-4 bg-[#E0C4C3]">
                 Filter By Booking Date
               </p>
               <div className=" ">
@@ -441,7 +441,7 @@ export default function Index() {
       {
         showConfirmation && (
           <Modal isOpen={showConfirmation} onClose={handleCancel}>
-            <p className="text-lg text-white font-semibold p-6 py-4 bg-[#c48b58]">
+            <p className="text-lg text-white font-semibold p-6 py-4 bg-[#E0C4C3]">
               Are you sure you want to cancel your booking?
             </p>
             <p className="text-xl text-center font-semibold  py-8  capatalize">
@@ -487,7 +487,7 @@ export default function Index() {
       {
         isConfirmOpen && (
           <Modal isOpen={isConfirmOpen} onClose={handleCancel}>
-            <p className="text-lg text-white font-semibold p-6 py-4 bg-[#c48b58]">
+            <p className="text-lg text-white font-semibold p-6 py-4 bg-[#E0C4C3]">
               House Rules
             </p>
             <div className="p-6 overflow-auto">

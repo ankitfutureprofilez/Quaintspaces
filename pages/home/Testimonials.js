@@ -92,7 +92,7 @@ export default function Testimonials() {
         <div className="flex justify-center mt-6">
           <Link
             href="#"
-            className="inline-flex items-center gap-2 rounded-full border border-[#c48b58] px-5 py-3 text-[#c48b58] transition hover:bg-[#c48b58] hover:text-white md:mt-0"
+            className="inline-flex items-center gap-2 rounded-full border border-[#E0C4C3] px-5 py-3 text-[#E0C4C3] transition hover:bg-[#E0C4C3] hover:text-white md:mt-0"
           >
             <span className="font-medium"> Read all reviews </span>
             <GoArrowRight size={20} />

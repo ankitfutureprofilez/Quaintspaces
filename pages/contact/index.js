@@ -205,7 +205,7 @@ export default function index() {
                   rows={4} // Set the number of rows as needed
                 />
               </div>
-              <button className=" hover:bg-[#fff] border border-[#c48b58] bg-[#c48b58] text-[#fff] hover:text-[#c48b58] btn w-7/12 !py-2 lg:!py-3 flex mx-auto justify-center">
+              <button className=" hover:bg-[#fff] border border-[#E0C4C3] bg-[#E0C4C3] text-[#fff] hover:text-[#E0C4C3] btn w-7/12 !py-2 lg:!py-3 flex mx-auto justify-center">
                 {loading ? "Submitting..." : "Submit"}
               </button>
 

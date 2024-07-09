@@ -541,7 +541,7 @@ console.log("infos",infos);
                   <Button
                     text={loading ? "Processing..." : "Confirm & Pay"}
                     design={
-                      "font-inter hover:bg-[#fff] border-[#c48b58] border hover:text-[#c48b58] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 sm:p-4 p-3 rounded-full"
+                      "font-inter hover:bg-[#fff] border-[#E0C4C3] border hover:text-[#E0C4C3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 sm:p-4 p-3 rounded-full"
                     }
                     onClick={handleSubmit}
                   />
@@ -753,7 +753,7 @@ console.log("infos",infos);
           {isOpen && (
             <div className="max-w-3xl mx-auto">
               <Modal isOpen={isOpen} onClose={closeModal}>
-                <p className="text-lg text-white font-semibold p-7 py-4 bg-[#c48b58] capitalize">
+                <p className="text-lg text-white font-semibold p-7 py-4 bg-[#E0C4C3] capitalize">
                   Cancellation policy
                 </p>
                 <div className="py-4 px-6">
@@ -784,7 +784,7 @@ console.log("infos",infos);
                   </div>
 
                   {cancelpolicy?.date2 &&
-                    <div className="mt-5 border-t-2  border-[#c48b58]  p-4 ">
+                    <div className="mt-5 border-t-2  border-[#E0C4C3]  p-4 ">
                       <div className="flex justify-between mb-3 border-b">
                         <div className="w-1/2">
                           <h6 className="mb-1 font-bold ">{cancelpolicy?.date2 === new Date() ? "After" : "Before"}</h6>
@@ -809,7 +809,7 @@ console.log("infos",infos);
 
 
                   <p className="font-normal   capitalize" >Cleaning fees are refunded if you cancel before check-in. </p>
-                  <p className="underline mt-2 font-bold cursor-pointer  text-[#c48b58]" >Learn more about <Link href="/terms" target="_blank">cancellation policies</Link></p>
+                  <p className="underline mt-2 font-bold cursor-pointer  text-[#E0C4C3]" >Learn more about <Link href="/terms" target="_blank">cancellation policies</Link></p>
                 </div>
                 <div className="mb-4 flex justify-center"></div>
               </Modal>

@@ -27,10 +27,10 @@ export default function Footer() {
           <div className="w-4/12">
             <h3 className="menu-footer mb-3">Follow US</h3>
             <p className="flex"><Link href="/">
-              <FaFacebook color={"#c48b58"} size={28} className="mr-3" />
+              <FaFacebook color={"#E0C4C3"} size={28} className="mr-3" />
             </Link>
             <Link href="https://www.instagram.com/quaintspacesjaipur">
-              <FaInstagram color={"#c48b58"} size={28} />
+              <FaInstagram color={"#E0C4C3"} size={28} />
             </Link></p>
           </div>
         </div>

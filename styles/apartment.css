@@ -4,7 +4,7 @@
   display: none;
 }
 .sortlist {
-  border: 2px solid #c48b58;
+  border: 2px solid #E0C4C3;
   padding: 8px 5px;
   border-radius: 10px;
   text-align: center;
@@ -36,9 +36,9 @@ h2.text-lg.font-medium.mb-2.heading-property {
 /* /pagintion  */
 .load-more .btn {
   background-color: initial;
-  border: 1px solid #c48b58;
+  border: 1px solid #E0C4C3;
   border-radius: 20px;
-  color: #c48b58;
+  color: #E0C4C3;
   font-family: Oswald;
   font-size: 16px;
   font-style: normal;
@@ -522,7 +522,7 @@ body {
   color: #333;
 }
 .text-theme{
-  color:#c48b58 !important;
+  color:#E0C4C3 !important;
 }
 /* Hero banner image transition */
 .image-wrapper {

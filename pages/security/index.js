@@ -168,7 +168,7 @@ export default function index() {
 <Button
                   text={loading ? "Updating..." : "Update Password"}
                   design={
-                    "font-inter hover:bg-[#fff] border-[#c48b58] border hover:text-[#c48b58] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 sm:p-4 p-3 rounded-full mb-6 mt-6"
+                    "font-inter hover:bg-[#fff] border-[#E0C4C3] border hover:text-[#E0C4C3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 sm:p-4 p-3 rounded-full mb-6 mt-6"
                   }
                 />
 </div>

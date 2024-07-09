@@ -68,7 +68,7 @@ const DropReview = ({ closeModal, listing, getSelfreview }) => {
       </h1> */}
 
       <h2
-        className=" w-full p-4 bg-[#c48b58] text-[#fff] align-center text-lg text-base font-medium"
+        className=" w-full p-4 bg-[#E0C4C3] text-[#fff] align-center text-lg text-base font-medium"
       
       >
         Overall Rating
@@ -187,7 +187,7 @@ const DropReview = ({ closeModal, listing, getSelfreview }) => {
       </div>
 
       <div className="flex justify-center mt-6 pt-3">
-        <button onClick={handleSubmit} className=" filter btn w-auto w-40 hover:bg-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58] ">
+        <button onClick={handleSubmit} className=" filter btn w-auto w-40 hover:bg-[#fff] hover:text-[#E0C4C3] border-2 bg-color-[#E0C4C3] border-[#E0C4C3] ">
           {loading ? "Submitting..." : "Submit"}
         </button>
       </div>
