@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
-import ListingsLoading from "../../Loading/ListingsLoading";
+import { TableLoading } from "../../Loading/ListingsLoading";
 import Card from "./Card";
 import { v4 as uuidv4 } from "uuid";
 import NoData from "../../../pages/elements/NoData";
@@ -31,7 +31,7 @@ const PostBody = ({ listings, loading }) => {
         {loading
           ? Array(6)
               .fill("_")
-              .map(() => <ListingsLoading key={uuidv4()} />)
+              .map(() => <TableLoading key={uuidv4()} />)
           : listings && listings?.length > 0
           ? listings.map((post, i) => (
               <li

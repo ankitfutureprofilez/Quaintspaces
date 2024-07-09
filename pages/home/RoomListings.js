@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Listings from './../api/laravel/Listings';
 import Link from "next/link";
