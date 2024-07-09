@@ -384,13 +384,13 @@ footer {
   margin-left: 10px;
 }
 .banipark-box {
-  background: #fff;
+  /* background: #fff; */
   height: 100%;
   /* box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); */
   /* border: 1px solid #c48b58; */
 }
 .banipark-box {
-  background: #fff;
+  /* background: #fff; */
   transition: transform 0.3s !important;
 }
 .banipark-box:hover {

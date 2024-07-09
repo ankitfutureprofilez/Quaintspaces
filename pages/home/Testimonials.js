@@ -8,7 +8,7 @@ export default function Testimonials() {
   const testimonials = [
     {
       id: 1,
-      title: 'Review for Quaint Suite',
+      title: 'Quaint Suite',
       name: 'Simran',
       date: 'May 2024',
       star: 5,
@@ -16,15 +16,15 @@ export default function Testimonials() {
     },
     {
       id: 2,
-      title: 'Review for Quaint Stay',
+      title: 'Quaint Stay',
       name: 'Vivek Mundhra',
       date: '2 years ago',
-      star: 0,
+      star: 5,
       message: 'Based on our stay at this property for our weekend trip to Jaipur, we can vouch on the fact that this gorgeous boutique apartment is one of the best Airbnb properties in the city, ‘coz it literally checks ALL the parameters one takes into consideration while booking an accommodation, including:<br/><br/>LOCATION: Just a 15 minutes drive to the city centre with all the prime tourist spots.<br/><br/>THE PROPERTY: Exactly as seen in the pictures (or even better :D) with all the amenities listed.<br/><br/>THE HOST: Not only was Mr. Atul present to personally greet us and show us around the home, but also, was sweet enough to check on us as well as share his recommendations for places to visit in the city.<br/><br/>All in all, if you’re considering this property for your stay in Jaipur, you needn’t even think twice to go ahead with it!'
     },
     {
       id: 3,
-      title: 'Review Quaint Studio',
+      title: 'Quaint Studio',
       name: 'Mahesh',
       date: 'September 2023',
       star: 5,
@@ -32,7 +32,7 @@ export default function Testimonials() {
     }
   ];
 
-  const [expanded, setExpanded] = useState(false); // State to manage expanded/collapsed state
+  const [expanded, setExpanded] = useState(false); 
 
   const toggleExpanded = () => {
     setExpanded(!expanded);
@@ -55,9 +55,9 @@ export default function Testimonials() {
             >
               <div className="flex items-center mb-4">
                 {/* Example of an image, replace src with actual image URL */}
-                <img src="" alt={item.name} className="w-12 h-12 rounded-full mr-4" />
+                <img src="" alt={item.title} className="w-12 h-12 rounded-full mr-4" />
                 <div>
-                  <p className="text-2xl font-bold text-rose-600 sm:text-3xl">{item.name}</p>
+                  <p className="text-2xl font-bold text-rose-600 sm:text-3xl">{item.title}</p>
                   <p className="mt-2 text-sm text-gray-500 flex">
                     <StartRating size={16} value={item.star} />
                     <span>
@@ -94,7 +94,7 @@ export default function Testimonials() {
             href="#"
             className="inline-flex items-center gap-2 rounded-full border border-[#c48b58] px-5 py-3 text-[#c48b58] transition hover:bg-[#c48b58] hover:text-white md:mt-0"
           >
-            <span className="font-medium"> Read all reviews </span>
+            <span className="font-base uppercase"> Read all reviews </span>
             <GoArrowRight size={20} />
           </Link>
         </div>
