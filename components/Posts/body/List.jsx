@@ -49,12 +49,22 @@ function List({ post }) {
               />
             </div>
             <div className="w-8/12 p-6">
-              <p className="text-[22px] font-[600] text-[#3F2A17] mb-[10px] text-end">
-                {formatMultiPrice(post?.price) ? formatMultiPrice(post?.price) : 0}
-                /night
-              </p>
-              <h2 className="text-[22px] font-[600] text-[#3F2A17] mb-[10px]">  {capitalizeFirstLetter(post?.name)}</h2>
-              <p className="text-[16px] font-[400] text-[#666360] uppercase mb-[15px]"> {record?.location}</p>
+              <div className="mb-[10px]">
+                <p className="text-end">
+                  <span className="block text-[13px] font-[600] text-[#3F2A17] mb-[10px]">From</span>
+                  <span className="block text-[30px] font-[600] text-[#E0C4C3]">
+                    {formatMultiPrice(post?.price) ? formatMultiPrice(post?.price) : 0}
+                    <span className="text-[16px] font-[400] text-[#3F2A17]"> /night</span>
+                  </span>
+                </p>
+                <h2 className="text-[22px] text-start font-[600] text-[#3F2A17] mb-[10px]">
+                  {capitalizeFirstLetter(post?.name)}
+                </h2>
+                <p className="text-[16px] font-[400] text-[#666360] uppercase mb-[15px]">
+                  {record?.location}
+                </p>
+              </div>
+
 
               <div className="flex mb-[15px]">
                 {/* <span>{capitalizeAndReplace(post?.type)}</span> &nbsp;
