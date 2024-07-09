@@ -58,10 +58,10 @@ export default function Header() {
           </div>
           <div className={`menu-items flex-col md:flex-row md:flex md:gap-8 items-center ${isMenuOpen ? 'flex' : 'hidden'} md:flex`}>
             <Link href="/apartments" className="border-b md:border-0">
-              <p>Our Apartments</p>
+              <p>Properties</p>
             </Link>
             <Link href="/#testimonials" className="border-b md:border-0">
-              <p>Testimonials</p>
+              <p>Reviews</p>
             </Link>
             <Link href="/contact" className="border-b md:border-0">
               <p>About Us</p>
