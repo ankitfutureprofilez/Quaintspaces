@@ -33,7 +33,7 @@ export default function Index() {
   const fetchProperties = (searchTerm) => {
     const main = new Listing();
     main
-      .Adminproperty({ name: searchTerm })
+      .Adminproperty({ search: searchTerm })
       .then((res) => {
         let properties = res?.data?.data;
         if (properties) {
