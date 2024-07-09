@@ -6,18 +6,24 @@ import { FaFacebook, FaInstagram } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer>
-      <div className="container mx-auto flex flex-col justify-between items-center">
+      <div className="container mx-auto flex flex-col justify-between">
         {/* Logo and Brand */}
-        <div className="footer-menu">
-          <div className="w-4/12">
+        <div className="footer-menu items-end">
+          <div className="">
             <h3 className="menu-footer mb-3">CONTACT US</h3>
-            <p><Link href="mailto:quaintspaces@gmail.com" target="_blank" className="capitalize">quaintspaces@gmail.com</Link></p>
-            <p><Link href="tel:9521410122">9521410122</Link></p>
+            <div className="flex flex-col">
+            <Link href="mailto:quaintspaces@gmail.com" target="_blank">
+            <span className="capiatize">Email : </span>
+            quaintspaces@gmail.com</Link>
+            <Link href="tel:9521410122">
+            <span className="capiatize">Mobile : </span>
+            9521410122
+            </Link>
+            </div>
             {/* <p><Link href="tel:9314022666">9314022666</Link></p> */}
 
           </div>
-          <nav className="w-4/12">
+          <div className="mt-2">
             <p className="menu-footer ">
               <Link href="/terms">
                 TERMS & CONDITION
@@ -25,16 +31,25 @@ export default function Footer() {
               <Link href="/policy">
                 PRIVACY POLICY
               </Link></p>
-          </nav>
-          <div className="w-4/12">
-            <h3 className="menu-footer mb-3">Follow US</h3>
-            <p className="flex"><Link href="/">
-              <FaFacebook color={"#c48b58"} size={28} className="mr-3" />
-            </Link>
-              <Link href="https://www.instagram.com/quaintspacesjaipur">
-                <FaInstagram color={"#c48b58"} size={28} />
-              </Link></p>
           </div>
+          <div className="">
+  <h3 className="mb-3">Follow Us</h3>
+  <div className="">
+    <Link href="/">
+      <div className="flex">
+        <FaFacebook color={"#c48b58"} size={28} />
+        <span>: Follow us on Facebook</span>
+      </div>
+    </Link>
+    <Link href="https://www.instagram.com/quaintspacesjaipur">
+      <div className="flex">
+        <FaInstagram color={"#c48b58"} size={28} />
+        <span>: @quaintspacesjaipur</span>
+      </div>
+    </Link>
+  </div>
+</div>
+
         </div>
 
         <div className="text-center copy-right">
@@ -42,6 +57,5 @@ export default function Footer() {
           <span>&copy; QUAINTSPACES JAIPUR 2024</span>
         </div>
       </div>
-    </footer>
   );
 }
