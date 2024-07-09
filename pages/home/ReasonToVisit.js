@@ -31,15 +31,15 @@ export default function ReasonToVisit() {
   return (
     <div className="visit-us-sec relative ">
       <div className="container capitalize mx-auto relative z-10">
-        <h2>Facilities we offer</h2>
+        <h2>Amenities we offer</h2>
         <div className="smart-box">
         {reasons.map((reason, index) => (
-                <ol className="iteam" key={index} >
-                  <li className="flex flex-col gap-2">
+                <div className="iteam w-[200px] mb-3" key={index} >
+                  <div className="flex flex-col gap-2">
                     {reason?.icon}
                     {reason?.name}
-                    </li>
-                </ol>
+                    </div>
+                </div>
               ))}
         </div>
       </div>
