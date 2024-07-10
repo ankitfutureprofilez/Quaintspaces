@@ -58,6 +58,7 @@ export default function Footer() {
             </div>          
         </div>
       </div>
+      
 
       <div className="text-center copy-right">
         {/* Copyright Notice */}
