@@ -409,7 +409,7 @@ export default function Index() {
       {record?.length > 0 && !loading && hasmore && (
             <div className="flex justify-center" style={{cursor:"pointer"}}>
               <div
-                className="cursor-pointer mt-4 py-2 px-5 rounded-full text-[#c48b58] hover:bg-[#c48b58] hover:text-[#fff] border-2 bg-color-[#c48b58] border-[#c48b58]"
+                className="cursor-pointer mt-4 py-2 px-5 rounded-full text-[#E0C4C3] hover:bg-[#E0C4C3] hover:text-[#fff] border-2 bg-color-[#E0C4C3] border-[#E0C4C3]"
                 onClick={loadMore}
               >
                 {loadingButton ? "Loading...": "Load More"}
@@ -420,7 +420,7 @@ export default function Index() {
       {isOpen && (
         <Modal isOpen={openModal} onClose={closeModal}>
           <div className="flex flex-col">
-          <div className="p-4 bg-[#c48b58]">
+          <div className="p-4 bg-[#E0C4C3]">
             <label
               htmlFor="message"
               className="mx-auto  block text-lg font-medium text-[#fff]"

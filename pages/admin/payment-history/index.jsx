@@ -220,7 +220,7 @@ export default function Index() {
       {content?.length > 0 && !loading && hasmore && (
         <div className="flex justify-center">
           <div
-            className="cursor-pointer mt-4 py-2 px-5 rounded-full text-[#c48b58] hover:bg-[#c48b58] hover:text-[#fff] border-2 bg-color-[#c48b58] border-[#c48b58] "
+            className="cursor-pointer mt-4 py-2 px-5 rounded-full text-[#E0C4C3] hover:bg-[#E0C4C3] hover:text-[#fff] border-2 bg-color-[#E0C4C3] border-[#E0C4C3] "
             onClick={loadMore}
           >
             {loadingButton ? "Loading..." : "Load More"}
