@@ -64,10 +64,10 @@ export default function MainPage() {
           <title>Quaintspaces </title>
         </Head>
         <PwaFooter />
-        <div className="bg-cover bg-center nav-header-sec relative image-wrapper">
+        <div className="bg-cover bg-center nav-header-sec relative image-wrapper lg:!h-[670px] md:!h-[550px] sm:!h-[450px] !h-[350px]">
           <Slider {...settings}>
             {images.map((item, index) => (
-              <div key={index} className="relative w-full h-[500px]">
+              <div key={index} className="relative w-full lg:h-[670px] md:h-[550px] sm:h-[450px] h-[350px]">
                 <Image
                   src={item}
                   alt={`Banner ${index + 1}`}

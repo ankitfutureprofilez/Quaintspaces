@@ -11,38 +11,37 @@ export default function Footer() {
       {/* Logo and Brand */}
       <div className="footer-menu items-start sm:items-end gap-4 sm:gap-0">
         <div className="">
-          <h3 className="menu-footer mb-2">CONTACT US</h3>
+          <h3 className="menu-footer mb-3">CONTACT US</h3>
           <div className="flex flex-col">
-            <Link href="mailto:quaintspaces@gmail.com" target="_blank">
-              <span className="capiatize">Email : </span>
+            <Link className="text-[#3F2A17] text-[16px] " href="mailto:quaintspaces@gmail.com" target="_blank">
+              <span >Email : </span>
               quaintspaces@gmail.com
             </Link>
-            <p>
+            <Link href="tel:9521410122">
               <span className="capiatize">Mobile : </span>
-              <Link href="tel:9521410122">9521410122</Link>
-              <Link href="tel:9521410122">/9314022666</Link>
-            </p>
+              9521410122
+            </Link>
           </div>
           {/* <p><Link href="tel:9314022666">9314022666</Link></p> */}
         </div>
         <div className="">
-          <h3 className="menu-footer sm:mb-3"></h3>
+          <h3 className="menu-footer mb-3"></h3>
           <div className="flex flex-col">
             <Link href="/terms">
-              <span className="capiatize">Terms & Condition</span>
+              <span className="text-[#3F2A17] text-[16px] uppercase">Terms & Condition</span>
             </Link>
             <Link href="/policy">
-              <span className="capiatize">Privacy Policy</span>
+              <span className="text-[#3F2A17] text-[16px] uppercase">Privacy Policy</span>
             </Link>
           </div>
         </div>
         <div className="flex flex-col">
-          <h3 className="mb-2">Follow Us</h3>
+          <h3 className="uppercase mb-3 text-[20px] text[#3F2A17] font-[400] font-['Baskervville']">Follow Us</h3>
           <div className="">
             <Link href="https://www.facebook.com/share/64gvciqN2UNPMx6V/?mibextid=LQQJ4d">
               <div className="flex">
                 <FaFacebook color={"#c48b58"} size={24} />
-                <span className="ml-[2px]">: Quaint Spaces</span>
+                <span>: Follow us on Facebook</span>
               </div>
             </Link>
             </div>
@@ -50,7 +49,7 @@ export default function Footer() {
             <Link href="https://www.instagram.com/quaintspacesjaipur">
               <div className="flex">
                 <FaInstagram color={"#c48b58"} size={24} />
-                <span className="ml-[2px]">: @quaintspacesjaipur</span>
+                <span>: @quaintspacesjaipur</span>
               </div>
             </Link>
             </div>          

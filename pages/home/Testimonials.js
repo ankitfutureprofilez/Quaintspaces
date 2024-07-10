@@ -43,7 +43,7 @@ export default function Testimonials() {
           {testimonials.map((item) => (
             <div
               key={item.id}
-              className="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8"
+              className="flex h-full flex-col bg-white p-6 shadow-sm sm:p-8"
             >
               <div className="flex items-center mb-4">
                 {/* Example of an image, replace src with actual image URL */}
@@ -58,8 +58,8 @@ export default function Testimonials() {
                   </p>
                 </div>
               </div>
-              <div className="mt-4">
-                <p className="leading-relaxed text-gray-700 text-justify" dangerouslySetInnerHTML={{ __html: item.message }} />
+              <div >
+                <p className="leading-relaxed text-[#61554E] testimo-text" dangerouslySetInnerHTML={{ __html: item.message }} />
               </div>
               <div className="text-sm font-medium text-gray-700 mt-4">
                 &mdash; {item.name}
@@ -71,7 +71,7 @@ export default function Testimonials() {
           <Link
             target='_blank'
             href="https://g.co/kgs/jzbLCKG"
-            className="inline-flex items-center gap-2 rounded-full border border-[#c48b58] px-5 py-3 text-[#c48b58] transition hover:bg-[#c48b58] hover:text-white md:mt-0"
+            className="bg-[#E0C4C3] text-[#fff] border border-[#E0C4C3] px-[30px] py-[12px] flex rounded-full hover:text-[#E0C4C3] hover:bg-[#ffffff00]"
           >
             <span className="font-base uppercase"> Read all reviews </span>
             <GoArrowRight size={20} />

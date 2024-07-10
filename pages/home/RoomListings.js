@@ -44,10 +44,10 @@ export default function RoomListings() {
   };
 
   return (
-    <div className="banipark-box rounded-lg">
+    <div className=" ">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {listings?.map((item, index) => (
-          <Link key={index} className="bg-white block relative overflow-hidden pb-[85px] h-full" href={`/property/${item?.uuid}`}>
+          <Link key={index} className="bg-white banipark-box rounded-lg block relative overflow-hidden pb-[85px] h-full" href={`/property/${item?.uuid}`}>
             {item?.discount_offer ? (
               <div className="absolute bg-[#e0c4c3] -rotate-45 text-white px-2 py-1 w-32 text-center -left-[32px] top-[18px] shadow-[0_0_17px_-5px_#3c3c3c;]">
                 {item?.discount_offer}% off

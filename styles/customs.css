@@ -1,18 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&display=swap');
-@font-face {
-  font-family: 'Gotham';
-  /* 'Gotham-Medium.eot' */
-  src: url("../font/Gotham-Medium.eot");
-  src: url('../font/Gotham-Medium.eot?#iefix') format('embedded-opentype'),
-      url('../font/Gotham-Medium.woff2') format('woff2'),
-      url('../font/Gotham-Medium.woff') format('woff'),
-      url('../font/Gotham-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
+
 
 
 
@@ -165,7 +154,7 @@ h3.text-sm.font-medium.desc-property {
 }
 .nav-bar a {
   padding: 8px 20px;
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 600;
   line-height: 25px;
@@ -173,10 +162,13 @@ h3.text-sm.font-medium.desc-property {
   text-align: center;
   color: #404040;
 }
+.nav-header-sec img { opacity: 0.7; }
 .nav-header-sec {
-  background-color: #0000004d;
+  background-color: #000000;
   background-blend-mode: color;
+  height: 670px !important;
 }
+.testimo-text { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; }
 .hero-sec {
   padding: 220px 0 270px;
 }
@@ -186,7 +178,7 @@ h3.text-sm.font-medium.desc-property {
   font-weight: 400;
   line-height: 70px;
   letter-spacing: 0em;
-  text-align: left;
+  text-align: center;
   color: #ffffff;
   margin-bottom: 20px;
 }
@@ -200,7 +192,7 @@ h3.text-sm.font-medium.desc-property {
   color: #fff;
 }
 .hero-sec button {
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
@@ -254,7 +246,7 @@ h1.in-jaipur {
   max-width: 888px;
   margin: auto;
   margin-top: 15px;
-  font-family: "Inter", sans-serif;
+  
   color: #61554e;
 }
 .premium-location-slider {
@@ -304,8 +296,7 @@ h2.loction-name {
   justify-content: space-between;
   width: 100%;
   padding: 40px 0;
-  border-top: 1px solid #E0C4C3;
-  border-bottom: 1px solid #E0C4C3;
+  border-bottom: 1px solid #E0C4C3  ;
 }
 .footer-menu img {
   width: 127px;
@@ -323,7 +314,7 @@ p.menu-footer {
   padding: 25px 0;
 }
 .copy-right span {
-  /* font-family: "Inter", sans-serif; */
+  /*  */
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -353,7 +344,7 @@ footer {
   padding: 0 20px;
 }
 .flat-info h2 {
-  font-family: "Inter", sans-serif;
+  
   font-size: 13px;
   font-weight: 400;
   line-height: 26px;
@@ -372,7 +363,7 @@ footer {
   font-weight: 400;
 }
 .flat-info p {
-  font-family: "Inter", sans-serif;
+  
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
@@ -420,7 +411,7 @@ footer {
   width: 1000px;
 }
 .flat-info h4 {
-  font-family: "Inter", sans-serif;
+  
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
@@ -431,7 +422,7 @@ footer {
   color: #95908d;
 }
 .card-price {
-  font-family: "Inter", sans-serif;
+  
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -444,7 +435,7 @@ footer {
   margin-top: 40px;
 }
 .load-more-btn a {
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
@@ -530,7 +521,7 @@ footer {
   margin-bottom: 30px;
 }
 .left-logo-login p {
-  font-family: "Inter", sans-serif;
+  
   font-size: 22px;
   font-weight: 400;
   line-height: 27px;
@@ -564,7 +555,7 @@ footer {
   color: #ffffff;
 }
 .quainttay h3 {
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 400;
   line-height: 19px;
@@ -588,7 +579,7 @@ footer {
   z-index: 1;
 }
 .signup-form form label {
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
@@ -615,7 +606,7 @@ button.submint-btn {
   background: #E0C4C3;
   border-radius: 50px;
   padding: 20px;
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 600;
   line-height: 19px;
@@ -652,7 +643,7 @@ button.submint-btn {
   margin-right: 15px;
 }
 .booking-manage-box h1 {
-  font-family: "Inter", sans-serif;
+  
   font-size: 22px;
   font-weight: 400;
   line-height: 27px;
@@ -662,7 +653,7 @@ button.submint-btn {
   margin-bottom: 8px;
 }
 .booking-manage-box p {
-  font-family: "Inter", sans-serif;
+  
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -769,7 +760,7 @@ button.submint-btn {
 }
 .update-btn {
   background: #E0C4C3;
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 600;
   line-height: 19px;
@@ -777,7 +768,7 @@ button.submint-btn {
   text-align: center;
 }
 .profile-text h1 {
-  font-family: "Inter", sans-serif;
+  
   font-size: 22px;
   font-weight: 400;
   line-height: 27px;
@@ -787,7 +778,7 @@ button.submint-btn {
   margin-bottom: 10px;
 }
 .security-text {
-  font-family: "Inter", sans-serif;
+  
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -847,7 +838,7 @@ button.submint-btn {
   padding-bottom: 40px;
 }
 .pers-info h3 {
-  font-family: "Inter", sans-serif;
+  
   font-size: 22px;
   font-weight: 400;
   line-height: 26.69px;
@@ -856,7 +847,7 @@ button.submint-btn {
   margin-bottom: 6px;
 }
 .pers-info p {
-  font-family: "Inter", sans-serif;
+  
   font-size: 18px;
   font-weight: 400;
   line-height: 21.6px;
@@ -1228,7 +1219,7 @@ button.submint-btn {
     padding: 55px 0;
   }
   .hero-sec h1 {
-    font-size: 36px;
+    font-size: 32px;
     line-height: 40px;
     margin-bottom: 10px;
     text-align: center;
@@ -1397,7 +1388,7 @@ button.submint-btn {
 }
 
 .image-data p {
-  font-family: "Inter", sans-serif;
+  
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -1407,7 +1398,7 @@ button.submint-btn {
 }
 
 .image-data span {
-  font-family: "Inter", sans-serif;
+  
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -1417,7 +1408,7 @@ button.submint-btn {
 }
 
 .confirm-details h1 {
-  font-family: "Inter", sans-serif;
+  
   font-size: 22px;
   font-weight: 400;
   line-height: 27px;
@@ -1427,7 +1418,7 @@ button.submint-btn {
 }
 
 .confirm-details span {
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -1441,7 +1432,7 @@ button.submint-btn {
 
 .confirm-details .confirm-price {
   color: #00860d;
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
