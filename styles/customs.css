@@ -864,6 +864,15 @@ button.submint-btn {
   width: 680px;
 }
 .list-gstr{box-shadow: 0px 10px 40px 0px #B2958433;}
+.descri-text{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+
+
 
 @media (min-width: 1399px) {
   .container {
