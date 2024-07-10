@@ -3,11 +3,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&display=swap');
 @font-face {
   font-family: 'Gotham';
-  src: url('Gotham-Medium.eot');
-  src: url('Gotham-Medium.eot?#iefix') format('embedded-opentype'),
-      url('Gotham-Medium.woff2') format('woff2'),
-      url('Gotham-Medium.woff') format('woff'),
-      url('Gotham-Medium.ttf') format('truetype');
+  /* 'Gotham-Medium.eot' */
+  src: url("../font/Gotham-Medium.eot");
+  src: url('../font/Gotham-Medium.eot?#iefix') format('embedded-opentype'),
+      url('../font/Gotham-Medium.woff2') format('woff2'),
+      url('../font/Gotham-Medium.woff') format('woff'),
+      url('../font/Gotham-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
