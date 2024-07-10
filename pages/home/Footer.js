@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FaFacebook, FaInstagram } from "react-icons/fa6";
 
 export default function Footer() {
+  
   return (
     <div className="container mx-auto flex flex-col justify-between">
       {/* Logo and Brand */}
