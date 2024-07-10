@@ -11,6 +11,7 @@ function List({ post }) {
   let record;
   try {
     record = JSON?.parse(JSON?.parse(post?.location));
+    // console.log("record",record?.location)
   } catch (error) {
     console.error("Error parsing JSON:", error);
   }
@@ -85,7 +86,6 @@ function List({ post }) {
                   <p className="text-[#666360] font-[700] text-[16px]">{post?.no_of_pet_allowed} </p>
                 </div>
               </div>
-
 
               <p className="text-[#666360] text-[16px]">{post?.description}</p>
             </div>
