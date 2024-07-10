@@ -6,6 +6,7 @@ import Image from "next/image";
 import { formatMultiPrice } from "../../../hooks/ValueData";
 
 function List({ post }) {
+  console.log(post)
   const { wishlist } = useContext(Context);
   const [isSaved, changeWishlist] = useWishlist(post, wishlist);
   let record;
@@ -51,31 +52,32 @@ function List({ post }) {
             </div>
             <div className="w-full lg:w-8/12 p-3 sm:p-6">
               <div className="flex flex-wrap justify-between">
-                  <div className="w-full sm:w-8/12">
-                    <h2 className="text-[22px] font-[600] text-[#3F2A17] mb-[10px]">  {capitalizeFirstLetter(post?.name)}</h2>
+                <div className="w-full sm:w-8/12">
+                  <h2 className="text-[22px] font-[600] text-[#3F2A17] mb-[10px]">  {capitalizeFirstLetter(post?.name)}</h2>
 
-                    <p className="text-[16px] font-[400] text-[#666360] uppercase sm:mb-[15px] mb-[8px]"> {record?.location}</p>
+                  <p className="text-[16px] font-[400] text-[#666360] uppercase sm:mb-[15px] mb-[8px]"> {record?.location}</p>
+                </div>
+                <div className="w-full sm:w-4/12 mb-4 sm:mb-0">
+                  <div>
+                    <p className="text-[13px] font-[400] text-[#666360]">From</p>
+                    <h2 className="text-[23px] sm:text-[30px] font-[600] text-[#E0C4C3] ">
+                      {formatMultiPrice(post?.price) ? formatMultiPrice(post?.price) : 0}
+                      <span className="text-[13px] font-[400] text-[#666360]">/night</span>
+                    </h2>
                   </div>
-                  <div className="w-full sm:w-4/12 mb-4 sm:mb-0">
-                    <div>
-                      <p className="text-[13px] font-[400] text-[#666360]">From</p>
-                      <h2 className="text-[23px] sm:text-[30px] font-[600] text-[#E0C4C3] ">
-                        {formatMultiPrice(post?.price) ? formatMultiPrice(post?.price) : 0}
-                        <span className="text-[13px] font-[400] text-[#666360]">/night</span>
-                      </h2>
-                    </div>
-                  </div>
+                </div>
               </div>
               {/* <div className="price-box">
                 <span>{capitalizeAndReplace(post?.type)}</span> 
                 <span>{capitalizeAndReplace(post?.properties_type)}</span> 
               </div> */}
               <div className="flex mb-[15px]">
-                
+
                 <div className=" mb-2 sm:pr-[20px] pr-[10px]">
                   <h3 className="text-[#666360] font-[400] text-[13px]">Bedrooms</h3>
                   <p className="text-[#666360] font-[700] text-[16px]"> {post?.bedrooms} </p>
                 </div>
+
                 <div className=" mb-2 sm:pr-[20px] pr-[10px] pl-[10px] sm:ml-[20px] ml-[10px] border-l">
                   <h3 className="text-[#666360] font-[400] text-[13px]">Bed</h3>
                   <p className="text-[#666360] font-[700] text-[16px]">{post?.beds}  </p>
@@ -87,6 +89,11 @@ function List({ post }) {
                 <div className=" mb-2 sm:pr-[20px] pr-[10px] pl-[10px] sm:ml-[20px] ml-[10px] border-l">
                   <h3 className="text-[#666360] font-[400] text-[13px]">Pets</h3>
                   <p className="text-[#666360] font-[700] text-[16px]">{post?.no_of_pet_allowed} </p>
+                </div>
+
+                <div className=" mb-2 sm:pr-[20px] pr-[10px] pl-[10px] sm:ml-[20px] ml-[10px] border-l">
+                  <h3 className="text-[#666360] font-[400] text-[13px]">Bathroom</h3>
+                  <p className="text-[#666360] font-[700] text-[16px]"> {post?.bathrooms} </p>
                 </div>
               </div>
 
@@ -131,6 +138,10 @@ function List({ post }) {
                 <div className=" mb-2 pl-[40px]">
                   <h3 className="text-[#666360] font-[400] text-[13px]">Guests</h3>
                   <p className="text-[#666360] font-[700] text-[16px]">{post?.guests} </p>
+                </div>
+                <div className=" mb-2 pl-[40px]">
+                  <h3 className="text-[#666360] font-[400] text-[13px]">Bathroom</h3>
+                  <p className="text-[#666360] font-[700] text-[16px]">{post?.bathroom} </p>
                 </div>
                 <div className=" mb-2 pl-[40px]">
                   <h3 className="text-[#666360] font-[400] text-[13px]">Pets</h3>
