@@ -21,8 +21,10 @@ export default function Footer() {
               <span className="capiatize">Mobile : </span>
               9521410122
             </Link>
+          <Link href="tel:9314022666">
+              <span className="capiatize">Mobile : </span>
+          9314022666</Link>
           </div>
-          {/* <p><Link href="tel:9314022666">9314022666</Link></p> */}
         </div>
         <div className="">
           <h3 className="menu-footer mb-3"></h3>

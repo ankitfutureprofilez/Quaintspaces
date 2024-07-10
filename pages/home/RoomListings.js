@@ -68,7 +68,7 @@ export default function RoomListings() {
 
               }
               </h2>
-              <h3 className="line-limit" style={{ WebkitLineClamp: 1 }}>
+              <h3 className="line-limit capitalize" style={{ WebkitLineClamp: 1 }}>
                 {capitalizeFirstLetter(item?.name)}
               </h3>
               <p>
