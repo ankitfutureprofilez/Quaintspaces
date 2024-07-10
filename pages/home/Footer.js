@@ -25,6 +25,7 @@ export default function Footer() {
               <span className="capiatize">Mobile : </span>
           9314022666</Link>
           </div>
+          
         </div>
         <div className="">
           <h3 className="menu-footer mb-3"></h3>
