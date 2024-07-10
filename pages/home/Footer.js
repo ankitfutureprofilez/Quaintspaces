@@ -10,45 +10,49 @@ export default function Footer() {
       {/* Logo and Brand */}
       <div className="footer-menu items-end">
         <div className="">
-          <h3 className="menu-footer mb-3">CONTACT US</h3>
+          <h3 className="mb-3 text-[20px] text[#3F2A17] font-[400] font-['Baskervville']">CONTACT US</h3>
           <div className="flex flex-col">
-            <Link href="mailto:quaintspaces@gmail.com" target="_blank">
-              <span className="capiatize">Email : </span>
+            <Link className="text-[#3F2A17] text-[16px] " href="mailto:quaintspaces@gmail.com" target="_blank">
+              <span >Email : </span>
               quaintspaces@gmail.com
             </Link>
-            <Link href="tel:9521410122">
-              <span className="capiatize">Mobile : </span>
+            <Link className="text-[#3F2A17] text-[16px] uppercase" href="tel:9521410122">
+              <span >Mobile : </span>
+              9521410122
+            </Link>
+            <Link className="text-[#3F2A17] text-[16px] uppercase" href="tel:9521410122">
+              <span >Mobile : </span>
               9521410122
             </Link>
           </div>
           {/* <p><Link href="tel:9314022666">9314022666</Link></p> */}
         </div>
         <div className="">
-          <h3 className="menu-footer mb-3"></h3>
+        <h3 className="uppercase mb-3 text-[20px] text[#3F2A17] font-[400] font-['Baskervville']">Quick Links</h3>
           <div className="flex flex-col">
             <Link href="/terms">
-              <span className="capiatize">Terms & Condition</span>
+              <span className="text-[#3F2A17] text-[16px] uppercase">Terms & Condition</span>
             </Link>
             <Link href="/policy">
-              <span className="capiatize">Privacy Policy</span>
+              <span className="text-[#3F2A17] text-[16px] uppercase">Privacy Policy</span>
             </Link>
           </div>
         </div>
         <div className="flex flex-col">
-          <h3 className="mb-2">Follow Us</h3>
+          <h3 className="uppercase mb-3 text-[20px] text[#3F2A17] font-[400] font-['Baskervville']">Follow Us</h3>
           <div className="">
             <Link href="/">
               <div className="flex">
-                <FaFacebook color={"#c48b58"} size={24} />
-                <span>: Follow us on Facebook</span>
+                <FaFacebook color={"#3F2A17"} size={24} />
+                <span className="text-[#3F2A17] text-[16px] uppercase ml-2">: Follow us on Facebook</span>
               </div>
             </Link>
             </div>
             <div className="mt-2">
             <Link href="https://www.instagram.com/quaintspacesjaipur">
               <div className="flex">
-                <FaInstagram color={"#c48b58"} size={24} />
-                <span>: @quaintspacesjaipur</span>
+                <FaInstagram color={"#3F2A17"} size={24} />
+                <span className="text-[#3F2A17] text-[16px] uppercase ml-2">: @quaintspacesjaipur</span>
               </div>
             </Link>
             </div>          
