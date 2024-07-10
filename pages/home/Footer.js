@@ -41,7 +41,7 @@ export default function Footer() {
         <div className="flex w-full flex-col mb-3 mb:mb-0">
           <h3 className="uppercase mb-2 text-[20px] text[#3F2A17] font-[400] font-['Baskervville']">Follow Us</h3>
           <div className="">
-            <Link href="/">
+            <Link href="https://www.facebook.com/share/64gvciqN2UNPMx6V/?mibextid=LQQJ4d" target="_blank">
               <div className="flex">
                 <FaFacebook color={"#3F2A17"} size={24} />
                 <span className="text-[#3F2A17] text-[16px] uppercase ml-2">: Follow us on Facebook</span>
@@ -49,7 +49,7 @@ export default function Footer() {
             </Link>
             </div>
             <div className="mt-2">
-            <Link href="https://www.instagram.com/quaintspacesjaipur">
+            <Link href="https://www.instagram.com/quaintspacesjaipur" target="_blank">
               <div className="flex">
                 <FaInstagram color={"#3F2A17"} size={24} />
                 <span className="text-[#3F2A17] text-[16px] uppercase ml-2">: @quaintspacesjaipur</span>
@@ -58,7 +58,7 @@ export default function Footer() {
             </div>          
         </div>
       </div>
-      
+
 
       <div className="text-center copy-right">
         {/* Copyright Notice */}
