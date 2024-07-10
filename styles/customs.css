@@ -281,7 +281,7 @@ h2.loction-name {
 }
 .footer-menu {
   display: flex;
-  align-items: center;
+  /* align-items: flex-start; */
   justify-content: space-between;
   width: 100%;
   padding: 40px 0;
