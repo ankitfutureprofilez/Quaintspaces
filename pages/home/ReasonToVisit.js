@@ -34,7 +34,7 @@ export default function ReasonToVisit() {
         <h2>Facilities we offer</h2>
         <div className="smart-box">
         {reasons.map((reason, index) => (
-                <div className="iteam w-[200px] mb-3" key={index} >
+                <div className="iteam sm:w-[200px] w-[150px] mb-3" key={index} >
                   <div className="flex flex-col gap-2">
                     {reason?.icon}
                     {reason?.name}

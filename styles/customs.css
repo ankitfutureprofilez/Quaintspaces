@@ -166,7 +166,7 @@ h3.text-sm.font-medium.desc-property {
 .nav-header-sec {
   background-color: #000000;
   background-blend-mode: color;
-  height: 670px !important;
+ 
 }
 .testimo-text { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; }
 .hero-sec {
@@ -292,7 +292,6 @@ h2.loction-name {
 }
 .footer-menu {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   width: 100%;
   padding: 40px 0;
@@ -1184,6 +1183,8 @@ button.submint-btn {
   .perso-form .p-4 {
     padding: 12px;
   }
+  .footer-menu {flex-flow: column; }
+  .visit-us-sec {  margin-bottom: 25px; }
 }
 @media (max-width: 575px) {
   .container {

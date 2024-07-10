@@ -8,9 +8,9 @@ export default function Footer() {
   return (
     <div className="container mx-auto flex flex-col justify-between">
       {/* Logo and Brand */}
-      <div className="footer-menu items-end">
-        <div className="">
-          <h3 className="mb-3 text-[20px] text[#3F2A17] font-[400] font-['Baskervville']">CONTACT US</h3>
+      <div className="items-start footer-menu ">
+        <div className="w-full mb-3 mb:mb-0">
+          <h3 className="mb-2 text-[20px] text[#3F2A17] font-[400] font-['Baskervville']">CONTACT US</h3>
           <div className="flex flex-col">
             <Link className="text-[#3F2A17] text-[16px] " href="mailto:quaintspaces@gmail.com" target="_blank">
               <span >Email : </span>
@@ -27,8 +27,8 @@ export default function Footer() {
           </div>
           {/* <p><Link href="tel:9314022666">9314022666</Link></p> */}
         </div>
-        <div className="">
-        <h3 className="uppercase mb-3 text-[20px] text[#3F2A17] font-[400] font-['Baskervville']">Quick Links</h3>
+        <div className="w-full mb-3 mb:mb-0">
+        <h3 className="uppercase mb-2 text-[20px] text[#3F2A17] font-[400] font-['Baskervville']">Quick Links</h3>
           <div className="flex flex-col">
             <Link href="/terms">
               <span className="text-[#3F2A17] text-[16px] uppercase">Terms & Condition</span>
@@ -38,8 +38,8 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col">
-          <h3 className="uppercase mb-3 text-[20px] text[#3F2A17] font-[400] font-['Baskervville']">Follow Us</h3>
+        <div className="flex w-full flex-col mb-3 mb:mb-0">
+          <h3 className="uppercase mb-2 text-[20px] text[#3F2A17] font-[400] font-['Baskervville']">Follow Us</h3>
           <div className="">
             <Link href="/">
               <div className="flex">
