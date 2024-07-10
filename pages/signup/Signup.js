@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 // import logologin from "../../public/images/loginlogoimg.png";
-import logologin from "../../public/images/logo.png";
+import logologin from "../../public/images/Logo.png";
 
 import Link from "next/link";
 import { useRouter } from "next/router";
