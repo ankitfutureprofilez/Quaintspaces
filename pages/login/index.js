@@ -18,7 +18,7 @@ export default function Login() {
         </Head>
     <div
       className="h-screen tab-mob-height"
-      style={{ backgroundImage: `url(/images/login-bg.jpg)` }}
+      style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
     >
       <div className="container h-full">
         <div className="flex items-center  h-full relative signup-tab-sec">
