@@ -66,7 +66,7 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                   </span>
                   { listing?.data?.rating !==0  ?(parseFloat(
                     listing?.data?.rating && listing?.data?.rating?.toFixed(2)
-                  )) : (<> </>) }
+                  )) : "4.1" }
                 </span>
                 <div className="hidden">·</div>
                 <span
@@ -75,7 +75,7 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                 >
                   {listing && listing.data && listing.data.review > 0 ? (
                     <>{listing.data.review} Review</>
-                  ) : "No Review"}
+                  ) : null}
                 </span>
               </div>
             </>

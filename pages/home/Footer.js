@@ -10,16 +10,17 @@ export default function Footer() {
       {/* Logo and Brand */}
       <div className="footer-menu items-start sm:items-end gap-4 sm:gap-0">
         <div className="">
-          <h3 className="menu-footer mb-3">CONTACT US</h3>
+          <h3 className="menu-footer mb-2">CONTACT US</h3>
           <div className="flex flex-col">
             <Link href="mailto:quaintspaces@gmail.com" target="_blank">
               <span className="capiatize">Email : </span>
               quaintspaces@gmail.com
             </Link>
-            <Link href="tel:9521410122">
+            <p>
               <span className="capiatize">Mobile : </span>
-              9521410122
-            </Link>
+              <Link href="tel:9521410122">9521410122</Link>
+              <Link href="tel:9521410122">/9314022666</Link>
+            </p>
           </div>
           {/* <p><Link href="tel:9314022666">9314022666</Link></p> */}
         </div>
