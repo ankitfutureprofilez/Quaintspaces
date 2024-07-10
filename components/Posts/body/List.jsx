@@ -53,7 +53,6 @@ function List({ post }) {
               <div className="flex justify-between">
                   <div>
                     <h2 className="text-[22px] font-[600] text-[#3F2A17] mb-[10px]">  {capitalizeFirstLetter(post?.name)}</h2>
-                    
                     <p className="text-[16px] font-[400] text-[#666360] uppercase mb-[15px]"> {record?.location}</p>
                   </div>
                   <div>
