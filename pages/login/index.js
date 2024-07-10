@@ -17,7 +17,7 @@ export default function Login() {
           <title>Login - QS Jaipur</title>
         </Head>
     <div
-      className="h-screen tab-mob-height"
+      className="h-screen tab-mob-height bg-cover"
       style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
     >
       <div className="container h-full">
