@@ -27,11 +27,12 @@ const PostBody = ({ listings, loading }) => {
 
   return (
     <div>
-      <ul className="flex flex-wrap -mx-[10px] ">
+      <ul className="flex flex-wrap -mx-[10px] gap-8 mb-10 ">
         {loading
-          ? Array(6)
+          ? Array(3)
               .fill("_")
-              .map(() => <TableLoading key={uuidv4()} />)
+              // .map(() => <TableLoading key={uuidv4()} />)
+              .map(() => <TableLoading/> )
           : listings && listings?.length > 0
           ? listings.map((post, i) => (
               <li

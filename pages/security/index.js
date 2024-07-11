@@ -187,7 +187,7 @@ export default function index() {
           </div>
         </div>
         <Modal isOpen={isOpen} onClose={closeModal}>
-          <div className="w-full mb-7 mt-4">
+          <div className="w-full my-5 px-4">
             <h2 className="sm:text-2xl text-md font-medium text-bold my-2">
               Deactivation Confirmation
             </h2>

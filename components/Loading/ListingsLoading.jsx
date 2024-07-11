@@ -15,22 +15,44 @@ const ListingsLoading = ({ divider = 5, css = "w-[calc(100%/2-50px)]" }) => {
 
 const TableLoading = () => {
   return (
-    <div className="w-full overflow-hidden">
-      <div className="flex justify-between p-4 bg-gray-200">
-        <div className="h-6 rounded w-1/6 bg-borderColor"></div>
-        <div className="h-6 rounded w-1/6 bg-borderColor"></div>
-        <div className="h-6 rounded w-1/6 bg-borderColor"></div>
-        <div className="h-6 rounded w-1/6 bg-borderColor"></div>
-      </div>
-      {[...Array(5)].map((_, index) => (
-        <div key={index} className="flex justify-between p-4 border-b">
-          <div className="h-6 rounded w-1/6 bg-borderColor"></div>
-          <div className="h-6 rounded w-1/6 bg-borderColor"></div>
-          <div className="h-6 rounded w-1/6 bg-borderColor"></div>
-          <div className="h-6 rounded w-1/6 bg-borderColor"></div>
-        </div>
-      ))}
+    <div className="w-full bg-white flex items-center justify-center z-50 h-auto ">
+  <div className="bg-white rounded-lg list-gstr overflow-hidden flex animate-pulse w-full max-w-screen-lg h-auto">
+    <div className="w-4/12 max-h-[300px] bg-gray-200 relative">
+      <div className="w-full h-full bg-gray-300"></div>
     </div>
+    <div className="w-8/12 p-6">
+      <div className="h-8 bg-gray-300 rounded mb-[10px] w-3/4"></div>
+      <div className="h-8 bg-gray-300 rounded mb-[10px] w-1/2"></div>
+      <div className="h-4 bg-gray-300 rounded mb-[15px] w-1/4"></div>
+
+      <div className="flex mb-[15px]">
+        <div className="mb-2 pr-[40px]">
+          <div className="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
+          <div className="h-6 bg-gray-300 rounded w-3/4"></div>
+        </div>
+        <div className="mb-2 px-[40px] border-x">
+          <div className="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
+          <div className="h-6 bg-gray-300 rounded w-3/4"></div>
+        </div>
+        <div className="mb-2 pl-[40px]">
+          <div className="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
+          <div className="h-6 bg-gray-300 rounded w-3/4"></div>
+        </div>
+        <div className="mb-2 pl-[40px]">
+          <div className="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
+          <div className="h-6 bg-gray-300 rounded w-3/4"></div>
+        </div>
+        <div className="mb-2 pl-[40px]">
+          <div className="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
+          <div className="h-6 bg-gray-300 rounded w-3/4"></div>
+        </div>
+      </div>
+
+      <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
+      <div className="h-4 bg-gray-300 rounded w-full"></div>
+    </div>
+  </div>
+</div>
   );
 };
 
