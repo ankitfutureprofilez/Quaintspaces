@@ -93,12 +93,12 @@ export default function index() {
             <h3 className="text-[24] text-[#3F2A17] mb-[15px]">Unmatched Quality</h3>
             <p className="text-[16px] text-[#3F2A17]">Each property is meticulously selected to ensure the highest standards of luxury and comfort.</p>
           </div>
-          <div className=" py-[50px] px-[40px] flex flex-col items-start"  style={{ backgroundImage: `url(/images/banner/Banner1.JPG)` }} >
+          <div className=" py-[50px] px-[40px] flex flex-col items-start"  style={{ backgroundImage: `url(/images/Book1.jpg)` }} >
             <h3 className="text-[24] text-[#fff] mb-[15px]">Personalized Experience</h3>
             <p className="text-[16px] text-[#fff]">Enjoy tailored services designed to meet your unique preferences and needs.</p>
           </div>
           <div>
-            <div className="py-[50px] px-[40px] mb-4 flex flex-col items-start"  style={{ backgroundImage: `url(/images/banner/Banner1.JPG)` }}>
+            <div className="py-[50px] px-[40px] mb-4 flex flex-col items-start"  style={{ backgroundImage: `url(/images/Book.jpg)` }}>
               <h3 className="text-[24] text-[#fff] mb-[15px]">Seamless Booking</h3>
               <p className="text-[16px] text-[#fff]">Our user-friendly platform makes finding and booking your perfect stay effortless.</p>
             </div>
