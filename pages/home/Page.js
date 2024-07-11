@@ -18,9 +18,10 @@ export default function MainPage() {
   const [isMobile, setIsMobile] = useState(false);
 
   const images = [
+    "/images/banner/Banner4.jpg",
     "/images/banner/Banner1.JPG",
     "/images/banner/Banner2.jpg",
-    "/images/banner/Banner3.jpg"
+    "/images/banner/Banner3.jpg",
   ];
 
   const settings = {
