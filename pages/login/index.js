@@ -47,8 +47,7 @@ export default function Login() {
             </div>
             <Image src={logologin} alt="QUAINTSPACES JAIPUR logo" />
             <p>
-              Book the most luxuries and aesthetically pleasing place, Jaipur
-              city has to offer 
+            Indulge in the finest and most charming accommodation in Jaipur
             </p>
           </div>
           <div className="sm:w-6/12 px-3">

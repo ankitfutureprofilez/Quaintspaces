@@ -31,7 +31,7 @@ export default function MainPage() {
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 4000,
     responsive: [
       {
         breakpoint: 1024,
