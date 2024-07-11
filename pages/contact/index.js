@@ -64,18 +64,12 @@ export default function index() {
         <title>Contact Us - QS Jaipur</title>
       </Head>
       {/* Hero sec component */}
-      <div className="relative w-full lg:h-[670px] md:h-[550px] sm:h-[450px] h-[350px]">
-        <Image
-          src="/images/banner/Banner1.JPG"
-          alt="property-image"
-          layout="fill"
-          objectFit="cover"
-          priority
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="justify-center items-center flex flex-col hero-sec px-2">
-            <h1>Discover the Art of Luxurious Living</h1>
-            <p className="max-w-[800px] m-auto text-center">
+      <div className="bg-cover bg-no-repeat bg-center contact-about" style={{ backgroundImage: `url(/images/banner/Banner1.JPG)` }} >
+        
+        <div className="py-[200px] bg-[#00000087]">
+          <div className="">
+            <h1 className="">Discover the Art of Luxurious Living</h1>
+            <p className=" max-w-[800px] m-auto">
               Experience exceptional stays curated for your comfort and style,
               where every detail is crafted to perfection.
             </p>
@@ -84,23 +78,25 @@ export default function index() {
       </div>
       {/* Why Book with us */}
       <div className="max-w-6xl mx-auto py-12">
-      <h2 className="text-center text-2xl font-semibold mb-8">Why Book With Us</h2>
-      <div className="grid md:grid-cols-4 gap-4">
-        <div className="bg-pink-200 p-6 flex flex-col items-start">
-          <h3 className="text-lg font-semibold mb-4">Unmatched Quality</h3>
-          <p className="text-sm">Each property is meticulously selected to ensure the highest standards of luxury and comfort.</p>
+      <h2 className="mb-4 text-[40px] text[#3F2A17] text-center font-[400] font-['Baskervville']">Why Book With Us</h2>
+      <div className="grid md:grid-cols-3 gap-4">
+        <div className="bg-[#E0C4C3] py-[50px] px-[40px] flex flex-col items-start">
+          <h3 className="text-[24] text-[#3F2A17] mb-[15px]">Unmatched Quality</h3>
+          <p className="text-[16px] text-[#3F2A17]">Each property is meticulously selected to ensure the highest standards of luxury and comfort.</p>
         </div>
-        <div className="bg-gray-200 p-6 flex flex-col items-start">
-          <h3 className="text-lg font-semibold mb-4">Personalized Experience</h3>
-          <p className="text-sm">Enjoy tailored services designed to meet your unique preferences and needs.</p>
+        <div className="bg-gray-200 py-[50px] px-[40px] flex flex-col items-start">
+          <h3 className="text-[24] text-[#fff] mb-[15px]">Personalized Experience</h3>
+          <p className="text-[16px] text-[#fff]">Enjoy tailored services designed to meet your unique preferences and needs.</p>
         </div>
-        <div className="bg-gray-400 p-6 flex flex-col items-start">
-          <h3 className="text-lg font-semibold mb-4">Seamless Booking</h3>
-          <p className="text-sm">Our user-friendly platform makes finding and booking your perfect stay effortless.</p>
-        </div>
-        <div className="bg-blue-200 p-6 flex flex-col items-start">
-          <h3 className="text-lg font-semibold mb-4">24/7 Support</h3>
-          <p className="text-sm">Our dedicated team is available around the clock to assist with any inquiries or requests.</p>
+        <div>
+          <div className="bg-gray-400 py-[50px] px-[40px] mb-4 flex flex-col items-start">
+            <h3 className="text-[24] text-[#fff] mb-[15px]">Seamless Booking</h3>
+            <p className="text-[16px] text-[#fff]">Our user-friendly platform makes finding and booking your perfect stay effortless.</p>
+          </div>
+          <div className="bg-[#B1BBC2] py-[50px] px-[40px] flex flex-col items-start">
+            <h3 className="text-[24] text-[#3F2A17] mb-[15px]">24/7 Support</h3>
+            <p className="text-[16px] text-[#3F2A17]">Our dedicated team is available around the clock to assist with any inquiries or requests.</p>
+          </div>
         </div>
       </div>
     </div>
