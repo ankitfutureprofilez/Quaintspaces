@@ -219,7 +219,7 @@ export default function Index() {
       {selectedEnquiry && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
           <div className=" flex flex-col ">
-          <div className="p-4 bg-[#E0C4C3]">
+          <div className="p-4 bg-[#efa3a3]">
             <label
               htmlFor="message"
               className="mx-auto block text-lg font-medium text-[#fff]"

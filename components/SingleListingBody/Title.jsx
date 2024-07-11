@@ -41,7 +41,7 @@ console.log("isAdmin",isAdmin)
           
 
           {isAdmin ? (
-              <Link className="filter btn w-auto mb-2 w-36 sm:w-40 hover:bg-[#fff] hover:text-[#E0C4C3] border-2 bg-color-[#E0C4C3] border-[#E0C4C3]"       href={`/admin/property/edit/${slug}`} >
+              <Link className="filter btn w-auto mb-2 w-36 sm:w-40 hover:bg-[#fff] hover:text-[#efa3a3] border-2 bg-color-[#efa3a3] border-[#efa3a3]"       href={`/admin/property/edit/${slug}`} >
                 Edit Property
               </Link>
           ) : null }

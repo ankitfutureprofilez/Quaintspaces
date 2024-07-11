@@ -89,7 +89,7 @@ export default function index() {
       <div className="max-w-6xl mx-auto py-12">
         <h2 className="mb-4 text-[40px] text[#3F2A17] text-center font-[400] font-['Baskervville']">Why Book With Us</h2>
         <div className="grid md:grid-cols-3 gap-4">
-          <div className="bg-[#E0C4C3] py-[50px] px-[40px] flex flex-col items-start">
+          <div className="bg-[#efa3a3] py-[50px] px-[40px] flex flex-col items-start">
             <h3 className="text-[24] text-[#3F2A17] mb-[15px]">Unmatched Quality</h3>
             <p className="text-[16px] text-[#3F2A17]">Each property is meticulously selected to ensure the highest standards of luxury and comfort.</p>
           </div>
@@ -224,7 +224,7 @@ export default function index() {
                   rows={4} // Set the number of rows as needed
                 />
               </div>
-              <button className=" hover:bg-[#fff] border border-[#E0C4C3] bg-[#E0C4C3] text-[#fff] hover:text-[#E0C4C3] btn w-7/12 !py-2 lg:!py-3 flex mx-auto justify-center">
+              <button className=" hover:bg-[#fff] border border-[#efa3a3] bg-[#efa3a3] text-[#fff] hover:text-[#efa3a3] btn w-7/12 !py-2 lg:!py-3 flex mx-auto justify-center">
                 {loading ? "Submitting..." : "Submit"}
               </button>
             </form>

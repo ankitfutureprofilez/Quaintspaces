@@ -49,7 +49,7 @@ export default function RoomListings() {
         {listings?.map((item, index) => (
           <Link key={index} className="bg-white banipark-box rounded-lg block relative overflow-hidden pb-[85px] h-full" href={`/property/${item?.uuid}`}>
             {item?.discount_offer ? (
-              <div className="absolute bg-[#e0c4c3] -rotate-45 text-white px-2 py-1 w-32 text-center -left-[32px] top-[18px] shadow-[0_0_17px_-5px_#3c3c3c;]">
+              <div className="absolute bg-[#efa3a3] -rotate-45 text-white px-2 py-1 w-32 text-center -left-[32px] top-[18px] shadow-[0_0_17px_-5px_#3c3c3c;]">
                 {item?.discount_offer}% off
               </div>
             ) : null}

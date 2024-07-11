@@ -145,8 +145,8 @@ h3.text-sm.font-medium.desc-property {
   color: #404040;
 }
 .login-signup-btn a.signup {
-  background: #E0C4C3;
-  border: 2px solid #E0C4C3;
+  background: #efa3a3;
+  border: 2px solid #efa3a3;
 }
 .navbar {
   padding: 20px 0;
@@ -274,7 +274,7 @@ h1.in-jaipur {
   width: 100%;
 }
 .premium-location-slider button {
-  background: #E0C4C3;
+  background: #efa3a3;
   padding: 20px;
   border-radius: 50px;
 }
@@ -296,7 +296,7 @@ h2.loction-name {
   justify-content: space-between;
   width: 100%;
   padding: 40px 0;
-  border-bottom: 1px solid #E0C4C3  ;
+  border-bottom: 1px solid #efa3a3  ;
 }
 .footer-menu img {
   width: 127px;
@@ -376,8 +376,8 @@ footer {
   display: flex;
   text-align: center;
   justify-content: center;
-  border-top: 1px solid #E0C4C3;
-  color: #E0C4C3;
+  border-top: 1px solid #efa3a3;
+  color: #efa3a3;
   margin-top: 25px;
 }
 .explor-btn .explore {
@@ -388,7 +388,7 @@ footer {
   line-height: 19px;
   letter-spacing: 0em;
   text-align: center;
-  color: #E0C4C3;
+  color: #efa3a3;
   text-transform: uppercase;
 }
 .explor-btn .explore svg {
@@ -398,7 +398,7 @@ footer {
   /* background: #fff; */
   height: 100%;
   /* box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); */
-  /* border: 1px solid #E0C4C3; */
+  /* border: 1px solid #efa3a3; */
 }
 .banipark-box {
   /* background: #fff; */
@@ -428,7 +428,7 @@ footer {
   line-height: 22px;
   letter-spacing: 0em;
   text-align: center;
-  color: #E0C4C3;
+  color: #efa3a3;
 }
 .load-more-btn {
   text-align: center;
@@ -441,7 +441,7 @@ footer {
   line-height: 19px;
   letter-spacing: 0em;
   text-align: center;
-  color: #E0C4C3;
+  color: #efa3a3;
   text-transform: uppercase;
   padding: 15px 50px;
   border: 1px solid;
@@ -603,7 +603,7 @@ footer {
 }
 button.submint-btn {
   width: 100%;
-  background: #E0C4C3;
+  background: #efa3a3;
   border-radius: 50px;
   padding: 20px;
   
@@ -662,8 +662,8 @@ button.submint-btn {
   color: #666360;
 }
 .upcomming-box button.text-white {
-  background: #E0C4C3;
-  border: 1px solid #E0C4C3;
+  background: #efa3a3;
+  border: 1px solid #efa3a3;
 }
 .upcomming-box button {
   border: 1px solid #ececec;
@@ -748,7 +748,7 @@ button.submint-btn {
 }
 
 .edit-profile {
-  background: #E0C4C3;
+  background: #efa3a3;
   height: 32px;
   width: 32px;
   display: flex;
@@ -759,7 +759,7 @@ button.submint-btn {
   top: -8px;
 }
 .update-btn {
-  background: #E0C4C3;
+  background: #efa3a3;
   
   font-size: 16px;
   font-weight: 600;
@@ -787,7 +787,7 @@ button.submint-btn {
   color: #666360;
 }
 .golden-border {
-  border: 1px solid #E0C4C3;
+  border: 1px solid #efa3a3;
 }
 .confirm-total span {
   font-family: "Inter", sans-serif !important;
@@ -810,7 +810,7 @@ button.submint-btn {
   color: #3f2a17;
 }
 .bg-orange-300 {
-  background: #E0C4C3;
+  background: #efa3a3;
 }
 .edit-here h2 {
   margin-bottom: 6px;
@@ -1383,12 +1383,12 @@ button.submint-btn {
   /* height: 46px; */
 }
 .sort {
-  border: 2px solid #E0C4C3;
-  color: #E0C4C3;
+  border: 2px solid #efa3a3;
+  color: #efa3a3;
   font-size: 14px;
 }
 .filter {
-  background: #E0C4C3;
+  background: #efa3a3;
 
   color: #fff;
 }

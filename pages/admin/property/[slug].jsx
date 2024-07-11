@@ -79,7 +79,7 @@ const Listings = () => {
         setHeaderSearch={setHeaderSearch}
       /> */}
         {/* <div className="absolute top-[6rem] right-[3rem] md:top-[8.5rem] md:right-20">
-          <Link className=" filter btn w-auto w-40 hover:bg-[#fff] hover:text-[#E0C4C3] border-2 bg-color-[#E0C4C3] border-[#E0C4C3] " 
+          <Link className=" filter btn w-auto w-40 hover:bg-[#fff] hover:text-[#efa3a3] border-2 bg-color-[#efa3a3] border-[#efa3a3] " 
           href={`/admin/property/edit/${slug}`}>
             {" "}
             Edit Property

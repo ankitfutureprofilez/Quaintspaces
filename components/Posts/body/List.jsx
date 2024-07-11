@@ -40,7 +40,7 @@ function List({ post }) {
           <div className="bg-white flex-wrap rounded-lg overflow-hidden relative list-gstr overflow-hidden flex">
             <div className="w-full lg:w-3/12 max-h-[300px]">
               {post?.discount_offer ? (
-                <div className="absolute bg-[#e0c4c3] -rotate-45 text-white px-2 py-1 w-32 text-center -left-[32px] top-[18px] shadow-[0_0_17px_-5px_#3c3c3c;]">
+                <div className="absolute bg-[#efa3a3] -rotate-45 text-white px-2 py-1 w-32 text-center -left-[32px] top-[18px] shadow-[0_0_17px_-5px_#3c3c3c;]">
                   {post?.discount_offer}%  off
                 </div>
               ) : (<> </>)}
@@ -60,7 +60,7 @@ function List({ post }) {
                 <div className="w-full sm:w-4/12 mb-4 sm:mb-0 flex sm:justify-end">
                   <div>
                     <p className="text-[13px] font-[400] text-[#666360]">From</p>
-                    <h2 className="text-[23px] sm:text-[30px] font-[600] text-[#E0C4C3] ">
+                    <h2 className="text-[23px] sm:text-[30px] font-[600] text-[#efa3a3] ">
                       {formatMultiPrice(post?.price) ? formatMultiPrice(post?.price) : 0}
                       <span className="text-[13px] font-[400] text-[#666360]">/night</span>
                     </h2>
@@ -107,7 +107,7 @@ function List({ post }) {
           <div className="bg-white rounded-lg list-gstr overflow-hidden flex">
             <div className="w-4/12 max-h-[300px]">
               {post?.discount_offer ? (
-                <div className="absolute bg-[#e0c4c3] -rotate-45 text-white px-2 py-1 w-32 text-center -left-[32px] top-[18px] shadow-[0_0_17px_-5px_#3c3c3c;]">
+                <div className="absolute bg-[#efa3a3] -rotate-45 text-white px-2 py-1 w-32 text-center -left-[32px] top-[18px] shadow-[0_0_17px_-5px_#3c3c3c;]">
                   {post?.discount_offer}%  off
                 </div>
               ) : (<> </>)}

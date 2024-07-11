@@ -30,7 +30,7 @@ export default function Index() {
           <span className="rounded-md shadow-sm">
             <button
               type="button"
-              className="sort btn flex items-center mr-2 hover:bg-[#E0C4C3] hover:border-[#E0C4C3] hover:text-[#fff]"
+              className="sort btn flex items-center mr-2 hover:bg-[#efa3a3] hover:border-[#efa3a3] hover:text-[#fff]"
               id="options-menu"
               aria-haspopup="true"
               aria-expanded="true"
@@ -196,7 +196,7 @@ export default function Index() {
               />
               {/* Filter button to open the modal */}
               <button
-                className="filter btn ms-2 hover:bg-[#fff] border-[#E0C4C3] hover:text-[#E0C4C3] border-2 text-[14px]"
+                className="filter btn ms-2 hover:bg-[#fff] border-[#efa3a3] hover:text-[#efa3a3] border-2 text-[14px]"
                 onClick={openModal}
               >
                 Filter

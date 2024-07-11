@@ -45,7 +45,7 @@ const Card = ({ post }) => {
         {post?.uuid ? (
           <Link className="block relative overflow-hidden relative pb-[20px] h-full" href={`/property/${post?.uuid}`}>
             {post?.discount_offer ? (
-              <div className="absolute bg-[#e0c4c3] -rotate-45 text-white px-2 py-1 w-32 text-center -left-[32px] top-[18px] shadow-[0_0_17px_-5px_#3c3c3c;] ">
+              <div className="absolute bg-[#efa3a3] -rotate-45 text-white px-2 py-1 w-32 text-center -left-[32px] top-[18px] shadow-[0_0_17px_-5px_#3c3c3c;] ">
                 {post?.discount_offer}%  off
               </div>
             ) : (<> </>)}

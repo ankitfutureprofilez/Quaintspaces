@@ -14,7 +14,7 @@ export default function HeroBanner() {
         <Button
           text={"EXPLORE APARTMENTS"}
           design={
-            "font-inter text-base font-medium leading-tight text-center text-white w-[405px] border-2 border-white p-[18px] rounded-[30px] hover:bg-[#E0C4C3] hover:border-[#E0C4C3]"
+            "font-inter text-base font-medium leading-tight text-center text-white w-[405px] border-2 border-white p-[18px] rounded-[30px] hover:bg-[#efa3a3] hover:border-[#efa3a3]"
           }
           id="hero"
         />

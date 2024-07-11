@@ -365,8 +365,8 @@ export default function index() {
       {selectedBooking && (
         <Modal isOpen={isConfirmOpen} onClose={closeConfirmModal}>
           <div className="flex flex-col">
-          <div className="p-4 bg-[#E0C4C3]">
-          <div className="p-4 bg-[#E0C4C3]">
+          <div className="p-4 bg-[#efa3a3]">
+          <div className="p-4 bg-[#efa3a3]">
             <label
               htmlFor="message"
               className="mx-auto block text-lg font-medium text-[#fff]"
@@ -408,7 +408,7 @@ export default function index() {
       {imageOpen && (
         <Modal isOpen={openImageModal} onClose={CloseImageModal}>
           <div className=" flex flex-col ">
-          <h3 className="bg-[#E0C4C3] text-white p-4"> Document Image</h3>
+          <h3 className="bg-[#efa3a3] text-white p-4"> Document Image</h3>
           <div className="p-4">
             <img
                 src={document}
