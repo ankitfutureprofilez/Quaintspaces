@@ -17,7 +17,6 @@ import {
 import Guest from "../add/Guest";
 import CancelPolicy from "../add/CancelPolicy";
 import HouseRules from "../add/HouseRules";
-import { set } from "date-fns";
 
 
 const propertyTypes = [
