@@ -17,8 +17,6 @@ import {
 import Guest from "../add/Guest";
 import CancelPolicy from "../add/CancelPolicy";
 import HouseRules from "../add/HouseRules";
-
-
 const propertyTypes = [
   { value: "flat", label: "Flat & Apartment" },
   { value: "house", label: "House" },
