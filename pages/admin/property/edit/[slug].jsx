@@ -19,6 +19,7 @@ import CancelPolicy from "../add/CancelPolicy";
 import HouseRules from "../add/HouseRules";
 import { set } from "date-fns";
 
+
 const propertyTypes = [
   { value: "flat", label: "Flat & Apartment" },
   { value: "house", label: "House" },
