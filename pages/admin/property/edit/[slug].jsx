@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Listing from "../../api/Listing";
 import { useRouter } from "next/router";
+import Property from "../add/Property"
 import { IoArrowBack } from "react-icons/io5";
 import { MdOutlineFreeBreakfast } from "react-icons/md";
 import { House } from "iconsax-react";
