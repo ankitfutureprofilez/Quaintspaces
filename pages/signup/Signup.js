@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-// import logologin from "../../public/images/loginlogoimg.png";
-import logologin from "../../public/images/Logo.png";
-
+import logologin from "../../public/images/loginlogoimg.png";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";

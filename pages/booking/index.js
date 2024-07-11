@@ -225,7 +225,7 @@ export default function Index() {
                       <th>Check Out</th>
                       <th>Status</th>
                       <th>Price</th>
-                      {(key !== "ongoing" && key !== "cancelled") && <th>Action</th>}
+                      {(key ==="upcoming") && <th>Action</th>}
                       {/* {} */}
                       {key === "ongoing" &&
                         <th>House details</th>}
@@ -277,7 +277,7 @@ export default function Index() {
                         <td className="px-4 py-2">
                           {formatMultiPrice(item?.price)}
                         </td>
-                        {key !== "ongoing" && key !== "cancelled" &&
+                        {key === "upcoming" &&
                           (
                             <td className="px-4 py-2">
                               {
@@ -299,11 +299,9 @@ export default function Index() {
 
                             </td>)}
                         {key === "ongoing" &&
-
                           <td className="px-4 py-2">
                             <span className="text-4xl ml-1" style={{ cursor: "pointer" }} onClick={() => handleHouseRules(item)}>🛈</span>
                           </td>}
-
                       </tr>
                     </tbody>
                   ))}
