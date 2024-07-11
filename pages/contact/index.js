@@ -131,7 +131,7 @@ export default function index() {
           </div>
           <div className="md:w-1/2 px-6 mt-8 md:mt-0">
           <div className="flex flex-col space-y-4">
-  <img src="/images/EasySteps2.jpg" alt="Modern living space" className="rounded-lg shadow-lg" />
+  <img src="/images/EasySteps2.JPG" alt="Modern living space" className="rounded-lg shadow-lg" />
   <img src="/images/EasySteps1.jpg" alt="Luxurious living room" className="rounded-lg shadow-lg" />
 </div>
 
