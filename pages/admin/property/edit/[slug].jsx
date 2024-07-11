@@ -120,6 +120,7 @@ export default function Edit() {
   const handleBookingChange = (option) => {
     setSelectedbooking(option);
   };
+  
   console.log("record", record)
   const [selectedPolicy, setSelectedPolicy] = useState(null);
   const [longTermPolicy, setLongTermPolicy] = useState(null);
