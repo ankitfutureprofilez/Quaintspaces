@@ -73,7 +73,7 @@ export default function Header() {
               <div className="profile-image relative" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                 <div className="profile-image-container items-center" style={{ cursor: 'pointer' }}>
                   <Image
-                    src={auth?.auth?.image_url ? auth?.auth?.image_url : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
+                    src={auth?.auth?.image_url ? auth?.auth?.image_url : "/images/profile-no-image.jpg"}
                     alt="profile"
                     width={100}
                     height={100}

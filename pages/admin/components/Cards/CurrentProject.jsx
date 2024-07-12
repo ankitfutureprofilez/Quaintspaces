@@ -66,7 +66,7 @@ function CurrentProject() {
                     <div>
                       <div className="flex items-center gap-2 img-book">
                         <img
-                          src={item?.propertyImage || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
+                          src={item?.propertyImage || "/images/profile-no-image.jpg"}
                           alt="loom"
                           className="rounded-full"
                         />

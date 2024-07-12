@@ -32,7 +32,7 @@ export default function Profile() {
   const router = useRouter();
 
   const [previewImgSrc, setPreviewImgSrc] = useState(
-    "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
+    "/images/profile-no-image.jpg"
   );
 
   const loadFile = (event) => {
@@ -67,7 +67,7 @@ export default function Profile() {
         });
         setPreviewImgSrc(
           profiledata?.image_url ||
-            "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
+            "/images/profile-no-image.jpg"
         );
       })
       .catch((err) => {
