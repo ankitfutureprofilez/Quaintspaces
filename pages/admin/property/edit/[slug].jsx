@@ -17,6 +17,7 @@ import {
 import Guest from "../add/Guest";
 import CancelPolicy from "../add/CancelPolicy";
 import HouseRules from "../add/HouseRules";
+import Amenities from "../add/Amenities";
 const propertyTypes = [
   { value: "flat", label: "Flat & Apartment" },
   { value: "house", label: "House" },
@@ -65,6 +66,9 @@ export default function Edit() {
     fetchProperty(slug);
   }, [slug]);
 
+  function stringToArray(inputString) {
+    return inputString.split(",");
+  }
   useEffect(() => {
     if (!record.loading) {
       setItem({
@@ -93,9 +97,15 @@ export default function Edit() {
       setCheckinStart(record?.data?.check_in || "00:00");
       setCheckinquiet(record?.data?.property_rule?.quite_hours_in_time || "00:00")
       setCheckoutquiet(record?.data?.property_rule?.quite_hours_out_time || "00:00")
+      setSelectedAmenity(record?.data?.amenities ? (stringToArray(record?.data?.amenities)) : []);
+      setstandoutAmenity(record?.data?.standout_amenity ? (stringToArray(record?.data?.standout_amenity)) : [])
+      setAmenity(record?.data?.safety_amenity ? (stringToArray(record?.data?.safety_amenity)) : [])
+
     }
   }, [record]);
-
+  const [selectedAmenity, setSelectedAmenity] = useState();
+  const [Amenity, setAmenity] = useState();
+  const [standoutAmenity, setstandoutAmenity] = useState();
   const [Guests, setGuests] = useState();
   const [Beds, setBeds] = useState();
   const [Bathrooms, setBathrooms] = useState();
@@ -119,7 +129,7 @@ export default function Edit() {
   const handleBookingChange = (option) => {
     setSelectedbooking(option);
   };
-  
+
   console.log("record", record)
   const [selectedPolicy, setSelectedPolicy] = useState(null);
   const [longTermPolicy, setLongTermPolicy] = useState(null);
@@ -186,13 +196,13 @@ export default function Edit() {
               </div>
             ) : (
               <>
-                <Property
+                {/* <Property
                   fetchProperties={() => fetchProperty(slug)}
                   isEdit={true}
                   stepdata={false}
                   p={record.data}
-                />
-                {/* <div className="container mx-auto flex">
+                /> */}
+                <div className="container mx-auto flex">
                   <div className="w-1/3">
                     <div className="flex items-left space-x-2" onClick={() => { router.back(-1) }}>
                       <IoArrowBack />
@@ -252,14 +262,23 @@ export default function Edit() {
                               }`}
                             onClick={() => toggleExpanded(2)}
                           >
-                            <h3 className="font-bold text-2xl mt-3 mb-2">Number of Guests  </h3>
-                            <p className="font-normal text-sm">{record?.data?.guests}</p>
+                            <h3 className="font-bold text-2xl mt-3 mb-2"> Pricing  </h3>
+                            <p className="font-normal text-sm">{record?.data?.price}</p>
                           </div>
 
                           <div
                             className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 3 && "hover:text-black bg-border-600"
                               }`}
                             onClick={() => toggleExpanded(3)}
+                          >
+                            <h3 className="font-bold text-2xl mt-3 mb-2">Number of Guests  </h3>
+                            <p className="font-normal text-sm">{record?.data?.guests}</p>
+                          </div>
+
+                          <div
+                            className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 4 && "hover:text-black bg-border-600"
+                              }`}
+                            onClick={() => toggleExpanded(4)}
                           >
                             <h3 className="font-bold text-2xl mt-3 mb-2">Description </h3>
                             <p className="font-normal text-sm line-clamp-3">{record?.data?.description}</p>
@@ -274,14 +293,7 @@ export default function Edit() {
                             <p className="font-normal text-sm capitalize"> {selectbooking} Book</p>
                           </div>
 
-                          <div
-                            className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 8 && "hover:text-black bg-border-600"
-                              }`}
-                            onClick={() => toggleExpanded(8)}
-                          >
-                            <h3 className="font-bold text-2xl mt-3 mb-2">House Rule </h3>
-                            <p className="font-normal text-sm capitalize">Add Details </p>
-                          </div>
+                        
                           <div
                             className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 6 && "hover:text-black bg-border-600"
                               }`}
@@ -303,13 +315,24 @@ export default function Edit() {
                           </div>
 
                           <div
+                            className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 8 && "hover:text-black bg-border-600"
+                              }`}
+                            onClick={() => toggleExpanded(8)}
+                          >
+                            <h3 className="font-bold text-2xl mt-3 mb-2">House Rule </h3>
+                            <p className="font-normal text-sm capitalize">Add Details </p>
+                          </div>
+
+
+                          <div
                             className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 9 && "hover:text-black bg-border-600"
                               }`}
                             onClick={() => toggleExpanded(9)}
                           >
-                            <h3 className="font-bold text-2xl mt-3 mb-2"> Pricing  </h3>
-                            <p className="font-normal text-sm">{record?.data?.price}</p>
+                            <h3 className="font-bold text-2xl mt-3 mb-2">Aminites </h3>
+                            <p className="font-normal text-sm capitalize">Add Details </p>
                           </div>
+
                         </div>
                         <div className="w-0.5 bg-gray-300"></div>
                       </>
@@ -320,52 +343,7 @@ export default function Edit() {
                     {editguide === "space" && (
 
                       <div className="">
-                        {expandedIndex === 9 && (
-                          <div className="p-4">
-                            <h1 className="uppercase text-lg sm:text-sm">
-                              Proprety Pricing
-                            </h1>
 
-                            <p className="text-sm capitalize ">
-                              These settings apply to all nights, unless you customise them by date.
-                            </p>
-
-                            <div className="flex flex-col mb-2">
-                              <h1 className="capitalize text-lg font-bold my-4">
-                                Nightly price
-                              </h1>
-
-                              <input
-                                required
-                                type="number"
-                                name="price"
-                                placeholder="Property Price Per Night"
-                                id="name"
-                                className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
-                                min="0"
-                                value={item?.price}
-                                onChange={handleInputChange}
-                              />
-                            </div>
-
-
-                            <div className="flex flex-col mb-2">
-                              <h1 className="capitalize text-lg font-bold my-4">
-                                Discount offer (%){" "}
-                              </h1>
-                              <label className="flex items-center space-x-2 text-xl font-normal">
-                                <input
-                                  className="p-4 py-2 w-36 md:w-full mt-1 block text-[16px] md:text-lg border border-[#ccc] rounded-md"
-                                  placeholder="% Discount offer"
-                                  type="number"
-                                  name="discount"
-                                  value={item?.discount}
-                                  onChange={handleInputChange}
-                                />
-                              </label>
-                            </div>
-                          </div>
-                        )}
                         {expandedIndex === 0 && (
                           <div className="p-4">
                             <h1>
@@ -393,30 +371,6 @@ export default function Edit() {
                                 Minimum 32 words.
                               </label>
                             </div>
-                          </div>
-                        )}
-
-                        {expandedIndex === 8 && (
-                          <div className="p-4">
-
-                            <HouseRules
-                              petsAllowed={petsAllowed}
-                              setPetsAllowed={setPetsAllowed}
-                              quietHours={quietHours}
-                              pets={pets}
-                              setPets={setPets}
-                              checkinTime={checkinquet}
-                              setCheckinTime={setCheckinquiet}
-                              checkoutTime={checkoutquet}
-                              setCheckoutTime={setCheckoutquiet}
-                              setEventsAllowed={setEventsAllowed}
-                              setQuietHours={setQuietHours}
-                              eventsAllowed={eventsAllowed}
-                              PhotographyAllowed={PhotographyAllowed}
-                              setPhotographyAllowed={setPhotographyAllowed}
-                              smokingAllowed={smokingAllowed}
-                              setSmokingAllowed={setSmokingAllowed}
-                            />
                           </div>
                         )}
 
@@ -489,7 +443,58 @@ export default function Edit() {
                           </div>
                         )}
 
-                        {expandedIndex === 2
+
+                        {expandedIndex === 2 && (
+                          <div className="p-4">
+                            <h1 className="uppercase text-lg sm:text-sm">
+                              Proprety Pricing
+                            </h1>
+
+                            <p className="text-sm capitalize ">
+                              These settings apply to all nights, unless you customise them by date.
+                            </p>
+
+                            <div className="flex flex-col mb-2">
+                              <h1 className="capitalize text-lg font-bold my-4">
+                                Nightly price
+                              </h1>
+
+                              <input
+                                required
+                                type="number"
+                                name="price"
+                                placeholder="Property Price Per Night"
+                                id="name"
+                                className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
+                                min="0"
+                                value={item?.price}
+                                onChange={handleInputChange}
+                              />
+                            </div>
+
+
+                            <div className="flex flex-col mb-2">
+                              <h1 className="capitalize text-lg font-bold my-4">
+                                Discount offer (%){" "}
+                              </h1>
+                              <label className="flex items-center space-x-2 text-xl font-normal">
+                                <input
+                                  className="p-4 py-2 w-36 md:w-full mt-1 block text-[16px] md:text-lg border border-[#ccc] rounded-md"
+                                  placeholder="% Discount offer"
+                                  type="number"
+                                  name="discount"
+                                  value={item?.discount}
+                                  onChange={handleInputChange}
+                                />
+                              </label>
+                            </div>
+                          </div>
+                        )}
+
+
+
+
+                        {expandedIndex === 3
                           && (
                             <Guest
                               Guests={Guests}
@@ -503,7 +508,7 @@ export default function Edit() {
                             />
                           )}
 
-                        {expandedIndex === 3 && (
+                        {expandedIndex === 4 && (
                           <div className="p-4">
                             <textarea
                               required
@@ -633,6 +638,44 @@ export default function Edit() {
                             </div>
                           </div>
                         )}
+
+                        {expandedIndex === 8 && (
+                          <div className="p-4">
+
+                            <HouseRules
+                              petsAllowed={petsAllowed}
+                              setPetsAllowed={setPetsAllowed}
+                              quietHours={quietHours}
+                              pets={pets}
+                              setPets={setPets}
+                              checkinTime={checkinquet}
+                              setCheckinTime={setCheckinquiet}
+                              checkoutTime={checkoutquet}
+                              setCheckoutTime={setCheckoutquiet}
+                              setEventsAllowed={setEventsAllowed}
+                              setQuietHours={setQuietHours}
+                              eventsAllowed={eventsAllowed}
+                              PhotographyAllowed={PhotographyAllowed}
+                              setPhotographyAllowed={setPhotographyAllowed}
+                              smokingAllowed={smokingAllowed}
+                              setSmokingAllowed={setSmokingAllowed}
+                            />
+                          </div>
+                        )}
+
+                        {expandedIndex === 9 && (
+                          <div className="p-4">
+
+                            <Amenities
+                              selectedAmenity={selectedAmenity}
+                              standoutAmenity={standoutAmenity}
+                              Amenity={Amenity}
+                              setAmenity={setAmenity}
+                              setstandoutAmenity={setstandoutAmenity}
+                              setSelectedAmenity={setSelectedAmenity}
+                            />
+                          </div>
+                        )}
                         <div className="border-t-[7px]">
                           <div className="flex justify-end fixed  z-50 bottom-4 right-4 border-t-[7px]">
                             <button className="text-white bg-black p-3 border-2 rounded-md">
@@ -645,7 +688,7 @@ export default function Edit() {
 
                       </div>)}
                   </div>
-                </div> */}
+                </div>
               </>
             )}
           </div>
