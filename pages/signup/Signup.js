@@ -26,7 +26,7 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(loading==true){return;}
+    if (loading == true) { return; }
     setLoading(true);
     const main = new Listings();
     const response = main.Signup({
@@ -50,7 +50,7 @@ export default function Signup() {
           toast.error(res?.data.message);
           setLoading(false);
         }
-       
+
       })
       .catch((error) => {
         toast.error(error?.response.data);
@@ -59,7 +59,7 @@ export default function Signup() {
   };
   return (
     <div
-      className="h-screen tab-mob-height bg-cover"
+      className="h-screen tab-mob-height bg-cover "
       style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
 
     >
@@ -106,9 +106,9 @@ export default function Signup() {
               <div className="quainttay">
                 <h2>Welcome to Quaint Stay Jaipur </h2>
                 <h3 className="text-[#fff]">
-                  Already have an account? <Link 
-                  className="underline"
-                  href="/login">Login</Link>
+                  Already have an account? <Link
+                    className="underline"
+                    href="/login">Login</Link>
                 </h3>
               </div>
 
@@ -162,7 +162,7 @@ export default function Signup() {
                   />
                 </div>
                 <button type="submit" className="submint-btn">
-                {loading?"Submitting...":"Submit"}
+                  {loading ? "Submitting..." : "Submit"}
                 </button>
               </form>
             </div>
