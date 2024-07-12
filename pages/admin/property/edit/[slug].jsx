@@ -196,13 +196,13 @@ export default function Edit() {
               </div>
             ) : (
               <>
-                {/* <Property
+                <Property
                   fetchProperties={() => fetchProperty(slug)}
                   isEdit={true}
                   stepdata={false}
                   p={record.data}
-                /> */}
-                <div className="container mx-auto flex">
+                />
+                {/* <div className="container mx-auto flex">
                   <div className="w-1/3">
                     <div className="flex items-left space-x-2" onClick={() => { router.back(-1) }}>
                       <IoArrowBack />
@@ -688,7 +688,7 @@ export default function Edit() {
 
                       </div>)}
                   </div>
-                </div>
+                </div> */}
               </>
             )}
           </div>
