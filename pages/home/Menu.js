@@ -31,7 +31,7 @@ export default function Menu() {
                   src={
                     auth?.image_url
                       ? auth?.image_url
-                      : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
+                      : "/images/profile-no-image.jpg"
                   }
                   alt="profile"
                   width={100}
