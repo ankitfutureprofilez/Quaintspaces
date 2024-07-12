@@ -6,7 +6,9 @@ export default function ForgotLayout({ children, showHeader }) {
     <>
       <div
         className="h-screen tab-mob-height"
-        style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
+        style={{ backgroundImage: `url(/images/banner/login_img.JPG)` ,backgroundPosition: "center",
+          backgroundSize: "cover"
+         }}
       >
         <div className="container h-full">
           <div className="flex items-center  h-full relative signup-tab-sec">

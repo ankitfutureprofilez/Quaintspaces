@@ -68,6 +68,15 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
+     <Toaster
+            toastOptions={{
+              position: "top-right",
+              className: "",
+              style: {
+                "font-size": "14px",
+              },
+            }}
+          />
       <PullToRefresh>
         <Head>
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
@@ -87,15 +96,6 @@ function MyApp({ Component, pageProps }) {
           <div className="page-transition-container">
             <Component {...pageProps} key={router.route} />
           </div>
-          <Toaster
-            toastOptions={{
-              position: "top-right",
-              className: "",
-              style: {
-                "font-size": "14px",
-              },
-            }}
-          />
           <NotLogin openLogin={openLogin} />
         </Context.Provider>
       </PullToRefresh>
