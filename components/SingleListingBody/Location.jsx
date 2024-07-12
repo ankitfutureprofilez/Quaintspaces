@@ -26,7 +26,7 @@ const Location = React.forwardRef(({ listing }, ref) => {
 
   // URL to the home icon
   const homeIconUrl =
-    "https://raw.githubusercontent.com/encharm/Font-Awesome-SVG-PNG/master/black/svg/home.svg";
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 3.172l-32 32 4 4 2-2v20h24v-14h8v14h24v-20l2 2 4-4z' fill='%23efa3a3'/%3E%3C/svg%3E";
 
   // Define the options conditionally
   const mapOptions = 
