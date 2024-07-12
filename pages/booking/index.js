@@ -11,6 +11,7 @@ import { formatMultiPrice } from "../../hooks/ValueData.js";
 import Head from "next/head";
 import { toast } from "react-hot-toast";
 import DateComponent from "../elements/DateFormat.jsx";
+import { TableLoading } from "../../components/Loading/ListingsLoading.jsx";
 
 export default function Index() {
   const [loading, setLoading] = useState(false);
@@ -208,7 +209,7 @@ export default function Index() {
         {loading ? (
           <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 min-w-1200px">
             <div className="flex justify-center items-center space-x-1 text-gray-700">
-              <div className="text-lg">Loading...</div>
+           <TableLoading/>
             </div>
           </div>
         ) : (
@@ -343,7 +344,7 @@ export default function Index() {
         <div className=" account-btn ">
           <div className=" pt-4 sm:pt-8 md:pt-12 pb-3 sm:pb-6 md:pb-10">
             <Heading
-              text={"My Booking"}
+              text={"My Booking "}
               value={"/account"}
               handleClick={() => router.back()}
             />
