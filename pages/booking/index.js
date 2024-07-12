@@ -386,7 +386,7 @@ export default function Index() {
             />
           </div>
           <div className=" py-2">
-            <button className="font-inter text-[#fff] sm:text-[16px] text-[14px] bg-orange-300 font-medium leading-tight text-center border-[#efa3a3] lg:w-[auto] px-6 border-2 p-3 rounded-full " onClick={openModal}>
+            <button className="font-inter text-[#fff] sm:text-[16px] text-[14px] bg-[#efa3a3] font-medium leading-tight text-center border-[#efa3a3] lg:w-[auto] px-6 border-2 p-3 rounded-full " onClick={openModal}>
               Filter By Booking Date
             </button>
             <Modal isOpen={isOpen} onClose={closeModal}>
