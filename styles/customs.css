@@ -465,7 +465,7 @@ footer {
   font-weight: 400;
   line-height: 49px;
   letter-spacing: 0em;
-  color: #fff;
+  color: #3f2a17;
 }
 .smart-box {
   display: flex;
@@ -503,7 +503,6 @@ footer {
 }
 .visit-us-sec {
   background-blend-mode: color;
-  background-color: #b1bbc2;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -950,6 +949,8 @@ button.submint-btn {
     line-height: 38px;
     margin-bottom: 0;
   }
+  .contact-about h1 {font-size: 46px;}
+  .contact-about p {font-size: 20px; }
 }
 @media (max-width: 991px) {
   .container {
@@ -1204,6 +1205,11 @@ button.submint-btn {
   }
   .footer-menu {flex-flow: column; }
   .visit-us-sec {  margin-bottom: 25px; }
+  .contact-about h1 {
+    font-size: 36px;
+    line-height: 44px;
+    margin-bottom: 16px;
+}
 }
 @media (max-width: 575px) {
   .container {
