@@ -60,7 +60,7 @@ function List({ post }) {
                 <div className="w-full sm:w-4/12 mb-4 sm:mb-0 flex sm:justify-end">
                   <div>
                     <p className="text-[13px] font-[400] text-[#666360]">From</p>
-                    <h2 className="text-[23px] sm:text-[30px] font-[600] text-[#efa3a3] ">
+                    <h2 className="text-[21px] sm:text-[30px] font-[600] text-[#efa3a3] ">
                       {formatMultiPrice(post?.price) ? formatMultiPrice(post?.price) : 0}
                       <span className="text-[13px] font-[400] text-[#666360]">/night</span>
                     </h2>

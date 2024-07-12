@@ -560,7 +560,9 @@ footer {
   line-height: 19px;
   letter-spacing: 0em;
   text-align: left;
-  color: #c5ced5;
+  
+color: #e7ebef;
+  /* color: #c5ced5; */
   margin-top: 8px;
 }
 .quainttay h3 button {
