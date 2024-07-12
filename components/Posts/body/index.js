@@ -27,7 +27,7 @@ const PostBody = ({ listings, loading }) => {
 
   return (
     <div>
-      <ul className="flex flex-wrap -mx-[10px] gap-8 mb-10 ">
+      <ul className="flex flex-wrap -mx-[10px] mb-10 ">
         {loading
           ? Array(3)
               .fill("_")
