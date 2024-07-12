@@ -111,7 +111,6 @@ export default function Signup() {
                     href="/login">Login</Link>
                 </h3>
               </div>
-
               <form onSubmit={handleSubmit}>
                 <div className="mb-6">
                   <label htmlFor="fullName">Full Name</label>
