@@ -20,9 +20,9 @@ export default function Footer() {
               <span >Mobile : </span>
               9521410122
             </Link>
-            <Link className="text-[#3F2A17] text-[16px] uppercase" href="tel:9521410122">
+            <Link className="text-[#3F2A17] text-[16px] uppercase" href="tel:9314022666">
               <span >Mobile : </span>
-              9521410122
+              9314022666
             </Link>
           </div>
           {/* <p><Link href="tel:9314022666">9314022666</Link></p> */}
