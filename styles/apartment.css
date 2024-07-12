@@ -538,3 +538,21 @@ body {
   height: 100%;
   object-fit: cover;
 }
+/* Hiding Scrollbar */
+/* For Chrome, Safari, and Opera */
+.signup-form::-webkit-scrollbar {
+  display: none;
+}
+.signup-form:hover::-webkit-scrollbar {
+  display: block;
+}
+
+/* For IE, Edge, and Firefox */
+.signup-form {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.signup-form:hover {
+  -ms-overflow-style: auto;  /* IE and Edge */
+  scrollbar-width: auto;  /* Firefox */
+}
