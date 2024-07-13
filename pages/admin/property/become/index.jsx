@@ -33,7 +33,6 @@ function Index() {
       .then((res) => {
         const data = res?.data?.data;
         setRecord(res?.data?.data);
-        console.log("record", data);
         let filteredListings = [];
         if (Array.isArray(data)) {
           data.forEach((item) => {
@@ -44,7 +43,6 @@ function Index() {
         }
         if (filteredListings?.length > 0) {
           setFilteredRecord(filteredListings);
-          console.log(filteredListings);
         } else {
           console.log("No listings match the status and step conditions.");
         }

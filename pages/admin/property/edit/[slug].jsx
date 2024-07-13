@@ -40,7 +40,6 @@ export default function Edit() {
     data: {},
   });
 
-  console.log("record", record)
   const fetchProperty = async (slug) => {
     if (slug) {
       setLoading(true);
@@ -130,7 +129,6 @@ export default function Edit() {
     setSelectedbooking(option);
   };
 
-  console.log("record", record)
   const [selectedPolicy, setSelectedPolicy] = useState(null);
   const [longTermPolicy, setLongTermPolicy] = useState(null);
   const [showFlexible, setShowFlexible] = useState(true);
@@ -160,13 +158,11 @@ export default function Edit() {
 
   });
 
-  console.log("desc", item)
   const baseurl = "https://quant-stay.vercel.app/properties/";
   const fulllink = baseurl + item?.customLink;
 
   const copyToClipboard = () => {
     const textToCopy = `${baseurl}${item?.customLink}`;
-    console.log("textToCopy", textToCopy);
     navigator.clipboard
       .writeText(textToCopy)
       .then(() => { })

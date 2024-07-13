@@ -96,7 +96,9 @@ function MyApp({ Component, pageProps }) {
           <div className="page-transition-container">
             <Component {...pageProps} key={router.route} />
           </div>
+          {openLogin ? (
           <NotLogin openLogin={openLogin} />
+          ) :(<></>)}
         </Context.Provider>
       </PullToRefresh>
     </>

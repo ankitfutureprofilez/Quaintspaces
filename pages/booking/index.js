@@ -34,7 +34,6 @@ export default function Index() {
     (_, index) => currentYear - index
   );
 
-  console.log("SelectBooking", SelectBooking)
   const handleHouseRules = (uuid) => {
     if (!uuid || !uuid.id || !uuid.properties_id) {
       console.error("Invalid UUID object");
@@ -83,7 +82,6 @@ export default function Index() {
       setAmount(calculatedAmount);
     }
   }, [SelectBooking]);
-  console.log("amount",amount)
   const handleConfirmation = () => {
     cancelBooking(SelectBooking?.id,amount);
     setShowConfirmation(false);

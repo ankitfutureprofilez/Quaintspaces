@@ -160,7 +160,6 @@ export default function Index() {
 
         if (filteredListings.length > 0) {
           setListings(filteredListings);
-          console.log(filteredListings);
         } else {
           setListings(filteredListings);
           console.log("No listings match the status and step conditions.");

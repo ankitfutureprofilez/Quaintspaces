@@ -51,9 +51,7 @@ const Book = () => {
     const response = main.cancelpolicy(formData);
     response.then((res) => {
       if (res && res?.data && res?.data?.status) {
-        console.log("res", res)
         setCancelpolicy(res?.data?.data)
-        console.log("res", res);
       } else {
         toast.error(res.data.message);
       }
@@ -344,8 +342,6 @@ const Book = () => {
     setIsOpen(false);
   };
 
-  console.log("guests",guests)
-console.log("infos",infos);
 
   return (
     <AuthLayout>

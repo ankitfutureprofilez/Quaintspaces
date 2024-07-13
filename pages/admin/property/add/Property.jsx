@@ -240,8 +240,6 @@ export default function Property(props) {
   const [PType, setPType] = useState(properties_type || "flat");
   const lstring = location ? JSON.parse(location.replace('/\\"/g', '"')) : null;
   const l = JSON.parse(lstring);
-  console.log("lstring", lstring);
-  console.log("l", l);
 
   const [address, setAddress] = useState({
     street_address: l && l.street_address ? l.street_address : "",

@@ -33,7 +33,6 @@ const Listings = () => {
       main
         .viewproperty(slug || "")
         .then((r) => {
-          console.log("r?.data?.data", r?.data?.data);
           setrecord({
             loading: false,
             data: r?.data?.data,
