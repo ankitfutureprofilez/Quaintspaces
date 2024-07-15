@@ -73,7 +73,7 @@ const Card = ({ post }) => {
                 <span className="card-price">
                   {formatMultiPrice(post?.price) ? formatMultiPrice(post?.price) : 0}
                 </span>{" "}
-                /night
+                /Night
               </h4>
             </div>
             <div className="explor-btn absolute w-full left-0 bottom-0">
@@ -104,7 +104,7 @@ const Card = ({ post }) => {
                 <span className="card-price">
                   {formatMultiPrice(post?.price)}
                 </span>{" "}
-                /night
+                /Night
               </h4>
             </div>
             <div className="explor-btn">

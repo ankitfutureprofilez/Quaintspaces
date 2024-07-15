@@ -76,7 +76,7 @@ export default function RoomListings() {
                 <span className="card-price">
                   {formatMultiPrice(item?.price) || 0}
                 </span>{" "}
-                /night
+                /Night
               </h4>
             </div>
             <div className="explor-btn absolute w-full left-0 bottom-0">
