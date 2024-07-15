@@ -20,7 +20,7 @@ export default function LuxuryStay() {
           <div className="img-box" data-aos="fade-right">
             <Image
               src={Luxury1}
-              alt="QUAINTSPACES JAIPUR"
+              alt="Quaintspaces Jaipur"
               priority="true"
               blurDataURL={Luxury1}
             />
@@ -33,7 +33,7 @@ export default function LuxuryStay() {
           >
             <Image
               src={Luxury2}
-              alt="QUAINTSPACES JAIPUR"
+              alt="Quaintspaces Jaipur"
               priority="true"
               blurDataURL={Luxury2}
             />
@@ -41,7 +41,7 @@ export default function LuxuryStay() {
           <div className="img-box" data-aos="fade-left">
             <Image
               src={Luxury3}
-              alt="QUAINTSPACES JAIPUR"
+              alt="Quaintspaces Jaipur"
               priority="true"
               blurDataURL={Luxury3}
             />

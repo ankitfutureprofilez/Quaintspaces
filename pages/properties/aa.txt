@@ -42,7 +42,7 @@ export default function Listing({ initialData }) {
         <Head>
           <title>
             House rent in {record?.loading ? "..." : record?.data?.name} -
-            QS Jaipur
+            Quaintspaces Jaipur
           </title>
         </Head>
         <SingleListingBody loading={loading} listing={record} />

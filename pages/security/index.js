@@ -93,7 +93,7 @@ export default function index() {
   return (
     <AuthLayout>
       <Head>
-        <title>Security - QS Jaipur</title>
+        <title>Security - Quaintspaces Jaipur</title>
       </Head>
       <div>
         <div className="container mx-auto">

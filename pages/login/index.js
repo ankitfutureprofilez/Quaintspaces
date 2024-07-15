@@ -10,7 +10,7 @@ export default function Login() {
   return (
     <>
     <Head>
-          <title>Login - QS Jaipur</title>
+          <title>Login - Quaintspaces Jaipur</title>
         </Head>
     <div
       className="h-screen tab-mob-height bg-cover"
@@ -45,7 +45,7 @@ export default function Login() {
                 Back to home
               </Link>
             </div>
-            <Image src={logologin} alt="QUAINTSPACES JAIPUR logo" />
+            <Image src={logologin} alt="Quaintspaces Jaipur logo" />
             <p>
             Indulge in the finest and most charming accommodation in Jaipur
             </p>

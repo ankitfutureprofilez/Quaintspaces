@@ -347,7 +347,7 @@ const Book = () => {
     <AuthLayout>
       <div>
         <Head>
-          <title>Confirm & Pay - QS Jaipur</title>
+          <title>Confirm & Pay - Quaintspaces Jaipur</title>
         </Head>
         <main className="max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12">
           <Heading

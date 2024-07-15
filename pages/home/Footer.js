@@ -62,7 +62,7 @@ export default function Footer() {
 
       <div className="text-center copy-right">
         {/* Copyright Notice */}
-        <span>&copy; QUAINTSPACES JAIPUR 2024</span>
+        <span>&copy; Quaintspaces Jaipur 2024</span>
       </div>
     </div>
   );

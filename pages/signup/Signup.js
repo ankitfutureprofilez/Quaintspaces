@@ -102,7 +102,7 @@ export default function Signup() {
             <div className="signup-form w-full max-h-screen overflow-y-auto">
               <div className="formbgcolor"></div>
               <div className="quainttay">
-                <h2>Welcome to Quaint Stay Jaipur </h2>
+                <h2>Welcome to Quaintspaces Jaipur </h2>
                 <h3 className="text-[#fff]">
                   Already have an account? <Link
                     className="underline"

@@ -24,7 +24,7 @@ export default function Index() {
     return (
       <div className="relative inline-block text-left">
         <Head>
-          <title>Apartments | Best Properties in Town - QS Jaipur</title>
+          <title>Apartments | Best Properties in Town - Quaintspaces Jaipur</title>
         </Head>
         <div>
           <span className="rounded-md shadow-sm">

@@ -74,7 +74,7 @@ export default function Testimonials() {
             className="bg-[#efa3a3] text-[#fff] border border-[#efa3a3] px-[30px] py-[12px] flex rounded-full hover:text-[#efa3a3] hover:bg-[#ffffff00]"
           >
             <span className="font-base uppercase"> Read all reviews </span>
-            <GoArrowRight size={20} />
+            {/* <GoArrowRight size={20} /> */}
           </Link>
         </div>
       </div>
