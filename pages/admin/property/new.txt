@@ -1468,7 +1468,7 @@ export default function Property(props) {
               </div>
 
               <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                <div className="bg-[#c48b58] h-2.5 rounded-full" style={{ width: `${progress}%` }}></div>
+                <div className="bg-[#efa3a3] h-2.5 rounded-full" style={{ width: `${progress}%` }}></div>
               </div>
               <div className="pt-2 flex justify-between max-w-[500px] table m-auto">
 
@@ -1478,7 +1478,7 @@ export default function Property(props) {
                   <button
                     type="button"
                     onClick={prevStep}
-                    className=" mx-2 py-2 rounded-xl px-8 mt-4 hover:bg-[#c48b58] text-[#c48b58] border-2 border-[#c48b58] hover:border-[#c48b58] hover:text-[#fff]"
+                    className=" mx-2 py-2 rounded-xl px-8 mt-4 hover:bg-[#efa3a3] text-[#efa3a3] border-2 border-[#efa3a3] hover:border-[#efa3a3] hover:text-[#fff]"
                   >
                     Back
                   </button>
@@ -1488,7 +1488,7 @@ export default function Property(props) {
                   <button
                     type="button"
                     onClick={nextStep}
-                    className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#fff] bg-[#c48b58] text-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58]  "
+                    className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#fff] bg-[#efa3a3] text-[#fff] hover:text-[#efa3a3] border-2 bg-color-[#efa3a3] border-[#efa3a3]  "
                   >
                     Next
                   </button>
@@ -1496,7 +1496,7 @@ export default function Property(props) {
                   <button
                     type="submit"
                     onClick={handleSubmit}
-                    className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#fff] bg-[#c48b58] text-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58]  "
+                    className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#fff] bg-[#efa3a3] text-[#fff] hover:text-[#efa3a3] border-2 bg-color-[#efa3a3] border-[#efa3a3]  "
                   >
 
                     {Loading ? "processing.. " : "Submit"}
@@ -1513,7 +1513,7 @@ export default function Property(props) {
         <div className="max-w-4xl w-full space-y-8 w-full px-2  m-auto w-full px-2">
           <button
             onClick={handleSubmit}
-            className="inline-flex mx-2 justify-center py-2 px-8 border-2 border-[#c48b58] shadow-sm text-lg font-medium rounded-full text-white bg-[#c48b58] hover:bg-[#fff] hover:text-[#c48b58]"
+            className="inline-flex mx-2 justify-center py-2 px-8 border-2 border-[#efa3a3] shadow-sm text-lg font-medium rounded-full text-white bg-[#efa3a3] hover:bg-[#fff] hover:text-[#efa3a3]"
           >
             {Loading ? "Processing..." : "Save / Exit"}
           </button>

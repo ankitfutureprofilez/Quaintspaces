@@ -63,7 +63,7 @@ function Reviews() {
                     <Link className="img-book" href={`/admin/property/${item?.get_property_review?.uuid}`}>
                     <img
                       src={item?.get_property_review?.property_image[0]?.image_url
-                        || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
+                        || "/images/profile-no-image.jpg"}
                       alt="property Quant-stay"
                       className="rounded-full"
                     />

@@ -33,7 +33,6 @@ const Listings = () => {
       main
         .viewproperty(slug || "")
         .then((r) => {
-          console.log("r?.data?.data", r?.data?.data);
           setrecord({
             loading: false,
             data: r?.data?.data,
@@ -79,7 +78,7 @@ const Listings = () => {
         setHeaderSearch={setHeaderSearch}
       /> */}
         {/* <div className="absolute top-[6rem] right-[3rem] md:top-[8.5rem] md:right-20">
-          <Link className=" filter btn w-auto w-40 hover:bg-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58] " 
+          <Link className=" filter btn w-auto w-40 hover:bg-[#fff] hover:text-[#efa3a3] border-2 bg-color-[#efa3a3] border-[#efa3a3] " 
           href={`/admin/property/edit/${slug}`}>
             {" "}
             Edit Property

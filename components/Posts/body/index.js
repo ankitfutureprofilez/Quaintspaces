@@ -1,9 +1,10 @@
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
-import ListingsLoading from "../../Loading/ListingsLoading";
+import { TableLoading } from "../../Loading/ListingsLoading";
 import Card from "./Card";
 import { v4 as uuidv4 } from "uuid";
 import NoData from "../../../pages/elements/NoData";
+import List from "./List";
 
 const PostBody = ({ listings, loading }) => {
   const child = useRef([]);
@@ -26,19 +27,21 @@ const PostBody = ({ listings, loading }) => {
 
   return (
     <div>
-      <ul className="flex flex-wrap -mx-[10px] ">
+      <ul className="flex flex-wrap -mx-[10px] mb-10 ">
         {loading
-          ? Array(6)
+          ? Array(3)
               .fill("_")
-              .map(() => <ListingsLoading key={uuidv4()} />)
+              // .map(() => <TableLoading key={uuidv4()} />)
+              .map(() => <TableLoading/> )
           : listings && listings?.length > 0
           ? listings.map((post, i) => (
               <li
                 key={post?.id}
-                className="w-full sm:w-3/6 md:w-2/6 sm:px-3 mb-5"
+                className="w-full  sm:px-3 mb-5"
                 ref={(el) => (child.current[i] = el)}
               >
-                <Card post={post} />
+                {/* <Card /> */}
+                <List  post={post}/>
               </li>
             ))
           : null}

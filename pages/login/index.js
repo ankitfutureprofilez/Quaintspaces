@@ -2,10 +2,6 @@ import React, { useContext, useState } from "react";
 import Image from "next/image";
 import logologin from "../../public/images/loginlogoimg.png";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { toast } from "react-hot-toast";
-import Listings from './../api/laravel/Listings';
-import { Context } from "../_app";
 import LoginLogic from "./LoginLogic";
 import Head from "next/head";
 
@@ -17,8 +13,8 @@ export default function Login() {
           <title>Login - QS Jaipur</title>
         </Head>
     <div
-      className="h-screen tab-mob-height"
-      style={{ backgroundImage: `url(/images/login-bg.jpg)` }}
+      className="h-screen tab-mob-height bg-cover"
+      style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
     >
       <div className="container h-full">
         <div className="flex items-center  h-full relative signup-tab-sec">
@@ -51,8 +47,7 @@ export default function Login() {
             </div>
             <Image src={logologin} alt="QUAINTSPACES JAIPUR logo" />
             <p>
-              Book the most luxuries and aesthetically pleasing place, Jaipur
-              city has to offer 
+            Indulge in the finest and most charming accommodation in Jaipur
             </p>
           </div>
           <div className="sm:w-6/12 px-3">

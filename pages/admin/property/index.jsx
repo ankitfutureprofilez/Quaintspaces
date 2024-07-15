@@ -25,8 +25,12 @@ export default function Index() {
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [searchTerm, setSearchTerm] = useState("")
   const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
+    const searchTerm = event.target.value;
+    setSearchTerm(searchTerm);
+    // fetchProperties(searchTerm);
   };
+  
+  // { search: searchTerm }
   const fetchProperties = () => {
     const main = new Listing();
     main
@@ -45,10 +49,11 @@ export default function Index() {
         setIsLoading(false);
       });
   };
-
+  
   useEffect(() => {
     fetchProperties();
-  }, [router && router.pathname]);
+  }, [ router && router.pathname]);
+  
 
   const deleteProperty = (uuid) => {
     const main = new Listing();
@@ -66,7 +71,7 @@ export default function Index() {
         console.error("Error deleting property:", error);
       });
   };
-
+  console.log("selectedProperty", selectedProperty)
   const handleConfirmation = () => {
     deleteProperty(selectedProperty);
     setShowConfirmation(false);
@@ -150,7 +155,7 @@ export default function Index() {
                   <td className="p-[12px]">
                     <button
                       className="inline-block text-[14px] px-4 rounded-[6px] py-2 text-white   bg-black  hover:bg-blue-700 "
-                      onClick={() => setShowConfirmation(true) && setSelectedProperty(item?.uuid)}
+                      onClick={() => setShowConfirmation(true) || setSelectedProperty(item?.uuid)}
                     >
                       <AiFillDelete />
                     </button>
@@ -185,7 +190,7 @@ export default function Index() {
                 />
                 <button
                   className="absolute text-xs top-3 right-3 bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-700"
-                  onClick={() => setShowConfirmation(true) && setSelectedProperty(item?.uuid)}
+                  onClick={() => setShowConfirmation(true) || setSelectedProperty(item?.uuid)}
                 >
                   Remove
                 </button>
@@ -265,7 +270,7 @@ export default function Index() {
               Your listings
             </h3>
             <div className="flex">
-              <form className="group relative">
+              {/* <form className="group relative">
                 <svg
                   width="20"
                   height="20"
@@ -288,7 +293,7 @@ export default function Index() {
                   onChange={handleSearchChange}
 
                 />
-              </form>
+              </form> */}
 
               <div
                 onClick={toggleView}

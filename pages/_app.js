@@ -68,26 +68,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <PullToRefresh>
-        <Head>
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-          <link rel="manifest" href="/manifest.json" />
-          <meta
-            name="description"
-            content="QS Jaipur offers the best houses at the most affordable rates. We are known for providing exceptional service to our customers."
-          />
-          <meta
-            name="keywords"
-            content="QS Jaipur, Quaintstay Jaipur, Property, Rental, House, Home, Apartment, Vacation Rental, Accommodation, Rent, Real Estate, Booking, Lease, Holiday Home, Furnished Rentals, Short Term Rentals, Long Term Rentals, Room Rental, Sublet, Tenant, Landlord, Property Management, Amenities, Location, Neighborhood, Cozy, Comfortable, Affordable, Luxurious, Modern, Stylish, Spacious, Convenient, Safe, Secure, Pet-friendly, Family-friendly, Fully Equipped, Fully Furnished, Utilities Included, Internet, Parking, Laundry, Amenities, Near Me, Explore, Discover, Staycation"
-          />
-          <meta name="googlebot" content="index, follow" />
-          <meta name="robots" content="index, follow" />
-        </Head>
-        <Context.Provider value={values}>
-          <div className="page-transition-container">
-            <Component {...pageProps} key={router.route} />
-          </div>
-          <Toaster
+     <Toaster
             toastOptions={{
               position: "top-right",
               className: "",
@@ -96,7 +77,28 @@ function MyApp({ Component, pageProps }) {
               },
             }}
           />
+      <PullToRefresh>
+        <Head>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+          <link rel="manifest" href="/manifest.json" />
+          <meta
+            name="description"
+            content="Quaintspaces offers the best houses at the most affordable rates. We are known for providing exceptional service to our customers."
+          />
+          <meta
+            name="keywords"
+            content="Quaintspaces, Quaintstay Jaipur, Property, Rental, House, Home, Apartment, Vacation Rental, Accommodation, Rent, Real Estate, Booking, Lease, Holiday Home, Furnished Rentals, Short Term Rentals, Long Term Rentals, Room Rental, Sublet, Tenant, Landlord, Property Management, Amenities, Location, Neighborhood, Cozy, Comfortable, Affordable, Luxurious, Modern, Stylish, Spacious, Convenient, Safe, Secure, Pet-friendly, Family-friendly, Fully Equipped, Fully Furnished, Utilities Included, Internet, Parking, Laundry, Amenities, Near Me, Explore, Discover, Staycation"
+          />
+          <meta name="googlebot" content="index, follow" />
+          <meta name="robots" content="index, follow" />
+        </Head>
+        <Context.Provider value={values}>
+          <div className="page-transition-container">
+            <Component {...pageProps} key={router.route} />
+          </div>
+          {openLogin ? (
           <NotLogin openLogin={openLogin} />
+          ) :(<></>)}
         </Context.Provider>
       </PullToRefresh>
     </>

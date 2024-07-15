@@ -26,7 +26,7 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(loading==true){return;}
+    if (loading == true) { return; }
     setLoading(true);
     const main = new Listings();
     const response = main.Signup({
@@ -50,7 +50,7 @@ export default function Signup() {
           toast.error(res?.data.message);
           setLoading(false);
         }
-       
+
       })
       .catch((error) => {
         toast.error(error?.response.data);
@@ -59,8 +59,9 @@ export default function Signup() {
   };
   return (
     <div
-      className="h-screen tab-mob-height"
-      style={{ backgroundImage: `url(/images/login-bg.jpg)` }}
+      className="h-screen tab-mob-height bg-cover "
+      style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
+
     >
       <div className="container h-full">
         <div className="flex items-center  h-full relative signup-tab-sec">
@@ -90,8 +91,6 @@ export default function Signup() {
                 </svg>
                 Back to home
               </Link>
-
-
             </div>
             <Image src={logologin} alt="logo" />
             <p>
@@ -104,13 +103,12 @@ export default function Signup() {
               <div className="formbgcolor"></div>
               <div className="quainttay">
                 <h2>Welcome to Quaint Stay Jaipur </h2>
-                <h3>
-                  Already have an account? <Link 
-                  className="underline"
-                  href="/login">Login</Link>
+                <h3 className="text-[#fff]">
+                  Already have an account? <Link
+                    className="underline"
+                    href="/login">Login</Link>
                 </h3>
               </div>
-
               <form onSubmit={handleSubmit}>
                 <div className="mb-6">
                   <label htmlFor="fullName">Full Name</label>
@@ -161,7 +159,7 @@ export default function Signup() {
                   />
                 </div>
                 <button type="submit" className="submint-btn">
-                {loading?"Submitting...":"Submit"}
+                  {loading ? "Submitting..." : "Submit"}
                 </button>
               </form>
             </div>

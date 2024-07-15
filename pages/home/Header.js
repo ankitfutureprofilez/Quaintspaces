@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../public/images/Logo.jpeg";
+import logo from "../../public/images/Logo.png";
 import LocalToken from "../../hooks/LocalToken";
 import { useRouter } from "next/router";
 import { Context } from "../_app";
@@ -58,10 +58,13 @@ export default function Header() {
           </div>
           <div className={`menu-items flex-col md:flex-row md:flex md:gap-8 items-center ${isMenuOpen ? 'flex' : 'hidden'} md:flex`}>
             <Link href="/apartments" className="border-b md:border-0">
-              <p>Our Apartments</p>
+              <p>Properties</p>
             </Link>
             <Link href="/#testimonials" className="border-b md:border-0">
-              <p>Testimonials</p>
+              <p>Reviews</p>
+            </Link>
+            <Link href="/contact" className="border-b md:border-0">
+              <p>About Us</p>
             </Link>
             {/* <Link href="/contact">
               <p>Contact</p>
@@ -70,7 +73,7 @@ export default function Header() {
               <div className="profile-image relative" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                 <div className="profile-image-container items-center" style={{ cursor: 'pointer' }}>
                   <Image
-                    src={auth?.auth?.image_url ? auth?.auth?.image_url : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
+                    src={auth?.auth?.image_url ? auth?.auth?.image_url : "/images/profile-no-image.jpg"}
                     alt="profile"
                     width={100}
                     height={100}

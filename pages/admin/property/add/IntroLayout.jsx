@@ -9,7 +9,7 @@ function IntroLayout() {
                         <div className="flex items-center p-[50px]">
                             <div className="w-1/2">
                                 <h1 className="text-[55px] font-[500] text-[#222222] " >
-                                    It’s easy to get started on Airbnb
+                                    It’s easy to get started on quant space
                                 </h1>
                             </div>
                             <div className="w-1/2">

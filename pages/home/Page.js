@@ -1,142 +1,91 @@
-import React, { useEffect, useState } from "react";
-import Header from "./Header.js";
-import HeroBanner from "./HeroBanner.js";
-import LuxuryStay from "./LuxuryStay.js";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
-// const PremiumLocation = dynamic(() => import("./PremiumLocation.js"));
-const ReasonToVisit = dynamic(() => import("./ReasonToVisit.js"));
-const HomeRoomsLists = dynamic(() => import("./HomeRoomsLists.js"));
-const Testimonials = dynamic(() => import("./Testimonials.js"));
 import Layout from "../layout/Layout.js";
 import Image from "next/image";
 import Head from "next/head";
 import PwaFooter from "../elements/PwaFooter.js";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+const ReasonToVisit = dynamic(() => import("./ReasonToVisit.js"));
+const HomeRoomsLists = dynamic(() => import("./HomeRoomsLists.js"));
+const Testimonials = dynamic(() => import("./Testimonials.js"));
+const HeroBanner = dynamic(() => import("./HeroBanner.js"));
+const LuxuryStay = dynamic(() => import("./LuxuryStay.js"));
 
 export default function MainPage() {
   const [isMobile, setIsMobile] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const goToSlide = (index) => {
-    setCurrentIndex(index);
-  };
 
   const images = [
-    "/images/2.jpg",
-    "/images/3.jpg",
-    "/images/banner4.jpg",
+    "/images/banner/Banner4.jpg",
+    "/images/banner/Banner1.JPG",
+    "/images/banner/Banner2.jpg",
+    "/images/banner/Banner3.jpg",
   ];
 
-  useEffect(() => {
-    const isMobileDevice = window.matchMedia("(max-width: 768px)").matches;
-    setIsMobile(isMobileDevice);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Change image every 4 seconds
-
-    return () => clearInterval(interval);
-  }, []);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <Layout>
       <div>
         <Head>
-          <title>QS Jaipur</title>
+          <title>Quaintspaces </title>
         </Head>
         <PwaFooter />
-        <div className="bg-cover bg-center nav-header-sec relative image-wrapper">
-          <Image
-            blurDataURL={`${images[currentIndex]}?q=1`}
-            src={images[currentIndex]}
-            alt="QUAINTSPACES JAIPUR Background"
-            layout="fill"
-            objectFit="cover"
-            style={{ zIndex: -1 }}
-            priority={true}
-            quality={isMobile ? 70 : 100}
-          />
-          <HeroBanner />
-          <div className="flex justify-center relative bottom-[12px]">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                type="button"
-                className={`w-3 h-3 rounded-full mx-[6px] ${
-                  index === currentIndex ? "bg-blue-600" : "bg-gray-300"
-                }`}
-                aria-current={index === currentIndex}
-                aria-label={`Slide ${index + 1}`}
-                data-carousel-slide-to={index}
-                onClick={() => goToSlide(index)}
-              ></button>
+        <div className="bg-cover bg-center nav-header-sec relative image-wrapper lg:!h-[670px] md:!h-[550px] sm:!h-[450px] !h-[350px]">
+          <Slider {...settings}>
+            {images.map((item, index) => (
+              <div key={index} className="relative w-full lg:h-[670px] md:h-[550px] sm:h-[450px] h-[350px]">
+                <Image
+                  src={item}
+                  alt={`Banner ${index + 1}`}
+                  layout="fill"
+                  objectFit="cover"
+                  priority
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <HeroBanner />
+                </div>
+              </div>
             ))}
-          </div>
-          {/* <button
-            type="button"
-            className="absolute top-1/2 left-4 z-30 transform -translate-y-1/2 flex items-center justify-center h-10 w-10 bg-white/30 dark:bg-gray-800/30 hover:bg-white/50 dark:hover:bg-gray-800/60 focus:outline-none focus:ring-4 focus:ring-white dark:focus:ring-gray-800/70"
-            data-carousel-prev
-            onClick={handlePrev}
-          >
-            <svg
-              className="w-6 h-6 text-white dark:text-gray-800"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 6 10"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M5 1 1 5l4 4"
-              />
-            </svg>
-            <span className="sr-only">Previous</span>
-          </button>
-          <button
-            type="button"
-            className="absolute top-1/2 right-4 z-30 transform -translate-y-1/2 flex items-center justify-center h-10 w-10 bg-white/30 dark:bg-gray-800/30 hover:bg-white/50 dark:hover:bg-gray-800/60 focus:outline-none focus:ring-4 focus:ring-white dark:focus:ring-gray-800/70"
-            data-carousel-next
-            onClick={handleNext}
-          >
-            <svg
-              className="w-6 h-6 text-white dark:text-gray-800"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 6 10"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m1 9 4-4-4-4"
-              />
-            </svg>
-            <span className="sr-only">Next</span>
-          </button> */}
+          </Slider>
         </div>
-
         <LuxuryStay />
         <HomeRoomsLists />
-        <Testimonials/>
-        {/* <PremiumLocation /> */}
+        <Testimonials />
         <ReasonToVisit />
       </div>
     </Layout>

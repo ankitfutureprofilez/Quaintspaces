@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&display=swap');
+
+
+
+
+
+
+
 
 .logo img {
   max-width: 127px;
@@ -137,8 +145,8 @@ h3.text-sm.font-medium.desc-property {
   color: #404040;
 }
 .login-signup-btn a.signup {
-  background: #c48b58;
-  border: 2px solid #c48b58;
+  background: #efa3a3;
+  border: 2px solid #efa3a3;
 }
 .navbar {
   padding: 20px 0;
@@ -146,28 +154,31 @@ h3.text-sm.font-medium.desc-property {
 }
 .nav-bar a {
   padding: 8px 20px;
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
-  font-weight: 600;
+  /* font-weight: 600; */
   line-height: 25px;
   letter-spacing: 0em;
   text-align: center;
   color: #404040;
 }
+.nav-header-sec img { opacity: 0.7; }
 .nav-header-sec {
-  background-color: #0000004d;
+  background-color: #000000;
   background-blend-mode: color;
+ 
 }
+.testimo-text { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 11; -webkit-box-orient: vertical; }
 .hero-sec {
   padding: 220px 0 270px;
 }
 .hero-sec h1 {
-  font-family: "NewYork";
+  font-family: "Baskervville", serif;
   font-size: 60px;
   font-weight: 400;
   line-height: 70px;
   letter-spacing: 0em;
-  text-align: left;
+  text-align: center;
   color: #ffffff;
   margin-bottom: 20px;
 }
@@ -176,12 +187,12 @@ h3.text-sm.font-medium.desc-property {
   font-weight: 400;
   line-height: 27px;
   letter-spacing: 0em;
-  text-align: left;
+
   margin-bottom: 40px;
   color: #fff;
 }
 .hero-sec button {
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
@@ -194,7 +205,7 @@ h3.text-sm.font-medium.desc-property {
   border-radius: 30px;
 }
 .luxury-stay h1 {
-  font-family: "NewYork";
+  font-family: "Baskervville", serif;
   font-size: 112px;
   font-weight: 400;
   line-height: 160px;
@@ -204,12 +215,14 @@ h3.text-sm.font-medium.desc-property {
 }
 .luxury-stay {
   padding: 60px 0 85px;
+  overflow-x: hidden;
 }
 .luxury-stay-img {
   display: flex;
   align-items: center;
   width: 100%;
   margin-top: -70px;
+  
 }
 .luxury-stay-img .img-box {
   width: 33.33%;
@@ -233,14 +246,14 @@ h1.in-jaipur {
   max-width: 888px;
   margin: auto;
   margin-top: 15px;
-  font-family: "Inter", sans-serif;
+  
   color: #61554e;
 }
 .premium-location-slider {
   padding: 100px 0;
 }
 .premium-location-slider h1 {
-  font-family: "NewYork";
+  font-family: "Baskervville", serif;
   font-size: 40px;
   font-weight: 400;
   line-height: 49px;
@@ -261,7 +274,7 @@ h1.in-jaipur {
   width: 100%;
 }
 .premium-location-slider button {
-  background: #c48b58;
+  background: #efa3a3;
   padding: 20px;
   border-radius: 50px;
 }
@@ -279,18 +292,17 @@ h2.loction-name {
 }
 .footer-menu {
   display: flex;
-  align-items: center;
+  /* align-items: flex-start; */
   justify-content: space-between;
   width: 100%;
   padding: 40px 0;
-  border-top: 1px solid #c48b58;
-  border-bottom: 1px solid #c48b58;
+  border-bottom: 1px solid #efa3a3  ;
 }
 .footer-menu img {
   width: 127px;
 }
 p.menu-footer {
-  font-size: 18px;
+  /* font-size: 18px; */
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 0em;
@@ -302,7 +314,7 @@ p.menu-footer {
   padding: 25px 0;
 }
 .copy-right span {
-  /* font-family: "Inter", sans-serif; */
+  /*  */
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -332,7 +344,7 @@ footer {
   padding: 0 20px;
 }
 .flat-info h2 {
-  font-family: "Inter", sans-serif;
+  
   font-size: 13px;
   font-weight: 400;
   line-height: 26px;
@@ -351,7 +363,7 @@ footer {
   font-weight: 400;
 }
 .flat-info p {
-  font-family: "Inter", sans-serif;
+  
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
@@ -364,8 +376,8 @@ footer {
   display: flex;
   text-align: center;
   justify-content: center;
-  border-top: 1px solid #c48b58;
-  color: #c48b58;
+  border-top: 1px solid #efa3a3;
+  color: #efa3a3;
   margin-top: 25px;
 }
 .explor-btn .explore {
@@ -376,20 +388,20 @@ footer {
   line-height: 19px;
   letter-spacing: 0em;
   text-align: center;
-  color: #c48b58;
+  color: #efa3a3;
   text-transform: uppercase;
 }
 .explor-btn .explore svg {
   margin-left: 10px;
 }
 .banipark-box {
-  background: #fff;
+  /* background: #fff; */
   height: 100%;
   /* box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); */
-  /* border: 1px solid #c48b58; */
+  /* border: 1px solid #efa3a3; */
 }
 .banipark-box {
-  background: #fff;
+  /* background: #fff; */
   transition: transform 0.3s !important;
 }
 .banipark-box:hover {
@@ -399,7 +411,7 @@ footer {
   width: 1000px;
 }
 .flat-info h4 {
-  font-family: "Inter", sans-serif;
+  
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
@@ -410,33 +422,33 @@ footer {
   color: #95908d;
 }
 .card-price {
-  font-family: "Inter", sans-serif;
+  
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 0em;
   text-align: center;
-  color: #c48b58;
+  color: #efa3a3;
 }
 .load-more-btn {
   text-align: center;
   margin-top: 40px;
 }
 .load-more-btn a {
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
   letter-spacing: 0em;
   text-align: center;
-  color: #c48b58;
+  color: #efa3a3;
   text-transform: uppercase;
   padding: 15px 50px;
   border: 1px solid;
   border-radius: 30px;
 }
 .listing-heading {
-  font-family: "NewYork";
+  font-family: "Baskervville", serif;
   font-size: 40px;
   font-weight: 400;
   line-height: 49px;
@@ -444,37 +456,37 @@ footer {
   color: #3f2a17;
 }
 .visit-us-sec {
-  padding: 100px 0 130px;
+  padding: 80px 0;
   text-align: center;
 }
 .visit-us-sec h2 {
-  font-family: "NewYork";
+  font-family: "Baskervville", serif;
   font-size: 40px;
   font-weight: 400;
   line-height: 49px;
   letter-spacing: 0em;
-  color: #fff;
+  color: #3f2a17;
 }
 .smart-box {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
-  margin-bottom: -190px;
+
+  margin: 40px auto 0;
+  flex-flow: wrap;
 }
 .smart-box .iteam {
   height: 100%;
   height: 136px;
-  width: 100%;
   background: #ffffff00;
   display: flex !important;
   align-items: center;
   justify-content: space-evenly;
-  padding: 0 15px;
+  padding: 0 10px;
 }
 
 .smart-box .iteam div {
-  font-family: "NewYork";
+  font-family: "Baskervville", serif;
   font-size: 21px;
   font-weight: 400;
   line-height: 29px;
@@ -491,7 +503,6 @@ footer {
 }
 .visit-us-sec {
   background-blend-mode: color;
-  background-color: #00000033;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -509,7 +520,7 @@ footer {
   margin-bottom: 30px;
 }
 .left-logo-login p {
-  font-family: "Inter", sans-serif;
+  
   font-size: 22px;
   font-weight: 400;
   line-height: 27px;
@@ -534,7 +545,7 @@ footer {
   z-index: 1;
 }
 .quainttay h2 {
-  font-family: "NewYork";
+  font-family: "Baskervville", serif;
   font-size: 24px;
   font-weight: 400;
   line-height: 29px;
@@ -543,13 +554,15 @@ footer {
   color: #ffffff;
 }
 .quainttay h3 {
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 400;
   line-height: 19px;
   letter-spacing: 0em;
   text-align: left;
-  color: #c5ced5;
+  
+color: #e7ebef;
+  /* color: #c5ced5; */
   margin-top: 8px;
 }
 .quainttay h3 button {
@@ -567,7 +580,7 @@ footer {
   z-index: 1;
 }
 .signup-form form label {
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
@@ -591,10 +604,10 @@ footer {
 }
 button.submint-btn {
   width: 100%;
-  background: #c48b58;
+  background: #efa3a3;
   border-radius: 50px;
   padding: 20px;
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 600;
   line-height: 19px;
@@ -619,7 +632,7 @@ button.submint-btn {
 .backtohome a {
   display: flex;
   align-items: center;
-  font-family: "NewYork";
+  font-family: "Baskervville", serif;
   font-size: 40px;
   font-weight: 400;
   line-height: 49px;
@@ -631,7 +644,7 @@ button.submint-btn {
   margin-right: 15px;
 }
 .booking-manage-box h1 {
-  font-family: "Inter", sans-serif;
+  
   font-size: 22px;
   font-weight: 400;
   line-height: 27px;
@@ -641,7 +654,7 @@ button.submint-btn {
   margin-bottom: 8px;
 }
 .booking-manage-box p {
-  font-family: "Inter", sans-serif;
+  
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -650,8 +663,8 @@ button.submint-btn {
   color: #666360;
 }
 .upcomming-box button.text-white {
-  background: #c48b58;
-  border: 1px solid #c48b58;
+  background: #efa3a3;
+  border: 1px solid #efa3a3;
 }
 .upcomming-box button {
   border: 1px solid #ececec;
@@ -736,7 +749,7 @@ button.submint-btn {
 }
 
 .edit-profile {
-  background: #c48b58;
+  background: #efa3a3;
   height: 32px;
   width: 32px;
   display: flex;
@@ -747,8 +760,8 @@ button.submint-btn {
   top: -8px;
 }
 .update-btn {
-  background: #c48b58;
-  font-family: "Inter", sans-serif;
+  background: #efa3a3;
+  
   font-size: 16px;
   font-weight: 600;
   line-height: 19px;
@@ -756,7 +769,7 @@ button.submint-btn {
   text-align: center;
 }
 .profile-text h1 {
-  font-family: "Inter", sans-serif;
+  
   font-size: 22px;
   font-weight: 400;
   line-height: 27px;
@@ -766,7 +779,7 @@ button.submint-btn {
   margin-bottom: 10px;
 }
 .security-text {
-  font-family: "Inter", sans-serif;
+  
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -775,7 +788,7 @@ button.submint-btn {
   color: #666360;
 }
 .golden-border {
-  border: 1px solid #c48b58;
+  border: 1px solid #efa3a3;
 }
 .confirm-total span {
   font-family: "Inter", sans-serif !important;
@@ -798,7 +811,7 @@ button.submint-btn {
   color: #3f2a17;
 }
 .bg-orange-300 {
-  background: #c48b58;
+  background: #efa3a3;
 }
 .edit-here h2 {
   margin-bottom: 6px;
@@ -826,7 +839,7 @@ button.submint-btn {
   padding-bottom: 40px;
 }
 .pers-info h3 {
-  font-family: "Inter", sans-serif;
+  
   font-size: 22px;
   font-weight: 400;
   line-height: 26.69px;
@@ -835,7 +848,7 @@ button.submint-btn {
   margin-bottom: 6px;
 }
 .pers-info p {
-  font-family: "Inter", sans-serif;
+  
   font-size: 18px;
   font-weight: 400;
   line-height: 21.6px;
@@ -861,6 +874,34 @@ button.submint-btn {
 .property-popup {
   width: 680px;
 }
+.list-gstr{box-shadow: 0px 10px 40px 0px #B2958433;}
+.descri-text{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.contact-about h1 {
+  font-family: Baskerville Old Face;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 60px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.contact-about p {
+  font-family: Gotham;
+  font-size: 24px;
+  font-weight: 350;
+  line-height: 28.8px;
+  letter-spacing: -0.03em;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+
 
 @media (min-width: 1399px) {
   .container {
@@ -910,6 +951,8 @@ button.submint-btn {
     line-height: 38px;
     margin-bottom: 0;
   }
+  .contact-about h1 {font-size: 46px;}
+  .contact-about p {font-size: 20px; }
 }
 @media (max-width: 991px) {
   .container {
@@ -1162,6 +1205,13 @@ button.submint-btn {
   .perso-form .p-4 {
     padding: 12px;
   }
+  .footer-menu {flex-flow: column; }
+  .visit-us-sec {  margin-bottom: 25px; }
+  .contact-about h1 {
+    font-size: 36px;
+    line-height: 44px;
+    margin-bottom: 16px;
+}
 }
 @media (max-width: 575px) {
   .container {
@@ -1197,7 +1247,7 @@ button.submint-btn {
     padding: 55px 0;
   }
   .hero-sec h1 {
-    font-size: 36px;
+    font-size: 32px;
     line-height: 40px;
     margin-bottom: 10px;
     text-align: center;
@@ -1341,12 +1391,12 @@ button.submint-btn {
   /* height: 46px; */
 }
 .sort {
-  border: 2px solid #c48b58;
-  color: #c48b58;
+  border: 2px solid #efa3a3;
+  color: #efa3a3;
   font-size: 14px;
 }
 .filter {
-  background: #c48b58;
+  background: #efa3a3;
 
   color: #fff;
 }
@@ -1366,7 +1416,7 @@ button.submint-btn {
 }
 
 .image-data p {
-  font-family: "Inter", sans-serif;
+  
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -1376,7 +1426,7 @@ button.submint-btn {
 }
 
 .image-data span {
-  font-family: "Inter", sans-serif;
+  
   font-size: 18px;
   font-weight: 400;
   line-height: 22px;
@@ -1386,7 +1436,7 @@ button.submint-btn {
 }
 
 .confirm-details h1 {
-  font-family: "Inter", sans-serif;
+  
   font-size: 22px;
   font-weight: 400;
   line-height: 27px;
@@ -1396,7 +1446,7 @@ button.submint-btn {
 }
 
 .confirm-details span {
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -1410,7 +1460,7 @@ button.submint-btn {
 
 .confirm-details .confirm-price {
   color: #00860d;
-  font-family: "Inter", sans-serif;
+  
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;

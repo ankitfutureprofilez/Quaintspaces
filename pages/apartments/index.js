@@ -30,7 +30,7 @@ export default function Index() {
           <span className="rounded-md shadow-sm">
             <button
               type="button"
-              className="sort btn flex items-center mr-2 hover:bg-[#c48b58] hover:border-[#c48b58] hover:text-[#fff]"
+              className="sort btn flex items-center mr-2 hover:bg-[#efa3a3] hover:border-[#efa3a3] hover:text-[#fff]"
               id="options-menu"
               aria-haspopup="true"
               aria-expanded="true"
@@ -160,7 +160,6 @@ export default function Index() {
 
         if (filteredListings.length > 0) {
           setListings(filteredListings);
-          console.log(filteredListings);
         } else {
           setListings(filteredListings);
           console.log("No listings match the status and step conditions.");
@@ -196,7 +195,7 @@ export default function Index() {
               />
               {/* Filter button to open the modal */}
               <button
-                className="filter btn ms-2 hover:bg-[#fff] border-[#c48b58] hover:text-[#c48b58] border-2 text-[14px]"
+                className="filter btn ms-2 hover:bg-[#fff] border-[#efa3a3] hover:text-[#efa3a3] border-2 text-[14px]"
                 onClick={openModal}
               >
                 Filter

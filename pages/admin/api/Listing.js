@@ -30,8 +30,8 @@ async booking(id){
     return Api.get(`/admin/user-booking-detail/${id}`)
 }
 
-async Adminproperty(){
-    return Api.get("/admin/property-list")
+async Adminproperty(name){
+    return Api.get("/admin/property-list",name)
 }
 
 async Adminpropertydetails(uuid){

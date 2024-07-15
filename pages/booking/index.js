@@ -11,6 +11,7 @@ import { formatMultiPrice } from "../../hooks/ValueData.js";
 import Head from "next/head";
 import { toast } from "react-hot-toast";
 import DateComponent from "../elements/DateFormat.jsx";
+import { TableLoading } from "../../components/Loading/ListingsLoading.jsx";
 
 export default function Index() {
   const [loading, setLoading] = useState(false);
@@ -33,7 +34,6 @@ export default function Index() {
     (_, index) => currentYear - index
   );
 
-  console.log("SelectBooking", SelectBooking)
   const handleHouseRules = (uuid) => {
     if (!uuid || !uuid.id || !uuid.properties_id) {
       console.error("Invalid UUID object");
@@ -82,7 +82,6 @@ export default function Index() {
       setAmount(calculatedAmount);
     }
   }, [SelectBooking]);
-  console.log("amount",amount)
   const handleConfirmation = () => {
     cancelBooking(SelectBooking?.id,amount);
     setShowConfirmation(false);
@@ -208,7 +207,7 @@ export default function Index() {
         {loading ? (
           <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 min-w-1200px">
             <div className="flex justify-center items-center space-x-1 text-gray-700">
-              <div className="text-lg">Loading...</div>
+           <TableLoading/>
             </div>
           </div>
         ) : (
@@ -225,7 +224,7 @@ export default function Index() {
                       <th>Check Out</th>
                       <th>Status</th>
                       <th>Price</th>
-                      {(key !== "ongoing" && key !== "cancelled") && <th>Action</th>}
+                      {(key ==="upcoming") && <th>Action</th>}
                       {/* {} */}
                       {key === "ongoing" &&
                         <th>House details</th>}
@@ -277,7 +276,7 @@ export default function Index() {
                         <td className="px-4 py-2">
                           {formatMultiPrice(item?.price)}
                         </td>
-                        {key !== "ongoing" && key !== "cancelled" &&
+                        {key === "upcoming" &&
                           (
                             <td className="px-4 py-2">
                               {
@@ -299,11 +298,9 @@ export default function Index() {
 
                             </td>)}
                         {key === "ongoing" &&
-
                           <td className="px-4 py-2">
                             <span className="text-4xl ml-1" style={{ cursor: "pointer" }} onClick={() => handleHouseRules(item)}>🛈</span>
                           </td>}
-
                       </tr>
                     </tbody>
                   ))}
@@ -339,13 +336,13 @@ export default function Index() {
   return (
     <AuthLayout>
       <Head>
-        <title>Bookings - QS Jaipur</title>
+        <title>Bookings - Quaintspaces </title>
       </Head>
       <div className="container mx-auto">
         <div className=" account-btn ">
           <div className=" pt-4 sm:pt-8 md:pt-12 pb-3 sm:pb-6 md:pb-10">
             <Heading
-              text={"My Booking"}
+              text={"My Booking "}
               value={"/account"}
               handleClick={() => router.back()}
             />
@@ -388,11 +385,11 @@ export default function Index() {
             />
           </div>
           <div className=" py-2">
-            <button className="font-inter text-[#fff] sm:text-[16px] text-[14px] bg-orange-300 font-medium leading-tight text-center border-[#c48b58] lg:w-[auto] px-6 border-2 p-3 rounded-full " onClick={openModal}>
+            <button className="font-inter text-[#fff] sm:text-[16px] text-[14px] bg-[#efa3a3] font-medium leading-tight text-center border-[#efa3a3] lg:w-[auto] px-6 border-2 p-3 rounded-full " onClick={openModal}>
               Filter By Booking Date
             </button>
             <Modal isOpen={isOpen} onClose={closeModal}>
-              <p className="text-lg text-white font-semibold p-6 py-4 bg-[#c48b58]">
+              <p className="text-lg text-white font-semibold p-6 py-4 bg-[#efa3a3]">
                 Filter By Booking Date
               </p>
               <div className=" ">
@@ -441,7 +438,7 @@ export default function Index() {
       {
         showConfirmation && (
           <Modal isOpen={showConfirmation} onClose={handleCancel}>
-            <p className="text-lg text-white font-semibold p-6 py-4 bg-[#c48b58]">
+            <p className="text-lg text-white font-semibold p-6 py-4 bg-[#efa3a3]">
               Are you sure you want to cancel your booking?
             </p>
             <p className="text-xl text-center font-semibold  py-8  capatalize">
@@ -487,7 +484,7 @@ export default function Index() {
       {
         isConfirmOpen && (
           <Modal isOpen={isConfirmOpen} onClose={handleCancel}>
-            <p className="text-lg text-white font-semibold p-6 py-4 bg-[#c48b58]">
+            <p className="text-lg text-white font-semibold p-6 py-4 bg-[#efa3a3]">
               House Rules
             </p>
             <div className="p-6 overflow-auto">

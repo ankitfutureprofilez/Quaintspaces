@@ -168,7 +168,7 @@ export default function index() {
 <Button
                   text={loading ? "Updating..." : "Update Password"}
                   design={
-                    "font-inter hover:bg-[#fff] border-[#c48b58] border hover:text-[#c48b58] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 sm:p-4 p-3 rounded-full mb-6 mt-6"
+                    "font-inter hover:bg-[#fff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 sm:p-4 p-3 rounded-full mb-6 mt-6"
                   }
                 />
 </div>
@@ -187,7 +187,7 @@ export default function index() {
           </div>
         </div>
         <Modal isOpen={isOpen} onClose={closeModal}>
-          <div className="w-full mb-7 mt-4">
+          <div className="w-full my-5 px-4">
             <h2 className="sm:text-2xl text-md font-medium text-bold my-2">
               Deactivation Confirmation
             </h2>

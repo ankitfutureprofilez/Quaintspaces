@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "../Posts/body/Card";
 import { v4 as uuidv4 } from "uuid";
-import ListingsLoading from "../Loading/ListingsLoading";
+import { ListingsLoading } from "../Loading/ListingsLoading";
 
 const PlacesListMapSection = ({
   data,

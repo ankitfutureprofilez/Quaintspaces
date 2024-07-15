@@ -27,45 +27,22 @@ export default function ReasonToVisit() {
     { name: "Pool / Jacuzzi", icon: <MdOutlinePool /> },
     { name: "TV", icon: <MdTv/> }
   ];
-  const settings = {
-    // dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    cssEase: "linear",
-    arrows: false, 
-  };
 
   return (
-    <div className="visit-us-sec relative">
-      <Image
-        blurDataURL="/images/visitbg.jpg?q=1"
-        src="/images/visitbg.jpg"
-        alt="QUAINTSPACES JAIPUR Reason to visit"
-        layout="fill"
-        objectFit="cover"
-        style={{ zIndex: -1 }}
-        
-        loading="lazy"
-      />
+    <div className="visit-us-sec relative " 
+    style={{ backgroundImage: `url(/images/Amenitie_bg.jpg)` }}
+    >
       <div className="container capitalize mx-auto relative z-10">
-        <h2>Amenities we offer</h2>
+        <h2>Facilities we offer</h2>
         <div className="smart-box">
-          <div className="carousel-wrapper">
-          <Slider {...settings}>
-              {reasons.map((reason, index) => (
-                <div className="iteam" key={index} >
+        {reasons.map((reason, index) => (
+                <div className="iteam sm:w-[200px] w-[150px] mb-3" key={index} >
                   <div className="flex flex-col gap-2">
                     {reason?.icon}
                     {reason?.name}
                     </div>
                 </div>
               ))}
-            </Slider>
-          </div>
         </div>
       </div>
     </div>

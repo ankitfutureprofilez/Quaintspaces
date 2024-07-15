@@ -21,7 +21,7 @@ const ReviewCard = ({ data }) => {
       <header className="flex gap-2 items-center">
         <div className="w-12 h-12 bg-borderColor overflow-hidden bg-gray-200 rounded-[50%] border border-gray-300">
           <Image
-            src={data?.rating_user?.image_url || "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"}
+            src={data?.rating_user?.image_url || "/images/profile-no-image.jpg"}
             alt="User Image"
             // layout="fill"
             width={100}
