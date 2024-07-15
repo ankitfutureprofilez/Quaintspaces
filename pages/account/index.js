@@ -31,7 +31,7 @@ export default function index() {
             text={"Logout"}
             onClick={HandelLogout}
             design={
-              "font-inter text-base font-medium leading-tight text-center text-black w-52 border border-gray-400 p-4 rounded-full"
+              "font-inter text-base font-medium leading-tight text-center w-52  p-4 rounded-full uppercase bg-[#efa3a3] text-[#fff] border border-[#efa3a3]  hover:text-[#efa3a3] hover:bg-[#ffffff00]"
             }
           />
         </div>
