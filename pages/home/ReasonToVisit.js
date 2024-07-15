@@ -30,7 +30,7 @@ export default function ReasonToVisit() {
 
   return (
     <div className="visit-us-sec relative " 
-    style={{ backgroundImage: `url(/images/Amenitie_bg.jpg)` }}
+    style={{ backgroundImage: `url(/images/Amenitie_bg.avif)` }}
     >
       <div className="container capitalize mx-auto relative z-10">
         <h2>Facilities we offer</h2>

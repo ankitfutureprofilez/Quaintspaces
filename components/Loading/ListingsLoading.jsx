@@ -15,7 +15,7 @@ const ListingsLoading = ({ divider = 5, css = "w-[calc(100%/2-50px)]" }) => {
 
 const TableLoading = () => {
   return (
-    <div className="w-full bg-white flex items-center justify-center z-50 h-auto ">
+    <div className="w-full bg-white flex items-center justify-center z-50 h-auto gap-8">
   <div className="bg-white rounded-lg list-gstr overflow-hidden flex animate-pulse w-full max-w-screen-lg h-auto">
     <div className="w-4/12 max-h-[300px] bg-gray-200 relative">
       <div className="w-full h-full bg-gray-300"></div>
