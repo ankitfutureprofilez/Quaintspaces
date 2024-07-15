@@ -42,7 +42,10 @@ function List({ post }) {
                   {post?.discount_offer}%  off
                 </div>
               ) : (<> </>)}
-              <img
+              <Image
+              sizes={"100%"}
+              width={"100"}
+              height={"100"}
                 src={post?.property_image[0]?.image_url ? (post?.property_image[0]?.image_url) : ("https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg")}
                 alt="Banipark Apartment"
                 className="w-full h-full object-cover object-center"

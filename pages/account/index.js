@@ -37,7 +37,7 @@ export default function index() {
         </div>
       </div>
 
-      <div className="container mx-auto">
+      <div className="container mx-auto mb-6">
         <div className="border-b border-gray-200 py-6 sm:py-10 md:py-14">
           <div className="flex justify-between items-center booking-more">
             <div className="flex items-center">

@@ -151,32 +151,6 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
         ${showHeader ? "showHeader" : "hideHeader"}`}
       >
         <div className="max-w-[1120px] px-4 mx-auto flex items-center justify-between">
-          {/* <ul className="hidden md:flex gap-4">
-            <li
-              onClick={() => setScroll("photos")}
-              className="text-md font-medium py-6 px-2 border-b-4 border-transparent transition duration-200 cursor-pointer hover:border-blackColor"
-            >
-              Photos
-            </li>
-            <li
-              onClick={() => setScroll("amenities")}
-              className="text-md font-medium py-6 px-2 border-b-4 border-transparent transition duration-200 cursor-pointer hover:border-blackColor"
-            >
-              Amenities
-            </li>
-            <li
-              onClick={() => setScroll("reviews")}
-              className="text-md font-medium py-6 px-2 border-b-4 border-transparent transition duration-200 cursor-pointer hover:border-blackColor"
-            >
-              Reviews
-            </li>
-            <li
-              onClick={() => setScroll("location")}
-              className="text-md font-medium py-6 px-2 border-b-4 border-transparent transition duration-200 cursor-pointer hover:border-blackColor"
-            >
-              Location
-            </li>
-          </ul> */}
 
           <div
             className={`gap-4 w-full justify-between md:w-fit md:justify-start px-3 py-3 md:py-0 flex`}
