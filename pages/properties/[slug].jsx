@@ -65,18 +65,8 @@ const Listing = () => {
             Quaintspaces Jaipur
           </title>
         </Head>
-        {/* <Header
-        header="relative"
-        width="max-w-[1120px] hidden lg:flex"
-        setOverlay={setOverlay}
-        selection={selection}
-        setSelection={setSelection}
-        headerSearch={headerSearch}
-        setHeaderSearch={setHeaderSearch}
-      /> */}
         <SingleListingBody loading={loading} listing={record} />
         <ThingsToKnow record={record} />
-        {/* <Footer /> */}
         {overlay && (
           <div
             className="overlayFixed fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-40"
@@ -87,7 +77,6 @@ const Listing = () => {
             }}
           ></div>
         )}
-        {/* {wishlist && <Wishlist setWishlist={setWishlist} />} */}
       </Layout>
     </>
   );
