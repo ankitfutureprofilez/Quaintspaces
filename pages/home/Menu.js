@@ -156,7 +156,7 @@ export default function Menu() {
 
           <div aria-label="footer" className="pt-2">
             <button
-              onClick={handleClick}
+              onClick={handleLogoutClick}
               type="button"
               className="flex items-center space-x-3 py-3 px-4 w-full leading-6 text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
             >

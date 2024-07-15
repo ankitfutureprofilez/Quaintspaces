@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 const Title = ({ isSaved, listing, loading, isAdmin }) => {
   const router = useRouter();
   const { slug } = router.query;
-console.log("isAdmin",isAdmin)
   function capitalizeFirstLetter(str) {
     // Split the string into words
     const words = str?.split(" ");
