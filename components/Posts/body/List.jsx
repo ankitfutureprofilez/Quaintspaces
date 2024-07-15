@@ -6,13 +6,11 @@ import Image from "next/image";
 import { formatMultiPrice } from "../../../hooks/ValueData";
 
 function List({ post }) {
-  console.log(post)
   const { wishlist } = useContext(Context);
   const [isSaved, changeWishlist] = useWishlist(post, wishlist);
   let record;
   try {
     record = JSON?.parse(JSON?.parse(post?.location));
-    // console.log("record",record?.location)
   } catch (error) {
     console.error("Error parsing JSON:", error);
   }

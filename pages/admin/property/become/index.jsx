@@ -35,14 +35,14 @@ function Index() {
         let filteredListings = [];
         if (Array.isArray(data)) {
           data.forEach((item) => {
-            if (item?.status !== 1) {
+            if (item?.status === 0) {
               filteredListings?.push(item);
             }
           });
         }
         if (filteredListings?.length > 0) {
           setFilteredRecord(filteredListings);
-        } 
+        }
         setIsLoading(false);
       })
       .catch((error) => {
@@ -108,9 +108,11 @@ function Index() {
         <div className="max-w-[600px] w-full py-4 md:py-8 mx-auto">
           <div className="">
             <h2 className="text-[22px] md:text-[28px] font-[550] text-[#222222] sm:mb-[20px]">
-              Welcome back, {Admin}
+              Welcome back
             </h2>
-            <p className="text-[16px] md:text-[20px] font-[500] text-black mb-[16px]">Finish your listing</p>
+            {filteredRecord?.length > 0 ? (<p className="text-[16px] md:text-[20px] font-[500] text-black mb-[16px]">Finish your listing</p>) :
+              (<></>
+              )}
             <div>
               {filteredRecord &&
                 filteredRecord.map((item, index) => (
@@ -297,7 +299,6 @@ function Index() {
       )}
       {openAddPage ? (
         <Property
-          //   fetchProperties={() => fetchProperty(uuid)}
           p={data?.data}
           useExistingImages={useExistingImages}
         />

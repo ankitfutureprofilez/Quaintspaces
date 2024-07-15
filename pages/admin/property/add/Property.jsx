@@ -116,7 +116,7 @@ export default function Property(props) {
   const [checkoutquet, setCheckoutquiet] = useState(
     property_rule?.quite_hours_out_time || "00:00"
   );
-  const [selectedOption, setSelectedOption] = useState(status || 1);
+  const [selectedOption, setSelectedOption] = useState(status || 0);
   const [checkinEnd, setCheckinEnd] = useState(flexible_check_in || "flexible");
   const [checkout, setCheckout] = useState(check_out || "00:00");
   const [Guests, setGuests] = useState(guests || 1);

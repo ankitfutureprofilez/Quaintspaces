@@ -68,7 +68,9 @@ export default function Login() {
           content="https://example.com/images/cool-page.jpg"
         />
       </Head>
-      <div className="bg-no-repeat mainadmin bg-cover bg-center relative object-cover" style={{ backgroundImage: 'url(https://get.pxhere.com/photo/villa-mansion-house-floor-interior-home-construction-residence-property-living-room-room-lighting-interior-design-hardwood-resort-windows-estate-lobby-suite-condominium-real-estate-wood-flooring-family-room-1196622.jpg)' }}>
+      <div className="bg-no-repeat mainadmin bg-cover bg-center relative object-cover"
+        style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
+      >
         <div className="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
           <div className="flex justify-center self-center  z-10">
             <div className="p-12 bg-white mx-auto rounded-2xl w-100 ">
@@ -92,7 +94,7 @@ export default function Login() {
                   <div className="space-y-2">
                     <label className="mb-5 text-sm font-medium text-gray-700 tracking-wide">
                       Password
-                </label>
+                    </label>
                     <input className="mt-1 p-4 border rounded-full w-full w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" type="password"
                       name="password"
                       value={record.password}
@@ -105,7 +107,7 @@ export default function Login() {
                     <div className="text-sm">
                       <Link href="/admin/forget-password" className="text-black text-l hover:text-indigo-500">
                         Forgot your password?
-                  </Link>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -117,7 +119,7 @@ export default function Login() {
               </form>
               <div className="pt-5 text-center text-black-400 text-xs  ">
                 Copyright © 2023-2024
-            </div>
+              </div>
             </div>
           </div>
         </div>

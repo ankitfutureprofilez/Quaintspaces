@@ -16,11 +16,11 @@ export default function Footer() {
               <span >Email : </span>
               quaintspaces@gmail.com
             </Link>
-            <Link className="text-[#3F2A17] text-[16px] uppercase" href="tel:9521410122">
+            <Link className="text-[#3F2A17] text-[16px] " href="tel:9521410122">
               <span >Mobile : </span>
               9521410122
             </Link>
-            <Link className="text-[#3F2A17] text-[16px] uppercase" href="tel:9314022666">
+            <Link className="text-[#3F2A17] text-[16px] " href="tel:9314022666">
               <span >Mobile : </span>
               9314022666
             </Link>

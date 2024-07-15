@@ -71,7 +71,6 @@ export default function Index() {
         console.error("Error deleting property:", error);
       });
   };
-  console.log("selectedProperty", selectedProperty)
   const handleConfirmation = () => {
     deleteProperty(selectedProperty);
     setShowConfirmation(false);
@@ -91,7 +90,7 @@ export default function Index() {
         <table className="table-auto w-full">
           <thead>
             <tr>
-              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Listing</th>
+              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Property Listing</th>
               <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Status</th>
               <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Location</th>
               <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Edit</th>
@@ -130,10 +129,10 @@ export default function Index() {
                   </td>
                   <td className="text-[14px] text-[#222222] font-[600] text-left p-[12px]">
                     {item?.status !== 1 ? (
-                      <p>In Progress</p>
+                      <p className="text-indigo-600">In Progress</p>
                     ) : (
                       <>
-                        <p>Completed</p>
+                        <p className="text-green-600">Completed</p>
                       </>
                     )}
                   </td>
@@ -154,7 +153,7 @@ export default function Index() {
                   </td>
                   <td className="p-[12px]">
                     <button
-                      className="inline-block text-[14px] px-4 rounded-[6px] py-2 text-white   bg-black  hover:bg-blue-700 "
+                      className="inline-block text-[14px] px-4 rounded-[6px] py-2 text-white   bg-red-600  hover:bg-black-700 "
                       onClick={() => setShowConfirmation(true) || setSelectedProperty(item?.uuid)}
                     >
                       <AiFillDelete />
@@ -208,7 +207,7 @@ export default function Index() {
                     <h2 className="text-lg font-medium mb-2 heading-property">
                       {item.name}
                     </h2>
-                    <div className="flex tooltip-container">
+                    {/* <div className="flex tooltip-container">
 
                       <div className="tooltip-text text-sm max-w-fit py-2">
                         <span><span className="text-base">🛈</span> Booking method: Instant </span>
@@ -219,7 +218,7 @@ export default function Index() {
                             : "Completed"}
                         </span>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                   <h3 className="text-sm font-medium desc-property">
                     {item?.description}
@@ -301,7 +300,7 @@ export default function Index() {
               >
                 {view === 'table' ? <CgViewComfortable /> : <FaTableCellsLarge />}
               </div>
-              <div className="bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer">
+              <div className="bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer hover:bg-gray-400 active:bg-gray-400">
                 <MdAdd
                   onClick={() => {
                     router.push("/admin/property/become");

@@ -19,8 +19,6 @@ const InputGroups = () => {
 };
 const RadioButtons = () =>{
   const [selectedOption, setSelectedOption] = useState(null);
-  console.log("selectedOption",selectedOption);
-
   const handleOptionChange = (event) => {
     setSelectedOption(parseInt(event.target.value));
   };
