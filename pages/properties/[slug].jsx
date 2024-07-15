@@ -15,7 +15,6 @@ import { GiConsoleController } from "react-icons/gi";
 const Listing = () => {
   const router = useRouter();
   const { slug } = router.query;
-  console.log("slug",slug)
   const { wishlist, setWishlist } = useContext(Context);
   const [overlay, setOverlay] = useState(false);
   const [selection, setSelection] = useState(null);
@@ -35,7 +34,6 @@ const Listing = () => {
       main
         .Propertycustom(slug || "")
         .then((r) => {
-          console.log("r?.data?.data", r);
           setrecord({
             loading: false,
             data: r?.data?.data,

@@ -2,10 +2,7 @@ import Link from "next/link";
 import React from "react";
 
 export default function ThingsToKnow({ record, isAdmin , content}) {
-  ///custom link
-  // console.log("record",record)
   const safetyAmenities = record?.data?.safety_amenity?.split(',') || record?.safety_amenity?.split(',');
-  console.log("safetyAmenities",record?.data?.safety_amenity)
   return (
     <div className="container mx-auto">
       <h1 className="listing-heading text-left !mb-0">Things to know</h1>

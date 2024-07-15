@@ -26,7 +26,6 @@ function CurrentProject() {
     main
       .Top3Payments()
       .then((r) => {
-        console.log("r", r)
         setRecord(r?.data?.data);
         settoppayment(r?.data?.total_payment_count);
         setLoading(false);

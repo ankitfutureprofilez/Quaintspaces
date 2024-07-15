@@ -254,7 +254,6 @@ export default function Property(props) {
     longitude: l && l.longitude ? l.longitude : "",
   });
 
-  // console.log("address", address)
 
   const handleAddress = (e) => {
     const { name, value } = e.target;
@@ -282,7 +281,6 @@ export default function Property(props) {
 
   const copyToClipboard = () => {
     const textToCopy = `${baseurl}${item?.customLink}`;
-    console.log("textToCopy", textToCopy);
     navigator.clipboard
       .writeText(textToCopy)
       .then(() => {})
@@ -458,7 +456,6 @@ export default function Property(props) {
                 `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
               );
               locationData = response.data;
-              console.log("locationData", locationData);
             } else {
               const response = await axios.get(
                 `https://nominatim.openstreetmap.org/reverse?lat=${address?.latitude}&lon=${address?.longitude}&format=json`
@@ -707,7 +704,7 @@ export default function Property(props) {
       })
       .catch((error) => {
         setLoading(false);
-        console.log("error", error);
+        ("error", error);
       });
   }
 

@@ -168,7 +168,7 @@ h3.text-sm.font-medium.desc-property {
   background-blend-mode: color;
  
 }
-.testimo-text { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 11; -webkit-box-orient: vertical; }
+.testimo-text { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 8; -webkit-box-orient: vertical; }
 .hero-sec {
   padding: 220px 0 270px;
 }

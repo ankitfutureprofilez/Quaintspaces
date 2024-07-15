@@ -25,7 +25,6 @@ function Index() {
     data: {},
   });
   const router = useRouter();
-  //   console.log("uuid",uuid);
   useEffect(() => {
     const main = new Listing();
     main
@@ -43,9 +42,7 @@ function Index() {
         }
         if (filteredListings?.length > 0) {
           setFilteredRecord(filteredListings);
-        } else {
-          console.log("No listings match the status and step conditions.");
-        }
+        } 
         setIsLoading(false);
       })
       .catch((error) => {

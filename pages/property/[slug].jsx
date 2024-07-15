@@ -15,7 +15,6 @@ import { GiConsoleController } from "react-icons/gi";
 const Listing = () => {
   const router = useRouter();
   const { slug } = router.query;
-  console.log("slug",slug)
   const { wishlist, setWishlist } = useContext(Context);
   const [overlay, setOverlay] = useState(false);
   const [selection, setSelection] = useState(null);
@@ -50,37 +49,6 @@ const Listing = () => {
     }
   }, [slug]);
 
-
-  // useEffect(() => {
-  //   if (slug) {
-  //     setLoading(true);
-  //     const main = new Listings();
-  //     main
-  //       .Propertycustom(slug || "")
-  //       .then((r) => {
-  //         console.log("r?.data?.data", r);
-  //         setrecord({
-  //           loading: false,
-  //           data: r?.data?.data,
-  //         });
-  //         setLoading(false);
-  //       })
-  //       .catch((err) => {
-  //         setrecord({
-  //           loading: true,
-  //         });
-  //         console.log(err);
-  //         setLoading(false);
-  //       });
-  //   }
-  // }, [slug]);
-
-  // useEffect(() => {
-  //   if (listingData) {
-  //     setrecord(listingData);
-  //   }
-  // }, [listingData]);
-
   return (
     <>
       <Layout>
@@ -90,18 +58,8 @@ const Listing = () => {
             Quaintspaces Jaipur
           </title>
         </Head>
-        {/* <Header
-        header="relative"
-        width="max-w-[1120px] hidden lg:flex"
-        setOverlay={setOverlay}
-        selection={selection}
-        setSelection={setSelection}
-        headerSearch={headerSearch}
-        setHeaderSearch={setHeaderSearch}
-      /> */}
         <SingleListingBody loading={loading} listing={record} />
         <ThingsToKnow record={record} />
-        {/* <Footer /> */}
         {overlay && (
           <div
             className="overlayFixed fixed top-0 left-0 w-full h-full z-10 bg-black bg-opacity-40"
@@ -112,7 +70,6 @@ const Listing = () => {
             }}
           ></div>
         )}
-        {/* {wishlist && <Wishlist setWishlist={setWishlist} />} */}
       </Layout>
     </>
   );

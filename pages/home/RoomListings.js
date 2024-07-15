@@ -22,8 +22,6 @@ export default function RoomListings() {
 
       if (filteredListings.length > 0) {
         setListings(filteredListings);
-      } else {
-        console.log("No listings match the status and step conditions.");
       }
     }).catch((err) => {
       setLoading(false);
@@ -31,10 +29,8 @@ export default function RoomListings() {
     });
   }, []);
   const parseLocation = (location) => {
-    console.log('location',location)
     try {
       const record  = JSON.parse(location);
-    console.log('record',record)
     const data = JSON.parse(record)
       return data?.location;
     } catch (error) {

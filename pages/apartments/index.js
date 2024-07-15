@@ -162,7 +162,6 @@ export default function Index() {
           setListings(filteredListings);
         } else {
           setListings(filteredListings);
-          console.log("No listings match the status and step conditions.");
         }
 
         setloading(false);
