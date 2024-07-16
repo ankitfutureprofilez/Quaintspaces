@@ -36,35 +36,13 @@ export default function MainPage() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 800, // Increased speed for smoother transitions
+    speed: 1000, // Increased speed for smoother transitions
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 3000, // Adjusted autoplay speed for smoother transitions
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    autoplaySpeed: 1000, // Adjusted autoplay speed for smoother transitions
+    fade: true, // Adding fade transition effect
   };
 
   return (
