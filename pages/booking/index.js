@@ -205,9 +205,7 @@ export default function Index() {
     return (
       <>
         {loading ? (
-          <div className="flex items-center justify-center w-full h-full min-h-[450px] relative top-0 left-0 z-10 min-w-1200px">
-           Loading....
-          </div>
+          <TableLoading/>
         ) : (
           <>
             {listings && listings.length > 0 ? (

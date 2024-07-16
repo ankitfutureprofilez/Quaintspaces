@@ -13,7 +13,7 @@ const ListingsLoading = ({ divider = 5, css = "w-[calc(100%/2-50px)]" }) => {
   );
 };
 
-const TableLoading = () => {
+const AllApartmentLoading = () => {
   return (
     <div className="w-full bg-white flex items-center justify-center z-50 h-auto gap-8">
   <div className="bg-white rounded-lg list-gstr overflow-hidden flex animate-pulse w-full h-auto">
@@ -22,37 +22,42 @@ const TableLoading = () => {
     <div className="w-8/12 p-6">
       <div className="h-5 bg-gray-300 rounded mb-[12px] min-w-[1050px]"></div>
       <div className="h-5 bg-gray-300 rounded mb-[12px] min-w-[1050px]"></div>
-      {/* <div className="h-8 bg-gray-300 rounded mb-[15px] w-[250px]"></div> */}
-
       <div className="flex h-8 mb-[25px] bg-gray-300 w-[500px] rounded">
-        {/* <div className="mb-2 pr-[40px]">
-          <div className="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
-          <div className="h-6 bg-gray-300 rounded w-3/4"></div>
-        </div>
-        <div className="mb-2 px-[40px] border-x">
-          <div className="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
-          <div className="h-6 bg-gray-300 rounded w-3/4"></div>
-        </div>
-        <div className="mb-2 pl-[40px]">
-          <div className="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
-          <div className="h-6 bg-gray-300 rounded w-3/4"></div>
-        </div>
-        <div className="mb-2 pl-[40px]">
-          <div className="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
-          <div className="h-6 bg-gray-300 rounded w-3/4"></div>
-        </div>
-        <div className="mb-2 pl-[40px]">
-          <div className="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
-          <div className="h-6 bg-gray-300 rounded w-3/4"></div>
-        </div> */}
       </div>
-
       <div className="h-16 bg-gray-300 rounded min-w-[1050px]"></div>
-      {/* <div className="h-4 bg-gray-300 rounded w-full"></div> */}
     </div>
   </div>
 </div>
   );
 };
+const TableLoading = () => {
+  return (
+    <div className="table-responsive">
+    <table className="table-fixed w-full booking-table">
+      <thead>
+        <tr>
+          {["Booking Date", "Booking Number", "Title", "Check In", "Check Out"].map((header, index) => (
+            <th key={index} className="p-2">
+              <div className="h-10 bg-gray-300 rounded w-full animate-pulse"></div>
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {[...Array(5)].map((_, rowIndex) => (
+          <tr key={rowIndex}>
+            {[...Array(5)].map((_, colIndex) => (
+              <td key={colIndex} className="px-4 py-2">
+                <div className="h-6 bg-gray-300 rounded w-full animate-pulse"></div>
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  );
+};
 
-export { ListingsLoading, TableLoading };
+
+export { ListingsLoading, AllApartmentLoading, TableLoading };

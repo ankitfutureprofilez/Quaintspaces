@@ -8,6 +8,7 @@ import NoData from "./elements/NoData.js";
 import Link from "next/link";
 import { formatMultiPrice } from "../hooks/ValueData.js";
 import Head from "next/head";
+import { TableLoading } from "../components/Loading/ListingsLoading.jsx";
 
 export default function paymentHistory() {
   const [loading, setLoading] = useState(false);
@@ -131,9 +132,7 @@ export default function paymentHistory() {
         </div>
         <div className="">
           {loading ? (
-           <div className="flex items-center justify-center w-full h-full min-h-[450px] relative top-0 left-0 z-10 min-w-1200px">
-           Loading....
-          </div>
+           <TableLoading/>
           ) : listings && listings.length > 0 ? (
             <BookingTable />
           ) : (
