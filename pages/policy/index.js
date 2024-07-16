@@ -22,13 +22,13 @@ function index() {
               with that data.
             </p>
 
-            <h2>1. Information Collection and Use</h2>
+            <h2 className="text-2xl font-bold mb-2">1. Information Collection and Use</h2>
             <p className="mb-4">
               We collect several different types of information for various
               purposes to provide and improve our Service to you.
             </p>
 
-            <h2>2. Types of Data Collected</h2>
+            <h2 className="text-2xl font-bold mb-2">2. Types of Data Collected</h2>
             <p className="mb-4">
               Personal Data
               <br />
@@ -44,7 +44,7 @@ function index() {
               </ul>
             </p>
 
-            <h2>3. Use of Data</h2>
+            <h2 className="text-2xl font-bold mb-2">3. Use of Data</h2>
             <p className="mb-4">
               We use the collected data for various purposes:
               <ul>
@@ -56,7 +56,7 @@ function index() {
               </ul>
             </p>
 
-            <h2>4. Disclosure of Data</h2>
+            <h2 className="text-2xl font-bold mb-2">4. Disclosure of Data</h2>
             <p className="mb-4">
               We may disclose your Personal Data in the good faith belief that
               such action is necessary to:
@@ -78,7 +78,7 @@ function index() {
               </ul>
             </p>
 
-            <h2>5. Security of Data</h2>
+            <h2 className="text-2xl font-bold mb-2">5. Security of Data</h2>
             <p className="mb-4">
               The security of your data is important to us, but remember that no
               method of transmission over the Internet, or method of electronic
@@ -89,169 +89,118 @@ function index() {
       </div> */}
       <div className="max-w-4xl mx-auto p-6">
         <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
+        <p className="mb-4">
+        For a list of Privacy Policies by jurisdiction, click here.
+        </p>
         <p className="mb-4" >Last Updated: January 25, 2024</p>
         <p className="mb-4" >
           QuaintSpaces exists to help build connections between people and make the world more open and inclusive. In short—to build a world where anyone can belong anywhere. We are a community built on trust. A fundamental part of earning that trust means being clear about how we use your information and protecting your human right to privacy.
         </p>
-        <p className="mb-4" >
-          This Privacy Policy describes how QuaintSpaces, Inc. and its affiliates (“we,” “us,” or “QuaintSpaces”), process personal information in relation to your use of the QuaintSpaces Platform. Depending on where you live and what you are doing on the QuaintSpaces Platform, the supplemental privacy pages listed below may apply to you. Please follow the links and review the supplemental information describing how we process personal information for those regions and services.
-        </p>
-        <ul className="list-disc list-inside mb-6">
-          <li className="mb-2">
-            If you reside outside of the United States, such as in the European Economic Area (“EEA”), visit our
-             “Outside of the United States” page for important supplemental information that may apply to you.
-          </li>
-          <li className="mb-2">
-            If you reside in the United States, visit our
-            “State-Specific Supplements” page for important supplemental information that may apply to you.
-          </li>
-          <li className="mb-2">
-            If you reside in the People’s Republic of China, which for purposes of this Privacy Policy does not include Hong Kong, Macau, and Taiwan (“China”), visit our
-            “Privacy Supplement for China Users” page for important information that may apply to you.
-          </li>
-        </ul>
-        <h2 className="text-2xl font-semibold mb-2">
-            1. Personal Information We Collect
-          
-        </h2>
-        <h2 className="text-2xl font-semibold mb-2">
-            2. How We Use the Information We Collect
-          
-        </h2>
-        <h2 className="text-2xl font-semibold mb-2">
-            3. Sharing and Disclosure
-          
-        </h2>
-        <h2 className="text-2xl font-semibold mb-2">
-            4. Third-Party Partners and Integrations
-          
-        </h2>
-        <h2 className="text-2xl font-semibold mb-2">
-            5. Your Rights
-          </h2>
-        <h2 className="text-2xl font-semibold mb-2">
-            6. Security
-          
-
-        </h2>
-        <h2 className="text-2xl font-semibold mb-2">
-            7. Changes to This Privacy Policy
-          
-        </h2>
-        <h2 className="text-2xl font-semibold mb-2">
-            8. Contact Information and Responsible QuaintSpaces Entities
-          
-        </h2>
-        <h2 className="text-2xl font-semibold mb-2">
-            9. Definitions
-          
-        </h2>
-
         <div>
           <h1 className="text-2xl font-semibold mb-2">PERSONAL INFORMATION WE COLLECT</h1>
-          <h2>1.1 Information Needed to Use the QuaintSpaces Platform</h2>
+          <h2 className="text-2xl font-bold mb-2">1.1 Information Needed to Use the QuaintSpaces Platform</h2>
           <p className="mb-4">
             We collect personal information about you when you use the QuaintSpaces Platform. Without it, we may not be able to provide all services requested. This information includes:
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.1.1 Contact, Account, and Profile Information</h3>
+          <h3 className="text-lg font-semibold mb-2">1.1.1 Contact, Account, and Profile Information</h3>
           <p className="mb-4">
             Such as your first name, last name, phone number, postal address, email address, date of birth, and profile photo, some of which will depend on the features you use.
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.1.2 Identity Information</h3>
+          <h3 className="text-lg font-semibold mb-2">1.1.2 Identity Information</h3>
           <p className="mb-4">
             Where appropriate, we may ask you for an image of your government-issued ID (in accordance with applicable laws) or other verification information, and/or a selfie when we verify your ID. If a copy of your ID is provided to us, we will obtain information from your ID. See our Help Center article on
               Verifying your identity.
             
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.1.3 Payment Information</h3>
+          <h3 className="text-lg font-semibold mb-2">1.1.3 Payment Information</h3>
           <p className="mb-4">
             Such as payment account or bank account information. If you are not a QuaintSpaces user, we may receive payment information relating to you, such as when a QuaintSpaces user provides your payment card to complete a booking. See our Help Center article on
               Paying and getting paid on behalf of someone else.
             
           </p>
-          <h2>1.2 Information You Choose to Give Us</h2>
+          <h2 className="text-2xl font-bold mb-2">1.2 Information You Choose to Give Us</h2>
           <p className="mb-4">
             You can choose to provide us with additional personal information, including:
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.2.1 Additional Profile Information</h3>
+          <h3 className="text-lg font-semibold mb-2">1.2.1 Additional Profile Information</h3>
           <p className="mb-4">
             Such as gender, preferred language(s), city, and personal description.
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.2.2 Information About Others</h3>
+          <h3 className="text-lg font-semibold mb-2">1.2.2 Information About Others</h3>
           <p className="mb-4">
             Such as a payment instrument or contact information belonging to another person or information about a co-traveler. By providing us with personal information about others, you certify that you have permission to provide that information to QuaintSpaces for the purposes described in this Privacy Policy and you have shared the QuaintSpaces Privacy Policy with them.
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.2.3 Biometric Information</h3>
+          <h3 className="text-lg font-semibold mb-2">1.2.3 Biometric Information</h3>
           <p className="mb-4">
             Such as facial recognition data derived from photos and identification documents you submit for verification, where offered and with your consent where required by applicable law.
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.2.4 Other Information</h3>
+          <h3 className="text-lg font-semibold mb-2">1.2.4 Other Information</h3>
           <p className="mb-4">
             Such as when you fill in a form, add information to your account, respond to surveys, post to community forums, participate in promotions, communicate with QuaintSpaces Support and other Members, import or manually enter address book contacts, provide your address and/or geolocation, or share your experience with us. This may include health information if you choose to share it with us.
           </p>
-          <h2>1.3 Information Automatically Collected by Using the QuaintSpaces Platform and Our Payment Services</h2>
+          <h2 className="text-2xl font-bold mb-2">1.3 Information Automatically Collected by Using the QuaintSpaces Platform and Our Payment Services</h2>
           <p className="mb-4">
             When you use the QuaintSpaces Platform and Payment Services, we automatically collect certain information. This information may include:
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.3.1 Geolocation Information</h3>
+          <h3 className="text-lg font-semibold mb-2">1.3.1 Geolocation Information</h3>
           <p className="mb-4">
             Such as precise or approximate location determined from your IP address, mobile or other device’s GPS, or other information you share with us, depending on your device settings. We may also collect this information when you’re not using the app if you enable this through your settings or device permissions.
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.3.2 Usage Information</h3>
+          <h3 className="text-lg font-semibold mb-2">1.3.2 Usage Information</h3>
           <p className="mb-4">
             Such as searches for Listings, bookings you have made, additional services you have added, access dates and times, the pages you’ve viewed or engaged with before or after using the QuaintSpaces Platform, and other actions on the QuaintSpaces Platform, including the pages or content you view and links you click to third-party applications. We may collect this information even if you haven’t created a QuaintSpaces account or logged in.
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.3.3 Device Information</h3>
+          <h3 className="text-lg font-semibold mb-2">1.3.3 Device Information</h3>
           <p className="mb-4">
             Such as IP address, hardware and software information, device information, device event information, unique identifiers, crash data, and read receipts. We may collect this information even if you haven’t created a QuaintSpaces account or logged in.
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.3.4 Cookies and Similar Technologies</h3>
+          <h3 className="text-lg font-semibold mb-2">1.3.4 Cookies and Similar Technologies</h3>
           <p className="mb-4">
             As Described in Our
               Cookie Policy.
             
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.3.5 Payment Transaction Information</h3>
+          <h3 className="text-lg font-semibold mb-2">1.3.5 Payment Transaction Information</h3>
           <p className="mb-4">
             Such as payment instrument used, date and time, payment amount, payment instrument expiration date and billing postcode, PayPal email address, IBAN information, your address, and other related transaction details.
           </p>
-          <h2>1.4 Information We Collect from Third Parties</h2>
+          <h2 className="text-2xl font-bold mb-2">1.4 Information We Collect from Third Parties</h2>
           <p className="mb-4">
             We may collect personal information from other sources, such as:
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.4.1 Third-Party Applications</h3>
+          <h3 className="text-lg font-semibold mb-2">1.4.1 Third-Party Applications</h3>
           <p className="mb-4">
             If you choose to link, connect, or login to the QuaintSpaces Platform with a third-party service, such as Google, Facebook, and WeChat, you direct the service to send us information such as your registration, friends list, and profile information as controlled by that service or as authorized by you via your privacy settings at that service. If you choose to connect a smart lock to your QuaintSpaces account, we may collect information about the smart device, such as log or event information and device information.
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.4.2 Background Information Providers</h3>
+          <h3 className="text-lg font-semibold mb-2">1.4.2 Background Information Providers</h3>
           <p className="mb-4">
             For Members in the United States, to the extent permitted by applicable laws, we may obtain, for example, reports of criminal records, sex offender registrations, and other information about you and/or your background. For Hosts in India, to the extent permitted by applicable laws, we may perform criminal background checks. For Members outside of the United States, to the extent permitted by applicable laws and with your consent where required, we may obtain police, background, or registered sex offender checks. We may use your information, including your full name and date of birth, to obtain such reports.
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.4.3 Enterprise Product Invitations and Account Management</h3>
+          <h3 className="text-lg font-semibold mb-2">1.4.3 Enterprise Product Invitations and Account Management</h3>
           <p className="mb-4">
             Organizations that use our Enterprise products may submit personal information to facilitate account management and invitations to use enterprise products.
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.4.4 Referrals and Co-Travelers</h3>
+          <h3 className="text-lg font-semibold mb-2">1.4.4 Referrals and Co-Travelers</h3>
           <p className="mb-4">
             If you are invited to the QuaintSpaces Platform, for example, as a co-traveler on a trip, the person who invited you can submit personal information about you.
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.4.5 Guest Travel Insurance Partners</h3>
+          <h3 className="text-lg font-semibold mb-2">1.4.5 Guest Travel Insurance Partners</h3>
           <p className="mb-4">
             If you make a claim under a Guest Travel Insurance Policy, we may receive information regarding your claim in order to provide you with customer service and improve our platform.
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.4.6 Complainants</h3>
+          <h3 className="text-lg font-semibold mb-2">1.4.6 Complainants</h3>
           <p className="mb-4">
             If a Host, Guest, or any third party submits a complaint about you, we may receive information relating to the specific complaint made in order to understand and, where relevant, address the complaint.
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.4.7 Financial Institutions</h3>
+          <h3 className="text-lg font-semibold mb-2">1.4.7 Financial Institutions</h3>
           <p className="mb-4">
             If you elect to pay with funds from your bank account, we may receive certain information from your financial institution, such as bank account details and account balance.
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.4.8 Flexible Payment Plans and Financing Providers</h3>
+          <h3 className="text-lg font-semibold mb-2">1.4.8 Flexible Payment Plans and Financing Providers</h3>
           <p className="mb-4">
             If you elect to purchase a reservation and pay on an installment plan, we may receive certain information from the third-party provider, such as the payment schedule and actual payments on authorized payment plans.
           </p>
-          <h3 className="text-2xl font-semibold mb-2">1.4.9 Other Sources</h3>
+          <h3 className="text-lg font-semibold mb-2">1.4.9 Other Sources</h3>
           <p className="mb-4">
             To the extent permitted by applicable law, we may receive additional information about you, such as
               references
@@ -260,7 +209,7 @@ function index() {
           </p>
         </div>
       </div> <div className="p-6 max-w-4xl mx-auto">
-        <h2 className="text-2xl font-bold mb-4">2. HOW WE USE INFORMATION WE COLLECT.</h2>
+        <h2 className="text-2xl font-bold mb-2" >2. HOW WE USE INFORMATION WE COLLECT.</h2>
         <p className="mb-4">
           We use personal information as outlined in this Privacy Policy. If you reside outside of the United States,
             click here
@@ -310,7 +259,9 @@ function index() {
               Nondiscrimination Policy , and</li>
           <li>assess or evaluate your interactions with the QuaintSpaces Platform and information obtained from third parties.</li>
         </ul>
-
+<p className="mb-4">
+In certain cases, automated processes, which analyze your account and activities on the QuaintSpaces platform as well as information in relation to activities on and off the QuaintSpaces platform that can be associated with you, could restrict or suspend your access to the QuaintSpaces Platform if such processes detect activity that may pose a safety or other risk to QuaintSpaces, our community, or third parties. Learn more about how our system determines whether certain reservations may carry a higher risk for incidents here. If you would like to challenge decisions based on automated processes, please contact us via the Contact Information section.
+</p>
         <h3 className="text-xl font-semibold mb-2">2.3 Provide, Personalize, Measure, and Improve our Advertising and Marketing.</h3>
         <p className="mb-4">We may process this information to:</p>
         <ul className="list-disc list-inside mb-4">
@@ -337,7 +288,7 @@ function index() {
           <li>provide and improve Payment Services.</li>
         </ul>
         {/* <div className="bg-white shadow-md rounded-md p-4">
-          <h2 className="text-lg font-semibold mb-2">3. SHARING AND DISCLOSURE</h2>
+          <h2 className="text-2xl font-bold mb-2" className="text-lg font-semibold mb-2">3. SHARING AND DISCLOSURE</h2>
           <p className="text-sm mb-4">
             If you reside outside of the United States, learn about safeguards we rely on for transferring personal information to recipients outside of certain jurisdictions <a href="#" className="text-blue-500 underline">here</a>.
           </p>
@@ -361,11 +312,11 @@ function index() {
         </div>
 
         <div className="bg-white shadow-md rounded-md p-4">
-          <h2 className="text-lg font-semibold mb-2">3.2.4 QuaintSpaces for Work Partners</h2>
+          <h2 className="text-2xl font-bold mb-2" className="text-lg font-semibold mb-2">3.2.4 QuaintSpaces for Work Partners</h2>
           <p className="text-sm mb-4">
             If a booking is designated as being for a business or work purpose and is made by a Guest affiliated with an Enterprise enrolled in QuaintSpaces for Work, we may disclose information related to the booking to the Enterprise to the extent necessary for the adequate performance of QuaintSpaces’s contract with the Enterprise and to provide the services. At the request of the Enterprise or the Guest, we may also share this information with third parties engaged by the Enterprise to provide support services.
           </p>
-          <h2 className="text-lg font-semibold mb-2">3.2.5 Service Providers</h2>
+          <h2 className="text-2xl font-bold mb-2" className="text-lg font-semibold mb-2">3.2.5 Service Providers</h2>
           <p className="text-sm mb-4">
             We share personal information with affiliated and unaffiliated service providers (including their service providers) to help us run our business and for their compliance purposes, including those that help us:
             <ul className="list-disc pl-6">
@@ -382,7 +333,7 @@ function index() {
             </ul>
             These providers are contractually bound to protect your personal information, have access to your personal information to perform these tasks, and may also disclose your information where required by law.
           </p>
-          <h2 className="text-lg font-semibold mb-2">3.2.6 Corporate Affiliates</h2>
+          <h2 className="text-2xl font-bold mb-2" className="text-lg font-semibold mb-2">3.2.6 Corporate Affiliates</h2>
           <p className="text-sm mb-4">
             To support us in providing, integrating, promoting and improving the QuaintSpaces Platform, Payment Services, and our affiliates’ services, we may share personal information within our corporate family of companies, including:
             <ul className="list-disc pl-6">
@@ -395,7 +346,7 @@ function index() {
             </ul>
             These disclosures may occur regardless of your country of residence and are necessary to comply with legal obligations and operational requirements.
           </p>
-          <h2 className="text-lg font-semibold mb-2">3.3 Why We May Share Your Information</h2>
+          <h2 className="text-2xl font-bold mb-2" className="text-lg font-semibold mb-2">3.3 Why We May Share Your Information</h2>
           <p className="text-sm">
             We may share your information in order to:
             <ul className="list-disc pl-6">
@@ -405,7 +356,7 @@ function index() {
           </p>
         </div>
         <div className="bg-white shadow-md rounded-md p-4">
-          <h2 className="text-lg font-semibold mb-2">3.3.2 Comply with Law, Respond to Legal Requests, Prevent Harm, and Protect Our Rights</h2>
+          <h2 className="text-2xl font-bold mb-2" className="text-lg font-semibold mb-2">3.3.2 Comply with Law, Respond to Legal Requests, Prevent Harm, and Protect Our Rights</h2>
           <div className="pl-4">
             <h3 className="text-md font-semibold mb-1">3.3.2(i) Disclosure</h3>
             <p className="text-sm mb-2">
@@ -432,13 +383,13 @@ function index() {
               Where appropriate and/or legally required, we may notify Members about legal requests, unless: (i) providing notice is prohibited by the legal process itself, by court order we receive, or by applicable law, or (ii) we believe that providing notice would be futile, ineffective, create a risk of injury or bodily harm to an individual or group, or create or increase a risk of fraud upon or harm to QuaintSpaces, our Members, or expose QuaintSpaces to a claim of obstruction of justice.
             </p>
           </div>
-          <h2 className="text-lg font-semibold mb-2">3.3.3 Effectuate Business Transfers</h2>
+          <h2 className="text-2xl font-bold mb-2" className="text-lg font-semibold mb-2">3.3.3 Effectuate Business Transfers</h2>
           <p className="text-sm">
             If QuaintSpaces undertakes or is involved in any merger, acquisition, reorganization, sale of assets, bankruptcy, or insolvency event, then we may sell, transfer, or share some or all of our assets, including your information in connection with such transaction or in contemplation of such transaction, such as due diligence. In this event, we will notify you before your personal information is transferred and becomes subject to a different privacy policy.
           </p>
         </div>
         <div className="bg-white shadow-md rounded-md p-4">
-          <h2 className="text-lg font-semibold mb-2">4. THIRD-PARTY PARTNERS AND INTEGRATIONS</h2>
+          <h2 className="text-2xl font-bold mb-2" className="text-lg font-semibold mb-2">4. THIRD-PARTY PARTNERS AND INTEGRATIONS</h2>
 
           <div className="pl-4">
             <h3 className="text-md font-semibold mb-1">4.1 Linking Third-Party Services</h3>
@@ -459,7 +410,7 @@ function index() {
           </div>
         </div>
         <div className="bg-white shadow-md rounded-md p-4">
-          <h2 className="text-lg font-semibold mb-2">5. YOUR RIGHTS</h2>
+          <h2 className="text-2xl font-bold mb-2" className="text-lg font-semibold mb-2">5. YOUR RIGHTS</h2>
 <p>
 You can exercise any of the rights described in this section consistent with applicable law. See <Link href="https://www.airbnb.cn/help/article/3602" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-black-600"> here  for information on data subject rights requests and how to submit a request. We may ask you to verify your identity and request before taking further action on your request.
 
@@ -498,17 +449,17 @@ You can exercise any of the rights described in this section consistent with app
             </ul>
           </div>
 
-          <h2 className="text-lg font-semibold mb-2">6. SECURITY</h2>
+          <h2 className="text-2xl font-bold mb-2" className="text-lg font-semibold mb-2">6. SECURITY</h2>
           <p className="text-sm mb-2">
             While no organization can guarantee perfect security, we are continuously implementing and updating administrative, technical, and physical security measures to help protect your information against unlawful or unauthorized access, loss, destruction, or alteration.
           </p>
 
-          <h2 className="text-lg font-semibold mb-2">7. CHANGES TO THIS PRIVACY POLICY</h2>
+          <h2 className="text-2xl font-bold mb-2" className="text-lg font-semibold mb-2">7. CHANGES TO THIS PRIVACY POLICY</h2>
           <p className="text-sm mb-2">
             We reserve the right to modify this Privacy Policy at any time in accordance with applicable law. If we do so, we will post the revised Privacy Policy and update the “Last Updated” date at the top. In case of material changes, we will also provide you with notice of the modification by email at least thirty (30) days before the effective date. If you disagree with the revised Privacy Policy, you can cancel your Account. If you do not cancel your Account before the date the revised Privacy Policy becomes effective, your continued access to or use of the QuaintSpaces Platform will be subject to the revised Privacy Policy.
           </p>
 
-          <h2 className="text-lg font-semibold mb-2">8. CONTACT INFORMATION AND RESPONSIBLE QuaintSpaces ENTITIES</h2>
+          <h2 className="text-2xl font-bold mb-2" className="text-lg font-semibold mb-2">8. CONTACT INFORMATION AND RESPONSIBLE QuaintSpaces ENTITIES</h2>
           <p className="text-sm mb-2">
             For questions or complaints about this Privacy Policy or QuaintSpaces’s handling of personal information:
             <ul className="list-disc pl-6">
@@ -531,7 +482,7 @@ You can exercise any of the rights described in this section consistent with app
             </ul>
           </p>
 
-          <h2 className="text-lg font-semibold mb-2">9. DEFINITIONS</h2>
+          <h2 className="text-2xl font-bold mb-2" className="text-lg font-semibold mb-2">9. DEFINITIONS</h2>
           <p className="text-sm mb-2">
             Undefined terms in this Privacy Policy have the same definition as in our
             <Link href ="https://www.airbnb.co.in/terms" className="text-black-600  text-blue-600">
