@@ -16,17 +16,16 @@ const ListingsLoading = ({ divider = 5, css = "w-[calc(100%/2-50px)]" }) => {
 const TableLoading = () => {
   return (
     <div className="w-full bg-white flex items-center justify-center z-50 h-auto gap-8">
-  <div className="bg-white rounded-lg list-gstr overflow-hidden flex animate-pulse w-full max-w-screen-lg h-auto">
-    <div className="w-4/12 max-h-[300px] bg-gray-200 relative">
-      <div className="w-full h-full bg-gray-300"></div>
+  <div className="bg-white rounded-lg list-gstr overflow-hidden flex animate-pulse w-full h-auto">
+    <div className="w-[350px] max-h-[300px] bg-gray-200 relative">
     </div>
     <div className="w-8/12 p-6">
-      <div className="h-8 bg-gray-300 rounded mb-[10px] w-3/4"></div>
-      <div className="h-8 bg-gray-300 rounded mb-[10px] w-1/2"></div>
-      <div className="h-4 bg-gray-300 rounded mb-[15px] w-1/4"></div>
+      <div className="h-5 bg-gray-300 rounded mb-[12px] min-w-[1050px]"></div>
+      <div className="h-5 bg-gray-300 rounded mb-[12px] min-w-[1050px]"></div>
+      {/* <div className="h-8 bg-gray-300 rounded mb-[15px] w-[250px]"></div> */}
 
-      <div className="flex mb-[15px]">
-        <div className="mb-2 pr-[40px]">
+      <div className="flex h-8 mb-[25px] bg-gray-300 w-[500px] rounded">
+        {/* <div className="mb-2 pr-[40px]">
           <div className="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
           <div className="h-6 bg-gray-300 rounded w-3/4"></div>
         </div>
@@ -45,11 +44,11 @@ const TableLoading = () => {
         <div className="mb-2 pl-[40px]">
           <div className="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
           <div className="h-6 bg-gray-300 rounded w-3/4"></div>
-        </div>
+        </div> */}
       </div>
 
-      <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
-      <div className="h-4 bg-gray-300 rounded w-full"></div>
+      <div className="h-16 bg-gray-300 rounded min-w-[1050px]"></div>
+      {/* <div className="h-4 bg-gray-300 rounded w-full"></div> */}
     </div>
   </div>
 </div>
