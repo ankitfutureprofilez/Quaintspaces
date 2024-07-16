@@ -98,60 +98,54 @@ function index() {
         </p>
         <ul className="list-disc list-inside mb-6">
           <li className="mb-2">
-            If you reside outside of the United States, such as in the European Economic Area (“EEA”), visit our <Link href="https://www.airbnb.co.in/help</Linkrticle/2860" className="text-blue-500 hover:underline">“Outside of the United States”</Link> page for important supplemental information that may apply to you.
+            If you reside outside of the United States, such as in the European Economic Area (“EEA”), visit our
+             “Outside of the United States” page for important supplemental information that may apply to you.
           </li>
           <li className="mb-2">
-            If you reside in the United States, visit our<Link href="https://www.airbnb.co.in/help/article/2863" className="text-blue-500 hover:underline">“State-Specific Supplements”</Link> page for important supplemental information that may apply to you.
+            If you reside in the United States, visit our
+            “State-Specific Supplements” page for important supplemental information that may apply to you.
           </li>
           <li className="mb-2">
-            If you reside in the People’s Republic of China, which for purposes of this Privacy Policy does not include Hong Kong, Macau, and Taiwan (“China”), visit our<Link href="https://www.airbnb.co.in/help/article/3602" className="text-blue-500 hover:underline">“Privacy Supplement for China Users”</Link> page for important information that may apply to you.
+            If you reside in the People’s Republic of China, which for purposes of this Privacy Policy does not include Hong Kong, Macau, and Taiwan (“China”), visit our
+            “Privacy Supplement for China Users” page for important information that may apply to you.
           </li>
         </ul>
         <h2 className="text-2xl font-semibold mb-2">
-          <Link href="https://www.airbnb.co.in/help/article/3175?locale=en&_set_bev_on_new_domain=1720087595_EAODJlODZiNzFiOG#1">
-          1. Personal Information We Collect
-          </Link>
-       </h2>
-        <h2 className="text-2xl font-semibold mb-2">
-          <Link href="https://www.airbnb.co.in/help/article/3175?locale=en&_set_bev_on_new_domain=1720087595_EAODJlODZiNzFiOG#2">
-          2. How We Use the Information We Collect
-          </Link>
-          </h2>
-        <h2 className="text-2xl font-semibold mb-2">
-          <Link href="https://www.airbnb.co.in/help/article/3175?locale=en&_set_bev_on_new_domain=1720087595_EAODJlODZiNzFiOG#3">
-          3. Sharing and Disclosure
-          </Link>
-          </h2>
-        <h2 className="text-2xl font-semibold mb-2">
-          <Link href="https://www.airbnb.co.in/help/article/3175?locale=en&_set_bev_on_new_domain=1720087595_EAODJlODZiNzFiOG#4">
-          4. Third-Party Partners and Integrations
-          </Link>
-          </h2>
-        <h2 className="text-2xl font-semibold mb-2">
-        <Link href="https://www.airbnb.co.in/help/article/3175?locale=en&_set_bev_on_new_domain=1720087595_EAODJlODZiNzFiOG#5">
-          5. Your Rights
-          </Link></h2>
-        <h2 className="text-2xl font-semibold mb-2">
-          <Link href="https://www.airbnb.co.in/help/article/3175?locale=en&_set_bev_on_new_domain=1720087595_EAODJlODZiNzFiOG#6">
-          6. Security
-          </Link>
-
-         </h2>
-        <h2 className="text-2xl font-semibold mb-2">
-          <Link href="https://www.airbnb.co.in/help/article/3175?locale=en&_set_bev_on_new_domain=1720087595_EAODJlODZiNzFiOG#7">
-          7. Changes to This Privacy Policy
-          </Link>
+            1. Personal Information We Collect
+          
         </h2>
         <h2 className="text-2xl font-semibold mb-2">
-          <Link href="https://www.airbnb.co.in/help/article/3175?locale=en&_set_bev_on_new_domain=1720087595_EAODJlODZiNzFiOG#9">
-          8. Contact Information and Responsible QuaintSpaces Entities
-          </Link>
+            2. How We Use the Information We Collect
+          
+        </h2>
+        <h2 className="text-2xl font-semibold mb-2">
+            3. Sharing and Disclosure
+          
+        </h2>
+        <h2 className="text-2xl font-semibold mb-2">
+            4. Third-Party Partners and Integrations
+          
+        </h2>
+        <h2 className="text-2xl font-semibold mb-2">
+            5. Your Rights
           </h2>
         <h2 className="text-2xl font-semibold mb-2">
-          <Link href="https://www.airbnb.co.in/help/article/3175?locale=en&_set_bev_on_new_domain=1720087595_EAODJlODZiNzFiOG#9">
-          9. Definitions
-          </Link>
-          </h2>
+            6. Security
+          
+
+        </h2>
+        <h2 className="text-2xl font-semibold mb-2">
+            7. Changes to This Privacy Policy
+          
+        </h2>
+        <h2 className="text-2xl font-semibold mb-2">
+            8. Contact Information and Responsible QuaintSpaces Entities
+          
+        </h2>
+        <h2 className="text-2xl font-semibold mb-2">
+            9. Definitions
+          
+        </h2>
 
         <div>
           <h1 className="text-2xl font-semibold mb-2">PERSONAL INFORMATION WE COLLECT</h1>
@@ -165,17 +159,15 @@ function index() {
           </p>
           <h3 className="text-2xl font-semibold mb-2">1.1.2 Identity Information</h3>
           <p className="mb-4">
-            Where appropriate, we may ask you for an image of your government-issued ID (in accordance with applicable laws) or other verification information, and/or a selfie when we verify your ID. If a copy of your ID is provided to us, we will obtain information from your ID. See our Help Center article on 
-            <Link href="https://www.airbnb.co.in/help/article/1237" className="text-blue-600  hover:text-black-600">
-            Verifying your identity.
-            </Link>
+            Where appropriate, we may ask you for an image of your government-issued ID (in accordance with applicable laws) or other verification information, and/or a selfie when we verify your ID. If a copy of your ID is provided to us, we will obtain information from your ID. See our Help Center article on
+              Verifying your identity.
+            
           </p>
           <h3 className="text-2xl font-semibold mb-2">1.1.3 Payment Information</h3>
           <p className="mb-4">
             Such as payment account or bank account information. If you are not a QuaintSpaces user, we may receive payment information relating to you, such as when a QuaintSpaces user provides your payment card to complete a booking. See our Help Center article on
-            <Link href="https://www.airbnb.co.in/help/article/3524" className="text-blue-600  hover:text-black-600">
-             Paying and getting paid on behalf of someone else.
-             </Link>
+              Paying and getting paid on behalf of someone else.
+            
           </p>
           <h2>1.2 Information You Choose to Give Us</h2>
           <p className="mb-4">
@@ -215,10 +207,9 @@ function index() {
           </p>
           <h3 className="text-2xl font-semibold mb-2">1.3.4 Cookies and Similar Technologies</h3>
           <p className="mb-4">
-            As Described in Our 
-            <Link href="https://www.airbnb.co.in/terms/cookie_policy" className="text-blue-600  hover:text-black-600">
-            Cookie Policy.
-            </Link>
+            As Described in Our
+              Cookie Policy.
+            
           </p>
           <h3 className="text-2xl font-semibold mb-2">1.3.5 Payment Transaction Information</h3>
           <p className="mb-4">
@@ -263,20 +254,18 @@ function index() {
           <h3 className="text-2xl font-semibold mb-2">1.4.9 Other Sources</h3>
           <p className="mb-4">
             To the extent permitted by applicable law, we may receive additional information about you, such as
-            <Link href="https://www.airbnb.co.in/help/article/173/"  className="text-blue-600  hover:text-black-600">
-            references
-            </Link>
-             , demographic data, and information to help detect fraud and safety issues from (i) third-party service providers, other third parties, and/or partners, or (ii) Members and any other individuals, entities, and authorities, and combine it with information we have about you. For example, we may receive background check results or fraud warnings from identity verification service providers for use in our fraud prevention, security investigation, and risk assessment efforts. We may receive information about you and your activities on and off the QuaintSpaces Platform, including from users of QuaintSpaces, members of the public, or governmental, public, or tax authorities, or about your experiences and interactions from our partners. We may receive health information including, but not limited to, health information related to contagious diseases.
+              references
+            
+            , demographic data, and information to help detect fraud and safety issues from (i) third-party service providers, other third parties, and/or partners, or (ii) Members and any other individuals, entities, and authorities, and combine it with information we have about you. For example, we may receive background check results or fraud warnings from identity verification service providers for use in our fraud prevention, security investigation, and risk assessment efforts. We may receive information about you and your activities on and off the QuaintSpaces Platform, including from users of QuaintSpaces, members of the public, or governmental, public, or tax authorities, or about your experiences and interactions from our partners. We may receive health information including, but not limited to, health information related to contagious diseases.
           </p>
         </div>
       </div> <div className="p-6 max-w-4xl mx-auto">
         <h2 className="text-2xl font-bold mb-4">2. HOW WE USE INFORMATION WE COLLECT.</h2>
         <p className="mb-4">
           We use personal information as outlined in this Privacy Policy. If you reside outside of the United States,
-          <Link href="https://www.airbnb.co.in/terms/outside_us">
-          click here
-          </Link>
-            to learn about our legal bases for collection and processing personal information.
+            click here
+          
+          to learn about our legal bases for collection and processing personal information.
         </p>
 
         <h3 className="text-xl font-semibold mb-2">2.1 Provide, Improve, and Develop the QuaintSpaces Platform.</h3>
@@ -299,10 +288,10 @@ function index() {
         <p className="mb-4">We may process this information to:</p>
         <ul className="list-disc list-inside mb-4">
           <li>study and combat discrimination consistent with our
-            <Link href="https://www.airbnb.co.in/terms/nondiscrimination_policy" className="text-blue-600  text-black-600">
-            Nondiscrimination Policy
-            </Link>
-    ,</li>
+           
+              Nondiscrimination Policy
+            
+            ,</li>
           <li>detect, prevent, assess, and address fraud and security risks,</li>
           <li>verify or authenticate information provided by you, including identity information, as described in Information Needed to Use the QuaintSpaces Platform,</li>
           <li>conduct checks against databases and other information sources, including background checks,</li>
@@ -311,15 +300,14 @@ function index() {
           <li>enforce our agreements with third parties,</li>
           <li>determine eligibility for certain types of bookings, such as Instant Book,</li>
           <li>comply with law, respond to legal requests, prevent harm, and protect our rights (see Comply with Law, Respond to Legal Requests, Prevent Harm, and Protect Our Rights),</li>
-          <li>enforce our 
-          <Link href="https://www.airbnb.co.in/terms" className="text-blue-600  text-black-600">
+          <li>enforce our
 
-            Terms</Link> 
-            
-            and other policies, such as our 
-          <Link href="https://www.airbnb.co.in/terms/nondiscrimination_policy" className="text-blue-600  text-black-600">
-            
-            Nondiscrimination Policy </Link>, and</li>
+              Terms
+
+            and other policies, such as our
+           
+
+              Nondiscrimination Policy , and</li>
           <li>assess or evaluate your interactions with the QuaintSpaces Platform and information obtained from third parties.</li>
         </ul>
 
@@ -348,7 +336,7 @@ function index() {
           <li>enforce the Payment Terms and other payment policies, and</li>
           <li>provide and improve Payment Services.</li>
         </ul>
-        <div className="bg-white shadow-md rounded-md p-4">
+        {/* <div className="bg-white shadow-md rounded-md p-4">
           <h2 className="text-lg font-semibold mb-2">3. SHARING AND DISCLOSURE</h2>
           <p className="text-sm mb-4">
             If you reside outside of the United States, learn about safeguards we rely on for transferring personal information to recipients outside of certain jurisdictions <a href="#" className="text-blue-500 underline">here</a>.
@@ -473,18 +461,18 @@ function index() {
         <div className="bg-white shadow-md rounded-md p-4">
           <h2 className="text-lg font-semibold mb-2">5. YOUR RIGHTS</h2>
 <p>
-You can exercise any of the rights described in this section consistent with applicable law. See <Link href="https://www.airbnb.cn/help/article/3602" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-black-600"> here</Link>  for information on data subject rights requests and how to submit a request. We may ask you to verify your identity and request before taking further action on your request.
+You can exercise any of the rights described in this section consistent with applicable law. See <Link href="https://www.airbnb.cn/help/article/3602" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-black-600"> here  for information on data subject rights requests and how to submit a request. We may ask you to verify your identity and request before taking further action on your request.
 
 </p>
           <div className="pl-4">
             <h3 className="text-md font-semibold mb-1">5.1 EU and Brazil Residents</h3>
             <p className="text-sm mb-2">
-              Learn more about rights under the General Data Protection Regulation (“GDPR”) and the Brazil General Data Protection Law (“LGPD”) <Link href="https://www.airbnb.cn/help/article/3602"  className="hover:text-black-600 text-blue-600" target="_blank" rel="noopener noreferrer">here</Link>.
+              Learn more about rights under the General Data Protection Regulation (“GDPR”) and the Brazil General Data Protection Law (“LGPD”) <Link href="https://www.airbnb.cn/help/article/3602"  className="hover:text-black-600 text-blue-600" target="_blank" rel="noopener noreferrer">here.
             </p>
 
             <h3 className="text-md font-semibold mb-1">5.2 China Residents</h3>
             <p className="text-sm mb-2">
-              Learn more about your rights <Link href="https://www.airbnb.cn/help/article/3602" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-black-600"> here</Link>.
+              Learn more about your rights <Link href="https://www.airbnb.cn/help/article/3602" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-black-600"> here.
             </p>
 
             <h3 className="text-md font-semibold mb-1">5.3 Managing Your Information</h3>
@@ -528,17 +516,17 @@ You can exercise any of the rights described in this section consistent with app
               <li>For payments related matters, refer to the contact information provided in the 
                 <Link href="https://www.airbnb.co.in/terms/payments_terms" className="text-blue-600 hover:text-black-600">
                 Payments Terms of Service
-                </Link> 
+                 
               page.</li>
               <li>If you reside outside the United States, use the contact information for your controller provided in the 
                 <Link href="https://www.airbnb.co.in/terms/outside_us" className="text-blue-600  hover:text-black-600 ">
                 Outside of the United States
-                </Link>
+                
                 page.</li>
               <li>If you reside in China, use the contact information for your controller provided in the
                 <Link href="https://www.airbnb.co.in/help/article/3602" className="text-blue-600  hover:text-black-600">
                 Privacy Supplement for China Users
-                </Link>
+                
                  page.</li>
             </ul>
           </p>
@@ -548,14 +536,10 @@ You can exercise any of the rights described in this section consistent with app
             Undefined terms in this Privacy Policy have the same definition as in our
             <Link href ="https://www.airbnb.co.in/terms" className="text-black-600  text-blue-600">
              Terms of Service (“Terms”).
-            </Link>
+            
           </p>
-        </div>
+        </div> */}
       </div>
-
-
-
-
     </Layout>
   );
 }

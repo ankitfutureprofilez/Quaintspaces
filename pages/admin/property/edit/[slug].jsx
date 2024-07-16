@@ -3,7 +3,9 @@ import Listing from "../../api/Listing";
 import { useRouter } from "next/router";
 import Property from "../add/Property"
 import { IoArrowBack } from "react-icons/io5";
-import { MdOutlineFreeBreakfast } from "react-icons/md";
+import { GrUserWorker } from "react-icons/gr";
+import { RiDoorLockBoxLine } from "react-icons/ri";
+import { MdOutlineFreeBreakfast, MdOutlineKeyboardAlt, MdPhonelinkLock } from "react-icons/md";
 import { House } from "iconsax-react";
 import {
   FaBuilding,
@@ -18,6 +20,7 @@ import Guest from "../add/Guest";
 import CancelPolicy from "../add/CancelPolicy";
 import HouseRules from "../add/HouseRules";
 import Amenities from "../add/Amenities";
+import Checkout from "../add/Checkout";
 const propertyTypes = [
   { value: "flat", label: "Flat & Apartment" },
   { value: "house", label: "House" },
@@ -40,6 +43,7 @@ export default function Edit() {
     data: {},
   });
 
+  console.log("record", record)
   const fetchProperty = async (slug) => {
     if (slug) {
       setLoading(true);
@@ -77,7 +81,12 @@ export default function Edit() {
         propertytype: record?.data?.property_type || "flat",
         customLink: record?.data?.custom_link || "",
         price: record?.data?.price || "",
-        discount: record?.data?.discount_offer || ""
+        discount: record?.data?.discount_offer || "",
+        Direction: record?.data?.property_rule?.direction || "",
+        wifi: record?.data?.property_rule?.wifi_username || "",
+        additonalrule: record?.data?.property_rule?.additional_rules || "",
+        wifiPassword: record?.data?.property_rule?.wifi_password || "",
+        housemanual: record?.data?.property_rule?.house_manuals || "",
       });
       setGuests(record?.data?.guests || 1)
       setBeds(record?.data?.beds || 1)
@@ -99,10 +108,56 @@ export default function Edit() {
       setSelectedAmenity(record?.data?.amenities ? (stringToArray(record?.data?.amenities)) : []);
       setstandoutAmenity(record?.data?.standout_amenity ? (stringToArray(record?.data?.standout_amenity)) : [])
       setAmenity(record?.data?.safety_amenity ? (stringToArray(record?.data?.safety_amenity)) : [])
-
+      setCheckinEnd(record?.data?.flexible_check_in || "flexible");
+      setCheckout(record?.data?.check_out || "00:00");
+      setSelectedMethod(record?.data?.check_in_method || "smartlock");
+      setcheckdescrtion(record?.data?.check_in_description || "");
     }
   }, [record]);
+  const [selectedInstruction, setSelectedInstruction] = useState("");
+  const [showTextArea, setShowTextArea] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
+  const [text, setText] = useState("");
+  const [selectedMethod, setSelectedMethod] = useState();
+  const [checkdescrtion, setcheckdescrtion] = useState();
+  const handleMethodSelect = (method) => {
+    setSelectedMethod(method);
+    setcheckdescrtion("");
+  };
+
+  const handlecheckChange = (e) => {
+    setcheckdescrtion(e.target.value);
+  };
+
+  const options = [
+    {
+      item: "smartlock",
+      data: "Guests will use a code or app to open a wifi-connected lock.",
+      icon: <MdPhonelinkLock size={24} />,
+    },
+    {
+      item: "keypad",
+      data: "Guests will use the code you provide to open an electronic lock.",
+      icon: <MdOutlineKeyboardAlt size={24} />,
+    },
+    {
+      item: "lockbox",
+      data: "Guests will use a code you provide to open a small safe that has a key inside.",
+      icon: <RiDoorLockBoxLine size={24} />,
+    },
+    {
+      item: "staff",
+      data: "Someone will be available 24 hours a day to let guests in.",
+      icon: <GrUserWorker size={24} />,
+    },
+  ];
   const [selectedAmenity, setSelectedAmenity] = useState();
+  // 
+  const [checkinEnd, setCheckinEnd] = useState();
+  // 
+  const [checkout, setCheckout] = useState();
+
+
   const [Amenity, setAmenity] = useState();
   const [standoutAmenity, setstandoutAmenity] = useState();
   const [Guests, setGuests] = useState();
@@ -154,7 +209,11 @@ export default function Edit() {
     Bathrooms: "",
     customLink: '',
     discount: '',
-    price: ''
+    price: '',
+    Direction: "",
+    wifi: "",
+    wifiPassword: "",
+    housemanual: "",
 
   });
 
@@ -192,13 +251,13 @@ export default function Edit() {
               </div>
             ) : (
               <>
-                <Property
+                {/* <Property
                   fetchProperties={() => fetchProperty(slug)}
                   isEdit={true}
                   stepdata={false}
                   p={record.data}
-                />
-                {/* <div className="container mx-auto flex">
+                /> */}
+                <div className="container mx-auto flex">
                   <div className="w-1/3">
                     <div className="flex items-left space-x-2" onClick={() => { router.back(-1) }}>
                       <IoArrowBack />
@@ -289,7 +348,7 @@ export default function Edit() {
                             <p className="font-normal text-sm capitalize"> {selectbooking} Book</p>
                           </div>
 
-                        
+
                           <div
                             className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 6 && "hover:text-black bg-border-600"
                               }`}
@@ -310,15 +369,6 @@ export default function Edit() {
                             </p>
                           </div>
 
-                          <div
-                            className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 8 && "hover:text-black bg-border-600"
-                              }`}
-                            onClick={() => toggleExpanded(8)}
-                          >
-                            <h3 className="font-bold text-2xl mt-3 mb-2">House Rule </h3>
-                            <p className="font-normal text-sm capitalize">Add Details </p>
-                          </div>
-
 
                           <div
                             className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 9 && "hover:text-black bg-border-600"
@@ -334,12 +384,403 @@ export default function Edit() {
                       </>
                     )}
 
-                  </div>
-                  <div className="w-2/3 mt-4  ">
-                    {editguide === "space" && (
+                    {editguide === "guide" && (
+                      <>
+                        <div className=" p-4 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 150px)' }}>
+                          <div
+                            className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 0 && "hover:text-black bg-border-600"
+                              }`}
+                            onClick={() => toggleExpanded(0)}
+                          >
+                            <h3 className="font-bold text-2xl mt-3 mb-2">Time Management</h3>
+                            <p className="font-normal text-sm">Add Deatils</p>
+                          </div>
 
+                          <div
+                            className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 1 && "hover:text-black bg-border-600"
+                              }`}
+                            onClick={() => toggleExpanded(1)}
+                          >
+                            <h3 className="font-bold text-2xl mt-3 mb-2 ">Direction</h3>
+                            <p className="font-normal text-sm capitalize ">Add Details </p>
+                          </div>
+
+
+
+                          <div
+                            className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 2 && "hover:text-black bg-border-600"
+                              }`}
+                            onClick={() => toggleExpanded(2)}
+                          >
+                            <h3 className="font-bold text-2xl mt-3 mb-2">Wifi  </h3>
+                            <p className="font-normal text-sm">Wifi Deatils</p>
+                          </div>
+
+                          <div
+                            className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 3 && "hover:text-black bg-border-600"
+                              }`}
+                            onClick={() => toggleExpanded(3)}
+                          >
+                            <h3 className="font-bold text-2xl mt-3 mb-2">Check-in Method </h3>
+                            <p className="font-normal text-sm line-clamp-3">Add Details</p>
+                          </div>
+
+                          <div
+                            className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 4 && "hover:text-black bg-border-600"
+                              }`}
+                            onClick={() => toggleExpanded(4)}
+                          >
+                            <h3 className="font-bold text-2xl mt-3 mb-2">House Rules   </h3>
+                            <p className="font-normal text-sm capitalize"> Add Details</p>
+                          </div>
+
+
+                          <div
+                            className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 5 && "hover:text-black bg-border-600"
+                              }`}
+                            onClick={() => toggleExpanded(5)}
+                          >
+                            <h3 className="font-bold text-2xl mt-3 mb-2">House Manual   </h3>
+                            <p className="font-normal text-sm capitalize"> Add Details</p>
+                          </div>
+
+
+                          <div
+                            className={`cursor-pointer border border-gray-300 rounded-md p-4 mt-3 ${expandedIndex === 6 && "hover:text-black bg-border-600"
+                              }`}
+                            onClick={() => toggleExpanded(6)}
+                          >
+                            <h3 className="font-bold text-2xl mt-3 mb-2">checkout instructions   </h3>
+                            <p className="font-normal text-sm capitalize"> Add Details</p>
+                          </div>
+                        </div>
+                        <div className="w-0.5 bg-gray-300"></div>
+                      </>
+                    )}
+                  </div>
+
+
+                  {editguide === "guide" && (
+                    <div className="w-2/3 mt-4  ">
                       <div className="">
 
+                        {expandedIndex === 0 && (
+                          <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4 ">
+                            <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4 capitalize">
+                              Check-in & checkout times
+                            </h2>
+                            <div className=" mt-4 text-sm font-medium text-gray-700 ">
+                              <div className="w-full md:w-2/3 mb-2 pr-2">
+                                <label className="block mb-2 font-semibold">
+                                  Check-in window
+                                </label>
+                                <div className=" space-x-2">
+                                  <div className="w-1/2 relative">
+                                    <label className="absolute -top-1 left-1 text-xs text-gray-500">
+                                      Start time
+                                    </label>
+                                    <select
+                                      value={checkinStart}
+                                      onChange={(e) => setCheckinStart(e.target.value)}
+                                      className="block w-full px-3 py-3 border bg-white rounded-xl shadow-sm sm:text-sm mt-3"
+                                    >
+                                      <option value="00:00:00">12:00 AM</option>
+                                      <option value="01:00:00">01:00 AM</option>
+                                      <option value="02:00:00">02:00 AM</option>
+                                      <option value="03:00:00">03:00 AM</option>
+                                      <option value="04:00:00">04:00 AM</option>
+                                      <option value="05:00:00">05:00 AM</option>
+                                      <option value="06:00:00">06:00 AM</option>
+                                      <option value="07:00:00">07:00 AM</option>
+                                      <option value="08:00:00">08:00 AM</option>
+                                      <option value="09:00:00">09:00 AM</option>
+                                      <option value="10:00:00">10:00 AM</option>
+                                      <option value="11:00:00">11:00 AM</option>
+                                      <option value="12:00:00">12:00 PM</option>
+                                      <option value="13:00:00">01:00 PM</option>
+                                      <option value="14:00:00">02:00 PM</option>
+                                      <option value="15:00:00">03:00 PM</option>
+                                      <option value="16:00:00">04:00 PM</option>
+                                      <option value="17:00:00">05:00 PM</option>
+                                      <option value="18:00:00">06:00 PM</option>
+                                      <option value="19:00:00">07:00 PM</option>
+                                      <option value="20:00:00">08:00 PM</option>
+                                      <option value="21:00:00">09:00 PM</option>
+                                      <option value="22:00:00">10:00 PM</option>
+                                      <option value="23:00:00">11:00 PM</option>
+                                    </select>
+                                  </div>
+                                  <div className="w-1/2 relative">
+                                    <label className="absolute -top-1 left-1 text-xs text-gray-500">
+                                      End time
+                                    </label>
+                                    <select
+                                      value={checkinEnd}
+                                      onChange={(e) => setCheckinEnd(e.target.value)}
+                                      className="block w-full px-3 py-3 border  bg-white rounded-xl shadow-sm sm:text-sm mt-3"
+                                    >
+                                      <option value="flexible">Flexible</option>
+                                      <option value="00:00">12:00 AM</option>
+                                      <option value="01:00">01:00 AM</option>
+                                      <option value="02:00">02:00 AM</option>
+                                      <option value="03:00">03:00 AM</option>
+                                      <option value="04:00">04:00 AM</option>
+                                      <option value="05:00">05:00 AM</option>
+                                      <option value="06:00">06:00 AM</option>
+                                      <option value="07:00">07:00 AM</option>
+                                      <option value="08:00">08:00 AM</option>
+                                      <option value="09:00">09:00 AM</option>
+                                      <option value="10:00">10:00 AM</option>
+                                      <option value="11:00">11:00 AM</option>
+                                      <option value="12:00">12:00 PM</option>
+                                      <option value="13:00">01:00 PM</option>
+                                      <option value="14:00">02:00 PM</option>
+                                      <option value="15:00">03:00 PM</option>
+                                      <option value="16:00">04:00 PM</option>
+                                      <option value="17:00">05:00 PM</option>
+                                      <option value="18:00">06:00 PM</option>
+                                      <option value="19:00">07:00 PM</option>
+                                      <option value="20:00">08:00 PM</option>
+                                      <option value="21:00">09:00 PM</option>
+                                      <option value="22:00">10:00 PM</option>
+                                      <option value="23:00">11:00 PM</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="w-full md:w-1/3 ">
+                                <label className="block mb-2 font-semibold sm:mb-[20px]">
+                                  Check-out time
+                                </label>
+                                <select
+                                  value={checkout}
+                                  onChange={(e) => setCheckout(e.target.value)}
+                                  className="mt-1 block w-full px-3 py-3 border border-gray-300 bg-white rounded-xl shadow-sm sm:text-sm mt-2"
+                                >
+                                  <option value="00:00:00">12:00 AM</option>
+                                  <option value="01:00:00">01:00 AM</option>
+                                  <option value="02:00:00">02:00 AM</option>
+                                  <option value="03:00:00">03:00 AM</option>
+                                  <option value="04:00:00">04:00 AM</option>
+                                  <option value="05:00:00">05:00 AM</option>
+                                  <option value="06:00:00">06:00 AM</option>
+                                  <option value="07:00:00">07:00 AM</option>
+                                  <option value="08:00:00">08:00 AM</option>
+                                  <option value="09:00:00">09:00 AM</option>
+                                  <option value="10:00:00">10:00 AM</option>
+                                  <option value="11:00:00">11:00 AM</option>
+                                  <option value="12:00:00">12:00 PM</option>
+                                  <option value="13:00:00">01:00 PM</option>
+                                  <option value="14:00:00">02:00 PM</option>
+                                  <option value="14:00:00">02:00 PM</option>
+                                  <option value="15:00:00">03:00 PM</option>
+                                  <option value="16:00:00">04:00 PM</option>
+                                  <option value="17:00:00">05:00 PM</option>
+                                  <option value="18:00:00">06:00 PM</option>
+                                  <option value="19:00:00">07:00 PM</option>
+                                  <option value="20:00:00">08:00 PM</option>
+                                  <option value="21:00:00">09:00 PM</option>
+                                  <option value="22:00:00">10:00 PM</option>
+                                  <option value="23:00:00">11:00 PM</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+
+                        )}
+
+                        {expandedIndex === 1 && (
+                          <div className="flex flex-col mb-4">
+                            <label
+                              htmlFor="directions"
+                              className="capitalize text-lg font-bold my-1"
+                            >
+                              Directions
+                            </label>
+                            <textarea
+                              id="directions"
+                              name="Direction"
+                              rows={5}
+                              className="shadow-sm p-4 py-2 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
+                              placeholder="Enter directions here..."
+                              value={item?.Direction}
+                              onChange={handleInputChange}
+                            />
+                          </div>
+                        )}
+
+                        {expandedIndex === 2
+                          && (
+                            <div className="flex flex-col  ">
+                              <h1 className="capitalize text-lg font-bold my-4">
+                                Please enter your wifi details
+                              </h1>
+                              <label
+                                htmlFor="directions"
+                                className="block font-medium text-gray-700 my-2"
+                              >
+                                Wifi Name
+                              </label>
+                              <input
+                                id="wifi"
+                                name="wifi"
+                                type="text"
+                                className="shadow-sm p-4 py-2 w-full mt-1 block sm:text-sm border rounded-xl"
+                                placeholder="Enter your wifi name..."
+                                value={item?.wifi}
+                                onChange={handleInputChange}
+                              />
+                              <label
+                                htmlFor="directions"
+                                className="block font-medium text-gray-700 my-2"
+                              >
+                                Wifi Password
+                              </label>
+                              <input
+                                id="wifiPassword"
+                                name="wifiPassword"
+                                type="text"
+                                className="shadow-sm p-4 py-2 w-full mt-1 block text-[16px] md:text-lg border rounded-xl"
+                                placeholder="Enter your wifi Password here..."
+                                value={item?.wifiPassword}
+                                onChange={handleInputChange}
+                              />
+                            </div>
+                          )}
+
+                        {expandedIndex === 3 && (
+                          <div className="flex flex-col mb-2">
+                            <div className="flex flex-col md:flex-row ">
+                              <div className="md:w-1/2 pr-2 flex flex-col mb-3">
+                                <div className=" items-center">
+                                  <h2 className="text-[20px] md:text-2xl font-bold capitalize">
+                                    Select a check-in method
+                                  </h2>
+                                </div>
+                                <div className="space-y-4 mt-4 w-full">
+                                  {options &&
+                                    options.map((item, index) => (
+                                      <div
+                                        key={index}
+                                        className={`p-4 border rounded-lg cursor-pointer ${selectedMethod === item?.item
+                                          ? "border-indigo-600"
+                                          : "border-gray-300"
+                                          }`}
+                                        onClick={() => handleMethodSelect(item?.item)}
+                                      >
+                                        {item?.icon}
+                                        <span className="my-4 text-xl font-semibold capitalize">
+                                          {item?.item}
+                                        </span>
+                                        <p className="text-gray-500">{item?.data}</p>
+                                      </div>
+                                    ))}
+                                </div>
+                              </div>
+                              {/* Right Panel */}
+                              <div className="md:w-1/2 pl-2">
+                                <h2 className="text-[20px] md:text-2xl font-bold mb-2 sm:mb-4 capitalize">
+                                  Add {selectedMethod} details
+                                </h2>
+                                <textarea
+                                  className="w-full p-2 border border-gray-300 rounded-lg"
+                                  rows="10"
+                                  name="checkdescrtion"
+                                  value={checkdescrtion}
+                                  onChange={handlecheckChange}
+                                  placeholder={`Add any important details for getting inside your place. This info will be shared with guests 24-48 hours before check-in.`}
+                                />
+                                <div className="flex justify-between items-center ">
+                                  <p className="text-gray-500">
+                                    Shared 48 hours before check-in
+                                  </p>
+                                  <div></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {expandedIndex === 4
+                          && (
+                            <HouseRules
+                              petsAllowed={petsAllowed}
+                              setPetsAllowed={setPetsAllowed}
+                              quietHours={quietHours}
+                              pets={pets}
+                              setPets={setPets}
+                              checkinTime={checkinquet}
+                              setCheckinTime={setCheckinquiet}
+                              checkoutTime={checkoutquet}
+                              setCheckoutTime={setCheckoutquiet}
+                              setEventsAllowed={setEventsAllowed}
+                              setQuietHours={setQuietHours}
+                              eventsAllowed={eventsAllowed}
+                              PhotographyAllowed={PhotographyAllowed}
+                              setPhotographyAllowed={setPhotographyAllowed}
+                              smokingAllowed={smokingAllowed}
+                              setSmokingAllowed={setSmokingAllowed}
+                            />
+                          )}
+
+                        {expandedIndex === 5 &&
+                          <div className="flex flex-col mb-4">
+                            <label
+                              htmlFor="directions"
+                              className="capitalize text-lg font-bold my-1"
+                            >
+                              House Manual
+                            </label>
+                            <textarea
+                              id="manual"
+                              name="housemanual"
+                              rows={5}
+                              className="shadow-sm p-4 py-2 w-full mt-1 block sm:text-sm border rounded-xl"
+                              placeholder="Enter some instructions for your guest..."
+                              value={item?.housemanual}
+                              onChange={handleInputChange}
+                            />
+                          </div>
+                        }
+
+
+
+
+                        {expandedIndex === 6 && (
+                          <div className="flex  flex-col mb-2">
+                            <Checkout
+                              // handleSubmit={handleSubmit}
+                              selectedInstruction={selectedInstruction}
+                              isEdit={true}
+                              // checkoutdata={check_out_instruction}
+                              setShowTextArea={setShowTextArea}
+                              showTextArea={showTextArea}
+                              text={text}
+                              setText={setText}
+                              setSelectedInstruction={setSelectedInstruction}
+                              setShowInstructions={setShowInstructions}
+                              setCheckoutInstructions={setCheckoutInstructions}
+                              checkoutInstructions={checkoutInstructions}
+                              showInstructions={showInstructions}
+                            />
+                          </div>
+                        )}
+
+                        <div className="border-t-[7px]">
+                          <div className="flex justify-end fixed  z-50 bottom-4 right-4 border-t-[7px]">
+                            <button className="text-white bg-black p-3 border-2 rounded-md">
+                              Submit
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+
+                  {/* {editguide === "space" && (
+                    <div className="w-2/3 mt-4  ">
+                      <div className="">
                         {expandedIndex === 0 && (
                           <div className="p-4">
                             <h1>
@@ -438,8 +879,6 @@ export default function Edit() {
                             </div>
                           </div>
                         )}
-
-
                         {expandedIndex === 2 && (
                           <div className="p-4">
                             <h1 className="uppercase text-lg sm:text-sm">
@@ -486,10 +925,6 @@ export default function Edit() {
                             </div>
                           </div>
                         )}
-
-
-
-
                         {expandedIndex === 3
                           && (
                             <Guest
@@ -634,31 +1069,6 @@ export default function Edit() {
                             </div>
                           </div>
                         )}
-
-                        {expandedIndex === 8 && (
-                          <div className="p-4">
-
-                            <HouseRules
-                              petsAllowed={petsAllowed}
-                              setPetsAllowed={setPetsAllowed}
-                              quietHours={quietHours}
-                              pets={pets}
-                              setPets={setPets}
-                              checkinTime={checkinquet}
-                              setCheckinTime={setCheckinquiet}
-                              checkoutTime={checkoutquet}
-                              setCheckoutTime={setCheckoutquiet}
-                              setEventsAllowed={setEventsAllowed}
-                              setQuietHours={setQuietHours}
-                              eventsAllowed={eventsAllowed}
-                              PhotographyAllowed={PhotographyAllowed}
-                              setPhotographyAllowed={setPhotographyAllowed}
-                              smokingAllowed={smokingAllowed}
-                              setSmokingAllowed={setSmokingAllowed}
-                            />
-                          </div>
-                        )}
-
                         {expandedIndex === 9 && (
                           <div className="p-4">
 
@@ -679,12 +1089,9 @@ export default function Edit() {
                             </button>
                           </div>
                         </div>
-
-
-
-                      </div>)}
-                  </div>
-                </div> */}
+                      </div>
+                    </div>)} */}
+                </div>
               </>
             )}
           </div>
