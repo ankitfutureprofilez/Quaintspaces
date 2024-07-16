@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Layout from "../layout/Layout.js";
 import Image from "next/image";
@@ -17,6 +17,15 @@ const LuxuryStay = dynamic(() => import("./LuxuryStay.js"));
 export default function MainPage() {
   const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const images = [
     "/images/banner/Banner4.jpg",
     "/images/banner/Banner1.JPG",
@@ -27,12 +36,12 @@ export default function MainPage() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 800, // Increased speed for smoother transitions
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 3000, // Adjusted autoplay speed for smoother transitions
     responsive: [
       {
         breakpoint: 1024,
@@ -62,7 +71,7 @@ export default function MainPage() {
     <Layout>
       <div>
         <Head>
-          <title>Quaintspaces </title>
+          <title>Quaintspaces</title>
         </Head>
         <PwaFooter />
         <div className="bg-cover bg-center nav-header-sec relative image-wrapper lg:!h-[670px] md:!h-[550px] sm:!h-[450px] !h-[350px]">

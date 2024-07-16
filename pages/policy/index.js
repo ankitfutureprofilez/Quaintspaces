@@ -90,7 +90,7 @@ function index() {
       <div className="max-w-4xl mx-auto p-6">
         <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
         <p className="mb-4">
-        For a list of Privacy Policies by jurisdiction, click here.
+          For a list of Privacy Policies by jurisdiction, click here.
         </p>
         <p className="mb-4" >Last Updated: January 25, 2024</p>
         <p className="mb-4" >
@@ -109,14 +109,14 @@ function index() {
           <h3 className="text-lg font-semibold mb-2">1.1.2 Identity Information</h3>
           <p className="mb-4">
             Where appropriate, we may ask you for an image of your government-issued ID (in accordance with applicable laws) or other verification information, and/or a selfie when we verify your ID. If a copy of your ID is provided to us, we will obtain information from your ID. See our Help Center article on
-              Verifying your identity.
-            
+            Verifying your identity.
+
           </p>
           <h3 className="text-lg font-semibold mb-2">1.1.3 Payment Information</h3>
           <p className="mb-4">
             Such as payment account or bank account information. If you are not a QuaintSpaces user, we may receive payment information relating to you, such as when a QuaintSpaces user provides your payment card to complete a booking. See our Help Center article on
-              Paying and getting paid on behalf of someone else.
-            
+            Paying and getting paid on behalf of someone else.
+
           </p>
           <h2 className="text-2xl font-bold mb-2">1.2 Information You Choose to Give Us</h2>
           <p className="mb-4">
@@ -157,8 +157,8 @@ function index() {
           <h3 className="text-lg font-semibold mb-2">1.3.4 Cookies and Similar Technologies</h3>
           <p className="mb-4">
             As Described in Our
-              Cookie Policy.
-            
+            Cookie Policy.
+
           </p>
           <h3 className="text-lg font-semibold mb-2">1.3.5 Payment Transaction Information</h3>
           <p className="mb-4">
@@ -203,8 +203,8 @@ function index() {
           <h3 className="text-lg font-semibold mb-2">1.4.9 Other Sources</h3>
           <p className="mb-4">
             To the extent permitted by applicable law, we may receive additional information about you, such as
-              references
-            
+            references
+
             , demographic data, and information to help detect fraud and safety issues from (i) third-party service providers, other third parties, and/or partners, or (ii) Members and any other individuals, entities, and authorities, and combine it with information we have about you. For example, we may receive background check results or fraud warnings from identity verification service providers for use in our fraud prevention, security investigation, and risk assessment efforts. We may receive information about you and your activities on and off the QuaintSpaces Platform, including from users of QuaintSpaces, members of the public, or governmental, public, or tax authorities, or about your experiences and interactions from our partners. We may receive health information including, but not limited to, health information related to contagious diseases.
           </p>
         </div>
@@ -212,8 +212,8 @@ function index() {
         <h2 className="text-2xl font-bold mb-2" >2. HOW WE USE INFORMATION WE COLLECT.</h2>
         <p className="mb-4">
           We use personal information as outlined in this Privacy Policy. If you reside outside of the United States,
-            click here
-          
+          click here
+
           to learn about our legal bases for collection and processing personal information.
         </p>
 
@@ -237,9 +237,9 @@ function index() {
         <p className="mb-4">We may process this information to:</p>
         <ul className="list-disc list-inside mb-4">
           <li>study and combat discrimination consistent with our
-           
-              Nondiscrimination Policy
-            
+
+            Nondiscrimination Policy
+
             ,</li>
           <li>detect, prevent, assess, and address fraud and security risks,</li>
           <li>verify or authenticate information provided by you, including identity information, as described in Information Needed to Use the QuaintSpaces Platform,</li>
@@ -251,17 +251,17 @@ function index() {
           <li>comply with law, respond to legal requests, prevent harm, and protect our rights (see Comply with Law, Respond to Legal Requests, Prevent Harm, and Protect Our Rights),</li>
           <li>enforce our
 
-              Terms
+            Terms
 
             and other policies, such as our
-           
 
-              Nondiscrimination Policy , and</li>
+
+            Nondiscrimination Policy , and</li>
           <li>assess or evaluate your interactions with the QuaintSpaces Platform and information obtained from third parties.</li>
         </ul>
-<p className="mb-4">
-In certain cases, automated processes, which analyze your account and activities on the QuaintSpaces platform as well as information in relation to activities on and off the QuaintSpaces platform that can be associated with you, could restrict or suspend your access to the QuaintSpaces Platform if such processes detect activity that may pose a safety or other risk to QuaintSpaces, our community, or third parties. Learn more about how our system determines whether certain reservations may carry a higher risk for incidents here. If you would like to challenge decisions based on automated processes, please contact us via the Contact Information section.
-</p>
+        <p className="mb-4">
+          In certain cases, automated processes, which analyze your account and activities on the QuaintSpaces platform as well as information in relation to activities on and off the QuaintSpaces platform that can be associated with you, could restrict or suspend your access to the QuaintSpaces Platform if such processes detect activity that may pose a safety or other risk to QuaintSpaces, our community, or third parties. Learn more about how our system determines whether certain reservations may carry a higher risk for incidents here. If you would like to challenge decisions based on automated processes, please contact us via the Contact Information section.
+        </p>
         <h3 className="text-xl font-semibold mb-2">2.3 Provide, Personalize, Measure, and Improve our Advertising and Marketing.</h3>
         <p className="mb-4">We may process this information to:</p>
         <ul className="list-disc list-inside mb-4">
