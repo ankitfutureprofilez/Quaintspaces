@@ -41,7 +41,7 @@ export default function MainPage() {
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 1000, // Adjusted autoplay speed for smoother transitions
+    autoplaySpeed: 3000, // Adjusted autoplay speed for smoother transitions
     fade: true, // Adding fade transition effect
   };
 
