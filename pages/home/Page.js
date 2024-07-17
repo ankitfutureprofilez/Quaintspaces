@@ -36,13 +36,15 @@ export default function MainPage() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 1000, // Increased speed for smoother transitions
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 3000, // Adjusted autoplay speed for smoother transitions
+    autoplaySpeed: 1000, // Adjusted autoplay speed for smoother transitions
     fade: true, // Adding fade transition effect
+    cssEase: "ease-in-out", // Smooth easing function
+    fade: true,
   };
 
   return (
