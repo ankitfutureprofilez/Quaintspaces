@@ -695,14 +695,14 @@ export default function Property(props) {
         <div className=" w-full space-y-8 w-full p-4 flex justify-end  m-auto w-full px-2">
           <button
             onClick={handleSubmit}
-            className="inline-flex mx-2 justify-center py-2 px-8 border-2 border-[#4f46e5] shadow-sm text-lg font-medium rounded-full text-white bg-[#4f46e5] hover:bg-[#fff] hover:text-[#4f46e5]"
+            className="inline-flex mx-2 justify-center py-2 px-6 border-2 border-[#4f46e5] shadow-sm text-base font-medium rounded-full text-white bg-[#4f46e5] hover:bg-[#fff] hover:text-[#4f46e5]"
           >
             {Loading ? "Processing..." : "Save / Exit"}
           </button>
         </div>
       )}
       <div
-        className={`w-full overflow-hidden	min-h-[calc(100vh-201px)] flex items-center justify-center pb-4 md:pb-12 `}
+        className={`w-full overflow-hidden	min-h-[calc(100vh-201px)] flex items-center justify-center pb-8 md:pb-24 `}
       >
         <div className="">
           <div
@@ -800,7 +800,7 @@ export default function Property(props) {
                           )}
                           {p.value === "farm" && <FaWarehouse size={30} />}
                           <h2
-                            className={`text-[16px] mt-[10px] font-normal ${p.value === PType
+                            className={`text-[15px] mt-[10px] font-normal ${p.value === PType
                               ? "text-[#222222]"
                               : "text-[#222222]"
                               }`}
@@ -1306,24 +1306,24 @@ export default function Property(props) {
               </div>
               <div className={`${step === 10 ? "" : "display-none"
                 }  m-auto table w-full`} >
-                <div className="flex items-center justify-center min-h-screen">
+                <div className="flex items-center justify-center   mb-8">
                   <div className="w-full max-w-md">
                     <div className="space-y-6">
                       <div className="text-center">
                         <div style={{ animationDelay: '400ms' }}>
-                          <h1 className="text-3xl font-bold" tabIndex="-1">Now, set your price</h1>
+                          <h1 className="text-2xl font-bold" tabIndex="-1">Now, set your price</h1>
                           <div>
                             <span className="text-gray-500">You can change it anytime.</span>
                           </div>
                         </div>
                       </div>
-                      <div className="mt-6">
+                      <div className="mt-3">
                         <div style={{ animationDelay: '449.741ms' }}>
                           <div className="relative" style={{ height: 'auto', visibility: 'var(--view-transition_visibility, visible)', width: '100%' }}>
-                            <div className="text-4xl font-bold" style={{ lineHeight: '86.5981px', letterSpacing: '-2.07663px' }}>
+                            <div className=" font-bold" style={{ lineHeight: '86.5981px', letterSpacing: '-2.07663px' }}>
                               <div className="flex items-center">
-                                <span>₹</span>
-                                <span className="ml-1" aria-hidden="true">{item?.price}</span>
+                                <span className="text-4xl">₹</span>
+                                <span className="ml-1 mr-3 text-4xl" aria-hidden="true">{item?.price}</span>
                                 <span className="text-xl font-medium">Price per night</span>
 
                               </div>
@@ -1334,7 +1334,7 @@ export default function Property(props) {
                                     <input
                                       data-testid="lys-base-price-input"
                                       inputMode="numeric"
-                                      className="ml-2 p-2 border border-gray-300 rounded"
+                                      className=" w-full p-2  border border-gray-300 rounded"
                                       id="lys-base-price-input"
                                       autoComplete="off"
                                       type="number"
@@ -1355,12 +1355,12 @@ export default function Property(props) {
 
                 </div>
                 <div className="">
-                  <h2 className="text-xl md:text-2xl lg:text-3xl capitalize text-center mt-4 font-bold md:mb-8 mb-4">
+                  <h2 className="text-xl md:text-2xl lg:text-3xl capitalize text-center mt-4 font-bold md:mb-4 mb-4">
                     Please enter the following details
                   </h2>
 
                   <div className="flex flex- flex-wrap justify-between mt-4 text-sm font-medium text-gray-700 ">
-                    <div className="w-full px-1 md:w-1/3 ">
+                    <div className="w-full px-1 md:w-6/12 ">
                       <div className="flex flex-col w-full md:mb-0 mb-2">
                         <label>Cleaning Fees ( Per Day Fees) </label>
                         <input
@@ -1375,7 +1375,7 @@ export default function Property(props) {
                         />
                       </div>
                     </div>
-                    <div className="w-full px-1 md:w-1/3">
+                    <div className="w-full px-1 md:w-6/12">
                       <div className="flex flex-col w-full md:mb-0 mb-2">
                         <label>Extra Guest Fees (Per Guest)</label>
                         <input
@@ -1404,17 +1404,17 @@ export default function Property(props) {
                     </div>
                     <div className="space-y-4">
                       <div className="flex flex-col space-y-4" role="radiogroup">
-                        <div className="flex items-center space-x-4" style={{ '--list_animation-delay': '400ms' }}>
+                        <div className="flex w-full items-center space-x-4" style={{ '--list_animation-delay': '400ms' }}>
                           <button
-                            className={`flex items-center space-x-4 p-4 border rounded-lg ${selectbooking === 0 ? 'border-black' : 'border-gray-300'}`}
+                            className={`flex  w-full items-center justify-between space-x-4 p-4 border rounded-lg ${selectbooking === 0 ? 'border-black' : 'border-gray-300'}`}
                             type="button"
                             role="radio"
                             aria-checked={selectbooking === 0}
                             onClick={() => handleBookingChange(0)}
                           >
                             <div className="flex flex-col space-y-1">
-                              <h2 className="text-lg font-semibold">Use instant Book</h2>
-                              <div className="text-gray-600">Guests can book automatically.</div>
+                              <h2 className="text-lg text-left font-semibold">Use instant Book</h2>
+                              <div className="text-gray-600 text-sm">Guests can book automatically.</div>
                             </div>
                             <div className="flex-shrink-0">
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" className="h-8 w-8 fill-current text-black">
@@ -1423,17 +1423,17 @@ export default function Property(props) {
                             </div>
                           </button>
                         </div>
-                        <div className="flex items-center space-x-4" style={{ '--list_animation-delay': '449.7412007086385ms' }}>
+                        <div className="flex w-full items-center space-x-4" style={{ '--list_animation-delay': '449.7412007086385ms' }}>
                           <button
-                            className={`flex items-center space-x-4 p-4 border rounded-lg ${selectbooking === 1 ? 'border-black' : 'border-gray-300'}`}
+                            className={`flex  w-full items-center justify-between space-x-4 p-4 border rounded-lg ${selectbooking === 1 ? 'border-black' : 'border-gray-300'}`}
                             type="button"
                             role="radio"
                             aria-checked={selectbooking === 1}
                             onClick={() => handleBookingChange(1)}
                           >
                             <div className="flex flex-col space-y-1">
-                              <h2 className="text-lg font-semibold">Approve or decline requests</h2>
-                              <div className="text-gray-600">Guests must ask if they can book.</div>
+                              <h2 className="text-lg text-left font-semibold">Approve or decline requests</h2>
+                              <div className="text-gray-600 text-sm">Guests must ask if they can book.</div>
                             </div>
                             <div className="flex-shrink-0">
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" className="h-8 w-8 fill-current text-black">
@@ -1448,7 +1448,7 @@ export default function Property(props) {
                 </div>
                 <div className="flex flex-col space-y-2">
                   <div className="flex flex-col items-start space-y-2" style={{ animationDelay: '400ms' }}>
-                    <h1 className="text-2xl font-bold" tabIndex="-1">Select Proerty Type (BHK)</h1>
+                    <h1 className="text-xl font-bold" tabIndex="-1">Select Proerty Type (BHK)</h1>
                   </div>
                   <div className="flex space-x-4">
                     {[1, 2, 3, 4].map((option) => (
@@ -1460,7 +1460,7 @@ export default function Property(props) {
                           onChange={() => handleselecbhktype(option)}
                           className="form-radio text-blue-600"
                         />
-                        <span>{option} BHK</span>
+                        <span className="text-sm text-gray-400 font-normal">{option} BHK</span>
                       </label>
                     ))}
                   </div>
