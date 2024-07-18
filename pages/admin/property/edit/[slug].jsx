@@ -716,7 +716,6 @@ export default function Edit() {
                   stepdata={false}
                   p={record.data}
                 /> */}
-
                 <div className="container mx-auto flex">
                   <div className="w-1/3">
                     <div className="flex items-left space-x-2" onClick={() => { router.back(-1) }}>
