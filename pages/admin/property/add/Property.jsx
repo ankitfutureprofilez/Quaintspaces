@@ -729,7 +729,7 @@ export default function Property(props) {
                 className={`${step === 1 ? "" : "display-none"
                   } max-w-[100%] m-auto mb-8 table w-full`}
               >
-
+ 
 
                 {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
     <div className="grid grid-cols-3 gap-4 m-auto table  " >
