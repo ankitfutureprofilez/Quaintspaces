@@ -14,6 +14,7 @@ import { RiDoorLockBoxLine } from "react-icons/ri";
 import { GrUserWorker } from "react-icons/gr";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdOutlineFreeBreakfast } from "react-icons/md";
+import Step1 from "../components/Video.json";
 import {
   FaBuilding,
   FaHome,
@@ -25,6 +26,7 @@ import {
 } from "react-icons/fa";
 import Guest from "./Guest";
 import Checkout from "./Checkout";
+import Video from "../components/Video";
 const propertyTypes = [
   { value: "flat", label: "Flat & Apartment" },
   { value: "house", label: "House" },
@@ -71,6 +73,7 @@ export default function Property(props) {
     custom_link,
   } = p ? p : {};
 
+  console.log("p", p)
 
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
   const [pets, setPets] = useState(no_of_pet_allowed || 1);
@@ -89,47 +92,13 @@ export default function Property(props) {
   const [selectedPolicy, setSelectedPolicy] = useState(
     property_rule?.standard_policy || null
   );
-  const [showFlexible, setShowFlexible] = useState(true);
-  const [showFirm, setShowFirm] = useState(false);
-  const [petsAllowed, setPetsAllowed] = useState(
-    property_rule?.pet_allowed || 0
-  );
-  const [eventsAllowed, setEventsAllowed] = useState(
-    property_rule?.events_allowed || 0
-  );
-  const [smokingAllowed, setSmokingAllowed] = useState(
-    property_rule?.smoking_allowed || 0
-  );
-  const [quietHours, setQuietHours] = useState(
-    property_rule?.quiet_hours_allowed || 0
-  );
-  const [PhotographyAllowed, setPhotographyAllowed] = useState(
-    property_rule?.photography_allowed || 0
-  );
+
   const [images, setImages] = useState([]);
   const [dragId, setDragId] = useState("");
   const [typeHere, setTypeHere] = useState(type || "entire_place");
-  const [checkinStart, setCheckinStart] = useState(check_in || "00:00");
-  const [checkinquet, setCheckinquiet] = useState(
-    property_rule?.quite_hours_in_time || "00:00"
-  );
-  const [checkoutquet, setCheckoutquiet] = useState(
-    property_rule?.quite_hours_out_time || "00:00"
-  );
-  const [selectedOption, setSelectedOption] = useState(status || 0);
-  const [checkinEnd, setCheckinEnd] = useState(flexible_check_in || "flexible");
-  const [checkout, setCheckout] = useState(check_out || "00:00");
   const [Guests, setGuests] = useState(guests || 1);
   const [Beds, setBeds] = useState(beds || 1);
   const [Bedrooms, setBedrooms] = useState(bedrooms || 1);
-  const [checkoutInstructions, setCheckoutInstructions] = useState([]);
-  const [selectedInstruction, setSelectedInstruction] = useState("");
-  const [showInstructions, setShowInstructions] = useState(false);
-  const [showTextArea, setShowTextArea] = useState(false);
-  const [text, setText] = useState("");
-  const [selectedMethod, setSelectedMethod] = useState(
-    check_in_method || "smartlock"
-  );
   const [checkdescrtion, setcheckdescrtion] = useState(
     check_in_description || ""
   );
@@ -234,12 +203,16 @@ export default function Property(props) {
   };
   const router = useRouter();
   const [step, setStep] = useState(
-    step_completed === 11 ? 0 : step_completed || 0
+    step_completed === 11 ? 1 : step_completed || 0
   );
+  console.log("step", step)
+
   const [Loading, setLoading] = useState(false);
   const [PType, setPType] = useState(properties_type || "flat");
   const lstring = location ? JSON.parse(location.replace('/\\"/g', '"')) : null;
   const l = JSON.parse(lstring);
+  console.log("lstring", lstring);
+  console.log("l", l);
 
   const [address, setAddress] = useState({
     street_address: l && l.street_address ? l.street_address : "",
@@ -277,13 +250,15 @@ export default function Property(props) {
     wifiPassword: property_rule?.wifi_password || "",
     discount: discount_offer || "",
     customLink: custom_link || "",
+    selectedOption: "0"
   });
 
   const copyToClipboard = () => {
     const textToCopy = `${baseurl}${item?.customLink}`;
+    console.log("textToCopy", textToCopy);
     navigator.clipboard
       .writeText(textToCopy)
-      .then(() => {})
+      .then(() => { })
       .catch((err) => {
         console.error("Failed to copy: ", err);
       });
@@ -302,7 +277,95 @@ export default function Property(props) {
     const option = parseInt(event.target.value, 10);
     setSelectedOption(selectedOption === option ? "" : option);
   };
-  
+  const [selectbooking, setSelectedbooking] = useState(0);
+  const handleBookingChange = (option) => {
+    setSelectedbooking(option);
+  };
+
+  const [selecbhktype, setselecbhktype] = useState(1);
+
+  const handleselecbhktype = (option) => {
+    setselecbhktype(option);
+  };
+
+  const prevStep = () => setStep((prev) => prev - 1);
+  const nextStep = async () => {
+    if (step === 1 && PType == "") {
+      toast.error("Please choose a property type which one you want to list.");
+    }
+    if (step === 2 && (address?.pin === "" ||
+      address?.pin?.length < 5 ||
+      address?.state === "" ||
+      address?.city === "" ||
+      address?.street_address === "" ||
+      address?.district === "")
+    ) {
+      toast.error(`Incomplete address. Please enter complete address.`);
+      return false;
+    }
+    if (step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+
+    if (step == 5 && selectedAmenity && Amenity &&
+      standoutAmenity &&
+      selectedAmenity.length + Amenity.length + standoutAmenity.length < 4
+    ) {
+      toast.error("Please choose at least 4 amenities.");
+      return false;
+    }
+    if (isEdit && step === 6 && images?.length + imageproperty?.length < 5) {
+      toast.error("Please select at least five images.");
+      return false;
+    }
+
+    if (
+      step === 7 &&
+      (!item?.name ||
+        item?.name?.trim()?.length === 0 ||
+        item?.name?.length < 5)
+    ) {
+      toast.error(
+        "Property title is too short. title should be a minimum of 5 words."
+      );
+      return false;
+    }
+
+    if (
+      step === 8 &&
+      (!item?.about ||
+        item?.about?.trim()?.length === 0 ||
+        item?.about?.length < 100)
+    ) {
+      toast.error(
+        "Property description is too short. Description should be a minimum of 100 words."
+      );
+      return false;
+    }
+
+    if (
+      step === 10 &&
+      (item?.cleaning === "" || item?.extra_guest === "" || item?.about === "")
+    ) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    if (
+      step === 10 && item?.price != "" && item?.price < 0) {
+      toast.error(`Invalid Price`);
+      return false;
+    }
+
+    if (
+      step === 11 &&
+      (selectbooking === "" || selecbhktype === "")
+    ) {
+      toast.error(`All fields are required.`);
+      return false;
+    }
+    setStep((prev) => prev + 1);
+  };
   const [locationupdate, setLocationupdate] = useState([]);
   const getNavigator = () => {
     if (typeof navigator !== "undefined") {
@@ -316,7 +379,7 @@ export default function Property(props) {
   const [markerPosition, setMarkerPosition] = useState({ lat: 0, lng: 0 });
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
   const [locationName, setLocationName] = useState("");
-  const [infoWindow, setInfoWindow] = useState(null); // For handling InfoWindow instance
+  const [infoWindow, setInfoWindow] = useState(null);
   const [map, setMap] = useState(null);
 
   const fetchLocationData = async () => {
@@ -338,6 +401,7 @@ export default function Property(props) {
                 `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
               );
               locationData = response.data;
+              console.log("locationData", locationData);
             } else {
               const response = await axios.get(
                 `https://nominatim.openstreetmap.org/reverse?lat=${address?.latitude}&lon=${address?.longitude}&format=json`
@@ -503,135 +567,12 @@ export default function Property(props) {
         console.error("Error:", error);
       });
   };
-
+  const progress = step * 9;
   const baseurl = "https://quant-stay.vercel.app/properties/";
   const fulllink = baseurl + item?.customLink;
 
-  const prevStep = () => setStep((prev) => prev - 1);
-  const nextStep = async () => {
-    if (step === 0 && PType == "") {
-      toast.error("Please choose a property type which one you want to list.");
-    }
-    if (
-      step === 1 &&
-      (item?.name === "" || item?.price === "" || item?.about === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (
-      step === 1 && item?.price != "" && item?.price < 0 ) {
-      toast.error(`Invalid Price`);
-      return false;
-    }
-    if (
-      step === 1 &&
-      (!item?.about ||
-        item?.about?.trim()?.length === 0 ||
-        item?.about?.length < 100)
-    ) {
-      toast.error(
-        "Property description is too short. Description should be a minimum of 100 words."
-      );
-      return false;
-    }
-    if (
-      step === 2 &&
-      (address?.pin === "" ||
-        address?.pin?.length < 5 ||
-        address?.state === "" ||
-        address?.city === "" ||
-        address?.street_address === "" ||
-        address?.district === "")
-    ) {
-      toast.error(`Incomplete address. Please enter complete address.`);
-      return false;
-    }
-    if (
-      step === 3 &&
-      (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (
-      step == 4 &&
-      selectedAmenity &&
-      Amenity &&
-      standoutAmenity &&
-      selectedAmenity.length + Amenity.length + standoutAmenity.length < 4
-    ) {
-      toast.error("Please choose at least 4 amenities.");
-      return false;
-    }
-
-    if (!isEdit && step === 5 && images?.length < 5) {
-      toast.error("Please select at least five images.");
-      return false;
-    }
-    if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
-      toast.error("Please select at least five images.");
-      return false;
-    }
-    if (
-      step === 6 &&
-      (checkout === " " ||
-        checkinStart === " " ||
-        selectedOption === "" ||
-        checkinEnd === "" ||
-        item?.cleaning === "" ||
-        item?.extra_guest === "" ||
-        item?.pet === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (step === 7 && longTermPolicy === null && selectedPolicy === null) {
-      toast.error(`At least one field is required.`);
-      return false;
-    }
-    if (
-      step === 8 &&
-      (item?.additonalrule === "" ||
-        petsAllowed === " " ||
-        smokingAllowed === " " ||
-        eventsAllowed === "" ||
-        quietHours === "" ||
-        PhotographyAllowed === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (
-      step === 9 &&
-      (item?.Direction === "" ||
-        item?.wifi === " " ||
-        item?.wifiPassword === " " ||
-        item?.housemanual === " ")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-
-    if (
-      step === 10 &&
-      (item?.customLink === "" ||
-        item?.selectedInstruction === " " ||
-        selectedMethod === " ")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-
-    setStep((prev) => prev + 1);
-  };
-
   async function handleSubmit(e) {
     e.preventDefault();
-    if (step === 11 && checkoutInstructions === "") {
-      toast.error(`All fields are required.`);
-      return false;
-    }
     setLoading(true);
     const main = new Listing();
     const formData = new FormData();
@@ -645,59 +586,26 @@ export default function Property(props) {
     formData.append("bathrooms", Bathrooms);
     formData.append("guests", Guests);
     formData.append("beds", Beds);
-    formData.append("custom_link", item?.customLink);
+    formData.append("is_instant_booking", selectbooking);
+    formData.append("bhk_type ", selecbhktype)
     formData.append("address", JSON.stringify(address));
     formData.append("amenities", selectedAmenity);
     formData.append("standout_amenity", standoutAmenity);
     formData.append("safety_amenity", Amenity);
     formData.append("cleaning_fee", item?.cleaning);
     formData.append("extra_guest_fee", item?.extra_guest);
-    formData.append("pet_fee", item?.pet);
-    formData.append("flexible_check_in", checkinEnd);
-    formData.append("check_in", checkinStart);
-    formData.append("check_out", checkout);
-    formData.append("status", selectedOption);
     formData.append("step_completed", step);
     formData.append("standard_policy", selectedPolicy);
-    formData.append("wifi_username", item?.wifi);
-    formData.append("wifi_password", item?.wifiPassword);
-    formData.append("long_term_policy", longTermPolicy);
-    formData.append("house_manuals", item?.housemanual);
-    formData.append("pet_allowed", petsAllowed);
-    formData.append("events_allowed", eventsAllowed);
-    formData.append("direction", item?.Direction);
-    formData.append("smoking_allowed", smokingAllowed);
-    formData.append("quiet_hours_allowed", quietHours);
-    formData.append("photography_allowed", PhotographyAllowed);
-    formData.append("additional_rules", item?.additonalrule);
-    formData.append("quite_hours_in_time", checkinquet);
-    formData.append("quite_hours_out_time", checkoutquet);
-    formData.append("check_in_description", checkdescrtion);
-    formData.append("check_in_method", selectedMethod);
-    formData.append(
-      "check_out_instruction",
-      JSON.stringify(checkoutInstructions)
-    );
-    formData.append("discount_offer", item?.discount);
-
+    formData.append("existing_property_uuid ", uuid)
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
-    const response =
-      isEdit && !stepdata
-        ? main.propertyedit(uuid, formData)
-        : main.addproperty(formData);
+    const response = main.addproperty(formData);
     response
       .then((res) => {
         if (res?.data?.status) {
-          if (isEdit && !stepdata) {
-            toast.success(res.data.message);
-            router.push("/admin/property");
-            fetchProperties && fetchProperties();
-          } else {
-            router.push("/admin/property");
-            toast.success(res.data.message);
-          }
+          toast.success(res.data.message);
+          router.push("/admin/property");
         } else {
           toast.error(res.data.message);
         }
@@ -705,7 +613,7 @@ export default function Property(props) {
       })
       .catch((error) => {
         setLoading(false);
-        ("error", error);
+        console.log("error", error);
       });
   }
 
@@ -767,7 +675,7 @@ export default function Property(props) {
     );
   };
 
-  useEffect(() => {}, [images]);
+  useEffect(() => { }, [images]);
 
   // if (stepdata) {
   //   setImages([...images, imageproperty]);
@@ -780,21 +688,49 @@ export default function Property(props) {
       // .property-type:checked + label { color :#000 !important;border-color:#000 !important;}
       // .property-type:checked + label h2 { color :#000 !important;border-color:#000 !important;}
     `}</style>
-
-      <div class="max-w-4xl overflow-hidden	 w-full space-y-8 m-auto w-full px-2 "></div>
+      <div className="max-w-4xl overflow-hidden	 w-full space-y-8 m-auto w-full px-2 "></div>
+      {isEdit && !stepdata ? (
+        <> </>
+      ) : (
+        <div className=" w-full space-y-8 w-full p-4 flex justify-end  m-auto w-full px-2">
+          <button
+            onClick={handleSubmit}
+            className="inline-flex mx-2 justify-center py-2 px-8 border-2 border-[#4f46e5] shadow-sm text-lg font-medium rounded-full text-white bg-[#4f46e5] hover:bg-[#fff] hover:text-[#4f46e5]"
+          >
+            {Loading ? "Processing..." : "Save / Exit"}
+          </button>
+        </div>
+      )}
       <div
-        className={`w-full overflow-hidden	 flex items-center justify-center py-4 md:py-8 `}
+        className={`w-full overflow-hidden	min-h-[calc(100vh-201px)] flex items-center justify-center pb-4 md:pb-12 `}
       >
-        <div className="max-w-4xl w-full space-y-8 w-full px-2">
+        <div className="">
           <div
             className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
           >
-            <div className="p-3 sm:p-4 md:p-8 rounded-2xl border ">
-              <div
-                className={`${
-                  step === 0 ? "" : "display-none"
-                } max-w-[100%] m-auto mb-8 table w-full`}
+            <div className=" xl:px-[200px] lg:px-[100px] ">
+
+
+              {/* <div
+                className={`${step === 0 ? "" : "display-none"
+                  }  m-auto table w-full`}
+                style={{ display: "flex", alignItems: "center" }}
               >
+                <Introduction />
+              </div> */}
+              <div
+                className={`${step === 0 ? "" : "display-none"
+                  }  m-auto table w-full`}
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                <Video step1={Step1?.step1} />
+              </div>
+              <div
+                className={`${step === 1 ? "" : "display-none"
+                  } max-w-[100%] m-auto mb-8 table w-full`}
+              >
+
+
                 {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
     <div className="grid grid-cols-3 gap-4 m-auto table  " >
      <div className="" >
@@ -814,7 +750,7 @@ export default function Property(props) {
     </div> */}
 
                 {/* {typeHere === "entire_place" ?  <> */}
-                <h2 className="text-xl md:text-2xl capitalize lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+                <h2 className="text-[22] md:text-[26px] capitalize lg:text-[32px] text-center mt-4 font-[500] text-[#222222] mb-4">
                   Which of these best describes your place?
                 </h2>
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
@@ -823,53 +759,51 @@ export default function Property(props) {
                       <div key={i} className="">
                         <div
                           onClick={() => setPType(p?.value)}
-                          className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${
-                            p?.value === PType
-                              ? "bg-slate-100 border-slate-700 text-slate-700"
-                              : ""
-                          }`}
+                          className={`property-type-wrap cursor-pointer p-4 hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px] ${p?.value === PType
+                            ? "bg-[#efefef] shadow-[0_0px_0px_1px_#efefef] text-slate-700"
+                            : ""
+                            }`}
                         >
                           {p.value === "flat" && (
                             <FaBuilding
-                              style={{ color: "black", fontSize: "40px" }}
+                              style={{ color: "#222222", fontSize: "30px" }}
                             />
                           )}
                           {p.value === "house" && (
                             <FaHome
-                              style={{ color: "black", fontSize: "40px" }}
+                              style={{ color: "#222222", fontSize: "30px" }}
                             />
                           )}
-                          {p.value === "unique_space" && <House size={40} />}
+                          {p.value === "unique_space" && <House size={30} />}
                           {p.value === "guest_house" && (
                             <FaDoorOpen
-                              style={{ color: "black", fontSize: "40px" }}
+                              style={{ color: "#222222", fontSize: "30px" }}
                             />
                           )}
                           {p.value === "hotel" && (
                             <FaHotel
-                              style={{ color: "black", fontSize: "40px" }}
+                              style={{ color: "#222222", fontSize: "30px" }}
                             />
                           )}
                           {p.value === "single_room" && (
                             <FaBed
-                              style={{ color: "black", fontSize: "40px" }}
+                              style={{ color: "#222222", fontSize: "30px" }}
                             />
                           )}
                           {p.value === "boutique_hotel" && (
                             <FaCouch
-                              style={{ color: "black", fontSize: "40px" }}
+                              style={{ color: "#222222", fontSize: "30px" }}
                             />
                           )}
                           {p.value === "breakfast" && (
-                            <MdOutlineFreeBreakfast size={40} />
+                            <MdOutlineFreeBreakfast size={30} />
                           )}
-                          {p.value === "farm" && <FaWarehouse size={40} />}
+                          {p.value === "farm" && <FaWarehouse size={30} />}
                           <h2
-                            className={`md:text-xl text-lg mt-4 font-normal ${
-                              p.value === PType
-                                ? "text-gray-600"
-                                : "text-gray-400"
-                            }`}
+                            className={`text-[16px] mt-[10px] font-normal ${p.value === PType
+                              ? "text-[#222222]"
+                              : "text-[#222222]"
+                              }`}
                           >
                             {p.label}
                           </h2>
@@ -880,69 +814,9 @@ export default function Property(props) {
 
                 {/* </> : '' } */}
               </div>
-              <div
-                className={`${
-                  step === 1 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
-              >
-                <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
-                  Describe your place?
-                </h2>
-                <div className="mt-2 md:mt-4">
-                  <input
-                    required
-                    type="text"
-                    name="name"
-                    placeholder="Property Name"
-                    id="name"
-                    className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
-                    value={item?.name}
-                    onChange={handleInputChange}
-                  />
-                </div>
-
-                <div className="relative mt-2 md:mt-4 text-sm font-medium text-gray-700">
-                  <input
-                    required
-                    type="number"
-                    name="price"
-                    placeholder="Property Price Per Night"
-                    id="name"
-                    className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
-                    min="0"
-                    value={item?.price}
-                    onChange={handleInputChange}
-                  />
-                  <div className="mt-2 md:mt-4">
-                    <textarea
-                      required
-                      id="about"
-                      name="about"
-                      minCol={"5"}
-                      minRow={"5"}
-                      value={item?.about}
-                      onChange={handleInputChange}
-                      className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-xl shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
-                      placeholder="Tell more about your property..."
-                    />
-                    <div className="flex flex-wrap justify-between">
-                      <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
-                        {item?.about ? (
-                          <span>{item?.about.length}/100 characters</span>
-                        ) : (
-                          <span>0/100 characters</span>
-                        )}
-                      </label>
-                      <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
-                        Minimum 100 words.
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div className={`${step === 2 ? "" : "display-none"}`}>
                 <div className="mb-8">
-                  <h2 className="text-xl md:text-2xl capitalize lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+                  <h2 className="text-[22] md:text-[26px] capitalize lg:text-[32px] text-center mt-4 font-[500] text-[#222222] mb-4">
                     Where's your place located?
                   </h2>
                   <p className="text-normal text-center text-gray-500 mb-8">
@@ -953,7 +827,7 @@ export default function Property(props) {
                     <p>{address?.location}</p>
                     <div class="w-full mt-2 md:mt-4">
                       <button
-                        className="btn sort w-full"
+                        className="btn  w-full border font-[500] border-[#4f46e5] text-[#4f46e5]"
                         onClick={fetchLocationData}
                       >
                         {loadinglocation ? ".... " : "Use Current Location"}
@@ -1033,13 +907,12 @@ export default function Property(props) {
                 <div>
                   {address?.location && (
                     <>
-                      <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
-                        Show your specific location
+                      <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold mb-4">
+                        Is the pin in the right spot?
                       </h2>
                       <p className="text-normal capitalize text-center text-gray-500 mb-8 mt-4">
-                        Make it clear to guests where your place is located.
-                        We'll only share your address after they've made a
-                        reservation
+                        Your address is only shared with guests after they've made a reservation.
+
                       </p>
                       <div>
                         <div
@@ -1076,7 +949,14 @@ export default function Property(props) {
                   setBathrooms={setBathrooms}
                 />
               </div>
-              <div className={`${step === 4 ? "" : "display-none"}`}>
+              <div
+                className={`${step === 4 ? "" : "display-none"
+                  }  m-auto table w-full`}
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                <Video step1={Step1?.step2} />
+              </div>
+              <div className={`${step === 5 ? "" : "display-none"}`}>
                 <Amenities
                   selectedAmenity={selectedAmenity}
                   standoutAmenity={standoutAmenity}
@@ -1087,11 +967,10 @@ export default function Property(props) {
                 />
               </div>
               <div
-                className={`${
-                  step === 5 ? "" : "display-none"
-                } max-w-[600px] m-auto`}
+                className={`${step === 6 ? "" : "display-none"
+                  } max-w-[600px] m-auto`}
               >
-                <h2 className="text-xl md:text-2xl  capitalize lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
+                <h2 className="text-xl md:text-2xl  capitalize lg:text-3xl text-center mt-4 font-bold  mb-4">
                   Add some photos of your{" "}
                   {PType ? PType.replace("_", " ") : "house"}
                 </h2>
@@ -1135,9 +1014,18 @@ export default function Property(props) {
                     {useExistingImages === false || isEdit === true ? (
                       <> </>
                     ) : (
+
                       images &&
                       images.length > 0 && (
                         <>
+                          <div>
+                            <h3 className="text-[22px]  capitalize text-center mt-4 font-bold  ">
+                              Ta-da! How does this look?
+                            </h3>
+                            <p className="mb-4 text-[16px] text-[#222222]">
+                              Drag to reorder
+                            </p>
+                          </div>
                           <div
                             key={0}
                             id={images[0].name}
@@ -1336,11 +1224,141 @@ export default function Property(props) {
                   )}
                 </div>
               </div>
-              <div className={`${step === 6 ? "" : "display-none"}`}>
-                <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4">
+              <div
+                className={`${step === 7 ? "" : "display-none"
+                  } max-w-[600px] m-auto`}
+              >
+                <div>
+                  <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold mb-4">
+                    Now, let's give your house a title
+                  </h2>
+                  <p>
+                    Short titles work best. Have fun with it – you can always change it later.
+                  </p>
+                  <div className="mt-2 md:mt-4">
+                    <textarea
+                      required
+                      id="about"
+                      name="name"
+                      minCol={"5"}
+                      minRow={"5"}
+                      value={item?.name}
+                      onChange={handleInputChange}
+                      className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-xl shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
+                    />
+                    <div className="flex flex-wrap justify-between">
+                      <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
+                        {item?.name ? (
+                          <span>{item?.name.length}/32 characters</span>
+                        ) : (
+                          <span>0/32 characters</span>
+                        )}
+                      </label>
+                      <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
+                        Minimum 32 words.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className={`${step === 8 ? "" : "display-none"
+                  } max-w-[600px] m-auto`}
+              >
+                <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold mb-4">
+                  Create your description
+                </h2>
+                <p>
+                  Share what makes your place special.
+                </p>
+                <div className="mt-2 md:mt-4">
+                  <textarea
+                    required
+                    id="about"
+                    name="about"
+                    minCol={"8"}
+                    minRow={"8"}
+                    value={item?.about}
+                    onChange={handleInputChange}
+                    placeholder="You'll have a great time at this comfortable place to stay."
+                    className="mt-1 block w-full border border-gray-300 bg-white min-h-[250px] rounded-xl shadow-sm focus:outline-0 focus:border-indigo-500  text-normal p-4"
+                  />
+                  <div className="flex flex-wrap justify-between">
+                    <label className="block text-sm mb-2 font-medium text-start text-gray-700 mt-3">
+                      {item?.about ? (
+                        <span>{item?.about.length}/500 characters</span>
+                      ) : (
+                        <span>0/500 characters</span>
+                      )}
+                    </label>
+                    <label className="block text-sm mb-2 font-medium text-end text-gray-700 mt-3">
+                      Minimum 500 words.
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div
+                className={`${step === 9 ? "" : "display-none"
+                  }  m-auto table w-full`}
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                <Video step1={Step1?.step3} />
+              </div>
+              <div className={`${step === 10 ? "" : "display-none"
+                }  m-auto table w-full`} >
+                <div className="flex items-center justify-center min-h-screen">
+                  <div className="w-full max-w-md">
+                    <div className="space-y-6">
+                      <div className="text-center">
+                        <div style={{ animationDelay: '400ms' }}>
+                          <h1 className="text-3xl font-bold" tabIndex="-1">Now, set your price</h1>
+                          <div>
+                            <span className="text-gray-500">You can change it anytime.</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-6">
+                        <div style={{ animationDelay: '449.741ms' }}>
+                          <div className="relative" style={{ height: 'auto', visibility: 'var(--view-transition_visibility, visible)', width: '100%' }}>
+                            <div className="text-4xl font-bold" style={{ lineHeight: '86.5981px', letterSpacing: '-2.07663px' }}>
+                              <div className="flex items-center">
+                                <span>₹</span>
+                                <span className="ml-1" aria-hidden="true">{item?.price}</span>
+                                <span className="text-xl font-medium">Price per night</span>
+
+                              </div>
+                              <div>
+                                <label className="block text-left" htmlFor="lys-base-price-input">
+                                  <div className="mt-2 flex items-center">
+
+                                    <input
+                                      data-testid="lys-base-price-input"
+                                      inputMode="numeric"
+                                      className="ml-2 p-2 border border-gray-300 rounded"
+                                      id="lys-base-price-input"
+                                      autoComplete="off"
+                                      type="number"
+                                      aria-describedby=""
+                                      name="price"
+                                      value={item?.price}
+                                      onChange={handleInputChange}
+                                    />
+                                  </div>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div className="">
                   <h2 className="text-xl md:text-2xl lg:text-3xl capitalize text-center mt-4 font-bold md:mb-8 mb-4">
                     Please enter the following details
                   </h2>
+
                   <div className="flex flex- flex-wrap justify-between mt-4 text-sm font-medium text-gray-700 ">
                     <div className="w-full px-1 md:w-1/3 ">
                       <div className="flex flex-col w-full md:mb-0 mb-2">
@@ -1353,20 +1371,6 @@ export default function Property(props) {
                           id="cleaning"
                           className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
                           value={item?.cleaning}
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                    </div>
-                    <div className="w-full px-1 md:w-1/3">
-                      <div className="flex flex-col w-full md:mb-0 mb-2">
-                        <label>Pet Fees (Per Pet Fees)</label>
-                        <input
-                          type="number"
-                          name="pet"
-                          placeholder="Per Pet Fees"
-                          id="pet"
-                          className="mt-1 p-3 px-4 focus:outline-0 border rounded-xl w-full"
-                          value={item?.pet}
                           onChange={handleInputChange}
                         />
                       </div>
@@ -1388,465 +1392,122 @@ export default function Property(props) {
                     </div>
                   </div>
                 </div>
-
-                <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4 ">
-                  <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4 capitalize">
-                    Check-in & checkout times
-                  </h2>
-                  <div className="flex flex- flex-wrap justify-between mt-4 text-sm font-medium text-gray-700 ">
-                    <div className="w-full md:w-2/3 mb-2 pr-2">
-                      <label className="block mb-2 font-semibold">
-                        Check-in window
-                      </label>
-                      <div className="flex justify-between space-x-2">
-                        <div className="w-1/2 relative">
-                          <label className="absolute -top-1 left-1 text-xs text-gray-500">
-                            Start time
-                          </label>
-                          <select
-                            value={checkinStart}
-                            onChange={(e) => setCheckinStart(e.target.value)}
-                            className="block w-full px-3 py-3 border bg-white rounded-xl shadow-sm sm:text-sm mt-3"
-                          >
-                            <option value="00:00:00">12:00 AM</option>
-                            <option value="01:00:00">01:00 AM</option>
-                            <option value="02:00:00">02:00 AM</option>
-                            <option value="03:00:00">03:00 AM</option>
-                            <option value="04:00:00">04:00 AM</option>
-                            <option value="05:00:00">05:00 AM</option>
-                            <option value="06:00:00">06:00 AM</option>
-                            <option value="07:00:00">07:00 AM</option>
-                            <option value="08:00:00">08:00 AM</option>
-                            <option value="09:00:00">09:00 AM</option>
-                            <option value="10:00:00">10:00 AM</option>
-                            <option value="11:00:00">11:00 AM</option>
-                            <option value="12:00:00">12:00 PM</option>
-                            <option value="13:00:00">01:00 PM</option>
-                            <option value="14:00:00">02:00 PM</option>
-                            <option value="15:00:00">03:00 PM</option>
-                            <option value="16:00:00">04:00 PM</option>
-                            <option value="17:00:00">05:00 PM</option>
-                            <option value="18:00:00">06:00 PM</option>
-                            <option value="19:00:00">07:00 PM</option>
-                            <option value="20:00:00">08:00 PM</option>
-                            <option value="21:00:00">09:00 PM</option>
-                            <option value="22:00:00">10:00 PM</option>
-                            <option value="23:00:00">11:00 PM</option>
-                          </select>
-                        </div>
-                        <div className="w-1/2 relative">
-                          <label className="absolute -top-1 left-1 text-xs text-gray-500">
-                            End time
-                          </label>
-                          <select
-                            value={checkinEnd}
-                            onChange={(e) => setCheckinEnd(e.target.value)}
-                            className="block w-full px-3 py-3 border  bg-white rounded-xl shadow-sm sm:text-sm mt-3"
-                          >
-                            <option value="flexible">Flexible</option>
-                            <option value="00:00">12:00 AM</option>
-                            <option value="01:00">01:00 AM</option>
-                            <option value="02:00">02:00 AM</option>
-                            <option value="03:00">03:00 AM</option>
-                            <option value="04:00">04:00 AM</option>
-                            <option value="05:00">05:00 AM</option>
-                            <option value="06:00">06:00 AM</option>
-                            <option value="07:00">07:00 AM</option>
-                            <option value="08:00">08:00 AM</option>
-                            <option value="09:00">09:00 AM</option>
-                            <option value="10:00">10:00 AM</option>
-                            <option value="11:00">11:00 AM</option>
-                            <option value="12:00">12:00 PM</option>
-                            <option value="13:00">01:00 PM</option>
-                            <option value="14:00">02:00 PM</option>
-                            <option value="15:00">03:00 PM</option>
-                            <option value="16:00">04:00 PM</option>
-                            <option value="17:00">05:00 PM</option>
-                            <option value="18:00">06:00 PM</option>
-                            <option value="19:00">07:00 PM</option>
-                            <option value="20:00">08:00 PM</option>
-                            <option value="21:00">09:00 PM</option>
-                            <option value="22:00">10:00 PM</option>
-                            <option value="23:00">11:00 PM</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="w-full md:w-1/3 ">
-                      <label className="block mb-2 font-semibold sm:mb-[20px]">
-                        Check-out time
-                      </label>
-                      <select
-                        value={checkout}
-                        onChange={(e) => setCheckout(e.target.value)}
-                        className="mt-1 block w-full px-3 py-3 border border-gray-300 bg-white rounded-xl shadow-sm sm:text-sm mt-2"
-                      >
-                        <option value="00:00:00">12:00 AM</option>
-                        <option value="01:00:00">01:00 AM</option>
-                        <option value="02:00:00">02:00 AM</option>
-                        <option value="03:00:00">03:00 AM</option>
-                        <option value="04:00:00">04:00 AM</option>
-                        <option value="05:00:00">05:00 AM</option>
-                        <option value="06:00:00">06:00 AM</option>
-                        <option value="07:00:00">07:00 AM</option>
-                        <option value="08:00:00">08:00 AM</option>
-                        <option value="09:00:00">09:00 AM</option>
-                        <option value="10:00:00">10:00 AM</option>
-                        <option value="11:00:00">11:00 AM</option>
-                        <option value="12:00:00">12:00 PM</option>
-                        <option value="13:00:00">01:00 PM</option>
-                        <option value="14:00:00">02:00 PM</option>
-                        <option value="14:00:00">02:00 PM</option>
-                        <option value="15:00:00">03:00 PM</option>
-                        <option value="16:00:00">04:00 PM</option>
-                        <option value="17:00:00">05:00 PM</option>
-                        <option value="18:00:00">06:00 PM</option>
-                        <option value="19:00:00">07:00 PM</option>
-                        <option value="20:00:00">08:00 PM</option>
-                        <option value="21:00:00">09:00 PM</option>
-                        <option value="22:00:00">10:00 PM</option>
-                        <option value="23:00:00">11:00 PM</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="max-w-[100%] m-auto w-full md:mt-10 mt-4">
-                  <h2 className="text-xl md:text-2xl lg:text-3xl text-center mt-2 font-bold md:mb-8 mb-4 capitalize">
-                    please select Property Status
-                  </h2>
-                  <div className="flex items-center space-x-4 md-4 md:mb-8">
-                    <label className="flex items-center space-x-2 sm:text-[1.15rem] text-[17px] font-normal   ">
-                      <input
-                        type="radio"
-                        value={1}
-                        checked={selectedOption === 1}
-                        onChange={handleOptionChange}
-                        className="form-radio"
-                      />
-                      <span className="">List Property</span>
-                    </label>
-                    <label className="flex items-center space-x-2 sm:text-[1.15rem] text-[17px] font-normal">
-                      <input
-                        type="radio"
-                        value={0}
-                        checked={selectedOption === 0}
-                        onChange={handleOptionChange}
-                        className="form-radio "
-                      />
-                      <span>Unlist Property</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <div className={`${step === 7 ? "" : "display-none"}`}>
-                <CancelPolicy
-                  showFirm={showFirm}
-                  setShowFirm={setShowFirm}
-                  setShowFlexible={setShowFlexible}
-                  selectedPolicy={selectedPolicy}
-                  setSelectedPolicy={setSelectedPolicy}
-                  showFlexible={showFlexible}
-                  longTermPolicy={longTermPolicy}
-                  setLongTermPolicy={setLongTermPolicy}
-                />
-              </div>
-              <div className={`${step === 8 ? "" : "display-none"}`}>
-                <HouseRules
-                  petsAllowed={petsAllowed}
-                  setPetsAllowed={setPetsAllowed}
-                  quietHours={quietHours}
-                  pets={pets}
-                  setPets={setPets}
-                  checkinTime={checkinquet}
-                  setCheckinTime={setCheckinquiet}
-                  checkoutTime={checkoutquet}
-                  setCheckoutTime={setCheckoutquiet}
-                  setEventsAllowed={setEventsAllowed}
-                  setQuietHours={setQuietHours}
-                  eventsAllowed={eventsAllowed}
-                  PhotographyAllowed={PhotographyAllowed}
-                  setPhotographyAllowed={setPhotographyAllowed}
-                  smokingAllowed={smokingAllowed}
-                  setSmokingAllowed={setSmokingAllowed}
-                />
-                <div className="flex flex-col  py-4">
-                  <label
-                    htmlFor="directions"
-                    className="block font-medium text-gray-700"
-                  >
-                    Additonal Rules
-                  </label>
-                  <textarea
-                    id="directions"
-                    name="additonalrule"
-                    rows={5}
-                    className="shadow-sm p-4 py-2 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
-                    placeholder="Enter directions here..."
-                    value={item?.additonalrule}
-                    onChange={handleInputChange}
-                  />
-                </div>
               </div>
               <div
-                className={`${
-                  step === 9 ? "" : "display-none"
-                } max-w-[100%] m-auto  w-full `}
+                className={`${step === 11 ? "" : "display-none"} m-auto w-full`}
+                style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
               >
-                <div className="flex flex-col mb-4">
-                  <label
-                    htmlFor="directions"
-                    className="capitalize text-lg font-bold my-1"
-                  >
-                    Directions
-                  </label>
-                  <textarea
-                    id="directions"
-                    name="Direction"
-                    rows={5}
-                    className="shadow-sm p-4 py-2 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
-                    placeholder="Enter directions here..."
-                    value={item?.Direction}
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div className="flex flex-col mb-4">
-                  <label
-                    htmlFor="directions"
-                    className="capitalize text-lg font-bold my-1"
-                  >
-                    House Manual
-                  </label>
-                  <textarea
-                    id="manual"
-                    name="housemanual"
-                    rows={5}
-                    className="shadow-sm p-4 py-2 w-full mt-1 block sm:text-sm border rounded-xl"
-                    placeholder="Enter some instructions for your guest..."
-                    value={item?.housemanual}
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div className="flex flex-col  ">
-                  <h1 className="capitalize text-lg font-bold my-4">
-                    Please enter your wifi details
-                  </h1>
-                  <label
-                    htmlFor="directions"
-                    className="block font-medium text-gray-700 my-2"
-                  >
-                    Wifi Name
-                  </label>
-                  <input
-                    id="wifi"
-                    name="wifi"
-                    type="text"
-                    className="shadow-sm p-4 py-2 w-full mt-1 block sm:text-sm border rounded-xl"
-                    placeholder="Enter your wifi name..."
-                    value={item?.wifi}
-                    onChange={handleInputChange}
-                  />
-                  <label
-                    htmlFor="directions"
-                    className="block font-medium text-gray-700 my-2"
-                  >
-                    Wifi Password
-                  </label>
-                  <input
-                    id="wifiPassword"
-                    name="wifiPassword"
-                    type="text"
-                    className="shadow-sm p-4 py-2 w-full mt-1 block text-[16px] md:text-lg border rounded-xl"
-                    placeholder="Enter your wifi Password here..."
-                    value={item?.wifiPassword}
-                    onChange={handleInputChange}
-                  />
-                </div>
-
-                <div className="flex flex-col mb-2">
-                  <h1 className="capitalize text-lg font-bold my-4">
-                    Discount offer (%){" "}
-                  </h1>
-                  <label className="flex items-center space-x-2 text-xl font-normal">
-                    <input
-                      className="p-4 py-2 w-36 md:w-full mt-1 block text-[16px] md:text-lg border border-[#ccc] rounded-md"
-                      placeholder="% Discount offer"
-                      type="number"
-                      name="discount"
-                      value={item?.discount}
-                      onChange={handleInputChange}
-                    />
-                  </label>
-                </div>
-              </div>
-
-              <div
-                className={`${
-                  step === 10 ? "" : "display-none"
-                } max-w-[100%] m-auto w-full `}
-              >
-                <div className="flex flex-col mb-2">
-                  <label
-                    htmlFor="customLink"
-                    className="text-[20px] md:text-2xl font-bold"
-                  >
-                    Custom Link
-                  </label>
-                  <div className="relative mt-2 mb-4">
-                    <div className="flex w-full">
-                      <span className="inline-block bg-gray-200 p-2 rounded-l flex-shrink-0">
-                        {baseurl}
-                      </span>
-                      <input
-                        type="text"
-                        className="form-control flex-1 py-2 px-4 border border-l-0 rounded-r"
-                        id="customLink"
-                        name="customLink"
-                        aria-describedby="basic-addon3"
-                        placeholder="Enter your custom link here"
-                        value={item.customLink}
-                        onChange={handleInputChange}
-                      />
-                      <svg
-                        onClick={copyToClipboard}
-                        className="cursor-pointer h-7 w-7 absolute right-2 top-2"
-                        viewBox="0 0 448 512"
-                      >
-                        <path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" />
-                      </svg>
+                <div className="transition-opacity duration-600 mb-8">
+                  <div className="space-y-4">
+                    <div className="flex flex-col items-start space-y-2" style={{ animationDelay: '400ms' }}>
+                      <h1 className="text-2xl font-bold" tabIndex="-1">Decide how you’ll confirm reservations</h1>
                     </div>
-                    <div className="text-right text-sm text-gray-500">
-                      {baseurl.length + item.customLink.length}/{100}
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col mb-2">
-                  <div className="flex flex-col md:flex-row ">
-                    {/* Left Panel */}
-                    <div className="md:w-1/2 pr-2 flex flex-col mb-3">
-                      <div className=" items-center">
-                        <h2 className="text-[20px] md:text-2xl font-bold capitalize">
-                          Select a check-in method
-                        </h2>
-                      </div>
-                      <div className="space-y-4 mt-4 w-full">
-                        {options &&
-                          options.map((item, index) => (
-                            <div
-                              key={index}
-                              className={`p-4 border rounded-lg cursor-pointer ${
-                                selectedMethod === item?.item
-                                  ? "border-indigo-600"
-                                  : "border-gray-300"
-                              }`}
-                              onClick={() => handleMethodSelect(item?.item)}
-                            >
-                              {item?.icon}
-                              <span className="my-4 text-xl font-semibold capitalize">
-                                {item?.item}
-                              </span>
-                              <p className="text-gray-500">{item?.data}</p>
+                    <div className="space-y-4">
+                      <div className="flex flex-col space-y-4" role="radiogroup">
+                        <div className="flex items-center space-x-4" style={{ '--list_animation-delay': '400ms' }}>
+                          <button
+                            className={`flex items-center space-x-4 p-4 border rounded-lg ${selectbooking === 0 ? 'border-black' : 'border-gray-300'}`}
+                            type="button"
+                            role="radio"
+                            aria-checked={selectbooking === 0}
+                            onClick={() => handleBookingChange(0)}
+                          >
+                            <div className="flex flex-col space-y-1">
+                              <h2 className="text-lg font-semibold">Use instant Book</h2>
+                              <div className="text-gray-600">Guests can book automatically.</div>
                             </div>
-                          ))}
-                      </div>
-                    </div>
-                    {/* Right Panel */}
-                    <div className="md:w-1/2 pl-2">
-                      <h2 className="text-[20px] md:text-2xl font-bold mb-2 sm:mb-4 capitalize">
-                        Add {selectedMethod} details
-                      </h2>
-                      <textarea
-                        className="w-full p-2 border border-gray-300 rounded-lg"
-                        rows="10"
-                        name="checkdescrtion"
-                        value={checkdescrtion}
-                        onChange={handlecheckChange}
-                        placeholder={`Add any important details for getting inside your place. This info will be shared with guests 24-48 hours before check-in.`}
-                      />
-                      <div className="flex justify-between items-center ">
-                        <p className="text-gray-500">
-                          Shared 48 hours before check-in
-                        </p>
-                        <div></div>
+                            <div className="flex-shrink-0">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" className="h-8 w-8 fill-current text-black">
+                                <path d="M17.16 1.46L6.19 17.42l-.1.17c-.05.12-.06.18-.08.4l.04.13c.19.65.23.67.97.88H13v10.97l.04.22c.05.28.1.33.4.61l.27.09c.51.16.59.1 1.13-.35l10.97-15.96.1-.18c.05-.11.06-.17.08-.39l-.04-.13c-.19-.66-.23-.67-.97-.88H19V2.03l-.04-.22c-.05-.28-.1-.33-.4-.61l-.27-.09c-.51-.16-.59-.1-1.13.35zM17 5.22V15h6.1L15 26.78V17H8.9L17 5.22z"></path>
+                              </svg>
+                            </div>
+                          </button>
+                        </div>
+                        <div className="flex items-center space-x-4" style={{ '--list_animation-delay': '449.7412007086385ms' }}>
+                          <button
+                            className={`flex items-center space-x-4 p-4 border rounded-lg ${selectbooking === 1 ? 'border-black' : 'border-gray-300'}`}
+                            type="button"
+                            role="radio"
+                            aria-checked={selectbooking === 1}
+                            onClick={() => handleBookingChange(1)}
+                          >
+                            <div className="flex flex-col space-y-1">
+                              <h2 className="text-lg font-semibold">Approve or decline requests</h2>
+                              <div className="text-gray-600">Guests must ask if they can book.</div>
+                            </div>
+                            <div className="flex-shrink-0">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" className="h-8 w-8 fill-current text-black">
+                                <path d="M26 1a5 5 0 0 1 5 4.78v10.9a5 5 0 0 1-4.78 5H26a5 5 0 0 1-4.78 5h-4l-3.72 4.36-3.72-4.36H6a5 5 0 0 1-4.98-4.56L1 21.9 1 21.68V11a5 5 0 0 1 4.78-5H6a5 5 0 0 1 4.78-5H26zm-5 7H6a3 3 0 0 0-3 2.82v10.86a3 3 0 0 0 2.82 3h4.88l2.8 3.28 2.8-3.28H21a3 3 0 0 0 3-2.82V11a3 3 0 0 0-3-3zm-1 10v2H6v-2h14zm6-15H11a3 3 0 0 0-3 2.82V6h13a5 5 0 0 1 5 4.78v8.9a3 3 0 0 0 3-2.82V6a3 3 0 0 0-2.82-3H26zM15 13v2H6v-2h9z"></path>
+                              </svg>
+                            </div>
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col  "></div>
-              </div>
-
-              <div
-                className={`${
-                  step === 11 ? "" : "display-none"
-                } max-w-[100%] m-auto w-full `}
-              >
-                <div className="flex  flex-col mb-2">
-                  <Checkout
-                    handleSubmit={handleSubmit}
-                    selectedInstruction={selectedInstruction}
-                    isEdit={true}
-                    checkoutdata={check_out_instruction}
-                    setShowTextArea={setShowTextArea}
-                    showTextArea={showTextArea}
-                    text={text}
-                    setText={setText}
-                    setSelectedInstruction={setSelectedInstruction}
-                    setShowInstructions={setShowInstructions}
-                    setCheckoutInstructions={setCheckoutInstructions}
-                    checkoutInstructions={checkoutInstructions}
-                    showInstructions={showInstructions}
-                  />
+                <div className="flex flex-col space-y-2">
+                  <div className="flex flex-col items-start space-y-2" style={{ animationDelay: '400ms' }}>
+                    <h1 className="text-2xl font-bold" tabIndex="-1">Select Proerty Type (BHK)</h1>
+                  </div>
+                  <div className="flex space-x-4">
+                    {[1, 2, 3, 4].map((option) => (
+                      <label key={option} className="flex items-center space-x-2">
+                        <input
+                          type="radio"
+                          value={option}
+                          checked={selecbhktype === option}
+                          onChange={() => handleselecbhktype(option)}
+                          className="form-radio text-blue-600"
+                        />
+                        <span>{option} BHK</span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex flex-col  "></div>
-              </div>
-
-              <div className="pt-2 flex justify-between max-w-[500px] table m-auto">
-                {step == 0 ? (
-                  <> </>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={prevStep}
-                    className=" mx-2 py-2 rounded-xl px-8 mt-4 hover:bg-[#c48b58] text-[#c48b58] border-2 border-[#c48b58] hover:border-[#c48b58] hover:text-[#fff]"
-                  >
-                    Back
-                  </button>
-                )}
-
-                {step < 11 ? (
-                  <button
-                    type="button"
-                    onClick={nextStep}
-                    className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#fff] bg-[#c48b58] text-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58]  "
-                  >
-                    Next
-                  </button>
-                ) : (
-                  <button
-                    type="submit"
-                    onClick={handleSubmit}
-                    className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#fff] bg-[#c48b58] text-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58]  "
-                  >
-                    {Loading ? "processing.. " : "Submit"}
-                  </button>
-                )}
               </div>
             </div>
           </div>
         </div>
       </div>
-      {isEdit && !stepdata ? (
-        <> </>
-      ) : (
-        <div className="max-w-4xl w-full space-y-8 w-full px-2  m-auto w-full px-2">
-          <button
-            onClick={handleSubmit}
-            className="inline-flex mx-2 justify-center py-2 px-8 border-2 border-[#c48b58] shadow-sm text-lg font-medium rounded-full text-white bg-[#c48b58] hover:bg-[#fff] hover:text-[#c48b58]"
-          >
-            {Loading ? "Processing..." : "Save / Exit"}
-          </button>
+      <div className="bar-btn-dono fixed w-[calc(100%-260px)] bottom-0 right-[20px] bg-[#fff]">
+        <div className="w-full bg-gray-200  h-[6px] dark:bg-gray-700">
+          <div className="bg-[#4f46e5] h-[6px] " style={{ width: `${progress}%` }}></div>
         </div>
-      )}
+        <div className="p-[9px] flex justify-between m-auto">
+
+          {step == 0 ? (
+            <> </>
+          ) : (
+            <button
+              type="button"
+              onClick={prevStep}
+              className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#4f46e5] text-[#4f46e5] border-2 border-[#4f46e5] hover:border-[#4f46e5] hover:text-[#fff]"
+            >
+              Back
+            </button>
+          )}
+
+          {step < 11 ? (
+            <button
+              type="button"
+              onClick={nextStep}
+              className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#fff] bg-[#4f46e5] text-[#fff] hover:text-[#4f46e5] border-2 bg-color-[#4f46e5] border-[#4f46e5]  "
+            >
+              Next
+            </button>
+          ) : (
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              className=" mx-2 py-2 rounded-xl px-8 hover:bg-[#fff] bg-[#4f46e5] text-[#fff] hover:text-[#4f46e5] border-2 bg-color-[#4f46e5] border-[#4f46e5]  "
+            >
+
+              {Loading ? "processing.. " : "Submit"}
+            </button>
+          )}
+        </div>
+      </div>
     </>
   );
 }

@@ -652,6 +652,7 @@ export default function Edit() {
     formData.append("pet_fee", item?.pet);
     formData.append("flexible_check_in", checkinEnd);
     formData.append("check_in", checkinStart);
+    formData.append("bhk_type",selecbhktype)
     formData.append("check_out", checkout);
     formData.append("status", selectedOption);
     formData.append("standard_policy", selectedPolicy);

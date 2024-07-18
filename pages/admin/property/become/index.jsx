@@ -10,7 +10,6 @@ import Image from "next/image";
 import Property from "../add/Property";
 
 function Index() {
-  const Admin = "Admin name";
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isimage, setisimage] = useState(false);
   const [openAddPage, setOpenAddPage] = useState(false);
