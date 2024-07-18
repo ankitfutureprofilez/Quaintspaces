@@ -290,80 +290,80 @@ export default function Property(props) {
 
   const prevStep = () => setStep((prev) => prev - 1);
   const nextStep = async () => {
-    if (step === 1 && PType == "") {
-      toast.error("Please choose a property type which one you want to list.");
-    }
-    if (step === 2 && (address?.pin === "" ||
-      address?.pin?.length < 5 ||
-      address?.state === "" ||
-      address?.city === "" ||
-      address?.street_address === "" ||
-      address?.district === "")
-    ) {
-      toast.error(`Incomplete address. Please enter complete address.`);
-      return false;
-    }
-    if (step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (step === 1 && PType == "") {
+    //   toast.error("Please choose a property type which one you want to list.");
+    // }
+    // if (step === 2 && (address?.pin === "" ||
+    //   address?.pin?.length < 5 ||
+    //   address?.state === "" ||
+    //   address?.city === "" ||
+    //   address?.street_address === "" ||
+    //   address?.district === "")
+    // ) {
+    //   toast.error(`Incomplete address. Please enter complete address.`);
+    //   return false;
+    // }
+    // if (step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
-    if (step == 5 && selectedAmenity && Amenity &&
-      standoutAmenity &&
-      selectedAmenity.length + Amenity.length + standoutAmenity.length < 4
-    ) {
-      toast.error("Please choose at least 4 amenities.");
-      return false;
-    }
-    if (isEdit && step === 6 && images?.length + imageproperty?.length < 5) {
-      toast.error("Please select at least five images.");
-      return false;
-    }
+    // if (step == 5 && selectedAmenity && Amenity &&
+    //   standoutAmenity &&
+    //   selectedAmenity.length + Amenity.length + standoutAmenity.length < 4
+    // ) {
+    //   toast.error("Please choose at least 4 amenities.");
+    //   return false;
+    // }
+    // if (isEdit && step === 6 && images?.length + imageproperty?.length < 5) {
+    //   toast.error("Please select at least five images.");
+    //   return false;
+    // }
 
-    if (
-      step === 7 &&
-      (!item?.name ||
-        item?.name?.trim()?.length === 0 ||
-        item?.name?.length < 5)
-    ) {
-      toast.error(
-        "Property title is too short. title should be a minimum of 5 words."
-      );
-      return false;
-    }
+    // if (
+    //   step === 7 &&
+    //   (!item?.name ||
+    //     item?.name?.trim()?.length === 0 ||
+    //     item?.name?.length < 5)
+    // ) {
+    //   toast.error(
+    //     "Property title is too short. title should be a minimum of 5 words."
+    //   );
+    //   return false;
+    // }
 
-    if (
-      step === 8 &&
-      (!item?.about ||
-        item?.about?.trim()?.length === 0 ||
-        item?.about?.length < 100)
-    ) {
-      toast.error(
-        "Property description is too short. Description should be a minimum of 100 words."
-      );
-      return false;
-    }
+    // if (
+    //   step === 8 &&
+    //   (!item?.about ||
+    //     item?.about?.trim()?.length === 0 ||
+    //     item?.about?.length < 100)
+    // ) {
+    //   toast.error(
+    //     "Property description is too short. Description should be a minimum of 100 words."
+    //   );
+    //   return false;
+    // }
 
-    if (
-      step === 10 &&
-      (item?.cleaning === "" || item?.extra_guest === "" || item?.about === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (
-      step === 10 && item?.price != "" && item?.price < 0) {
-      toast.error(`Invalid Price`);
-      return false;
-    }
+    // if (
+    //   step === 10 &&
+    //   (item?.cleaning === "" || item?.extra_guest === "" || item?.about === "")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (
+    //   step === 10 && item?.price != "" && item?.price < 0) {
+    //   toast.error(`Invalid Price`);
+    //   return false;
+    // }
 
-    if (
-      step === 11 &&
-      (selectbooking === "" || selecbhktype === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (
+    //   step === 11 &&
+    //   (selectbooking === "" || selecbhktype === "")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
     setStep((prev) => prev + 1);
   };
   const [locationupdate, setLocationupdate] = useState([]);
