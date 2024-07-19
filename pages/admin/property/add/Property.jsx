@@ -446,6 +446,8 @@ export default function Property(props) {
     }
   };
 
+
+  
   const fetchLocation = async () => {
     const formattedAddress = `${address.street_address}, ${address.nearby}, ${address.district}, ${address.city}, ${address.state}, ${address.pin}`;
     try {
