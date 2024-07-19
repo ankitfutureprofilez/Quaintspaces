@@ -702,7 +702,7 @@ export default function Property(props) {
         </div>
       )}
       <div
-        className={`w-full overflow-hidden	min-h-[calc(100vh-201px)] flex items-center justify-center pb-8 md:pb-24 `}
+        className={`w-full overflow-hidden	min-h-[calc(100vh-201px)] flex items-center justify-center pb-24   `}
       >
         <div className="">
           <div
@@ -720,7 +720,7 @@ export default function Property(props) {
               </div> */}
               <div
                 className={`${step === 0 ? "" : "display-none"
-                  }  m-auto table w-full`}
+                  }  m-auto table w-full flex-wrap`}
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <Video step1={Step1?.step1} />
@@ -1470,7 +1470,7 @@ export default function Property(props) {
           </div>
         </div>
       </div>
-      <div className="bar-btn-dono fixed w-[calc(100%-260px)] bottom-0 right-[20px] bg-[#fff]">
+      <div className="bar-btn-dono fixed w-full md:w-[calc(100%-260px)] left-0 md:left-auto bottom-0 right-[20px] bg-[#fff]">
         <div className="w-full bg-gray-200  h-[6px] dark:bg-gray-700">
           <div className="bg-[#4f46e5] h-[6px] " style={{ width: `${progress}%` }}></div>
         </div>

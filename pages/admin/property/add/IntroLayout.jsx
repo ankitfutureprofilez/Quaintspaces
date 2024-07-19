@@ -2,28 +2,28 @@ function IntroLayout() {
     return (<>
 
         <div className="introdution h-[calc(100vh-11rem)]">
-            <div className=" flex h-full items-center">
+            <div className="flex items-center">
                 <div className="" style={{ transition: "opacity 0.6s" }}>
                     <div className="">
                         <span style={{ fontSize: 0 }}></span>
-                        <div className="flex items-center p-[50px]">
-                            <div className="w-1/2">
-                                <h1 className="text-[55px] font-[500] text-[#222222] " >
+                        <div className="flex flex-wrap items-center lg:p-[30px] xl:p-[50px]">
+                            <div className="w-full lg:w-1/2">
+                                <h1 className="mt-3 mb-3 xl:mt-0 xl:mb-0 text-3xl lg:text-4xl xl:text-[50px] lg:leading-[50px] xl:leading-[70px] font-[500] text-[#222222] " >
                                     It’s easy to get started on quant space
                                 </h1>
                             </div>
-                            <div className="w-1/2">
+                            <div className="w-full lg:w-1/2">
                                 <div>
-                                    <div className="flex justify-between border-b p-[25px]">
-                                        <div className="">
-                                            <h2 className="text-[22px] text-[#222222] mb-[8px] font-[600]"><span className="mr-3">1</span> Tell us about your place</h2>
-                                            <p className="text-[16px] text-[#222222]  ml-[28px]">
+                                    <div className="flex flex-wrap  justify-between border-b px-3 py-3 lg:px-4 lg:py-4 xl:p-[25px]">
+                                        <div className="w-8/12 lg:w-9/12">
+                                            <h2 className="text-[18px] lg:text-[20px] text-[#222222] mb-[8px] font-[600]"><span className="mr-3">1</span> Tell us about your place</h2>
+                                            <p className="text-[14px] lg:text-[16px] text-[#222222]  ml-[28px]">
                                                 Share some basic info, such as where it is and how many
                                                 guests can stay.
                                             </p>
                                         </div>
                                         <div
-                                                className=" w-[120px] ml-[30px]"
+                                                className="w-4/12 lg:w-3/12 pl-[20px]"
                                                 role="presentation"
                                                 aria-hidden="true"
                                                 style={{
@@ -34,7 +34,7 @@ function IntroLayout() {
                                                 }}
                                             >
                                                 <img
-                                                    className=""
+                                                    className="max-w-full"
                                                     aria-hidden="true"
                                                     decoding="async"
                                                     elementtiming="LCP-target"
@@ -55,16 +55,16 @@ function IntroLayout() {
                                                 ></div>
                                         </div>
                                     </div>
-                                    <div className="flex justify-between border-b p-[25px]">
-                                        <div className="">
-                                            <h2 className="text-[22px] text-[#222222] mb-[8px] font-[600]"><span className="mr-3">2</span>Make it stand out</h2>
-                                            <p className="text-[16px] text-[#222222]  ml-[28px]">
+                                    <div className="flex flex-wrap  justify-between border-b px-3 py-3 lg:px-4 lg:py-4 xl:p-[25px]">
+                                        <div className="w-8/12 lg:w-9/12">
+                                            <h2 className="text-[18px] lg:text-[20px] text-[#222222] mb-[8px] font-[600]"><span className="mr-3">2</span>Make it stand out</h2>
+                                            <p className="text-[14px] lg:text-[16px] text-[#222222]  ml-[28px]">
                                                 Add 5 or more photos plus a title and description –
                                                 we’ll help you out.
                                             </p>
                                         </div>
                                         <div
-                                                className="w-[120px] ml-[30px]"
+                                                className="w-4/12 lg:w-3/12 pl-[20px]"
                                                 role="presentation"
                                                 aria-hidden="true"
                                                 style={{
@@ -75,7 +75,7 @@ function IntroLayout() {
                                                 }}
                                             >
                                                 <img
-                                                    className=""
+                                                    className="max-w-full"
                                                     aria-hidden="true"
                                                     decoding="async"
                                                     elementtiming="LCP-target"
@@ -96,16 +96,16 @@ function IntroLayout() {
                                                 ></div>
                                         </div>
                                     </div>
-                                    <div className="flex justify-between border-b p-[25px]">
-                                        <div className="">
-                                            <h2 className="text-[22px] text-[#222222] mb-[8px] font-[600]"><span className="mr-3">3</span>Finish up and publish</h2>
-                                            <p className="text-[16px] text-[#222222] ml-[28px]">
+                                    <div className="flex flex-wrap  justify-between border-b px-3 py-3 lg:px-4 lg:py-4 xl:p-[25px]">
+                                        <div className="w-8/12 lg:w-9/12">
+                                            <h2 className="text-[18px] lg:text-[20px] text-[#222222] mb-[8px] font-[600]"><span className="mr-3">3</span>Finish up and publish</h2>
+                                            <p className="text-[14px] lg:text-[16px] text-[#222222]  ml-[28px]">
                                                 Choose if you'd like to start with an experienced guest,
                                                 set a starting price and publish your listing.
                                             </p>
                                         </div>
                                         <div
-                                                className=""
+                                                className="w-4/12 lg:w-3/12 pl-[20px]"
                                                 role="presentation"
                                                 aria-hidden="true"
                                                 style={{
@@ -116,7 +116,7 @@ function IntroLayout() {
                                                 }}
                                             >
                                                 <img
-                                                    className="w-[120px] ml-[30px]"
+                                                    className="max-w-full"
                                                     aria-hidden="true"
                                                     decoding="async"
                                                     elementtiming="LCP-target"

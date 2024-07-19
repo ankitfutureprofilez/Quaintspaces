@@ -1519,7 +1519,7 @@ export default function Property(props) {
           </div>
         </div>
       </div>
-      <div className="bar-btn-dono fixed w-[calc(100%-260px)] bottom-0 right-[20px] bg-[#fff]">
+      <div className="bar-btn-dono fixed w-full md:w-[calc(100%-260px)] left-0 md:left-auto bottom-0  right-[20px] bg-[#fff]">
         <div className="w-full bg-gray-200  h-[6px] dark:bg-gray-700">
           <div className="bg-[#4f46e5] h-[6px] " style={{ width: `${progress}%` }}></div>
         </div>
