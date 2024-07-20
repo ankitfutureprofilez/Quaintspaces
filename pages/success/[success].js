@@ -31,7 +31,7 @@ const success = () => {
     }
   }, []);
 
-
+  console.log("record", record)
   const handleSubmit = (main, data) => {
     setloading(true);
     const parsedData = JSON.parse(data);
@@ -102,55 +102,56 @@ const success = () => {
                 ></path>
               </svg>
             </div>
-            <h2 className=" text-center mt-4">
+            <h2 className=" text-center mt-4 capitalize">
               Your Appointment Booked Successfully!
             </h2>
-            <p className="text-black-400 text-center mt-2">
+            <p className="text-black-400 text-center mt-2 capitalize">
               We have sent your booking information to your email address.
             </p>
             <div className=" pt-16 sm:text-xl text-sm   flex flex-wrap justify-center m-auto max-w-[600px]">
               <div className="w-full flex justify-between mb-4 flex-wrap  ">
-                <p className="text-black-400 font-bold ">Booking Number</p>
-                <Link href="/booking" className="text-start text-black-400 font-bold font-semibold">{record?.booking_number}</Link>
+                <p className="text-black-400 font-bold  capitalize">Booking Number</p>
+                <p className="text-start text-black-400 font-bold font-semibold" >
+                  {record?.booking_number}
+                </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold">Booking Date </p>
+                <p className="text-black-400 font-bold capitalize">Booking Date </p>
                 <p className="text-start text-black-400 font-bold font-semibold">
                   {record?.payment_date}
                 </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold">Customer Name:</p>
+                <p className="text-black-400 font-bold capitalize">Customer Name:</p>
                 <p className="text-start text-black-400 font-bold font-semibold">{record?.name}</p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-
-                <p className="text-black-400 font-bold">Property  Name:</p>
-                <p className="text-start text-black-400 font-bold font-semibold">{record?.property_name}</p>
+                <p className="text-black-400 font-bold capitalize">Property  Name:</p>
+                <p className="text-start text-black-400 font-bold font-semibold">{record?.property_name ? `${record?.property_name} / Jaipur` : <></>} </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold">Check in </p>
+                <p className="text-black-400 font-bold capitalize">Check in </p>
                 <p className="text-start text-black-400 font-bold font-semibold">{DateComponent(record?.check_in)} </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold">Check  out </p>
+                <p className="text-black-400 font-bold capitalize">Check  out </p>
                 <p className="text-start text-black-400 font-bold font-semibold">{DateComponent(record?.check_out)}</p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold">Amount Paid</p>
+                <p className="text-black-400 font-bold capitalize">Amount Paid</p>
                 <p className="text-start text-black-400 font-bold font-semibold">{formatMultiPrice(record?.price)}</p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold">Total Members (Guests & infants)</p>
+                <p className="text-black-400 font-bold capitalize">Total Members (Guests & infants)</p>
                 <p className="text-start text-black-400 font-bold font-semibold">{record?.guests} & {record?.infants} </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold">Total Pets</p>
+                <p className="text-black-400 font-bold capitalize">Total Pets</p>
                 <p className="text-start text-black-400 font-bold font-semibold">{record?.no_of_pet}</p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold">Total stay</p>
-                <p className="text-start text-black-400 font-bold font-semibold">{totalStay} days</p>
+                <p className="text-black-400 font-bold capitalize">no. of nights</p>
+                <p className="text-start text-black-400 font-bold font-semibold">{totalStay} Nights</p>
               </div>
             </div>
           </div>

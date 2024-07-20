@@ -63,7 +63,7 @@ export default function paymentHistory() {
             <thead>
               <tr>
                 <th>Payment ID</th>
-                <th>Title</th>
+                <th>Property Name</th>
                 <th>Payment Date</th>
                 <th>Check In & Out</th>
                 <th>Method</th>

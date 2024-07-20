@@ -356,9 +356,9 @@ const Book = () => {
           />
           <div className="flex mt-3 sm:mt-8 md:mt-14 px-3 gap-10 your-trip-sec">
             <div className="w-8/12">
-              <h2 className="text-xl mb-4 font-medium heading-data">
+              <h3  className="text-xl mb-4 font-medium heading-data">
                 Your Trip
-              </h2>
+              </h3>
               <div className="flex items-center justify-between w-full py-2">
                 <div>
                   <h3 className="text-lg  font-medium item-heading ">Dates</h3>
@@ -432,45 +432,13 @@ const Book = () => {
                   </div>
                 </form>
               </div>
-              <h2 className="text-[22px] mb-4 font-medium mt-11 heading-data">
+              <h3  className="text-xl mb-4 font-medium mt-10 heading-data capitalize">
                 Required for your trip
-              </h2>
+              </h3 >
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
                 <div className=" ">
-                  <h3 className="text-[18px]  item-heading mb-2">
-                    Message the host
-                  </h3>
-                  <div className="flex flex-wrap justify-between mb-5">
-                    <p className="item-pargraph">
-                      {" "}
-                      Share why you're travelling, who's coming with you and
-                      what you love about the space.
-                    </p>
-                  </div>
-                  <div className="mt-2 mb-2 sm:mb-4 flex">
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      className="mt-1 mr-1 p-2 sm:p-4 border rounded w-full"
-                      placeholder="Enter a message for your host"
-                    ></textarea>
-                    {/* <button
-                      onClick={() => {
-                        if (formData.message.length === 0) {
-                          toast.error("Mesage field is empty");
-                          setHasAddedMessage(false);
-                        } else {setHasAddedMessage(true);}
-                        setMessageField(false);
-                      }}
-                      className="w-1/6 sort btn"
-                    >
-                      Confirm
-                    </button> */}
-                  </div>
 
-                  <h1 className="text-lg item-heading mb-2">
+                <h1 className="text-lg  mb-2  font-medium item-heading">
                     Number <span className="text-red-700">*</span>
                   </h1>
                   <div className="flex flex-wrap justify-between">
@@ -505,13 +473,48 @@ const Book = () => {
                       Confirm
                     </button> */}
                   </div>
+
+                  <h3 className="  text-lg  mb-2  font-medium item-heading">
+                    Message the host
+                  </h3>
+                  <div className="flex flex-wrap justify-between mb-5">
+                    <p className="item-pargraph">
+                      {" "}
+                      Share why you're travelling, who's coming with you and
+                      what you love about the space.
+                    </p>
+                  </div>
+                  <div className="mt-2 mb-2 sm:mb-4 flex">
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      className="mt-1 mr-1 p-2 sm:p-4 border rounded w-full"
+                      placeholder="Enter a message for your host"
+                    ></textarea>
+                    {/* <button
+                      onClick={() => {
+                        if (formData.message.length === 0) {
+                          toast.error("Mesage field is empty");
+                          setHasAddedMessage(false);
+                        } else {setHasAddedMessage(true);}
+                        setMessageField(false);
+                      }}
+                      className="w-1/6 sort btn"
+                    >
+                      Confirm
+                    </button> */}
+                  </div>
+
+                 
                 </div>
               </div>
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
                 <div className="mt-4 w-full">
-                  <h1 className="text-lg heading-data mb-4 capitalize">
+                  <h3  className="text-xl mb-4 font-medium mt-10 heading-data capitalize">
                     Cancellation policy
-                  </h1>
+                  </h3>
                   <div className="flex flex-wrap justify-between">
                     <p className="item-pargraph">
                       {cancelpolicy?.text}
@@ -537,7 +540,7 @@ const Book = () => {
                   <Button
                     text={loading ? "Processing..." : "Confirm & Pay"}
                     design={
-                      "font-inter hover:bg-[#fff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 sm:p-4 p-3 rounded-full"
+                      "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 sm:p-4 p-3 rounded-full"
                     }
                     onClick={handleSubmit}
                   />
