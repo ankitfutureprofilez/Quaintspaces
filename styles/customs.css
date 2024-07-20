@@ -327,7 +327,8 @@ footer {
 }
 .tip-top-sec {
   padding: 80px 0;
-  background: #f2eadf;
+  /* background: #f2eadf; */
+  background: #e0e0b0;
 }
 .tip-top-sec .row {
   display: flex;

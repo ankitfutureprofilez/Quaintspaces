@@ -196,7 +196,7 @@ export default function Profile() {
       </div>
       <div className="container mx-auto mt-5 perso-form">
 
-      <div className="lg:w-9/12 md:w-10/12 w-full m-auto md:p-12 sm:p-8 p-6 shadow-[0_0_17px_-6px_#ccc;] md:rounded-3xl rounded-2xl md:mt-6 mt-4">
+      <div className="lg:w-9/12 md:w-10/12 w-full m-auto md:p-12 sm:p-8 p-6 md:rounded-3xl rounded-2xl md:my-6 my-4">
         <div className="pers-info ">
           <h3>Personal Information</h3>
           <p>Update your personal information here </p>
