@@ -830,21 +830,21 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
 
   return (
     <div className="mb-8">
-      <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8">
+      <h2 className="text-[20px] md:text-[24px] capitalize lg:text-[28px] text-center mt-4 font-[500] text-[#222222] mb-4">
         Tell guests what your place has to offer
       </h2>
       <p className="text-normal text-center text-gray-500 mb-8">
         You can add more amenities after you publish your listing.
       </p>
 
-      <p className="text-bold font-bold text-left text-gray-500 mb-6 mt-6">
+      <p className="text-bold font-bold text-left text-gray-800 mb-3 mt-6">
         What about these guest favourites?
       </p>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4    ">
 
         {amenitiesData &&
           amenitiesData?.amenities?.map((amenity, i) => (
-            <div key={i} className="">
+            <div key={i} className="p-1">
               <div
                 onClick={() => toggleSelectedAmenity(amenity?.value)}
                 className={`property-type-wrap cursor-pointer p-4 hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px]  ${selectedAmenity?.includes(amenity.value) ? "bg-[#efefef] shadow-[0_0px_0px_1px_#efefef] text-slate-700 " : ""
@@ -852,7 +852,7 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
               >
                 {amenity?.icons}
                 <h2
-                  className={`text-[16px] mt-[10px] font-normal capitalize ${selectedAmenity?.includes(amenity.value)
+                  className={`text-[15px] mt-[10px] font-normal capitalize ${selectedAmenity?.includes(amenity.value)
                     ? "text-[#222222]"
                     : "text-[#222222]"
                     }`}
@@ -864,14 +864,14 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
           ))}
       </div>
 
-      <p className="text-bold font-bold text-left text-gray-500 mb-6 mt-6">
+      <p className="text-bold font-bold text-left text-gray-800 mb-3 mt-6">
         Do you have any standout amenities?
       </p>
 
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4   ">
         {amenitiesData &&
           amenitiesData?.standout_amenity?.map((amenity, i) => (
-            <div key={i} className="">
+            <div key={i} className="p-1">
               <div
                 onClick={() => togglestandoutAmenity(amenity.value)}
                 className={`property-type-wrap cursor-pointer p-4 hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px] ${standoutAmenity?.includes(amenity.value) ? "bg-[#efefef] shadow-[0_0px_0px_1px_#efefef] text-slate-700" : ""
@@ -879,7 +879,7 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
               >
                 {amenity.icons}
                 <h2
-                  className={`text-[16px] mt-[10px] font-normal  capitalize ${standoutAmenity?.includes(amenity.value)
+                  className={`text-[15px] mt-[10px] font-normal  capitalize ${standoutAmenity?.includes(amenity.value)
                     ? "text-[#222222]"
                     : "text-[#222222]"
                     }`}
@@ -891,14 +891,14 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
           ))}
       </div>
 
-      <p className="text-bold font-bold text-left text-gray-500 mb-6 mt-6">
+      <p className="text-bold font-bold text-left text-gray-800 mb-3 mt-6">
         Do you have any of these safety items?
       </p>
 
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4    ">
         {amenitiesData &&
           amenitiesData?.safety_amenity?.map((amenity, i) => (
-            <div key={i} className="">
+            <div key={i} className="p-1">
               <div
                 onClick={() => toggleAmenity(amenity.value)}
                 className={`property-type-wrap cursor-pointer p-4 hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px]  ${Amenity?.includes(amenity.value) ? "bg-[#efefef] shadow-[0_0px_0px_1px_#efefef] text-slate-700 " : ""
@@ -906,7 +906,7 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
               >
                 {amenity.icons}
                 <h2
-                  className={`text-[16px] mt-[10px] font-normal capitalize ${Amenity?.includes(amenity.value)
+                  className={`text-[15px] mt-[10px] font-normal capitalize ${Amenity?.includes(amenity.value)
                     ? "text-[#222222]"
                     : "text-[#222222]"
                     }`}
