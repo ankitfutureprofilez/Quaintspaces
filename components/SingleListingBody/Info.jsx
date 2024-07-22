@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import Times from "../../public/_svgs/Times";
 import Star from "../../public/_svgs/star";
 import Image from "next/image";
+import StartRating from "../../pages/elements/StartRating";
 
 const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
   const [amenitiesModal, setAmenitiesModal] = useState(false);
@@ -62,11 +63,11 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
               <div className="flex items-center gap-2 text-md">
                 <span className="flex gap-1 items-center text-md font-medium">
                   <span>
-                    <Star />
+                  <StartRating size={15} value={listing?.data?.rating?.toFixed(2)} color={"#000000"}/>
                   </span>
-                  { listing?.data?.rating !==0  ?(parseFloat(
+                  {/* { listing?.data?.rating !==0  ?(parseFloat(
                     listing?.data?.rating && listing?.data?.rating?.toFixed(2)
-                  )) : "4.1" }
+                  )) : "4.1" } */}
                 </span>
                 <div className="hidden">·</div>
                 <span

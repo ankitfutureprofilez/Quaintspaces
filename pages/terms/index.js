@@ -26,8 +26,7 @@ function index() {
                 like price, availability, reviews, customer service and
                 cancellation history, popularity, previous trips and saved
                 Listings, Host requirements (e.g. minimum or maximum nights),
-                and more. Learn more about search results in Section 5.3 and in
-                our Help Center.
+                and more.
               </p>
             </div>
             <div className="mb-2">
@@ -97,17 +96,16 @@ function index() {
                 that Reservation. But, in certain situations, other policies may
                 take precedence and determine what amount is refunded to you. If
                 something outside your control requires you to cancel a
-                Reservation, you may be entitled to a partial or full refund
-                under our Major Disruptive Events Policy. If the Host cancels,
-                or you experience a Reservation Issue (as defined in our
-                Rebooking and Refund Policy), you may be entitled to rebooking
-                assistance or a partial or full refund under our Rebooking and
-                Refund Policy. Different policies apply to certain categories of
-                Listings; for example, Experiences Reservations are governed by
-                the Experiences Guest Refund Policy. See each Additional Legal
-                Term or Policy for details about what is covered, and what
-                refund applies in each situation. You may appeal a decision by
-                by contacting our customer service.
+                Reservation, you may be entitled to a partial or full refund as
+                per our decision.. If the Host cancels, or you experience a
+                Reservation Issue (as defined in our Rebooking and Refund
+                Policy), you may be entitled to rebooking assistance or a
+                partial or full refund under our Rebooking and Refund Policy.
+                Different policies apply to certain categories of Listings; for
+                example, Experiences Reservations are governed by the
+                Experiences Guest Refund Policy. See each Additional Legal Term
+                or Policy for details about what is covered, and what refund
+                applies in each situation.
               </p>
             </div>
             <div className="mb-2">
@@ -184,8 +182,7 @@ function index() {
                 or elsewhere on the QuaintSpaces Platform by paying an
                 additional fee. More information about the factors that
                 determine how your Listing appears in search results, our
-                current promotional programs (if any) and how we identify
-                promoted Content can be found in our Help Center
+                current promotional programs (if any)
               </p>
             </div>
             <div className="mb-2">
@@ -209,34 +206,7 @@ function index() {
               <p>
                 In general, if a Guest cancels a Reservation, the amount paid to
                 you is determined by the cancellation policy that applies to
-                that Reservation. As a host, you should not cancel on a Guest
-                without a valid reason under our Major Disruptive Events Policy
-                or applicable law. If you cancel on a Guest without such a valid
-                reason, we may impose a cancellation fee and other consequences.
-                If: (i) a Guest experiences a Reservation Issue (as defined by
-                the Rebooking and Refund Policy), (ii) a Major Disruptive Event
-                arises, or (iii) a Reservation is canceled under Section 13 of
-                these Terms, the amount you are paid will be reduced by the
-                amount we refund or otherwise provide to the Guest, and by any
-                other reasonable costs we incur as a result of the cancellation.
-                If a Guest receives a refund after you have already been paid,
-                or the amount of the refund and other costs incurred by
-                QuaintSpaces exceeds your payout, QuaintSpaces (via QuaintSpaces
-                Payments) may recover that amount from you, including by
-                deducting the refund against your future payouts. You agree that
-                QuaintSpaces’s Rebooking and Refund Policy, Major Disruptive
-                Events Policy, and these Terms preempt the cancellation policy
-                you set in situations where they allow for the cancellation of a
-                Reservation and/or the issuance of refunds to Guests. If we
-                reasonably expect to provide a refund to a Guest under one of
-                these policies, we may delay release of any payout for that
-                Reservation until a refund decision is made. If you Host an
-                Experience please note that the Experience Cancellation Policy,
-                Experiences Guest Refund Policy and different cancellation fees
-                and consequences apply to your Reservations. See each Policy for
-                details about what is covered, and what your payout will be in
-                each situation. You may appeal a decision by QuaintSpaces by
-                contacting our customer service.
+                that Reservation.
               </p>
             </div>
             <div className="mb-2">
@@ -299,14 +269,15 @@ function index() {
             </div>
           </div>
           <div className="prose">
+            <h1 className="text-xl font-bold my-6">General Terms</h1>
+          </div>
+          <div className="prose">
             <h1 className="text-xl font-bold my-6">8. Reviews.</h1>
             <p>
               After each Host Service, Guests and Hosts will have an opportunity
               to review each other. Your review must be accurate and may not
               contain any discriminatory, offensive, defamatory, or other
-              language that violates these terms, applicable law, or our Content
-              Policy or Review Policy. Reviews are not verified by QuaintSpaces
-              for accuracy and may be incorrect or misleading.
+              language that violates these terms, applicable law.
             </p>
           </div>
           <div className="prose">
@@ -346,13 +317,7 @@ function index() {
           <div className="prose">
             <h1 className="text-xl font-bold my-6">10. Fees.</h1>
             <p>
-              QuaintSpaces may charge fees (and applicable Taxes) to Hosts and
-              Guests for the right to use the QuaintSpaces Platform. Any
-              applicable fees are disclosed to Hosts before publishing a listing
-              and to Guests before making a booking. More information about when
-              service fees apply and how they are calculated can be found on our
-              Service Fees page. Except as otherwise provided on the
-              QuaintSpaces Platform, service fees are non-refundable.
+            QuaintSpaces may charge fees (and applicable Taxes) to Hosts and Guests for the right to use the QuaintSpaces Platform. Any applicable fees are disclosed to Hosts before publishing a listing and to Guests before making a booking. 
             </p>
           </div>
           <div className="prose">
@@ -380,42 +345,22 @@ function index() {
                     with others.
                   </li>
                   <li>
-                    Do not attempt to evade enforcement of these Terms, our
-                    Additional Legal Terms, Policies and Standards, such as by
-                    creating duplicate accounts or listings.
+                  Do not attempt to evade enforcement of these Terms,
                   </li>
                   <li>
-                    Follow our Nondiscrimination Policy and do not discriminate
-                    against or harass others.
-                  </li>
-                </ol>
-                <li>
-                  Do not scrape, hack, reverse engineer, compromise or impair
-                  the QuaintSpaces Platform
-                </li>
-                <ol
-                  className="list-none mb-2 ml-5"
-                  style={{ listStyleType: "circle" }}
-                >
-                  <li>
-                    Do not use bots, crawlers, scrapers or other automated means
-                    to access or collect data or other content from or otherwise
-                    interact with the QuaintSpaces Platform.
+                  Do not scrape, hack, reverse engineer, compromise or impair the QuaintSpaces Platform
                   </li>
                   <li>
-                    Do not hack, avoid, remove, impair, or otherwise attempt to
-                    circumvent any security or technological measure used to
-                    protect the QuaintSpaces Platform or Content.
+                  Do not use bots, crawlers, scrapers or other automated means to access or collect data or other content from or otherwise interact with the QuaintSpaces Platform.
                   </li>
                   <li>
-                    Do not decipher, decompile, disassemble or reverse engineer
-                    any of the software or hardware used to provide the
-                    QuaintSpaces Platform.
+                  Do not hack, avoid, remove, impair, or otherwise attempt to circumvent any security or technological measure used to protect the QuaintSpaces Platform or Content.
                   </li>
                   <li>
-                    Do not take any action that could damage or adversely affect
-                    the performance or proper functioning of the QuaintSpaces
-                    Platform.
+                  Do not decipher, decompile, disassemble or reverse engineer any of the software or hardware used to provide the QuaintSpaces Platform.
+                  </li>
+                  <li>
+                  Do not take any action that could damage or adversely affect the performance or proper functioning of the QuaintSpaces Platform.
                   </li>
                 </ol>
                 <li>
@@ -482,10 +427,7 @@ function index() {
                     privacy, data protection, and export laws.
                   </li>
                   <li>
-                    If you provide us with someone else’s personal information,
-                    you: (i) must do so in compliance with applicable law, (ii)
-                    must be authorized to do so, and (iii) authorize us to
-                    process that information under our Privacy Policy.
+                  If you provide us with someone else’s personal information, you: (i) must do so in compliance with applicable law, (ii) must be authorized to do so, and (iii) authorize us to process that information
                   </li>
                   <li>
                     Read and follow our Terms, Additional Legal Terms, Policies
@@ -639,7 +581,7 @@ function index() {
                 has been inactive for more than two years.
               </p>
             </div>
-            <div className="mb-2">
+            {/* <div className="mb-2">
               <h2>13.3 Member Violations</h2>
               <p>
                 If (i) you breach these Terms, our Additional Legal Terms,
@@ -683,7 +625,7 @@ function index() {
                 required, inform you about the measure with a statement of
                 reasons in accordance with its legal obligations.
               </p>
-            </div>
+            </div> */}
             <div className="mb-2">
               <h2>13.4 Legal Mandates</h2>
               <p>
@@ -947,7 +889,7 @@ function index() {
               contravene applicable laws.
             </p>
           </div>
-          <div className="prose">
+          {/* <div className="prose">
             <h1 className="text-xl font-bold my-6">18. Member Accounts.</h1>
             <p>
               You must register an account to access and use many features of
@@ -978,7 +920,7 @@ function index() {
               public records of criminal convictions or sex offender
               registrations or their local equivalents.
             </p>
-          </div>
+          </div> */}
           <div className="prose">
             <h1 className="text-xl font-bold my-6">19. Disclaimer.</h1>
             <p>
@@ -1082,7 +1024,7 @@ function index() {
               obligation.
             </p>
           </div>
-          <div className="prose">
+          {/* <div className="prose">
             <h1 className="text-xl font-bold my-6">
               22. Contracting Entities.
             </h1>
@@ -1102,7 +1044,7 @@ function index() {
               establishment, from the date on which your country of residence or
               establishment changes.
             </p>
-          </div>
+          </div> */}
           <div className="prose">
             <h1 className="text-xl font-bold my-6">
               23. Applicable law and Jurisdiction.
@@ -1124,7 +1066,7 @@ function index() {
           </div>
           <div className="prose">
             <h1 className="text-xl font-bold my-6">24. Miscellaneous.</h1>
-            <div className="mb-2">
+            {/* <div className="mb-2">
               <h2>24.1 Other Terms Incorporated by Reference.</h2>
               <p>
                 Our Host Damage Protection, Japan Host Insurance Terms,
@@ -1135,9 +1077,9 @@ function index() {
                 apply to your use of the QuaintSpaces Platform, are incorporated
                 by reference, and form part of your agreement with QuaintSpaces.
               </p>
-            </div>
+            </div> */}
             <div className="mb-2">
-              <h2>24.2 Interpreting these Terms.</h2>
+              <h2>24.1 Interpreting these Terms.</h2>
               <p>
                 Except as they may be supplemented by additional terms,
                 conditions, policies, guidelines, standards, and in-product
@@ -1154,7 +1096,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>24.3 No Waiver.</h2>
+              <h2>24.2 No Waiver.</h2>
               <p>
                 QuaintSpaces’s failure to enforce any right or provision in
                 these Terms will not constitute a waiver of such right or
@@ -1301,7 +1243,7 @@ function index() {
               </p>
             </div>
           </div>
-          <div className="prose">
+          {/* <div className="prose">
             <h1 className="text-xl font-bold my-6">
               25. United States Dispute Resolution and Arbitration Agreement.
             </h1>
@@ -1707,7 +1649,7 @@ function index() {
                 terminate your QuaintSpaces Account.
               </p>
             </div>
-          </div>
+          </div> */}
           <div className="prose">
             <h1 className="text-xl font-bold my-6">
               Additional Terms Applicable to Business Hosts
@@ -1723,57 +1665,98 @@ function index() {
           </div>
           <div className="prose">
             <h1 className="text-xl font-bold my-6">
-            26. Hosting on QuaintSpaces as a Business Host.
+              26. Hosting on QuaintSpaces as a Business Host.
             </h1>
             <div className="mb-2">
               <h2>26.1</h2>
               <p>
-              As a Business Host you commit to only offer Host Services on the QuaintSpaces Platform that comply with the applicable rules of European Union law.
+                As a Business Host you commit to only offer Host Services on the
+                QuaintSpaces Platform that comply with the applicable rules of
+                European Union law.
               </p>
             </div>
             <div className="mb-2">
               <h2>26.2</h2>
               <p>
-              In order to meet mandatory statutory requirements you will be required to provide at least the following information (where applicable) to QuaintSpaces in order to offer Host Services as a Business Host on the QuaintSpaces platform:
+                In order to meet mandatory statutory requirements you will be
+                required to provide at least the following information (where
+                applicable) to QuaintSpaces in order to offer Host Services as a
+                Business Host on the QuaintSpaces platform:
               </p>
               <ol className="list-disc ml-5 mt-2">
+                <li>your name, address, telephone number and email address;</li>
                 <li>
-                your name, address, telephone number and email address;
+                  a copy of your identification document or any other electronic
+                  identification as defined by Article 3 of Regulation (EU) No
+                  910/2014;
                 </li>
+                <li>your payment account details;</li>
                 <li>
-                a copy of your identification document or any other electronic identification as defined by Article 3 of Regulation (EU) No 910/2014;
-                </li>
-                <li>
-                your payment account details;
-                </li>
-                <li>
-                the trade register in which you are registered and your registration number or equivalent means of identification in that register.
+                  the trade register in which you are registered and your
+                  registration number or equivalent means of identification in
+                  that register.
                 </li>
               </ol>
             </div>
             <div className="mb-2">
               <h2>26.3</h2>
               <p>
-              You will not be able to offer Host Services on the QuaintSpaces Platform until QuaintSpaces has been able to assess that the information is reliable and complete. We may require you to provide additional documentation as determined by us for the purposes of enabling us to assess the reliability and completeness of your information.
+                You will not be able to offer Host Services on the QuaintSpaces
+                Platform until QuaintSpaces has been able to assess that the
+                information is reliable and complete. We may require you to
+                provide additional documentation as determined by us for the
+                purposes of enabling us to assess the reliability and
+                completeness of your information.
               </p>
             </div>
             <div className="mb-2">
               <h2>26.4</h2>
               <p>
-              You are responsible for the accuracy of the information provided and are required to keep your information up-to-date at all times. If we obtain sufficient indications or otherwise have reason to believe that any item of information is inaccurate, incomplete or not up-to-date, you will be asked to remedy the situation without delay. If you fail to update your information within the timeframe provided by us, we may suspend your use of the QuaintSpaces Platform, until you have provided the required information. If we suspend our services for these reasons you have the right to lodge a complaint via our complaint handling system or with a certified out-of-court dispute settlement body in accordance with Section 14 of these Terms.
+                You are responsible for the accuracy of the information provided
+                and are required to keep your information up-to-date at all
+                times. If we obtain sufficient indications or otherwise have
+                reason to believe that any item of information is inaccurate,
+                incomplete or not up-to-date, you will be asked to remedy the
+                situation without delay. If you fail to update your information
+                within the timeframe provided by us, we may suspend your use of
+                the QuaintSpaces Platform, until you have provided the required
+                information. If we suspend our services for these reasons you
+                have the right to lodge a complaint via our complaint handling
+                system or with a certified out-of-court dispute settlement body
+                in accordance with Section 14 of these Terms.
               </p>
             </div>
           </div>
-          <div className="prose">
-            <h1 className="text-xl font-bold my-6">27. Complaints Handling and Mediation.</h1>
+          {/* <div className="prose">
+            <h1 className="text-xl font-bold my-6">
+              27. Complaints Handling and Mediation.
+            </h1>
             <p>
-            If you are a Business Host established within the EEA or the United Kingdom you have access to our internal complaint handling system for Business Hosts which allows you to make a complaint in relation to issues falling under the remit of Article 11 of Regulation (EU) 2019/1150 including to clarify the facts and circumstances leading to measures according to Section 13.2 and 13.3 of these Terms. Our Help Center explains how you can access our internal complaint-handling system for Business Hosts and what you can expect when you make a complaint. It also sets out the details of the mediation service that you can use in the event that such a complaint is not resolved.
+              If you are a Business Host established within the EEA or the
+              United Kingdom you have access to our internal complaint handling
+              system for Business Hosts which allows you to make a complaint in
+              relation to issues falling under the remit of Article 11 of
+              Regulation (EU) 2019/1150 including to clarify the facts and
+              circumstances leading to measures according to Section 13.2 and
+              13.3 of these Terms. Our Help Center explains how you can access
+              our internal complaint-handling system for Business Hosts and what
+              you can expect when you make a complaint. It also sets out the
+              details of the mediation service that you can use in the event
+              that such a complaint is not resolved.
             </p>
-          </div>
+          </div> */}
           <div className="prose">
             <h1 className="text-xl font-bold my-6">28. Access to Data.</h1>
             <p>
-            Business Hosts have access to personal and other data in their QuaintSpaces account and host dashboard which is provided by the Business Host, their Guests or generated through the use of the QuaintSpaces Platform and which is necessary for the performance of their Host Services as well as aggregated information about searches, bookings and the performance of their listings. Our Privacy Policy sets out the categories of personal data and other data we collect, how we use, process, disclose and retain it, and how you can access it and exercise your data rights.
+              Business Hosts have access to personal and other data in their
+              QuaintSpaces account and host dashboard which is provided by the
+              Business Host, their Guests or generated through the use of the
+              QuaintSpaces Platform and which is necessary for the performance
+              of their Host Services as well as aggregated information about
+              searches, bookings and the performance of their listings. Our
+              Privacy Policy sets out the categories of personal data and other
+              data we collect, how we use, process, disclose and retain it, and
+              how you can access it and exercise your data rights.
             </p>
           </div>
         </div>

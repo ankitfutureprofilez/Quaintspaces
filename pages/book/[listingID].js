@@ -570,10 +570,11 @@ const Book = () => {
                   </h3>
                   <span className="flex text-sm items-center gap-1">
                     <span>
-                      <Star />
+                    <StartRating size={15} value={listing?.rating} color={"#000000"}/>
                     </span>
+                  </span>
+                  <span className="flex text-sm items-center gap-1">
                     <span>
-                      {listing?.rating}{" "}
                       {listing?.review ? listing?.review + " reviews" : ""}
                     </span>
                   </span>
@@ -646,7 +647,7 @@ const Book = () => {
                             new Date(infos.checkin)
                           )} )
                       </span>
-                      <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
+                      <span className="block text-blackColor font-medium confirm-price">
                         <div className="flex justify-center">
                           <>
                             <div className="flex flex-col items-center items-end">

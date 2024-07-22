@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { Context } from "../../pages/_app";
 import { formatMultiPrice } from "./../../hooks/ValueData";
+import StartRating from "../../pages/elements/StartRating";
 
 const Date_GuestsPickerCard = React.forwardRef(
   (
@@ -44,8 +45,9 @@ const Date_GuestsPickerCard = React.forwardRef(
                 </h1>
                 <span className="flex items-center gap-1 sm:gap-2">
                   <span className="flex items-center gap-1">
-                    <Star />
-                    {parseFloat( listing?.rating && listing?.rating?.toFixed(2)) ?? 0}
+                  <StartRating size={15} value={parseFloat( listing?.rating && listing?.rating?.toFixed(2)) ?? 0} color={"#000000"}/>
+                    {/* <Star />
+                    {parseFloat( listing?.rating && listing?.rating?.toFixed(2)) ?? 0} */}
                   </span>
                   {/* <span>·</span>
                   <span className="underline">
