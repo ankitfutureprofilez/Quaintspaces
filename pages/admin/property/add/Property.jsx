@@ -710,26 +710,26 @@ export default function Property(props) {
           <div
             className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
           >
-            <div className=" xl:px-[200px] lg:px-[100px] ">
+            <div className=" xl:px-[130px] lg:px-[90px] ">
 
 
               {/* <div
                 className={`${step === 0 ? "" : "display-none"
-                  }  m-auto table w-full`}
+                  }  m-auto  flex-wrap table w-full`}
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <Introduction />
               </div> */}
               <div
                 className={`${step === 0 ? "" : "display-none"
-                  }  m-auto table w-full flex-wrap`}
+                  }  m-auto flex-wrap table w-full flex-wrap`}
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <Video step1={Step1?.step1} />
               </div>
               <div
                 className={`${step === 1 ? "" : "display-none"
-                  } max-w-[100%] m-auto mb-8 table w-full`}
+                  } max-w-[100%] m-auto mb-8 flex-wrap table w-full`}
               >
  
 
@@ -752,13 +752,13 @@ export default function Property(props) {
     </div> */}
 
                 {/* {typeHere === "entire_place" ?  <> */}
-                <h2 className="text-[22] md:text-[26px] capitalize lg:text-[32px] text-center mt-4 font-[500] text-[#222222] mb-4">
+                <h2 className="text-[20px] md:text-[24px] capitalize lg:text-[28px] text-center mt-4 font-[500] text-[#222222] mb-4">
                   Which of these best describes your place?
                 </h2>
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
                   {propertyTypes &&
                     propertyTypes.map((p, i) => (
-                      <div key={i} className="">
+                      <div key={i} className="p-1">
                         <div
                           onClick={() => setPType(p?.value)}
                           className={`property-type-wrap cursor-pointer p-4 hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px] ${p?.value === PType
@@ -818,16 +818,16 @@ export default function Property(props) {
               </div>
               <div className={`${step === 2 ? "" : "display-none"}`}>
                 <div className="mb-8">
-                  <h2 className="text-[22] md:text-[26px] capitalize lg:text-[32px] text-center mt-4 font-[500] text-[#222222] mb-4">
+                  <h2 className="text-[20px] md:text-[24px] capitalize lg:text-[28px] text-center mt-2 md:mt-4 font-[500] text-[#222222] mb-2 md:mb-4">
                     Where's your place located?
                   </h2>
-                  <p className="text-normal text-center text-gray-500 mb-8">
+                  <p className="text-normal text-center text-gray-500 mb-0">
                     Your address is only shared with guests after they’ve made a
                     reservation.
                   </p>
                   <div className="table w-full m-auto space-y-2  md:space-y-4 text-center">
-                    <p>{address?.location}</p>
-                    <div class="w-full mt-2 md:mt-4">
+                    <p className="text-normal text-center text-gray-800 mt-3">{address?.location}</p>
+                    <div class="w-full !mt-6 md:mt-8">
                       <button
                         className="btn  w-full border font-[500] border-[#4f46e5] text-[#4f46e5]"
                         onClick={fetchLocationData}
@@ -909,10 +909,10 @@ export default function Property(props) {
                 <div>
                   {address?.location && (
                     <>
-                      <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold mb-4">
+                      <h2 className="text-xl capitalize md:text-xl lg:text-2xl text-center mt-2 font-bold mb-2">
                         Is the pin in the right spot?
                       </h2>
-                      <p className="text-normal capitalize text-center text-gray-500 mb-8 mt-4">
+                      <p className="text-normal capitalize text-center text-gray-500 mb-8 ">
                         Your address is only shared with guests after they've made a reservation.
 
                       </p>
@@ -953,7 +953,7 @@ export default function Property(props) {
               </div>
               <div
                 className={`${step === 4 ? "" : "display-none"
-                  }  m-auto table w-full`}
+                  }  m-auto flex-wrap table w-full`}
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <Video step1={Step1?.step2} />
@@ -1231,10 +1231,10 @@ export default function Property(props) {
                   } max-w-[600px] m-auto`}
               >
                 <div>
-                  <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold mb-4">
+                  <h2 className="text-[20px] md:text-[24px] lg:text-[28px] capitalize  text-center mt-4 font-bold mb-2 md:mb-4">
                     Now, let's give your house a title
                   </h2>
-                  <p>
+                  <p clasname="tex-sm md:text-[16px] font-sans  font-medium text-[#222222] text-left md:font-bold mb-2">
                     Short titles work best. Have fun with it – you can always change it later.
                   </p>
                   <div className="mt-2 md:mt-4">
@@ -1301,13 +1301,13 @@ export default function Property(props) {
               </div>
               <div
                 className={`${step === 9 ? "" : "display-none"
-                  }  m-auto table w-full`}
+                  }  m-auto flex-wrap table w-full`}
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <Video step1={Step1?.step3} />
               </div>
               <div className={`${step === 10 ? "" : "display-none"
-                }  m-auto table w-full`} >
+                }  m-auto flex-wrap table w-full`} >
                 <div className="flex items-center justify-center   mb-8">
                   <div className="w-full max-w-md">
                     <div className="space-y-6">
@@ -1402,7 +1402,7 @@ export default function Property(props) {
                 <div className="transition-opacity duration-600 mb-8">
                   <div className="space-y-4">
                     <div className="flex flex-col items-start space-y-2" style={{ animationDelay: '400ms' }}>
-                      <h1 className="text-2xl font-bold" tabIndex="-1">Decide how you’ll confirm reservations</h1>
+                      <h1 className="text-lg md:text-xl lg:text-2xl font-bold" tabIndex="-1">Decide how you’ll confirm reservations</h1>
                     </div>
                     <div className="space-y-4">
                       <div className="flex flex-col space-y-4" role="radiogroup">
@@ -1415,8 +1415,8 @@ export default function Property(props) {
                             onClick={() => handleBookingChange(0)}
                           >
                             <div className="flex flex-col space-y-1">
-                              <h2 className="text-lg text-left font-semibold">Use instant Book</h2>
-                              <div className="text-gray-600 text-sm">Guests can book automatically.</div>
+                              <h2 className="text-base lg:text-lg text-left font-semibold">Use instant Book</h2>
+                              <div className="text-gray-600 text-sm text-left">Guests can book automatically.</div>
                             </div>
                             <div className="flex-shrink-0">
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" className="h-8 w-8 fill-current text-black">
@@ -1434,8 +1434,8 @@ export default function Property(props) {
                             onClick={() => handleBookingChange(1)}
                           >
                             <div className="flex flex-col space-y-1">
-                              <h2 className="text-lg text-left font-semibold">Approve or decline requests</h2>
-                              <div className="text-gray-600 text-sm">Guests must ask if they can book.</div>
+                              <h2 className="text-base lg:text-lg text-left font-semibold">Approve or decline requests</h2>
+                              <div className="text-gray-600 text-sm text-left">Guests must ask if they can book.</div>
                             </div>
                             <div className="flex-shrink-0">
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" className="h-8 w-8 fill-current text-black">
@@ -1450,7 +1450,7 @@ export default function Property(props) {
                 </div>
                 <div className="flex flex-col space-y-2">
                   <div className="flex flex-col items-start space-y-2" style={{ animationDelay: '400ms' }}>
-                    <h1 className="text-xl font-bold" tabIndex="-1">Select Proerty Type (BHK)</h1>
+                    <h1 className="text-lg md:text-xl  font-bold" tabIndex="-1">Select Proerty Type (BHK)</h1>
                   </div>
                   <div className="flex space-x-4">
                     {[1, 2, 3, 4].map((option) => (

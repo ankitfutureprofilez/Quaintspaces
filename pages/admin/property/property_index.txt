@@ -761,14 +761,14 @@ export default function Property(props) {
 
               {/* <div
                 className={`${step === 0 ? "" : "display-none"
-                  }  m-auto table w-full`}
+                  }  m-auto flex-wrap table w-full`}
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <Introduction />
               </div> */}
               <div
                 className={`${step === 0 ? "" : "display-none"
-                  }  m-auto table w-full`}
+                  }  m-auto flex-wrap table w-full`}
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <Video step1={Step1?.step1} />
@@ -999,7 +999,7 @@ export default function Property(props) {
               </div>
               <div
                 className={`${step === 4 ? "" : "display-none"
-                  }  m-auto table w-full`}
+                  }  m-auto flex-wrap table w-full`}
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <Video step1={Step1?.step2} />
@@ -1347,13 +1347,13 @@ export default function Property(props) {
               </div>
               <div
                 className={`${step === 9 ? "" : "display-none"
-                  }  m-auto table w-full`}
+                  }  m-auto flex-wrap table w-full`}
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <Video step1={Step1?.step3} />
               </div>
               <div className={`${step === 10 ? "" : "display-none"
-                }  m-auto table w-full`} >
+                }  m-auto flex-wrap table w-full`} >
                 <div className="flex items-center justify-center min-h-screen">
                   <div className="w-full max-w-md">
                     <div className="space-y-6">
