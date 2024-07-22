@@ -47,7 +47,7 @@ export default function LuxuryStay() {
             />
           </div>
         </div>
-        <h1 className="in-jaipur"> ESCAPES</h1>
+        <h1 className="in-jaipur capitalize "> Escapes </h1>
         <p>
           Stay in the heart of Jaipur's pink city, our modern, well-appointed
           apartments, perfect for business or leisure. We go the extra mile to

@@ -1,6 +1,4 @@
 import React from "react";
-import Image from "next/image";
-import QsJaipur from "../../public/images/QsJaipur.png";
 import Link from "next/link";
 import { FaFacebook, FaInstagram } from "react-icons/fa6";
 import { MdOutlineMail } from "react-icons/md";
@@ -22,15 +20,15 @@ export default function Footer() {
             </Link>
             <div className="flex mt-2 ">
               <Link className="text-[#3F2A17] text-[16px] flex" href="tel:+919521410122">
-              <MdOutlinePhone size={24} color={"#3F2A17"} />
-              <span className="text-[#3F2A17] text-[16px]  ml-2" >
-                +91 9521410122
+                <MdOutlinePhone size={24} color={"#3F2A17"} />
+                <span className="text-[#3F2A17] text-[16px]  ml-2" >
+                  +91 9521410122
                 </span>
-              </Link> &nbsp;/ 
+              </Link> &nbsp;/
               <Link className="text-[#3F2A17] text-[16px] " href="tel:+919314022666">
-              <span className="text-[#3F2A17] text-[16px]  ml-2">
-              +91  9314022666
-              </span>
+                <span className="text-[#3F2A17] text-[16px]  ml-2">
+                  +91  9314022666
+                </span>
               </Link>
             </div>
 
@@ -68,7 +66,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
 
       <div className="text-center copy-right">
         {/* Copyright Notice */}

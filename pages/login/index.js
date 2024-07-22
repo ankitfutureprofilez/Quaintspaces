@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Image from "next/image";
-import logologin from "../../public/images/loginlogoimg.png";
+import logologin from "../../public/images/Login_Logo.png";
 import Link from "next/link";
 import LoginLogic from "./LoginLogic";
 import Head from "next/head";

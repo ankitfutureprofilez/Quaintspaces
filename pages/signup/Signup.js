@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import logologin from "../../public/images/loginlogoimg.png";
+import logologin from "../../public/images/Login_Logo.png";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
@@ -89,7 +89,7 @@ export default function Signup() {
                     fill="white"
                   />
                 </svg>
-                Back to home
+               HOMEPAGE
               </Link>
             </div>
             <Image src={logologin} alt="logo" />
