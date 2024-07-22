@@ -23,9 +23,6 @@ export default function index() {
       [name]: value,
     });
   };
-
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (loading == true) {
