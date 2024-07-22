@@ -17,6 +17,7 @@ import toast from "react-hot-toast";
 import { formatMultiPrice } from "../../hooks/ValueData";
 import useRazorpay from "react-razorpay";
 import Modal from "../elements/Modal";
+import StartRating from "../elements/StartRating";
 
 const Book = () => {
   const router = useRouter();
