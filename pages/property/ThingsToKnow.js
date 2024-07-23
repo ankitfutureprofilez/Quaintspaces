@@ -23,6 +23,16 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
     if (words.length <= wordLimit) return text;
     return words.slice(0, wordLimit).join(' ') + '...';
   };
+
+  const additonaldata = record?.data?.property_rule?.additional_rules ? JSON.parse(record?.data?.property_rule?.additional_rules) : null;
+  console.log("additonaldata", additonaldata);
+
+  // Assuming additionaldata is a string
+const formattedAdditionalData = additonaldata.replace(/\r?\n/g, '<br />');
+
+console.log("formattedAdditionalData",formattedAdditionalData)
+
+
   return (
     <div className="container mx-auto">
       <h1 className="listing-heading text-left !mb-0">Things to know</h1>
@@ -71,7 +81,8 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
           <>
             <p className="mb-2 text-gray-500 capitalize">
               additional rules :-
-              {truncateText(record?.data?.property_rule?.additional_rules,20)}
+              {truncateText(additonaldata,10)}
+              
             </p>
             <button className="mb-2 text-blue-400 underline text-left" onClick={() => { setIsOpen(true);}}>
               Read More
@@ -86,7 +97,8 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
                 Additional Rules
               </h2>
               <div className="p-4">
-                {record?.data?.property_rule?.additional_rules}
+              <div dangerouslySetInnerHTML={{ __html: formattedAdditionalData }} />
+                {/* {formattedAdditionalData} */}
               </div>
             </div>
           </Modal>
