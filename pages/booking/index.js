@@ -233,8 +233,8 @@ export default function Index() {
                           <DateComponent item=
                             {item?.booking_date} />
                         </td>
-                        <td className="px-4 py-2">{item?.booking_number}</td>
-                        <td className="px-4 py-2">
+                        <td className="px-2 md:px-4 py-2"><div className="flex items-center"><div className="text ml-2"><div className="title">{item?.booking_number}</div></div></div></td>
+                        <td className="px-2 md:px-4 py-2">
                           <div className="flex items-center">
                             <div className="text ml-2">
                               <div className="title capitalize ">
@@ -245,15 +245,15 @@ export default function Index() {
                             </div>
                           </div>
                         </td>
-                        <td className="px-4 py-2">
+                        <td className="px-4  md:px-4 py-2">
                           <DateComponent item=
                             {item?.check_in} /> </td>
-                        <td className="px-4 py-2">
+                        <td className="px-2 py-2 md:px-4">
                           <DateComponent item=
                             {item?.check_out} />
                         </td>
 
-                        <td className="px-4 py-2 ">
+                        <td className="px-2 py-2 md:px-4 ">
                           <td
                             className={`capitalize inline-flex items-center rounded-full py-3 w-max px-4 text-xs text-white  ${item?.booking_status === "completed"
                               ? "bg-green-700"
@@ -269,12 +269,15 @@ export default function Index() {
                             {item?.booking_status}
                           </td>
                         </td>
-                        <td className="px-4 py-2">
+                        <td className="px-2 py-2 md:px-4">
+                          <div>
+
                           {formatMultiPrice(item?.price)}
+                          </div>
                         </td>
                         {key === "upcoming" &&
                           (
-                            <td className="px-4 py-2">
+                            <td className="px-2 py-2 md:px-4">
                               {
 
                                 item?.booking_status !== "cancelled" ? (
@@ -294,7 +297,7 @@ export default function Index() {
 
                             </td>)}
                         {key === "ongoing" &&
-                          <td className="px-4 py-2">
+                          <td className="px-2 py-2 md:px-4">
                             <span className="text-4xl ml-1" style={{ cursor: "pointer" }} onClick={() => handleHouseRules(item)}>🛈</span>
                           </td>}
                       </tr>
@@ -426,7 +429,7 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="">
+        <div className="tble-ma">
           <BookingTable />
         </div>
       </div>
@@ -462,13 +465,13 @@ export default function Index() {
 
             <div className="flex justify-center mb-5">
               <button
-                className="bg-red-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-red-700"
+                className="bg-red-600 text-white px-2 py-2 md:px-4 rounded-md mr-2 hover:bg-red-700"
                 onClick={handleConfirmation}
               >
                 Cancel Booking
               </button>
               <button
-                className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400"
+                className="bg-gray-300 text-gray-800 px-2 py-2 md:px-4 rounded-md hover:bg-gray-400"
                 onClick={handleCancel}
               >
                 Back

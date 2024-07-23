@@ -38,7 +38,7 @@ export default function ForgotLayout({ children, showHeader }) {
                         fill="white"
                       />
                     </svg>
-                    Back to home
+                    HOMEPAGE
                   </Link>
                 </div>
                 :

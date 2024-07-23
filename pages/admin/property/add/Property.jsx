@@ -1462,7 +1462,7 @@ export default function Property(props) {
                           onChange={() => handleselecbhktype(option)}
                           className="form-radio text-blue-600"
                         />
-                        <span className="text-sm text-gray-400 font-normal">{option} BHK</span>
+                        <span className="text-lg text-gray-400 font-normal">{option} BHK</span>
                       </label>
                     ))}
                   </div>

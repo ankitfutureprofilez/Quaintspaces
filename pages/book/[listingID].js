@@ -357,7 +357,7 @@ const Book = () => {
           />
           <div className="flex mt-3 sm:mt-8 md:mt-14 px-3 gap-10 your-trip-sec">
             <div className="w-8/12">
-              <h3  className="text-xl mb-4 font-medium heading-data">
+              <h3  className="text-2xl mb-4 font-medium heading-data">
                 Your Trip
               </h3>
               <div className="flex items-center justify-between w-full py-2">
@@ -396,7 +396,7 @@ const Book = () => {
                   EDIT
                 </button>
               </div>
-              <h3 className="text-xl mb-4 font-medium mt-10 heading-data">
+              <h3 className="text-2xl mb-4 font-medium mt-10 heading-data">
                 Upload ID
               </h3>
               <div className=" border-b border-borderColor pb-4 md:pb-11">
@@ -433,7 +433,7 @@ const Book = () => {
                   </div>
                 </form>
               </div>
-              <h3  className="text-xl mb-4 font-medium mt-10 heading-data capitalize">
+              <h3  className="text-2xl mb-4 font-medium mt-10 heading-data capitalize">
                 Required for your trip
               </h3 >
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
@@ -513,7 +513,7 @@ const Book = () => {
               </div>
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
                 <div className="mt-4 w-full">
-                  <h3  className="text-xl mb-4 font-medium mt-10 heading-data capitalize">
+                  <h3  className="text-2xl mb-4 font-medium mt-10 heading-data capitalize">
                     Cancellation policy
                   </h3>
                   <div className="flex flex-wrap justify-between">
@@ -565,7 +565,7 @@ const Book = () => {
                 />
 
                 <div>
-                  <h4 className="text-xl mb-1 capitalize">{listing?.name}</h4>
+                  <h4 className="text-2xl mb-1 capitalize">{listing?.name}</h4>
                   <h3 className=" text-lg capitalize">
                     {listing?.type?.replace("_", " ")}
                   </h3>
@@ -574,7 +574,7 @@ const Book = () => {
                     <StartRating size={15} value={listing?.rating} color={"#000000"}/>
                     </span>
                   </span>
-                  <span className="flex text-sm items-center gap-1">
+                  <span className="flex text-sm items-center gap-2 mt-2">
                     <span>
                       {listing?.review ? listing?.review + " reviews" : ""}
                     </span>
@@ -763,7 +763,7 @@ const Book = () => {
                     <div className="w-[45%] ">
                       <h6 className="mb-2 text-[18px] font-semibold cancel-policy" >
                         {cancelpolicy?.date && (cancelpolicy?.date === new Date() ? "After" : "Before")}</h6>
-                      <h6 className="mb-2 text-xl font-semibold cancel-policy" >{cancelpolicy?.date ? ("") : (<Dateformat item={formattedCheckIn} /> && "After")}</h6>
+                      <h6 className="mb-2 text-2xl font-semibold cancel-policy" >{cancelpolicy?.date ? ("") : (<Dateformat item={formattedCheckIn} /> && "After")}</h6>
                     </div>
                     <div className="w-[55%] pl-3 border-l">
                       <h6 className="mb-2 text-[18px] font-semibold" >{cancelpolicy?.date && (cancelpolicy?.date === new Date() ? "" : "Full Refund")}</h6>

@@ -94,9 +94,12 @@ export default function Signup() {
             </div>
             <Image src={logologin} alt="logo" />
             <p>
+            Indulge in the finest and most charming accommodation in Jaipur !
+            </p>
+            {/* <p>
               Book the most luxuries and aesthetically pleasing place, Jaipur
               city has to offer
-            </p>
+            </p> */}
           </div>
           <div className="right-signup-form w-6/12 px-3 flex justify-end">
             <div className="signup-form w-full max-h-screen overflow-y-auto">

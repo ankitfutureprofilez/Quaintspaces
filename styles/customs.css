@@ -233,9 +233,9 @@ h3.text-sm.font-medium.desc-property {
   width: 100%;
 }
 h1.in-jaipur {
-  margin-top: -92px;
-  z-index: 1;
-  position: relative;
+  margin-top: -29px;
+  /* z-index: 1; */
+  /* position: relative; */
 }
 .luxury-stay p {
   font-size: 18px;
@@ -801,7 +801,7 @@ button.submint-btn {
   color: #61554e;
 }
 .heading-data {
-  font-family: "Roboto", sans-serif !important;
+  font-family: Baskerville Old Face  !important;
 }
 .your-trip-sec h2 {
   font-family: "Roboto", sans-serif;
@@ -881,6 +881,9 @@ button.submint-btn {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+.tble-ma {
+  margin-bottom: 77px;
 }
 .contact-about h1 {
   font-family: Baskerville Old Face;
@@ -1264,7 +1267,7 @@ button.submint-btn {
     margin-bottom: 42px;
   }
   h1.in-jaipur {
-    margin-top: -40px;
+    margin-top: -15px;
     margin-bottom: 0;
   }
   .luxury-stay {

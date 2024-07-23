@@ -16,14 +16,14 @@ export default function paymentHistory() {
   const router = useRouter();
   const [hasmore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
-  const fetching = async(pg) =>{
+  const fetching = async (pg) => {
     setLoading(true);
     const main = new Listings();
     main
       .PaymentHistory(pg)
       .then((r) => {
         setLoading(false);
-        const newdata = r?.data?.data?.data|| [];
+        const newdata = r?.data?.data?.data || [];
         setListings((prevData) => {
           if (pg === 1) {
             return newdata;
@@ -41,12 +41,12 @@ export default function paymentHistory() {
         setPage(false);
         console.log(err);
       });
-  } 
+  }
 
   useEffect(() => {
-     if (listings && listings?.length < 1) {
+    if (listings && listings?.length < 1) {
       fetching(page + 1);
-     }
+    }
   }, []);
 
   const loadMore = () => {
@@ -65,7 +65,10 @@ export default function paymentHistory() {
                 <th>Payment ID</th>
                 <th>Property Name</th>
                 <th>Payment Date</th>
-                <th>Check In & Out</th>
+                <th>Check In </th>
+                <th>
+                  Check Out
+                </th>
                 <th>Method</th>
                 <th>Status</th>
                 <th>Amount</th>
@@ -84,33 +87,60 @@ export default function paymentHistory() {
                   <td className="px-2 md:px-4 py-2">
                     {" "}
                     <div className="items-center img-data flex gap-2 text-base">
-                        <div className="text-gray-800 font-medium text-left capitalize">
-                                <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
-                                  {item?.booking_history?.booking_property?.name}
-                                </Link>
-                              </div>
+                      <div className="text-gray-800 font-medium text-left capitalize">
+                        <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
+                          {item?.booking_history?.booking_property?.name}
+                        </Link>
+                      </div>
                     </div>
                   </td>
-                  <td className="px-2 md:px-4 py-2">{item?.payment_date}</td>
-                  <td className="px-2 md:px-4 py-2 text-sm">
-                    {item?.booking_history?.check_in} &  {item?.booking_history?.check_out}
+                  <td className="px-2 md:px-4 py-2">
+                    <div>
+
+                      {item?.payment_date}
+                    </div>
                   </td>
-                  <td className="px-2 md:px-4 py-2 capitalize">{item?.method}</td>
-                  <td className={`px-2 md:px-4 py-2 capitalize ${item?.payment_status === "success" ? "text-green-600" :"text-red-600"}`}>{item?.payment_status}</td>
-                  <td className="px-2 md:px-4 py-2">{formatMultiPrice(item?.price)}</td>
+                  <td className="px-2 md:px-4 py-2 text-sm">
+                    <div>
+
+                      {item?.booking_history?.check_in}
+                    </div>
+                  </td>
+                  <td className="px-2 md:px-4 py-2 text-sm">
+                    <div>
+
+                      {item?.booking_history?.check_out}
+                    </div>
+                  </td>
+                  <td className="px-2 md:px-4 py-2 capitalize">
+                    <div>
+
+
+                      {item?.method}
+                    </div>
+                  </td>
+                  <td className={`px-2 md:px-4 py-2 capitalize  4${item?.payment_status === "success" ? "text-green-600" : "text-red-600"}`}>
+                    {item?.payment_status}
+                  </td>
+                  <td className="px-2 md:px-4 py-2">
+                    <div>
+
+                      {formatMultiPrice(item?.price)}
+                    </div>
+                  </td>
                 </tr>
               </tbody>
             ))}
           </table>
         </div>
 
-        {hasmore &&  (
-                <div className="load-more mt-5 text-center ">
-                  <button className="btn btn-outline-success cursor-pointer" onClick={loadMore}>
-                    Load More
-                  </button>
-                </div>
-              )}
+        {hasmore && (
+          <div className="load-more mt-5 text-center ">
+            <button className="btn btn-outline-success cursor-pointer" onClick={loadMore}>
+              Load More
+            </button>
+          </div>
+        )}
       </>
     );
   };
@@ -118,7 +148,7 @@ export default function paymentHistory() {
   return (
     <AuthLayout>
       <Head>
-      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <title>Payment History - Quaintspaces Jaipur</title>
       </Head>
       <div className="container mx-auto">
@@ -130,14 +160,14 @@ export default function paymentHistory() {
             />
           </div>
         </div>
-        <div className="">
+        <div className="tble-ma ">
           {loading ? (
-           <TableLoading/>
+            <TableLoading />
           ) : listings && listings.length > 0 ? (
             <BookingTable />
           ) : (
             <NoData
-            url={"/apartments"}
+              url={"/apartments"}
               Heading={"No Data Found"}
               content={
                 "You have not done any payment yet. Click below to go to the  page"
