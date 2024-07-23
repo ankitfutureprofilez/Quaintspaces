@@ -175,6 +175,8 @@ function Sidebar() {
               </svg>
               Payment History
             </Link>
+
+            
             <Link
               href={"/admin/booking-history"}
               className={`flex ${
@@ -192,7 +194,7 @@ function Sidebar() {
               >
                 <path d="M2,7V21a1,1,0,0,0,1,1H13V6H3A1,1,0,0,0,2,7ZM5,9h5v2H5Zm0,4h5v2H5Zm0,4h5v2H5ZM22,3V21a1,1,0,0,1-1,1H15V4H10V3a1,1,0,0,1,1-1H21A1,1,0,0,1,22,3Z" />
               </svg>
-              Bookings History
+              Booking History
             </Link>
             <Link
               href={"/admin/user-history"}
