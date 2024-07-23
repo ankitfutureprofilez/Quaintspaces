@@ -2,10 +2,8 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Toaster } from "react-hot-toast";
-import PullToRefresh from "../hooks/PulltoRefresh";
-import 'aos/dist/aos.css'; // You can also use <link> for styles
+import 'aos/dist/aos.css';
 import AOS from 'aos';
-import 'aos/dist/aos.css'
 import "../styles/fonts.css";
 import "../styles/RangeSlider.css";
 import "../styles/confirm.css";
@@ -16,9 +14,10 @@ import "../styles/apartment.css";
 import "../styles/ImageMover.css";
 import LoginLogic from "./login/LoginLogic";
 import NotLogin from "./login/NotLogin";
+import dynamic from "next/dynamic";
+const PullToRefresh = dynamic(() => import("../hooks/PulltoRefresh"));
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-
 
 export const Context = React.createContext();
 
