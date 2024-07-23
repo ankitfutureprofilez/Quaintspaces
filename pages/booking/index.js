@@ -83,7 +83,7 @@ export default function Index() {
     }
   }, [SelectBooking]);
   const handleConfirmation = () => {
-    cancelBooking(SelectBooking?.id,amount);
+    cancelBooking(SelectBooking?.id, amount);
     setShowConfirmation(false);
   };
 
@@ -172,10 +172,10 @@ export default function Index() {
 
   // booking-cancel/42
 
-  const cancelBooking = async (id,amount) => {
+  const cancelBooking = async (id, amount) => {
     setLoading(true);
     const main = new Listings();
-    const response = main.Booking_cancel(id,amount);
+    const response = main.Booking_cancel(id, amount);
     try {
       const res = await response;
       if (res?.data?.status === true) {
@@ -191,7 +191,7 @@ export default function Index() {
       setLoading(false);
     }
   };
-  
+
 
 
   const loadMore = () => {
@@ -205,7 +205,7 @@ export default function Index() {
     return (
       <>
         {loading ? (
-          <TableLoading/>
+          <TableLoading />
         ) : (
           <>
             {listings && listings.length > 0 ? (
@@ -220,7 +220,7 @@ export default function Index() {
                       <th>Check Out</th>
                       <th>Status</th>
                       <th>Price</th>
-                      {(key ==="upcoming") && <th>Action</th>}
+                      {(key === "upcoming") && <th>Action</th>}
                       {/* {} */}
                       {key === "ongoing" &&
                         <th>House details</th>}
@@ -233,11 +233,17 @@ export default function Index() {
                           <DateComponent item=
                             {item?.booking_date} />
                         </td>
-                        <td className="px-2 md:px-4 py-2"><div className="flex items-center"><div className="text ml-2"><div className="title">{item?.booking_number}</div></div></div></td>
-                        <td className="px-2 md:px-4 py-2">
+                        <td className="px-2 md:px-4 py-2 align-middle">
                           <div className="flex items-center">
                             <div className="text ml-2">
-                              <div className="title capitalize ">
+                              <div className="title">{item?.booking_number}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-2 md:px-4 py-2 align-middle">
+                          <div className="flex items-center">
+                            <div className="text ml-2">
+                              <div className="title capitalize">
                                 <Link href={`/property/${item?.booking_property?.uuid}`}>
                                   {item?.booking_property?.name}
                                 </Link>
@@ -245,6 +251,7 @@ export default function Index() {
                             </div>
                           </div>
                         </td>
+
                         <td className="px-4  md:px-4 py-2">
                           <DateComponent item=
                             {item?.check_in} /> </td>
@@ -272,7 +279,7 @@ export default function Index() {
                         <td className="px-2 py-2 md:px-4">
                           <div>
 
-                          {formatMultiPrice(item?.price)}
+                            {formatMultiPrice(item?.price)}
                           </div>
                         </td>
                         {key === "upcoming" &&
