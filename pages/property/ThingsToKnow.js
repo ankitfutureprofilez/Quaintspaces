@@ -28,7 +28,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
   console.log("additonaldata", additonaldata);
 
   // Assuming additionaldata is a string
-const formattedAdditionalData = additonaldata.replace(/\r?\n/g, '<br />');
+const formattedAdditionalData = additonaldata?.replace(/\r?\n/g, '<br />');
 
 console.log("formattedAdditionalData",formattedAdditionalData)
 
