@@ -1,11 +1,28 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import Modal from "../elements/Modal";
 
 export default function ThingsToKnow({ record, isAdmin, content }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
   const safetyAmenities = record?.data?.safety_amenity?.split(',') || record?.safety_amenity?.split(',');
   const jsonString = record?.data?.check_out_instruction; // Fetch the JSON string from your data
 
   const instructions = jsonString ? JSON.parse(jsonString) : []; // Parse JSON string to JavaScript object
+  
+  const truncateText = (text, wordLimit) => {
+    if (!text) return '';
+    const words = text.split(' ');
+    if (words.length <= wordLimit) return text;
+    return words.slice(0, wordLimit).join(' ') + '...';
+  };
   return (
     <div className="container mx-auto">
       <h1 className="listing-heading text-left !mb-0">Things to know</h1>
@@ -51,19 +68,34 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
             {record?.data?.property_rule?.events_allowed === 1 ? "event is allowed." : "event is not allowed."}
           </p>
           {record?.data?.property_rule?.additional_rules &&
+          <>
             <p className="mb-2 text-gray-500 capitalize">
               additional rules :-
-              {record?.data?.property_rule?.additional_rules}
-            </p>}
-
-
+              {truncateText(record?.data?.property_rule?.additional_rules,20)}
+            </p>
+            <button className="mb-2 text-blue-400 underline text-left" onClick={() => { setIsOpen(true);}}>
+              Read More
+            </button>
+          </>
+            }
+          <Modal width="lg" isOpen={isOpen} onClose={closeModal}>
+            <div className=" flex flex-col align-center w-full">
+              <h2
+                className=" w-full p-4 bg-[#c48b58] text-[#fff] align-center text-lg text-base font-medium bg-[#efa3a3]"
+              >
+                Additional Rules
+              </h2>
+              <div className="p-4">
+                {record?.data?.property_rule?.additional_rules}
+              </div>
+            </div>
+          </Modal>
 
           {/* <p className="mb-2 text-gray-500">This reservation is non-refundable.</p> */}
         </div>
       </div>
       {isAdmin &&
         <>
-
           <div className="flex justify-between house-rule-text">
             <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full ">
               <h2 className="font-semibold mb-2 w-1/3">Direction</h2>
