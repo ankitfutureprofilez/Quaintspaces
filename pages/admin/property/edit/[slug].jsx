@@ -420,12 +420,8 @@ export default function Edit() {
     },
   ];
   const [selectedAmenity, setSelectedAmenity] = useState();
-  // 
   const [checkinEnd, setCheckinEnd] = useState();
-  // 
   const [checkout, setCheckout] = useState();
-
-
   const [Amenity, setAmenity] = useState();
   const [standoutAmenity, setstandoutAmenity] = useState();
   const [Guests, setGuests] = useState();
@@ -693,7 +689,7 @@ export default function Edit() {
       .then((res) => {
         if (res?.data?.status) {
           toast.success(res.data.message);
-           fetchProperty(slug);
+          //  fetchProperty(slug);
         } else {
           toast.error(res.data.message);
         }
