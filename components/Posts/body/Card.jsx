@@ -51,9 +51,11 @@ const Card = ({ post }) => {
             ) : (<> </>)}
             <Image
               width={100}
-              height={300} blurDataURL={`${post?.property_image[0]?.image_url}`}
+              height={300} 
               layout="responsive"
               src={post?.property_image[0]?.image_url}
+              placeholder="blur"
+              blurDataURL={`${post?.property_image[0]?.image_url}?q=1`}
               alt="Property cover image"
               className="!rounded-[7px_7px_0px_0px]"
             />
@@ -87,6 +89,8 @@ const Card = ({ post }) => {
               height={300}
               layout="responsive"
               src={post?.property_image[0]?.image_url}
+              blurDataURL={`${post?.property_image[0]?.image_url}?q=1`}
+              placeholder="blur"
               alt="Property cover image"
             />
             <div className="flat-info">

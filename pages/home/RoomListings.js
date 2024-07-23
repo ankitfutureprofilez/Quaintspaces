@@ -53,12 +53,14 @@ export default function RoomListings() {
               width={100}
               height={300}
               layout="responsive"
-              src={item?.property_image[0]?.image_url || "https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg"}
+              src={item?.property_image[0]?.image_url}
+              blurDataURL={`${item?.property_image[0]?.image_url}?q=1`}
+              placeholder="blur"
               alt="Property cover image"
               className="!rounded-[7px_7px_0px_0px]"
             />
             <div className="flat-info p-4">
-              <h2 className="line-limit sm:min-h-[76px]">
+              <h2 className="line-clamp-1 !pb-[5px]">
                 {
                   parseLocation(item?.location)
 

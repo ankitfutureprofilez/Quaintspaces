@@ -22,8 +22,9 @@ const ReviewCard = ({ data }) => {
         <div className="w-12 h-12 bg-borderColor overflow-hidden bg-gray-200 rounded-[50%] border border-gray-300">
           <Image
             src={data?.rating_user?.image_url || "/images/profile-no-image.jpg"}
+            blurDataURL={data?.rating_user?.image_url || "/images/profile-no-image.jpg"}
+            placeholder="blur"
             alt="User Image"
-            // layout="fill"
             width={100}
             height={100}
             objectFit="cover"

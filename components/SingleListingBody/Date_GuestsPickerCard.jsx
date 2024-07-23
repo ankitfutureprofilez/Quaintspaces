@@ -56,7 +56,7 @@ const Date_GuestsPickerCard = React.forwardRef(
                 </span>
               </div>
 
-              <div className="rounded-lg border border-orange-300  mb-6 relative">
+                <div className="rounded-lg border border-[#efa3a3] mb-6 relative">
                 <Dates
                   selection={selection}
                   setSelection={setSelection}

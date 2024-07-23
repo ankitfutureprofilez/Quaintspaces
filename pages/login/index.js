@@ -18,7 +18,7 @@ export default function Login() {
     >
         <Image
           src="/images/banner/login_img.JPG"
-          blurDataURL="/images/banner/login_img.JPG"
+          blurDataURL="/images/banner/login_img.JPG?q=1"
           placeholder="blur"
           alt="Login Background"
           layout="fill"
