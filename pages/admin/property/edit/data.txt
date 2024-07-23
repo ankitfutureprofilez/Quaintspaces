@@ -182,17 +182,32 @@ export default function Edit() {
 
 
   const [address, setAddress] = useState({
-    street_address: l?.street_address,
-    flat_house: l && l.flat_house ? l.flat_house : "",
-    district: l && l.district ? l.district : "",
-    nearby: l && l.nearby ? l.nearby : "",
-    city: l && l.city ? l.city : "",
-    state: l && l.state ? l.state : "",
-    pin: l && l.pin ? l.pin : "",
-    location: l && l.location ? l.location : "",
-    latitude: l && l.latitude ? l.latitude : "",
-    longitude: l && l.longitude ? l.longitude : "",
+    street_address: '',
+    flat_house: '',
+    district: '',
+    nearby: '',
+    city: '',
+    state: '',
+    pin: '',
+    location: '',
+    latitude: '',
+    longitude: '',
   });
+
+  useEffect(() => {
+    setAddress({
+      street_address: l?.street_address,
+      flat_house: l?.flat_house ?? "",
+      district: l?.district ?? "",
+      nearby: l?.nearby ?? "",
+      city: l?.city ?? "",
+      state: l?.state ?? "",
+      pin: l?.pin ?? "",
+      location: l?.location ?? "",
+      latitude: l?.latitude ?? "",
+      longitude: l?.longitude ?? "",
+    });
+  }, [l]);
 
   const handleAddress = (e) => {
     const { name, value } = e.target;
@@ -416,15 +431,11 @@ export default function Edit() {
   const [Guests, setGuests] = useState();
   const [Beds, setBeds] = useState();
   const [Bathrooms, setBathrooms] = useState();
-
   const [Bedrooms, setBedrooms] = useState();
   const [pets, setPets] = useState();
   const [checkinStart, setCheckinStart] = useState();
-  const [checkinquet, setCheckinquiet] = useState(
-  );
-  const [checkoutquet, setCheckoutquiet] = useState(
-  );
-
+  const [checkinquet, setCheckinquiet] = useState( );
+  const [checkoutquet, setCheckoutquiet] = useState( );
   const [PType, setPType] = useState(record?.data?.property_type || "flat");
 
   const handleInputChange = (e) => {
@@ -444,14 +455,10 @@ export default function Edit() {
   const [petsAllowed, setPetsAllowed] = useState(
 
   );
-  const [eventsAllowed, setEventsAllowed] = useState(
-  );
-  const [smokingAllowed, setSmokingAllowed] = useState(
-  );
-  const [quietHours, setQuietHours] = useState(
-  );
-  const [PhotographyAllowed, setPhotographyAllowed] = useState(
-  );
+  const [eventsAllowed, setEventsAllowed] = useState( );
+  const [smokingAllowed, setSmokingAllowed] = useState( );
+  const [quietHours, setQuietHours] = useState( );
+  const [PhotographyAllowed, setPhotographyAllowed] = useState( );
   
  
   const baseurl = "https://quant-stay.vercel.app/properties/";
@@ -686,7 +693,7 @@ export default function Edit() {
       .then((res) => {
         if (res?.data?.status) {
           toast.success(res.data.message);
-           fetchProperty();
+           fetchProperty(slug);
         } else {
           toast.error(res.data.message);
         }
@@ -716,7 +723,6 @@ export default function Edit() {
                   stepdata={false}
                   p={record.data}
                 /> */}
-
                 <div className="container mx-auto flex">
                   <div className="w-1/3">
                     <div className="flex items-left space-x-2" onClick={() => { router.back(-1) }}>
@@ -770,7 +776,7 @@ export default function Edit() {
                             onClick={() => toggleExpanded(1)}
                           >
                             <h3 className="font-bold text-2xl mt-3 mb-2 ">Direction</h3>
-                            <p className="font-normal text-sm capitalize ">Add Details </p>
+                            <p className="font-normal text-sm capitalize ">{item?.Direction || "Add Details"} </p>
                           </div>
 
                           <div
@@ -807,7 +813,7 @@ export default function Edit() {
                             onClick={() => toggleExpanded(5)}
                           >
                             <h3 className="font-bold text-2xl mt-3 mb-2">House Manual   </h3>
-                            <p className="font-normal text-sm capitalize"> Add Details</p>
+                            <p className="font-normal text-sm capitalize">{item?.housemanual || "Add Details"} </p>
                           </div>
 
 
@@ -859,7 +865,7 @@ export default function Edit() {
                             onClick={() => toggleExpanded(3)}
                           >
                             <h3 className="font-bold text-2xl mt-3 mb-2">Number of Guests  </h3>
-                            <p className="font-normal text-sm">{Guests}</p>
+                            <p className="font-normal text-sm">{Guests} Guests</p>
                           </div>
 
                           <div
@@ -887,7 +893,7 @@ export default function Edit() {
                             onClick={() => toggleExpanded(6)}
                           >
                             <h3 className="font-bold text-2xl mt-3 mb-2">Cancel Policy  </h3>
-                            <p className="font-normal text-sm capitalize"> {longTermPolicy || selectedPolicy}</p>
+                            <p className="font-normal text-sm capitalize"> { "Add Details " ||longTermPolicy || selectedPolicy }</p>
                           </div>
 
                           <div
@@ -926,7 +932,7 @@ export default function Edit() {
                             onClick={() => toggleExpanded(10)}
                           >
                             <h3 className="font-bold text-2xl mt-3 mb-2">Image </h3>
-                            <p className="font-normal text-sm capitalize">Add Details </p>
+                            <p className="font-normal text-sm capitalize">{`${imageproperty?.length} image` || "Add Image"} </p>
                           </div>
 
                         </div>

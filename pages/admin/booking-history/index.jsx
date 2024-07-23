@@ -122,7 +122,7 @@ export default function index() {
 
   return (
     <AdminLayout heading={"Booking Management"}>
-      <div className="flex max-w-lg text-md font-large relative bg-gray-100 p-2 rounded-lg mt-3">
+      <div className="flex max-w-full text-md font-large relative bg-gray-100 p-2 rounded-lg mt-3">
         <button
           onClick={() => setActiveTab('upcoming')}
           className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "upcoming" ? "bg-amber-700  text-white" : "text-black"
@@ -154,8 +154,8 @@ export default function index() {
         </button>
         <button
           onClick={() => setActiveTab('failed')}
-          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "failed" ? "bg-red text-white" : "text-black"
-            }`}
+          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "failed" ? "bg-red-700  text-white" : "text-black"
+          }`}
         >
           Failed
         </button>

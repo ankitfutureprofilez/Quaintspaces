@@ -17,8 +17,22 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
 
   const instructions = jsonString ? JSON.parse(jsonString) : []; // Parse JSON string to JavaScript object
 
-  const additionalRulesArray = record?.data?.property_rule?.additional_rules?.replace(/\\r\\n/g, '\n').split('\n');
-  console.log("Additional", additionalRulesArray);
+  const truncateText = (text, wordLimit) => {
+    if (!text) return '';
+    const words = text.split(' ');
+    if (words.length <= wordLimit) return text;
+    return words.slice(0, wordLimit).join(' ') + '...';
+  };
+
+  const additonaldata = record?.data?.property_rule?.additional_rules ? JSON.parse(record?.data?.property_rule?.additional_rules) : null;
+  console.log("additonaldata", additonaldata);
+
+  // Assuming additionaldata is a string
+  const formattedAdditionalData = additonaldata?.replace(/\r?\n/g, '<br />');
+
+  console.log("formattedAdditionalData", formattedAdditionalData)
+
+
   return (
     <div className="container mx-auto">
       <h1 className="listing-heading text-left !mb-0">Things to know</h1>
@@ -66,48 +80,41 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
           {/* {record?.data?.property_rule?.additional_rules &&
             <p className="mb-2 text-gray-500 capitalize">
               additional rules :-
-              {truncateText(record?.data?.property_rule?.additional_rules,20)}
+              {truncateText(additonaldata,10)}
+              
             </p>
             } */}
           <button className="mb-2 text-blue-400 underline text-left" onClick={() => { setIsOpen(true); }}>
-            Read More
+            See All
           </button>
-          <Modal width="lg" isOpen={isOpen} onClose={closeModal}>
+          <Modal width="md" isOpen={isOpen} onClose={closeModal}>
             <div className=" flex flex-col align-center w-full">
               <h2
                 className=" w-full p-4 bg-[#c48b58] text-[#fff] align-center text-lg text-base font-medium bg-[#efa3a3]"
               >
                 House Rules
               </h2>
-              {/* <div className="p-4" dangerouslySetInnerHTML={{ __html: JSON.parse(record?.data?.property_rule?.additional_rules) }}> */}
               <div className="p-4">
-                <p className="mb-2 capitalize ">
-                  {record?.data?.property_rule?.pet_allowed === 1 ? "Pet is allowed." : "Pet is not allowed."}
-                </p>
-                <p className="mb-2 capitalize ">
-                  {record?.data?.property_rule?.photography_allowed === 1 ? "Photography is allowed." : "Photography is not allowed."}
-                </p>
-                <p className="mb-2 capitalize ">
-                  {record?.data?.property_rule?.quiet_hours_allowed === 1 ? "Quiet hours are allowed." : "Quiet hours are not allowed."}
-                </p>
-                <p className="mb-2 capitalize ">
-                  {record?.data?.property_rule?.smoking_allowed === 1 ? "Smoking is allowed." : "Smoking is not allowed."}
-                </p>
-                <p className="mb-2 capitalize ">
-                  {record?.data?.property_rule?.events_allowed === 1 ? "event is allowed." : "event is not allowed."}
-                </p>
-                {record?.data?.property_rule?.additional_rules &&
-                <>
-                  <h2 className="text-xl mb-2 font-medium capitalize">
-                    additional rules :-
-                </h2>
-                  {additionalRulesArray && additionalRulesArray?.map((item,index)=>(
-                    <p key={index} className="mb-2">
-                    {item}
-                  </p>
-                  ))}
-                </>
-                }
+                <ol className="ml-4 list-decimal">
+                  <li className="mb-2 capitalize ">
+                    {record?.data?.property_rule?.pet_allowed === 1 ? "Pet is allowed." : "Pet is not allowed."}
+                  </li>
+                  <li className="mb-2 capitalize ">
+                    {record?.data?.property_rule?.photography_allowed === 1 ? "Photography is allowed." : "Photography is not allowed."}
+                  </li>
+                  <li className="mb-2 capitalize ">
+                    {record?.data?.property_rule?.quiet_hours_allowed === 1 ? "Quiet hours are allowed." : "Quiet hours are not allowed."}
+                  </li>
+                  <li className="mb-2 capitalize ">
+                    {record?.data?.property_rule?.smoking_allowed === 1 ? "Smoking is allowed." : "Smoking is not allowed."}
+                  </li>
+                  <li className="mb-2 capitalize ">
+                    {record?.data?.property_rule?.events_allowed === 1 ? "event is allowed." : "event is not allowed."}
+                  </li>
+                </ol>
+                <h2 className="text-2xl mb-2">Additional Rules</h2>
+                <div dangerouslySetInnerHTML={{ __html: formattedAdditionalData }} />
+                {/* {formattedAdditionalData} */}
               </div>
             </div>
           </Modal>

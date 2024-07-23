@@ -73,6 +73,8 @@ export default function Property(props) {
     custom_link,
   } = p ? p : {};
 
+  console.log("p", p)
+
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
   const [pets, setPets] = useState(no_of_pet_allowed || 1);
   const [selectedAmenity, setSelectedAmenity] = useState(
@@ -90,47 +92,13 @@ export default function Property(props) {
   const [selectedPolicy, setSelectedPolicy] = useState(
     property_rule?.standard_policy || null
   );
-  const [showFlexible, setShowFlexible] = useState(true);
-  const [showFirm, setShowFirm] = useState(false);
-  const [petsAllowed, setPetsAllowed] = useState(
-    property_rule?.pet_allowed || 0
-  );
-  const [eventsAllowed, setEventsAllowed] = useState(
-    property_rule?.events_allowed || 0
-  );
-  const [smokingAllowed, setSmokingAllowed] = useState(
-    property_rule?.smoking_allowed || 0
-  );
-  const [quietHours, setQuietHours] = useState(
-    property_rule?.quiet_hours_allowed || 0
-  );
-  const [PhotographyAllowed, setPhotographyAllowed] = useState(
-    property_rule?.photography_allowed || 0
-  );
+
   const [images, setImages] = useState([]);
   const [dragId, setDragId] = useState("");
   const [typeHere, setTypeHere] = useState(type || "entire_place");
-  const [checkinStart, setCheckinStart] = useState(check_in || "00:00");
-  const [checkinquet, setCheckinquiet] = useState(
-    property_rule?.quite_hours_in_time || "00:00"
-  );
-  const [checkoutquet, setCheckoutquiet] = useState(
-    property_rule?.quite_hours_out_time || "00:00"
-  );
-  const [selectedOption, setSelectedOption] = useState(status || 1);
-  const [checkinEnd, setCheckinEnd] = useState(flexible_check_in || "flexible");
-  const [checkout, setCheckout] = useState(check_out || "00:00");
   const [Guests, setGuests] = useState(guests || 1);
   const [Beds, setBeds] = useState(beds || 1);
   const [Bedrooms, setBedrooms] = useState(bedrooms || 1);
-  const [checkoutInstructions, setCheckoutInstructions] = useState([]);
-  const [selectedInstruction, setSelectedInstruction] = useState("");
-  const [showInstructions, setShowInstructions] = useState(false);
-  const [showTextArea, setShowTextArea] = useState(false);
-  const [text, setText] = useState("");
-  const [selectedMethod, setSelectedMethod] = useState(
-    check_in_method || "smartlock"
-  );
   const [checkdescrtion, setcheckdescrtion] = useState(
     check_in_description || ""
   );
@@ -322,84 +290,80 @@ export default function Property(props) {
 
   const prevStep = () => setStep((prev) => prev - 1);
   const nextStep = async () => {
-    if (step === 1 && PType == "") {
-      toast.error("Please choose a property type which one you want to list.");
-    }
-    if ( step === 2 && (address?.pin === "" ||
-        address?.pin?.length < 5 ||
-        address?.state === "" ||
-        address?.city === "" ||
-        address?.street_address === "" ||
-        address?.district === "")
-    ) {
-      toast.error(`Incomplete address. Please enter complete address.`);
-      return false;
-    }
-    if ( step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (step === 1 && PType == "") {
+    //   toast.error("Please choose a property type which one you want to list.");
+    // }
+    // if (step === 2 && (address?.pin === "" ||
+    //   address?.pin?.length < 5 ||
+    //   address?.state === "" ||
+    //   address?.city === "" ||
+    //   address?.street_address === "" ||
+    //   address?.district === "")
+    // ) {
+    //   toast.error(`Incomplete address. Please enter complete address.`);
+    //   return false;
+    // }
+    // if (step === 3 && (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
-    if ( step == 5 &&selectedAmenity &&    Amenity &&
-      standoutAmenity &&
-      selectedAmenity.length + Amenity.length + standoutAmenity.length < 4
-    ) {
-      toast.error("Please choose at least 4 amenities.");
-      return false;
-    }
-    // if (!isEdit && step === 6 && images?.length < 5) {
+    // if (step == 5 && selectedAmenity && Amenity &&
+    //   standoutAmenity &&
+    //   selectedAmenity.length + Amenity.length + standoutAmenity.length < 4
+    // ) {
+    //   toast.error("Please choose at least 4 amenities.");
+    //   return false;
+    // }
+    // if (isEdit && step === 6 && images?.length + imageproperty?.length < 5) {
     //   toast.error("Please select at least five images.");
     //   return false;
     // }
-    if (isEdit && step === 6 && images?.length + imageproperty?.length < 5) {
-      toast.error("Please select at least five images.");
-      return false;
-    }
 
-    if (
-      step === 7 &&
-      (!item?.name ||
-        item?.name?.trim()?.length === 0 ||
-        item?.name?.length < 5)
-    ) {
-      toast.error(
-        "Property title is too short. title should be a minimum of 5 words."
-      );
-      return false;
-    }
+    // if (
+    //   step === 7 &&
+    //   (!item?.name ||
+    //     item?.name?.trim()?.length === 0 ||
+    //     item?.name?.length < 5)
+    // ) {
+    //   toast.error(
+    //     "Property title is too short. title should be a minimum of 5 words."
+    //   );
+    //   return false;
+    // }
 
-    if (
-      step === 8 &&
-      (!item?.about ||
-        item?.about?.trim()?.length === 0 ||
-        item?.about?.length < 100)
-    ) {
-      toast.error(
-        "Property description is too short. Description should be a minimum of 100 words."
-      );
-      return false;
-    }
+    // if (
+    //   step === 8 &&
+    //   (!item?.about ||
+    //     item?.about?.trim()?.length === 0 ||
+    //     item?.about?.length < 100)
+    // ) {
+    //   toast.error(
+    //     "Property description is too short. Description should be a minimum of 100 words."
+    //   );
+    //   return false;
+    // }
 
-    if (
-      step === 10 &&
-      (item?.cleaning === "" || item?.extra_guest === "" || item?.about === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (
-      step === 10 && item?.price != "" && item?.price < 0) {
-      toast.error(`Invalid Price`);
-      return false;
-    }
+    // if (
+    //   step === 10 &&
+    //   (item?.cleaning === "" || item?.extra_guest === "" || item?.about === "")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (
+    //   step === 10 && item?.price != "" && item?.price < 0) {
+    //   toast.error(`Invalid Price`);
+    //   return false;
+    // }
 
-    if (
-      step === 11 &&
-      (selectbooking === "" || selecbhktype === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (
+    //   step === 11 &&
+    //   (selectbooking === "" || selecbhktype === "")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
     setStep((prev) => prev + 1);
   };
   const [locationupdate, setLocationupdate] = useState([]);
@@ -482,6 +446,8 @@ export default function Property(props) {
     }
   };
 
+
+  
   const fetchLocation = async () => {
     const formattedAddress = `${address.street_address}, ${address.nearby}, ${address.district}, ${address.city}, ${address.state}, ${address.pin}`;
     try {
@@ -609,10 +575,6 @@ export default function Property(props) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (step === 11 && checkoutInstructions === "") {
-      toast.error(`All fields are required.`);
-      return false;
-    }
     setLoading(true);
     const main = new Listing();
     const formData = new FormData();
@@ -636,24 +598,16 @@ export default function Property(props) {
     formData.append("extra_guest_fee", item?.extra_guest);
     formData.append("step_completed", step);
     formData.append("standard_policy", selectedPolicy);
+    formData.append("existing_property_uuid ", uuid)
     images.forEach((image, index) => {
       formData.append("property_image[]", image);
     });
-    const response =
-      isEdit && !stepdata
-        ? main.propertyedit(uuid, formData)
-        : main.addproperty(formData);
+    const response = main.addproperty(formData);
     response
       .then((res) => {
         if (res?.data?.status) {
-          if (isEdit && !stepdata) {
-            toast.success(res.data.message);
-            router.push("/admin/property");
-            fetchProperties && fetchProperties();
-          } else {
-            router.push("/admin/property");
-            toast.success(res.data.message);
-          }
+          toast.success(res.data.message);
+          router.push("/admin/property");
         } else {
           toast.error(res.data.message);
         }
@@ -740,44 +694,44 @@ export default function Property(props) {
       {isEdit && !stepdata ? (
         <> </>
       ) : (
-        <div className=" w-full space-y-8 w-full p-4 flex justify-center  m-auto w-full px-2">
+        <div className=" w-full space-y-8 w-full p-4 flex justify-end  m-auto w-full px-2">
           <button
             onClick={handleSubmit}
-            className="inline-flex mx-2 justify-center py-2 px-8 border-2 border-[#4f46e5] shadow-sm text-lg font-medium rounded-full text-white bg-[#4f46e5] hover:bg-[#fff] hover:text-[#4f46e5]"
+            className="inline-flex mx-2 justify-center py-2 px-6 border-2 border-[#4f46e5] shadow-sm text-base font-medium rounded-full text-white bg-[#4f46e5] hover:bg-[#fff] hover:text-[#4f46e5]"
           >
             {Loading ? "Processing..." : "Save / Exit"}
           </button>
         </div>
       )}
       <div
-        className={`w-full overflow-hidden	min-h-[calc(100vh-201px)] flex items-center justify-center pb-4 md:pb-12 `}
+        className={`w-full overflow-hidden	min-h-[calc(100vh-201px)] flex items-center justify-center pb-24   `}
       >
         <div className="">
           <div
             className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
           >
-            <div className=" xl:px-[200px] lg:px-[100px] ">
+            <div className=" xl:px-[130px] lg:px-[90px] ">
 
 
               {/* <div
                 className={`${step === 0 ? "" : "display-none"
-                  }  m-auto flex-wrap table w-full`}
+                  }  m-auto  flex-wrap table w-full`}
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <Introduction />
               </div> */}
               <div
                 className={`${step === 0 ? "" : "display-none"
-                  }  m-auto flex-wrap table w-full`}
+                  }  m-auto flex-wrap table w-full flex-wrap`}
                 style={{ display: "flex", alignItems: "center" }}
               >
                 <Video step1={Step1?.step1} />
               </div>
               <div
                 className={`${step === 1 ? "" : "display-none"
-                  } max-w-[100%] m-auto mb-8 table w-full`}
+                  } max-w-[100%] m-auto mb-8 flex-wrap table w-full`}
               >
-
+ 
 
                 {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
     <div className="grid grid-cols-3 gap-4 m-auto table  " >
@@ -798,13 +752,13 @@ export default function Property(props) {
     </div> */}
 
                 {/* {typeHere === "entire_place" ?  <> */}
-                <h2 className="text-[22] md:text-[26px] capitalize lg:text-[32px] text-center mt-4 font-[500] text-[#222222] mb-4">
+                <h2 className="text-[20px] md:text-[24px] capitalize lg:text-[28px] text-center mt-4 font-[500] text-[#222222] mb-4">
                   Which of these best describes your place?
                 </h2>
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
                   {propertyTypes &&
                     propertyTypes.map((p, i) => (
-                      <div key={i} className="">
+                      <div key={i} className="p-1">
                         <div
                           onClick={() => setPType(p?.value)}
                           className={`property-type-wrap cursor-pointer p-4 hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px] ${p?.value === PType
@@ -848,7 +802,7 @@ export default function Property(props) {
                           )}
                           {p.value === "farm" && <FaWarehouse size={30} />}
                           <h2
-                            className={`text-[16px] mt-[10px] font-normal ${p.value === PType
+                            className={`text-[15px] mt-[10px] font-normal ${p.value === PType
                               ? "text-[#222222]"
                               : "text-[#222222]"
                               }`}
@@ -864,16 +818,16 @@ export default function Property(props) {
               </div>
               <div className={`${step === 2 ? "" : "display-none"}`}>
                 <div className="mb-8">
-                  <h2 className="text-[22] md:text-[26px] capitalize lg:text-[32px] text-center mt-4 font-[500] text-[#222222] mb-4">
+                  <h2 className="text-[20px] md:text-[24px] capitalize lg:text-[28px] text-center mt-2 md:mt-4 font-[500] text-[#222222] mb-2 md:mb-4">
                     Where's your place located?
                   </h2>
-                  <p className="text-normal text-center text-gray-500 mb-8">
+                  <p className="text-normal text-center text-gray-500 mb-0">
                     Your address is only shared with guests after they’ve made a
                     reservation.
                   </p>
                   <div className="table w-full m-auto space-y-2  md:space-y-4 text-center">
-                    <p>{address?.location}</p>
-                    <div class="w-full mt-2 md:mt-4">
+                    <p className="text-normal text-center text-gray-800 mt-3">{address?.location}</p>
+                    <div class="w-full !mt-6 md:mt-8">
                       <button
                         className="btn  w-full border font-[500] border-[#4f46e5] text-[#4f46e5]"
                         onClick={fetchLocationData}
@@ -955,10 +909,10 @@ export default function Property(props) {
                 <div>
                   {address?.location && (
                     <>
-                      <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold mb-4">
+                      <h2 className="text-xl capitalize md:text-xl lg:text-2xl text-center mt-2 font-bold mb-2">
                         Is the pin in the right spot?
                       </h2>
-                      <p className="text-normal capitalize text-center text-gray-500 mb-8 mt-4">
+                      <p className="text-normal capitalize text-center text-gray-500 mb-8 ">
                         Your address is only shared with guests after they've made a reservation.
 
                       </p>
@@ -1277,10 +1231,10 @@ export default function Property(props) {
                   } max-w-[600px] m-auto`}
               >
                 <div>
-                  <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold mb-4">
+                  <h2 className="text-[20px] md:text-[24px] lg:text-[28px] capitalize  text-center mt-4 font-bold mb-2 md:mb-4">
                     Now, let's give your house a title
                   </h2>
-                  <p>
+                  <p clasname="tex-sm md:text-[16px] font-sans  font-medium text-[#222222] text-left md:font-bold mb-2">
                     Short titles work best. Have fun with it – you can always change it later.
                   </p>
                   <div className="mt-2 md:mt-4">
@@ -1354,24 +1308,24 @@ export default function Property(props) {
               </div>
               <div className={`${step === 10 ? "" : "display-none"
                 }  m-auto flex-wrap table w-full`} >
-                <div className="flex items-center justify-center min-h-screen">
+                <div className="flex items-center justify-center   mb-8">
                   <div className="w-full max-w-md">
                     <div className="space-y-6">
                       <div className="text-center">
                         <div style={{ animationDelay: '400ms' }}>
-                          <h1 className="text-3xl font-bold" tabIndex="-1">Now, set your price</h1>
+                          <h1 className="text-2xl font-bold" tabIndex="-1">Now, set your price</h1>
                           <div>
                             <span className="text-gray-500">You can change it anytime.</span>
                           </div>
                         </div>
                       </div>
-                      <div className="mt-6">
+                      <div className="mt-3">
                         <div style={{ animationDelay: '449.741ms' }}>
                           <div className="relative" style={{ height: 'auto', visibility: 'var(--view-transition_visibility, visible)', width: '100%' }}>
-                            <div className="text-4xl font-bold" style={{ lineHeight: '86.5981px', letterSpacing: '-2.07663px' }}>
+                            <div className=" font-bold" style={{ lineHeight: '86.5981px', letterSpacing: '-2.07663px' }}>
                               <div className="flex items-center">
-                                <span>₹</span>
-                                <span className="ml-1" aria-hidden="true">{item?.price}</span>
+                                <span className="text-4xl">₹</span>
+                                <span className="ml-1 mr-3 text-4xl" aria-hidden="true">{item?.price}</span>
                                 <span className="text-xl font-medium">Price per night</span>
 
                               </div>
@@ -1382,7 +1336,7 @@ export default function Property(props) {
                                     <input
                                       data-testid="lys-base-price-input"
                                       inputMode="numeric"
-                                      className="ml-2 p-2 border border-gray-300 rounded"
+                                      className=" w-full p-2  border border-gray-300 rounded"
                                       id="lys-base-price-input"
                                       autoComplete="off"
                                       type="number"
@@ -1403,12 +1357,12 @@ export default function Property(props) {
 
                 </div>
                 <div className="">
-                  <h2 className="text-xl md:text-2xl lg:text-3xl capitalize text-center mt-4 font-bold md:mb-8 mb-4">
+                  <h2 className="text-xl md:text-2xl lg:text-3xl capitalize text-center mt-4 font-bold md:mb-4 mb-4">
                     Please enter the following details
                   </h2>
 
                   <div className="flex flex- flex-wrap justify-between mt-4 text-sm font-medium text-gray-700 ">
-                    <div className="w-full px-1 md:w-1/3 ">
+                    <div className="w-full px-1 md:w-6/12 ">
                       <div className="flex flex-col w-full md:mb-0 mb-2">
                         <label>Cleaning Fees ( Per Day Fees) </label>
                         <input
@@ -1423,7 +1377,7 @@ export default function Property(props) {
                         />
                       </div>
                     </div>
-                    <div className="w-full px-1 md:w-1/3">
+                    <div className="w-full px-1 md:w-6/12">
                       <div className="flex flex-col w-full md:mb-0 mb-2">
                         <label>Extra Guest Fees (Per Guest)</label>
                         <input
@@ -1448,21 +1402,21 @@ export default function Property(props) {
                 <div className="transition-opacity duration-600 mb-8">
                   <div className="space-y-4">
                     <div className="flex flex-col items-start space-y-2" style={{ animationDelay: '400ms' }}>
-                      <h1 className="text-2xl font-bold" tabIndex="-1">Decide how you’ll confirm reservations</h1>
+                      <h1 className="text-lg md:text-xl lg:text-2xl font-bold" tabIndex="-1">Decide how you’ll confirm reservations</h1>
                     </div>
                     <div className="space-y-4">
                       <div className="flex flex-col space-y-4" role="radiogroup">
-                        <div className="flex items-center space-x-4" style={{ '--list_animation-delay': '400ms' }}>
+                        <div className="flex w-full items-center space-x-4" style={{ '--list_animation-delay': '400ms' }}>
                           <button
-                            className={`flex items-center space-x-4 p-4 border rounded-lg ${selectbooking === 0 ? 'border-black' : 'border-gray-300'}`}
+                            className={`flex  w-full items-center justify-between space-x-4 p-4 border rounded-lg ${selectbooking === 0 ? 'border-black' : 'border-gray-300'}`}
                             type="button"
                             role="radio"
                             aria-checked={selectbooking === 0}
                             onClick={() => handleBookingChange(0)}
                           >
                             <div className="flex flex-col space-y-1">
-                              <h2 className="text-lg font-semibold">Use instant Book</h2>
-                              <div className="text-gray-600">Guests can book automatically.</div>
+                              <h2 className="text-base lg:text-lg text-left font-semibold">Use instant Book</h2>
+                              <div className="text-gray-600 text-sm text-left">Guests can book automatically.</div>
                             </div>
                             <div className="flex-shrink-0">
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" className="h-8 w-8 fill-current text-black">
@@ -1471,17 +1425,17 @@ export default function Property(props) {
                             </div>
                           </button>
                         </div>
-                        <div className="flex items-center space-x-4" style={{ '--list_animation-delay': '449.7412007086385ms' }}>
+                        <div className="flex w-full items-center space-x-4" style={{ '--list_animation-delay': '449.7412007086385ms' }}>
                           <button
-                            className={`flex items-center space-x-4 p-4 border rounded-lg ${selectbooking === 1 ? 'border-black' : 'border-gray-300'}`}
+                            className={`flex  w-full items-center justify-between space-x-4 p-4 border rounded-lg ${selectbooking === 1 ? 'border-black' : 'border-gray-300'}`}
                             type="button"
                             role="radio"
                             aria-checked={selectbooking === 1}
                             onClick={() => handleBookingChange(1)}
                           >
                             <div className="flex flex-col space-y-1">
-                              <h2 className="text-lg font-semibold">Approve or decline requests</h2>
-                              <div className="text-gray-600">Guests must ask if they can book.</div>
+                              <h2 className="text-base lg:text-lg text-left font-semibold">Approve or decline requests</h2>
+                              <div className="text-gray-600 text-sm text-left">Guests must ask if they can book.</div>
                             </div>
                             <div className="flex-shrink-0">
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" className="h-8 w-8 fill-current text-black">
@@ -1496,7 +1450,7 @@ export default function Property(props) {
                 </div>
                 <div className="flex flex-col space-y-2">
                   <div className="flex flex-col items-start space-y-2" style={{ animationDelay: '400ms' }}>
-                    <h1 className="text-2xl font-bold" tabIndex="-1">Select Proerty Type (BHK)</h1>
+                    <h1 className="text-lg md:text-xl  font-bold" tabIndex="-1">Select Proerty Type (BHK)</h1>
                   </div>
                   <div className="flex space-x-4">
                     {[1, 2, 3, 4].map((option) => (
@@ -1508,18 +1462,17 @@ export default function Property(props) {
                           onChange={() => handleselecbhktype(option)}
                           className="form-radio text-blue-600"
                         />
-                        <span>{option} BHK</span>
+                        <span className="text-lg text-gray-400 font-normal">{option} BHK</span>
                       </label>
                     ))}
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </div>
-      <div className="bar-btn-dono fixed w-full md:w-[calc(100%-260px)] left-0 md:left-auto bottom-0  right-[20px] bg-[#fff]">
+      <div className="bar-btn-dono fixed w-full md:w-[calc(100%-260px)] left-0 md:left-auto bottom-0 right-[20px] bg-[#fff]">
         <div className="w-full bg-gray-200  h-[6px] dark:bg-gray-700">
           <div className="bg-[#4f46e5] h-[6px] " style={{ width: `${progress}%` }}></div>
         </div>
@@ -1557,7 +1510,6 @@ export default function Property(props) {
           )}
         </div>
       </div>
-
     </>
   );
 }
