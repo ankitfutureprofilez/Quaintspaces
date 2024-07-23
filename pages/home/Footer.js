@@ -6,7 +6,8 @@ import { MdOutlinePhone } from "react-icons/md";
 
 export default function Footer() {
   return (
-    <div className="container mx-auto flex flex-col justify-between bg-[#f2eadf]">
+    <div className="w-full flex flex-col justify-between bg-[#f2eadf]">
+      <div className="container mx-auto">
       {/* Logo and Brand */}
       <div className="items-start footer-menu ">
         <div className="w-full mb-3 mb:mb-0">
@@ -70,6 +71,7 @@ export default function Footer() {
       <div className="text-center copy-right">
         {/* Copyright Notice */}
         <span>&copy; Quaintspaces Jaipur 2024</span>
+      </div>
       </div>
     </div>
   );

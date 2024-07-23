@@ -14,8 +14,18 @@ export default function Login() {
         </Head>
     <div
       className="h-screen tab-mob-height bg-cover"
-      style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
+      // style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
     >
+        <Image
+          src="/images/banner/login_img.JPG"
+          blurDataURL="/images/banner/login_img.JPG"
+          placeholder="blur"
+          alt="Login Background"
+          layout="fill"
+          objectFit="cover"
+          quality={100}
+          className="z-[-1]" 
+        />
       <div className="container h-full">
         <div className="flex items-center  h-full relative signup-tab-sec">
           <div className="left-logo-login w-6/12 px-3">
