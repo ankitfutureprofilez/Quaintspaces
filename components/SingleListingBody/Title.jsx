@@ -30,7 +30,7 @@ const Title = ({ isSaved, listing, loading, isAdmin }) => {
       ) : (
         <>
           <div className=" flex justify-between flex-wrap ">
-            <div className="flex flex-wrap items-center mb-2">
+            <div className="flex flex-wrap items-center mt-4 sm:mt-0 mb-2">
               <div className="backtag"></div>
               <Back />
               <span className="text-xl sm:text-2xl lg:text-3xl">
