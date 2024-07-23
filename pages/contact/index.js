@@ -39,7 +39,7 @@ export default function index() {
       .then((res) => {
         if (res && res?.data && res?.data?.status) {
           toast.success(res?.data?.message);
-          router.push("/");
+          // router.push("/");
           setFormData({
             name: "",
             email: "",
