@@ -41,16 +41,11 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
       {listing?.data?.property_image?.length >= 3 ? (
         <div className="flex-1 flex flex-col gap-2">
           {[...listing?.data?.property_image]?.splice(1, 2).map((e, i) => (
-            <div
-              className="image-cover h-[calc(100%/2-4px)] w-full"
+            <div className="image-cover h-[calc(100%/2-4px)] w-full"
               key={uuidv4()}
-              onClick={() => {
-                setImageViewer(true);
-                setSelectedImage(i++);
-              }}
-            >
+              onClick={() => {setImageViewer(true); setSelectedImage(i++)}} >
               {listing?.data?.property_image?.length > 0 && (
-                <Image  blurDataURL={`${e?.image_url}?q=1`}
+                <Image placeholder="blur"  blurDataURL={`${e?.image_url}?q=1`}
                   src={e?.image_url}
                   alt="Property Image"
                   layout="fill"
@@ -72,9 +67,9 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
               setSelectedImage(i++);
             }}
           >
-             <Image  blurDataURL={`${listing?.data?.property_image[1]?.image_url}?q=1`}
+             <Image  blurDataURL={`${listing?.data?.property_image[1]?.image_url}?q=1`} placeholder="blur"
                   src={listing?.data?.property_image[1]?.image_url}
-                  alt="Property Image"
+                  alt="Property Image" 
                   layout="fill"
                   objectFit="cover"
                   loading="lazy"
@@ -94,8 +89,8 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
               }}
             >
               {listing?.data?.property_image?.length > 0 && (
-                <Image   blurDataURL={`${e?.image_url}?q=1`}
-                src={e?.image_url}
+                <Image   blurDataURL={`${e?.image_url}?q=1`} placeholder="blur"
+                src={e?.image_url} 
                   alt="Property Image"
                   layout="fill"
                   objectFit="cover"
@@ -111,8 +106,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
           setImageViewer(true);
           setSelectedImage(0);
         }}
-        className="flex items-center justify-center gap-2 absolute bottom-0 right-0 sm:bottom-4 sm:right-4 rounded-md font-medium border darkBorderColor bg-lightBorderColor text-blackColor px-3 py-1"
-      >
+        className="flex items-center justify-center gap-2 absolute bottom-0 right-0 sm:bottom-4 sm:right-4 rounded-md font-medium border darkBorderColor bg-lightBorderColor text-blackColor px-3 py-1" >
         <span>
           <Grid />
         </span>

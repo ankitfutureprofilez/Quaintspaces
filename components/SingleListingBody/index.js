@@ -227,7 +227,6 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
       <section className="w-full sm:px-4">
         <div className="container mx-auto !py-4 sm:py-8">
           <Title
-          // isAdmin={true}
             isSaved={isSaved}
             listing={listing}
             addWishlist={changeWishlist}
@@ -289,12 +288,11 @@ const ImageSlider = ({ listing }) => {
   return (
     <div className="w-full min-h-[30vh]">
       {listing?.data?.images && (
-        <Image
+        <Image blurDataURL={`${listing?.data?.images[0]?.url}?q=1`} placeholder="blur"
         src={listing?.data?.images[0]?.url}
-        layout="fill"
-        objectFit="cover"
+        layout="fill" objectFit="cover"
         className="w-full object-cover"
-        alt="Property Image"
+        alt="Property Image" 
       />
       )}
     </div>

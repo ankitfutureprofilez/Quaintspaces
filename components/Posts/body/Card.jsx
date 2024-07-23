@@ -51,9 +51,9 @@ const Card = ({ post }) => {
             ) : (<> </>)}
             <Image
               width={100}
-              height={300}
+              height={300} blurDataURL={`${post?.property_image[0]?.image_url}`}
               layout="responsive"
-              src={post?.property_image[0]?.image_url ? (post?.property_image[0]?.image_url) : ("https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg")}
+              src={post?.property_image[0]?.image_url}
               alt="Property cover image"
               className="!rounded-[7px_7px_0px_0px]"
             />
