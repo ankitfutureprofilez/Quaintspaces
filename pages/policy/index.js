@@ -257,7 +257,7 @@ function index() {
                   </p>
                 </div>
               </div>
-              <div className="p-6 max-w-4xl mx-auto">
+              <div className=" max-w-4xl mx-auto">
                 <div className="mb-2">  <h2    >2. HOW WE USE INFORMATION WE COLLECT.</h2>
                   <p >
                     We use personal information as outlined in this Privacy Policy. If you reside outside of the United States,
@@ -315,7 +315,8 @@ function index() {
                   In certain cases, automated processes, which analyze your account and activities on the QuaintSpaces platform as well as information in relation to activities on and off the QuaintSpaces platform that can be associated with you, could restrict or suspend your access to the QuaintSpaces Platform if such processes detect activity that may pose a safety or other risk to QuaintSpaces, our community, or third parties. Learn more about how our system determines whether certain reservations may carry a higher risk for incidents here. If you would like to challenge decisions based on automated processes, please contact us via the Contact Information section.
                 </p>
 
-                <div className="mb-2"> <h3 className="text-xl  font-normal">2.3 Provide, Personalize, Measure, and Improve our Advertising and Marketing.</h3>
+                <div className="mb-2 mt-2">
+                   <h3 className="text-xl  font-normal">2.3 Provide, Personalize, Measure, and Improve our Advertising and Marketing.</h3>
                   <p >We may process this information to:</p>
                 </div>
                 <ul className="list-disc list-inside mb-4">

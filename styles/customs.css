@@ -4,14 +4,6 @@
 
 
 
-input:-internal-autofill-selected {
-  appearance: menulist-button;
-  background-image: none !important;
-  background-color: light-dark(rgb(0, 0, 0), rgba(0,0,0, 0.4)) !important;
-  color: fieldtext !important;
-}
-
-
 
 
 .logo img {
