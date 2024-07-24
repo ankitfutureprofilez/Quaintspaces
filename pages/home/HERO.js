@@ -2,6 +2,7 @@ import React from 'react'
 import HeroBanner from './HeroBanner';
 import Image from "next/image";
 
+
 export default function HERO() {
    const images = [
       "/images/banner/Banner4.jpg",
