@@ -61,12 +61,20 @@ function Reviews() {
                 <>
                   <div className="flex items-start gap-3 w-full ">
                     <Link className="img-book" href={`/admin/property/${item?.get_property_review?.uuid}`}>
-                    <img
+                      {/* <img
                       src={item?.get_property_review?.property_image[0]?.image_url
                         || "/images/profile-no-image.jpg"}
                       alt="property Quant-stay"
                       className="rounded-full"
-                    />
+                    /> */}
+                      <Image
+                        src={item?.get_property_review?.property_image[0]?.image_url
+                          || "/images/profile-no-image.jpg"}
+                        blurDataURL={`${item?.get_property_review?.property_image[0]?.image_url}?q=1`}
+                        placeholder="blur"
+                        alt="property Quant-stay"
+                        className="rounded-full"
+                      />
                     </Link>
                     <div className="w-full space-y-1">
                       <p className="text-sm text-black font-medium capitalize">
@@ -75,7 +83,7 @@ function Reviews() {
                       <p className="text-xs text-black leading-relaxed capitalize">
                         <span className="font-bold">
 
-                        {item?.get_property_review?.name}
+                          {item?.get_property_review?.name}
                         </span>
                         {" - "}
                         {getLocation(item?.get_property_review?.location)}

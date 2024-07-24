@@ -44,7 +44,8 @@ const RatingStar = ({ showemoji,rating, setRating, size }) => {
                   value={currentRating}
                   variant="Bold"
                   color={
-                    currentRating <= (hover || rating) ? "#ffc107" : "#e4e5e9"
+                    // currentRating <= (hover || rating) ? "#ffc107" : "#e4e5e9"
+                    currentRating <= (hover || rating) ? "#efa3a3" : "#e4e5e9"
                   }
                   onMouseEnter={() => setHover(currentRating)}
                   onMouseLeave={() => setHover(null)}

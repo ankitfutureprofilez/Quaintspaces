@@ -253,7 +253,7 @@ const Reviews = React.forwardRef(({ data,isAdmin }, ref ) => {
           </button>
       
 
-        <Modal width="lg" isOpen={isOpen} onClose={closeModal}>
+        <Modal width="md" isOpen={isOpen} onClose={closeModal}>
           <DropReview
             getSelfreview={getSelfreview}
             listing={selfReview}

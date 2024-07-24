@@ -1,18 +1,18 @@
 import Link from "next/link";
 import React from "react";
 
-export default function ThingsToKnow({ record, isAdmin , content}) {
+export default function ThingsToKnow({ record, isAdmin ,content}) {
   const safetyAmenities = record?.data?.safety_amenity?.split(',') || record?.safety_amenity?.split(',');
   return (
     <div className="container mx-auto">
       <h1 className="listing-heading text-left !mb-0">Things to know</h1>
       <div className="flex justify-between house-rule-text">
         <div className="flex flex-col mt-3 sm:mt-2 mr-4 w-1/3">
-          <h2 className="font-semibold mb-2">Time Management</h2>
-          <p className="mb-2 text-gray-500">Check-in starts after {record?.data?.check_in}</p>
+          <h2 className="font-semibold mb-2">Check In & Check Out  Time</h2>
+          <p className="mb-2 text-gray-500 lowercase">Check-in starts after {record?.data?.check_in}</p>
           <p className="mb-2 text-gray-500">Flexible/check-in ends after {record?.data?.flexible_check_in}</p>
 
-          <p className="mb-2 text-gray-500">Checkout before  {record?.data?.check_out} </p>
+          <p className="mb-2 text-gray-500 lowercase">Checkout before  {record?.data?.check_out} </p>
           <p className="mb-2 text-gray-500"> {record?.data?.guests} Guests Maximum</p>
 
         </div>

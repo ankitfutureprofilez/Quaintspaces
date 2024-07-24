@@ -1,19 +1,19 @@
-// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  productionBrowserSourceMaps: false,
+  optimizeFonts: false,
   images: {
     remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "**",
-      },
       {
         protocol: "https",
         hostname: "**",
       },
     ],
+  },
+  experimental: {
+    scrollRestoration: true,
   },
 };
 
@@ -21,7 +21,6 @@ module.exports = {
   ...nextConfig,
   async headers() {
     return [
-      
       {
         source: "/api/:path*",
         headers: [
@@ -36,6 +35,3 @@ module.exports = {
     ];
   },
 };
-
-
-

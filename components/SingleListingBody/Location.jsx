@@ -40,7 +40,6 @@ const Location = React.forwardRef(({ listing }, ref) => {
     <div ref={ref} className="py-8">
       <h1 className="text-2xl mb-4 font-semibold">Location</h1>
       <p className="text-md mb-4">{listing?.lt}</p>
-      <MdApartment />
       {isLoaded && (
         <GoogleMap
           mapContainerStyle={containerStyle}

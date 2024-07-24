@@ -3,13 +3,15 @@ import dynamic from "next/dynamic";
 import Layout from "../layout/Layout.js";
 import Head from "next/head";
 import PwaFooter from "../elements/PwaFooter.js";
-const ReasonToVisit = dynamic(() => import("./ReasonToVisit.js"),{ ssr: false });
-const HomeRoomsLists = dynamic(() => import("./HomeRoomsLists.js"),{ ssr: false });
-const Testimonials = dynamic(() => import("./Testimonials.js"),{ ssr: false });
-const LuxuryStay = dynamic(() => import("./LuxuryStay.js"),{ ssr: false });
-const HERO = dynamic(() => import('./HERO.js'), { ssr: false });
+import HERO from "./HERO.js";
 
- function MainPage() {
+const ReasonToVisit = dynamic(() => import("./ReasonToVisit.js"));
+const HomeRoomsLists = dynamic(() => import("./HomeRoomsLists.js"));
+const Testimonials = dynamic(() => import("./Testimonials.js"));
+const HeroBanner = dynamic(() => import("./HeroBanner.js"));
+const LuxuryStay = dynamic(() => import("./LuxuryStay.js"));
+
+export default function MainPage() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -20,6 +22,8 @@ const HERO = dynamic(() => import('./HERO.js'), { ssr: false });
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+   
 
   return (
     <Layout>
@@ -37,4 +41,3 @@ const HERO = dynamic(() => import('./HERO.js'), { ssr: false });
     </Layout>
   );
 }
-export default MainPage;

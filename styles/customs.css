@@ -3,10 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&display=swap');
 
 
-
-
-
-
+input:is(:-webkit-autofill, :autofill) {
+  background-color: transparent !important;
+  color: transparent !important;
+}
 
 
 .logo img {
@@ -1050,7 +1050,7 @@ button.submint-btn {
   }
   .visit-us-sec {
     padding: 45px 0 120px;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
   }
   .visit-us-sec h2 {
     font-size: 34px;
@@ -1210,7 +1210,7 @@ button.submint-btn {
     padding: 12px;
   }
   .footer-menu {flex-flow: column; }
-  .visit-us-sec {  margin-bottom: 25px; }
+  .visit-us-sec {  margin-bottom: 0px; }
   .contact-about h1 {
     font-size: 36px;
     line-height: 44px;

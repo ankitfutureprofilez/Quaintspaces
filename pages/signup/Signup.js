@@ -60,9 +60,19 @@ export default function Signup() {
   return (
     <div
       className="h-screen tab-mob-height bg-cover "
-      style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
+      // style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
 
     >
+      <Image
+        src="/images/banner/login_img.JPG"
+        blurDataURL="/images/banner/login_img.JPG?q=1"
+        placeholder="blur"
+        alt="Login Background"
+        layout="fill"
+        objectFit="cover"
+        quality={100}
+        className="z-[-1]"
+      />
       <div className="container h-full">
         <div className="flex items-center  h-full relative signup-tab-sec">
           <div className="left-logo-login w-6/12 px-3">
@@ -89,12 +99,12 @@ export default function Signup() {
                     fill="white"
                   />
                 </svg>
-               HOMEPAGE
+               Homepage
               </Link>
             </div>
             <Image src={logologin} alt="logo" />
             <p>
-            Indulge in the finest and most charming accommodation in Jaipur !
+            Indulge in the finest and most charming accommodation in Jaipur!
             </p>
             {/* <p>
               Book the most luxuries and aesthetically pleasing place, Jaipur

@@ -16,8 +16,6 @@ import LoginLogic from "./login/LoginLogic";
 import NotLogin from "./login/NotLogin";
 import dynamic from "next/dynamic";
 const PullToRefresh = dynamic(() => import("../hooks/PulltoRefresh"));
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
 
 export const Context = React.createContext();
 

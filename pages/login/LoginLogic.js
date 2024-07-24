@@ -40,7 +40,7 @@ export default function LoginLogic({isPopup,color}) {
           if(isPopup){
             setOpenLogin(false);
           } else {
-            router.push("/");
+            router.back();
           }
           setAuth(res?.data?.data || null);
           localStorage && localStorage.setItem("token", res?.data?.token);
