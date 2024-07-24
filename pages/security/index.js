@@ -102,7 +102,7 @@ export default function index() {
           </div>
         </div>
         <div className="container mx-auto">
-        <div className="md:w-9/12 m-auto md:p-12 sm:p-8 p-6 shadow-[0_0_18px_-6px_#ccc;] md:rounded-3xl rounded-2xl md:mt-6 mt-4">
+        <div className="md:w-9/12 m-auto md:p-12 sm:p-8 p-6  md:rounded-3xl rounded-2xl md:mt-6 mt-4">
           <div className="mb-6 profile-text">
             <h1>Update Password</h1>
             <p className="security-text">
