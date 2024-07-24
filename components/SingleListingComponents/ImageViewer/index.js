@@ -6,7 +6,6 @@ import Times from "../../../public/_svgs/Times";
 import Image from "next/image";
 
 const ImageViewer = ({ selectedImage, isSaved, images, setImageViewer }) => {
-  console.log("selectedImage",selectedImage)
   const [counter, setCounter] = useState(selectedImage);
   const [currrentImage, setCurrentImage] = useState(images[selectedImage]);
 
