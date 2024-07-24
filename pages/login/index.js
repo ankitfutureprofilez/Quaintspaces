@@ -52,12 +52,12 @@ export default function Login() {
                     fill="white"
                   />
                 </svg>
-                HOMEPAGE
+                Homepage
               </Link>
             </div>
             <Image src={logologin} alt="Quaintspaces Jaipur logo" />
             <p>
-            Indulge in the finest and most charming accommodation in Jaipur !
+            Indulge in the finest and most charming accommodation in Jaipur!
             </p>
           </div>
           <div className="sm:w-6/12 px-3">

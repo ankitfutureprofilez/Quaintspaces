@@ -7,6 +7,10 @@ import PwaFooter from "../elements/PwaFooter.js";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectFade } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-fade';
 
 const ReasonToVisit = dynamic(() => import("./ReasonToVisit.js"));
 const HomeRoomsLists = dynamic(() => import("./HomeRoomsLists.js"));
@@ -32,6 +36,7 @@ export default function MainPage() {
     "/images/banner/Banner2.jpg",
     "/images/banner/Banner3.jpg",
   ];
+
 
   const settings = {
     dots: true,

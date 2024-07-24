@@ -7,7 +7,7 @@ import { TfiEmail } from "react-icons/tfi";
 
 export default function Footer() {
   return (
-    <div className="w-full flex flex-col justify-between bg-[#f2eadf]">
+    <div className="w-full flex flex-col justify-between bg-[#c0m0y0k10]">
       <div className="container mx-auto">
       {/* Logo and Brand */}
       <div className="items-start footer-menu ">

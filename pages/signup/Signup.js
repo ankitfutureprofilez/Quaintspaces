@@ -99,12 +99,12 @@ export default function Signup() {
                     fill="white"
                   />
                 </svg>
-               HOMEPAGE
+               Homepage
               </Link>
             </div>
             <Image src={logologin} alt="logo" />
             <p>
-            Indulge in the finest and most charming accommodation in Jaipur !
+            Indulge in the finest and most charming accommodation in Jaipur!
             </p>
             {/* <p>
               Book the most luxuries and aesthetically pleasing place, Jaipur

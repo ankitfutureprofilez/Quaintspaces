@@ -15,7 +15,7 @@ export default function LuxuryStay() {
   return (
     <div className="luxury-stay">
       <div className="container mx-auto">
-        <h1>OPULENT </h1>
+        <h1>Opulent </h1>
         <div className="luxury-stay-img">
           <div className="img-box" data-aos="fade-right">
             <Image

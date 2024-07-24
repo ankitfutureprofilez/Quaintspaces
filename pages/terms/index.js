@@ -144,7 +144,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>5.3 Search Results.</h2>
+              <h2>3.1 Search Results.</h2>
               <p>
                 The ranking and display of Listings in search results on the
                 QuaintSpaces Platform depends on a variety of factors, including
@@ -186,7 +186,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>5.4 Your Responsibilities.</h2>
+              <h2>3.2 Your Responsibilities.</h2>
               <p>
                 You are responsible for your own acts and omissions and are also
                 responsible for the acts and omissions of anyone you allow to
@@ -202,7 +202,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>6.1 Cancellations and Reservation Issues.</h2>
+              <h2>3.3 Cancellations and Reservation Issues.</h2>
               <p>
                 In general, if a Guest cancels a Reservation, the amount paid to
                 you is determined by the cancellation policy that applies to
@@ -210,7 +210,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>6.2 Booking Modifications.</h2>
+              <h2>3.4 Booking Modifications.</h2>
               <p>
                 Hosts and Guests are responsible for any Booking Modifications
                 they agree to make via the QuaintSpaces Platform or direct
@@ -221,9 +221,9 @@ function index() {
             </div>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">7. Taxes.</h1>
+            <h1 className="text-xl font-bold my-6">4. Taxes.</h1>
             <div className="mb-2">
-              <h2>7.1 Host Taxes.</h2>
+              <h2>4.1 Host Taxes.</h2>
               <p>
                 As a Host, you are responsible for determining and fulfilling
                 your obligations under applicable laws to report, collect, remit
@@ -233,7 +233,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>7.2 Collection and Remittance by QuaintSpaces.</h2>
+              <h2>4.2 Collection and Remittance by QuaintSpaces.</h2>
               <p>
                 In jurisdictions where QuaintSpaces facilitates the collection
                 and/or remittance of Taxes on behalf of Hosts, you instruct and
@@ -253,7 +253,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>7.3 Tax Information.</h2>
+              <h2>4.3 Tax Information.</h2>
               <p>
                 In certain jurisdictions, Tax regulations may require that we
                 collect and/or report Tax information about you, or withhold
@@ -272,7 +272,7 @@ function index() {
             <h1 className="text-xl font-bold my-6">General Terms</h1>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">8. Reviews.</h1>
+            <h1 className="text-xl font-bold my-6">5. Reviews.</h1>
             <p>
               After each Host Service, Guests and Hosts will have an opportunity
               to review each other. Your review must be accurate and may not
@@ -281,7 +281,7 @@ function index() {
             </p>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">9. Content.</h1>
+            <h1 className="text-xl font-bold my-6">6. Content.</h1>
             <p>
               Parts of the QuaintSpaces Platform enable you to provide feedback,
               text, photos, audio, video, information and other content
@@ -315,17 +315,17 @@ function index() {
             </p>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">10. Fees.</h1>
+            <h1 className="text-xl font-bold my-6">7. Fees.</h1>
             <p>
             QuaintSpaces may charge fees (and applicable Taxes) to Hosts and Guests for the right to use the QuaintSpaces Platform. Any applicable fees are disclosed to Hosts before publishing a listing and to Guests before making a booking. 
             </p>
           </div>
           <div className="prose">
             <h1 className="text-xl font-bold my-6">
-              11. QuaintSpaces Platform Rules.
+              8. QuaintSpaces Platform Rules.
             </h1>
             <div className="mb-2">
-              <h2>11.1 Rules.</h2>
+              <h2>8.1 Rules.</h2>
               <p>
                 You must follow these rules and must not help or induce others
                 to break or circumvent these rules.
@@ -463,7 +463,7 @@ function index() {
               </ol>
             </div>
             <div className="mb-2">
-              <h2>11.2 Reporting Violations.</h2>
+              <h2>8.2 Reporting Violations.</h2>
               <p>
                 If you believe that a Member, Listing or Content poses an
                 imminent risk of harm to a person or property, you should
@@ -479,10 +479,10 @@ function index() {
           </div>
           <div className="prose">
             <h1 className="text-xl font-bold my-6">
-              12. Content Notifications and Content Moderation.
+              9. Content Notifications and Content Moderation.
             </h1>
             <div className="mb-2">
-              <h2>12.1</h2>
+              <h2>9.1</h2>
               <p>
                 You acknowledge that QuaintSpaces has no general obligation to
                 monitor Content provided by and stored on behalf of Members, or
@@ -496,7 +496,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>12.2</h2>
+              <h2>9.2</h2>
               <p>
                 You agree to cooperate with and assist QuaintSpaces in good
                 faith, and to provide QuaintSpaces with such information and
@@ -507,7 +507,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>12.3</h2>
+              <h2>9.3</h2>
               <p>
                 QuaintSpaces provides Members and third parties, including
                 designated trusted flaggers according to Article 22 of
@@ -519,7 +519,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>12.4</h2>
+              <h2>9.4</h2>
               <p>
                 As part of its own initiative investigations and the review of
                 Content Notifications, QuaintSpaces uses various processes and
@@ -534,7 +534,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>12.5 Misuse of Content Notifications.</h2>
+              <h2>9.5 Misuse of Content Notifications.</h2>
               <p>
                 QuaintSpaces is entitled to suspend the processing of Content
                 Notifications for a reasonable period of time, if the Notifier
@@ -553,10 +553,10 @@ function index() {
           </div>
           <div className="prose">
             <h1 className="text-xl font-bold my-6">
-              13. Termination, Suspension and other Measures.
+              10. Termination, Suspension and other Measures.
             </h1>
             <div className="mb-2">
-              <h2>13.1 Term</h2>
+              <h2>10.1 Term</h2>
               <p>
                 The agreement between you and QuaintSpaces reflected by these
                 Terms remains in effect until either you or we terminate the
@@ -564,7 +564,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>13.2 Termination</h2>
+              <h2>10.2 Termination</h2>
               <p>
                 You may terminate this agreement at any time by sending us an
                 email or by deleting your account. QuaintSpaces may terminate
@@ -627,7 +627,7 @@ function index() {
               </p>
             </div> */}
             <div className="mb-2">
-              <h2>13.4 Legal Mandates</h2>
+              <h2>10.4 Legal Mandates</h2>
               <p>
                 QuaintSpaces may take any action it determines is reasonably
                 necessary to comply with applicable law, or the order or request
@@ -637,7 +637,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>13.5 Effect of Termination</h2>
+              <h2>10.5 Effect of Termination</h2>
               <p>
                 If you are a Host and terminate your QuaintSpaces account, any
                 confirmed booking(s) will be automatically cancelled and your
@@ -657,10 +657,10 @@ function index() {
           </div>
           <div className="prose">
             <h1 className="text-xl font-bold my-6">
-              14. Complaint Handling System.
+              11. Complaint Handling System.
             </h1>
             <div className="mb-2">
-              <h2>14.1</h2>
+              <h2>11.1</h2>
               <p>
                 If you are a Member with your country of residence or
                 establishment within the EEA and QuaintSpaces takes any of the
@@ -672,7 +672,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>14.2</h2>
+              <h2>11.2</h2>
               <p>
                 QuaintSpaces’s complaint handling system is also available to
                 Members and third parties with their country of residence or
@@ -683,18 +683,18 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>14.3</h2>
+              <h2>11.3</h2>
               <p>
                 A complaint may be submitted via our complaint handling system
                 for a period of six (6) months, beginning in the case of Section
-                14.1 with the day on which a Member is informed about the
-                measure taken and in the case of Section 14.2 with the day on
+                11.1 with the day on which a Member is informed about the
+                measure taken and in the case of Section 11.2 with the day on
                 which the Notifier is informed about the rejection of their
                 Content Notification.
               </p>
             </div>
             <div className="mb-2">
-              <h2>14.4</h2>
+              <h2>11.4</h2>
               <p>
                 QuaintSpaces is entitled to suspend the processing of complaints
                 from Members and Notifiers for a reasonable period of time, if
@@ -711,9 +711,9 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>14.5</h2>
+              <h2>11.5</h2>
               <p>
-                Members addressed by measures according to Section 14.1 and
+                Members addressed by measures according to Section 11.1 and
                 Notifiers that have submitted Content Notifications which have
                 been rejected by QuaintSpaces, are entitled to select a
                 certified out-of-court dispute settlement body in accordance
@@ -732,7 +732,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>14.6</h2>
+              <h2>11.6</h2>
               <p>
                 For all other inquiries and complaints that are not subject to
                 QuaintSpaces’s complaint handling system, Members can contact
@@ -742,7 +742,7 @@ function index() {
           </div>
           <div className="prose">
             <h1 className="text-xl font-bold my-6">
-              15. Modification of these Terms.
+              12. Modification of these Terms.
             </h1>
             <p>
               When we propose changes to these Terms, we will post the revised
@@ -769,10 +769,10 @@ function index() {
           </div>
           <div className="prose">
             <h1 className="text-xl font-bold my-6">
-              16. Resolving Complaints and Damage Claims between Members.
+              13. Resolving Complaints and Damage Claims between Members.
             </h1>
             <div className="mb-2">
-              <h2>16.1</h2>
+              <h2>13.1</h2>
               <p>
                 If a Member provides valid evidence that you, your guest(s), or
                 your pet(s) have culpably:
@@ -803,7 +803,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>16.2</h2>
+              <h2>13.2</h2>
               <p>
                 If the Host and Guest cannot resolve, or a Guest fails to pay a
                 Damage Claim, the Host may notify QuaintSpaces through the
@@ -835,7 +835,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>16.3</h2>
+              <h2>13.3</h2>
               <p>
                 You agree to cooperate in good faith, provide any information
                 QuaintSpaces requests, execute documents, and take further
@@ -845,7 +845,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>16.4</h2>
+              <h2>13.4</h2>
               <p>
                 Any decisions made by QuaintSpaces in relation to a Damage Claim
                 do not affect your contractual and statutory rights. Your right
@@ -854,7 +854,7 @@ function index() {
             </div>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">17. QuaintSpaces’s Role.</h1>
+            <h1 className="text-xl font-bold my-6">14. QuaintSpaces’s Role.</h1>
             <p>
               We offer you the right to use a platform that enables Members to
               publish, offer, search for, and book Host Services. When Members
@@ -922,7 +922,7 @@ function index() {
             </p>
           </div> */}
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">19. Disclaimer.</h1>
+            <h1 className="text-xl font-bold my-6">15. Disclaimer.</h1>
             <p>
               We do not endorse or warrant the existence, conduct, performance,
               safety, quality, legality or suitability of any Guest, Host, Host
@@ -946,9 +946,9 @@ function index() {
             </p>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">20. Liability.</h1>
+            <h1 className="text-xl font-bold my-6">16. Liability.</h1>
             <div className="mb-2">
-              <h2>20.1</h2>
+              <h2>16.1</h2>
               <p>
                 QuaintSpaces is liable without limitations under statutory
                 provisions for damages arising from injury to life, limb or
@@ -959,7 +959,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>20.2</h2>
+              <h2>16.2</h2>
               <p>
                 QuaintSpaces is also liable without limitations for other
                 damages based on an intentional or grossly negligent breach of
@@ -968,16 +968,16 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>20.3</h2>
+              <h2>16.3</h2>
               <p>
                 QuaintSpaces is not liable for damages arising from a breach of
                 duty based on simple negligence.
               </p>
             </div>
             <div className="mb-2">
-              <h2>20.4</h2>
+              <h2>16.4</h2>
               <p>
-                Section 20.3 does not apply for damages arising from breaches of
+                Section 16.3 does not apply for damages arising from breaches of
                 essential contractual obligations based on simple negligence.
                 For such damages by QuaintSpaces, its legal representatives or
                 other vicarious agents, QuaintSpaces’s liability is limited to
@@ -988,7 +988,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>20.5</h2>
+              <h2>16.5</h2>
               <p>
                 To the extent that QuaintSpaces's liability is excluded or
                 limited, this also applies with regard to the personal liability
@@ -997,7 +997,7 @@ function index() {
             </div>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">21. Indemnification.</h1>
+            <h1 className="text-xl font-bold my-6">17. Indemnification.</h1>
             <p>
               To the maximum extent permitted by applicable law, you agree to
               release, defend (at QuaintSpaces’s option), indemnify, and hold
@@ -1047,7 +1047,7 @@ function index() {
           </div> */}
           <div className="prose">
             <h1 className="text-xl font-bold my-6">
-              23. Applicable law and Jurisdiction.
+              18. Applicable law and Jurisdiction.
             </h1>
             <p>
               These Terms are governed by and construed in accordance with Irish
@@ -1065,9 +1065,9 @@ function index() {
             </p>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">24. Miscellaneous.</h1>
+            <h1 className="text-xl font-bold my-6">19. Miscellaneous.</h1>
             {/* <div className="mb-2">
-              <h2>24.1 Other Terms Incorporated by Reference.</h2>
+              <h2>19.1 Other Terms Incorporated by Reference.</h2>
               <p>
                 Our Host Damage Protection, Japan Host Insurance Terms,
                 Rebooking and Refund Policy, Experiences Guest Refund Policy,
@@ -1079,7 +1079,7 @@ function index() {
               </p>
             </div> */}
             <div className="mb-2">
-              <h2>24.1 Interpreting these Terms.</h2>
+              <h2>19.1 Interpreting these Terms.</h2>
               <p>
                 Except as they may be supplemented by additional terms,
                 conditions, policies, guidelines, standards, and in-product
@@ -1090,13 +1090,13 @@ function index() {
                 you. These Terms do not and are not intended to confer any
                 rights or remedies upon anyone other than you and QuaintSpaces.
                 If any provision of these Terms is held to be invalid or
-                unenforceable, except as otherwise indicated in Section 24.11
+                unenforceable, except as otherwise indicated in Section 19.11
                 below, such provision will be struck and will not affect the
                 validity and enforceability of the remaining provisions.
               </p>
             </div>
             <div className="mb-2">
-              <h2>24.2 No Waiver.</h2>
+              <h2>19.2 No Waiver.</h2>
               <p>
                 QuaintSpaces’s failure to enforce any right or provision in
                 these Terms will not constitute a waiver of such right or
@@ -1108,7 +1108,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>24.4 Assignment.</h2>
+              <h2>19.4 Assignment.</h2>
               <p>
                 You may not assign, transfer or delegate this agreement or your
                 rights and obligations hereunder without QuaintSpaces's prior
@@ -1120,7 +1120,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>24.5 Notice.</h2>
+              <h2>19.5 Notice.</h2>
               <p>
                 Unless specified otherwise, any notices or other communications
                 to Members permitted or required under this agreement, will be
@@ -1135,7 +1135,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>24.6 Third-Party Services.</h2>
+              <h2>19.6 Third-Party Services.</h2>
               <p>
                 The QuaintSpaces Platform may contain links to third-party
                 websites, applications, services or resources (“Third-Party
@@ -1146,7 +1146,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>24.7 Google Terms.</h2>
+              <h2>19.7 Google Terms.</h2>
               <p>
                 Some translations on the QuaintSpaces Platform are powered by
                 Google. Google disclaims all warranties related to the
@@ -1160,7 +1160,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>24.8 Apple Terms.</h2>
+              <h2>19.8 Apple Terms.</h2>
               <p>
                 If you access or download our application from the Apple App
                 Store, you agree to Apple’s Licensed Application End User
@@ -1168,7 +1168,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>24.9 QuaintSpaces Platform Content.</h2>
+              <h2>19.9 QuaintSpaces Platform Content.</h2>
               <p>
                 Content made available through the QuaintSpaces Platform may be
                 protected by copyright, trademark, and/or other laws of the
@@ -1192,7 +1192,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>24.10 QuaintSpaces.org.</h2>
+              <h2>19.10 QuaintSpaces.org.</h2>
               <p>
                 QuaintSpaces.org is a nonprofit corporation exempt from income
                 taxation under U.S. Internal Revenue Code Section 501(c)(3),
@@ -1203,7 +1203,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>24.11 Force Majeure.</h2>
+              <h2>19.11 Force Majeure.</h2>
               <p>
                 QuaintSpaces shall not be liable for any delay or failure to
                 perform resulting from abnormal and unforeseeable circumstances
@@ -1217,7 +1217,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>24.12 Emails and SMS.</h2>
+              <h2>19.12 Emails and SMS.</h2>
               <p>
                 You will receive administrative communications from us using the
                 email address or other contact information you provide for your
@@ -1237,7 +1237,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>24.13 Contact Us.</h2>
+              <h2>19.13 Contact Us.</h2>
               <p>
                 If you have any questions about these Terms please email us.
               </p>
@@ -1245,7 +1245,7 @@ function index() {
           </div>
           {/* <div className="prose">
             <h1 className="text-xl font-bold my-6">
-              25. United States Dispute Resolution and Arbitration Agreement.
+              19. United States Dispute Resolution and Arbitration Agreement.
             </h1>
             <p>
               PLEASE READ THE FOLLOWING PARAGRAPHS CAREFULLY BECAUSE THEY
@@ -1255,7 +1255,7 @@ function index() {
               Agreement supersedes all prior versions.
             </p>
             <div className="mb-2">
-              <h2>25.1 Application.</h2>
+              <h2>19.1 Application.</h2>
               <p>
                 This Arbitration Agreement only applies to you if your country
                 of residence or establishment is the United States. If your
@@ -1269,14 +1269,14 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>25.2 Overview of Dispute Resolution Process.</h2>
+              <h2>19.2 Overview of Dispute Resolution Process.</h2>
               <p>
                 QuaintSpaces is committed to participating in a
                 consumer-friendly dispute resolution process. To that end, these
                 Terms provide for a two-part process for individuals to whom
                 this Section 25 applies: (1) an informal negotiation directly
                 with QuaintSpaces’s customer service team (described in
-                paragraph 25.3, below), and if necessary (2) a binding
+                paragraph 19.3, below), and if necessary (2) a binding
                 arbitration in accordance with the terms of this Arbitration
                 Agreement. You and QuaintSpaces each retain the right to seek
                 resolution of the dispute in small claims court as an
@@ -1285,7 +1285,7 @@ function index() {
             </div>
             <div className="mb-2">
               <h2>
-                25.3 Mandatory Pre-Arbitration Dispute Resolution and
+                19.3 Mandatory Pre-Arbitration Dispute Resolution and
                 Notification.
               </h2>
               <p>
@@ -1306,7 +1306,7 @@ function index() {
                 parties are unable to resolve the dispute within the 30-day
                 period, only then may either party commence arbitration by
                 filing a written demand for arbitration with the arbitration
-                provider designated pursuant to Section 24.6, below. A
+                provider designated pursuant to Section 19.6, below. A
                 claimant’s Pre-Dispute Notice requirement is a prerequisite to
                 any arbitration, and a copy of the Pre-Dispute Notice and
                 evidence that it was sent as required by this Section must be
@@ -1314,7 +1314,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>25.4 Agreement to Arbitrate.</h2>
+              <h2>19.4 Agreement to Arbitrate.</h2>
               <p>
                 You and QuaintSpaces mutually agree that any dispute, claim or
                 controversy arising out of or relating to these Terms or the
@@ -1335,7 +1335,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>25.5 Exceptions to Arbitration Agreement.</h2>
+              <h2>19.5 Exceptions to Arbitration Agreement.</h2>
               <p>
                 You and QuaintSpaces each agree that the following causes of
                 action and/or claims for relief are exceptions to the
@@ -1361,7 +1361,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>25.6 Arbitration Forum Rules and Governing Law.</h2>
+              <h2>19.6 Arbitration Forum Rules and Governing Law.</h2>
               <p>
                 This Arbitration Agreement evidences a transaction in interstate
                 commerce and the Federal Arbitration Act governs all substantive
@@ -1388,7 +1388,7 @@ function index() {
                 arbitration, you and QuaintSpaces shall confer and select an
                 alternative arbitral forum, and if we are unable to agree,
                 either you or QuaintSpaces may ask a court to appoint an
-                arbitrator pursuant to 9 U.S.C. § 5. In that event, the
+                arbitrator pursuant to 9 U.S.C. § 4. In that event, the
                 arbitration will be conducted in accordance with the rules of
                 the appointed arbitral forum, unless those rules are
                 inconsistent with the provisions of this Arbitration Agreement.
@@ -1396,7 +1396,7 @@ function index() {
             </div>
             <div className="mb-2">
               <h2>
-                25.7 Modification of Arbitration Rules - Arbitration
+                19.7 Modification of Arbitration Rules - Arbitration
                 Hearing/Location.
               </h2>
               <p>
@@ -1415,7 +1415,7 @@ function index() {
             </div>
             <div className="mb-2">
               <h2>
-                25.8 Modification of Arbitration Rules - Arbitration Fees and
+                19.8 Modification of Arbitration Rules - Arbitration Fees and
                 Costs.
               </h2>
               <p>
@@ -1436,7 +1436,7 @@ function index() {
             </div>
             <div className="mb-2">
               <h2>
-                25.9 Modification of Arbitration Rules - Claims Brought for an
+                19.9 Modification of Arbitration Rules - Claims Brought for an
                 Improper Purpose or In Violation of This Arbitration Agreement.
               </h2>
               <p>
@@ -1465,7 +1465,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>25.10 Arbitrator’s Decision.</h2>
+              <h2>19.10 Arbitrator’s Decision.</h2>
               <p>
                 The arbitrator will issue a written decision which shall include
                 the essential findings and conclusions upon which the arbitrator
@@ -1478,7 +1478,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>25.11 Jury Trial Waiver.</h2>
+              <h2>19.11 Jury Trial Waiver.</h2>
               <p>
                 You and QuaintSpaces acknowledge and agree that we are each
                 waiving the right to a trial by jury as to all arbitrable
@@ -1486,7 +1486,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>25.12 No Class Actions or Representative Proceedings.</h2>
+              <h2>19.12 No Class Actions or Representative Proceedings.</h2>
               <p>
                 You and QuaintSpaces acknowledge and agree that, to the fullest
                 extent permitted by law, we are each waiving the right to
@@ -1512,7 +1512,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>25.13 Mass Action Waiver.</h2>
+              <h2>19.13 Mass Action Waiver.</h2>
               <p>
                 You and QuaintSpaces acknowledge and agree that the relative
                 benefits and efficiencies of arbitration may be lost when 100 or
@@ -1525,7 +1525,7 @@ function index() {
                 involve the same or coordinated counsel for the parties (“Mass
                 Action”). Accordingly, you and QuaintSpaces agree to waive the
                 right to have any Dispute administered, arbitrated, or resolved
-                as part of a Mass Action (though Sections 23 and 25.12 of these
+                as part of a Mass Action (though Sections 23 and 19.12 of these
                 Terms will continue to apply to the Dispute). In case of a
                 dispute, the appointed arbitrator for the first matter
                 instituted within a set of claims identified by either party
@@ -1539,11 +1539,11 @@ function index() {
             </div>
             <div className="mb-2">
               <h2>
-                25.14 Modification of Arbitration Rules – Mass Action Batching
+                19.14 Modification of Arbitration Rules – Mass Action Batching
                 Requirements.
               </h2>
               <p>
-                If for any reason, notwithstanding Section 25.13, an arbitration
+                If for any reason, notwithstanding Section 19.13, an arbitration
                 proceeds as part of a Mass Action, the parties shall group the
                 arbitration demands into batches of no more than 200. The
                 batches shall be determined by listing the claimants’
@@ -1561,12 +1561,12 @@ function index() {
                 been the subject of a pre-hearing conference within 2 years of
                 the latest-filed demand in the Mass Action, such claimant may
                 elect to pursue the claims asserted in the claimant’s demand in
-                court subject to Sections 23 and 25.12 of these Terms.
+                court subject to Sections 23 and 19.12 of these Terms.
               </p>
             </div>
             <div className="mb-2">
               <h2>
-                25.15 Modifications of Arbitration Rules - Offers of Judgment.
+                19.15 Modifications of Arbitration Rules - Offers of Judgment.
               </h2>
               <p>
                 At least ten (10) days before the date set for the arbitration
@@ -1588,9 +1588,9 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>25.16 Severability.</h2>
+              <h2>19.16 Severability.</h2>
               <p>
-                Except as provided in Section 25.11, in the event that any
+                Except as provided in Section 19.11, in the event that any
                 portion of this Arbitration Agreement is deemed illegal or
                 unenforceable, such provision will be severed and the remainder
                 of the Arbitration Agreement will be given full force and
@@ -1598,7 +1598,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>25.17 Amendments to Agreement to Arbitrate.</h2>
+              <h2>19.17 Amendments to Agreement to Arbitrate.</h2>
               <p>
                 You and QuaintSpaces acknowledge and agree that the relative
                 benefits and efficiencies of arbitration may be lost when 100 or
@@ -1611,7 +1611,7 @@ function index() {
                 involve the same or coordinated counsel for the parties (“Mass
                 Action”). Accordingly, you and QuaintSpaces agree to waive the
                 right to have any Dispute administered, arbitrated, or resolved
-                as part of a Mass Action (though Sections 23 and 25.12 of these
+                as part of a Mass Action (though Sections 23 and 19.12 of these
                 Terms will continue to apply to the Dispute). In case of a
                 dispute, the appointed arbitrator for the first matter
                 instituted within a set of claims identified by either party
@@ -1628,7 +1628,7 @@ function index() {
                 address, the date of the notice, your QuaintSpaces username, the
                 email address you used to set up your QuaintSpaces account, your
                 signature, and an unequivocal statement that you want to opt out
-                of the amended Section 25. You must either mail your notice to
+                of the amended Section 19. You must either mail your notice to
                 this address: 888 Brannan St, San Francisco, CA 94103, Attn:
                 Arbitration Opt-Out, or email the opt-out notice to
                 arbitration.opt.out@QuaintSpaces.com. Rejecting a new change,
@@ -1640,9 +1640,9 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>25.18 Survival.</h2>
+              <h2>19.18 Survival.</h2>
               <p>
-                Except as provided in Section 25.16, and subject to Section 12.6
+                Except as provided in Section 19.16, and subject to Section 12.6
                 of the Terms of Service for Non-European Users this Section 25
                 will survive any termination of these Terms and will continue to
                 apply even if you stop using the QuaintSpaces Platform or
@@ -1665,10 +1665,10 @@ function index() {
           </div>
           <div className="prose">
             <h1 className="text-xl font-bold my-6">
-              26. Hosting on QuaintSpaces as a Business Host.
+              20. Hosting on QuaintSpaces as a Business Host.
             </h1>
             <div className="mb-2">
-              <h2>26.1</h2>
+              <h2>20.1</h2>
               <p>
                 As a Business Host you commit to only offer Host Services on the
                 QuaintSpaces Platform that comply with the applicable rules of
@@ -1676,7 +1676,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>26.2</h2>
+              <h2>20.2</h2>
               <p>
                 In order to meet mandatory statutory requirements you will be
                 required to provide at least the following information (where
@@ -1699,7 +1699,7 @@ function index() {
               </ol>
             </div>
             <div className="mb-2">
-              <h2>26.3</h2>
+              <h2>20.3</h2>
               <p>
                 You will not be able to offer Host Services on the QuaintSpaces
                 Platform until QuaintSpaces has been able to assess that the
@@ -1710,7 +1710,7 @@ function index() {
               </p>
             </div>
             <div className="mb-2">
-              <h2>26.4</h2>
+              <h2>20.4</h2>
               <p>
                 You are responsible for the accuracy of the information provided
                 and are required to keep your information up-to-date at all
@@ -1746,7 +1746,7 @@ function index() {
             </p>
           </div> */}
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">28. Access to Data.</h1>
+            <h1 className="text-xl font-bold my-6">21. Access to Data.</h1>
             <p>
               Business Hosts have access to personal and other data in their
               QuaintSpaces account and host dashboard which is provided by the
