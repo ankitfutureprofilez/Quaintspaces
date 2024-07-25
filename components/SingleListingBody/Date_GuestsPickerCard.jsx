@@ -115,7 +115,7 @@ const Date_GuestsPickerCard = React.forwardRef(
                 <button
                   className=" btn w-full mt-4 hover:bg-[#efa3a3] border-2 border-[#efa3a3] hover:border-[#efa3a3] text-[#efa3a3] hover:text-[#fff]"
                   onClick={() => {
-                    router.push(`/contact`);
+                    router.push(`/about`);
                   }}
                 >
                   Contact

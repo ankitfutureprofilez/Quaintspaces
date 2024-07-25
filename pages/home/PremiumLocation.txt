@@ -1,35 +1,35 @@
 import React, { useState } from "react";
-import Image from "next/image";
-import Vaishali from "../../public/images/jhotwara-1.jpg";
-import Mansarovar from "../../public/images/jhotwara-2.jpg";
-import Jhotwara from "../../public/images/jhotwara-3.jpg";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+// import Image from "next/image";
+// import Vaishali from "../../public/images/jhotwara-1.jpg";
+// import Mansarovar from "../../public/images/jhotwara-2.jpg";
+// import Jhotwara from "../../public/images/jhotwara-3.jpg";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import "swiper/css";
+// import "swiper/css/navigation";
+// import { Navigation } from "swiper/modules";
 
 export default function PremiumLocation() {
-  const images = [
-    { src: Vaishali, alt: "Image 1", text: "Vaishali Nagar" },
-    { src: Mansarovar, alt: "Image 2", text: "Mansarovar " },
-    { src: Jhotwara, alt: "Image 1", text: "Malviya Nagar" },
-    { src: Vaishali, alt: "Image 1", text: "Vaishali Nagar" },
-    { src: Mansarovar, alt: "Image 2", text: "Mansarovar " },
-    { src: Jhotwara, alt: "Image 1", text: "Malviya Nagar" },
-    { src: Vaishali, alt: "Image 1", text: "Vaishali Nagar" },
-    { src: Mansarovar, alt: "Image 2", text: "Mansarovar " },
-    { src: Jhotwara, alt: "Image 1", text: "Malviya Nagar" },
-    { src: Vaishali, alt: "Image 1", text: "Vaishali Nagar" },
-    { src: Mansarovar, alt: "Image 2", text: "Mansarovar " },
-    { src: Jhotwara, alt: "Image 1", text: "Malviya Nagar" },
-    { src: Vaishali, alt: "Image 1", text: "Vaishali Nagar" },
-    { src: Mansarovar, alt: "Image 2", text: "Mansarovar " },
-    { src: Jhotwara, alt: "Image 1", text: "Malviya Nagar" },
-  ];
+  // const images = [
+  //   { src: Vaishali, alt: "Image 1", text: "Vaishali Nagar" },
+  //   { src: Mansarovar, alt: "Image 2", text: "Mansarovar " },
+  //   { src: Jhotwara, alt: "Image 1", text: "Malviya Nagar" },
+  //   { src: Vaishali, alt: "Image 1", text: "Vaishali Nagar" },
+  //   { src: Mansarovar, alt: "Image 2", text: "Mansarovar " },
+  //   { src: Jhotwara, alt: "Image 1", text: "Malviya Nagar" },
+  //   { src: Vaishali, alt: "Image 1", text: "Vaishali Nagar" },
+  //   { src: Mansarovar, alt: "Image 2", text: "Mansarovar " },
+  //   { src: Jhotwara, alt: "Image 1", text: "Malviya Nagar" },
+  //   { src: Vaishali, alt: "Image 1", text: "Vaishali Nagar" },
+  //   { src: Mansarovar, alt: "Image 2", text: "Mansarovar " },
+  //   { src: Jhotwara, alt: "Image 1", text: "Malviya Nagar" },
+  //   { src: Vaishali, alt: "Image 1", text: "Vaishali Nagar" },
+  //   { src: Mansarovar, alt: "Image 2", text: "Mansarovar " },
+  //   { src: Jhotwara, alt: "Image 1", text: "Malviya Nagar" },
+  // ];
 
   return (
     <div className="premium-location-slider z-0" id="premium">
-      <div className="container mx-auto ">
+      {/* <div className="container mx-auto ">
         <h1>Premium Location in Jaipur</h1>
         <div className="relative flex items-center">
           <Swiper
@@ -70,7 +70,8 @@ export default function PremiumLocation() {
             ))}
           </Swiper>
         </div>
-      </div>
+      </div> */}
+      Hello
     </div>
   );
 }
