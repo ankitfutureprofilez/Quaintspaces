@@ -51,19 +51,16 @@ export default function Footer() {
             {/* <p><Link href="tel:9314022666">9314022666</Link></p> */}
           </div>
           <div className="w-full mb-3 mb:mb-0 text-center xl:text-start">
-            <h3 className="uppercase mb-[5px] text-[20px] text[#3F2A17] font-[400] font-['Baskervville'] capitalize">
-              {" "}
-              Quick Links
-            </h3>
+           
             <div className="w-[80px] h-[2px] mx-auto xl:mx-[0] bg-[#efa3a3] mb-[15px]"></div>
             <div className="flex flex-col">
               <Link href="/terms">
-                <span className="text-[#3F2A17] text-[16px] uppercase">
+                <span className="text-[#3F2A17] text-[16px] ">
                   Terms & Condition
                 </span>
               </Link>
               <Link href="/policy">
-                <span className="text-[#3F2A17] text-[16px] uppercase">
+                <span className="text-[#3F2A17] text-[16px] ">
                   Privacy Policy
                 </span>
               </Link>
