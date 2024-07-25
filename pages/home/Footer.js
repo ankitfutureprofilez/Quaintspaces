@@ -52,7 +52,7 @@ export default function Footer() {
           </div>
           <div className="w-full mb-3 mb:mb-0 text-center xl:text-start">
            
-            <div className="w-[80px] h-[2px] mx-auto xl:mx-[0] bg-[#efa3a3] mb-[15px]"></div>
+            <div className="w-[80px]  mx-auto xl:mx-[0] bg-[#efa3a3] mb-[15px]"></div>
             <div className="flex flex-col">
               <Link href="/terms">
                 <span className="text-[#3F2A17] text-[16px] ">
