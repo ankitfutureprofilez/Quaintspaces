@@ -142,7 +142,6 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
           images={listing?.data?.property_image}
           isSaved={isSaved}
           setImageViewer={setImageViewer}
-          // isAdmin={isAdmin}
         />
       )}
       <header

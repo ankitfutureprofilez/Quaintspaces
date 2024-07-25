@@ -342,7 +342,7 @@ footer {
   width: 100%;
 }
 .flat-info {
-  padding: 0 20px;
+  /* padding: 0 20px; */
 }
 .flat-info h2 {
   
@@ -433,7 +433,6 @@ footer {
 }
 .load-more-btn {
   text-align: center;
-  margin-top: 40px;
 }
 .load-more-btn a {
   
@@ -1000,9 +999,9 @@ button.submint-btn {
     line-height: 38px;
     margin-bottom: 29px;
   }
-  .flat-info {
+  /* .flat-info {
     padding: 0 0px;
-  }
+  } */
   .flat-info h2 {
     padding: 12px 10px 12px 10px;
   }
@@ -1049,7 +1048,7 @@ button.submint-btn {
     line-height: 26px;
   }
   .visit-us-sec {
-    padding: 45px 0 120px;
+    padding: 45px 0 20px;
     margin-bottom: 0px;
   }
   .visit-us-sec h2 {

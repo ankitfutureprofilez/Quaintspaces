@@ -16,8 +16,8 @@ export default function Card() {
           Stylish Apartments for Your Dream Vacation
         </h2>
         <RoomListings />
-        <div className="load-more-btn">
-          <Link href="/apartments">Show All</Link>
+        <div className="load-more-btn w-full flex justify-center lg:mt-6">
+          <Link href="/apartments" className="block">Show All</Link>
         </div>
       </div>
     </div>

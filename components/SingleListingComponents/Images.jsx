@@ -46,11 +46,10 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
               onClick={() => {setImageViewer(true); setSelectedImage(i++)}} >
               {listing?.data?.property_image?.length > 0 && (
                 <Image placeholder="blur"  blurDataURL={`${e?.image_url}?q=1`}
-                  src={e?.image_url}
-                  alt="Property Image"
-                  layout="fill"
+                  src={e?.image_url}   priority={true}
+                  alt="Property Image" 
+                  layout="fill" 
                   objectFit="cover"
-                  loading="lazy"
                 />
               )}
             </div>
@@ -71,7 +70,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
                   src={listing?.data?.property_image[1]?.image_url}
                   alt="Property Image" 
                   layout="fill"
-                  objectFit="cover"
+                  objectFit="cover"  priority={true}
                   loading="lazy"
                 />
           </div>
@@ -94,7 +93,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
                   alt="Property Image"
                   layout="fill"
                   objectFit="cover"
-                  loading="lazy"
+                  priority={true}
                 />
               )}
             </div>

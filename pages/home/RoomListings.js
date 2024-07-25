@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import Listings from './../api/laravel/Listings';
 import Link from "next/link";
 import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css/pagination';
 
 export default function RoomListings() {
   const [loading, setLoading] = useState(false);
@@ -41,9 +44,37 @@ export default function RoomListings() {
 
   return (
     <div className=" ">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="swiperdiv">
+      <Swiper   
+      spaceBetween={0} 
+      // autoplay={{ 
+      //   delay: 2000, 
+      //   disableOnInteraction: false,
+      // }}
+      // loop={true}
+      pagination={{
+        clickable: true,
+      }} 
+      // navigation={true} 
+      breakpoints={{
+        640: {
+          slidesPerView: 1,
+          spaceBetween:0,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 0,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 0,
+        },
+      }}
+      modules={[Pagination]}
+      className="mySwiper pb-10 lg:pb-0 ">
         {listings?.map((item, index) => (
-          <Link key={index} className="bg-white banipark-box rounded-lg block relative overflow-hidden pb-[85px] h-full" href={`/property/${item?.uuid}`}>
+           <SwiperSlide className="p-2 sm:p-3">
+            <Link key={index} className="bg-white w-full banipark-box rounded-lg block relative overflow-hidden pb-[85px] h-full" href={`/property/${item?.uuid}`}>
             {item?.discount_offer ? (
               <div className="absolute bg-[#efa3a3] -rotate-45 text-white px-2 py-1 w-32 text-center -left-[32px] top-[18px] shadow-[0_0_17px_-5px_#3c3c3c;]">
                 {item?.discount_offer}% off
@@ -59,7 +90,7 @@ export default function RoomListings() {
               alt="Property cover image"
               className="!rounded-[7px_7px_0px_0px]"
             />
-            <div className="flat-info p-4">
+            <div className="flat-info p-3 lg:p-6">
               <h2 className="line-clamp-1 !pb-[5px]">
                 {
                   parseLocation(item?.location)
@@ -84,8 +115,10 @@ export default function RoomListings() {
             <div className="explor-btn absolute w-full left-0 bottom-0">
               Explore
             </div>
-          </Link>
+            </Link>
+          </SwiperSlide>
         ))}
+        </Swiper>
       </div>
     </div>
   );

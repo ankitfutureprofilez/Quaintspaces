@@ -3,7 +3,9 @@ import { FaStar } from 'react-icons/fa';
 import { GoArrowRight } from 'react-icons/go';
 import StartRating from '../elements/StartRating'; // Ensure you have this component
 import Link from 'next/link';
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css/pagination';
 export default function Testimonials() {
   const testimonials = [
     {
@@ -39,17 +41,43 @@ export default function Testimonials() {
           Real Reviews, Real Guests
           </h2>
         </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {testimonials.map((item) => (
+        <div className="review-slider">
+        <Swiper   
+          spaceBetween={0} 
+          autoplay={{ 
+            delay: 2000, 
+            disableOnInteraction: false,
+          }}
+          loop={true}
+          pagination={{
+            clickable: true,
+          }} 
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+              spaceBetween:0,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween:0,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 0,
+            },
+          }}
+          modules={[Autoplay, Pagination]}
+          className="mySwiper pb-10 lg:pb-0 ">
+        
+        {testimonials.map((item) => (
+        <SwiperSlide className="p-2 sm:p-3">
             <div
               key={item.id}
-              className="flex h-full flex-col bg-white p-6 shadow-sm sm:p-8"
-            >
+              className="flex h-full flex-col bg-white p-6 shadow-sm sm:p-8" >
               <div className="flex items-center mb-4">
-                {/* Example of an image, replace src with actual image URL */}
-                <img src={item?.image} alt={item.title} className="w-12 h-12 rounded-full mr-4" />
+                <img src={item?.image} alt={item.title} className=" min-h-12 min-w-12 max-w-12 max-h-12 w-12 h-12 rounded-full mr-4" />
                 <div>
-                  <p className="text-2xl font-bold text-[#464646] sm:text-3xl">{item.title}</p>
+                  <p className="text-xl font-bold text-[#464646] sm:text-2xl">{item.title}</p>
                   <p className="mt-2 text-sm text-gray-500 flex">
                     <StartRating size={16} value={item.star} />
                     <span className='gap-2'>
@@ -65,7 +93,9 @@ export default function Testimonials() {
                 &mdash; {item.name}
               </div>
             </div>
+          </SwiperSlide>
           ))}
+          </Swiper>
         </div>
         <div className="flex justify-center mt-6">
           <Link

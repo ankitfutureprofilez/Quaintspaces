@@ -4,13 +4,11 @@ import Layout from "../layout/Layout.js";
 import Head from "next/head";
 import PwaFooter from "../elements/PwaFooter.js";
 import HERO from "./HERO.js";
-
 const ReasonToVisit = dynamic(() => import("./ReasonToVisit.js"));
 const HomeRoomsLists = dynamic(() => import("./HomeRoomsLists.js"));
-const Testimonials = dynamic(() => import("./Testimonials.js"));
-const HeroBanner = dynamic(() => import("./HeroBanner.js"));
+const Testimonials = dynamic(() => import("./Testimonials.js"), {ssr: false});
 const LuxuryStay = dynamic(() => import("./LuxuryStay.js"));
-
+ 
 export default function MainPage() {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -23,7 +21,6 @@ export default function MainPage() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-   
 
   return (
     <Layout>
