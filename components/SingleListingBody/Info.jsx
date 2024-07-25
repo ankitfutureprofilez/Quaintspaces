@@ -87,7 +87,7 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
         {loading ? (
           <div className="w-full h-7  bg-lightBorderColor rounded-md"></div>
         ) : (
-          <p className="text-md text-lightTextColor break-all">
+          <p className="text-md text-lightTextColor  ">
             {listing?.data?.description}
           </p>
         )}

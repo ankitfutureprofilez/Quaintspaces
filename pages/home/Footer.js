@@ -7,7 +7,7 @@ import { TfiEmail } from "react-icons/tfi";
 
 export default function Footer() {
   return (
-    <div className="w-full flex flex-col justify-between bg-[#c0m0y0k10]">
+    <div className="w-full flex flex-col justify-between bg-[#E5E5E5]">
       <div className="container mx-auto">
       {/* Logo and Brand */}
       <div className="items-start footer-menu ">
@@ -41,10 +41,10 @@ export default function Footer() {
           <h3 className="uppercase mb-2 text-[20px] text[#3F2A17] font-[400] font-['Baskervville'] capitalize"> Quick Links</h3>
           <div className="flex flex-col">
             <Link href="/terms">
-              <span className="text-[#3F2A17] text-[16px] uppercase">Terms & Condition</span>
+              <span className="text-[#3F2A17] text-[16px] ">Terms & Condition</span>
             </Link>
             <Link href="/policy">
-              <span className="text-[#3F2A17] text-[16px] uppercase">Privacy Policy</span>
+              <span className="text-[#3F2A17] text-[16px] ">Privacy Policy</span>
             </Link>
           </div>
         </div>
