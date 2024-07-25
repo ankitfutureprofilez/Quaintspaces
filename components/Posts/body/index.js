@@ -27,36 +27,38 @@ const PostBody = ({ listings, loading }) => {
 
   return (
     <div>
-      <ul className="flex flex-wrap space-y-8 mx-[10px] mb-10 ">
+      <ul className="flex flex-wrap space-y-8 mb-10">
         {loading
           ? Array(3)
               .fill("_")
               // .map(() => <TableLoading key={uuidv4()} />)
-              .map(() => <AllApartmentLoading/> )
+              .map(() => <AllApartmentLoading />)
           : listings && listings?.length > 0
           ? listings.map((post, i) => (
               <li
                 key={post?.id}
-                className="w-full  sm:px-3 mb-5"
+                className="w-full mb-5"
                 ref={(el) => (child.current[i] = el)}
               >
                 {/* <Card /> */}
-                <List  post={post}/>
+                <List post={post} />
               </li>
             ))
           : null}
       </ul>
       {/* NoData component outside the flex container */}
-      {(!loading && (!listings || listings.length === 0)) && (
+      {!loading && (!listings || listings.length === 0) && (
         <div className="w-full">
           <NoData
             Heading={"No Properties Found"}
-            content={"Sorry for the inconvenience. Click below to go to the home page"}
+            content={
+              "Sorry for the inconvenience. Click below to go to the home page"
+            }
           />
         </div>
       )}
     </div>
-  );  
+  );
 };
 
 export default PostBody;

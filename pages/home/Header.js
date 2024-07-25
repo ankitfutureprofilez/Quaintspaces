@@ -5,7 +5,7 @@ import logo from "../../public/images/Logo.png";
 import LocalToken from "../../hooks/LocalToken";
 import { useRouter } from "next/router";
 import { Context } from "../_app";
-import { toast } from 'react-hot-toast';
+import { toast } from "react-hot-toast";
 import Menu from "./Menu";
 import Listings from "../api/laravel/Listings";
 import { IoMdMenu } from "react-icons/io";
@@ -21,19 +21,21 @@ export default function Header() {
   };
 
   const { setAuth } = useContext(Context);
-  const webtoken = LocalToken('token');
-  
-  async function getAuth(s) { 
+  const webtoken = LocalToken("token");
+
+  async function getAuth(s) {
     if (webtoken) {
       const main = new Listings();
       const response = main.GetUserProfile(s);
-      response.then((res) => {
-        if (res?.data?.status) {
-          setAuth(res?.data?.data);
-        } 
-      }).catch((error) => {
-        console.log("error", error);
-      });
+      response
+        .then((res) => {
+          if (res?.data?.status) {
+            setAuth(res?.data?.data);
+          }
+        })
+        .catch((error) => {
+          console.log("error", error);
+        });
     }
   }
 
@@ -48,32 +50,46 @@ export default function Header() {
     <nav className="navbar">
       <div className="container flex items-center justify-between">
         <div className="logo">
-          <Link href="/"> 
+          <Link href="/">
             <Image src={logo} alt="Quaintspaces Jaipur Logo" />
           </Link>
         </div>
         <div className="nav-bar flex items-center">
           <div className="menu-icon" onClick={toggleMenu}>
-           <IoMdMenu className="h-6 w-6 cursor-pointer block md:hidden"/>
+            <IoMdMenu className="h-6 w-6 cursor-pointer block lg:hidden" />
           </div>
-          <div className={`menu-items flex-col md:flex-row md:flex md:gap-8 items-center ${isMenuOpen ? 'flex' : 'hidden'} md:flex`}>
-            <Link href="/apartments" className="border-b md:border-0">
+          <div
+            className={`menu-items flex-col lg:flex-row lg:flex lg:gap-8 items-center ${
+              isMenuOpen ? "flex" : "hidden"
+            } lg:flex`}
+          >
+            <Link href="/apartments" className="border-b lg:border-0">
               <p>Properties</p>
             </Link>
-            <Link href="/#testimonials" className="border-b md:border-0">
+            <Link href="/#testimonials" className="border-b lg:border-0">
               <p>Reviews</p>
             </Link>
-            <Link href="/about" className="border-b md:border-0">
+            <Link href="/about" className="border-b lg:border-0">
               <p>About Us</p>
             </Link>
             {/* <Link href="/contact">
               <p>Contact</p>
             </Link> */}
             {auth?.auth?.email ? (
-              <div className="profile-image relative" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-                <div className="profile-image-container items-center" style={{ cursor: 'pointer' }}>
+              <div
+                className="profile-image relative"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              >
+                <div
+                  className="profile-image-container items-center"
+                  style={{ cursor: "pointer" }}
+                >
                   <Image
-                    src={auth?.auth?.image_url ? auth?.auth?.image_url : "/images/profile-no-image.jpg"}
+                    src={
+                      auth?.auth?.image_url
+                        ? auth?.auth?.image_url
+                        : "/images/profile-no-image.jpg"
+                    }
                     alt="profile"
                     width={100}
                     height={100}
@@ -83,7 +99,7 @@ export default function Header() {
                 {isDropdownOpen && <Menu />}
               </div>
             ) : (
-              <div className="login-signup-btn flex mt-2 md:mt-0">
+              <div className="login-signup-btn flex mt-2 lg:mt-0">
                 <Link className="login" href="/login">
                   <p>Login</p>
                 </Link>

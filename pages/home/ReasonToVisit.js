@@ -10,39 +10,43 @@ import { GrMapLocation } from "react-icons/gr";
 import { BsSpeaker } from "react-icons/bs";
 import { PiBooks } from "react-icons/pi";
 import { MdOutlinePool } from "react-icons/md";
-import { MdTv } from 'react-icons/md';
+import { MdTv } from "react-icons/md";
 
 export default function ReasonToVisit() {
   const reasons = [
     { name: "Kitchen", icon: <TbToolsKitchen2 /> },
-    { name: "Refrigerator", icon: <RiFridgeLine/> },
+    { name: "Refrigerator", icon: <RiFridgeLine /> },
     { name: "Balcony", icon: <MdBalcony /> },
-    { name: "Internet Access", icon: <FaWifi/> },
+    { name: "Internet Access", icon: <FaWifi /> },
     { name: "Free Parking", icon: <LuParkingCircle /> },
-    { name: "Daily housekeeping", icon: <MdOutlineCleaningServices/> },
-    { name: "Air conditioning", icon: <TbAirConditioning/> },
-    { name: "Prime location", icon: <GrMapLocation/> },
-    { name: "Music Speakers", icon: <BsSpeaker/> },
+    { name: "Daily housekeeping", icon: <MdOutlineCleaningServices /> },
+    { name: "Air conditioning", icon: <TbAirConditioning /> },
+    { name: "Prime location", icon: <GrMapLocation /> },
+    { name: "Music Speakers", icon: <BsSpeaker /> },
     { name: "Games & Books", icon: <PiBooks /> },
     { name: "Pool / Jacuzzi", icon: <MdOutlinePool /> },
-    { name: "TV", icon: <MdTv/> }
+    { name: "TV", icon: <MdTv /> },
   ];
 
   return (
-    <div className="visit-us-sec relative bg-[#F5F5DC]" 
-    // style={{ backgroundImage: `url(/images/Amenitie_bg.avif)` }}
+    <div
+      className="visit-us-sec relative bg-[#F5F5DC]"
+      // style={{ backgroundImage: `url(/images/Amenitie_bg.avif)` }}
     >
       <div className="container capitalize mx-auto relative z-10">
         <h2>Facilities we offer</h2>
         <div className="smart-box">
-        {reasons.map((reason, index) => (
-                <div className="iteam sm:w-[200px] w-[150px] mb-3" key={index} >
-                  <div className="flex flex-col gap-2">
-                    {reason?.icon}
-                    {reason?.name}
-                    </div>
-                </div>
-              ))}
+          {reasons.map((reason, index) => (
+            <div
+              className="iteam sm:w-[200px] w-[33.33%] mb-[6px] sm:mb-3 "
+              key={index}
+            >
+              <div className="flex flex-col gap-2 p-[5px] sm:p-0">
+                {reason?.icon}
+                {reason?.name}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
