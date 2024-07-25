@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Modal from "../elements/Modal";
 
 export default function ThingsToKnow({ record, isAdmin, content }) {
+  console.log("record",record);
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {

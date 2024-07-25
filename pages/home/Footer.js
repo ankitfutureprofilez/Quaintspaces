@@ -10,9 +10,9 @@ export default function Footer() {
     <div className="w-full flex flex-col justify-between bg-[#E5E5E5]">
       <div className="container mx-auto">
       {/* Logo and Brand */}
-      <div className="items-start footer-menu ">
+      <div className="items-end footer-menu ">
         <div className="w-full mb-3 mb:mb-0">
-          <h3 className="mb-2 text-[20px] text[#3F2A17] font-[400] font-['Baskervville'] capitalize">Contact Us</h3>
+          <h3 className="mb-2 text-[20px] text[#3F2A17] font-[400] font-['Baskervville'] capitalize underline">Contact Us</h3>
           <div className="flex flex-col">
             <Link className="text-[#3F2A17] text-[16px] flex " href="mailto:quaintspaces@gmail.com" target="_blank">
                 <TfiEmail size={22} color={"#3F2A17"} />
@@ -38,18 +38,18 @@ export default function Footer() {
           {/* <p><Link href="tel:9314022666">9314022666</Link></p> */}
         </div>
         <div className="w-full mb-3 mb:mb-0">
-          <h3 className="uppercase mb-2 text-[20px] text[#3F2A17] font-[400] font-['Baskervville'] capitalize"> Quick Links</h3>
+          <h3 className="uppercase mb-2 text-[20px] text[#3F2A17] font-[400] font-['Baskervville'] capitalize"> </h3>
           <div className="flex flex-col">
             <Link href="/terms">
-              <span className="text-[#3F2A17] text-[16px] ">Terms & Condition</span>
+              <span className="text-[#3F2A17] text-[16px] uppercase">Terms & Condition</span>
             </Link>
             <Link href="/policy">
-              <span className="text-[#3F2A17] text-[16px] ">Privacy Policy</span>
+              <span className="text-[#3F2A17] text-[16px] uppercase">Privacy Policy</span>
             </Link>
           </div>
         </div>
         <div className="flex w-full flex-col mb-3 mb:mb-0">
-          <h3 className="uppercase mb-2 text-[20px] text[#3F2A17] font-[400] font-['Baskervville'] capitalize">Follow Us</h3>
+          <h3 className="uppercase mb-2 text-[20px] text[#3F2A17] font-[400] font-['Baskervville'] capitalize underline">Follow Us</h3>
           <div className="">
             <Link href="https://www.facebook.com/share/64gvciqN2UNPMx6V/?mibextid=LQQJ4d" target="_blank">
               <div className="flex">
