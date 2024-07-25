@@ -31,7 +31,6 @@ const success = () => {
     }
   }, []);
 
-  console.log("record", record)
   const handleSubmit = (main, data) => {
     setloading(true);
     const parsedData = JSON.parse(data);

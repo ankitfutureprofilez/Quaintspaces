@@ -6,11 +6,9 @@ import { useRouter } from "next/router";
 
 const DropReview = ({ closeModal, listing, getSelfreview }) => {
 
-  console.log("listing", listing)
   const [clean, setClean] = useState(listing?.cleaning || 0);
   const [communcation, setCommuncation] = useState(listing?.communication || 0);
   const [checkin, setCheckin] = useState(listing?.review_check_in || 0);
-  console.log("checkin", checkin)
   const [accuracy, setAccuracy] = useState(listing?.accuracy || 0);
   const [location, setlocation] = useState(listing?.location || 0);
   const [value, setValue] = useState(listing?.value || 0);

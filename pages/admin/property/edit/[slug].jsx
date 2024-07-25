@@ -46,7 +46,6 @@ export default function Edit() {
     data: {},
   });
 
-  console.log("record", record)
 
   const fetchProperty = async (slug) => {
     if (slug) {
@@ -76,7 +75,6 @@ export default function Edit() {
   function stringToArray(inputString) {
     return inputString.split(",");
   }
-  console.log("record", record);
 
   const useExistingImages = true;
   const isEdit = true;
@@ -173,12 +171,9 @@ export default function Edit() {
     pet: "",
     extra_guest: ""
   });
-  console.log("location",record?.data?.location )
   const lstring = record?.data?.location ? JSON.parse(record?.data?.location?.replace('/\\/g', '"')) : null;
-  console.log("lstring",lstring)
   
   const l = JSON.parse(lstring);
-  console.log("l",l)
 
 
   const [address, setAddress] = useState({

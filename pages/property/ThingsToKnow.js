@@ -25,12 +25,10 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
   };
 
   const additonaldata = record?.data?.property_rule?.additional_rules ? JSON.parse(record?.data?.property_rule?.additional_rules) : null;
-  console.log("additonaldata", additonaldata);
-
+const  RuleData = additonaldata && JSON.parse(additonaldata);
   // Assuming additionaldata is a string
-  const formattedAdditionalData = additonaldata?.replace(/\r?\n/g, '<br />');
+  const formattedAdditionalData = RuleData?.replace(/\r\n/g, '<br />');
 
-  console.log("formattedAdditionalData", formattedAdditionalData)
 
 
   return (
