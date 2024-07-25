@@ -753,7 +753,7 @@ const Book = () => {
 
           {isOpen && (
             <div className="max-w-3xl mx-auto">
-              <Modal isOpen={isOpen} onClose={closeModal}>
+              <Modal width="md" isOpen={isOpen} onClose={closeModal}>
                 <p className="text-lg text-white font-semibold p-7 py-4 bg-[#efa3a3] capitalize">
                   Cancellation policy
                 </p>
