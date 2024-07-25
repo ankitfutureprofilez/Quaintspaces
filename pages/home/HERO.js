@@ -77,6 +77,7 @@ export default function HERO() {
     </Swiper>
       <div className="absolute z-[1] inset-0 flex items-center justify-center">
         <HeroBanner />
+        
       </div> 
     </div>
   </>
