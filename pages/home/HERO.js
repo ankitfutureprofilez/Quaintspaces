@@ -1,15 +1,10 @@
 import React from 'react'
 import HeroBanner from './HeroBanner';
 import Image from "next/image";
-<<<<<<< HEAD
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import dynamic from 'next/dynamic';
 import 'swiper/css/pagination';
-=======
-
-
->>>>>>> df0563fc4f787c567991a7112f31214718fd60a5
 export default function HERO() {
    const images = [
       "/images/banner/Banner4.jpg",
