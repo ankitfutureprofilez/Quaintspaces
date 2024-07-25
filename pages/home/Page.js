@@ -32,7 +32,7 @@ export default function MainPage() {
           <title>Quaint Spaces</title>
         </Head>
         <PwaFooter />
-        <HERO />
+        {/* <HERO /> */}
         <LuxuryStay />
         <HomeRoomsLists />
         <Testimonials />

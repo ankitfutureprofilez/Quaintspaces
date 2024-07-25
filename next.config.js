@@ -2,8 +2,6 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  productionBrowserSourceMaps: false,
-  optimizeFonts: false,
   images: {
     remotePatterns: [
       {
@@ -11,9 +9,6 @@ const nextConfig = {
         hostname: "**",
       },
     ],
-  },
-  experimental: {
-    scrollRestoration: true,
   },
 };
 

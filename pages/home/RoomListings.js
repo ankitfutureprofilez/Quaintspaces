@@ -3,6 +3,15 @@ import React, { useEffect, useState } from "react";
 import Listings from './../api/laravel/Listings';
 import Link from "next/link";
 import Image from 'next/image';
+import Slider from "react-slick";
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3
+  };
 
 export default function RoomListings() {
   const [loading, setLoading] = useState(false);
@@ -42,6 +51,8 @@ export default function RoomListings() {
   return (
     <div className=" ">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="slider-container">
+      <Slider {...settings}>
         {listings?.map((item, index) => (
           <Link key={index} className="bg-white banipark-box rounded-lg block relative overflow-hidden pb-[85px] h-full" href={`/property/${item?.uuid}`}>
             {item?.discount_offer ? (
@@ -86,6 +97,8 @@ export default function RoomListings() {
             </div>
           </Link>
         ))}
+        </Slider>
+        </div>
       </div>
     </div>
   );
