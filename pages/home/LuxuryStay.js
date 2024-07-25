@@ -71,7 +71,7 @@ export default function LuxuryStay() {
           <>
             <h1>Opulent </h1>
             <div className="luxury-stay-img">
-              <div className="img-box" data-aos="fade-right">
+              <div className="img-box" data-aos="fade-left">
                 <Image
                   src={Luxury1}
                   alt="Quaintspaces Jaipur"
@@ -83,7 +83,7 @@ export default function LuxuryStay() {
               <div
                 className="img-box"
                 id="hero"
-                data-aos="fade-up"
+                data-aos="fade-right"
                 data-aos-duration="3000"
               >
                 <Image
