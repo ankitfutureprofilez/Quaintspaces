@@ -290,7 +290,7 @@ const Book = () => {
       })
       .finally(() => setLoading(false));
   };
-  const [payloaing, setpayloading] = useState(false)
+  const [payloading, setpayloading] = useState(false)
   const paymentsubmit = (orderId) => {
     setpayloading(true);
     // Receive orderId as a parameter
@@ -355,9 +355,9 @@ const Book = () => {
             text={loading ? "Processing..." : "Confirm & Pay"}
             handleClick={() => router.back()}
           />
-          <div className="flex mt-3 sm:mt-8 md:mt-14 px-3 gap-10 your-trip-sec">
-            <div className="w-8/12">
-              <h3  className="text-2xl mb-4 font-medium heading-data">
+          <div className="flex flex-col md:flex-row mt-3 sm:mt-8 md:mt-14 px-3 gap-10 your-trip-sec">
+            <div className="md:w-8/12 w-full">
+              <h3 className="text-2xl mb-4 font-medium heading-data">
                 Your Trip
               </h3>
               <div className="flex items-center justify-between w-full py-2">
@@ -417,9 +417,7 @@ const Book = () => {
                         <option value="voterid">Voter ID</option>
                       </select>
                     </div>
-
                   </div>
-
                   <div className="mb-4">
                     <input
                       type="file"
@@ -433,13 +431,13 @@ const Book = () => {
                   </div>
                 </form>
               </div>
-              <h3  className="text-2xl mb-4 font-medium mt-10 heading-data capitalize">
+              <h3 className="text-2xl mb-4 font-medium mt-10 heading-data capitalize">
                 Required for your trip
               </h3 >
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
                 <div className=" ">
 
-                <h1 className="text-lg  mb-2  font-medium item-heading">
+                  <h1 className="text-lg  mb-2  font-medium item-heading">
                     Number <span className="text-red-700">*</span>
                   </h1>
                   <div className="flex flex-wrap justify-between">
@@ -508,32 +506,30 @@ const Book = () => {
                     </button> */}
                   </div>
 
-                 
+
                 </div>
               </div>
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
                 <div className="mt-4 w-full">
-                  <h3  className="text-2xl mb-4 font-medium mt-10 heading-data capitalize">
+                  <h3 className="text-2xl mb-4 font-medium mt-10 heading-data capitalize">
                     Cancellation policy
                   </h3>
                   <div className="flex flex-wrap justify-between">
                     <p className="item-pargraph">
                       {cancelpolicy?.text}
                     </p>
-                    {/* <Link href="/terms" target="blank"> */}
                     <p className="underline edit-color font-bold" style={{ cursor: "pointer" }} onClick={openModal} >
                       Learn More
                     </p>
-                    {/* </Link> */}
                   </div>
                 </div>
               </div>
               <div className="mt-11">
-                {payloaing ? (
+                {payloading ? (
                   <Button
                     text={"Loading .."}
                     design={
-                      "font-inter hover:bg-[#000] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 p-4 rounded-full"
+                      "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 sm:p-4 p-3 rounded-full"
                     }
                   />
                 ) : (
@@ -563,7 +559,6 @@ const Book = () => {
                   height={200}
                   className="object-cover"
                 />
-
                 <div>
                   <h4 className="text-2xl mb-1 capitalize">{listing?.name}</h4>
                   <h3 className=" text-lg capitalize">
@@ -571,7 +566,7 @@ const Book = () => {
                   </h3>
                   <span className="flex text-sm items-center gap-1">
                     <span>
-                    <StartRating size={15} value={listing?.rating} color={"#000000"}/>
+                      <StartRating size={15} value={listing?.rating} color={"#000000"} />
                     </span>
                   </span>
                   <span className="flex text-sm items-center gap-2 mt-2">
@@ -750,7 +745,6 @@ const Book = () => {
           {dateModel && (
             <DatesModel infos={infos} setDateModel={setDateModel} />
           )}
-
           {isOpen && (
             <div className="max-w-3xl mx-auto">
               <Modal width="md" isOpen={isOpen} onClose={closeModal}>
@@ -758,7 +752,6 @@ const Book = () => {
                   Cancellation policy
                 </p>
                 <div className="py-4 px-6">
-
                   <div className="flex ">
                     <div className="w-[45%] ">
                       <h6 className="mb-2 text-[18px] font-semibold cancel-policy" >
@@ -807,8 +800,6 @@ const Book = () => {
                       </div>
                     </div>
                   }
-
-
                   <p className="font-normal   capitalize" >Cleaning fees are refunded if you cancel before check-in. </p>
                   <p className="underline mt-2 font-bold cursor-pointer  text-[#efa3a3]" >Learn more about <Link href="/terms" target="_blank">cancellation policies</Link></p>
                 </div>

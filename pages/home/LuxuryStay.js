@@ -45,7 +45,7 @@ export default function LuxuryStay() {
               />
             </div>
             <div className="w-1/3  justify-center" >
-              <h1 className="ml-2">Opulent</h1>
+              <h1 className="ml-2 text-center">Opulent</h1>
               <Image
                 src={Luxury2}
                 alt="Quaintspaces Jaipur"
