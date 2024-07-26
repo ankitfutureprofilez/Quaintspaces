@@ -157,6 +157,9 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
                   </p>
                 )}
                 
+
+
+                
               </div>
             </div>
           </div>
