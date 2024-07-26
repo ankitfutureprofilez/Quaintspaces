@@ -55,6 +55,7 @@ export default function LuxuryStay() {
                 blurDataURL={`${Luxury1}?q=1`}
                 placeholder="blur"
               />
+              
               <h1 className="ml-2">Escapes</h1>
             </div>
           </div>
