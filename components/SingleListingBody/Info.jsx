@@ -87,25 +87,25 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
         {loading ? (
           <div className="w-full h-7  bg-lightBorderColor rounded-md"></div>
         ) : (
-          <p className="text-md text-lightTextColor break-all">
+          <p className="text-[15px] lg:text-[16px] text-lightTextColor  ">
             {listing?.data?.description}
           </p>
         )}
       </div>
       <div className="py-8" ref={ref}>
-        <h1 className="text-2xl mb-4 font-semibold">What this place offers?</h1>
+        <h1 className="text-[18px] md:text-2xl mb-4 font-semibold">What this place offers?</h1>
         {/* <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="flex">
             01
             </div>
         </div> */}
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
           {listing?.data?.amenities &&
             listing?.data?.amenities
               ?.split(",")
               ?.slice(0, 6) // Limit to first 6 elements
               ?.map((amenity) => (
-                <div className="flex items-center mt-4" key={amenity?.trim()}>
+                <div className="flex items-center mt-2 md:mt-4" key={amenity?.trim()}>
                   <Image
                     src={`/icons/${amenity
                       ?.toLowerCase()
@@ -116,7 +116,7 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                     height={24}
                     className="w-6 h-6"
                   />
-                  <span className="ms-1">{formatAmenities(amenity)}</span>
+                  <span className="ms-1 text-[15px] md:text-[16px]">{formatAmenities(amenity)}</span>
                 </div>
               ))}
 
@@ -125,7 +125,7 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
               ?.split(",")
               ?.slice(0, 6) // Limit to first 6 elements
               ?.map((amenity) => (
-                <div className="flex items-center mt-4" key={amenity?.trim()}>
+                <div className="flex items-center mt-2 md:mt-4" key={amenity?.trim()}>
                   <Image
                     src={`/icons/${amenity
                       ?.toLowerCase()
@@ -136,7 +136,7 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                     height={24}
                     className="w-6 h-6"
                   />
-                  <span className="ms-1">{formatAmenities(amenity)}</span>
+                  <span className="ms-1 text-[15px] md:text-[16px]">{formatAmenities(amenity)}</span>
                 </div>
               ))}
         </div>
