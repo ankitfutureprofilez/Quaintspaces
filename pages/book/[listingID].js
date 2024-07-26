@@ -734,6 +734,7 @@ const Book = () => {
               </div>
             </div>
           </div>
+          
           {guestsModel && (
             <GuestsModel
               infos={infos}
@@ -811,6 +812,7 @@ const Book = () => {
         </main>
       </div>
     </AuthLayout>
+
   );
 };
 
