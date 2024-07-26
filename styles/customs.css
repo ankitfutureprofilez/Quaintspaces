@@ -986,13 +986,20 @@ button.submint-btn {
     padding: 10px;
     box-shadow: 0 0 26px -12px #000;
     border-radius: 0;
-    z-index: 3;
+    z-index: 99;
     width: 100%;
     padding: 20px;
     max-width: 300px;
     padding-top: 100px;
     padding-bottom: 70px;
   }
+    .logout_menu {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      max-width: 300px;
+      background: #f6f6f6;
+    }
 
   .login-signup-btn {
     padding-left: 0;

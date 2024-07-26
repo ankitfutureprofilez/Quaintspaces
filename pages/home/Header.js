@@ -67,9 +67,8 @@ export default function Header() {
             <IoMdMenu className="h-6 w-6 cursor-pointer block lg:hidden" />
           </div>
           <div
-            className={`menu-items overflow-y-auto lg:overflow-visible lg:gap-8 ${
-              isMenuOpen ? "block" : "hidden"
-            }`}
+            className={`menu-items overflow-y-auto lg:overflow-visible flex-col lg:flex-row lg:flex lg:gap-8 items-center ${isMenuOpen ? "block" : "hidden"
+              } lg:flex`}
           > 
             <button className="bg-transparent border-0 p-0 menu-close lg:hidden" onClick={toggleMenu}>
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,7 +115,7 @@ export default function Header() {
                 </div>
                 <div className="lg:hidden mt-[30px] w-full static">
                   <h3 className="text-[17px]">Account Settings</h3>
-                  <div className="w-full p-3 divide-y divide-gray-300 profile-navbar">
+                  <div className="w-full p-3 divide-y divide-gray-300 profile-navbar static">
                     <div aria-label="navigation" className="py-2">
                       <nav className="grid gap-1 px-1">
                         <Link
@@ -155,7 +154,7 @@ export default function Header() {
                       </nav>
                     </div>
 
-                    <div className="absolute bottom-0 left-0 w-full">
+                    <div className="logout_menu w-full">
                       <button
                         onClick={handleLogoutClick}
                         type="button"
