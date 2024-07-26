@@ -151,8 +151,8 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
                 <h2 className="font-semibold mb-2">Custom Link </h2>
                 {record?.data?.custom_link && (
                   <p className="mb-2 text-gray-500 text-justify ">
-                    <Link href={`https://quant-stay.vercel.app/properties/${record?.data?.custom_link}`} className="text-blue-500 hover:underline" >
-                      {`https://quant-stay.vercel.app/properties/${record?.data?.custom_link}`}
+                    <Link href={`https://quaintspaces.vercel.app/${record?.data?.custom_link}`} className="text-blue-500 hover:underline" >
+                      {`https://quaintspaces.vercel.app/${record?.data?.custom_link}`}
                     </Link>
                   </p>
                 )}
