@@ -37,7 +37,7 @@ export default function LuxuryStay() {
                   placeholder="blur"
                   data-aos="fade-down"
                   // data-aos-offset="300"
-                  className="mb-4 h-[170px] sm:h-[230px] object-cover"
+                  className="mb-4 h-[180px] sm:h-[230px] object-cover"
                 />
                 <Image
                   src={Luxury3}
@@ -47,7 +47,7 @@ export default function LuxuryStay() {
                   placeholder="blur"
                   data-aos="fade-up"
                   data-aos-offset="50"
-                  className="h-[170px] sm:h-[230px] object-cover"
+                  className="h-[180px] sm:h-[230px] object-cover"
                 />
               </div>
               <div className="w-1/2 max-w-[215px] luxury-stay justify-center" >
