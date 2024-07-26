@@ -36,8 +36,6 @@ export default function LuxuryStay() {
                 placeholder="blur"
                 className="gap-2 mb-2"
               />
-
-
               <Image
                 src={Luxury3}
                 alt="Quaintspaces Jaipur"
@@ -55,7 +53,6 @@ export default function LuxuryStay() {
                 blurDataURL={`${Luxury1}?q=1`}
                 placeholder="blur"
               />
-              
               <h1 className="ml-2">Escapes</h1>
             </div>
           </div>
