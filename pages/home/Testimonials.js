@@ -77,8 +77,8 @@ export default function Testimonials() {
               <div className="flex items-center mb-4">
                 <img src={item?.image} alt={item.title} className=" min-h-12 min-w-12 max-w-12 max-h-12 w-12 h-12 rounded-full mr-4" />
                 <div>
-                  <p className="text-xl font-bold text-[#464646] sm:text-2xl">{item.title}</p>
-                  <p className="mt-2 text-sm text-gray-500 flex">
+                  <p className="text-[16px] font-semibold text-[#464646] sm:text-[18px]">{item.title}</p>
+                  <p className="mt-1 text-sm text-gray-500 flex">
                     <StartRating size={16} value={item.star} />
                     <span className='gap-2'>
                       {item.date}
@@ -87,7 +87,7 @@ export default function Testimonials() {
                 </div>
               </div>
               <div >
-                <p className="leading-relaxed text-[#61554E] testimo-text" dangerouslySetInnerHTML={{ __html: item.message }} />
+                <p className="leading-relaxed text-[#61554E] testimo-text text-[15px] leading-[20px] font-normal" dangerouslySetInnerHTML={{ __html: item.message }} />
               </div>
               <div className="text-sm font-medium text-gray-700 mt-4">
                 &mdash; {item.name}

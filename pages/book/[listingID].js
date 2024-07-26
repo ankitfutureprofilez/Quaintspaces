@@ -355,8 +355,8 @@ const Book = () => {
             text={loading ? "Processing..." : "Confirm & Pay"}
             handleClick={() => router.back()}
           />
-          <div className="flex mt-3 sm:mt-8 md:mt-14 px-3 gap-10 your-trip-sec">
-            <div className="w-8/12">
+          <div className="flex flex-col lg:flex-row mt-3 sm:mt-8 md:mt-14 px-3 gap-10 your-trip-sec">
+            <div className="w-full lg:w-8/12">
               <h3  className="text-2xl mb-4 font-medium heading-data">
                 Your Trip
               </h3>
@@ -517,7 +517,7 @@ const Book = () => {
                     Cancellation policy
                   </h3>
                   <div className="flex flex-wrap justify-between">
-                    <p className="item-pargraph">
+                    <p className="item-pargraph text-[15px] mb-[10px]">
                       {cancelpolicy?.text}
                     </p>
                     {/* <Link href="/terms" target="blank"> */}
@@ -550,8 +550,8 @@ const Book = () => {
 
               </div>
             </div>
-            <div className="w-4/12  rounded-xl shadow py-8 px-5 h-fit golden-border sticky top-4">
-              <div className="flex sm:flex-col lg:flex-row gap-3 pb-4 border-b border-borderColor image-data">
+            <div className="w-full lg:w-4/12 rounded-xl shadow py-8 px-5 h-fit golden-border sticky top-4">
+              <div className="flex sm:flex-col md:flex-row gap-3 pb-4 border-b border-borderColor image-data">
                 <Image
                   src={
                     listing?.property_image && listing.property_image.length > 0

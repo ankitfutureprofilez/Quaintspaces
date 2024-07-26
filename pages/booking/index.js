@@ -236,12 +236,12 @@ export default function Index() {
                         <td className="px-2 md:px-4 py-2 align-middle">
                           <div className="flex items-center">
                             <div className="text ml-2">
-                              <div className="title">{item?.booking_number}</div>
+                              <div className="title break-all">{item?.booking_number}</div>
                             </div>
                           </div>
                         </td>
                         <td className="px-2 md:px-4 py-2 align-middle">
-                          <div className="flex items-center">
+                          <div className="flex items-center justify-center">
                             <div className="text ml-2">
                               <div className="title capitalize">
                                 <Link href={`/property/${item?.booking_property?.uuid}`}>
@@ -261,7 +261,7 @@ export default function Index() {
                         </td>
 
                         <td className="px-2 py-2 md:px-4 ">
-                          <td
+                          <div
                             className={`capitalize inline-flex items-center rounded-full py-3 w-max px-4 text-xs text-white  ${item?.booking_status === "completed"
                               ? "bg-green-700"
                               : item?.booking_status === "cancelled"
@@ -274,7 +274,7 @@ export default function Index() {
                               }`}
                           >
                             {item?.booking_status}
-                          </td>
+                          </div>
                         </td>
                         <td className="px-2 py-2 md:px-4">
                           <div>
@@ -355,10 +355,10 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="flex  flex-col md:flex-row justify-between mb-6">
-          <div className="flex-wrap  flex align-items-center py-2 sm:space-x-4 space-x-1 upcomming-box">
+        <div className="flex flex-col lg:flex-row justify-between mb-6">
+          <div className="flex overflow-x-auto mb-[20px] md:mb-0 align-items-center py-2 sm:space-x-4 space-x-1 upcomming-box">
             <Button
-              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "upcoming"
+              design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "upcoming"
                 ? "bg-orange-300 text-white"
                 : "text-black"
                 }`}
@@ -367,14 +367,14 @@ export default function Index() {
             />
             <Button
               text={"Completed"}
-              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "completed"
+              design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "completed"
                 ? "bg-orange-300 text-white"
                 : "text-black"
                 } `}
               onClick={() => handleGroupChange("completed")}
             />
             <Button
-              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "cancelled"
+              design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "cancelled"
                 ? "bg-orange-300 text-white"
                 : "text-black"
                 } `}
@@ -382,7 +382,7 @@ export default function Index() {
               text={"Cancelled"}
             />
             <Button
-              design={`font-inter text-gray-400 font-medium sm:text-[16px] text-[14px] leading-tight text-center lg:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "ongoing"
+              design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "ongoing"
                 ? "bg-orange-300 text-white"
                 : "text-black"
                 } `}
@@ -390,8 +390,8 @@ export default function Index() {
               text={"Ongoing"}
             />
           </div>
-          <div className=" py-2">
-            <button className="font-inter text-[#fff] sm:text-[16px] text-[14px] bg-[#efa3a3] font-medium leading-tight text-center border-[#efa3a3] lg:w-[auto] px-6 border-2 p-3 rounded-full " onClick={openModal}>
+          <div className="lg:py-2 ">
+            <button className="font-inter text-[#fff] lg:text-[16px] text-[14px] bg-[#efa3a3] font-medium leading-tight text-center border-[#efa3a3] lg:w-[auto] px-6 border-2 p-3 rounded-full " onClick={openModal}>
               Filter By Booking Date
             </button>
             <Modal isOpen={isOpen} onClose={closeModal}>

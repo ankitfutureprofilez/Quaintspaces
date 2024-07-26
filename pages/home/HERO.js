@@ -14,7 +14,7 @@ export default function HERO() {
     ];
 
   return <>
-    <div className="overflow-hidden bg-cover bg-center nav-header-sec w-full relative image-wrapper lg:!h-[670px] md:!h-[550px] sm:!h-[450px] !h-[350px]">
+    <div className="overflow-hidden bg-cover bg-center nav-header-sec w-full relative image-wrapper lg:!h-[670px] md:!h-[550px] !h-[450px]">
       <Swiper   
       spaceBetween={0} 
       autoplay={{ 
@@ -30,7 +30,7 @@ export default function HERO() {
       modules={[Autoplay, Pagination]}
       className="mySwiper">
          <SwiperSlide>
-              <div key={`image-banner-4`} className="relative w-full lg:h-[670px] md:h-[550px] sm:h-[450px] h-[350px]">
+              <div key={`image-banner-4`} className="relative w-full lg:h-[670px] md:h-[550px] h-[450px]">
                   <Image
                     src={'/images/banner/Banner4.jpg'}
                     alt={`Banner 4`} className="w-full h-full"
@@ -42,7 +42,7 @@ export default function HERO() {
               </div>
           </SwiperSlide>
          <SwiperSlide>
-              <div key={`image-banner-1`} className="relative w-full lg:h-[670px] md:h-[550px] sm:h-[450px] h-[350px]">
+              <div key={`image-banner-1`} className="relative w-full lg:h-[670px] md:h-[550px] h-[450px]">
                   <Image
                     src={'/images/banner/Banner1.jpg'}
                     alt={`Banner 4`} className="w-full h-full"
@@ -54,7 +54,7 @@ export default function HERO() {
               </div>
           </SwiperSlide>
          <SwiperSlide>
-              <div key={`image-banner-2`} className="relative w-full lg:h-[670px] md:h-[550px] sm:h-[450px] h-[350px]">
+              <div key={`image-banner-2`} className="relative w-full lg:h-[670px] md:h-[550px] h-[450px] ">
                   <Image
                     src={'/images/banner/Banner2.jpg'}
                     alt={`Banner 4`} className="w-full h-full"
@@ -66,7 +66,7 @@ export default function HERO() {
               </div>
           </SwiperSlide>
          <SwiperSlide>
-              <div key={`image-banner-3`} className="relative w-full lg:h-[670px] md:h-[550px] sm:h-[450px] h-[350px]">
+              <div key={`image-banner-3`} className="relative w-full lg:h-[670px] md:h-[550px] h-[450px]">
                   <Image
                     src={'/images/banner/Banner3.jpg'}
                     alt={`Banner 4`} className="w-full h-full"
@@ -75,7 +75,7 @@ export default function HERO() {
               </div>
           </SwiperSlide>
     </Swiper>
-      <div className="absolute z-[1] inset-0 flex items-center justify-center">
+      <div className="absolute z-[1] top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] w-full flex items-center justify-center">
         <HeroBanner />
       </div> 
     </div>

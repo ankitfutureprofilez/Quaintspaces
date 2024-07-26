@@ -184,9 +184,9 @@ body {
 .dpd-20 {
   padding-bottom: 20px;
 }
-.text-center:not(.footer-menu .text-center) {
+/* .text-center:not(.footer-menu .text-center) {
   text-align: center;
-}
+} */
 .text-grey {
   color: #5f7f89;
 }
