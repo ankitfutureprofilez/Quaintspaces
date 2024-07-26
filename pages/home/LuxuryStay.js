@@ -10,7 +10,6 @@ import Luxury3 from "../../public/images/Luxury3.jpg";
 
 export default function LuxuryStay() {
   const [isMobile, setIsMobile] = useState(false);
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -19,7 +18,6 @@ export default function LuxuryStay() {
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
   useEffect(() => {
     AOS.init({});
   }, []);
@@ -27,47 +25,39 @@ export default function LuxuryStay() {
 
     <>
       {isMobile ? (
-
         <div className="container">
-          <>
-            <h1>Opulent </h1>
-            <div className="luxury-stay-img">
-              <div className="img-box" data-aos="fade-left">
-                <Image
-                  src={Luxury1}
-                  alt="Quaintspaces Jaipur"
-                  priority="true"
-                  blurDataURL={`${Luxury1}?q=1`}
-                  placeholder="blur"
-                />
-              </div>
-              <div
-                className="img-box"
-                id="hero"
-                data-aos="fade-right"
-                data-aos-duration="3000"
-              >
-                <Image
-                  src={Luxury2}
-                  alt="Quaintspaces Jaipur"
-                  priority="true"
-                  blurDataURL={`${Luxury2}?q=1`}
-                  placeholder="blur"
-                />
-              </div>
-              <div className="img-box" data-aos="fade-left">
-                <Image
-                  src={Luxury3}
-                  alt="Quaintspaces Jaipur"
-                  priority="true"
-                  blurDataURL={`${Luxury3}?q=1`}
-                  placeholder="blur"
-                />
-              </div>
-            </div>
-            <h1 className="in-jaipur capitalize "> Escapes </h1>
-          </>
+          <div className="flex justify-center items-center w-full mb-4">
+            <div className="w-1/3  justify-center p-4 " >
+              <Image
+                src={Luxury1}
+                alt="Quaintspaces Jaipur"
+                priority="true"
+                blurDataURL={`${Luxury1}?q=1`}
+                placeholder="blur"
+                className="gap-2 mb-2"
+              />
 
+
+              <Image
+                src={Luxury3}
+                alt="Quaintspaces Jaipur"
+                priority="true"
+                blurDataURL={`${Luxury1}?q=1`}
+                placeholder="blur"
+              />
+            </div>
+            <div className="w-1/3  justify-center" >
+              <h1 className="ml-2">Opulent</h1>
+              <Image
+                src={Luxury2}
+                alt="Quaintspaces Jaipur"
+                priority="true"
+                blurDataURL={`${Luxury1}?q=1`}
+                placeholder="blur"
+              />
+              <h1 className="ml-2">Escapes</h1>
+            </div>
+          </div>
           <p>
             Stay in the heart of Jaipur's pink city, our modern, well-appointed
             apartments, perfect for business or leisure. We go the extra mile to
@@ -83,7 +73,7 @@ export default function LuxuryStay() {
           <div className="container mx-auto">
             <h1>Opulent </h1>
             <div className="luxury-stay-img">
-              <div className="img-box" data-aos="fade-right">
+              <div className="img-box">
                 <Image
                   src={Luxury1}
                   alt="Quaintspaces Jaipur"
