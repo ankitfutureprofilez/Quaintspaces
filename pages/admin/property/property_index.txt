@@ -570,7 +570,7 @@ export default function Property(props) {
       });
   };
   const progress = step * 9;
-  const baseurl = "https://quant-stay.vercel.app/properties/";
+  const baseurl = "https://quaintspaces.vercel.app/";
   const fulllink = baseurl + item?.customLink;
 
   async function handleSubmit(e) {

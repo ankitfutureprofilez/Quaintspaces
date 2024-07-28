@@ -6,7 +6,7 @@ const InputGroups = () => {
     <div>
       {/* Input group with prepend URL text */}
       <div className="mb-3 flex items-center">
-        <span className="inline-block bg-gray-200 p-2 rounded-l">https://quant-stay.vercel.app/properties/</span>
+        <span className="inline-block bg-gray-200 p-2 rounded-l">https://quaintspaces.vercel.app/</span>
         <input
           type="text"
           className="form-control flex-1 px-4 py-2 border rounded-r"

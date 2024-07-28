@@ -165,7 +165,7 @@ h3.text-sm.font-medium.desc-property {
   -webkit-box-orient: vertical;
 }
 .hero-sec {
-  padding: 220px 0 270px;
+  padding: 220px 15px 270px;
 }
 .hero-sec h1 {
   font-family: "Baskervville", serif;
@@ -682,7 +682,7 @@ button.submint-btn {
 .booking-table td,
 .booking-table thead tr th {
   font-family: Inter, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 22px;
   letter-spacing: 0;
 }
@@ -885,6 +885,24 @@ button.submint-btn {
   color: #ffffff;
 }
 
+/* 26 July */
+.swiper-pagination-clickable .swiper-pagination-bullet { width: 12px !important; height: 12px !important; border: 1px solid #efa3a3 !important; background: transparent !important; opacity: 1; } 
+.swiper-pagination-clickable .swiper-pagination-bullet.swiper-pagination-bullet-active {background: #efa3a3 !important;}
+/* body.overflow-hidden { overflow: hidden !important; } */
+.modal-dialog {
+  min-height: calc(100% - 3.5rem);
+  max-width: 500px;
+  margin: 1.75rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+
+/* Responsive */
+
 @media (min-width: 1399px) {
   .container {
     max-width: 1320px;
@@ -943,39 +961,57 @@ button.submint-btn {
 
 @media (max-width: 1023px) {
   .nav-bar a {
-    display: block;
-    padding: 6px 2px;
-    text-align: left;
-    border-bottom: 1px solid #dfdfdf;
-    width: 100%;
-    font-size: 13px;
+        display: block;
+          padding: 6px 2px;
+          /* border-bottom: 1px solid #dfdfdf; */
+          width: 100%;
+          padding: 9px 0;
+          font-size: 15px;
+          line-height: 22px;
+          text-align: left;
+          border: none !important;
   }
-  .nav-bar a {
-    padding: 8px 10px;
-    font-size: 15px;
-    line-height: 22px;
-    text-align: center;
-  }
+ 
   .login-signup-btn a {
     width: 102px;
     height: 43px;
     margin: 0 4px;
   }
   .menu-items {
-    position: absolute;
-    top: 65px;
-    right: 14px;
+  position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
     background: #fff;
     padding: 10px;
     box-shadow: 0 0 26px -12px #000;
-    border-radius: 5px;
-    z-index: 3;
+    border-radius: 0;
+    z-index: 99;
+    width: 100%;
+    padding: 20px;
+    max-width: 300px;
+    padding-top: 100px;
+    padding-bottom: 70px;
   }
+    .logout_menu {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      max-width: 300px;
+      background: #f6f6f6;
+    }
 
   .login-signup-btn {
     padding-left: 0;
     border: none;
   }
+  .login-signup-btn,.profile-image { position: absolute; top: 20px; left: 20px; margin: 0; padding: 0; text-align: center; } 
+  .login-signup-btn a { text-align: center; height: auto !important; padding: 7px 10px; }
+  .menu-close { position: absolute; right: 20px; top: 30px; } 
+  .profile-image-container { margin: 0 !important; } 
+  .profile-image img { width: 35px; height: 35px; margin-right: 5px; } 
+  .profile-image-container span { font-size: 16px; } 
+  .menu-close svg { width: 15px; height: 15px; }
 }
 
 @media (max-width: 991px) {
@@ -985,7 +1021,7 @@ button.submint-btn {
     padding: 0 15px;
   }
   .hero-sec {
-    padding: 150px 0 180px;
+    padding: 150px 15px 180px;
   }
   .hero-sec h1 {
     font-size: 52px;
@@ -1007,7 +1043,7 @@ button.submint-btn {
     line-height: 160px;
   }
   h1.in-jaipur {
-    margin-top: -92px;
+    margin-top: -65px;
   }
   .luxury-stay {
     padding: 20px 0 50px;
@@ -1044,19 +1080,19 @@ button.submint-btn {
     padding: 12px;
     margin: 10px;
   }
-  .nav-bar a {
+  /* .nav-bar a {
     padding: 8px 10px;
     font-size: 15px;
     line-height: 22px;
-  }
+  } */
   .login-signup-btn a {
     width: 102px;
     height: 43px;
     margin: 0 4px;
   }
   .login-signup-btn {
-    padding-left: 10px;
-    margin-left: 5px;
+    /* padding-left: 10px;
+    margin-left: 5px; */
   }
   .logo img {
     max-width: 110px;
@@ -1230,6 +1266,10 @@ button.submint-btn {
     line-height: 44px;
     margin-bottom: 16px;
   }
+
+  /*  */
+  .luxury-stay { padding: 0 !important; } 
+  .luxury-stay h1 { font-size: 40px; line-height: 50px; margin: 10px 0; }
 }
 @media (max-width: 575px) {
   .container {
@@ -1275,11 +1315,11 @@ button.submint-btn {
     margin-bottom: 22px;
     padding: 0 15px;
   }
-  .luxury-stay h1 {
+  /* .luxury-stay h1 {
     font-size: 44px;
     line-height: 70px;
     margin-bottom: 42px;
-  }
+  } */
   h1.in-jaipur {
     margin-top: -15px;
     margin-bottom: 0;

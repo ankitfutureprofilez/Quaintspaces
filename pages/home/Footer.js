@@ -10,8 +10,8 @@ export default function Footer() {
     <div className="w-full flex flex-col justify-between bg-[#E5E5E5]">
       <div className="container mx-auto">
         {/* Logo and Brand */}
-        <div className="items-start footer-menu ">
-          <div className="w-full mb-3 mb:mb-0 xl:text-start text-center">
+        <div className="items-end footer-menu ">
+          <div className="w-full lg:w-1/3 mb-3 mb:mb-0 xl:text-start text-center">
             <h3 className="mb-[5px] text-[20px] text[#3F2A17] font-[400] font-['Baskervville'] capitalize">
               Contact Us
             </h3>
@@ -50,23 +50,23 @@ export default function Footer() {
             </div>
             {/* <p><Link href="tel:9314022666">9314022666</Link></p> */}
           </div>
-          <div className="w-full mb-3 mb:mb-0 text-center xl:text-start">
+          <div className="w-full lg:w-1/3 mb-3 mb:mb-0 text-center xl:text-start">
            
-            <div className="w-[80px]  mx-auto xl:mx-[0] bg-[#efa3a3] mb-[15px]"></div>
+            {/* <div className="w-[80px] h-[2px] mx-auto xl:mx-[0] bg-[#efa3a3] mb-[15px]"></div> */}
             <div className="flex flex-col">
               <Link href="/terms">
                 <span className="text-[#3F2A17] text-[16px] ">
                   Terms & Condition
                 </span>
               </Link>
-              <Link href="/policy">
+              <Link href="/policy" className="mt-2">
                 <span className="text-[#3F2A17] text-[16px] ">
                   Privacy Policy
                 </span>
               </Link>
             </div>
           </div>
-          <div className="flex w-full flex-col mb-3 mb:mb-0 text-center xl:text-start">
+          <div className="flex w-full lg:w-1/3 flex-col mb-3 mb:mb-0 text-center xl:text-start">
             <h3 className="uppercase mb-[5px] text-[20px] text[#3F2A17] font-[400] font-['Baskervville'] capitalize">
               Follow Us
             </h3>
