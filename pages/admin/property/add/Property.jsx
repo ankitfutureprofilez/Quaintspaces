@@ -504,7 +504,7 @@ export default function Property(props) {
       });
   };
 
-  const baseurl = " https://quaintspaces.vercel.app/";
+  const baseurl = "https://quant-stay.vercel.app/properties/";
   const fulllink = baseurl + item?.customLink;
  
   const prevStep = () => setStep((prev) => prev - 1);
