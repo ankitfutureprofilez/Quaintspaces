@@ -334,6 +334,8 @@ const Book = () => {
       .finally(() => setLoading(false));
   };
 
+  console.log("dateModel",dateModel)
+
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
     setIsOpen(true);
@@ -343,21 +345,22 @@ const Book = () => {
     setIsOpen(false);
   };
 
-
   return (
     <AuthLayout>
       <div>
         <Head>
           <title>Confirm & Pay - Quaintspaces Jaipur</title>
         </Head>
-        <main className="max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12">
+        <main className=
+        {dateModel ? ( "max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12 overflow-hidden"): ( "max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12")}
+       >
           <Heading
             text={loading ? "Processing..." : "Confirm & Pay"}
             handleClick={() => router.back()}
           />
           <div className="flex flex-col lg:flex-row mt-3 sm:mt-8 md:mt-14 px-3 gap-10 your-trip-sec">
             <div className="w-full lg:w-8/12">
-              <h3  className="text-2xl mb-4 font-medium heading-data">
+              <h3 className="text-2xl mb-4 font-medium heading-data">
                 Your Trip
               </h3>
               <div className="flex items-center justify-between w-full py-2">
@@ -370,7 +373,8 @@ const Book = () => {
                 </div>
                 <button
                   onClick={() => setDateModel(true)}
-                  className="underline text-md font-medium edit-color"
+                  className={dateModel ?  "underline text-md font-medium edit-color overflow-hidden" :"underline text-md font-medium edit-color"}
+                  // className="underline text-md font-medium edit-color"
                 >
                   EDIT
                 </button>
@@ -734,7 +738,7 @@ const Book = () => {
               </div>
             </div>
           </div>
-          
+
           {guestsModel && (
             <GuestsModel
               infos={infos}
