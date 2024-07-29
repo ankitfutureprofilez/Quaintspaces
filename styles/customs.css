@@ -1005,13 +1005,15 @@ button.submint-btn {
     padding-left: 0;
     border: none;
   }
-  .login-signup-btn,.profile-image { position: absolute; top: 20px; left: 20px; margin: 0; padding: 0; text-align: center; } 
+  .login-signup-btn,.profile-image { position: absolute !important; top: 20px; left: 20px; margin: 0; padding: 0; text-align: center; } 
   .login-signup-btn a { text-align: center; height: auto !important; padding: 7px 10px; }
-  .menu-close { position: absolute; right: 20px; top: 30px; } 
+  .menu-close { position: absolute ; right: 20px; top: 30px; } 
   .profile-image-container { margin: 0 !important; } 
   .profile-image img { width: 35px; height: 35px; margin-right: 5px; } 
   .profile-image-container span { font-size: 16px; } 
   .menu-close svg { width: 15px; height: 15px; }
+  .login-signup-btn { margin: 0 !important; }
+.login-signup-btn a.login { border: 2px solid #404040 !important; }
 }
 
 @media (max-width: 991px) {
