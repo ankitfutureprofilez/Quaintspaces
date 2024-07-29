@@ -6,14 +6,12 @@ import {
   endOfMonth,
   format,
   isBefore,
-  isEqual,
   parse,
   startOfToday,
 } from "date-fns";
 import { v4 as uuidv4 } from "uuid";
 import { days as Days } from "../../utils/datePickerUtils";
 import Button from "../Button";
-import useWidthCount from "../../pages/elements/useWidthCount";
 
 const DatePicker = ({
   selectedDay,
@@ -24,7 +22,6 @@ const DatePicker = ({
   footer = false,
   datePickerFunction = null,
 }) => {
-
   const today = startOfToday();
   const [hoveredDate, setHoveredDate] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy"));
@@ -33,6 +30,7 @@ const DatePicker = ({
     add(firstDayCurrentMonth, { months: 1 })
   );
 
+  console.log("currentMonth",currentMonth)
   let days = eachDayOfInterval({
     start: firstDayCurrentMonth,
     end: endOfMonth(firstDayCurrentMonth),
@@ -42,7 +40,6 @@ const DatePicker = ({
     start: nextMonthState,
     end: endOfMonth(nextMonthState),
   });
-
 
   function previousMonth() {
     if (width < 767) {
@@ -64,7 +61,7 @@ const DatePicker = ({
     if (selectedDay === null && selectEnd === null) {
     }
   }, [selectedDay, selectEnd]);
-  
+
   const [width, setWidth] = useState();
   function setWid() {
     setWidth(window && window.innerWidth);
@@ -89,30 +86,12 @@ const DatePicker = ({
     }
   }
 
-  // const [buttonClicked, setButtonClicked] = useState(0);
-
   return (
     <div
       className={`${css ||
         "date-picker w-full relative z-10 mx-auto shadow border border-gray-300 bg-white rounded-3xl px-8 py-8"
         }`}
     >
-      {/* <div className="flex gap-2"> */}
-      {/* <h1 className="text-md font-semibold px-4 py-2 rounded-md border border-gray-500"> */}
-      {/* Selected Date:{" "} */}
-      {/* {(selectedDay && format(selectedDay, "dd/MM/yyyy")) || "N/A"} */}
-      {/* </h1> */}
-      {/* <h1 className="text-md font-semibold px-4 py-2 rounded-md border border-gray-500"> */}
-      {/* Button Clicked: {buttonClicked} */}
-      {/* </h1> */}
-      {/* <h1 className="text-md font-semibold px-4 py-2 rounded-md border border-gray-500"> */}
-      {/* Ended Date: {(selectEnd && format(selectEnd, "dd/MM/yyyy")) || "N/A"} */}
-      {/* </h1> */}
-      {/* <h1 className="text-md font-semibold px-4 py-2 rounded-md border border-gray-500"> */}
-      {/* Mouse Entered:{" "} */}
-      {/* {(hoveredDate && format(hoveredDate, "dd/MM/yyyy")) || "N/A"} */}
-      {/* </h1> */}
-      {/* </div> */}
       <div className="flex gap-6">
         <div className="sm:block hidden w-full">
           <div className="flex items-center">
@@ -127,6 +106,7 @@ const DatePicker = ({
           </div>
           <div className="grid grid-cols-7 mt-2 text-sm">
             {days?.map((day, dayIdx) => {
+              const isDisabled = isBefore(day, today);
               return (
                 <Button
                   key={uuidv4()}
@@ -139,18 +119,17 @@ const DatePicker = ({
                   dayIdx={dayIdx}
                   setHoveredDate={setHoveredDate}
                   hoveredDate={hoveredDate}
-                // setButtonClicked={setButtonClicked}
+                  isDisabled={isDisabled}
                 />
               );
             })}
           </div>
         </div>
-        {/* month + 1 */}
         <div className="w-full">
           <div className="flex items-center">
             <h2 className="flex-auto font-semibold text-gray-900 text-center">
               {width < 767
-                ? format(firstDayCurrentMonth, "MMMM yyyy")
+                ?currentMonth
                 : format(nextMonthState, "MMM-yyyy")}
             </h2>
 
@@ -178,6 +157,7 @@ const DatePicker = ({
           </div>
           <div className="grid grid-cols-7 mt-2 text-sm">
             {nextMonthDays?.map((day, dayIdx) => {
+              const isDisabled = isBefore(day, today);
               return (
                 <Button
                   selectedDay={selectedDay}
@@ -190,6 +170,7 @@ const DatePicker = ({
                   dayIdx={dayIdx}
                   setHoveredDate={setHoveredDate}
                   hoveredDate={hoveredDate}
+                  isDisabled={isDisabled}
                 />
               );
             })}
