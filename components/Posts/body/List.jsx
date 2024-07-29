@@ -43,9 +43,9 @@ function List({ post }) {
                 </div>
               ) : (<> </>)}
               <Image
-              sizes={"100%"}
-              width={"100"}
-              height={"100"}
+                sizes={"100%"}
+                width={"100"}
+                height={"100"}
                 src={post?.property_image[0]?.image_url ? (post?.property_image[0]?.image_url) : ("https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg")}
                 alt="Banipark Apartment"
                 className="w-full h-full object-cover object-center"
@@ -72,7 +72,7 @@ function List({ post }) {
                 <span>{capitalizeAndReplace(post?.type)}</span> 
                 <span>{capitalizeAndReplace(post?.properties_type)}</span> 
               </div> */}
-              <div className="flex mb-[15px]">
+              <div className="flex mb-[15px] overflow-x-auto md:overflow-x-visible">
 
                 <div className=" mb-2 sm:pr-[20px] pr-[7px]">
                   <h3 className="text-[#666360] font-[400] text-[13px]">Bedrooms</h3>
@@ -127,7 +127,7 @@ function List({ post }) {
                 {capitalizeFirstLetter(post?.name)}</h2>
               <p className="text-[16px] font-[400] text-[#666360] uppercase mb-[15px]"> {record?.location}</p>
 
-              <div className="flex mb-[15px]">
+              <div className="flex mb-[15px] overflow-x-auto md:overflow-x-visible">
                 <div className=" mb-2 pr-[40px]">
                   <h3 className="text-[#666360] font-[400] text-[13px]">Bedrooms</h3>
                   <p className="text-[#666360] font-[700] text-[16px]"> {post?.bedrooms} </p>
