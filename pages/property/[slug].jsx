@@ -44,6 +44,9 @@ const Listing = () => {
     }
   }, [slug]);
 
+
+ 
+
   return (
     <>
       <Layout>

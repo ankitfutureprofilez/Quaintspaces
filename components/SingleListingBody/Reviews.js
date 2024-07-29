@@ -84,6 +84,16 @@ const Reviews = React.forwardRef(({ data,isAdmin }, ref ) => {
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isOpen]);
   return (
     <section ref={ref}
       className="min-h-[50vh] border-y border-darkBorderColor py-8">

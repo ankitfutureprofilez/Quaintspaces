@@ -70,8 +70,8 @@ export default function index() {
       </Head>
       {/* Hero sec component */}
       <div className="bg-cover bg-no-repeat bg-center contact-about" style={{ backgroundImage: `url(/images/banner/Banner1.JPG)` }} >
-
-        <div className="py-[100px] px-[15px] bg-[#00000087]">
+        <div className="py-[95px] px-[13px] bg-[#00000087]">
+          {/* 10015 */}
           <div className="">
             <h1 className="">Discover the Art of Luxurious Living</h1>
             <p className=" max-w-[800px] m-auto text-[16px] text-[#fff]">

@@ -13,6 +13,10 @@ input:is(:-webkit-autofill, :autofill) {
 .user-img {
   height: revert-layer;
 }
+
+body.overflow-hidden {
+  overflow: hidden !important;
+}
 h3.text-sm.font-medium.desc-property {
   overflow: hidden;
   text-overflow: ellipsis;
