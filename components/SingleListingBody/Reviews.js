@@ -96,7 +96,7 @@ const Reviews = React.forwardRef(({ data,isAdmin }, ref ) => {
   }, [isOpen]);
   return (
     <section ref={ref}
-      className="min-h-[50vh] border-y border-darkBorderColor py-8">
+      className="xl:min-h-[50vh] border-y border-darkBorderColor py-8">
       <h1 className="text-xl md:text-2xl mb-4 font-semibold flex items-center gap-1">
         <span className="flex" >
         <p className="pe-2" >{ data?.rating !==0 ?(parseFloat(data && data?.rating && data?.rating?.toFixed(0))) :(<></>) }
