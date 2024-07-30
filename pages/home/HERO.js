@@ -17,10 +17,10 @@ export default function HERO() {
     <div className="overflow-hidden bg-cover bg-center nav-header-sec w-full relative image-wrapper lg:!h-[670px] md:!h-[550px] !h-[450px]">
       <Swiper   
       spaceBetween={0} 
-      autoplay={{ 
-        delay: 2000, 
-        disableOnInteraction: false,
-      }}
+      // autoplay={{ 
+      //   delay: 2000, 
+      //   disableOnInteraction: false,
+      // }}
      loop={true}
       pagination={{
         clickable: true,

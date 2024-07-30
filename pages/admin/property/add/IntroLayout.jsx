@@ -9,7 +9,7 @@ function IntroLayout() {
                         <div className="flex flex-wrap items-center lg:p-[30px] xl:p-[50px]">
                             <div className="w-full lg:w-1/2">
                                 <h1 className="mt-3 mb-3 xl:mt-0 xl:mb-0 text-3xl lg:text-4xl xl:text-[50px] lg:leading-[50px] xl:leading-[70px] font-[500] text-[#222222] " >
-                                    It’s easy to get started on quant space
+                                    It’s easy to get started on quaint spaces
                                 </h1>
                             </div>
                             <div className="w-full lg:w-1/2">
