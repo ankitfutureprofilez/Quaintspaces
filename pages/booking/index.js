@@ -201,6 +201,42 @@ export default function Index() {
   };
 
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isConfirmOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isConfirmOpen]);
+
+  useEffect(() => {
+    if (showConfirmation) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [showConfirmation]);
+
+  
+
+
   const BookingTable = () => {
     return (
       <>
@@ -444,7 +480,7 @@ export default function Index() {
       {
         showConfirmation && (
           <Modal isOpen={showConfirmation} onClose={handleCancel}>
-            <p className="text-lg text-white font-semibold p-6 py-4 bg-[#efa3a3]">
+            <p className="text-lg text-white font-semibold p-4 sm:p-6 md:p-8 bg-[#efa3a3]">
               Are you sure you want to cancel your booking?
             </p>
             <p className="text-xl text-center font-semibold  py-8  capatalize">

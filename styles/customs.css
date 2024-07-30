@@ -890,8 +890,8 @@ button.submint-btn {
 }
 
 /* 26 July */
-.swiper-pagination-clickable .swiper-pagination-bullet { width: 12px !important; height: 12px !important; border: 1px solid #efa3a3 !important; background: transparent !important; opacity: 1; } 
-.swiper-pagination-clickable .swiper-pagination-bullet.swiper-pagination-bullet-active {background: #efa3a3 !important;}
+.swiper-pagination-clickable .swiper-pagination-bullet { width: 12px !important; height: 12px !important; border: 1px solid #ffffff !important; background: transparent !important; opacity: 1; } 
+.swiper-pagination-clickable .swiper-pagination-bullet.swiper-pagination-bullet-active {background: #ffffff !important;}
 /* body.overflow-hidden { overflow: hidden !important; } */
 .modal-dialog {
   min-height: calc(100% - 3.5rem);

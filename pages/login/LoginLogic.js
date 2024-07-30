@@ -106,7 +106,7 @@ export default function LoginLogic({ isPopup, color }) {
                 required
               />
             </div>
-            <h3 className="text-white text-md  font-medium mb-4">
+            <h3 className="text-white text-sm  font-normal mb-4 underline"  >
               <Link href="/forgot-password">Forgot Password?</Link>
             </h3>
             <button type="submit" className="submint-btn">
