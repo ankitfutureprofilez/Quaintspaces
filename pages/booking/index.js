@@ -481,7 +481,7 @@ export default function Index() {
         showConfirmation && (
           <Modal isOpen={showConfirmation} onClose={handleCancel}>
             <p className="text-lg text-white font-semibold p-4 sm:p-6 md:p-8 bg-[#efa3a3]">
-              Are you sure you want to cancel your booking?
+              Cancel your booking?
             </p>
             <p className="text-xl text-center font-semibold  py-8  capatalize">
               <div>
@@ -498,7 +498,7 @@ export default function Index() {
 
                 ) : (
                   <div>
-                    Your Refunded amount is <span className="text-green-600">{formatMultiPrice(refend)}</span>
+                    Your Refunded amount will be <span className="text-green-600">{formatMultiPrice(refend)}</span>
                   </div>
                 )}
               </div>
