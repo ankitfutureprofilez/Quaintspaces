@@ -132,8 +132,9 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
         </div>
       </div>
       <div className="mb-[30px] flex">
-      <p className="font-semibold">Note:</p>
-       <p className="text-gray-500 ml-2">The price is subjective to changes based on the number of guests. A maximum of {record?.data?.guests} guests are allowed to stay at the property.</p>
+      <p className="font-semibold">Note:&nbsp;
+        <span className="text-gray-500 sm:ml-2 font-normal">The price is subjective to changes based on the number of guests. A maximum of {record?.data?.guests} guests are allowed to stay at the property.</span>
+        </p>
       </div>
 
       {isAdmin && (
