@@ -27,6 +27,7 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageViewer, setImageViewer] = useState(false);
 
+  console.log("listing?.data?._id",listing?.data)
   // Guests max limit is selected here
   const [guests, setGuests] = useState({
     adults: {

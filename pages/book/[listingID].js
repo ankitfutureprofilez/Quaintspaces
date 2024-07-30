@@ -63,6 +63,8 @@ const Book = () => {
 
   };
 
+  console.log("listing?.cleaning_fee",listing?.cleaning_fee)
+
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
