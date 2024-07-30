@@ -3,7 +3,6 @@ import HeroBanner from './HeroBanner';
 import Image from "next/image";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import dynamic from 'next/dynamic';
 import 'swiper/css/pagination';
 export default function HERO() {
    const images = [
