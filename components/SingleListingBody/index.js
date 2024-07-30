@@ -184,7 +184,7 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
                   return;
                 }
                 router.push(
-                  `/book/${listing?.data?._id}?numberOfAdults=${
+                  `/book/${listing?.data?.uuid}?numberOfAdults=${
                     guests?.adults?.value || 0
                   }&numberOfChildren=${
                     guests?.children?.value || 0
