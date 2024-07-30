@@ -1,14 +1,17 @@
 import React, { useContext, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import logologin from "../../public/images/Login_Logo.png";
 
 export default function ForgotLayout({ children, showHeader }) {
   return (
     <>
       <div
         className="h-screen tab-mob-height"
-        style={{ backgroundImage: `url(/images/banner/login_img.JPG)` ,backgroundPosition: "center",
+        style={{
+          backgroundImage: `url(/images/banner/login_img.JPG)`, backgroundPosition: "center",
           backgroundSize: "cover"
-         }}
+        }}
       >
         <div className="container h-full">
           <div className="flex items-center  h-full relative signup-tab-sec">
@@ -38,13 +41,14 @@ export default function ForgotLayout({ children, showHeader }) {
                         fill="white"
                       />
                     </svg>
-                    HOMEPAGE
+                    Homepage
                   </Link>
                 </div>
                 :
                 null
             }
-            <div className=" align-center mx-auto sm:w-6/12 w-full  px-3">{children}</div>
+            <div className=" align-center mx-auto sm:w-6/12 w-full  px-3">
+              {children}</div>
           </div>
         </div>
       </div>

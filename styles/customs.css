@@ -1335,11 +1335,18 @@ button.submint-btn {
   .tip-top-sec {
     padding: 30px 0;
   }
+
+
+  /* font-size: 28px;
+  line-height: 38px; */
+  /* margin-bottom: 20px; */
   .listing-heading {
-    font-size: 28px;
-    line-height: 38px;
-    margin-bottom: 20px;
+    font-size: 26px;
+        line-height: 35px;
+        margin-bottom: 10px;
   }
+
+ 
   .tip-top-sec ul.flex.flex-wrap.px-4 {
     padding: 0;
   }

@@ -170,8 +170,8 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
                 {/* <span className="text-xs font-medium">
                   {listing?.data?.rating && listing?.data?.rating?.toFixed(2)}
                 </span> */}
-                <span> ·</span>
-                <span className="text-xs underline text-lightTextColor">
+                {/* <span> ·</span> */}
+                <span className="text-[15px] underline text-lightTextColor">
                   {listing?.data?.review} reviews
                 </span>
               </div>

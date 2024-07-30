@@ -10,6 +10,7 @@ import Listings from "../api/laravel/Listings";
 import format from "date-fns/format";
 import Head from "next/head";
 import PwaFooter from "../elements/PwaFooter.js";
+import Modal from "../elements/Modal.js";
 
 export default function Index() {
   // Sort By Button Logic
@@ -38,7 +39,7 @@ export default function Index() {
             >
               {sortingOptions.find((option) => option.key === sortBy).label}
               {/* Icon to indicate dropdown */}
-              <IoChevronDownSharp className="-mr-1 ml-[0.25rem] mt-[3.5px] h-4 w-4"/>
+              <IoChevronDownSharp className="-mr-1 ml-[0.25rem] mt-[3.5px] h-4 w-4" />
               {/* <svg
                 className="-mr-1 ml-2 h-5 w-5"
                 xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +86,18 @@ export default function Index() {
   let minVal, maxVal;
 
   const [sortBy, setSortBy] = useState("popularity");
-  const [isModalOpen, setIsModalOpen] = useState(false); // State variable for modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isModalOpen]);// State variable for modal visibility
   const [lowPrice, setLowPrice] = useState(null);
   const [highPrice, setHighPrice] = useState(null);
   const [fetch, setFetch] = useState(false);
@@ -179,6 +191,9 @@ export default function Index() {
     return () => controller.abort();
   }, [sortBy, fetch]);
 
+
+
+
   return (
     <Layout>
       <PwaFooter />
@@ -206,50 +221,36 @@ export default function Index() {
       </div>
       {/* Render the modal component conditionally */}
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50">
-          <div className="bg-white pb-2 pt-4 sm:p-6 rounded-lg shadow-lg filter-popup">
-            <div className="relative">
-              <h2 className="listing-heading text-center">Filter</h2>
-              <div className="absolute top-0 right-0">
-                <button
-                  className="text-gray-600 hover:text-gray-800 focus:outline-none"
-                  onClick={closeModal}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </div>
+        <div className="max-w-3xl mx-auto">
+          <Modal width="md" isOpen={isModalOpen} onClose={closeModal}>
+            <p className="text-lg text-white font-semibold p-7 py-4 bg-[#efa3a3] capitalize">
+              Filter
+            </p>
+            <div className="py-4 px-6">
+              <Filter
+                selection={selection}
+                setSelection={setSelection}
+                selectedDay={selectedDay}
+                selectEnd={selectEnd}
+                setSelectedDay={setSelectedDay}
+                setSelectEnd={setSelectEnd}
+                min={0}
+                max={20000}
+                onClick={handleClick}
+                onChange={({ min, max }) => {
+                  minVal = min;
+                  maxVal = max;
+                }}
+              />
             </div>
-            <Filter
-              selection={selection}
-              setSelection={setSelection}
-              selectedDay={selectedDay}
-              selectEnd={selectEnd}
-              setSelectedDay={setSelectedDay}
-              setSelectEnd={setSelectEnd}
-              min={0}
-              max={20000}
-              onClick={handleClick}
-              onChange={({ min, max }) => {
-                minVal = min;
-                maxVal = max;
-              }}
-            />
-          </div>
+            <div className="mb-4 flex justify-center"></div>
+          </Modal>
         </div>
+
       )}
     </Layout>
   );
 }
+
+
+{/**/ }
