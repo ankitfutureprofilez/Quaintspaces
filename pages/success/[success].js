@@ -126,7 +126,7 @@ const success = () => {
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
                 <p className="text-black-400 font-bold capitalize">Property  Name:</p>
-                <p className="text-start text-black-400 font-bold font-semibold">{record?.property_name ? `${record?.property_name} / Jaipur` : <></>} </p>
+                <p className="text-start text-black-400 font-bold font-semibold">{record?.property_name ? `${record?.property_name} , Jaipur` : <></>} </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
                 <p className="text-black-400 font-bold capitalize">Check in </p>

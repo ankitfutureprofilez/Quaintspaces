@@ -129,7 +129,7 @@ const DatePicker = ({
           <div className="flex items-center">
             <h2 className="flex-auto font-semibold text-gray-900 text-center">
               {width < 767
-                ?currentMonth
+                ?format(nextMonthState, "MMM-yyyy")
                 : format(nextMonthState, "MMM-yyyy")}
             </h2>
 
