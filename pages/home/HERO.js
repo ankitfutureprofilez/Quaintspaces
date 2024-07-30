@@ -17,15 +17,15 @@ export default function HERO() {
     <div className="overflow-hidden bg-cover bg-center nav-header-sec w-full relative image-wrapper lg:!h-[670px] md:!h-[550px] !h-[450px]">
       <Swiper   
       spaceBetween={0} 
-      // autoplay={{ 
-      //   delay: 2000, 
-      //   disableOnInteraction: false,
-      // }}
+      autoplay={{ 
+        delay: 2000, 
+        disableOnInteraction: false,
+      }}
      loop={true}
       pagination={{
         clickable: true,
       }} 
-      // navigation={true} 
+      navigation={true} 
       slidesPerView={1}
       modules={[Autoplay, Pagination]}
       className="mySwiper">
@@ -75,7 +75,7 @@ export default function HERO() {
               </div>
           </SwiperSlide>
     </Swiper>
-      <div className="absolute z-[1] top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] w-full flex items-center justify-center">
+      <div className="w-auto h-auto absolute z-[1] top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] flex items-center justify-center">
         <HeroBanner />
       </div> 
     </div>

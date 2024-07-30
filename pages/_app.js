@@ -66,7 +66,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-    {/* <ClearCache />  */}
+    <ClearCache /> 
      <Toaster
             toastOptions={{
               position: "top-right",
