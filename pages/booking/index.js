@@ -487,7 +487,6 @@ export default function Index() {
               <div>
                 {refend === 0 ? (
                   <>
-
                     <h2>
                       Only the cleaning fee will be refunded:
 
