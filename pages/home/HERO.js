@@ -74,7 +74,7 @@ export default function HERO() {
               </div>
           </SwiperSlide>
     </Swiper>
-      <div className="w-auto h-auto absolute z-[1] top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] flex items-center justify-center">
+      <div className="w-full h-auto absolute z-[1] top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] flex items-center justify-center">
         <HeroBanner />
       </div> 
     </div>
