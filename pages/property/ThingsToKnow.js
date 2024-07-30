@@ -69,7 +69,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
   return (
     <div className="container mx-auto">
       <h1 className="listing-heading text-left !mb-[10px]">Things to know</h1>
-      <div className="flex justify-between house-rule-text mb-[30px]">
+      <div className="flex justify-between house-rule-text">
         <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
           <h2 className="font-semibold mb-2">Check In & Check Out Time</h2>
           <p className="mb-2 text-gray-500">Check-in starts after {record?.data?.check_in}</p>
@@ -130,6 +130,10 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
             </div>
           </Modal>
         </div>
+      </div>
+      <div className="mb-[30px] flex">
+      <p className="font-semibold">Note:</p>
+       <p className="text-gray-500 ml-2">The price is subjective to changes based on the number of guests. A maximum of {record?.data?.guests} guests are allowed to stay at the property.</p>
       </div>
 
       {isAdmin && (
