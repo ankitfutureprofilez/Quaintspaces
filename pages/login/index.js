@@ -14,7 +14,6 @@ export default function Login() {
         </Head>
     <div
       className="h-screen tab-mob-height bg-cover"
-      // style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
     >
         <Image
           src="/images/banner/login_img.JPG"

@@ -888,7 +888,6 @@ button.submint-btn {
   text-align: center;
   color: #ffffff;
 }
-
 /* 26 July */
 .swiper-pagination-clickable .swiper-pagination-bullet { width: 12px !important; height: 12px !important; border: 1px solid #ffffff !important; background: transparent !important; opacity: 1; } 
 .swiper-pagination-clickable .swiper-pagination-bullet.swiper-pagination-bullet-active {background: #ffffff !important;}
