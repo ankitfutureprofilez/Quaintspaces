@@ -20,6 +20,7 @@ import useWishlist from "../../hooks/useWishlist";
 import { addDays } from "date-fns";
 import { formatMultiPrice } from "../../hooks/ValueData";
 import toast from "react-hot-toast";
+import StartRating from "../../pages/elements/StartRating";
 
 const SingleListingBody = ({ isAdmin, listing, loading }) => {
   const router = useRouter();
@@ -164,11 +165,11 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
               </span>
               <div className="flex gap-1 items-center">
                 <span>
-                  <Star />
+                <StartRating size={15} value={parseFloat( listing?.data?.rating && listing?.data?.rating?.toFixed(2)) ?? 0} color={"#000000"}/>
                 </span>
-                <span className="text-xs font-medium">
+                {/* <span className="text-xs font-medium">
                   {listing?.data?.rating && listing?.data?.rating?.toFixed(2)}
-                </span>
+                </span> */}
                 <span> ·</span>
                 <span className="text-xs underline text-lightTextColor">
                   {listing?.data?.review} reviews
