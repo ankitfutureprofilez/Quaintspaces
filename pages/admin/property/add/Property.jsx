@@ -174,6 +174,9 @@ export default function Property(props) {
     const filteredImages = images.filter((file) => file !== f);
     setImages(filteredImages);
   };
+  console.log("ass",checkinEnd)
+
+  console.log("che",checkinStart)
 
   const moveImageToFront = (index) => {
     const updatedImages = [...images];
