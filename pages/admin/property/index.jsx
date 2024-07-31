@@ -29,7 +29,7 @@ export default function Index() {
     setSearchTerm(searchTerm);
     // fetchProperties(searchTerm);
   };
-  
+
   // { search: searchTerm }
   const fetchProperties = () => {
     const main = new Listing();
@@ -49,11 +49,11 @@ export default function Index() {
         setIsLoading(false);
       });
   };
-  
+
   useEffect(() => {
     fetchProperties();
-  }, [ router && router.pathname]);
-  
+  }, [router && router.pathname]);
+
 
   const deleteProperty = (uuid) => {
     const main = new Listing();
@@ -87,15 +87,14 @@ export default function Index() {
   const TableView = () => {
     return (
       <div className="overflow-x-auto">
-        <table className="table-auto w-full">
+        <table className="min-w-full divide-y divide-gray-200 text-sm">
           <thead>
             <tr>
-              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Property Listing</th>
-              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Status</th>
-              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Location</th>
-              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Edit</th>
-              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Delete</th>
-
+              <th className="p-2 text-left">Property Listing</th>
+              <th className="p-2 text-left">Status</th>
+              <th className="p-2 text-left">Location</th>
+              <th className="p-2 text-left">Edit</th>
+              <th className="p-2 text-left">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -110,12 +109,12 @@ export default function Index() {
               }
 
               return (
-                <tr key={index} className="hover:bg-[#f5f5f5] rounded-[10px]">
-                  <td className="text-[14px] text-[#222222] font-[600] text-left p-[12px]">
+                <tr key={index} className="hover:bg-gray-100 rounded-lg">
+                  <td className="p-2">
                     <Link href={`/admin/property/edit/${item?.uuid}`}>
-                      <Link href={`/admin/property/edit/${item?.uuid}`} className="flex items-center">
+                      <div className="flex flex-col sm:flex-row items-center sm:space-x-4">
                         <img
-                          className="w-16 h-16 object-cover rounded-[5px] object-center mr-4"
+                          className="w-16 h-16 object-cover rounded-md"
                           src={
                             item?.property_image[0]?.image_url
                               ? item?.property_image[0]?.image_url
@@ -123,38 +122,39 @@ export default function Index() {
                           }
                           alt={item?.name}
                         />
-                        {item?.name}
-                      </Link>
+                        <span className="mt-2 sm:mt-0 text-left">{item?.name}</span>
+                      </div>
                     </Link>
                   </td>
-                  <td className="text-[14px] text-[#222222] font-[600] text-left p-[12px]">
+                  <td className="p-2">
                     {item?.status !== 1 ? (
                       <p className="text-indigo-600">In Progress</p>
                     ) : (
-                      <>
-                        <p className="text-green-600">Completed</p>
-                      </>
+                      <p className="text-green-600">Completed</p>
                     )}
                   </td>
-                  <td className="text-[14px] text-[#222222] font-[600] text-left p-[12px]">
+                  <td className="p-2">
                     {locationdata ? (
                       <p>{locationdata?.location}</p>
                     ) : (
                       <p>Location not provided</p>
                     )}
                   </td>
-                  <td className="p-[12px]">
+                  <td className="p-2">
                     <button
-                      className="inline-block text-[14px] px-4 py-2  text-white rounded-[6px]  bg-black  hover:bg-blue-700"
+                      className="text-sm px-3 py-1 text-white bg-black rounded hover:bg-blue-700"
                       onClick={() => handleEditEntireProperty(item?.uuid)}
                     >
                       <FaEdit />
                     </button>
                   </td>
-                  <td className="p-[12px]">
+                  <td className="p-2">
                     <button
-                      className="inline-block text-[14px] px-4 rounded-[6px] py-2 text-white   bg-red-600  hover:bg-black-700 "
-                      onClick={() => setShowConfirmation(true) || setSelectedProperty(item?.uuid)}
+                      className="text-sm px-3 py-1 text-white bg-red-600 rounded hover:bg-red-700"
+                      onClick={() => {
+                        setShowConfirmation(true);
+                        setSelectedProperty(item?.uuid);
+                      }}
                     >
                       <AiFillDelete />
                     </button>
@@ -165,6 +165,7 @@ export default function Index() {
           </tbody>
         </table>
       </div>
+
     );
   };
 
@@ -264,51 +265,28 @@ export default function Index() {
         </div>
       ) : (
         <>
-          <div className="flex flex-wrap mt-[40px] justify-between">
-            <h3 className="text-[32px] font-[500] text-[#222222] capitalize  mb-[40px]">
+          <div className="flex flex-wrap mt-[40px] items-center justify-between">
+            <h3 className="text-[32px] font-[500] text-[#222222] capitalize ">
               Your listings
             </h3>
-            <div className="flex">
-              {/* <form className="group relative">
-                <svg
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  className="absolute left-3 top-[20px] -mt-2.5 text-slate-400 pointer-events-none group-focus-within:text-blue-500"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                  />
-                </svg>
-                <input
-                  className="focus:ring-0 bg-[#f7f7f7] focus:ring-blue-0 focus:outline-none appearance-none w-full text-sm leading-6 text-slate-900 placeholder-slate-400 rounded-md py-[6px] pl-10"
-                  type="text"
-                  aria-label="Filter projects"
-                  placeholder="search lisitng by name"
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-
-                />
-              </form> */}
-
+            <div className="flex items-center">
               <div
                 onClick={toggleView}
                 className="view-toggle-button hover:bg-gray-400 active:bg-gray-400 mx-2 cursor-pointer bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center"
               >
                 {view === 'table' ? <CgViewComfortable /> : <FaTableCellsLarge />}
               </div>
-              <div className="bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer hover:bg-gray-400 active:bg-gray-400">
-                <MdAdd
-                  onClick={() => {
-                    router.push("/admin/property/become");
-                  }}
-                />
+              <div
+                onClick={() => {
+                  router.push("/admin/property/become");
+                }}
+                className="bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer hover:bg-gray-400 active:bg-gray-400"
+              >
+                <MdAdd />
               </div>
             </div>
           </div>
+
           <div className="mt-3">
 
             {view === 'table' ? <TableView /> : <CardView />}
