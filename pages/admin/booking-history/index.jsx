@@ -405,6 +405,7 @@ export default function index() {
       {imageOpen && (
         <Modal isOpen={openImageModal} onClose={CloseImageModal}>
           <div className=" flex flex-col ">
+            
             <h3 className="bg-[#efa3a3] text-white p-2"> Document Image</h3>
               <img
                 src={document}
