@@ -20,7 +20,7 @@ export default function ForgotLayout({ children, showHeader }) {
         />
       <div className="container h-full">
         <div className="flex items-center  h-full relative signup-tab-sec">
-       {showHeader &&(
+       {/* {showHeader && ( */}
           <div className="left-logo-login w-6/12 px-3">
             <div className="backtohome">
               <Link href="/">
@@ -53,7 +53,7 @@ export default function ForgotLayout({ children, showHeader }) {
             Indulge in the finest and most charming accommodation in Jaipur!
             </p>
           </div>
-          )}
+          {/* )} */}
           <div className="align-center mx-auto sm:w-6/12 w-full px-3">
             {children}
           </div>
