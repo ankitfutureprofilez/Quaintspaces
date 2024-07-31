@@ -174,9 +174,9 @@ export default function Property(props) {
     const filteredImages = images.filter((file) => file !== f);
     setImages(filteredImages);
   };
-  console.log("ass",checkinEnd)
+  console.log("ass", checkinEnd)
 
-  console.log("che",checkinStart)
+  console.log("che", checkinStart)
 
   const moveImageToFront = (index) => {
     const updatedImages = [...images];
@@ -286,7 +286,7 @@ export default function Property(props) {
     const textToCopy = `${baseurl}${item?.customLink}`;
     navigator.clipboard
       .writeText(textToCopy)
-      .then(() => {})
+      .then(() => { })
       .catch((err) => {
         console.error("Failed to copy: ", err);
       });
@@ -305,7 +305,7 @@ export default function Property(props) {
     const option = parseInt(event.target.value, 10);
     setSelectedOption(selectedOption === option ? "" : option);
   };
-  
+
   const [locationupdate, setLocationupdate] = useState([]);
   const getNavigator = () => {
     if (typeof navigator !== "undefined") {
@@ -509,122 +509,122 @@ export default function Property(props) {
 
   const baseurl = "https://quant-stay.vercel.app/properties/";
   const fulllink = baseurl + item?.customLink;
- 
+
   const prevStep = () => setStep((prev) => prev - 1);
   const nextStep = async () => {
-    if (step === 0 && PType == "") {
-      toast.error("Please choose a property type which one you want to list.");
-    }
-    if (
-      step === 1 &&
-      (item?.name === "" || item?.price === "" || item?.about === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (
-      step === 1 && item?.price != "" && item?.price < 0 ) {
-      toast.error(`Invalid Price`);
-      return false;
-    }
-    if (
-      step === 1 &&
-      (!item?.about ||
-        item?.about?.trim()?.length === 0 ||
-        item?.about?.length < 100)
-    ) {
-      toast.error(
-        "Property description is too short. Description should be a minimum of 100 words."
-      );
-      return false;
-    }
-    if (
-      step === 2 &&
-      (address?.pin === "" ||
-        address?.pin?.length < 5 ||
-        address?.state === "" ||
-        address?.city === "" ||
-        address?.street_address === "" ||
-        address?.district === "")
-    ) {
-      toast.error(`Incomplete address. Please enter complete address.`);
-      return false;
-    }
-    if (
-      step === 3 &&
-      (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (
-      step == 4 &&
-      selectedAmenity &&
-      Amenity &&
-      standoutAmenity &&
-      selectedAmenity.length + Amenity.length + standoutAmenity.length < 4
-    ) {
-      toast.error("Please choose at least 4 amenities.");
-      return false;
-    }
+    // if (step === 0 && PType == "") {
+    //   toast.error("Please choose a property type which one you want to list.");
+    // }
+    // if (
+    //   step === 1 &&
+    //   (item?.name === "" || item?.price === "" || item?.about === "")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (
+    //   step === 1 && item?.price != "" && item?.price < 0) {
+    //   toast.error(`Invalid Price`);
+    //   return false;
+    // }
+    // if (
+    //   step === 1 &&
+    //   (!item?.about ||
+    //     item?.about?.trim()?.length === 0 ||
+    //     item?.about?.length < 100)
+    // ) {
+    //   toast.error(
+    //     "Property description is too short. Description should be a minimum of 100 words."
+    //   );
+    //   return false;
+    // }
+    // if (
+    //   step === 2 &&
+    //   (address?.pin === "" ||
+    //     address?.pin?.length < 5 ||
+    //     address?.state === "" ||
+    //     address?.city === "" ||
+    //     address?.street_address === "" ||
+    //     address?.district === "")
+    // ) {
+    //   toast.error(`Incomplete address. Please enter complete address.`);
+    //   return false;
+    // }
+    // if (
+    //   step === 3 &&
+    //   (Guests === "" || bedrooms === "" || pets === "" || Bathrooms === "")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (
+    //   step == 4 &&
+    //   selectedAmenity &&
+    //   Amenity &&
+    //   standoutAmenity &&
+    //   selectedAmenity.length + Amenity.length + standoutAmenity.length < 4
+    // ) {
+    //   toast.error("Please choose at least 4 amenities.");
+    //   return false;
+    // }
 
-    if (!isEdit && step === 5 && images?.length < 5) {
-      toast.error("Please select at least five images.");
-      return false;
-    }
-    if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
-      toast.error("Please select at least five images.");
-      return false;
-    }
-    if (
-      step === 6 &&
-      (checkout === " " ||
-        checkinStart === " " ||
-        selectedOption === "" ||
-        checkinEnd === "" ||
-        item?.cleaning === "" ||
-        item?.extra_guest === "" ||
-        item?.pet === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (step === 7 && longTermPolicy === null && selectedPolicy === null) {
-      toast.error(`At least one field is required.`);
-      return false;
-    }
-    if (
-      step === 8 &&
-      (item?.additonalrule === "" ||
-        petsAllowed === " " ||
-        smokingAllowed === " " ||
-        eventsAllowed === "" ||
-        quietHours === "" ||
-        PhotographyAllowed === "")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
-    if (
-      step === 9 &&
-      (item?.Direction === "" ||
-        item?.wifi === " " ||
-        item?.wifiPassword === " " ||
-        item?.housemanual === " ")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (!isEdit && step === 5 && images?.length < 5) {
+    //   toast.error("Please select at least five images.");
+    //   return false;
+    // }
+    // if (isEdit && step === 5 && images?.length + imageproperty?.length < 5) {
+    //   toast.error("Please select at least five images.");
+    //   return false;
+    // }
+    // if (
+    //   step === 6 &&
+    //   (checkout === " " ||
+    //     checkinStart === " " ||
+    //     selectedOption === "" ||
+    //     checkinEnd === "" ||
+    //     item?.cleaning === "" ||
+    //     item?.extra_guest === "" ||
+    //     item?.pet === "")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (step === 7 && longTermPolicy === null && selectedPolicy === null) {
+    //   toast.error(`At least one field is required.`);
+    //   return false;
+    // }
+    // if (
+    //   step === 8 &&
+    //   (item?.additonalrule === "" ||
+    //     petsAllowed === " " ||
+    //     smokingAllowed === " " ||
+    //     eventsAllowed === "" ||
+    //     quietHours === "" ||
+    //     PhotographyAllowed === "")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
+    // if (
+    //   step === 9 &&
+    //   (item?.Direction === "" ||
+    //     item?.wifi === " " ||
+    //     item?.wifiPassword === " " ||
+    //     item?.housemanual === " ")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
-    if (
-      step === 10 &&
-      (item?.customLink === "" ||
-        item?.selectedInstruction === " " ||
-        selectedMethod === " ")
-    ) {
-      toast.error(`All fields are required.`);
-      return false;
-    }
+    // if (
+    //   step === 10 &&
+    //   (item?.customLink === "" ||
+    //     item?.selectedInstruction === " " ||
+    //     selectedMethod === " ")
+    // ) {
+    //   toast.error(`All fields are required.`);
+    //   return false;
+    // }
 
     setStep((prev) => prev + 1);
   };
@@ -770,7 +770,7 @@ export default function Property(props) {
     );
   };
 
-  useEffect(() => {}, [images]);
+  useEffect(() => { }, [images]);
 
   // if (stepdata) {
   //   setImages([...images, imageproperty]);
@@ -794,9 +794,8 @@ export default function Property(props) {
           >
             <div className="p-3 sm:p-4 md:p-8 rounded-2xl border ">
               <div
-                className={`${
-                  step === 0 ? "" : "display-none"
-                } max-w-[100%] m-auto mb-8 table w-full`}
+                className={`${step === 0 ? "" : "display-none"
+                  } max-w-[100%] m-auto mb-8 table w-full`}
               >
                 {/* <h2 className="text-3xl text-center font-bold mb-8" >Which type of perty you want to list ?</h2>
     <div className="grid grid-cols-3 gap-4 m-auto table  " >
@@ -826,11 +825,10 @@ export default function Property(props) {
                       <div key={i} className="">
                         <div
                           onClick={() => setPType(p?.value)}
-                          className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${
-                            p?.value === PType
-                              ? "bg-slate-100 border-slate-700 text-slate-700"
-                              : ""
-                          }`}
+                          className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType
+                            ? "bg-slate-100 border-slate-700 text-slate-700"
+                            : ""
+                            }`}
                         >
                           {p.value === "flat" && (
                             <FaBuilding
@@ -868,11 +866,10 @@ export default function Property(props) {
                           )}
                           {p.value === "farm" && <FaWarehouse size={40} />}
                           <h2
-                            className={`md:text-xl text-lg mt-4 font-normal ${
-                              p.value === PType
-                                ? "text-gray-600"
-                                : "text-gray-400"
-                            }`}
+                            className={`md:text-xl text-lg mt-4 font-normal ${p.value === PType
+                              ? "text-gray-600"
+                              : "text-gray-400"
+                              }`}
                           >
                             {p.label}
                           </h2>
@@ -884,9 +881,8 @@ export default function Property(props) {
                 {/* </> : '' } */}
               </div>
               <div
-                className={`${
-                  step === 1 ? "" : "display-none"
-                } max-w-[100%] m-auto table w-full`}
+                className={`${step === 1 ? "" : "display-none"
+                  } max-w-[100%] m-auto table w-full`}
               >
                 <h2 className="text-xl capitalize md:text-2xl lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                   Describe your place?
@@ -1090,9 +1086,8 @@ export default function Property(props) {
                 />
               </div>
               <div
-                className={`${
-                  step === 5 ? "" : "display-none"
-                } max-w-[600px] m-auto`}
+                className={`${step === 5 ? "" : "display-none"
+                  } max-w-[600px] m-auto`}
               >
                 <h2 className="text-xl md:text-2xl  capitalize lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                   Add some photos of your{" "}
@@ -1592,9 +1587,8 @@ export default function Property(props) {
                 </div>
               </div>
               <div
-                className={`${
-                  step === 9 ? "" : "display-none"
-                } max-w-[100%] m-auto  w-full `}
+                className={`${step === 9 ? "" : "display-none"
+                  } max-w-[100%] m-auto  w-full `}
               >
                 <div className="flex flex-col mb-4">
                   <label
@@ -1684,45 +1678,51 @@ export default function Property(props) {
               </div>
 
               <div
-                className={`${
-                  step === 10 ? "" : "display-none"
-                } max-w-[100%] m-auto w-full `}
+                className={`${step === 10 ? "" : "display-none"
+                  } max-w-[100%] m-auto w-full `}
               >
-                <div className="flex flex-col mb-2">
-                  <label
-                    htmlFor="customLink"
-                    className="text-[20px] md:text-2xl font-bold"
-                  >
-                    Custom Link
-                  </label>
+
+                <div className="flex  flex-col mb-2">
+                  <div className="flex flex-wrap justify-between items-center">
+                    <label htmlFor="customLink" className="text-lg md:text-2xl font-bold">
+                      Custom Link
+                    </label>
+
+                    <svg
+                      onClick={copyToClipboard}
+                      className="cursor-pointer h-6 w-6 md:h-8 md:w-8"
+                      viewBox="0 0 448 512"
+                    >
+                      <path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" />
+                    </svg>
+                  </div>
+
+
                   <div className="relative mt-2 mb-4">
-                    <div className="flex w-full">
-                      <span className="inline-block bg-gray-200 p-2 rounded-l flex-shrink-0">
+                    <div className="flex flex-col sm:flex-row w-full">
+                      <span className="inline-block bg-gray-200 p-2 rounded-t sm:rounded-l sm:rounded-r-none flex-shrink-0 text-sm md:text-base w-full sm:w-auto">
                         {baseurl}
                       </span>
-                      <input
-                        type="text"
-                        className="form-control flex-1 py-2 px-4 border border-l-0 rounded-r"
-                        id="customLink"
-                        name="customLink"
-                        aria-describedby="basic-addon3"
-                        placeholder="Enter your custom link here"
-                        value={item.customLink}
-                        onChange={handleInputChange}
-                      />
-                      <svg
-                        onClick={copyToClipboard}
-                        className="cursor-pointer h-7 w-7 absolute right-2 top-2"
-                        viewBox="0 0 448 512"
-                      >
-                        <path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z" />
-                      </svg>
+                      <div className=" flex-1">
+                        <input
+                          type="text"
+                          className="form-control py-2 px-4 border border-t-0 sm:border-t border-l-0 sm:border-l rounded-b sm:rounded-l-none sm:rounded-r text-sm md:text-base w-full"
+                          id="customLink"
+                          name="customLink"
+                          aria-describedby="basic-addon3"
+                          placeholder="Enter your custom link here"
+                          value={item.customLink}
+                          onChange={handleInputChange}
+                        />
+
+                      </div>
                     </div>
-                    <div className="text-right text-sm text-gray-500">
-                      {baseurl.length + item.customLink.length}/{100}
+                    <div className="text-right text-xs md:text-sm text-gray-500 mt-1">
+                      {baseurl.length + item.customLink.length}/100
                     </div>
                   </div>
                 </div>
+
                 <div className="flex flex-col mb-2">
                   <div className="flex flex-col md:flex-row ">
                     {/* Left Panel */}
@@ -1737,11 +1737,10 @@ export default function Property(props) {
                           options.map((item, index) => (
                             <div
                               key={index}
-                              className={`p-4 border rounded-lg cursor-pointer ${
-                                selectedMethod === item?.item
-                                  ? "border-indigo-600"
-                                  : "border-gray-300"
-                              }`}
+                              className={`p-4 border rounded-lg cursor-pointer ${selectedMethod === item?.item
+                                ? "border-indigo-600"
+                                : "border-gray-300"
+                                }`}
                               onClick={() => handleMethodSelect(item?.item)}
                             >
                               {item?.icon}
@@ -1779,9 +1778,8 @@ export default function Property(props) {
               </div>
 
               <div
-                className={`${
-                  step === 11 ? "" : "display-none"
-                } max-w-[100%] m-auto w-full `}
+                className={`${step === 11 ? "" : "display-none"
+                  } max-w-[100%] m-auto w-full `}
               >
                 <div className="flex  flex-col mb-2">
                   <Checkout
@@ -1841,7 +1839,7 @@ export default function Property(props) {
       {isEdit && !stepdata ? (
         <> </>
       ) : (
-        <div className="max-w-4xl w-full space-y-8 w-full px-2  m-auto w-full px-2">
+        <div className="max-w-4xl w-full px-2 m-auto flex justify-center">
           <button
             onClick={handleSubmit}
             className="inline-flex mx-2 justify-center py-2 px-8 border-2 border-[#c48b58] shadow-sm text-lg font-medium rounded-full text-white bg-[#c48b58] hover:bg-[#fff] hover:text-[#c48b58]"
@@ -1849,6 +1847,7 @@ export default function Property(props) {
             {Loading ? "Processing..." : "Save / Exit"}
           </button>
         </div>
+
       )}
     </>
   );
