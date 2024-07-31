@@ -94,7 +94,7 @@ export default function Index() {
             <tr>
               <th className="p-2 text-left">Property Listing</th>
               <th className="p-2 text-left">Status</th>
-              <th className="p-2 text-left">Location</th>
+              <th className="p-2 text-left hidden sm:table-cell">Location</th>
               <th className="p-2 text-left">Edit</th>
               <th className="p-2 text-left">Delete</th>
             </tr>
@@ -114,7 +114,7 @@ export default function Index() {
                 <tr key={index} className="hover:bg-gray-100 rounded-lg">
                   <td className="p-2">
                     <Link href={`/admin/property/edit/${item?.uuid}`}>
-                      <div className="flex flex-col sm:flex-row items-center sm:space-x-4">
+                      <div className="flex flex-row  sm:flex-row items-center sm:space-x-4">
                         <img
                           className="w-16 h-16 object-cover rounded-md"
                           src={
@@ -124,7 +124,7 @@ export default function Index() {
                           }
                           alt={item?.name}
                         />
-                        <span className="mt-2 sm:mt-0 text-left">{item?.name}</span>
+                        <span className="mt-2 ml-2 sm:mt-0 text-left">{item?.name}</span>
                       </div>
                     </Link>
                   </td>
@@ -135,7 +135,7 @@ export default function Index() {
                       <p className="text-green-600">Completed</p>
                     )}
                   </td>
-                  <td className="p-2">
+                  <td className="p-2 hidden sm:table-cell">
                     {locationdata ? (
                       <p>{locationdata?.location}</p>
                     ) : (
@@ -167,6 +167,7 @@ export default function Index() {
           </tbody>
         </table>
       </div>
+
 
     );
   };
@@ -307,7 +308,7 @@ export default function Index() {
                 Delete This Property ?
               </label>
             </div>
-            <div className="flex justify-center md:justify-end mb-5 mt-4  space-x-2 md:space-x-4">
+            <div className="flex justify-between md:justify-end mb-5 mt-4  space-x-2 md:space-x-4">
               <button
                 className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
                 onClick={handleConfirmation}

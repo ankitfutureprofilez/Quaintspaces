@@ -81,13 +81,9 @@ export default function Booking(props) {
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500">
-                       
                         { formatMultiPrice(
                           item?.price
                         )}
-                        <div className="capitalize flex mt-1 ml-auto w-fit items-center rounded-full bg-blue-600 py-2 px-3 text-left text-xs font-medium text-white lg:hidden">
-                          {item?.booking_status}
-                        </div>
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500">
                         <div className="capitalize inline-flex items-center rounded-full bg-blue-600 py-2 px-3 text-xs text-white">

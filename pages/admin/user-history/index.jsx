@@ -126,7 +126,6 @@ export default function Index() {
 
   return (
     <AdminLayout heading={"User List "}>
-      <div className="p-4 w-full md:p-6 space-y-4">
         <div className="w-full ">
           <table className="w-full text-sm rounded-md">
             <thead>
@@ -404,7 +403,6 @@ export default function Index() {
             <> </>
           )}
         </div>
-      </div>
 
       {record?.length > 0 && !loading && hasmore && (
             <div className="flex justify-center" style={{cursor:"pointer"}}>
