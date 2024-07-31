@@ -86,91 +86,95 @@ export default function Index() {
     router.push(`/admin/property/edit/${uuid}`);
   };
 
-  const TableView = () => {
-    return (
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200 text-sm">
-          <thead>
-            <tr>
-              <th className="p-2 text-left">Property Listing</th>
-              <th className="p-2 text-left">Status</th>
-              <th className="p-2 text-left hidden sm:table-cell">Location</th>
-              <th className="p-2 text-left">Edit</th>
-              <th className="p-2 text-left">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {record && record.map((item, index) => {
-              let location = {};
-              let locationdata = {};
-              try {
-                location = JSON.parse(item.location);
-                locationdata = JSON.parse(location);
-              } catch (error) {
-                console.error('Failed to parse location:', error);
-              }
+//   const TableView = () => {
+//     return (
+//       <div className="w-full">
+//       <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
+//         {record && record?.length > 0 ? (
+//           <table className="min-w-full divide-y divide-gray-200">
+//             <thead className="bg-gray-50">
+//               <tr>
+//                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+//                   S. No.
+//                 </th>
+//                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+//                   Property Name
+//                 </th>
+               
+               
+//                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+//                   Edit
+//                 </th>
+//                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+//                   Delete
+//                 </th>
 
-              return (
-                <tr key={index} className="hover:bg-gray-100 rounded-lg">
-                  <td className="p-2">
-                    <Link href={`/admin/property/edit/${item?.uuid}`}>
-                      <div className="flex flex-row  sm:flex-row items-center sm:space-x-4">
-                        <img
-                          className="w-16 h-16 object-cover rounded-md"
-                          src={
-                            item?.property_image[0]?.image_url
-                              ? item?.property_image[0]?.image_url
-                              : "https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg"
-                          }
-                          alt={item?.name}
-                        />
-                        <span className="mt-2 ml-2 sm:mt-0 text-left">{item?.name}</span>
-                      </div>
-                    </Link>
-                  </td>
-                  <td className="p-2">
-                    {item?.status !== 1 ? (
-                      <p className="text-indigo-600">In Progress</p>
-                    ) : (
-                      <p className="text-green-600">Completed</p>
-                    )}
-                  </td>
-                  <td className="p-2 hidden sm:table-cell">
-                    {locationdata ? (
-                      <p>{locationdata?.location}</p>
-                    ) : (
-                      <p>Location not provided</p>
-                    )}
-                  </td>
-                  <td className="p-2">
-                    <button
-                      className="text-sm px-3 py-1 text-white bg-black rounded hover:bg-blue-700"
-                      onClick={() => handleEditEntireProperty(item?.uuid)}
-                    >
-                      <FaEdit />
-                    </button>
-                  </td>
-                  <td className="p-2">
-                    <button
-                      className="text-sm px-3 py-1 text-white bg-red-600 rounded hover:bg-red-700"
-                      onClick={() => {
-                        setShowConfirmation(true);
-                        setSelectedProperty(item?.uuid);
-                      }}
-                    >
-                      <AiFillDelete />
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+//                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+//                   Status
+//                 </th>
+//               </tr>
+//             </thead>
+//             <tbody className="bg-white divide-y divide-gray-200">
+//               {record && record.map((item, index) =>  (
+//                   <tr key={index}>
+//                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{index + 1}</td>
+//                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+//                       <Link href={`/admin/property/edit/${item?.uuid}`}>
+//                         <div className="flex items-center space-x-4">
+//                           <img
+//                             className="w-16 h-16 object-cover rounded-md"
+//                             src={
+//                               item?.property_image[0]?.image_url
+//                                 ? item?.property_image[0]?.image_url
+//                                 : "https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg"
+//                             }
+//                             alt={item?.name}
+//                           />
+//                           <span className="text-left text-sm   ">{item?.name}</span>
+//                         </div>
+//                       </Link>
+//                     </td>
+                
+//                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
+//                       <button
+//                         className="text-sm px-3 py-1 text-white bg-black rounded hover:bg-blue-700"
+//                         onClick={() => handleEditEntireProperty(item?.uuid)}
+//                       >
+//                         <FaEdit />
+//                       </button>
+//                     </td>
+//                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
+//                       <button
+//                         className="text-sm px-3 py-1 text-white bg-red-600 rounded hover:bg-red-700"
+//                         onClick={() => {
+//                           setShowConfirmation(true);
+//                           setSelectedProperty(item?.uuid);
+//                         }}
+//                       >
+//                         <AiFillDelete />
+//                       </button>
+//                     </td>
 
+//                     <td className="px-4 py-4 text-sm  whitespace-nowrap">
+//                       {item?.status !== 1 ? (
+//                         <p className="text-indigo-600">In Progress</p>
+//                       ) : (
+//                         <p className="text-green-600">Completed</p>
+//                       )}
+//                     </td>
+//                   </tr>
+//                 )
+//               )}
+//             </tbody>
+//           </table>
+//         ) : (
+//           <Nodata heading={"No Property"} />
+//         )}
+//       </div>
+// </div>
 
-    );
-  };
+//     );
+//   };
 
   const CardView = () => {
     return (
@@ -273,17 +277,19 @@ export default function Index() {
               Your listings
             </h3>
             <div className="flex items-center">
-              <div
+              {/* <div
                 onClick={toggleView}
                 className="view-toggle-button hover:bg-gray-400 active:bg-gray-400 mx-2 cursor-pointer bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center"
               >
                 {view === 'table' ? <CgViewComfortable /> : <FaTableCellsLarge />}
-              </div>
+              </div> */}
+
+              {/* <CgViewComfortable /> */}
               <div
                 onClick={() => {
                   router.push("/admin/property/become");
                 }}
-                className="bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer hover:bg-gray-400 active:bg-gray-400"
+                className="bg-gray-300 rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer hover:bg-gray-400 active:bg-gray-400"
               >
                 <MdAdd />
               </div>
@@ -299,16 +305,16 @@ export default function Index() {
       {showConfirmation && (
 
         <Modal isOpen={showConfirmation} onClose={handleCancel}>
-          <div className=" flex flex-col ">
-            <div className="p-4 bg-[#efa3a3]">
+          <div className="flex flex-col items-center">
+            <div className="p-4 bg-[#efa3a3] w-full">
               <label
                 htmlFor="message"
-                className="mx-auto block text-lg font-medium text-[#fff]"
+                className="mx-auto block text-lg font-medium text-[#fff] text-center"
               >
-                Delete This Property ?
+                Delete This Property?
               </label>
             </div>
-            <div className="flex justify-between md:justify-end mb-5 mt-4  space-x-2 md:space-x-4">
+            <div className="flex justify-center mb-5 mt-4 space-x-2 md:space-x-4 w-full">
               <button
                 className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
                 onClick={handleConfirmation}

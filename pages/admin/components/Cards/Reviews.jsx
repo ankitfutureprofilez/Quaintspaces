@@ -61,7 +61,7 @@ function Reviews() {
                 <>
                   <div className="flex items-start gap-3 w-full ">
                     <Link className="img-book" href={`/admin/property/${item?.get_property_review?.uuid}`}>
-                      <Image
+                      <img
                         src={item?.get_property_review?.property_image[0]?.image_url
                           || "/images/profile-no-image.jpg"}
                         blurDataURL={`${item?.get_property_review?.property_image[0]?.image_url}?q=1`}
