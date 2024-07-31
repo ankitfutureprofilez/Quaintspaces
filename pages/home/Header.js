@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { Context } from "../_app";
 import toast from "react-hot-toast";
 import Menu from "./Menu";
-import Listings from "../api/laravel/Listings";
+import Listings from "../api/laravel/Listings"; 
 import { IoMdMenu } from "react-icons/io";
 import SecurityIcon from "../../public/icons/SecurityIcon";
 
@@ -67,7 +67,7 @@ export default function Header() {
             <IoMdMenu className="h-6 w-6 cursor-pointer block lg:hidden" />
           </div>
           <div
-            className={`menu-items overflow-y-auto lg:overflow-visible flex-col lg:flex-row lg:flex lg:gap-8 items-center ${isMenuOpen ? "block" : "hidden"
+            className={` menu-items overflow-y-auto lg:overflow-visible flex-col lg:flex-row lg:flex lg:gap-8 items-center ${isMenuOpen ? "right-0 opacity-1" : "-right-[100%] opacity-1"
               } lg:flex`}
           > 
             <button className="bg-transparent border-0 p-0 menu-close lg:hidden" onClick={toggleMenu}>
@@ -85,9 +85,7 @@ export default function Header() {
             <Link href="/about" className="lg:border-0">
               <p>About Us</p>
             </Link>
-            {/* <Link href="/contact">
-              <p>Contact</p>
-            </Link> */}
+        
             {auth?.auth?.email ? (
               <>
                 <div

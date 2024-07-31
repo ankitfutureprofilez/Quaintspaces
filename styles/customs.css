@@ -480,7 +480,7 @@ footer {
 .smart-box .iteam div {
   font-family: "Baskervville", serif;
   font-size: 21px;
-  font-weight: 400;
+  font-weight: bold;
   line-height: 29px;
   letter-spacing: 0em;
   text-align: center;
@@ -492,6 +492,7 @@ footer {
   align-items: center;
   justify-content: center;
   box-shadow: 0px 50px 40px -30px #b2958433;
+  padding: 11px;
 }
 .visit-us-sec {
   background-blend-mode: color;
@@ -981,15 +982,14 @@ button.submint-btn {
     margin: 0 4px;
   }
   .menu-items {
-  position: fixed;
+    position: fixed;
     top: 0;
-    right: 0;
     height: 100%;
     background: #fff;
     padding: 10px;
     box-shadow: 0 0 26px -12px #000;
     border-radius: 0;
-    z-index: 99;
+    z-index: 99; transition:0.5s;
     width: 100%;
     padding: 20px;
     max-width: 300px;
@@ -1653,4 +1653,9 @@ h2.text-center.mt-4 {
     font-size: 14px;
     line-height: 19px;
   }
+}
+
+.swiper-pagination-clickable .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: #f0a7a7 !important;
+  border-color: #f0a7a7 !important;
 }

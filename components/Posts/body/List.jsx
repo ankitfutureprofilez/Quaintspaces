@@ -75,26 +75,26 @@ function List({ post }) {
               <div className="flex mb-[15px] overflow-x-auto md:overflow-x-visible">
 
                 <div className=" mb-2 sm:pr-[20px] pr-[7px]">
+                  <p className="text-[#666360] font-[700] text-[18px] text-center"> {post?.bedrooms} </p>
                   <h3 className="text-[#666360] font-[400] text-[13px]">Bedrooms</h3>
-                  <p className="text-[#666360] font-[700] text-[16px]"> {post?.bedrooms} </p>
                 </div>
 
                 <div className=" mb-2 sm:pr-[20px] pr-[7px] pl-[7px] sm:ml-[20px] ml-[7px] border-l">
+                  <p className="text-[#666360] font-[700] text-[18px] text-center">{post?.beds}  </p>
                   <h3 className="text-[#666360] font-[400] text-[13px]">Bed</h3>
-                  <p className="text-[#666360] font-[700] text-[16px]">{post?.beds}  </p>
                 </div>
                 <div className=" mb-2 sm:pr-[20px] pr-[7px] pl-[7px] sm:ml-[20px] ml-[7px] border-l">
+                  <p className="text-[#666360] font-[700] text-[18px] text-center">{post?.guests} </p>
                   <h3 className="text-[#666360] font-[400] text-[13px]">Guests</h3>
-                  <p className="text-[#666360] font-[700] text-[16px]">{post?.guests} </p>
                 </div>
                 <div className=" mb-2 sm:pr-[20px] pr-[7px] pl-[7px] sm:ml-[20px] ml-[7px] border-l">
+                  <p className="text-[#666360] font-[700] text-[18px] text-center">{post?.no_of_pet_allowed} </p>
                   <h3 className="text-[#666360] font-[400] text-[13px]">Pets</h3>
-                  <p className="text-[#666360] font-[700] text-[16px]">{post?.no_of_pet_allowed} </p>
                 </div>
 
                 <div className=" mb-2 sm:pr-[20px] pr-[10px] pl-[10px] sm:ml-[20px] ml-[10px] border-l">
+                  <p className="text-[#666360] font-[700] text-[18px] text-center"> {post?.bathrooms} </p>
                   <h3 className="text-[#666360] font-[400] text-[13px]">Bathroom</h3>
-                  <p className="text-[#666360] font-[700] text-[16px]"> {post?.bathrooms} </p>
                 </div>
               </div>
 

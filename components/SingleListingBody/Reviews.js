@@ -10,6 +10,7 @@ import Listings from "../../pages/api/laravel/Listings";
 import { Context } from "../../pages/_app";
 import toast from "react-hot-toast";
 import StartRating from "../../pages/elements/StartRating";
+import { FaStar } from "react-icons/fa6";
 
 const Reviews = React.forwardRef(({ data,isAdmin }, ref ) => {
 
@@ -99,16 +100,14 @@ const Reviews = React.forwardRef(({ data,isAdmin }, ref ) => {
       className="xl:min-h-[50vh] border-y border-darkBorderColor py-8">
       <h1 className="text-xl md:text-2xl mb-4 font-semibold flex items-center gap-1">
         <span className="flex" >
-        <p className="pe-2" >{ data?.rating !==0 ?(parseFloat(data && data?.rating && data?.rating?.toFixed(0))) :(<></>) }
-        {data?.rating>0?
-          ".0"
-        :null}
+        <p className="pe-2 flex items-center" ><FaStar size={'20'} color={"#000"} variant="Bold" />&nbsp;{ data?.rating !==0 ?(parseFloat(data && data?.rating && data?.rating?.toFixed(0))) :(<></>) }
+        {data?.rating>0?".0":null}
         </p>
         {/* <StartRating size={26} value={parseFloat(data && data?.rating && data?.rating?.toFixed(2))} />  */}
         
         </span>
-          <span>
-            {data?.review ? <> <span>{data?.review} Review</span></> : ''}
+          <span className="text-sm">
+            {data?.review ? <> (<span>{data?.review} Review</span>)</> : ''}
           </span>
       </h1>
 
