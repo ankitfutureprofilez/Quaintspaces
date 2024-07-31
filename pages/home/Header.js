@@ -107,7 +107,7 @@ export default function Header() {
                     />
                     <span className="ml-[5px]">{auth?.auth?.first_name}</span>
                   </div>
-                  {isDropdownOpen && <Menu />}
+                  {/* {isDropdownOpen && <Menu />} */}
 
                 </div>
                 <div className="lg:hidden mt-[30px] w-full static">
