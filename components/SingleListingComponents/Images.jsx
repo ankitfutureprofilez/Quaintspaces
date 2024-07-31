@@ -5,12 +5,11 @@ import Image from "next/image";
 
 const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
   return (
-    <div className="flex flex-wrap sm:flex-nowrap gap-2 w-full h-full">
+    <div className="flex flex-wrap sm:flex-nowrap w-full h-full gap-2">
       {loading ? (
         <>
-          <div className="w-1/2 h-[calc(35vh)] min-h-[500px] bg-lightBorderColor rounded-md"></div>
-          <div className="w-1/2 h-[calc(35vh)] min-h-[500px] bg-lightBorderColor rounded-md"></div>
-        </>
+          <div className="w-full h-[calc(35vh)] min-h-[500px] opacity-[0.5] bg-gray-200 rounded-md"></div>
+        </> 
       ) : (
         <div
           className={`${

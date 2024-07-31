@@ -6,18 +6,15 @@ import logologin from "../../public/images/Login_Logo.png";
 export default function ForgotLayout({ children, showHeader }) {
   return (
     <div
-      className="h-screen bg-cover"
-    >
-      <Image
-        src="/images/banner/login_img.JPG"
+      className="h-screen bg-cover" >
+      <Image src="/images/banner/login_img.JPG"
         blurDataURL="/images/banner/login_img.JPG?q=1"
         placeholder="blur"
         alt="Login Background"
         layout="fill"
         objectFit="cover"
         quality={100}
-        className="z-[-1]"
-      />
+        className="z-[-1]"/>
       <div className="container h-full max-w-[500px] m-auto">
         <div className="flex items-center  h-full relative signup-tab-sec">
           <div className="left-logo-login md:w-6/12 pt-6">

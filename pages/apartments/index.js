@@ -23,7 +23,7 @@ export default function Index() {
     };
 
     return (
-      <div className="relative inline-block text-left">
+      <div className="relative inline-block w-full sm:w-auto max-w-[50%] text-left">
         <Head>
           <title>Apartments | Best Properties in Town - Quaintspaces Jaipur</title>
         </Head>
@@ -31,7 +31,7 @@ export default function Index() {
           <span className="rounded-md shadow-sm">
             <button
               type="button"
-              className="sort btn flex items-center mr-2 hover:bg-[#efa3a3] hover:border-[#efa3a3] hover:text-[#fff]"
+              className="sort w-full btn flex items-center mr-2 hover:bg-[#efa3a3] hover:border-[#efa3a3] hover:text-[#fff]"
               id="options-menu"
               aria-haspopup="true"
               aria-expanded="true"
@@ -199,17 +199,16 @@ export default function Index() {
       <PwaFooter />
       <div className="container mx-auto">
         <div className="mt-6 sm:mt-10">
-          <div className="items-center flex-row flex justify-between mb-10 filter-box">
-            <h2 className="listing-heading text-left">Our Properties</h2>
-            <div className="button-group filter-btn-select justify-end flex">
+          <div className="items-center flex-row sm:flex justify-between mb-10 filter-box">
+            <h2 className="listing-heading text-left font-bold pb-4 sm:pb-0">Our Properties</h2>
+            <div className="w-full sm:w-auto button-group filter-btn-select sm:justify-end flex">
               <SortByButton
                 sortBy={sortBy}
                 setSortBy={setSortBy}
                 sortingOptions={sortingOptions}
               />
-              {/* Filter button to open the modal */}
               <button
-                className="filter btn sm:ms-2 hover:bg-[#fff] border-[#efa3a3] hover:text-[#efa3a3] border-2 text-[14px]"
+                className="w-full max-w-[50%] filter btn ms-2 hover:bg-[#fff] border-[#efa3a3] hover:text-[#efa3a3] border-2 text-[14px]"
                 onClick={openModal}
               >
                 Filter

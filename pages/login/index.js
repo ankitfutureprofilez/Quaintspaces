@@ -20,8 +20,8 @@ export default function Login() {
           alt="Login Background"
           layout="fill"
           objectFit="cover"
-          quality={100}
           className="z-[-1]"  />
+
       <div className="container overflow-auto">
         <div className=" flex items-center relative signup-tab-sec">
           <div className="pt-[3vh] md:pt-0 left-logo-login w-6/12 px-3">

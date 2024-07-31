@@ -121,7 +121,7 @@ function List({ post }) {
             <div className="w-8/12 p-6">
               <h2 className="text-[22px] font-[600] text-[#3F2A17] mb-[10px]">
                 {formatMultiPrice(post?.price) ? formatMultiPrice(post?.price) : 0}
-                /Night
+                /night
               </h2>
               <h2 className="text-[22px] font-[600] text-[#3F2A17] mb-[10px]">
                 {capitalizeFirstLetter(post?.name)}</h2>
