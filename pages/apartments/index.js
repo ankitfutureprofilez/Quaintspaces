@@ -199,7 +199,7 @@ export default function Index() {
       <PwaFooter />
       <div className="container mx-auto">
         <div className="mt-6 sm:mt-10">
-          <div className="flex justify-between mb-10 filter-box">
+          <div className="items-center flex-row flex justify-between mb-10 filter-box">
             <h2 className="listing-heading text-left">Our Properties</h2>
             <div className="button-group filter-btn-select justify-end flex">
               <SortByButton
@@ -209,7 +209,7 @@ export default function Index() {
               />
               {/* Filter button to open the modal */}
               <button
-                className="filter btn ms-2 hover:bg-[#fff] border-[#efa3a3] hover:text-[#efa3a3] border-2 text-[14px]"
+                className="filter btn sm:ms-2 hover:bg-[#fff] border-[#efa3a3] hover:text-[#efa3a3] border-2 text-[14px]"
                 onClick={openModal}
               >
                 Filter

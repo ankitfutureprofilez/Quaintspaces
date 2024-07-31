@@ -467,7 +467,7 @@ export default function Index() {
                   ))}
                 </div>
               </div>
-              <div className="mb-4 flex justify-center"></div>
+              <div className="sm:mb-4 flex justify-center"></div>
             </Modal>
           </div>
         </div>

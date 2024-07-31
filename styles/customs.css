@@ -1241,10 +1241,11 @@ button.submint-btn {
     height: 100%;
   }
   .filter-box .listing-heading {
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
+    font-size: 20px;
   }
   .filter-box {
-    flex-flow: column;
+    /* flex-flow: column; */
     margin-bottom: 24px;
   }
   .peora-title {
