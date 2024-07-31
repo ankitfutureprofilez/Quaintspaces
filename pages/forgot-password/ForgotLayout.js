@@ -48,10 +48,10 @@ export default function ForgotLayout({ children, showHeader }) {
                 Homepage
               </Link>
             </div>
-            <Image src={logologin} alt="Quaintspaces Jaipur logo" />
+            {/* <Image src={logologin} alt="Quaintspaces Jaipur logo" />
             <p>
             Indulge in the finest and most charming accommodation in Jaipur!
-            </p>
+            </p> */}
           </div>
           )}
           <div className="align-center mx-auto sm:w-6/12 w-full px-3">
