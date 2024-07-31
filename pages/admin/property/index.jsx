@@ -12,6 +12,8 @@ import { CgViewComfortable } from "react-icons/cg";
 import { formatMultiPrice } from "../../../hooks/ValueData";
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
+import Modal from "../hook/Modal";
+
 export default function Index() {
   const router = useRouter();
   const [record, setRecord] = useState([]);
@@ -294,15 +296,20 @@ export default function Index() {
         </>
       )}
       {showConfirmation && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center mt-6 mb-6">
-          <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
-          <div className="bg-white px-8 rounded shadow-lg z-50 relative rounded-lg max-w-[33%]">
-            <p className="text-lg font-semibold mb-4 mt-6">
-              Are you sure you want to delete this property?
-            </p>
-            <div className="flex justify-center mb-5">
+
+        <Modal isOpen={showConfirmation} onClose={handleCancel}>
+          <div className=" flex flex-col ">
+            <div className="p-4 bg-[#efa3a3]">
+              <label
+                htmlFor="message"
+                className="mx-auto block text-lg font-medium text-[#fff]"
+              >
+                Delete This Property ?
+              </label>
+            </div>
+            <div className="flex justify-center md:justify-end mb-5 mt-4  space-x-2 md:space-x-4">
               <button
-                className="bg-red-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-red-700"
+                className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
                 onClick={handleConfirmation}
               >
                 Delete
@@ -315,8 +322,10 @@ export default function Index() {
               </button>
             </div>
           </div>
-        </div>
+        </Modal>
+
       )}
+
     </AdminLayout>
   );
 }
