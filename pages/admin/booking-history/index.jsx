@@ -122,38 +122,41 @@ export default function index() {
 
   return (
     <AdminLayout heading={"Booking Management"}>
-      <div className="flex flex-wrap justify-around max-w-full text-md font-large relative bg-gray-100 p-2 rounded-lg mt-3">
+      <div className="flex bg-gray-100  mt-3 mb-2  text-white rounded-lg p-2 overflow-x-auto mb-5 md:mb-0 items-center  space-x-2 sm:space-x-4 upcoming-box">
         <button
           onClick={() => setActiveTab('upcoming')}
-          className={`flex-1 min-w-[100px] px-4 py-2 rounded-lg ${activeTab === "upcoming" ? "bg-amber-700 text-white" : "text-black"} mb-2 sm:mb-0`}
+          className={`flex-1 px-4 py-2 rounded-lg text-center ${activeTab === 'upcoming' ? 'bg-amber-700 text-white' : 'text-black'} mb-2 sm:mb-0`}
         >
           Upcoming
         </button>
         <button
           onClick={() => setActiveTab('completed')}
-          className={`flex-1 min-w-[100px] px-4 py-2 rounded-lg ${activeTab === "completed" ? "bg-green-600 text-white" : "text-black"} mb-2 sm:mb-0`}
+          className={`flex-1 px-4 py-2 rounded-lg text-center ${activeTab === 'completed' ? 'bg-green-600 text-white' : 'text-black'} mb-2 sm:mb-0`}
         >
-          Completed
+          Complete
         </button>
         <button
           onClick={() => setActiveTab('cancelled')}
-          className={`flex-1 min-w-[100px] px-4 py-2 rounded-lg ${activeTab === "cancelled" ? "bg-red-600 text-white" : "text-black"} mb-2 sm:mb-0`}
+          className={`flex-1 px-4 py-2 rounded-lg text-center ${activeTab === 'cancelled' ? 'bg-red-600 text-white' : 'text-black'} mb-2 sm:mb-0`}
         >
           Cancelled
         </button>
         <button
           onClick={() => setActiveTab('current')}
-          className={`flex-1 min-w-[100px] px-4 py-2 rounded-lg ${activeTab === "current" ? "bg-black text-white" : "text-black"} mb-2 sm:mb-0`}
+          className={`flex-1 px-4 py-2 rounded-lg text-center ${activeTab === 'current' ? 'bg-black text-white' : 'text-black'} mb-2 sm:mb-0`}
         >
           Current
         </button>
         <button
           onClick={() => setActiveTab('failed')}
-          className={`flex-1 min-w-[100px] px-4 py-2 rounded-lg ${activeTab === "failed" ? "bg-red-700 text-white" : "text-black"} mb-2 sm:mb-0`}
+          className={`flex-1 px-2 py-2 rounded-lg text-center ${activeTab === 'failed' ? 'bg-red-700 text-white' : 'text-black'} mb-2 sm:mb-0`}
         >
           Failed
         </button>
       </div>
+
+
+
 
       {loading ? (
         <Spinner />

@@ -19,7 +19,7 @@ const NoRecord = ({heading, content}) => {
         <div className="empty-state__message">
           {heading} available. Please try again later.
         </div>
-        <button onClick={() => { router.back() }} className="sm:w-full lg:w-auto my-2 filter btn">
+        <button onClick={() => { router.back()}} className="sm:w-full lg:w-auto my-2 filter btn">
           Take me there!
         </button>
       </div>
