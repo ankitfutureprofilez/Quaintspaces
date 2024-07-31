@@ -240,9 +240,8 @@ export default function index() {
                                     ? "..."
                                     : ""}
                                 </div>
-                                <div className="text-sm">
-                                  {item?.booking_property?.guests} guests ||{" "}
-                                  {item?.booking_property?.no_of_pet_allowed} pet{" "}
+                                <div className="text-[12px]">
+                                  {item?.booking_property?.guests} guests
                                 </div>
                               </div>
                             </div>
@@ -406,13 +405,11 @@ export default function index() {
       {imageOpen && (
         <Modal isOpen={openImageModal} onClose={CloseImageModal}>
           <div className=" flex flex-col ">
-            <h3 className="bg-[#efa3a3] text-white p-4"> Document Image</h3>
-            <div className="p-4">
+            <h3 className="bg-[#efa3a3] text-white p-2"> Document Image</h3>
               <img
                 src={document}
                 alt="Document Image"
               />
-            </div>
           </div>
         </Modal>
       )}
