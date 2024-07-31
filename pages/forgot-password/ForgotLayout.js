@@ -5,22 +5,22 @@ import logologin from "../../public/images/Login_Logo.png";
 
 export default function ForgotLayout({ children, showHeader }) {
   return (
-       <div
+
+    <div
       className="h-screen tab-mob-height bg-cover"
     >
-        <Image
-          src="/images/banner/login_img.JPG"
-          blurDataURL="/images/banner/login_img.JPG?q=1"
-          placeholder="blur"
-          alt="Login Background"
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-          className="z-[-1]" 
-        />
+      <Image
+        src="/images/banner/login_img.JPG"
+        blurDataURL="/images/banner/login_img.JPG?q=1"
+        placeholder="blur"
+        alt="Login Background"
+        layout="fill"
+        objectFit="cover"
+        quality={100}
+        className="z-[-1]"
+      />
       <div className="container h-full">
         <div className="flex items-center  h-full relative signup-tab-sec">
-       {/* {showHeader && ( */}
           <div className="left-logo-login w-6/12 px-3">
             <div className="backtohome">
               <Link href="/">
@@ -50,11 +50,10 @@ export default function ForgotLayout({ children, showHeader }) {
             </div>
             <Image src={logologin} alt="Quaintspaces Jaipur logo" />
             <p>
-            Indulge in the finest and most charming accommodation in Jaipur!
+              Indulge in the finest and most charming accommodation in Jaipur!
             </p>
           </div>
-          {/* )} */}
-          <div className="align-center mx-auto sm:w-6/12 w-full px-3">
+          <div className="sm:w-6/12 px-3">
             {children}
           </div>
         </div>
