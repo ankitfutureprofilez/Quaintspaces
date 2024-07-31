@@ -5,7 +5,6 @@ import logologin from "../../public/images/Login_Logo.png";
 
 export default function ForgotLayout({ children, showHeader }) {
   return (
-
     <div
       className="h-screen tab-mob-height bg-cover"
     >
@@ -48,7 +47,9 @@ export default function ForgotLayout({ children, showHeader }) {
                 Homepage
               </Link>
             </div>
-            <Image src={logologin} alt="Quaintspaces Jaipur logo" />
+            <Link href="/" className="cursor-pointer">
+                <Image src={logologin} alt="Quaintspaces Jaipur logo" />
+            </Link>
             <p>
               Indulge in the finest and most charming accommodation in Jaipur!
             </p>

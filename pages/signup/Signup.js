@@ -102,7 +102,11 @@ export default function Signup() {
                Homepage
               </Link>
             </div>
-            <Image src={logologin} alt="logo" />
+            <Link href="/">
+            
+            <Image src={logologin} alt="Quaintspaces Jaipur logo" />
+            </Link>
+
             <p>
             Indulge in the finest and most charming accommodation in Jaipur!
             </p>

@@ -54,7 +54,10 @@ export default function Login() {
                 Homepage
               </Link>
             </div>
-            <Image src={logologin} alt="Quaintspaces Jaipur logo" />
+            <Link href="/" className="cursor-pointer">
+                <Image src={logologin} alt="Quaintspaces Jaipur logo" />
+            </Link>
+            {/* <Image src={logologin} alt="Quaintspaces Jaipur logo" /> */}
             <p>
             Indulge in the finest and most charming accommodation in Jaipur!
             </p>
