@@ -13,7 +13,7 @@ export default function Login() {
           <title>Login - Quaintspaces Jaipur</title>
         </Head>
     <div
-      className="h-screen flex items-center bg-cover overflow-auto max-h-[100vh]">
+      className="h-screen sm:flex items-center bg-cover overflow-auto min-h-[100vh]">
       <Image  src="/images/banner/login_img.JPG"
           blurDataURL="/images/banner/login_img.JPG?q=1"
           placeholder="blur"
@@ -22,7 +22,7 @@ export default function Login() {
           objectFit="cover"
           className="z-[-1]"  />
 
-      <div className="container overflow-auto">
+      <div className="container ">
         <div className=" flex items-center relative signup-tab-sec">
           <div className="pt-[3vh] md:pt-0 left-logo-login w-6/12 px-3">
             <div className="backtohome">
