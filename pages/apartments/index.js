@@ -221,9 +221,9 @@ export default function Index() {
       {/* Render the modal component conditionally */}
             {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50">
-          <div className="bg-white pb-2 sm:pb-6 rounded-lg shadow-lg filter-popup">
-            <div className="relative pt-4 bg-[#9e8383] text-[#ffff]">
-              <h2 className="p-2 bg-[#c48b58] text-[#fff] align-center text-center text-2xl font-medium bg-[#efa3a3]">Filter</h2>
+          <div className="bg-white pb-2 sm:pb-6 rounded-lg shadow-lg filter-popup overflow-hidden">
+            <div className="relative bg-[#9e8383] text-[#ffff]">
+              <h2 className="p-3 bg-[#c48b58] text-[#fff] align-center text-center text-2xl font-medium bg-[#efa3a3]">Filter</h2>
               <div className="absolute top-[18px] right-[18px]">
                 <button
                   className="text-[#ffff]"
