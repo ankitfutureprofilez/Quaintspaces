@@ -13,21 +13,18 @@ export default function Login() {
           <title>Login - Quaintspaces Jaipur</title>
         </Head>
     <div
-      className="h-screen tab-mob-height bg-cover"
-    >
-        <Image
-          src="/images/banner/login_img.JPG"
+      className="h-screen flex items-center bg-cover overflow-auto max-h-[100vh]">
+      <Image  src="/images/banner/login_img.JPG"
           blurDataURL="/images/banner/login_img.JPG?q=1"
           placeholder="blur"
           alt="Login Background"
           layout="fill"
           objectFit="cover"
           quality={100}
-          className="z-[-1]" 
-        />
-      <div className="container h-full">
-        <div className="flex items-center  h-full relative signup-tab-sec">
-          <div className="left-logo-login w-6/12 px-3">
+          className="z-[-1]"  />
+      <div className="container overflow-auto">
+        <div className=" flex items-center relative signup-tab-sec">
+          <div className="pt-[3vh] md:pt-0 left-logo-login w-6/12 px-3">
             <div className="backtohome">
               <Link href="/">
                 <svg
@@ -62,7 +59,7 @@ export default function Login() {
             Indulge in the finest and most charming accommodation in Jaipur!
             </p>
           </div>
-          <div className="sm:w-6/12">
+          <div className="w-full md:w-6/12">
           <LoginLogic/>
           </div>
         </div>
