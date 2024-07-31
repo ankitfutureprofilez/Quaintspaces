@@ -35,13 +35,13 @@ const Date_GuestsPickerCard = React.forwardRef(
           <div className="sticky top-28 left-0 min-w-[25rem] min-h-[500px] bg-lightBorderColor rounded-md"></div>
         ) : (
           <div className="sticky top-28 left-0 sm:min-w-[25rem]">
-            <div className="rounded-xl shadow border border-[#efa3a3] py-5 px-2 sm:p-5">
+            <div className="rounded-xl shadow border border-[#efa3a3] py-5 px-4 sm:p-5">
               <div className="flex items-center justify-between mb-6">
                 <h1 className="text-md font-bold">
                   <span className=" text-theme text-2xl">
                     {formatMultiPrice(listing?.price) ?? 0}
                   </span>{" "}
-                  /Night
+                  /night
                 </h1>
                 <span className="flex items-center gap-1 sm:gap-2">
                   <span className="flex items-center gap-1">

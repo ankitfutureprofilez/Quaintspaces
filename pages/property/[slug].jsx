@@ -66,7 +66,7 @@ const Listing = () => {
               setOverlay(false);
               setHeaderSearch(false);
             }}
-          ></div>
+          ></div> 
         )}
       </Layout>
     </>

@@ -291,7 +291,7 @@ const ImageSlider = ({ listing }) => {
       {listing?.data?.images && (
         <Image blurDataURL={`${listing?.data?.images[0]?.url}?q=1`} placeholder="blur"
         src={listing?.data?.images[0]?.url}
-        layout="fill" objectFit="cover"
+        layout="fill" objectFit="cover" 
         className="w-full object-cover"
         alt="Property Image" 
       />
