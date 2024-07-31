@@ -220,33 +220,50 @@ export default function Index() {
         </div>
       </div>
       {/* Render the modal component conditionally */}
-      {isModalOpen && (
-        <div className="max-w-3xl mx-auto">
-          <Modal width="md" isOpen={isModalOpen} onClose={closeModal}>
-            <p className="text-lg text-white font-semibold p-7 py-4 bg-[#efa3a3] capitalize">
-              Filter
-            </p>
-            <div className="py-4 px-6">
-              <Filter
-                selection={selection}
-                setSelection={setSelection}
-                selectedDay={selectedDay}
-                selectEnd={selectEnd}
-                setSelectedDay={setSelectedDay}
-                setSelectEnd={setSelectEnd}
-                min={0}
-                max={20000}
-                onClick={handleClick}
-                onChange={({ min, max }) => {
-                  minVal = min;
-                  maxVal = max;
-                }}
-              />
+            {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50">
+          <div className="bg-white pb-2 sm:pb-6 rounded-lg shadow-lg filter-popup">
+            <div className="relative pt-4 bg-[#9e8383] text-[#ffff]">
+              <h2 className="p-2 bg-[#c48b58] text-[#fff] align-center text-center text-2xl font-medium bg-[#efa3a3]">Filter</h2>
+              <div className="absolute top-[18px] right-[18px]">
+                <button
+                  className="text-[#ffff]"
+                  onClick={closeModal}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
-            <div className="mb-4 flex justify-center"></div>
-          </Modal>
+            <Filter
+              selection={selection}
+              setSelection={setSelection}
+              selectedDay={selectedDay}
+              selectEnd={selectEnd}
+              setSelectedDay={setSelectedDay}
+              setSelectEnd={setSelectEnd}
+              min={0}
+              max={20000}
+              onClick={handleClick}
+              onChange={({ min, max }) => {
+                minVal = min;
+                maxVal = max;
+              }}
+            />
+          </div>
         </div>
-
       )}
     </Layout>
   );
