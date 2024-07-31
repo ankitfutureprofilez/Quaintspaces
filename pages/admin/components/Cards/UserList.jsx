@@ -43,7 +43,7 @@ function UserList({totaluser}) {
           className="border flex items-center gap-1 px-2 py-1 rounded-lg text-xs"
         >
           <Send2 size={14} />
-         See  All {totaluser}
+         See  All ({totaluser})
         </Link>
       </div>
 

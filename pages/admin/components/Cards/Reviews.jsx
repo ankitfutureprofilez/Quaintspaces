@@ -61,12 +61,6 @@ function Reviews() {
                 <>
                   <div className="flex items-start gap-3 w-full ">
                     <Link className="img-book" href={`/admin/property/${item?.get_property_review?.uuid}`}>
-                      {/* <img
-                      src={item?.get_property_review?.property_image[0]?.image_url
-                        || "/images/profile-no-image.jpg"}
-                      alt="property Quant-stay"
-                      className="rounded-full"
-                    /> */}
                       <Image
                         src={item?.get_property_review?.property_image[0]?.image_url
                           || "/images/profile-no-image.jpg"}

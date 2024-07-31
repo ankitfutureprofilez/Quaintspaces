@@ -122,44 +122,39 @@ export default function index() {
 
   return (
     <AdminLayout heading={"Booking Management"}>
-      <div className="flex max-w-full text-md font-large relative bg-gray-100 p-2 rounded-lg mt-3">
+      <div className="flex flex-wrap justify-around max-w-full text-md font-large relative bg-gray-100 p-2 rounded-lg mt-3">
         <button
           onClick={() => setActiveTab('upcoming')}
-          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "upcoming" ? "bg-amber-700  text-white" : "text-black"
-            }`}
+          className={`flex-1 min-w-[100px] px-4 py-2 rounded-lg ${activeTab === "upcoming" ? "bg-amber-700 text-white" : "text-black"} mb-2 sm:mb-0`}
         >
-
           Upcoming
         </button>
         <button
           onClick={() => setActiveTab('completed')}
-          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "completed" ? "bg-green-600 text-white" : "text-black"
-            }`}
+          className={`flex-1 min-w-[100px] px-4 py-2 rounded-lg ${activeTab === "completed" ? "bg-green-600 text-white" : "text-black"} mb-2 sm:mb-0`}
         >
           Completed
         </button>
         <button
           onClick={() => setActiveTab('cancelled')}
-          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "cancelled" ? "bg-red-600 text-white" : "text-black"
-            }`}
+          className={`flex-1 min-w-[100px] px-4 py-2 rounded-lg ${activeTab === "cancelled" ? "bg-red-600 text-white" : "text-black"} mb-2 sm:mb-0`}
         >
           Cancelled
         </button>
         <button
           onClick={() => setActiveTab('current')}
-          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "current" ? "bg-black text-white" : "text-black"
-            }`}
+          className={`flex-1 min-w-[100px] px-4 py-2 rounded-lg ${activeTab === "current" ? "bg-black text-white" : "text-black"} mb-2 sm:mb-0`}
         >
           Current
         </button>
         <button
           onClick={() => setActiveTab('failed')}
-          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "failed" ? "bg-red-700  text-white" : "text-black"
-          }`}
+          className={`flex-1 min-w-[100px] px-4 py-2 rounded-lg ${activeTab === "failed" ? "bg-red-700 text-white" : "text-black"} mb-2 sm:mb-0`}
         >
           Failed
         </button>
       </div>
+
       {loading ? (
         <Spinner />
       ) : content && content.length > 0 ? (
@@ -365,41 +360,41 @@ export default function index() {
       {selectedBooking && (
         <Modal isOpen={isConfirmOpen} onClose={closeConfirmModal}>
           <div className="flex flex-col">
-          <div className="p-4 bg-[#efa3a3]">
-          <div className="p-4 bg-[#efa3a3]">
-            <label
-              htmlFor="message"
-              className="mx-auto block text-lg font-medium text-[#fff]"
-            >
-              Message  
-            </label>
-            </div>
+            <div className="p-4 bg-[#efa3a3]">
+              <div className="p-4 bg-[#efa3a3]">
+                <label
+                  htmlFor="message"
+                  className="mx-auto block text-lg font-medium text-[#fff]"
+                >
+                  Message
+                </label>
+              </div>
             </div>
             <div className="p-4">
-            <textarea
-              id="message"
-              name="message"
-              value={message}
-              onChange={handleChange}
-              className=" p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
-              required
-              placeholder="Please enter your reason for cancellation"
-              rows={2}
-            />
-            <div className="flex justify-center">
-            <button
-              className="btn filter mt-6 mb-4 w-2/4 mx-auto"
-              onClick={() =>
-                bookingaccept(
-                  selectedBooking.booking_user[0].id,
-                  selectedBooking.id,
-                  "cancelled"
-                )
-              }
-            >
-              {loading ? "Proceeding..." : "Proceed"}
-            </button>
-            </div>
+              <textarea
+                id="message"
+                name="message"
+                value={message}
+                onChange={handleChange}
+                className=" p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
+                required
+                placeholder="Please enter your reason for cancellation"
+                rows={2}
+              />
+              <div className="flex justify-center">
+                <button
+                  className="btn filter mt-6 mb-4 w-2/4 mx-auto"
+                  onClick={() =>
+                    bookingaccept(
+                      selectedBooking.booking_user[0].id,
+                      selectedBooking.id,
+                      "cancelled"
+                    )
+                  }
+                >
+                  {loading ? "Proceeding..." : "Proceed"}
+                </button>
+              </div>
             </div>
           </div>
         </Modal>
@@ -408,13 +403,13 @@ export default function index() {
       {imageOpen && (
         <Modal isOpen={openImageModal} onClose={CloseImageModal}>
           <div className=" flex flex-col ">
-          <h3 className="bg-[#efa3a3] text-white p-4"> Document Image</h3>
-          <div className="p-4">
-            <img
+            <h3 className="bg-[#efa3a3] text-white p-4"> Document Image</h3>
+            <div className="p-4">
+              <img
                 src={document}
                 alt="Document Image"
               />
-          </div>
+            </div>
           </div>
         </Modal>
       )}
