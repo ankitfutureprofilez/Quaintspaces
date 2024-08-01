@@ -12,6 +12,7 @@ import Head from "next/head";
 import { toast } from "react-hot-toast";
 import DateComponent from "../elements/DateFormat.jsx";
 import { TableLoading } from "../../components/Loading/ListingsLoading.jsx";
+import moment from "moment";
 
 export default function Index() {
   const [loading, setLoading] = useState(false);
@@ -258,22 +259,18 @@ export default function Index() {
                       <th>Price</th>
                       {(key === "upcoming") && <th>Action</th>}
                       {/* {} */}
-                      {key === "ongoing" &&
-                        <th>House details</th>}
+                      {/* {key === "ongoing" &&
+                        <th>House details</th>} */}
                     </tr>
                   </thead>
                   {listings.map((item, index) => (
                     <tbody key={index}>
                       <tr>
-                        <td className="px-4 py-2">
-                          <DateComponent item=
-                            {item?.booking_date} />
-                        </td>
+                      <td className="px-4  md:px-4 py-2">
+                          <DateComponent item= {item?.check_in} /> </td>
                         <td className="px-2 md:px-4 py-2 align-middle">
                           <div className="flex items-center">
-                            <div className="text ml-2">
-                              <div className="title break-all">{item?.booking_number}</div>
-                            </div>
+                              <div className="title">{item?.booking_number}</div>
                           </div>
                         </td>
                         <td className="px-2 md:px-4 py-2 align-middle">
@@ -339,10 +336,10 @@ export default function Index() {
 
 
                             </td>)}
-                        {key === "ongoing" &&
+                        {/* {key === "ongoing" &&
                           <td className="px-2 py-2 md:px-4">
                             <span className="text-4xl ml-1" style={{ cursor: "pointer" }} onClick={() => handleHouseRules(item)}>🛈</span>
-                          </td>}
+                          </td>} */}
                       </tr>
                     </tbody>
                   ))}
@@ -395,7 +392,7 @@ export default function Index() {
           <div className="flex overflow-x-auto mb-[20px] md:mb-0 align-items-center py-2 sm:space-x-4 space-x-1 upcomming-box">
             <Button
               design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "upcoming"
-                ? "bg-[#efa3a3] text-white"
+                ? "bg-orange-300 text-white"
                 : "text-black"
                 }`}
               onClick={() => handleGroupChange("upcoming")}
@@ -404,14 +401,14 @@ export default function Index() {
             <Button
               text={"Completed"}
               design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "completed"
-                ? "bg-[#efa3a3] text-white"
+                ? "bg-orange-300 text-white"
                 : "text-black"
                 } `}
               onClick={() => handleGroupChange("completed")}
             />
             <Button
               design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "cancelled"
-                ? "bg-[#efa3a3] text-white"
+                ? "bg-orange-300 text-white"
                 : "text-black"
                 } `}
               onClick={() => handleGroupChange("cancelled")}
@@ -419,7 +416,7 @@ export default function Index() {
             />
             <Button
               design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "ongoing"
-                ? "bg-[#efa3a3] text-white"
+                ? "bg-orange-300 text-white"
                 : "text-black"
                 } `}
               onClick={() => handleGroupChange("ongoing")}

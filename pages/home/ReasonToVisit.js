@@ -32,7 +32,7 @@ export default function ReasonToVisit() {
 
     // bg-[#F5F5DC]
     <div
-      className="visit-us-sec relative bg-[#dacaa4]"
+      className="visit-us-sec relative bg-[#F5F5DC]"
       // style={{ backgroundImage: `url(/images/Amenitie_bg.avif)` }}
     >
       <div className="container capitalize mx-auto relative z-10">
