@@ -35,7 +35,7 @@ export default function LuxuryStay() {
                   priority="true"
                   blurDataURL={`${Luxury1}?q=1`}
                   placeholder="blur"
-                  data-aos="fade-down"
+                  // data-aos="fade-down"
                   // data-aos-offset="300"
                   className="mb-4 h-[180px] sm:h-[230px] object-cover"
                 />

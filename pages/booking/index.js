@@ -235,7 +235,7 @@ export default function Index() {
     };
   }, [showConfirmation]);
 
-  
+
 
 
   const BookingTable = () => {
@@ -247,7 +247,7 @@ export default function Index() {
           <>
             {listings && listings.length > 0 ? (
               <div className="table-responsive">
-                <table className="table-fixed w-full booking-table">
+                <table className=" w-full booking-table">
                   <thead>
                     <tr>
                       <th>Booking Date</th>
@@ -263,37 +263,31 @@ export default function Index() {
                         <th>House details</th>} */}
                     </tr>
                   </thead>
-                  {listings.map((item, index) => (
-                    <tbody key={index}>
-                      <tr>
-                      <td className="px-4  md:px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">
-                          <DateComponent item= {item?.check_in} /> </td>
-                        <td className="px-2 md:px-4 py-2 align-middle">
-                          <div className="flex items-center ">
-                              <div className="title">{item?.booking_number}</div>
+                  <tbody>
+                    {listings.map((item, index) => (
+                      <tr key={index}>
+                        <td className="px-6 py-4 text-sm font-normal text-gray-900 whitespace-nowrap">
+                          <DateComponent item={item?.check_in} /> </td>
+                        <td className="px-6 py-4 text-sm whitespace-nowrap ">
+                          <div>
+                            {item?.booking_number}
                           </div>
                         </td>
-                        <td className="px-2 md:px-4 py-2 align-middle">
-                          <div className="flex items-center justify-center">
-                            <div className="text ml-2">
-                              <div className="title capitalize">
-                                <Link href={`/property/${item?.booking_property?.uuid}`}>
-                                  {item?.booking_property?.name}
-                                </Link>
-                              </div>
-                            </div>
-                          </div>
+                        <td className="px-6 py-4 text-sm  whitespace-nowrap capitalize">
+                          <Link href={`/property/${item?.booking_property?.uuid}`}>
+                            {item?.booking_property?.name}
+                          </Link>
                         </td>
 
-                        <td className="px-4  md:px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">
+                        <td className="px-6 py-4 text-sm whitespace-nowrap">
                           <DateComponent item=
                             {item?.check_in} /> </td>
-                        <td className="px-2 py-2 md:px-4 whitespace-nowrap overflow-hidden text-ellipsis">
+                        <td className="px-6 py-4 text-sm whitespace-nowrap">
                           <DateComponent item=
                             {item?.check_out} />
                         </td>
 
-                        <td className="px-2 py-2 md:px-4 ">
+                        <td className="px-6 py-4 text-sm font-medium  whitespace-nowrap ">
                           <div
                             className={`capitalize inline-flex items-center rounded-full py-3 w-max px-4 text-xs text-white  ${item?.booking_status === "completed"
                               ? "bg-green-700"
@@ -309,7 +303,7 @@ export default function Index() {
                             {item?.booking_status}
                           </div>
                         </td>
-                        <td className="px-2 py-2 md:px-4">
+                        <td className="px-6 py-4 text-sm font-medium  whitespace-nowrap ">
                           <div>
 
                             {formatMultiPrice(item?.price)}
@@ -317,7 +311,7 @@ export default function Index() {
                         </td>
                         {key === "upcoming" &&
                           (
-                            <td className="px-2 py-2 md:px-4">
+                            <td className="px-6 py-4 text-sm font-medium  whitespace-nowrap ">
                               {
 
                                 item?.booking_status !== "cancelled" ? (
@@ -341,8 +335,8 @@ export default function Index() {
                             <span className="text-4xl ml-1" style={{ cursor: "pointer" }} onClick={() => handleHouseRules(item)}>🛈</span>
                           </td>} */}
                       </tr>
-                    </tbody>
-                  ))}
+                    ))}
+                  </tbody>
                 </table>
               </div>
             ) : (
