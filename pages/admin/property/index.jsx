@@ -289,7 +289,8 @@ export default function Index() {
                 onClick={() => {
                   router.push("/admin/property/become");
                 }}
-                className="bg-gray-300 rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer hover:bg-gray-400 active:bg-gray-400"
+                className="bg-gray-3
+                00 rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer hover:bg-gray-400 active:bg-gray-400"
               >
                 <MdAdd />
               </div>
