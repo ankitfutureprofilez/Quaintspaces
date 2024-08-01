@@ -24,9 +24,12 @@ export default function Index() {
       <Head>
         <title>My Account - Quaintspaces Jaipur</title>
       </Head>
+
+
+      
       <div className="container mx-auto account-btn">
         <div className="flex justify-between items-center pt-12">
-           <div className="flex sm:px-3 flex-wrap items-center">
+           <div className="flex sm:pe-3 flex-wrap items-center">
       <div className="flex items-center ">
         <div
           className="flex cursor-pointer justify-center items-center h-10 w-10 rounded-full border border-gray-800"
@@ -73,7 +76,7 @@ export default function Index() {
         ].map((item, index) => (
           <div key={index} className="border-b border-gray-200 py-6 sm:py-10 md:py-14">
             <div className="flex justify-between items-center booking-more">
-              <div className="flex items-center">
+              <div className="flex items-center text-left">
                 <svg
                   width="34px"
                   height="34px"
@@ -90,26 +93,26 @@ export default function Index() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <div className="ml-5 booking-manage-box">
+                <div className="ml-5 booking-manage-box text-left">
                   <h1>{item.title}</h1>
                   <p>{item.description}</p>
                 </div>
               </div>
               <div className="px-1">
                 <Link href={item.href} className="flex items-center border-b-2 border-[#efa3a3] text-sm text-[#efa3a3]">
-                    <p className="mr-2">View More</p>
-                    <svg
-                      width="8"
-                      height="13"
-                      viewBox="0 0 8 13"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M4.95032 6.364L0.000320435 11.314L1.41432 12.728L7.77832 6.364L1.41432 -3.8147e-06L0.000320435 1.414L4.95032 6.364Z"
-                        fill="#efa3a3"
-                      />
-                    </svg>
+                  <p className="mr-2">View More</p>
+                  <svg
+                    width="8"
+                    height="13"
+                    viewBox="0 0 8 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M4.95032 6.364L0.000320435 11.314L1.41432 12.728L7.77832 6.364L1.41432 -3.8147e-06L0.000320435 1.414L4.95032 6.364Z"
+                      fill="#efa3a3"
+                    />
+                  </svg>
                 </Link>
               </div>
             </div>

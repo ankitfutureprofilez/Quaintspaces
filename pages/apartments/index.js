@@ -23,63 +23,50 @@ export default function Index() {
     };
 
     return (
-      <div className="relative inline-block w-full sm:w-auto max-w-[50%] text-left">
-        <Head>
-          <title>Apartments | Best Properties in Town - Quaintspaces Jaipur</title>
-        </Head>
-        <div>
-          <span className="rounded-md shadow-sm">
-            <button
-              type="button"
-              className="sort w-full btn flex items-center mr-2 hover:bg-[#efa3a3] hover:border-[#efa3a3] hover:text-[#fff]"
-              id="options-menu"
-              aria-haspopup="true"
-              aria-expanded="true"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {sortingOptions.find((option) => option.key === sortBy).label}
-              {/* Icon to indicate dropdown */}
-              <IoChevronDownSharp className="-mr-1 ml-[0.25rem] mt-[3.5px] h-4 w-4" />
-              {/* <svg
-                className="-mr-1 ml-2 h-5 w-5"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 12a1 1 0 0 1-.707-.293l-4-4a1 1 0 0 1 1.414-1.414L10 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4A1 1 0 0 1 10 12z"
-                  clipRule="evenodd"
-                />
-              </svg> */}
-            </button>
-          </span>
-        </div>
-
-        {/* Dropdown menu */}
-        {isOpen && (
-          <div
-            className="sortlist absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="options-menu"
+      <div className="relative inline-block w-full sm:w-auto max-w-[50%] text-left sm:text-center">
+      <Head>
+        <title>Apartments | Best Properties in Town - Quaintspaces Jaipur</title>
+      </Head>
+      <div>
+        <span className="rounded-md shadow-sm">
+          <button
+            type="button"
+            className="sort w-full btn flex items-center justify-center sm:justify-start mr-2 hover:bg-[#efa3a3] hover:border-[#efa3a3] hover:text-[#fff]"
+            id="options-menu"
+            aria-haspopup="true"
+            aria-expanded="true"
+            onClick={() => setIsOpen(!isOpen)}
           >
-            <div className="py-1" role="none">
-              {sortingOptions.map((option) => (
-                <button
-                  key={option.key}
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  role="menuitem"
-                  onClick={() => handleSortChange(option.key)}
-                >
-                  {option.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
+            {sortingOptions.find((option) => option.key === sortBy).label}
+            {/* Icon to indicate dropdown */}
+            <IoChevronDownSharp className="-mr-1 ml-[0.25rem] mt-[3.5px] h-4 w-4" />
+          </button>
+        </span>
       </div>
+
+      {/* Dropdown menu */}
+      {isOpen && (
+        <div
+          className="sortlist absolute right-0 mt-2 w-56 text-center rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="options-menu"
+        >
+          <div className="py-1 sm:text-center" role="none">
+            {sortingOptions.map((option) => (
+              <button
+                key={option.key}
+                className="block w-full text-left px-4 py-2 text-sm sm:text-center text-gray-700 hover:bg-gray-100"
+                role="menuitem"
+                onClick={() => handleSortChange(option.key)}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
     );
   };
 
@@ -221,9 +208,15 @@ export default function Index() {
       {/* Render the modal component conditionally */}
             {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50">
+<<<<<<< HEAD
           <div className="bg-white pb-2 sm:pb-6 rounded-lg shadow-lg filter-popup">
             <div className="relative pt-4 bg-[#efa3a3] text-[#ffff]">
               <h2 className="p-2 text-[#fff] align-center text-center text-2xl font-medium bg-[#efa3a3]">Filter</h2>
+=======
+          <div className="bg-white pb-2 sm:pb-6 rounded-lg shadow-lg filter-popup overflow-hidden">
+            <div className="relative bg-[#9e8383] text-[#ffff]">
+              <h2 className="p-3 bg-[#c48b58] text-[#fff] align-center text-center text-2xl font-medium bg-[#efa3a3]">Filter</h2>
+>>>>>>> b7e87b28f0af3aefc0c0ea107568c2f02fad01fb
               <div className="absolute top-[18px] right-[18px]">
                 <button
                   className="text-[#ffff]"

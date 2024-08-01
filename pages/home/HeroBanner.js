@@ -8,7 +8,7 @@ export default function HeroBanner() {
       <h1>Discover Your Perfect Getaway with Us</h1>
       <p className="max-w-[800px] m-auto text-center">
         Experience the comfort and convenience of home, no matter where you are.
-        Our properties are fully equipped to ensure a seamless stay
+      Our properties are fully equipped to ensure a seamless stay.
       </p>
       <Link href="/apartments">
         <Button

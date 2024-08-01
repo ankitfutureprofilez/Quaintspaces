@@ -35,7 +35,7 @@ export default function Testimonials() {
   ];
   return (
     //bg-gray-50  bg-[#F5F5DC]
-    <section id="testimonials" className="bg-[#F5F5DC]">
+    <section id="testimonials" className="bg-[#dccaa4]">
       <div className="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="md:flex md:items-end md:justify-center text-center">
           <h2 className="listing-heading text-center mb-14 capitalize">

@@ -146,8 +146,6 @@ h3.text-sm.font-medium.desc-property {
   border-bottom: 1px solid #e1e1e1;
 }
 .nav-bar a {
-  padding: 8px 20px;
-
   font-size: 16px;
   /* font-weight: 600; */
   line-height: 25px;
@@ -182,11 +180,10 @@ h3.text-sm.font-medium.desc-property {
   margin-bottom: 20px;
 }
 .hero-sec p {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 27px;
   letter-spacing: 0em;
-
   margin-bottom: 40px;
   color: #fff;
 }
@@ -908,19 +905,24 @@ button.submint-btn {
 /* Responsive */
 
 @media (min-width: 1399px) {
-  .container {
+  /* .container {
     max-width: 1320px;
     margin: auto;
     padding: 0 15px;
+  } */
+   .container {
+    /* max-width: 1320px; */
+    margin: auto;
+    /* padding: 0 15px; */
   }
 }
 
 @media (max-width: 1199px) {
-  .container {
-    max-width: 1140px;
+  /* .container {
+    max-width: 1100px;
     margin: auto;
     padding: 0 15px;
-  }
+  } */
   .signup-form form input {
     padding: 14px 22px;
     margin-top: 7px;
@@ -966,10 +968,7 @@ button.submint-btn {
 @media (max-width: 1023px) {
   .nav-bar a {
         display: block;
-          padding: 6px 2px;
-          /* border-bottom: 1px solid #dfdfdf; */
           width: 100%;
-          padding: 9px 0;
           font-size: 15px;
           line-height: 22px;
           text-align: left;
@@ -1657,4 +1656,9 @@ h2.text-center.mt-4 {
 .swiper-pagination-clickable .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: #f0a7a7 !important;
   border-color: #f0a7a7 !important;
+}
+.header-naves a svg {
+  width: 25px;
+  height: 26px;
+  margin-right: 13px;
 }

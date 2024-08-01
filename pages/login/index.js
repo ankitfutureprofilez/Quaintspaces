@@ -4,16 +4,18 @@ import logologin from "../../public/images/Login_Logo.png";
 import Link from "next/link";
 import LoginLogic from "./LoginLogic";
 import Head from "next/head";
+import CheckAuth from "../signup/CheckAuth";
 
 export default function Login() {
 
   return (
     <>
     <Head>
-          <title>Login - Quaintspaces Jaipur</title>
-        </Head>
+      <title>Login - Quaintspaces Jaipur</title>
+    </Head>
+    <CheckAuth />
     <div
-      className="h-screen flex items-center bg-cover overflow-auto max-h-[100vh]">
+      className="h-screen sm:min-h-screen sm:flex items-center bg-cover overflow-auto sm:max-h-[100vh]">
       <Image  src="/images/banner/login_img.JPG"
           blurDataURL="/images/banner/login_img.JPG?q=1"
           placeholder="blur"
@@ -22,10 +24,10 @@ export default function Login() {
           objectFit="cover"
           className="z-[-1]"  />
 
-      <div className="container overflow-auto">
+      <div className="container ">
         <div className=" flex items-center relative signup-tab-sec">
           <div className="pt-[3vh] md:pt-0 left-logo-login w-6/12 px-3">
-            <div className="backtohome">
+            <div className="backtohome ms-2 lg:ms-0">
               <Link href="/">
                 <svg
                   width="44"
