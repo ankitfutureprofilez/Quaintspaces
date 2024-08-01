@@ -24,6 +24,7 @@ export default function Index() {
       <Head>
         <title>My Account - Quaintspaces Jaipur</title>
       </Head>
+      
       <div className="container mx-auto account-btn">
         <div className="flex justify-between items-center pt-12">
            <div className="flex sm:pe-3 flex-wrap items-center">
