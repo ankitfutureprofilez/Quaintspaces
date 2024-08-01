@@ -27,7 +27,7 @@ export default function Login() {
       <div className="container ">
         <div className=" flex items-center relative signup-tab-sec">
           <div className="pt-[3vh] md:pt-0 left-logo-login w-6/12 px-3">
-            <div className="backtohome">
+            <div className="backtohome ms-2 lg:ms-0">
               <Link href="/">
                 <svg
                   width="44"
