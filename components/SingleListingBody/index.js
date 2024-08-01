@@ -171,9 +171,9 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
                   {listing?.data?.rating && listing?.data?.rating?.toFixed(2)}
                 </span> */}
                 {/* <span> ·</span> */}
-                <span className="text-[15px] underline text-lightTextColor">
+                {/* <span className="text-[15px] underline text-lightTextColor">
                   {listing?.data?.review} reviews
-                </span>
+                </span> */}
               </div>
             </div>
             <button
