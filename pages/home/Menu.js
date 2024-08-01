@@ -20,8 +20,8 @@ export default function Menu() {
   return (
     <>
       <div className="menutoggle flex items-center absolute rounded-lg bg-gray-100 shadow-sm justify-center right-0">
-        <div className="w-full min-w-[250px] p-2 divide-y divide-gray-300 profile-navbar">
-          <div aria-label="header" className="flex space-x-4 items-center py-2">
+        <div className="w-full min-w-[250px] divide-y divide-gray-300 profile-navbar">
+          <div aria-label="header" className="flex space-x-4 items-center px-3 py-3">
             <Link href="/profile">
               <div
                 aria-label="avatar"
