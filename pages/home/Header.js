@@ -24,7 +24,9 @@ export default function Header() {
   const handleLogoutClick = () => {
     localStorage && localStorage.removeItem("token");
     setAuth(null);
-    toast.success("Logout Successfully !!");
+    setTimeout(() => {
+      toast.success("Logout Successfully !!");
+    }, 1000)
     router.push("/login");
   };
 

@@ -1658,3 +1658,8 @@ h2.text-center.mt-4 {
   background: #f0a7a7 !important;
   border-color: #f0a7a7 !important;
 }
+.header-naves a svg {
+  width: 25px;
+  height: 26px;
+  margin-right: 13px;
+}
