@@ -568,7 +568,7 @@ console.log("o",guestsModel)
                   <Button
                     text={"Loading .."}
                     design={
-                      "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 sm:p-4 p-3 rounded-full"
+                      "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-[#efa3a3] sm:p-4 p-3 rounded-full"
                     }
                   />
                 ) : (
@@ -576,7 +576,7 @@ console.log("o",guestsModel)
                   <Button
                     text={loading ? "Processing..." : "Confirm & Pay"}
                     design={
-                      "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 sm:p-4 p-3 rounded-full"
+                      "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-[#efa3a3] sm:p-4 p-3 rounded-full"
                     }
                     onClick={handleSubmit}
                   />
