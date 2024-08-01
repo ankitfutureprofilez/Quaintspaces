@@ -74,7 +74,7 @@ export default function index() {
           {/* 10015 */}
           <div className="">
             <h1 className="">Discover the Art of Luxurious Living</h1>
-            <p className=" max-w-[800px] m-auto text-[16px] text-[#fff]">
+            <p className=" max-w-[800px] m-auto  text-[16px] text-[#fff]">
               Experience exceptional stays curated for your comfort and style,
               where every detail is crafted to perfection.
             </p>
