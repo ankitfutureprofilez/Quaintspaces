@@ -104,7 +104,7 @@ const success = () => {
             <h2 className=" text-center mt-4 capitalize">
               Your Appointment Booked Successfully!
             </h2>
-            <p className="text-black-400 text-center mt-2 capitalize">
+            <p className="text-black-400 text-center mt-2">
               We have sent your booking information to your email address.
             </p>
             <div className=" pt-16 sm:text-xl text-sm   flex flex-wrap justify-center m-auto max-w-[600px]">
