@@ -266,10 +266,10 @@ export default function Index() {
                   {listings.map((item, index) => (
                     <tbody key={index}>
                       <tr>
-                      <td className="px-4  md:px-4 py-2">
+                      <td className="px-4  md:px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">
                           <DateComponent item= {item?.check_in} /> </td>
                         <td className="px-2 md:px-4 py-2 align-middle">
-                          <div className="flex items-center">
+                          <div className="flex items-center ">
                               <div className="title">{item?.booking_number}</div>
                           </div>
                         </td>
@@ -285,10 +285,10 @@ export default function Index() {
                           </div>
                         </td>
 
-                        <td className="px-4  md:px-4 py-2">
+                        <td className="px-4  md:px-4 py-2 whitespace-nowrap overflow-hidden text-ellipsis">
                           <DateComponent item=
                             {item?.check_in} /> </td>
-                        <td className="px-2 py-2 md:px-4">
+                        <td className="px-2 py-2 md:px-4 whitespace-nowrap overflow-hidden text-ellipsis">
                           <DateComponent item=
                             {item?.check_out} />
                         </td>
