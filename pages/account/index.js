@@ -26,7 +26,7 @@ export default function Index() {
       </Head>
       <div className="container mx-auto account-btn">
         <div className="flex justify-between items-center pt-12">
-           <div className="flex sm:px-3 flex-wrap items-center">
+           <div className="flex sm:pe-3 flex-wrap items-center">
       <div className="flex items-center ">
         <div
           className="flex cursor-pointer justify-center items-center h-10 w-10 rounded-full border border-gray-800"

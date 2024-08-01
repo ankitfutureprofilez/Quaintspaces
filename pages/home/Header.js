@@ -77,16 +77,17 @@ export default function Header() {
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M20.795 1.205C21.0057 1.41594 21.124 1.70187 21.124 2C21.124 2.29813 21.0057 2.58406 20.795 2.795L2.795 20.795C2.58174 20.9937 2.29967 21.1019 2.00822 21.0968C1.71676 21.0916 1.43869 20.9736 1.23257 20.7674C1.02645 20.5613 0.90838 20.2832 0.903238 19.9918C0.898096 19.7003 1.00628 19.4183 1.205 19.205L19.205 1.205C19.4159 0.994324 19.7019 0.87599 20 0.87599C20.2981 0.87599 20.5841 0.994324 20.795 1.205Z" fill="black" />
               </svg>
             </button>
-            <Link href="/apartments" className="border-b lg:border-0">
+            <div className="px-2 lg:flex items-center">
+            <Link href="/apartments" className="mb-3 lg:mb-0 border-b md:me-6 lg:border-0">
               <p>Properties</p>
             </Link>
-            <Link href="/#testimonials" className="border-b lg:border-0">
+            <Link href="/#testimonials" className="mb-3 lg:mb-0 border-b md:me-6 lg:border-0">
               <p>Reviews</p>
             </Link>
-            <Link href="/about" className="lg:border-0">
+            <Link href="/about" className="mb-3 lg:mb-0 md:me-6 lg:border-0">
               <p>About Us</p>
             </Link>
-        
+            </div>
             {auth?.auth?.email ? (
               <>
                 <div
@@ -109,50 +110,50 @@ export default function Header() {
                     />
                     <span className="ml-[5px]">{auth?.auth?.first_name}</span>
                   </div>
-                  {isDropdownOpen && <Menu />}
+                  {/* {isDropdownOpen && <Menu />} */}
 
                 </div>
                 <div className="lg:hidden mt-[30px] w-full static">
-                  <h3 className="text-[17px]">Account Settings</h3>
+                  <h3 className="text-[17px] ps-2">Account Settings</h3>
                   <div className="w-full p-3 divide-y divide-gray-300 profile-navbar static">
                     <div aria-label="navigation" className="py-2">
                       <nav className="grid gap-1 px-1">
                         <Link
                           href="/profile"
-                          className="!flex items-center leading-6 space-x-3 py-2 sm:py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 border-b"
+                          className="!flex items-center leading-6 space-x-3 py-2 px-2 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 border-b rounded-lg"
                         >
                           <span>My Profile</span>
                         </Link>
                         <Link
                           href="/booking"
-                          className="!flex items-center leading-6 space-x-3 py-2 sm:py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 border-b"
+                          className="!flex items-center leading-6 space-x-3 py-2 px-2 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 border-b rounded-lg"
                         >
                           <span>Bookings History</span>
                         </Link>
 
                         <Link
                           href="/paymentHistory"
-                          className="!flex items-center leading-6 space-x-3 py-2 sm:py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 border-b"
+                          className="!flex items-center leading-6 space-x-3 py-2 px-2 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 border-b rounded-lg"
                         >
                           <span>Payment History</span>
                         </Link>
 
                         <Link
                           href="/security"
-                          className="!flex items-center leading-6 space-x-3 py-2 sm:py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 border-b"
+                          className="!flex items-center leading-6 space-x-3 py-2 px-2 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 border-b rounded-lg"
                         >
                           <span>Security</span>
                         </Link>
 
                         <Link
                           href="/account"
-                          className="!flex items-center leading-6 space-x-3 py-2 sm:py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100"
+                          className="rounded-lg !flex items-center leading-6 space-x-3 py-2 px-2 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100"
                         >
                           <span>Settings</span>
                         </Link>
                         <Link onClick={handleLogoutClick}
                           href="/login"
-                          className="!flex items-center leading-6 space-x-3 py-2 sm:py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100"
+                          className="rounded-lg !flex items-center leading-6 space-x-3 py-2 px-2 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100"
                         >
                           <span>Logout</span>
                         </Link>

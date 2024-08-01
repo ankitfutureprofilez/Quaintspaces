@@ -146,8 +146,6 @@ h3.text-sm.font-medium.desc-property {
   border-bottom: 1px solid #e1e1e1;
 }
 .nav-bar a {
-  padding: 8px 20px;
-
   font-size: 16px;
   /* font-weight: 600; */
   line-height: 25px;
@@ -966,10 +964,7 @@ button.submint-btn {
 @media (max-width: 1023px) {
   .nav-bar a {
         display: block;
-          padding: 6px 2px;
-          /* border-bottom: 1px solid #dfdfdf; */
           width: 100%;
-          padding: 9px 0;
           font-size: 15px;
           line-height: 22px;
           text-align: left;
