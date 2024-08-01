@@ -282,7 +282,7 @@ export default function Profile() {
             <Button
               text={loading ? "Updating..." : "Update Details"}
               design={
-                "font-inter font-lg leading-tight text-center text-[#fff] w-full sm:w-96 bg-orange-300 border-2  border-[#efa3a3] hover:bg-[#fff] hover:text-[#efa3a3]  p-4 rounded-full mt-12"
+                "font-inter font-lg leading-tight text-center text-[#fff] w-full sm:w-96 border-2  border-[#efa3a3] hover:bg-[#fff] hover:text-[#efa3a3]  p-4 rounded-full mt-12"
               }
             />
             </div>
