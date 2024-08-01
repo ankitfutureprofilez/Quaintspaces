@@ -102,7 +102,8 @@ function index() {
               <div>
                 <h1 className="text-xl  font-normalfont-bold my-6">1. PERSONAL INFORMATION WE COLLECT</h1>
 
-                <div className="mb-2">  <h2   >1.1 Information Needed to Use the QuaintSpaces Platform</h2>
+                <div className="mb-2">
+                    <h2>1.1 Information Needed to Use the QuaintSpaces Platform</h2>
                   <p >
                     We collect personal information about you when you use the QuaintSpaces Platform. Without it, we may not be able to provide all services requested. This information includes:
                   </p>
@@ -115,7 +116,7 @@ function index() {
                 </div>
 
                 <div className="mb-2">
-                   <h3 >1.1.2 Identity Information</h3>
+                  <h3 >1.1.2 Identity Information</h3>
                   <p >
                     Where appropriate, we may ask you for an image of your government-issued ID (in accordance with applicable laws) or other verification information, and/or a selfie when we verify your ID. If a copy of your ID is provided to us, we will obtain information from your ID. See our Help Center article on
                     Verifying your identity.
@@ -124,7 +125,7 @@ function index() {
                 </div>
 
 
-                <div className="mb-2"> 
+                <div className="mb-2">
                   <h3 >1.1.3 Payment Information</h3>
                   <p >
                     Such as payment account or bank account information. If you are not a QuaintSpaces user, we may receive payment information relating to you, such as when a QuaintSpaces user provides your payment card to complete a booking. See our Help Center article on
@@ -260,7 +261,7 @@ function index() {
                 </div>
               </div>
               <div className=" max-w-4xl mx-auto">
-                <div className="mb-2">  <h2    >2. HOW WE USE INFORMATION WE COLLECT.</h2>
+                <div className="mb-2">  <h1 className="text-xl  font-normalfont-bold my-6"     >2. HOW WE USE INFORMATION WE COLLECT.</h1>
                   <p >
                     We use personal information as outlined in this Privacy Policy. If you reside outside of the United States,
                     click here
@@ -268,7 +269,7 @@ function index() {
                     to learn about our legal bases for collection and processing personal information.
                   </p>
                 </div>
-                <div className="mb-2"> <h3 className="text-xl  font-normal ">2.1 Provide, Improve, and Develop the QuaintSpaces Platform.</h3>
+                <div className="mb-2"> <h2 >2.1 Provide, Improve, and Develop the QuaintSpaces Platform.</h2>
                   <p >We may process this information to:</p>
                 </div>
                 <ul className="list-disc list-inside mb-4">
@@ -286,7 +287,7 @@ function index() {
                 </ul>
 
 
-                <div className="mb-2"> <h3 className="text-xl  font-normal">2.2 Safeguard the QuaintSpaces Platform and Community.</h3>
+                <div className="mb-2"> <h2>2.2 Safeguard the QuaintSpaces Platform and Community.</h2>
                   <p >We may process this information to:</p>
                 </div>
                 <ul className="list-disc list-inside mb-4">
@@ -318,7 +319,7 @@ function index() {
                 </p>
 
                 <div className="mb-2 mt-2">
-                   <h3 className="text-xl  font-normal">2.3 Provide, Personalize, Measure, and Improve our Advertising and Marketing.</h3>
+                  <h2 >2.3 Provide, Personalize, Measure, and Improve our Advertising and Marketing.</h2>
                   <p >We may process this information to:</p>
                 </div>
                 <ul className="list-disc list-inside mb-4">
@@ -328,14 +329,14 @@ function index() {
                   <li>analyze characteristics and preferences to send you promotional messages, marketing, advertising, and other information that we think might be of interest to you, and</li>
                   <li>invite you to events and relevant opportunities.</li>
                 </ul>
-                <div className="mb-2"> <h3 className="text-xl  font-normal">2.4 Analyze and Share Your Communications.</h3>
+                <div className="mb-2"> <h2>2.4 Analyze and Share Your Communications.</h2>
                   <p >
                     We may review, scan, or analyze your communications on the QuaintSpaces Platform for reasons outlined in the “How We Use Information We Collect” section of this policy, including fraud prevention, security investigations, risk assessment, regulatory compliance, product development, research, analytics, enforcing our Terms of Service, and customer support purposes. For example, as part of our fraud prevention efforts, we scan and analyze messages to mask contact information and references to other sites and, subject to applicable law, we scan and analyze all images uploaded by users to the QuaintSpaces platform in message threads, profiles, listings, and experiences for certain illegal or inappropriate activities – such as evidence of child exploitation – for the purpose of identifying and reporting content violations to appropriate authorities. In some cases, we may also scan, review, or analyze messages to debug, improve, and expand product offerings. We use automated methods where reasonably possible. Occasionally we may need to manually review communications, such as for fraud investigations and customer support, or to assess and improve the functionality of these automated tools. We will not review, scan, or analyze your messaging communications to send third-party marketing messages to you and we will not sell reviews or analyses of these communications. We may also share your communications as set out in the “Sharing and Disclosure” section.
                   </p>
                 </div>
 
 
-                <div className="mb-2"> <h3 className="text-xl  font-normal">2.5 Provide Payment Services.</h3>
+                <div className="mb-2"> <h2>2.5 Provide Payment Services.</h2>
                   <p >
                     Personal information is used to enable, or authorize third parties to use, Payment Services, such as to:
                   </p>
