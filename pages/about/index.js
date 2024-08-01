@@ -178,7 +178,7 @@ export default function index() {
             </div>
           </div>
           <div className="md:w-6/12 lg:pl-[50px] w-full !ml-0 md:!ml-8 mt-4 md:mt-0">
-            <h2 className="text-[#3F2A17] md:text-[32px] sm:text-[26px] text-[24px] border-b lg:pb-[30px] sm:pb-[20p] pb-[15] lg:mb-[50px] sm:mb-[40] mb-[20px]">
+            <h2 className="text-[#3F2A17] md:text-[32px] sm:text-[26px] sm:text-center text-[24px] border-b lg:pb-[30px] sm:pb-[20p] pb-[15] lg:mb-[50px] sm:mb-[40] mb-[20px]">
               Write to Us
             </h2>
             <div className="w-full security-box-form">
