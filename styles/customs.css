@@ -794,9 +794,6 @@ button.submint-btn {
   text-align: left;
   color: #3f2a17;
 }
-.bg-orange-300 {
-  background: #efa3a3;
-}
 .edit-here h2 {
   margin-bottom: 6px;
   font-family: "Roboto", sans-serif;
@@ -1195,8 +1192,8 @@ button.submint-btn {
     width: 15px;
     height: 15px;
   }
-  .footer-menu {
-    padding: 20px 0;
+    .footer-menu {
+      padding: 49px 0;
   }
   p.menu-footer {
     font-size: 16px;
@@ -1606,7 +1603,7 @@ h2.text-center.mt-4 {
 
 .thankspage p {
   font-size: 15px;
-  color: #0a8645;
+  /* color: #0a8645; */
 }
 
 .thankspage .w-full.flex p {

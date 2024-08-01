@@ -78,7 +78,7 @@ const Date_GuestsPickerCard = React.forwardRef(
               <div ref={ref}>
                 {auth && auth?.name ? (
                   <button
-                    className="filter btn w-full hover:bg-[#fff] hover:text-[#efa3a3] border-2 bg-color-[#efa3a3] border-[#efa3a3] "
+                    className=" btn w-full mt-4 hover:bg-[#efa3a3] border-2 border-[#efa3a3] hover:border-[#efa3a3] text-[#efa3a3] hover:text-[#fff]"
                     onClick={() => {
                       if (selectedDay == null || selectEnd == null) {
                         toast.error("Date not selected");
@@ -105,7 +105,7 @@ const Date_GuestsPickerCard = React.forwardRef(
                 ) : (
                   <button
                     onClick={() => setOpenLogin(true)}
-                    className=" btn w-full hover:bg-[#fff] hover:text-[#efa3a3] border-2 bg-color-[#efa3a3] hover:border-[#efa3a3]"
+                    className=" btn w-full mt-4 hover:bg-[#efa3a3] border-2 border-[#efa3a3] hover:border-[#efa3a3] text-[#efa3a3] hover:text-[#fff]"
                   >
                     {" "}
                     Check Availability

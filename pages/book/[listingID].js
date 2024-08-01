@@ -7,7 +7,7 @@ import DatesModel from "../../components/book/DatesModel";
 import GuestsModel from "../../components/book/GuestsModel";
 import Head from "next/head";
 import Heading from "../elements/Heading";
-import Dateformat from "../elements/DateFormat"
+import Dateformat from "../elements/DateFormat";
 import Moment from "moment";
 import Image from "next/image";
 import Button from "../elements/Button";
@@ -41,8 +41,7 @@ const Book = () => {
     date: recorddate,
   });
 
-
-  const [cancelpolicy, setCancelpolicy] = useState([])
+  const [cancelpolicy, setCancelpolicy] = useState([]);
   const formattedCheckIn = `${infos?.checkin} ${listing?.check_in} `;
   const handleCancelPolicy = () => {
     const main = new Listings();
@@ -50,17 +49,17 @@ const Book = () => {
     formData.append("uuid", listingID);
     formData.append("check_in", formattedCheckIn);
     const response = main.cancelpolicy(formData);
-    response.then((res) => {
-      if (res && res?.data && res?.data?.status) {
-        setCancelpolicy(res?.data?.data)
-      } else {
-        toast.error(res.data.message);
-      }
-    })
+    response
+      .then((res) => {
+        if (res && res?.data && res?.data?.status) {
+          setCancelpolicy(res?.data?.data);
+        } else {
+          toast.error(res.data.message);
+        }
+      })
       .catch((error) => {
         console.log("error", error);
       });
-
   };
 
   useEffect(() => {
@@ -92,8 +91,6 @@ const Book = () => {
       min: 0,
     },
   });
-
-
 
   useEffect(() => {
     const url = router.query;
@@ -131,7 +128,6 @@ const Book = () => {
       },
     });
   }, [router.asPath]);
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -173,19 +169,22 @@ const Book = () => {
   // Assuming listing?.price and listing?.discount_offer are numbers
   const originalPrice = listing?.price ?? 0;
   const discountPercentage = listing?.discount_offer ?? 0;
-  const discountedPrice = discountPercentage > 0 ? calculateDiscountedPrice(originalPrice, discountPercentage) : originalPrice;
+  const discountedPrice =
+    discountPercentage > 0
+      ? calculateDiscountedPrice(originalPrice, discountPercentage)
+      : originalPrice;
 
   useEffect(() => {
     if (infos.checkout && infos.checkin && listing) {
       let calculatedPriceRate =
         +discountedPrice *
         differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
-      calculatedPriceRate += listing?.cleaning_fee * differenceInDays(new Date(infos.checkout), new Date(infos.checkin));;
+      calculatedPriceRate +=
+        listing?.cleaning_fee *
+        differenceInDays(new Date(infos.checkout), new Date(infos.checkin));
       if (listing?.guests < guests?.adults?.value + guests?.children?.value) {
         calculatedPriceRate +=
-          (guests?.adults?.value +
-            guests?.children?.value -
-            listing?.guests) *
+          (guests?.adults?.value + guests?.children?.value - listing?.guests) *
           listing?.extra_guest_fee;
       }
       if (guests?.pets?.value > 0) {
@@ -196,7 +195,6 @@ const Book = () => {
       setPriceRate(0);
     }
   }, [infos.checkout, infos.checkin, listing, guests]);
-
 
   const handleSubmit = () => {
     if (!formData.selectOption) {
@@ -238,8 +236,7 @@ const Book = () => {
     setLoading(true);
     const main = new Listings();
     const record = new FormData();
-    record.append(
-      "price", pricerate);
+    record.append("price", pricerate);
     record.append("currency", "INR");
     record.append("payment_date", formData?.date);
 
@@ -290,7 +287,7 @@ const Book = () => {
       })
       .finally(() => setLoading(false));
   };
-  const [payloading, setpayloading] = useState(false)
+  const [payloading, setpayloading] = useState(false);
   const paymentsubmit = (orderId) => {
     setpayloading(true);
     // Receive orderId as a parameter
@@ -326,7 +323,7 @@ const Book = () => {
         }
       })
       .catch((error) => {
-        console.log("error", error)
+        console.log("error", error);
 
         setpayloading(false);
         // Errors(error);
@@ -334,7 +331,7 @@ const Book = () => {
       .finally(() => setLoading(false));
   };
 
-  console.log("dateModel",dateModel)
+  console.log("dateModel", dateModel);
 
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
@@ -356,7 +353,7 @@ const Book = () => {
     };
   }, [isOpen]);
 
-console.log("o",guestsModel)
+  console.log("o", guestsModel);
   useEffect(() => {
     if (guestsModel) {
       document.body.classList.add("overflow-hidden");
@@ -368,7 +365,7 @@ console.log("o",guestsModel)
     };
   }, [guestsModel]);
 
-  dateModel
+  dateModel;
   useEffect(() => {
     if (dateModel) {
       document.body.classList.add("overflow-hidden");
@@ -386,13 +383,19 @@ console.log("o",guestsModel)
         <Head>
           <title>Confirm & Pay - Quaintspaces Jaipur</title>
         </Head>
-        <main className=
-        {dateModel ? ( "max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12 overflow-hidden"): ( "max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12")}
-       >
-          <Heading
-            text={loading ? "Processing..." : "Confirm & Pay"}
-            handleClick={() => router.back()}
-          />
+        <main
+          className={
+            dateModel
+              ? "max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12 overflow-hidden"
+              : "max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12"
+          }
+        >
+          <div className="ml-2">
+            <Heading
+              text={loading ? "Processing..." : "Confirm & Pay"}
+              handleClick={() => router.back()}
+            />
+          </div>
           <div className="flex flex-col lg:flex-row mt-3 sm:mt-8 md:mt-14 px-3 gap-10 your-trip-sec">
             <div className="w-full lg:w-8/12">
               <h3 className="text-2xl mb-4 font-medium heading-data">
@@ -401,14 +404,20 @@ console.log("o",guestsModel)
               <div className="flex items-center justify-between w-full py-2">
                 <div>
                   <h3 className="text-lg  font-medium item-heading ">Dates</h3>
-                  <p className="text-md item-paragraph">{`${infos?.checkin && format(new Date(infos.checkin), "MMM dd")
-                    } - ${infos?.checkout &&
+                  <p className="text-md item-paragraph">{`${
+                    infos?.checkin && format(new Date(infos.checkin), "MMM dd")
+                  } - ${
+                    infos?.checkout &&
                     format(new Date(infos.checkout), "MMM dd")
-                    }`}</p>
+                  }`}</p>
                 </div>
                 <button
                   onClick={() => setDateModel(true)}
-                  className={dateModel ?  "underline text-md font-medium edit-color overflow-hidden" :"underline text-md font-medium edit-color"}
+                  className={
+                    dateModel
+                      ? "underline text-md font-medium edit-color overflow-hidden"
+                      : "underline text-md font-medium edit-color"
+                  }
                   // className="underline text-md font-medium edit-color"
                 >
                   EDIT
@@ -418,14 +427,17 @@ console.log("o",guestsModel)
                 <div>
                   <h5 className="text-lg font-medium item-heading">Guests</h5>
                   <p className="text-md item-paragrapg">
-                    {`${+guests?.adults?.value + +guests?.children?.value
-                      } guests ${+infos.numberOfInfants
+                    {`${
+                      +guests?.adults?.value + +guests?.children?.value
+                    } guests ${
+                      +infos.numberOfInfants
                         ? ", " + infos.numberOfInfants + " infants"
                         : ""
-                      } ${+guests?.pets?.value
+                    } ${
+                      +guests?.pets?.value
                         ? ", " + guests?.pets?.value + " pets"
                         : ""
-                      }`}
+                    }`}
                   </p>
                 </div>
                 <button
@@ -439,7 +451,7 @@ console.log("o",guestsModel)
                 Upload ID
               </h3>
               <div className=" border-b border-borderColor pb-4 md:pb-11">
-                <form >
+                <form>
                   <div className="mb-4">
                     <div className="w-ful mt-1 pr-4 border rounded-full ">
                       <select
@@ -472,10 +484,9 @@ console.log("o",guestsModel)
               </div>
               <h3 className="text-2xl mb-4 font-medium mt-10 heading-data capitalize">
                 Required for your trip
-              </h3 >
+              </h3>
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
                 <div className=" ">
-
                   <h1 className="text-lg  mb-2  font-medium item-heading">
                     Number <span className="text-red-700">*</span>
                   </h1>
@@ -544,20 +555,22 @@ console.log("o",guestsModel)
                       Confirm
                     </button> */}
                   </div>
-
-
                 </div>
               </div>
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
                 <div className="mt-4 w-full">
-                  <h3 className="text-2xl mb-4 font-medium mt-10 heading-data capitalize">
+                  <h3 className="text-2xl mb-4 font-medium sm:mt-10 heading-data capitalize">
                     Cancellation policy
                   </h3>
                   <div className="flex flex-wrap justify-between">
                     <p className="item-pargraph text-[15px] mb-[10px]">
                       {cancelpolicy?.text}
                     </p>
-                    <p className="underline edit-color font-bold" style={{ cursor: "pointer" }} onClick={openModal} >
+                    <p
+                      className="underline edit-color font-bold"
+                      style={{ cursor: "pointer" }}
+                      onClick={openModal}
+                    >
                       Learn More
                     </p>
                   </div>
@@ -572,7 +585,6 @@ console.log("o",guestsModel)
                     }
                   />
                 ) : (
-
                   <Button
                     text={loading ? "Processing..." : "Confirm & Pay"}
                     design={
@@ -580,9 +592,7 @@ console.log("o",guestsModel)
                     }
                     onClick={handleSubmit}
                   />
-
                 )}
-
               </div>
             </div>
             <div className="w-full lg:w-4/12 rounded-xl shadow py-8 px-5 h-fit golden-border sticky top-4">
@@ -605,7 +615,11 @@ console.log("o",guestsModel)
                   </h3>
                   <span className="flex text-sm items-center gap-1">
                     <span>
-                      <StartRating size={15} value={listing?.rating} color={"#000000"} />
+                      <StartRating
+                        size={15}
+                        value={listing?.rating}
+                        color={"#000000"}
+                      />
                     </span>
                   </span>
                   <span className="flex text-sm items-center gap-2 mt-2">
@@ -634,28 +648,37 @@ console.log("o",guestsModel)
                   <div className="flex gap-3 mt-2 border-b pb-2">
                     <div className="flex items-center justify-between w-full">
                       <span className="block text-blackColor">
-                        Charges Per Nights
-                        ({formatMultiPrice(originalPrice)} * {infos.checkout &&
+                        Charges Per Nights ({formatMultiPrice(originalPrice)} *{" "}
+                        {infos.checkout &&
                           infos.checkin &&
                           differenceInDays(
                             new Date(infos.checkout),
                             new Date(infos.checkin)
-                          )} )
+                          )}{" "}
+                        )
                       </span>
                       <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex justify-end">
                         <div className="flex justify-center">
                           <>
                             <div className="flex flex-col items-end">
                               <div className="text-lg text-green-800 font-bold">
-                                {
-                                  formatMultiPrice(discountedPrice * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))
-                                }
+                                {formatMultiPrice(
+                                  discountedPrice *
+                                    differenceInDays(
+                                      new Date(infos.checkout),
+                                      new Date(infos.checkin)
+                                    )
+                                )}
                               </div>
 
                               <p className="text-red-700 text-sm line-through mt-1">
-                                {
-                                  formatMultiPrice(originalPrice * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))
-                                }
+                                {formatMultiPrice(
+                                  originalPrice *
+                                    differenceInDays(
+                                      new Date(infos.checkout),
+                                      new Date(infos.checkin)
+                                    )
+                                )}
                               </p>
                               {discountPercentage && (
                                 <p className="text-green-700  mt-1">
@@ -663,8 +686,6 @@ console.log("o",guestsModel)
                                 </p>
                               )}
                             </div>
-
-
                           </>
                         </div>
                       </span>
@@ -674,26 +695,29 @@ console.log("o",guestsModel)
                   <div className="flex gap-3 mt-2 border-b pb-2">
                     <div className="flex items-center justify-between w-full">
                       <span className="block text-blackColor">
-                        Charges Per Nights
-                        ({formatMultiPrice(originalPrice)} * {infos.checkout &&
+                        Charges Per Nights ({formatMultiPrice(originalPrice)} *{" "}
+                        {infos.checkout &&
                           infos.checkin &&
                           differenceInDays(
                             new Date(infos.checkout),
                             new Date(infos.checkin)
-                          )} )
+                          )}{" "}
+                        )
                       </span>
                       <span className="block text-blackColor font-medium confirm-price">
                         <div className="flex justify-center">
                           <>
                             <div className="flex flex-col items-center items-end">
-                              <div className="text-lg font-bold">
-                              </div>
+                              <div className="text-lg font-bold"></div>
                               <div className="  mt-1">
-                                {
-                                  formatMultiPrice(originalPrice * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))
-                                }
+                                {formatMultiPrice(
+                                  originalPrice *
+                                    differenceInDays(
+                                      new Date(infos.checkout),
+                                      new Date(infos.checkin)
+                                    )
+                                )}
                               </div>
-
                             </div>
                           </>
                         </div>
@@ -708,7 +732,8 @@ console.log("o",guestsModel)
                   <div className="flex items-center justify-between w-full">
                     <span className="block text-blackColor">
                       Cleaning Fees Per Nights (
-                      {formatMultiPrice(listing?.cleaning_fee || 0)} *  {infos.checkout &&
+                      {formatMultiPrice(listing?.cleaning_fee || 0)} *{" "}
+                      {infos.checkout &&
                         infos.checkin &&
                         differenceInDays(
                           new Date(infos.checkout),
@@ -717,11 +742,18 @@ console.log("o",guestsModel)
                       )
                     </span>
                     <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex justify-end">
-                      {formatMultiPrice(listing?.cleaning_fee * differenceInDays(new Date(infos.checkout), new Date(infos.checkin)))}
+                      {formatMultiPrice(
+                        listing?.cleaning_fee *
+                          differenceInDays(
+                            new Date(infos.checkout),
+                            new Date(infos.checkin)
+                          )
+                      )}
                     </span>
                   </div>
                 </div>
-                {listing?.guests < guests?.adults?.value + guests?.children?.value ? (
+                {listing?.guests <
+                guests?.adults?.value + guests?.children?.value ? (
                   <div className="flex gap-3 mt-2 border-b pb-2">
                     <div className="flex items-center justify-between w-full">
                       <div className="flex flex-col">
@@ -741,7 +773,7 @@ console.log("o",guestsModel)
                           (guests?.adults?.value +
                             guests?.children?.value -
                             listing?.guests) *
-                          listing?.extra_guest_fee
+                            listing?.extra_guest_fee
                         )}
                       </span>
                     </div>
@@ -761,7 +793,9 @@ console.log("o",guestsModel)
                         </span>
                       </div>
                       <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
-                        {formatMultiPrice(guests?.pets?.value * listing?.pet_fee)}
+                        {formatMultiPrice(
+                          guests?.pets?.value * listing?.pet_fee
+                        )}
                       </span>
                     </div>
                   </div>
@@ -769,7 +803,9 @@ console.log("o",guestsModel)
               </div>
               <div className="pt-4 flex items-center justify-between confirm-total">
                 <span className="font-bold">Total(INR)</span>
-                <span className="text-md font-medium">{formatMultiPrice(pricerate)}</span>
+                <span className="text-md font-medium">
+                  {formatMultiPrice(pricerate)}
+                </span>
               </div>
             </div>
           </div>
@@ -794,23 +830,43 @@ console.log("o",guestsModel)
                 <div className="py-4 px-6">
                   <div className="flex ">
                     <div className="w-[45%] ">
-                      <h6 className="mb-2 text-[18px] font-semibold cancel-policy" >
-                        {cancelpolicy?.date && (cancelpolicy?.date === new Date() ? "After" : "Before")}</h6>
-                      <h6 className="mb-2 text-2xl font-semibold cancel-policy" >{cancelpolicy?.date ? ("") : (<Dateformat item={formattedCheckIn} /> && "After")}</h6>
+                      <h6 className="mb-2 text-[18px] font-semibold cancel-policy">
+                        {cancelpolicy?.date &&
+                          (cancelpolicy?.date === new Date()
+                            ? "After"
+                            : "Before")}
+                      </h6>
+                      <h6 className="mb-2 text-2xl font-semibold cancel-policy">
+                        {cancelpolicy?.date
+                          ? ""
+                          : <Dateformat item={formattedCheckIn} /> && "After"}
+                      </h6>
                     </div>
                     <div className="w-[55%] pl-3 border-l">
-                      <h6 className="mb-2 text-[18px] font-semibold" >{cancelpolicy?.date && (cancelpolicy?.date === new Date() ? "" : "Full Refund")}</h6>
-                      <h6 className="mb-2" >{cancelpolicy?.date ? ("") : (
-                        <Dateformat item={formattedCheckIn} /> && "No Refund")}</h6>
+                      <h6 className="mb-2 text-[18px] font-semibold">
+                        {cancelpolicy?.date &&
+                          (cancelpolicy?.date === new Date()
+                            ? ""
+                            : "Full Refund")}
+                      </h6>
+                      <h6 className="mb-2">
+                        {cancelpolicy?.date
+                          ? ""
+                          : <Dateformat item={formattedCheckIn} /> &&
+                            "No Refund"}
+                      </h6>
                     </div>
                   </div>
 
                   <div className="flex border-bv border-b mb-4 ">
                     <div className="w-[45%]">
-
-                      <p className="mb-4" >{cancelpolicy?.date ?
-                        <Dateformat item={cancelpolicy?.date} />
-                        : (<Dateformat item={cancelpolicy} />)}</p>
+                      <p className="mb-4">
+                        {cancelpolicy?.date ? (
+                          <Dateformat item={cancelpolicy?.date} />
+                        ) : (
+                          <Dateformat item={cancelpolicy} />
+                        )}
+                      </p>
                     </div>
                     <div className="w-[55%] pl-3 border-l">
                       <p className="mb-4">{cancelpolicy?.text}</p>
@@ -820,37 +876,42 @@ console.log("o",guestsModel)
                     <div className="mt-5 border-t-2  border-[#efa3a3]  p-4 ">
                       <div className="flex justify-between mb-3 border-b">
                         <div className="w-1/2">
-                          <h6 className="mb-1 font-bold ">{cancelpolicy?.date2 === new Date() ? "After" : "Before"}</h6>
+                          <h6 className="mb-1 font-bold ">
+                            {cancelpolicy?.date2 === new Date()
+                              ? "After"
+                              : "Before"}
+                          </h6>
                         </div>
                         <div className="w-1/2">
-                          <h6 className="mb-1 font-bold">{cancelpolicy?.date === new Date() ? "" : "Full Refund"}</h6>
+                          <h6 className="mb-1 font-bold">
+                            {cancelpolicy?.date === new Date()
+                              ? ""
+                              : "Full Refund"}
+                          </h6>
                         </div>
                       </div>
                       <div className="flex  justify-between mb-3">
                         <div className="w-1/2">
-
                           <p className="mb-1 font-normal w-1/2">
                             <Dateformat item={cancelpolicy?.date2} />
                           </p>
-                        </div><div className="w-1/2">
-
+                        </div>
+                        <div className="w-1/2">
                           <p className="mb-1 w-1/2">{cancelpolicy?.text2}</p>
                         </div>
                       </div>
                     </div>
                   } */}
-                  <p className="font-normal   capitalize" >Cleaning fees are refunded if you cancel before check-in. </p>
+                  <p className="font-normal capitalize" >Cleaning fees are refunded if you cancel before check-in. </p>
                   <p className="underline mt-2 font-bold cursor-pointer  text-[#efa3a3]" >Learn more about <Link href="/terms" target="_blank">cancellation policies</Link></p>
                 </div>
                 <div className="mb-4 flex justify-center"></div>
               </Modal>
             </div>
-          )
-          }
+          )}
         </main>
       </div>
     </AuthLayout>
-
   );
 };
 
