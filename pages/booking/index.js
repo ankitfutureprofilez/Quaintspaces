@@ -534,20 +534,20 @@ export default function Index() {
                   <>
                     <p className="text-sm  font-normal  mb-4 ">
                       <span className="font-bold">
-                        Wifi-Username :-
+                        Wifi-Username :
                       </span>
                       {houseRule?.property_details?.property_rule?.wifi_username}
                     </p>
                     <p className="text-sm  font-normal  mb-4 capatalize">
                       <span className="font-bold">
-                        Password :-
+                        Password :
                       </span>
                       {houseRule?.property_details?.property_rule?.wifi_password}
                     </p>
 
                     <p className="text-sm  font-normal  mb-4">
                       <span className="font-bold">
-                        house manuals :-
+                        house manuals :
                       </span>
                       {houseRule?.property_details?.property_rule?.house_manuals}
                     </p>
@@ -561,13 +561,13 @@ export default function Index() {
                   <>
                     <p className="text-sm  font-normal  mb-4">
                       <span className="font-bold">
-                        Direction :-
+                        Direction :
                       </span>
                       {houseRule?.property_details?.property_rule?.direction}
                     </p>
                     <p className="text-sm  font-normal  mb-4">
                       <span className="font-bold">
-                        check-in method:-
+                        check-in method:
                       </span>
                       <span>
                         {houseRule?.property_details?.check_in_method} &nbsp;
@@ -582,7 +582,7 @@ export default function Index() {
                   <>
                     <p className="text-sm  font-normal  mb-4">
                       <span className="font-bold">
-                        Direction :-
+                        Direction :
                       </span>
                       {houseRule?.property_details?.property_rule?.direction}
                     </p>

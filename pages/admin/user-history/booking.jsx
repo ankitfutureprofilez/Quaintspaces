@@ -69,8 +69,8 @@ export default function Booking(props) {
                 {content &&
                   content.map((item, index) => (
                     <tr className="" key={index}>
-                      <td className="px-4 py-4 text-sm text-gray-500">
-                        {item?.booking_date}
+                      <td className="px-4 py-4 text-sm whitespace-nowrap text-gray-500">
+                        {item?.booking_date} 
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500">
                         {item?.booking_number}
