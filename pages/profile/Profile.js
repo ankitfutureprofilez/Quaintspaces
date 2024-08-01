@@ -67,7 +67,7 @@ export default function Profile() {
         });
         setPreviewImgSrc(
           profiledata?.image_url ||
-            "/images/profile-no-image.jpg"
+          "/images/profile-no-image.jpg"
         );
       })
       .catch((err) => {
@@ -196,98 +196,98 @@ export default function Profile() {
       </div>
       <div className="container mx-auto mt-5 perso-form">
 
-      <div className="lg:w-9/12 md:w-10/12 w-full m-auto md:p-12 sm:p-8 p-6 md:rounded-3xl rounded-2xl md:my-6 my-4">
-        <div className="pers-info ">
-          <h3>Personal Information</h3>
-          <p>Update your personal information here </p>
-        </div>
-        <div className="w-full">
-          <form
-            onSubmit={handleSubmit}
-           
-          >
-          <div className="grid sm:grid-cols-2 grid-cols-1 gap-4">
-            <div className="mb-2 sm:mb-4">
-              <label
-                htmlFor="email"
-                className="block text-lg font-medium text-gray-700 "
-              >
-                First Name
-              </label>
-              <input
-                type="text"
-                id="email"
-                name="first"
-                value={record?.first}
-                onChange={handleChange}
-                className="mt-1 p-4 border rounded-full w-full"
-                required
-              />
-            </div>
+        <div className="lg:w-9/12 md:w-10/12 w-full m-auto md:p-12 sm:p-8 p-6 md:rounded-3xl rounded-2xl md:my-6 my-4">
+          <div className="pers-info ">
+            <h3>Personal Information</h3>
+            <p>Update your personal information here </p>
+          </div>
+          <div className="w-full">
+            <form
+              onSubmit={handleSubmit}
 
-            <div className="mb-2 sm:mb-4">
-              <label
-                htmlFor="email"
-                className="block text-lg font-medium text-gray-700"
-              >
-                Last Name
-              </label>
-              <input
-                type="text"
-                id="email"
-                name="last"
-                value={record?.last}
-                onChange={handleChange}
-                className="mt-1 p-4 border rounded-full w-full"
-                required
-              />
-            </div>
-            <div className="mb-2 sm:mb-4">
-              <label
-                htmlFor="email"
-                className="block text-lg font-medium text-gray-700"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={record?.email}
-                onChange={handleChange}
-                className="mt-1 p-4 border rounded-full w-full"
-                required
-              />
-            </div>
-            <div className="mb-2 sm:mb-4">
-              <label
-                htmlFor="phone"
-                className="block text-lg font-medium text-gray-700"
-              >
-                Phone
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                maxlength="10"
-                value={record?.phone}
-                onChange={handleChange}
-                className="mt-1 p-4 border rounded-full w-full"
-                required
-              />
-            </div>
-            </div>
-            <div className="flex justify-center">
-            <Button
-              text={loading ? "Updating..." : "Update Details"}
-              design={
-                "font-inter font-lg leading-tight text-center text-[#efa3a3] w-full sm:w-96 border-2  border-[#efa3a3] hover:bg-[#fff] hover:text-[#efa3a3]  p-4 rounded-full mt-12"
-              }
-            />
-            </div>
-          </form>
-        </div>
+            >
+              <div className="grid sm:grid-cols-2 grid-cols-1 gap-4">
+                <div className="mb-2 sm:mb-4">
+                  <label
+                    htmlFor="email"
+                    className="block text-lg font-medium text-gray-700 "
+                  >
+                    First Name
+                  </label>
+                  <input
+                    type="text"
+                    id="email"
+                    name="first"
+                    value={record?.first}
+                    onChange={handleChange}
+                    className="mt-1 p-4 border rounded-full w-full"
+                    required
+                  />
+                </div>
+
+                <div className="mb-2 sm:mb-4">
+                  <label
+                    htmlFor="email"
+                    className="block text-lg font-medium text-gray-700"
+                  >
+                    Last Name
+                  </label>
+                  <input
+                    type="text"
+                    id="email"
+                    name="last"
+                    value={record?.last}
+                    onChange={handleChange}
+                    className="mt-1 p-4 border rounded-full w-full"
+                    required
+                  />
+                </div>
+                <div className="mb-2 sm:mb-4">
+                  <label
+                    htmlFor="email"
+                    className="block text-lg font-medium text-gray-700"
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={record?.email}
+                    onChange={handleChange}
+                    className="mt-1 p-4 border rounded-full w-full"
+                    required
+                  />
+                </div>
+                <div className="mb-2 sm:mb-4">
+                  <label
+                    htmlFor="phone"
+                    className="block text-lg font-medium text-gray-700"
+                  >
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    maxlength="10"
+                    value={record?.phone}
+                    onChange={handleChange}
+                    className="mt-1 p-4 border rounded-full w-full"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="flex justify-center mt-4 ">
+                <Button
+                  text={loading ? "Updating..." : "Update Details"}
+                  design={
+                    "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-[#efa3a3] sm:p-4 p-3 rounded-full"
+                  }
+                />
+              </div>
+            </form>
+          </div>
 
         </div>
       </div>

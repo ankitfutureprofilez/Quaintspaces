@@ -331,7 +331,6 @@ const Book = () => {
       .finally(() => setLoading(false));
   };
 
-  console.log("dateModel", dateModel);
 
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
