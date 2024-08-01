@@ -559,7 +559,7 @@ const Book = () => {
               </div>
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
                 <div className="mt-4 w-full">
-                  <h3 className="text-2xl mb-4 font-medium mt-10 heading-data capitalize">
+                  <h3 className="text-2xl mb-4 font-medium sm:mt-10 heading-data capitalize">
                     Cancellation policy
                   </h3>
                   <div className="flex flex-wrap justify-between">
@@ -902,7 +902,7 @@ const Book = () => {
                       </div>
                     </div>
                   } */}
-                  <p className="font-normal   capitalize" >Cleaning fees are refunded if you cancel before check-in. </p>
+                  <p className="font-normal capitalize" >Cleaning fees are refunded if you cancel before check-in. </p>
                   <p className="underline mt-2 font-bold cursor-pointer  text-[#efa3a3]" >Learn more about <Link href="/terms" target="_blank">cancellation policies</Link></p>
                 </div>
                 <div className="mb-4 flex justify-center"></div>
