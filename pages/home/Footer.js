@@ -8,7 +8,7 @@ import { TfiEmail } from "react-icons/tfi";
 export default function Footer() {
   return (
     // E5E5E5
-    <div className="w-full flex flex-col justify-between bg-[#f2f2f2]">
+    <div className="pt-4 sm:pt-[0px] w-full flex flex-col justify-between bg-[#f2f2f2]">
       <div className="container mx-auto">
         {/* Logo and Brand */}
         <div className="items-end footer-menu ">
@@ -19,31 +19,31 @@ export default function Footer() {
             <div className="w-[80px] h-[2px] mx-auto xl:mx-[0] bg-[#efa3a3] mb-[15px]"></div>
             <div className="flex flex-col">
               <Link
-                className="text-[#3F2A17] text-[16px] flex justify-center xl:justify-start"
+                className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px]] flex justify-center xl:justify-start"
                 href="mailto:quaintspaces@gmail.com"
                 target="_blank"
               >
                 <TfiEmail size={22} color={"#3F2A17"} />
-                <span className="text-[#3F2A17] text-[16px]  ml-2">
+                <span className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px]]  ml-2">
                   : quaintspaces@gmail.com
                 </span>
               </Link>
               <div className="flex mt-2 justify-center xl:justify-start">
                 <Link
-                  className="text-[#3F2A17] text-[16px] flex justify-center md:justify-start"
+                  className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px]] flex justify-center md:justify-start"
                   href="tel:+919521410122"
                 >
                   <MdOutlinePhone size={24} color={"#3F2A17"} />
-                  <span className="text-[#3F2A17] text-[16px]  ml-2">
+                  <span className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px]]  ml-2">
                    : +91 9521410122
                   </span>
                 </Link>{" "}
                 &nbsp;/
                 <Link
-                  className="text-[#3F2A17] text-[16px] "
+                  className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px]] "
                   href="tel:+919314022666"
                 >
-                  <span className="text-[#3F2A17] text-[16px]  ml-2">
+                  <span className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px]]  ml-2">
                     +91 9314022666
                   </span>
                 </Link>
@@ -56,12 +56,12 @@ export default function Footer() {
             {/* <div className="w-[80px] h-[2px] mx-auto xl:mx-[0] bg-[#efa3a3] mb-[15px]"></div> */}
             <div className="flex flex-col">
               <Link href="/terms">
-                <span className="text-[#3F2A17] text-[16px] ">
+                <span className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px]] ">
                   Terms & Conditions
                 </span>
               </Link>
               <Link href="/policy" className="mt-2">
-                <span className="text-[#3F2A17] text-[16px] ">
+                <span className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px]] ">
                   Privacy Policy
                 </span>
               </Link>
@@ -79,7 +79,7 @@ export default function Footer() {
               >
                 <div className="flex justify-center xl:justify-start">
                   <FaFacebook color={"#3F2A17"} size={24} />
-                  <span className="text-[#3F2A17] text-[16px] capitalize ml-2">
+                  <span className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px]] capitalize ml-2">
                     : Quaint Spaces
                   </span>
                 </div>
@@ -92,7 +92,7 @@ export default function Footer() {
               >
                 <div className="flex justify-center xl:justify-start">
                   <FaInstagram color={"#3F2A17"} size={24} />
-                  <span className="text-[#3F2A17] text-[16px] ml-2">
+                  <span className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px]] ml-2">
                     : @quaintspacesjaipur
                   </span>
                 </div>
