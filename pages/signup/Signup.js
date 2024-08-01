@@ -74,7 +74,7 @@ export default function Signup() {
         className="z-[-1]"
       />
       <div className="container h-full">
-        <div className="flex items-center  h-full relative signup-tab-sec">
+        <div className="flex items-center h-full relative signup-tab-sec">
           <div className="left-logo-login w-6/12 px-3">
             <div className="backtohome">
               <Link href="/">
@@ -116,7 +116,7 @@ export default function Signup() {
             </p> */}
           </div>
           <div className="right-signup-form w-6/12 px-3 flex justify-end">
-            <div className="signup-form w-full max-h-screen overflow-y-auto">
+            <div className="signup-form w-full max-h-[90vh] overflow-y-auto">
               <div className="formbgcolor"></div>
               <div className="quainttay">
                 <h2>Welcome to Quaintspaces Jaipur </h2>
