@@ -130,7 +130,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
           </Modal>
         </div>
       </div>
-      <div className="mb-[30px] mt-[5px] flex">
+      <div className="mb-[30px] mt-[7px] flex">
       <p className="font-semibold">Note:&nbsp;
         <span className="text-gray-500 sm:ml-2 font-normal">The price is subjective to changes based on the number of guests. A maximum of {record?.data?.guests} guests are allowed to stay at the property.</span>
         </p>
