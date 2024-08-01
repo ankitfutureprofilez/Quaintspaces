@@ -160,7 +160,7 @@ export default function Profile() {
               <span className="sr-only">Choose profile photo</span>
               <input type="file" onChange={loadFile} className="hidden" />
               {/* SVG Icon */}
-              <div className="absolute top-0 right-0 p-1 bg-orange-300 rounded-full">
+              <div className="absolute top-0 right-0 p-1 bg-[#efa3a3] rounded-full">
                 <svg
                   width="14px"
                   height="14px"
@@ -282,7 +282,7 @@ export default function Profile() {
             <Button
               text={loading ? "Updating..." : "Update Details"}
               design={
-                "font-inter font-lg leading-tight text-center text-[#fff] w-full sm:w-96 bg-orange-300 border-2  border-[#efa3a3] hover:bg-[#fff] hover:text-[#efa3a3]  p-4 rounded-full mt-12"
+                "font-inter font-lg leading-tight text-center text-[#fff] w-full sm:w-96 bg-[#efa3a3] border-2  border-[#efa3a3] hover:bg-[#fff] hover:text-[#efa3a3]  p-4 rounded-full mt-12"
               }
             />
             </div>

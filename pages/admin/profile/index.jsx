@@ -111,7 +111,7 @@ export default function Profileindex() {
               <label className="block">
                 <span className="sr-only">Choose profile photo</span>
                 <input type="file" onChange={loadFile} className="hidden" />
-                <div className="absolute top-0 right-0 p-1 bg-orange-300 rounded-full">
+                <div className="absolute top-0 right-0 p-1 bg-[#efa3a3] rounded-full">
                   <svg
                     width="14px"
                     height="14px"

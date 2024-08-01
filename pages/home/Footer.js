@@ -7,7 +7,8 @@ import { TfiEmail } from "react-icons/tfi";
 
 export default function Footer() {
   return (
-    <div className="w-full flex flex-col justify-between bg-[#E5E5E5]">
+    // E5E5E5
+    <div className="w-full flex flex-col justify-between bg-[#f2f2f2]">
       <div className="container mx-auto">
         {/* Logo and Brand */}
         <div className="items-end footer-menu ">
@@ -34,7 +35,7 @@ export default function Footer() {
                 >
                   <MdOutlinePhone size={24} color={"#3F2A17"} />
                   <span className="text-[#3F2A17] text-[16px]  ml-2">
-                    +91 9521410122
+                   : +91 9521410122
                   </span>
                 </Link>{" "}
                 &nbsp;/
@@ -56,7 +57,7 @@ export default function Footer() {
             <div className="flex flex-col">
               <Link href="/terms">
                 <span className="text-[#3F2A17] text-[16px] ">
-                  Terms & Condition
+                  Terms & Conditions
                 </span>
               </Link>
               <Link href="/policy" className="mt-2">
@@ -102,7 +103,7 @@ export default function Footer() {
 
         <div className="text-center copy-right">
           {/* Copyright Notice */}
-          <span>&copy; Quaintspaces Jaipur 2024</span>
+          <span>&copy; Quaint Spaces Jaipur, 2024</span>
         </div>
       </div>
     </div>

@@ -468,7 +468,7 @@ const Book = ({ listingData, listingID }) => {
                 <Button
                   text={loading ? "Processing..." : "Confirm & Pay"}
                   design={
-                    "font-inter  font-lg leading-tight text-center text-white w-full sm:w-96 bg-orange-300 p-4 rounded-full"
+                    "font-inter  font-lg leading-tight text-center text-white w-full sm:w-96 bg-[#efa3a3] p-4 rounded-full"
                   }
                   onClick={handleSubmit}
                 />
