@@ -66,8 +66,9 @@ export default function paymentHistory() {
       </div>
     );
   };
-  
 
+
+  
   const BookingTable = () => {
     return (
       <>
