@@ -816,8 +816,7 @@ console.log("o",guestsModel)
                       <p className="mb-4">{cancelpolicy?.text}</p>
                     </div>
                   </div>
-
-                  {cancelpolicy?.date2 &&
+                  {/* {cancelpolicy?.date2 &&
                     <div className="mt-5 border-t-2  border-[#efa3a3]  p-4 ">
                       <div className="flex justify-between mb-3 border-b">
                         <div className="w-1/2">
@@ -839,7 +838,7 @@ console.log("o",guestsModel)
                         </div>
                       </div>
                     </div>
-                  }
+                  } */}
                   <p className="font-normal   capitalize" >Cleaning fees are refunded if you cancel before check-in. </p>
                   <p className="underline mt-2 font-bold cursor-pointer  text-[#efa3a3]" >Learn more about <Link href="/terms" target="_blank">cancellation policies</Link></p>
                 </div>
