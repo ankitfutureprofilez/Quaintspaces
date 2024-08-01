@@ -76,7 +76,7 @@ export default function Signup() {
       <div className="container h-full">
         <div className="flex items-center h-full relative signup-tab-sec">
           <div className="left-logo-login w-6/12 px-3">
-            <div className="backtohome">
+            <div className="backtohome ms-2 lg:ms-0">
               <Link href="/">
                 <svg
                   width="44"
