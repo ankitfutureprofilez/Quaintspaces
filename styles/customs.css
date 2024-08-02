@@ -1143,15 +1143,6 @@ button.submint-btn {
     border: none;
   }
 
-  .login-signup-btn{
-    /* position: absolute !important; */
-    top: 20px;
-    left: 20px;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-  }
-
   .profile-image {
     position: absolute !important;
     top: 20px;
@@ -1294,7 +1285,8 @@ button.submint-btn {
     margin: 0 4px;
   }
 
-  .login-signup-btn {
+    .login-signup-btn {
+      visibility: hidden;
     /* padding-left: 10px;
     margin-left: 5px; */
   }
