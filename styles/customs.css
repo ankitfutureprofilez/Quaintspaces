@@ -1143,7 +1143,15 @@ button.submint-btn {
     border: none;
   }
 
-  .login-signup-btn,
+  .login-signup-btn{
+    /* position: absolute !important; */
+    top: 20px;
+    left: 20px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
   .profile-image {
     position: absolute !important;
     top: 20px;
