@@ -147,6 +147,7 @@ export default function Index() {
         setLoading(false);
         setKey(r?.data?.request_key);
         const newdata = r?.data?.data?.data || [];
+        console.log("newdata",newdata)
         setListings((prevData) => {
           if (pg === 1) {
             return newdata;
@@ -267,7 +268,7 @@ export default function Index() {
                     {listings.map((item, index) => (
                       <tr key={index}>
                         <td className="px-6 py-4 text-sm font-normal text-gray-900 whitespace-nowrap">
-                          <DateComponent item={item?.check_in} /> </td>
+                          <DateComponent item={item?.createdAt} /> </td>
                         <td className="px-6 py-4 text-sm whitespace-nowrap ">
                           <div>
                             {item?.booking_number}
