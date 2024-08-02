@@ -109,6 +109,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
           <Grid className="text-[13px] sm:text-normal" />
         </span>
         <span className="text-[13px] sm:text-normal">Show all photos</span>
+        
       </button>
     </div>
   );
