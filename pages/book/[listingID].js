@@ -404,10 +404,10 @@ const Book = () => {
                 <div>
                   <h3 className="text-lg  font-medium item-heading ">Dates</h3>
                   <p className="text-md item-paragraph">{`${
-                    infos?.checkin && format(new Date(infos.checkin), "MMM dd")
+                    infos?.checkin && format(new Date(infos.checkin), "dd")
                   } - ${
                     infos?.checkout &&
-                    format(new Date(infos.checkout), "MMM dd")
+                    format(new Date(infos.checkout), "dd  MMM")
                   }`}</p>
                 </div>
                 <button

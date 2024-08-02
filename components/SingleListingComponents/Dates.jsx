@@ -34,12 +34,14 @@ const Dates = ({
           </div>
 
           <div className="absolute top-8 left-8">
-            <h1 className="text-xl font-semibold">
-              {(selectedDay &&
-                selectEnd &&
-                differenceInDays(selectEnd, selectedDay) + " Nights") ||
-                "Select dates"}
-            </h1>
+          <h1 className="text-xl font-semibold">
+  {(selectedDay && selectEnd && (
+    differenceInDays(selectEnd, selectedDay) === 1
+      ? "1 night"
+      : differenceInDays(selectEnd, selectedDay) + " nights"
+  )) || "Select dates"}
+</h1>
+
             <p className="text-sm mt-1 text-lightTextColor font-normal">
               {(selectedDay &&
                 selectEnd &&
