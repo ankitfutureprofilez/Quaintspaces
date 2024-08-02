@@ -17,7 +17,7 @@ export default function menu({ isOpen, record }) {
           isOpen ? "block" : "hidden"
         }`}
       >
-        <div className="w-full min-w-[250px]  p-3 drop-shadow-xl divide-y divide-gray-300">
+        <div className="w-full min-w-[230px]  p-3 drop-shadow-xl divide-y divide-gray-300">
           <div className="flex mr-auto items-center space-x-4 mr-4">
             <Image
               src={record?.image_url}
@@ -27,13 +27,13 @@ export default function menu({ isOpen, record }) {
               height={35}
             />
             <div className="space-y-2 flex flex-col flex-1 truncate">
-              <div className="font-[18px] sm:font-medium relative text-xl leading-tight text-gray-900">
-                <span className="flex">
-                  <span className=" relative pr-8 capitalize	">
-                    {record?.name}
-                    <span className="absolute top-1/2 -translate-y-1/2 right-0 inline-block rounded-full"></span>
-                  </span>
-                </span>
+              <div className="font-[15px] sm:font-normal relative text-lg leading-tight text-gray-900">
+              <span className="flex">
+  <span className="relative pr-2 capitalize">
+    {record?.name?.length > 11 ? `${record.name.substring(0, 11)}...` : record.name}
+    <span className="absolute top-1/2 -translate-y-1/2 right-0 inline-block rounded-full"></span>
+  </span>
+</span>
               </div>
             </div>
           </div>

@@ -92,37 +92,37 @@ export default function Index() {
                 <tbody className="bg-white divide-y divide-gray-200">
                   {content.map((item, index) => (
                     <tr key={index}>
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{index + 1}</td>
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{item?.payment_id}</td>
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">{index + 1}</td>
+                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">{item?.payment_id}</td>
+                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                         <Link href={`/admin/user-history/${item?.booking_history?.booking_user[0]?.id}`}>
                           <div className="flex flex-row items-center gap-2 sm:flex-row sm:items-start text-sm">
                             <Image
-                              width={35}
-                              height={35}
-                              className="rounded-full flex-shrink-0"
+                              width={50}
+                              height={50}
+                              className="rounded-full border border-gray-300 flex-shrink-0"
                               src={item?.booking_history?.booking_user[0]?.image_url || userprofile}
                               alt="User Image"
                             />
                             <div className="p-2">
-                              <div
-                                className="text-gray-800 font-medium capitalize text-center "
-                              >
+                              <div className="text-gray-800 font-medium capitalize text-center">
                                 {item?.booking_history?.booking_user[0]?.name}
                               </div>
                               {/* <div className="text-gray-800 font-medium capitalize">{item?.booking_history?.booking_user[0]?.name}</div> */}
                             </div>
                           </div>
+
                         </Link>
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
                         <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
-                          <div className="flex flex-row gap-2 sm:flex-row sm:items-center text-sm">
-                            <img
-                              width={35}
-                              height={35}
-                              className="rounded-full"
+                        <div className="flex flex-row items-center gap-2 sm:flex-row sm:items-start text-sm">
+
+                            <Image
+                              width={50}
+                              height={50}
+                              className="rounded-full border border-gray-300 flex-shrink-0"
                               src={item?.booking_history?.booking_property?.property_image[0]?.image_url}
                               alt="Property"
                             />

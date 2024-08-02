@@ -164,7 +164,7 @@ export default function index() {
         <>
 
           <div className="overflow-x-auto mt-3">
-            <div className="w-full">
+            <div className="w-full  table-responsive">
               <div className="overflow-x-auto border border-gray-200 md:rounded-lg mt-2">
                 <table className="min-w-[1200px] w-full divide-gray-200">
                   <thead className="bg-gray-50">
@@ -199,19 +199,22 @@ export default function index() {
                   <tbody className="bg-white divide-y divide-gray-200">
                     {content.map((item, index) => (
                       <tr key={index}>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                           {index + 1}
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                           {item?.booking_date}
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                           {item?.booking_number}
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
-                          {item?.check_in} & {item?.check_out}
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                          From : {item?.check_in}  
+                          <div  className="">
+                         To:  {item?.check_out}
+                          </div>
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                           <Link
                             href={`/property/${item?.booking_property?.uuid}`}
                           >
@@ -247,10 +250,10 @@ export default function index() {
                             </div>
                           </Link>
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                           {formatMultiPrice(item?.price)}
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                           <div
                             style={{ cursor: "pointer" }}
                             className="flex items-center "
@@ -263,7 +266,7 @@ export default function index() {
                           </div>
                         </td>
                         {item?.booking_status === "pending" ?
-                          <td className="px-4 py-2 text-sm text-gray-500">
+                          <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                             <div
                               onClick={() =>
                                 bookingaccept(
@@ -315,7 +318,7 @@ export default function index() {
                             </div>
                           </td>
                           :
-                          <td className="px-4 py-2 text-sm text-gray-500">
+                          <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                             <td
                               className={`capitalize inline-flex items-center rounded-full py-3 w-max px-4 text-xs text-white  ${item?.booking_status === "completed"
                                 ? "bg-green-700"

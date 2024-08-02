@@ -267,7 +267,7 @@ export default function Index() {
   return (
     <AdminLayout heading="Properties">
       {isLoading ? (
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex">
           <Loading />
         </div>
       ) : (
