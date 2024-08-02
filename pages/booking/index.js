@@ -513,15 +513,15 @@ export default function Index() {
           </div>
         </div>
 
-        {isMobile ? (
+        {/* {isMobile ? (
 
           <PhoneBooking />
-        ) : (
+        ) : ( */}
           <div className="tble-ma">
 
             <BookingTable />
           </div>
-        )}
+        {/* )} */}
 
       </div>
 
