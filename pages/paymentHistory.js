@@ -146,6 +146,7 @@ export default function paymentHistory() {
     );
   };
 
+
   return (
     <AuthLayout>
       <Head>
