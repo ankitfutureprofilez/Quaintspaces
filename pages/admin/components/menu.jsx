@@ -30,7 +30,7 @@ export default function menu({ isOpen, record }) {
               <div className="font-[14px] sm:font-normal relative text-sm leading-tight text-gray-900">
                 <span className="flex">
                   <span className=" relative pr-8 capitalize	">
-                    {record?.name}
+                  {record?.name?.length > 11 ? `${record?.name?.substring(0, 11)}...` : record.name}
                     <span className="absolute top-1/2 -translate-y-1/2 right-0 inline-block rounded-full"></span>
                   </span>
                 </span>
