@@ -31,42 +31,52 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
       let additionalData;
       let ruleData;
       let formattedData = "";
-
+  
       try {
+        // Parse additional_rules JSON if available
         additionalData = record?.data?.property_rule?.additional_rules ? JSON.parse(record?.data?.property_rule?.additional_rules) : null;
         console.log("additionalData", additionalData);
       } catch (e) {
         console.error('Error parsing additional_rules JSON:', e);
       }
-
-    if(additionalData){
-      formattedData = additionalData?.replace(/\r\n/g, '<br />');
-      console.log("formattedAdditionalData", formattedData);
-    }else{
-      ruleData  =additionalData?.JSON.parse(additionalData)
-      formattedData = ruleData?.replace(/\r\n/g, '<br />');
-      console.log("formattedAdditionalData", formattedData);
-    }
+  
+      // Check if additionalData exists and is valid
+      if (additionalData) {
+        try {
+          if (isAdmin) {
+            // Format additionalData by replacing newline characters with <br /> for admin
+            formattedData = additionalData.replace(/\r\n/g, '<br />');
+          } else {
+            // Parse and format ruleData for non-admin
+            ruleData = JSON.parse(additionalData);
+            formattedData = ruleData.replace(/\r\n/g, '<br />');
+          }
+          console.log("formattedAdditionalData", formattedData);
+        } catch (e) {
+          console.error('Error formatting data:', e);
+        }
+      }
+  
       setFormattedAdditionalData(formattedData);
     };
-
+  
     handleAdditionalData(record);
-  }, [record]);
+  }, [record, isAdmin]);
+  
 
   console.log("formattedAdditionalData",formattedAdditionalData)
 
   return (
     <div className="container mx-auto">
       <h1 className="listing-heading text-left !mb-[10px]">Things to know</h1>
-      <div className="flex justify-between house-rule-text mb-[30px]">
+      <div className="flex justify-between house-rule-text">
         <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
-          <h2 className="font-semibold mb-2">Check In & Check Out Time</h2>
-          <p className="mb-2 text-gray-500">Check-in starts after {record?.data?.check_in}</p>
-          <p className="mb-2 text-gray-500">Flexible/check-in ends after {record?.data?.flexible_check_in}</p>
-          <p className="mb-2 text-gray-500">Checkout before {record?.data?.check_out}</p>
-          <p className="mb-2 text-gray-500">{record?.data?.guests} Guests Maximum</p>
+          <h2 className="font-semibold mb-2">Timings </h2>
+          <p className="mb-2 text-gray-500">Check in:  {record?.data?.check_in}</p>
+          {/* <p className="mb-2 text-gray-500">Flexible/check-in ends after {record?.data?.flexible_check_in}</p> */}
+          <p className="mb-2 text-gray-500">Check out: {record?.data?.check_out}</p>
+          {/* <p className="mb-2 text-gray-500">{record?.data?.guests} Guests Maximum</p> */}
         </div>
-
         <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
           <h2 className="font-semibold mb-2">Safety & Property</h2>
           {safetyAmenities?.map((amenity, index) => (
@@ -78,13 +88,13 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
 
         <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
           <h2 className="font-semibold mb-2">House Rules</h2>
-          <p className="mb-2 text-gray-500 capitalize">
+          <p className="mb-2 text-gray-500 ">
             {record?.data?.property_rule?.pet_allowed === 1 ? "Pet is allowed." : "Pet is not allowed."}
           </p>
-          <p className="mb-2 text-gray-500 capitalize">
+          <p className="mb-2 text-gray-500 ">
             {record?.data?.property_rule?.photography_allowed === 1 ? "Photography is allowed." : "Photography is not allowed."}
           </p>
-          <p className="mb-2 text-gray-500 capitalize">
+          <p className="mb-2 text-gray-500 ">
             {record?.data?.property_rule?.quiet_hours_allowed === 1 ? "Quiet hours are allowed." : "Quiet hours are not allowed."}
           </p>
           <button className="mb-2 text-blue-400 underline text-left" onClick={openModal}>
@@ -120,6 +130,11 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
           </Modal>
         </div>
       </div>
+      <div className="mb-[30px] mt-[7px] flex">
+      <p className="font-semibold">Note:&nbsp;
+        <span className="text-gray-500 sm:ml-2 font-normal">The price is subjective to changes based on the number of guests. A maximum of {record?.data?.guests} guests are allowed to stay at the property.</span>
+        </p>
+      </div>
 
       {isAdmin && (
         <>
@@ -141,8 +156,8 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
               <h2 className="font-semibold mb-2">Custom Link</h2>
               {record?.data?.custom_link && (
                 <p className="mb-2 text-gray-500">
-                  <Link target="_blank" href={`http://localhost:3000/properties/${record?.data?.custom_link}`} className="text-blue-500 hover:underline">
-                    {`http://localhost:3000/properties/${record?.data?.custom_link}`}
+                  <Link target="_blank" href={`https://quant-stay.vercel.app/properties/${record?.data?.custom_link}`} className="text-blue-500 hover:underline">
+                    {`https://quant-stay.vercel.app/properties/${record?.data?.custom_link}`}
                   </Link>
                 </p>
               )}
