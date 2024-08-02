@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { Context } from "../_app";
 import toast from "react-hot-toast";
 import Menu from "./Menu";
-import Listings from "../api/laravel/Listings"; 
+import Listings from "../api/laravel/Listings";
 import { IoMdMenu } from "react-icons/io";
 import SecurityIcon from "../../public/icons/SecurityIcon";
 
@@ -56,10 +56,26 @@ export default function Header() {
   }, []);
 
 
-  const loginNOW = () => { 
-   setOpenLogin(true);
-   toggleMenu();
+  const loginNOW = () => {
+    setOpenLogin(true);
+    toggleMenu();
   }
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth <= 767);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    // Initial check
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
 
   return (
     <nav className="navbar">
@@ -74,8 +90,8 @@ export default function Header() {
             <IoMdMenu className="h-6 w-6 cursor-pointer block lg:hidden" />
           </div>
           <div
-            className={`${auth?.email ? "login" : "" } menu-items overflow-y-auto lg:overflow-visible flex-col lg:flex-row lg:flex lg:gap-8 items-center ${isMenuOpen ? "right-0 opacity-1" : "-right-[100%] opacity-1"
-              } lg:flex`}> 
+            className={`${auth?.email ? "login" : ""} menu-items overflow-y-auto lg:overflow-visible flex-col lg:flex-row lg:flex lg:gap-8 items-center ${isMenuOpen ? "right-0 opacity-1" : "-right-[100%] opacity-1"
+              } lg:flex`}>
             <button className="bg-transparent border-0 p-0 menu-close lg:hidden" onClick={toggleMenu}>
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M1.205 1.205C1.41594 0.994324 1.70187 0.87599 2 0.87599C2.29813 0.87599 2.58406 0.994324 2.795 1.205L20.795 19.205C20.9055 19.308 20.9942 19.4322 21.0557 19.5702C21.1172 19.7082 21.1502 19.8572 21.1529 20.0082C21.1556 20.1593 21.1278 20.3093 21.0712 20.4494C21.0146 20.5895 20.9304 20.7167 20.8236 20.8236C20.7167 20.9304 20.5895 21.0146 20.4494 21.0712C20.3093 21.1278 20.1593 21.1556 20.0082 21.1529C19.8572 21.1502 19.7082 21.1172 19.5702 21.0557C19.4322 20.9942 19.308 20.9055 19.205 20.795L1.205 2.795C0.994324 2.58406 0.87599 2.29813 0.87599 2C0.87599 1.70187 0.994324 1.41594 1.205 1.205Z" fill="black" />
@@ -83,15 +99,15 @@ export default function Header() {
               </svg>
             </button>
             <div className=" lg:flex items-center">
-            <Link href="/apartments" className=" link mb-3 lg:mb-0 border-b md:me-6 lg:border-0">
-              <p>Properties</p>
-            </Link>
-            <Link href="/#testimonials" className=" link mb-3 lg:mb-0 border-b md:me-6 lg:border-0">
-              <p>Reviews</p>
-            </Link>
-            <Link href="/about" className=" link mb-3 lg:mb-0 md:me-6 lg:border-0">
-              <p>About Us</p>
-            </Link>
+              <Link href="/apartments" className=" link mb-3 lg:mb-0 border-b md:me-6 lg:border-0">
+                <p>Properties</p>
+              </Link>
+              <Link href="/#testimonials" className=" link mb-3 lg:mb-0 border-b md:me-6 lg:border-0">
+                <p>Reviews</p>
+              </Link>
+              <Link href="/about" className=" link mb-3 lg:mb-0 md:me-6 lg:border-0">
+                <p>About Us</p>
+              </Link>
             </div>
             {auth?.email ? (
               <>
@@ -118,6 +134,8 @@ export default function Header() {
                   {isDropdownOpen && <Menu />}
 
                 </div>
+
+
                 <div className="lg:hidden mt-[30px] w-full static">
                   <h3 className="text-[19px] text-gray-500 mb-2 border-t border-gray-200 pt-3">Account Settings</h3>
                   <div className="w-full p-3 divide-y divide-gray-300 profile-navbar static">
@@ -194,23 +212,30 @@ export default function Header() {
                 </div>
               </>
             ) : (
-              <div className="login-signup-btn flex mt-2 lg:mt-0 lg:flex hidden">
-              <button className="login abtn" onClick={() => setOpenLogin(true)}>
-                <p>Login</p>
-              </button>
-              <Link className="signup" href="/signup">
-                <p className="text-white">Sign Up</p>
-              </Link>
-            </div>
-            
+              <>
+                {isMobile ? (
+                  <> </>
+                ) : (
+
+                  <div className="login-signup-btn flex mt-2 lg:mt-0 lg:hidden">
+                    <button className="login abtn" onClick={() => setOpenLogin(true)}>
+                      <p>Login</p>
+                    </button>
+                    <Link className="signup" href="/signup">
+                      <p className="text-white">Sign Up</p>
+                    </Link>
+                  </div>
+                )}
+              </>
+
             )}
 
             {auth?.email ? "" : <div className="visible lg:hidden mobilebtns bg-white p-4 absolute bottom-0 left-0 w-full">
               <button className="px-3 py-2 rounded-3xl mb-3 text-center d-block border border-2 border-black w-full" onClick={loginNOW} >
-                 Login 
+                Login
               </button>
               <Link className="px-3 py-2 rounded-3xl mb-3 text-center d-block border border-2 border-black w-full" href="/signup">
-                Sign Up 
+                Sign Up
               </Link>
             </div>}
           </div>
