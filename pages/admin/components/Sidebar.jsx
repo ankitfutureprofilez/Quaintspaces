@@ -1,7 +1,7 @@
+
 import React, { useContext, useState, useEffect } from "react";
 import Listing from "../api/Listing";
 import Image from "next/image";
-import Menu from "../components/menu"
 import Link from "next/link";
 import {
   ArrowRight2,
