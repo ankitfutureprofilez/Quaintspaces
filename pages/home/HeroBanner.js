@@ -21,5 +21,7 @@ export default function HeroBanner() {
         />
       </Link>
     </div>
+
+    
   );
 }
