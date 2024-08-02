@@ -506,7 +506,6 @@ const Book = () => {
                       placeholder="Enter your mobile number"
                       required
                     />
-
                     {/* <button
                       onClick={() => {
                         if (formData.phone.length != 10) {
