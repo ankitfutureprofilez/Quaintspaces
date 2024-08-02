@@ -99,9 +99,11 @@ export default function paymentHistory() {
                   <td className="px-2 md:px-4 py-2">
                     <div className="items-center img-data flex gap-2 text-base">
                       <div className="text-gray-800 font-medium text-left capitalize">
-                        <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
-                          {item?.booking_history?.booking_property?.name}
-                        </Link>
+                        <div className="title">
+                          <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
+                            {item?.booking_history?.booking_property?.name}
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </td>
