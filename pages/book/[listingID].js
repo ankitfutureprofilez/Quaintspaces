@@ -895,9 +895,9 @@ const Book = () => {
                             <Dateformat item={cancelpolicy?.date2} />
                           </p>
                         </div>
-                        <div className="w-1/2">
-                          <p className="mb-1 w-1/2">{cancelpolicy?.text2}</p>
-                        </div>
+                         <div className="w-[55%] pl-3 border-l">
+                      <p className="mb-4">{cancelpolicy?.text2}</p>
+                    </div>
                       </div>
                     </div>
                   } */}
