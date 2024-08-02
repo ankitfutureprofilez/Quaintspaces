@@ -106,9 +106,9 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
         }}
         className="flex items-center justify-center gap-2 absolute bottom-2 right-2 sm:bottom-4 sm:right-4 rounded-md font-medium border darkBorderColor  bg-lightBorderColor text-blackColor px-3 py-1" >
         <span>
-          <Grid className="text-[13px] sm:text-normal" />
+          <Grid className="text-[13px] sm:text-sm" />
         </span>
-        <span className="text-[13px] sm:text-normal">Show all photos</span>
+        <span className="text-[13px] sm:text-sm">Show all photos</span>
 
       </button>
     </div>
