@@ -11,7 +11,7 @@ export default function Login() {
   return (
     <>
     <Head>
-      <title>Login - Quaintspaces Jaipur</title>
+      <title>Login - Quaint Spaces Jaipur</title>
     </Head>
     <CheckAuth />
     <div
@@ -54,9 +54,9 @@ export default function Login() {
               </Link>
             </div>
             <Link href="/" className="cursor-pointer">
-                <Image src={logologin} alt="Quaintspaces Jaipur logo" />
+                <Image src={logologin} alt="Quaint Spaces Jaipur logo" />
             </Link>
-            {/* <Image src={logologin} alt="Quaintspaces Jaipur logo" /> */}
+            {/* <Image src={logologin} alt="Quaint Spaces Jaipur logo" /> */}
             <p>
             Indulge in the finest and most charming accommodation in Jaipur!
             </p>

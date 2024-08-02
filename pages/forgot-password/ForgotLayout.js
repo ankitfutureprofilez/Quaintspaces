@@ -45,7 +45,7 @@ export default function ForgotLayout({ children, showHeader }) {
               </Link>
             </div>
             <Link href="/" className="cursor-pointer">
-                <Image src={logologin} alt="Quaintspaces Jaipur logo" />
+                <Image src={logologin} alt="Quaint Spaces Jaipur logo" />
             </Link>
             <p>
               Indulge in the finest and most charming accommodation in Jaipur!

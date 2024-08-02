@@ -452,7 +452,7 @@ export default function Edit() {
   const [PhotographyAllowed, setPhotographyAllowed] = useState( );
   
  
-  const baseurl = "https://quaintspaces.vercel.app/";
+  const baseurl = "https://Quaint Spaces.vercel.app/";
   const fulllink = baseurl + item?.customLink;
   const handleFileChange = async (e) => {
     let files = Array.from(e?.target?.files);

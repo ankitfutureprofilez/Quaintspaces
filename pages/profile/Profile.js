@@ -135,7 +135,7 @@ export default function Profile() {
   return (
     <>
       <Head>
-        <title>Profile - Quaintspaces Jaipur</title>
+        <title>Profile - Quaint Spaces Jaipur</title>
       </Head>
       <div className="container mx-auto  ">
         <div className="py-6 sm:py-12">

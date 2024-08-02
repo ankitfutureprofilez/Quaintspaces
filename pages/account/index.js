@@ -22,7 +22,7 @@ export default function Index() {
   return (
     <AuthLayout>
       <Head>
-        <title>My Account - Quaintspaces Jaipur</title>
+        <title>My Account - Quaint Spaces Jaipur</title>
       </Head>
 
 

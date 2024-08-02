@@ -53,7 +53,7 @@ const Listing = () => {
         <Head>
           <title>
             House rent in {record?.loading ? "" : record?.data?.name} -
-            Quaintspaces Jaipur
+            Quaint Spaces Jaipur
           </title>
         </Head>
         <SingleListingBody loading={loading} listing={record} />

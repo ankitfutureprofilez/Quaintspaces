@@ -36,12 +36,12 @@ export default function Footer() {
                 <div className="flex flex-col">
                   <Link
                     className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px] flex justify-center xl:justify-start"
-                    href="mailto:quaintspaces@gmail.com"
+                    href="mailto:Quaint Spaces@gmail.com"
                     target="_blank"
                   >
                     <TfiEmail size={22} color={"#3F2A17"} />
                     <span className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px]  ml-2">
-                      : quaintspaces@gmail.com
+                      : Quaint Spaces@gmail.com
                     </span>
                   </Link>
                   <div className="flex mt-2 justify-center xl:justify-start">
@@ -88,13 +88,13 @@ export default function Footer() {
                 </div>
                 <div className="mt-2">
                   <Link
-                    href="https://www.instagram.com/quaintspacesjaipur"
+                    href="https://www.instagram.com/Quaint Spacesjaipur"
                     target="_blank"
                   >
                     <div className="flex justify-center xl:justify-start">
                       <FaInstagram color={"#3F2A17"} size={24} />
                       <span className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px] ml-2">
-                        : @quaintspacesjaipur
+                        : @Quaint Spacesjaipur
                       </span>
                     </div>
                   </Link>
@@ -139,12 +139,12 @@ export default function Footer() {
                 <div className="flex flex-col">
                   <Link
                     className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px] flex justify-center xl:justify-start"
-                    href="mailto:quaintspaces@gmail.com"
+                    href="mailto:Quaint Spaces@gmail.com"
                     target="_blank"
                   >
                     <TfiEmail size={22} color={"#3F2A17"} />
                     <span className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px]  ml-2">
-                      : quaintspaces@gmail.com
+                      : Quaint Spaces@gmail.com
                     </span>
                   </Link>
                   <div className="flex mt-2 justify-center xl:justify-start">
@@ -206,13 +206,13 @@ export default function Footer() {
                 </div>
                 <div className="mt-2">
                   <Link
-                    href="https://www.instagram.com/quaintspacesjaipur"
+                    href="https://www.instagram.com/Quaint Spacesjaipur"
                     target="_blank"
                   >
                     <div className="flex justify-center xl:justify-start">
                       <FaInstagram color={"#3F2A17"} size={24} />
                       <span className="text-[#3F2A17] text-[16px] lg:text-[14px] xl:text-[16px] ml-2">
-                        : @quaintspacesjaipur
+                        : @Quaint Spacesjaipur
                       </span>
                     </div>
                   </Link>

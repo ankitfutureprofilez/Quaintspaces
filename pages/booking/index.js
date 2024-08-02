@@ -370,7 +370,7 @@ export default function Index() {
   return (
     <AuthLayout>
       <Head>
-        <title>Bookings - Quaintspaces </title>
+        <title>Bookings - Quaint Spaces </title>
       </Head>
       <div className="container mx-auto">
         <div className=" account-btn ">

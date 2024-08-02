@@ -104,7 +104,7 @@ export default function Signup() {
             </div>
             <Link href="/">
             
-            <Image src={logologin} alt="Quaintspaces Jaipur logo" />
+            <Image src={logologin} alt="Quaint Spaces Jaipur logo" />
             </Link>
 
             <p>
@@ -119,7 +119,7 @@ export default function Signup() {
             <div className="signup-form w-full max-h-[90vh] overflow-y-auto">
               <div className="formbgcolor"></div>
               <div className="quainttay">
-                <h2>Welcome to Quaintspaces Jaipur </h2>
+                <h2>Welcome to Quaint Spaces Jaipur </h2>
                 <h3 className="text-[#fff]">
                   Already have an account? <Link
                     className="underline"

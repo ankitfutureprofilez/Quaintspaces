@@ -380,7 +380,7 @@ const Book = () => {
     <AuthLayout>
       <div>
         <Head>
-          <title>Confirm & Pay - Quaintspaces Jaipur</title>
+          <title>Confirm & Pay - Quaint Spaces Jaipur</title>
         </Head>
         <main
           className={

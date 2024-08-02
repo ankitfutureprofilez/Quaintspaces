@@ -66,7 +66,7 @@ export default function LoginLogic({ isPopup, color }) {
         <div className="signup-form w-full max-h-screen overflow-y-auto">
           <div className="formbgcolor bg-[#0003]"></div>
           <div className="quainttay">
-            <h2 className="capitalize">Welcome to Quaintspaces Jaipur</h2>
+            <h2 className="capitalize">Welcome to Quaint Spaces Jaipur</h2>
             <h3 className={`${color}`}>
               Don't have an account?{" "}
               <button
