@@ -73,7 +73,7 @@ export default function Index() {
           { title: "Security", description: "Manage your passwords here", href: "/security" },
         ].map((item, index) => (
           <div key={index} className="border-b border-gray-200 py-6 sm:py-10 md:py-14">
-            <div className="flex flex-col sm:flex-row justify-between items-center booking-more">
+            <div className="flex flex-col sm:flex-row justify-between booking-more">
               <div className="flex items-center text-left">
                 <svg
                   width="34px"
