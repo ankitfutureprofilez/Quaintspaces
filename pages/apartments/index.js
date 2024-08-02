@@ -38,8 +38,7 @@ export default function Index() {
             onClick={() => setIsOpen(!isOpen)}
           >
             {sortingOptions.find((option) => option.key === sortBy).label}
-            {/* Icon to indicate dropdown */}
-            <IoChevronDownSharp className="-mr-1 ml-[0.25rem] mt-[3.5px] h-4 w-4" />
+            <IoChevronDownSharp className="-mr-1 ml-[0.25rem] mt-[3.4px] h-4 w-4" />
           </button>
         </span>
       </div>
