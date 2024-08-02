@@ -18,7 +18,7 @@ const AllApartmentLoading = () => {
     <div className="w-full bg-white flex items-center justify-center z-50 h-auto gap-8 mb-6">
     <div className="bg-white rounded-lg list-gstr overflow-hidden lg:flex animate-pulse w-full h-auto">
     <div className="lg:w-[350px] h-[200px] lg:h-[300px] max-h-[300px] bg-gray-200 relative"></div>
-    <div className="lg:w-8/12 overflow-hidden p-6">
+    <div className="lg:w-8/12 overflow-hidden p-6 ">
       <div className="h-5 bg-gray-200 rounded mb-[12px] lg:min-w-[1050px]"></div>
       <div className="h-5 bg-gray-200 rounded mb-[12px] lg:min-w-[1050px]"></div>
       <div className="flex h-8 mb-[25px] bg-gray-200 w-[500px] rounded">
