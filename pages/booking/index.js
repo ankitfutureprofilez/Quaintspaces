@@ -472,7 +472,7 @@ export default function Index() {
       {
         showConfirmation && (
           <Modal isOpen={showConfirmation} onClose={handleCancel}>
-            <p className="text-lg text-white font-semibold p-4 sm:p-6 md:p-8 bg-[#efa3a3]">
+            <p className="text-lg text-white font-semibold p-6 py-4 bg-[#efa3a3]">
               Cancel your booking?
             </p>
             <p className="text-xl text-center font-semibold  py-8  capatalize">
