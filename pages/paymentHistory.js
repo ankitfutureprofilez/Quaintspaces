@@ -56,6 +56,8 @@ export default function paymentHistory() {
     }
   };
 
+
+  
   const formatDateTime = (datetime) => {
     const date = Moment(datetime).format('D MMMM YYYY');
     const time = Moment(datetime).format('h:mm A');
