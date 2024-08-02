@@ -71,10 +71,10 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
       <h1 className="listing-heading text-left !mb-[10px]">Things to know</h1>
       <div className="flex justify-between house-rule-text">
         <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
-          <h2 className="font-semibold mb-2">Timing </h2>
-          <p className="mb-2 text-gray-500">Check-in : {record?.data?.check_in}</p>
+          <h2 className="font-semibold mb-2">Timings </h2>
+          <p className="mb-2 text-gray-500">Check in:  {record?.data?.check_in}</p>
           {/* <p className="mb-2 text-gray-500">Flexible/check-in ends after {record?.data?.flexible_check_in}</p> */}
-          <p className="mb-2 text-gray-500">Check-out : {record?.data?.check_out}</p>
+          <p className="mb-2 text-gray-500">Check out: {record?.data?.check_out}</p>
           {/* <p className="mb-2 text-gray-500">{record?.data?.guests} Guests Maximum</p> */}
         </div>
         <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
@@ -88,13 +88,13 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
 
         <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
           <h2 className="font-semibold mb-2">House Rules</h2>
-          <p className="mb-2 text-gray-500 capitalize">
+          <p className="mb-2 text-gray-500 ">
             {record?.data?.property_rule?.pet_allowed === 1 ? "Pet is allowed." : "Pet is not allowed."}
           </p>
-          <p className="mb-2 text-gray-500 capitalize">
+          <p className="mb-2 text-gray-500 ">
             {record?.data?.property_rule?.photography_allowed === 1 ? "Photography is allowed." : "Photography is not allowed."}
           </p>
-          <p className="mb-2 text-gray-500 capitalize">
+          <p className="mb-2 text-gray-500 ">
             {record?.data?.property_rule?.quiet_hours_allowed === 1 ? "Quiet hours are allowed." : "Quiet hours are not allowed."}
           </p>
           <button className="mb-2 text-blue-400 underline text-left" onClick={openModal}>

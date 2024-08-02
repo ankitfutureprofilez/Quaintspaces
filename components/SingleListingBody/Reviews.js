@@ -14,7 +14,7 @@ import { FaStar } from "react-icons/fa6";
 
 const Reviews = React.forwardRef(({ data,isAdmin }, ref ) => {
 
-  const { auth } = useContext(Context);
+  const { auth, setOpenLogin } = useContext(Context);
 
   const router = useRouter();
   const id = router.query.slug;
@@ -255,8 +255,7 @@ const Reviews = React.forwardRef(({ data,isAdmin }, ref ) => {
               if (auth) {
                 openModal();
               } else {
-                toast.error("You are not logged in!");
-                router.push("/login");
+                setOpenLogin(true);
               }
             }}
           >

@@ -90,7 +90,7 @@ function index() {
         </div>
       </div> */}
           <div className="max-w-4xl mx-auto p-6">
-            <h1 className="text-3xl font-bold">Privacy Policy</h1>
+            <h1 className="text-3xl font-bold my-2">Privacy Policy</h1>
             <div className="prose">
               {/* <p >
                 For a list of Privacy Policies by jurisdiction, click here.
@@ -100,7 +100,7 @@ function index() {
                 Quaint Spaces exists to help build connections between people and make the world more open and inclusive. In short—to build a world where anyone can belong anywhere. We are a community built on trust. A fundamental part of earning that trust means being clear about how we use your information and protecting your human right to privacy.
               </p>
               <div>
-                <h1 className="text-xl  font-normalfont-bold my-6">1. PERSONAL INFORMATION WE COLLECT</h1>
+                <h1 className="text-xl font-bold my-6">1. PERSONAL INFORMATION WE COLLECT</h1>
 
                 <div className="mb-2">
                     <h2>1.1 Information Needed to Use the Quaint Spaces Platform</h2>
@@ -108,7 +108,7 @@ function index() {
                     We collect personal information about you when you use the Quaint Spaces Platform. Without it, we may not be able to provide all services requested. This information includes:
                   </p>
                 </div>
-
+                <div className="ml-4">
                 <div className="mb-2"> <h3>1.1.1 Contact, Account, and Profile Information</h3>
                   <p >
                     Such as your first name, last name, phone number, postal address, email address, date of birth, and profile photo, some of which will depend on the features you use.
@@ -134,11 +134,13 @@ function index() {
                   </p>
 
                 </div>
+                </div>
                 <div className="mb-2">  <h2   >1.2 Information You Choose to Give Us</h2>
                   <p >
                     You can choose to provide us with additional personal information, including:
                   </p>
                 </div>
+                <div className="ml-4">
                 <div className="mb-2"> <h3 >1.2.1 Additional Profile Information</h3>
                   <p >
                     Such as gender, preferred language(s), city, and personal description.
@@ -160,6 +162,7 @@ function index() {
                     Such as when you fill in a form, add information to your account, respond to surveys, post to community forums, participate in promotions, communicate with Quaint Spaces Support and other Members, import or manually enter address book contacts, provide your address and/or geolocation, or share your experience with us. This may include health information if you choose to share it with us.
                   </p>
                 </div>
+                </div>
 
 
                 <div className="mb-2">  <h2   >1.3 Information Automatically Collected by Using the Quaint Spaces Platform and Our Payment Services</h2>
@@ -167,6 +170,7 @@ function index() {
                     When you use the Quaint Spaces Platform and Payment Services, we automatically collect certain information. This information may include:
                   </p>
                 </div>
+                <div className="ml-4">
                 <div className="mb-2"> <h3 >1.3.1 Geolocation Information</h3>
                   <p >
                     Such as precise or approximate location determined from your IP address, mobile or other device’s GPS, or other information you share with us, depending on your device settings. We may also collect this information when you’re not using the app if you enable this through your settings or device permissions.
@@ -198,12 +202,14 @@ function index() {
                     Such as payment instrument used, date and time, payment amount, payment instrument expiration date and billing postcode, PayPal email address, IBAN information, your address, and other related transaction details.
                   </p>
                 </div>
+                </div>
 
                 <div className="mb-2">  <h2   >1.4 Information We Collect from Third Parties</h2>
                   <p >
                     We may collect personal information from other sources, such as:
                   </p>
                 </div>
+                <div className="ml-4">
                 <div className="mb-2"> <h3 >1.4.1 Third-Party Applications</h3>
                   <p >
                     If you choose to link, connect, or login to the Quaint Spaces Platform with a third-party service, such as Google, Facebook, and WeChat, you direct the service to send us information such as your registration, friends list, and profile information as controlled by that service or as authorized by you via your privacy settings at that service. If you choose to connect a smart lock to your Quaint Spaces account, we may collect information about the smart device, such as log or event information and device information.
@@ -259,9 +265,10 @@ function index() {
                     , demographic data, and information to help detect fraud and safety issues from (i) third-party service providers, other third parties, and/or partners, or (ii) Members and any other individuals, entities, and authorities, and combine it with information we have about you. For example, we may receive background check results or fraud warnings from identity verification service providers for use in our fraud prevention, security investigation, and risk assessment efforts. We may receive information about you and your activities on and off the Quaint Spaces Platform, including from users of Quaint Spaces, members of the public, or governmental, public, or tax authorities, or about your experiences and interactions from our partners. We may receive health information including, but not limited to, health information related to contagious diseases.
                   </p>
                 </div>
+                </div>
               </div>
               <div className=" max-w-4xl mx-auto">
-                <div className="mb-2">  <h1 className="text-xl  font-normalfont-bold my-6"     >2. HOW WE USE INFORMATION WE COLLECT.</h1>
+                <div className="mb-2">  <h1 className="text-xl  font-bold my-6"     >2. HOW WE USE INFORMATION WE COLLECT.</h1>
                   <p >
                     We use personal information as outlined in this Privacy Policy. If you reside outside of the United States,
                     click here

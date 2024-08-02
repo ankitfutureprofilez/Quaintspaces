@@ -25,9 +25,9 @@ export default function LuxuryStay() {
 
     <>
       {isMobile ? (
-        <div className="py-[30px] lg:py-[80px]">
+        <div className="py-[30px] lg:py-[80px] ">
           <div className="container">
-            <div className="flex justify-center items-center w-full mb-4">
+            <div className="flex justify-center overflow-hidden items-center w-full mb-4">
               <div className="w-1/2 max-w-[215px] justify-center pr-4 " >
                 <Image
                   src={Luxury1}
