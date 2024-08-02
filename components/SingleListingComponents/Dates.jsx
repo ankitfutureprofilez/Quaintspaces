@@ -37,7 +37,7 @@ const Dates = ({
             <h1 className="text-xl font-semibold">
               {(selectedDay &&
                 selectEnd &&
-                differenceInDays(selectEnd, selectedDay) + " nights") ||
+                differenceInDays(selectEnd, selectedDay) + " Nights") ||
                 "Select dates"}
             </h1>
             <p className="text-sm mt-1 text-lightTextColor font-normal">
