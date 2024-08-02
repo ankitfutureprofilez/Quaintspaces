@@ -63,7 +63,7 @@ export default function LuxuryStay() {
                 <h1 className="ml-2">Escapes</h1>
               </div>
             </div>
-            <p className="leading-relaxed text-[#61554E] testimo-text text-[15px] leading-[20px] font-normal text-center">
+            <p className="leading-relaxed text-[#61554E] text-[15px] leading-[20px] font-normal text-center">
               Stay in the heart of Jaipur's pink city, our modern, well-appointed
               apartments, perfect for business or leisure. We go the extra mile to
               tailor your stay to your preferences, ensuring a memorable and unique
