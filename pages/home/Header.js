@@ -208,7 +208,7 @@ export default function Header() {
               <button className="px-3 py-2 rounded-3xl mb-3 text-center d-block border border-2 border-black w-full" onClick={loginNOW} >
                  Login 
               </button>
-              <Link className="px-3 py-2 rounded-3xl !text-center d-block bg-pink w-full" href="/signup">
+              <Link className="px-3 py-2 rounded-3xl !text-center d-block bg-[#efa3a3] text-black w-full" href="/signup">
                 Sign Up 
               </Link>
             </div>}
