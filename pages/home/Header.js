@@ -194,14 +194,15 @@ export default function Header() {
                 </div>
               </>
             ) : (
-              <div className="login-signup-btn flex mt-2 lg:mt-0">
-                <button className="login abtn" onClick={()=>setOpenLogin(true)} >
-                  <p>Login</p>
-                </button>
-                <Link className="signup" href="/signup">
-                  <p className="text-white">Sign Up</p>
-                </Link> 
-              </div>
+              <></>
+              // <div className="login-signup-btn flex mt-2 lg:mt-0">
+              //   <button className="login abtn" onClick={()=>setOpenLogin(true)} >
+              //     <p>Login</p>
+              //   </button>
+              //   <Link className="signup" href="/signup">
+              //     <p className="text-white">Sign Up</p>
+              //   </Link> 
+              // </div>
             )}
 
             {auth?.email ? "" : <div className="visible lg:hidden mobilebtns bg-white p-4 absolute bottom-0 left-0 w-full">
