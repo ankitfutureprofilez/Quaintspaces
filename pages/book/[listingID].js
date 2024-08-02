@@ -403,12 +403,10 @@ const Book = () => {
               <div className="flex items-center justify-between w-full py-2">
                 <div>
                   <h3 className="text-lg  font-medium item-heading ">Dates</h3>
-                  <p className="text-md item-paragraph">{`${
-                    infos?.checkin && format(new Date(infos.checkin), "dd")
-                  } - ${
-                    infos?.checkout &&
+                  <p className="text-md item-paragraph">{`${infos?.checkin && format(new Date(infos.checkin), "dd")
+                    } - ${infos?.checkout &&
                     format(new Date(infos.checkout), "dd  MMM")
-                  }`}</p>
+                    }`}</p>
                 </div>
                 <button
                   onClick={() => setDateModel(true)}
@@ -417,7 +415,7 @@ const Book = () => {
                       ? "underline text-md font-medium edit-color overflow-hidden"
                       : "underline text-md font-medium edit-color"
                   }
-                  // className="underline text-md font-medium edit-color"
+                // className="underline text-md font-medium edit-color"
                 >
                   EDIT
                 </button>
@@ -426,17 +424,14 @@ const Book = () => {
                 <div>
                   <h5 className="text-lg font-medium item-heading">Guests</h5>
                   <p className="text-md item-paragrapg">
-                    {`${
-                      +guests?.adults?.value + +guests?.children?.value
-                    } guests ${
-                      +infos.numberOfInfants
+                    {`${+guests?.adults?.value + +guests?.children?.value
+                      } guests ${+infos.numberOfInfants
                         ? ", " + infos.numberOfInfants + " infants"
                         : ""
-                    } ${
-                      +guests?.pets?.value
+                      } ${+guests?.pets?.value
                         ? ", " + guests?.pets?.value + " pets"
                         : ""
-                    }`}
+                      }`}
                   </p>
                 </div>
                 <button
@@ -500,25 +495,12 @@ const Book = () => {
                       id="phone"
                       name="phone"
                       maxLength="10"
-                      value={formData.phone}
+                      value={formData?.phone}
                       onChange={handleChange}
                       className="mt-1 mr-1 p-4 border rounded-full w-full"
                       placeholder="Enter your mobile number"
                       required
                     />
-                    {/* <button
-                      onClick={() => {
-                        if (formData.phone.length != 10) {
-                          toast.error("Invalid Phone Number");
-                          return;
-                        }
-                        setHasAddedNumber(true);
-                        setNumberField(false);
-                      }}
-                      className="w-1/6 sort btn"
-                    >
-                      Confirm
-                    </button> */}
                   </div>
 
                   <h3 className="  text-lg  mb-2  font-medium item-heading">
@@ -535,23 +517,11 @@ const Book = () => {
                     <textarea
                       id="message"
                       name="message"
-                      value={formData.message}
+                      value={formData?.message}
                       onChange={handleChange}
                       className="mt-1 mr-1 p-2 sm:p-4 border rounded w-full"
                       placeholder="Enter a message for your host"
                     ></textarea>
-                    {/* <button
-                      onClick={() => {
-                        if (formData.message.length === 0) {
-                          toast.error("Mesage field is empty");
-                          setHasAddedMessage(false);
-                        } else {setHasAddedMessage(true);}
-                        setMessageField(false);
-                      }}
-                      className="w-1/6 sort btn"
-                    >
-                      Confirm
-                    </button> */}
                   </div>
                 </div>
               </div>
@@ -597,7 +567,7 @@ const Book = () => {
               <div className="flex sm:flex-col md:flex-row gap-3 pb-4 border-b border-borderColor image-data">
                 <Image
                   src={
-                    listing?.property_image && listing.property_image.length > 0
+                    listing?.property_image && listing?.property_image?.length > 0
                       ? listing.property_image[0].image_url
                       : "/fallback_image_url"
                   }
@@ -662,20 +632,20 @@ const Book = () => {
                               <div className="text-lg text-green-800 font-bold">
                                 {formatMultiPrice(
                                   discountedPrice *
-                                    differenceInDays(
-                                      new Date(infos.checkout),
-                                      new Date(infos.checkin)
-                                    )
+                                  differenceInDays(
+                                    new Date(infos.checkout),
+                                    new Date(infos.checkin)
+                                  )
                                 )}
                               </div>
 
                               <p className="text-red-700 text-sm line-through mt-1">
                                 {formatMultiPrice(
                                   originalPrice *
-                                    differenceInDays(
-                                      new Date(infos.checkout),
-                                      new Date(infos.checkin)
-                                    )
+                                  differenceInDays(
+                                    new Date(infos.checkout),
+                                    new Date(infos.checkin)
+                                  )
                                 )}
                               </p>
                               {discountPercentage && (
@@ -710,10 +680,10 @@ const Book = () => {
                               <div className="  mt-1">
                                 {formatMultiPrice(
                                   originalPrice *
-                                    differenceInDays(
-                                      new Date(infos.checkout),
-                                      new Date(infos.checkin)
-                                    )
+                                  differenceInDays(
+                                    new Date(infos.checkout),
+                                    new Date(infos.checkin)
+                                  )
                                 )}
                               </div>
                             </div>
@@ -742,16 +712,16 @@ const Book = () => {
                     <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex justify-end">
                       {formatMultiPrice(
                         listing?.cleaning_fee *
-                          differenceInDays(
-                            new Date(infos.checkout),
-                            new Date(infos.checkin)
-                          )
+                        differenceInDays(
+                          new Date(infos.checkout),
+                          new Date(infos.checkin)
+                        )
                       )}
                     </span>
                   </div>
                 </div>
                 {listing?.guests <
-                guests?.adults?.value + guests?.children?.value ? (
+                  guests?.adults?.value + guests?.children?.value ? (
                   <div className="flex gap-3 mt-2 border-b pb-2">
                     <div className="flex items-center justify-between w-full">
                       <div className="flex flex-col">
@@ -771,7 +741,7 @@ const Book = () => {
                           (guests?.adults?.value +
                             guests?.children?.value -
                             listing?.guests) *
-                            listing?.extra_guest_fee
+                          listing?.extra_guest_fee
                         )}
                       </span>
                     </div>
@@ -851,7 +821,7 @@ const Book = () => {
                         {cancelpolicy?.date
                           ? ""
                           : <Dateformat item={formattedCheckIn} /> &&
-                            "No Refund"}
+                          "No Refund"}
                       </h6>
                     </div>
                   </div>
