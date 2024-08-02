@@ -61,7 +61,7 @@ export default function paymentHistory() {
     const time = Moment(datetime).format('h:mm A');
     return (
       <div>
-        <div className="whitespace-nowrap overflow-hidden text-ellipsis">{date},</div>
+        <div className="whitespace-nowrap overflow-hidden text-ellipsis">{date}</div>
         <div className="text-center whitespace-nowrap overflow-hidden text-ellipsis">{time}</div>
       </div>
     );

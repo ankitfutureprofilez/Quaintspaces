@@ -7,7 +7,7 @@ const DateComponent = ({ item }) => {
 
   return (
     <div>
-      <div>{formattedDate},</div>
+      <div>{formattedDate}</div>
       <div>{formattedTime}</div>
     </div>
   );
