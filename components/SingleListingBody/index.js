@@ -22,11 +22,13 @@ import { formatMultiPrice } from "../../hooks/ValueData";
 import toast from "react-hot-toast";
 import StartRating from "../../pages/elements/StartRating";
 
+
 const SingleListingBody = ({ isAdmin, listing, loading }) => {
   const router = useRouter();
   const [selection, setSelection] = useState(null); // 'guests', 'dates', null
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageViewer, setImageViewer] = useState(false);
+  const { auth, setOpenLogin } = useContext(Context);
 
   console.log("listing?.data?._id",listing?.data)
   // Guests max limit is selected here
@@ -161,7 +163,7 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
                 <span className="font-medium text-lg">
                   {formatMultiPrice(listing?.data?.price)}
                 </span>
-                <span className="text-md"> night</span>
+                <span className="text-md"> /night</span>
               </span>
               <div className="flex gap-1 items-center">
                 <span>
@@ -176,6 +178,7 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
                 </span> */}
               </div>
             </div>
+            {auth && auth?.name ? (
             <button
               className="filter mx-2 btn w-full h-11"
               onClick={() => {
@@ -198,6 +201,15 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
             >
               Book
             </button>
+            ) : (
+              <button
+              onClick={() => setOpenLogin(true)}
+              className="filter mx-2 btn w-full h-11"
+              >
+                    Book
+                  </button>
+                )}
+
           </div>
         </div>
       </header>
