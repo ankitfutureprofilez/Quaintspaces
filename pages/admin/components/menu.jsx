@@ -13,9 +13,8 @@ export default function menu({ isOpen, record }) {
   return (
     <>
       <div
-        className={`flex items-center absolute shadow-md left-0 bottom-16 rounded-lg bg-gray-200 justify-center right-70 ${
-          isOpen ? "block" : "hidden"
-        }`}
+        className={`flex items-center absolute shadow-md left-0 bottom-16 rounded-lg bg-gray-200 justify-center right-70 ${isOpen ? "block" : "hidden"
+          }`}
       >
         <div className="w-full min-w-[230px]  p-3 drop-shadow-xl divide-y divide-gray-300">
           <div className="flex mr-auto items-center space-x-4 mr-4">
@@ -28,12 +27,12 @@ export default function menu({ isOpen, record }) {
             />
             <div className="space-y-2 flex flex-col flex-1 truncate">
               <div className="font-[15px] sm:font-normal relative text-lg leading-tight text-gray-900">
-              <span className="flex">
-  <span className="relative pr-2 capitalize">
-    {record?.name?.length > 11 ? `${record.name.substring(0, 11)}...` : record.name}
-    <span className="absolute top-1/2 -translate-y-1/2 right-0 inline-block rounded-full"></span>
-  </span>
-</span>
+                <span className="flex">
+                  <span className="relative pr-2 capitalize">
+                    {record?.name?.length > 11 ? `${record?.name?.substring(0, 11)}...` : record.name}
+                    <span className="absolute top-1/2 -translate-y-1/2 right-0 inline-block rounded-full"></span>
+                  </span>
+                </span>
               </div>
             </div>
           </div>
@@ -97,7 +96,7 @@ export default function menu({ isOpen, record }) {
                 <span>Profile </span>
               </Link>
 
-      
+
             </nav>
           </div>
 
