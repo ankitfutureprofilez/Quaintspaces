@@ -74,15 +74,4 @@ const Listing = () => {
 };
 
 export default Listing;
-
-// export async function getServerSideProps(context) {
-//   const { listingID } = context.query;
-//   const main = new Listings();
-//   const listingData = await main.PropertyDetail(listingID);
-//   return {
-//     props: {
-//       listingData: listingData?.data?.data || null,
-//       listingID,
-//     },
-//   };
-// }
+ 

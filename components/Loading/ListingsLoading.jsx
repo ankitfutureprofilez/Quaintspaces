@@ -15,7 +15,7 @@ const ListingsLoading = ({ divider = 5, css = "w-[calc(100%/2-50px)]" }) => {
 
 const AllApartmentLoading = () => {
   return (
-    <div className="w-full bg-white flex items-center justify-center z-50 h-auto gap-8 m-6">
+    <div className="w-full bg-white flex items-center justify-center z-50 h-auto gap-8 mb-6">
     <div className="bg-white rounded-lg list-gstr overflow-hidden lg:flex animate-pulse w-full h-auto">
     <div className="lg:w-[350px] h-[200px] lg:h-[300px] max-h-[300px] bg-gray-200 relative"></div>
     <div className="lg:w-8/12 overflow-hidden p-6">

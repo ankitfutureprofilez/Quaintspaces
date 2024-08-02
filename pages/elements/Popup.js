@@ -42,8 +42,7 @@ export default function Popup({
       <Transition.Root show={openPop} as={Fragment}>
         <Dialog
           as="div"
-          
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="fixed inset-0 z-[999999] overflow-y-auto"
           onClose={closep}
           initialFocus={cancelButtonRef}
         >
@@ -71,10 +70,9 @@ export default function Popup({
             >
               <div className="relative bg-transparent bg-opacity-0 rounded-lg p-6 max-w-md mx-auto">
                 <button
-                  className="px-2 py-2 popup-button absolute text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="px-2 py-2 popup-button absolute text-white rounded-md "
                   onClick={closep}
-                  ref={cancelButtonRef}
-                >
+                  ref={cancelButtonRef} >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

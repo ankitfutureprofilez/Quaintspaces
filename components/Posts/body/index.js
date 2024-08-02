@@ -29,7 +29,7 @@ const PostBody = ({ listings, loading }) => {
     <div>
       <ul className="lg:flex flex-wrap">
         {loading
-          ? Array(3)
+          ? Array(4)
               .fill("_")
               .map(() => <AllApartmentLoading />)
           : listings && listings?.length > 0

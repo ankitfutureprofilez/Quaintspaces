@@ -15,10 +15,10 @@ export default function Login() {
     </Head>
     <CheckAuth />
     <div
-      className="h-screen sm:min-h-screen sm:flex items-center bg-cover overflow-auto sm:max-h-[100vh]">
+      className="h-screen sm:min-h-screen sm:flex items-center bg-cover  overflow-auto sm:max-h-[100vh]">
       <Image  src="/images/banner/login_img.JPG"
-          blurDataURL="/images/banner/login_img.JPG?q=1"
-          placeholder="blur"
+          blurDataURL="/images/banner/login_img.JPG?q=0.5"
+          placeholder="blur" prority={true}
           alt="Login Background"
           layout="fill"
           objectFit="cover"
@@ -56,7 +56,6 @@ export default function Login() {
             <Link href="/" className="cursor-pointer">
                 <Image src={logologin} alt="Quaint Spaces Jaipur logo" />
             </Link>
-            {/* <Image src={logologin} alt="Quaint Spaces Jaipur logo" /> */}
             <p>
             Indulge in the finest and most charming accommodation in Jaipur!
             </p>

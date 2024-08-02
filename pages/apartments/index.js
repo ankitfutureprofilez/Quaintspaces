@@ -178,9 +178,6 @@ export default function Index() {
     return () => controller.abort();
   }, [sortBy, fetch]);
 
-
-
-
   return (
     <Layout>
       <PwaFooter />
@@ -196,8 +193,7 @@ export default function Index() {
               />
               <button
                 className="w-full max-w-[50%] filter btn ms-2 hover:bg-[#fff] border-[#efa3a3] hover:text-[#efa3a3] border-2 text-[14px]"
-                onClick={openModal}
-              >
+                onClick={openModal}>
                 Filter
               </button>
             </div>
@@ -206,7 +202,7 @@ export default function Index() {
         </div>
       </div>
       {/* Render the modal component conditionally */}
-            {isModalOpen && (
+        {isModalOpen && ( 
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50">
           <div className="bg-white pb-2 sm:pb-6 rounded-lg shadow-lg filter-popup overflow-hidden">
             <div className="relative bg-[#9e8383] text-[#ffff]">

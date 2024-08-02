@@ -247,8 +247,7 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
           />
           <div
             ref={ImagesRef}
-            className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] sm:max-h-[40vh]"
-          >
+            className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] sm:max-h-[40vh]" >
             <Images
               setSelectedImage={setSelectedImage}
               listing={listing}
