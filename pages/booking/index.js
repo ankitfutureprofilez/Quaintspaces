@@ -387,7 +387,7 @@ export default function Index() {
           <div className="flex overflow-x-auto mb-[20px] md:mb-0 align-items-center py-2 sm:space-x-4 space-x-1 upcomming-box">
             <Button
               design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "upcoming"
-                ? "bg-orange-300 text-white"
+                ? "bg-[#efa3a3]  text-white"
                 : "text-black"
                 }`}
               onClick={() => handleGroupChange("upcoming")}
@@ -396,14 +396,14 @@ export default function Index() {
             <Button
               text={"Completed"}
               design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "completed"
-                ? "bg-orange-300 text-white"
+                ? " bg-[#efa3a3]  text-white"
                 : "text-black"
                 } `}
               onClick={() => handleGroupChange("completed")}
             />
             <Button
               design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "cancelled"
-                ? "bg-orange-300 text-white"
+                ? " bg-[#efa3a3]  text-white"
                 : "text-black"
                 } `}
               onClick={() => handleGroupChange("cancelled")}
@@ -411,7 +411,7 @@ export default function Index() {
             />
             <Button
               design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "ongoing"
-                ? "bg-orange-300 text-white"
+                ? "bg-[#efa3a3]  text-white"
                 : "text-black"
                 } `}
               onClick={() => handleGroupChange("ongoing")}
