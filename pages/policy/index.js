@@ -9,7 +9,18 @@ function index() {
       <Head>
         <title>Privacy Policy - Quaint Spaces Jaipur</title>
       </Head>
-      <div className="bg-gray-100 min-h-screen">
+      <style>{`
+        .terms p, .terms li { 
+          color:#828282; line-height: 27px;
+        }
+        .terms li, .terms ul { 
+          margin-bottom:7px;
+        }
+        .terms h2 { 
+          font-size:18px;
+        }
+      `}</style>
+      <div className="terms bg-gray-100 min-h-screen">
         <div className="max-w-4xl mx-auto py-12 px-4">
           {/* <div className="bg-gray-100 min-h-screen">
         <div className="max-w-4xl mx-auto py-12 px-4">

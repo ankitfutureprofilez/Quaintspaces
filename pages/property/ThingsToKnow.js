@@ -67,10 +67,10 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
   console.log("formattedAdditionalData",formattedAdditionalData)
 
   return (
-    <div className="container mx-auto">
-      <h1 className="listing-heading text-left !mb-[10px]">Things to know</h1>
+    <div className="container mx-auto pb-4">
+      <h1 className="listing-heading text-left !mb-[10px] ">Things to know</h1>
       <div className="flex justify-between house-rule-text">
-        <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
+        <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full pe-4">
           <h2 className="font-semibold mb-2">Timings </h2>
           <p className="mb-2 text-gray-500">Check in:  {record?.data?.check_in}</p>
           {/* <p className="mb-2 text-gray-500">Flexible/check-in ends after {record?.data?.flexible_check_in}</p> */}

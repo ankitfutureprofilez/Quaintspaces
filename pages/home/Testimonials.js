@@ -102,7 +102,7 @@ export default function Testimonials() {
           <Link
             target='_blank'
             href="https://g.co/kgs/jzbLCKG"
-            className="bg-[#efa3a3] text-[#fff] border border-[#efa3a3] px-[30px] py-[12px] flex rounded-full hover:text-[#efa3a3] hover:bg-[#ffffff00]"
+            className="bg-[#efa3a3] text-[#fff] text-[13px] md:text-[16px] border border-[#efa3a3] px-[30px] py-[12px] flex rounded-full hover:text-[#efa3a3] hover:bg-[#ffffff00]"
           >
             <span className="font-base uppercase"> Read all reviews </span>
             {/* <GoArrowRight size={20} /> */}
