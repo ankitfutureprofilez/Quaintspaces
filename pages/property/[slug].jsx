@@ -52,7 +52,7 @@ const Listing = () => {
       <Layout>
         <Head>
           <title>
-            House rent in {record?.loading ? "" : record?.data?.name} -
+            House rent in {record?.loading ? "" : record?.data?.name || ""} -
             Quaint Spaces Jaipur
           </title>
         </Head>
