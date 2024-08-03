@@ -60,63 +60,37 @@ export default function Signup() {
   return (
     <div
       className="h-screen tab-mob-height bg-cover "
-      // style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
-
     >
-      <Image
-        src="/images/banner/login_img.JPG"
-        blurDataURL="/images/banner/login_img.JPG?q=1"
-        placeholder="blur"
-        alt="Login Background"
-        layout="fill"
-        objectFit="cover"
-        quality={100}
-        className="z-[-1]"
-      />
-      <div className="container h-full">
+    <Image src="/images/banner/login_img.JPG"
+    placeholder="blur" priority={true}
+    blurDataURL="/images/banner/login_img.JPG?q=0.5"
+    alt="Login Background"
+    layout="responsive" width="1000" height="1000"
+    objectFit="cover"
+    className="fixed top-0 left-0 !w-full !h-full object-cover"  />
+
+      <div className="container relative z-[1] h-full">
+        <div className="backtohome ms-2 lg:ms-0">
+          <Link href="/">
+            <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" > <rect x="0.5" y="43.5" width="43" height="43" rx="21.5" transform="rotate(-90 0.5 43.5)" stroke="white" /> <path d="M20.828 22.636L25.778 27.586L24.364 29L18 22.636L24.364 16.272L25.778 17.686L20.828 22.636Z" fill="white" /> </svg>
+            Homepage
+          </Link>
+        </div>
         <div className="flex items-center h-full relative signup-tab-sec">
-          <div className="left-logo-login w-6/12 px-3">
-            <div className="backtohome ms-2 lg:ms-0">
-              <Link href="/">
-                <svg
-                  width="44"
-                  height="44"
-                  viewBox="0 0 44 44"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    x="0.5"
-                    y="43.5"
-                    width="43"
-                    height="43"
-                    rx="21.5"
-                    transform="rotate(-90 0.5 43.5)"
-                    stroke="white"
-                  />
-                  <path
-                    d="M20.828 22.636L25.778 27.586L24.364 29L18 22.636L24.364 16.272L25.778 17.686L20.828 22.636Z"
-                    fill="white"
-                  />
-                </svg>
-               Homepage
-              </Link>
-            </div>
-            <Link href="/">
+        <div className="pt-[3vh] md:pt-0 left-logo-login w-6/12 px-3">
+          <div className="relative">
             
+            <Link href="/">
             <Image src={logologin} alt="Quaint Spaces Jaipur logo" />
             </Link>
-
             <p>
             Indulge in the finest and most charming accommodation in Jaipur!
             </p>
-            {/* <p>
-              Book the most luxuries and aesthetically pleasing place, Jaipur
-              city has to offer
-            </p> */}
+          </div>
+            
           </div>
           <div className="right-signup-form w-6/12 px-3 flex justify-end">
-            <div className="signup-form w-full max-h-[90vh] overflow-y-auto">
+            <div className="signup-form bg-[#0003] w-full max-h-[90vh] overflow-y-auto">
               <div className="formbgcolor"></div>
               <div className="quainttay">
                 <h2>Welcome to Quaint Spaces Jaipur </h2>

@@ -6,7 +6,7 @@ import Image from "next/image";
 const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
   return (
     <div className={`flex flex-wrap sm:flex-nowrap w-full h-full ${loading ? "gap-2" : "gap-2"} `}>
-      {loading ? (
+      {loading ? ( 
         <>
           <div className="w-full md:w-6/12 h-[50vh] md:h-full opacity-[0.5] bg-gray-200 rounded-md"></div>
           <div className="w-full md:w-6/12 h-[50vh] md:h-full opacity-[0.5] rounded-md  bg-gray-100">

@@ -67,7 +67,7 @@ export default function LoginLogic({ isPopup, color }) {
           <div className="formbgcolor bg-[#0004]"></div>
           <div className="quainttay">
             <h2 className="">Welcome to Quaint Spaces Jaipur</h2>
-            <h3 className={`${color}`}>
+            <h3 className={`!font-normal ${color}`}>
               Don't have an account?{" "}
               <button
                 className="underline"
@@ -75,8 +75,7 @@ export default function LoginLogic({ isPopup, color }) {
                 onClick={() => {
                   router.push("/signup");
                   setOpenLogin(false);
-                }}
-              >
+                }} >
                 Sign up
               </button>
             </h3>

@@ -71,7 +71,7 @@ export default function Header() {
         </div>
         <div className="nav-bar flex items-center">
           <div className="menu-icon" onClick={toggleMenu}>
-            <IoMdMenu className="h-6 w-6 cursor-pointer block lg:hidden" />
+            <IoMdMenu className="h-9 w-9 cursor-pointer block lg:hidden" />
           </div>
           <div
             className={`${auth?.email ? "login" : "" } menu-items overflow-y-auto lg:overflow-visible flex-col lg:flex-row lg:flex lg:gap-8 items-center ${isMenuOpen ? "right-0 opacity-1" : "-right-[100%] opacity-1"
@@ -83,13 +83,13 @@ export default function Header() {
               </svg>
             </button>
             <div className=" lg:flex items-center">
-            <Link href="/apartments" className=" link mb-3 lg:mb-0 border-b md:me-6 lg:border-0">
+            <Link href="/apartments" className=" link mb-3 block lg:mb-0 border-b md:me-6 lg:border-0">
               <p>Properties</p>
             </Link>
-            <Link href="/#testimonials" className=" link mb-3 lg:mb-0 border-b md:me-6 lg:border-0">
+            <Link href="/#testimonials" className=" link mb-3 block lg:mb-0 border-b md:me-6 lg:border-0">
               <p>Reviews</p>
             </Link>
-            <Link href="/about" className=" link mb-3 lg:mb-0 md:me-6 lg:border-0">
+            <Link href="/about" className=" link mb-3 block lg:mb-0 md:me-6 lg:border-0">
               <p>About Us</p>
             </Link>
             </div>
@@ -119,46 +119,46 @@ export default function Header() {
 
                 </div>
                 <div className="lg:hidden mt-[30px] w-full static">
-                  <h3 className="text-[19px] text-gray-500 mb-2 border-t border-gray-200 pt-3">Account Settings</h3>
+                  <h3 className="text-[19px] text-gray-500 mb-2 border-t border-gray-200 pt-4">Account Settings</h3>
                   <div className="w-full p-3 divide-y divide-gray-300 profile-navbar static">
                     <div aria-label="navigation" className="py-2">
                       <nav className="grid gap-1">
                         <Link
                           href="/profile"
-                          className="link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg"
+                          className="mb-3 block link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg"
                         >
                           <span>My Profile</span>
                         </Link>
                         <Link
                           href="/booking"
-                          className="link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg"
+                          className="mb-3 block link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg"
                         >
                           <span>Bookings History</span>
                         </Link>
 
                         <Link
                           href="/paymentHistory"
-                          className="link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg"
+                          className="mb-3 block link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg"
                         >
                           <span>Payment History</span>
                         </Link>
 
                         <Link
                           href="/security"
-                          className="link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg"
+                          className="mb-3 block link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg"
                         >
                           <span>Security</span>
                         </Link>
 
                         <Link
                           href="/account"
-                          className="link rounded-lg !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800"
+                          className="link block mb-3  rounded-lg !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800"
                         >
                           <span>Settings</span>
                         </Link>
                         <Link onClick={handleLogoutClick}
                           href="/login"
-                          className="link rounded-lg !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800">
+                          className="link block mb-3 rounded-lg !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800">
                           <span>Logout</span>
                         </Link>
                       </nav>
