@@ -9,6 +9,7 @@ input:is(:-webkit-autofill, :autofill) {
 
 .logo img {
   max-width: 127px;
+  opacity: 1;
 }
 .user-img {
   height: revert-layer;
