@@ -9,7 +9,7 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
       {loading ? ( 
         <>
           <div className="w-full md:w-6/12 h-[50vh] md:h-full opacity-[0.5] bg-gray-200 rounded-md"></div>
-          <div className="w-full md:w-6/12 h-[50vh] md:h-full opacity-[0.5] rounded-md  bg-gray-100">
+          <div className="w-full md:w-6/12 h-[50vh] md:h-full opacity-[0.5] rounded-md  bg-gray-200">
           </div>
         </> 
       ) : (

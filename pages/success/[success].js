@@ -111,7 +111,7 @@ console.log("record",record)
                 <p className="text-black-400 font-bold  capitalize">
                   Booking Number
                 </p>
-                <p className="text-start text-black-400 font-bold font-semibold">
+                <p className="text-start text-black-400 font-semibold">
                   {record?.booking_number}
                 </p>
               </div>
