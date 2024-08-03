@@ -174,9 +174,6 @@ export default function Property(props) {
     const filteredImages = images.filter((file) => file !== f);
     setImages(filteredImages);
   };
-  console.log("ass", checkinEnd)
-
-  console.log("che", checkinStart)
 
   const moveImageToFront = (index) => {
     const updatedImages = [...images];
@@ -282,6 +279,8 @@ export default function Property(props) {
     customLink: custom_link || "",
   });
 
+  console.log("property_rule?.additional_rules", property_rule?.additional_rules)
+  console.log("item", item)
   const copyToClipboard = () => {
     const textToCopy = `${baseurl}${item?.customLink}`;
     navigator.clipboard
@@ -696,7 +695,7 @@ export default function Property(props) {
           if (isEdit && !stepdata) {
             toast.success(res.data.message);
             router.push("/admin/property");
-            fetchProperties && fetchProperties();
+            // fetchProperties && fetchProperties();
           } else {
             router.push("/admin/property");
             toast.success(res.data.message);
