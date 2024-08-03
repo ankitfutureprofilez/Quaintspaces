@@ -688,6 +688,9 @@ button.submint-btn {
   height: 100%;
   width: 100%;
 }
+.blur {
+  backdrop-filter: blur(10px);
+}
 
 .backtohome {
   position: absolute;
@@ -1306,7 +1309,7 @@ button.submint-btn {
   }
 
   .visit-us-sec {
-    padding: 45px 0 20px;
+    padding: 45px 0 40px;
     margin-bottom: 0px;
   }
 

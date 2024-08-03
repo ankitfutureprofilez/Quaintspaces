@@ -8,11 +8,22 @@ function index() {
       <Head>
         <title>Terms & Conditions - Quaint Spaces Jaipur</title>
       </Head>
-      <div className="bg-gray-100 min-h-screen">
+      <style>{`
+      .terms p, .terms li { 
+        color:#828282; line-height: 27px;
+      }
+      .terms li, .terms ul { 
+        margin-bottom:7px;
+      }
+      .terms h2 { 
+        font-size:18px;
+      }
+      `}</style>
+      <div className="terms bg-gray-100 min-h-screen">
         <div className="max-w-4xl mx-auto py-12 px-4">
-          <h1 className="text-3xl font-bold">Terms and Conditions</h1>
+          <h1 className="text-4xl font-bold">Terms and Conditions</h1>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">
+            <h1 className="text-2xl font-bold mt-8 mb-3">
               1. Searching and Booking on Quaint Spaces.
             </h1>
             <div className="mb-2">
@@ -84,7 +95,7 @@ function index() {
             </div>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">
+            <h1 className="text-2xl font-bold mt-8 mb-3">
               2. Cancellations, Reservation Issues, Refunds and Booking
               Modifications.
             </h1>
@@ -120,7 +131,7 @@ function index() {
             </div>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">
+            <h1 className="text-2xl font-bold mt-8 mb-3">
               3. Your Responsibilities.
             </h1>
             <div className="mb-2">
@@ -221,7 +232,7 @@ function index() {
             </div>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">4. Taxes.</h1>
+            <h1 className="text-2xl font-bold mt-8 mb-3">4. Taxes.</h1>
             <div className="mb-2">
               <h2>4.1 Host Taxes.</h2>
               <p>
@@ -269,10 +280,10 @@ function index() {
             </div>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">General Terms</h1>
+            <h1 className="text-2xl font-bold mt-8 mb-3">General Terms</h1>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">5. Reviews.</h1>
+            <h1 className="text-2xl font-bold mt-8 mb-3">5. Reviews.</h1>
             <p>
               After each Host Service, Guests and Hosts will have an opportunity
               to review each other. Your review must be accurate and may not
@@ -281,7 +292,7 @@ function index() {
             </p>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">6. Content.</h1>
+            <h1 className="text-2xl font-bold mt-8 mb-3">6. Content.</h1>
             <p>
               Parts of the Quaint Spaces Platform enable you to provide feedback,
               text, photos, audio, video, information and other content
@@ -315,13 +326,13 @@ function index() {
             </p>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">7. Fees.</h1>
+            <h1 className="text-2xl font-bold mt-8 mb-3">7. Fees.</h1>
             <p>
             Quaint Spaces may charge fees (and applicable Taxes) to Hosts and Guests for the right to use the Quaint Spaces Platform. Any applicable fees are disclosed to Hosts before publishing a listing and to Guests before making a booking. 
             </p>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">
+            <h1 className="text-2xl font-bold mt-8 mb-3">
               8. Quaint Spaces Platform Rules.
             </h1>
             <div className="mb-2">
@@ -478,7 +489,7 @@ function index() {
             </div>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">
+            <h1 className="text-2xl font-bold mt-8 mb-3">
               9. Content Notifications and Content Moderation.
             </h1>
             <div className="mb-2">
@@ -552,7 +563,7 @@ function index() {
             </div>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">
+            <h1 className="text-2xl font-bold mt-8 mb-3">
               10. Termination, Suspension and other Measures.
             </h1>
             <div className="mb-2">
@@ -656,7 +667,7 @@ function index() {
             </div>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">
+            <h1 className="text-2xl font-bold mt-8 mb-3">
               11. Complaint Handling System.
             </h1>
             <div className="mb-2">
@@ -741,7 +752,7 @@ function index() {
             </div>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">
+            <h1 className="text-2xl font-bold mt-8 mb-3">
               12. Modification of these Terms.
             </h1>
             <p>
@@ -768,7 +779,7 @@ function index() {
             </p>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">
+            <h1 className="text-2xl font-bold mt-8 mb-3">
               13. Resolving Complaints and Damage Claims between Members.
             </h1>
             <div className="mb-2">
@@ -854,7 +865,7 @@ function index() {
             </div>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">14. Quaint Spaces’s Role.</h1>
+            <h1 className="text-2xl font-bold mt-8 mb-3">14. Quaint Spaces’s Role.</h1>
             <p>
               We offer you the right to use a platform that enables Members to
               publish, offer, search for, and book Host Services. When Members
@@ -890,7 +901,7 @@ function index() {
             </p>
           </div>
           {/* <div className="prose">
-            <h1 className="text-xl font-bold my-6">18. Member Accounts.</h1>
+            <h1 className="text-2xl font-bold mt-8 mb-3">18. Member Accounts.</h1>
             <p>
               You must register an account to access and use many features of
               the Quaint Spaces Platform. Registration is only permitted for
@@ -922,7 +933,7 @@ function index() {
             </p>
           </div> */}
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">15. Disclaimer.</h1>
+            <h1 className="text-2xl font-bold mt-8 mb-3">15. Disclaimer.</h1>
             <p>
               We do not endorse or warrant the existence, conduct, performance,
               safety, quality, legality or suitability of any Guest, Host, Host
@@ -946,7 +957,7 @@ function index() {
             </p>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">16. Liability.</h1>
+            <h1 className="text-2xl font-bold mt-8 mb-3">16. Liability.</h1>
             <div className="mb-2">
               <h2>16.1</h2>
               <p>
@@ -997,7 +1008,7 @@ function index() {
             </div>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">17. Indemnification.</h1>
+            <h1 className="text-2xl font-bold mt-8 mb-3">17. Indemnification.</h1>
             <p>
               To the maximum extent permitted by applicable law, you agree to
               release, defend (at Quaint Spaces’s option), indemnify, and hold
@@ -1025,7 +1036,7 @@ function index() {
             </p>
           </div>
           {/* <div className="prose">
-            <h1 className="text-xl font-bold my-6">
+            <h1 className="text-2xl font-bold mt-8 mb-3">
               22. Contracting Entities.
             </h1>
             <p>
@@ -1046,7 +1057,7 @@ function index() {
             </p>
           </div> */}
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">
+            <h1 className="text-2xl font-bold mt-8 mb-3">
               18. Applicable law and Jurisdiction.
             </h1>
             <p>
@@ -1065,7 +1076,7 @@ function index() {
             </p>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">19. Miscellaneous.</h1>
+            <h1 className="text-2xl font-bold mt-8 mb-3">19. Miscellaneous.</h1>
             {/* <div className="mb-2">
               <h2>19.1 Other Terms Incorporated by Reference.</h2>
               <p>
@@ -1244,7 +1255,7 @@ function index() {
             </div>
           </div>
           {/* <div className="prose">
-            <h1 className="text-xl font-bold my-6">
+            <h1 className="text-2xl font-bold mt-8 mb-3">
               19. United States Dispute Resolution and Arbitration Agreement.
             </h1>
             <p>
@@ -1651,7 +1662,7 @@ function index() {
             </div>
           </div> */}
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">
+            <h1 className="text-2xl font-bold mt-8 mb-3">
               Additional Terms Applicable to Business Hosts
             </h1>
             <div className="mb-2">
@@ -1664,7 +1675,7 @@ function index() {
             </div>
           </div>
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">
+            <h1 className="text-2xl font-bold mt-8 mb-3">
               20. Hosting on Quaint Spaces as a Business Host.
             </h1>
             <div className="mb-2">
@@ -1728,7 +1739,7 @@ function index() {
             </div>
           </div>
           {/* <div className="prose">
-            <h1 className="text-xl font-bold my-6">
+            <h1 className="text-2xl font-bold mt-8 mb-3">
               27. Complaints Handling and Mediation.
             </h1>
             <p>
@@ -1746,7 +1757,7 @@ function index() {
             </p>
           </div> */}
           <div className="prose">
-            <h1 className="text-xl font-bold my-6">21. Access to Data.</h1>
+            <h1 className="text-2xl font-bold mt-8 mb-3">21. Access to Data.</h1>
             <p>
               Business Hosts have access to personal and other data in their
               Quaint Spaces account and host dashboard which is provided by the
