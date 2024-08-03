@@ -4,36 +4,23 @@ const useLabeling = (guests) => {
   const [result, setResult] = useState("");
 
   useEffect(() => {
-    // adding label in guests
-    if (guests.adults.value || guests.children.value) {
-      setResult(`${guests.adults.value + guests.children.value} guests`);
-    } else {
-      setResult(null);
+    const totalGuests = guests.adults.value + guests.children.value;
+    const guestLabel = totalGuests === 1 ? "guest" : "guests";
+    let label = "";
+
+    if (totalGuests > 0) {
+      label = `${totalGuests} ${guestLabel}`;
     }
 
     if (guests.infants.value) {
-      setResult(
-        `${guests.adults.value + guests.children.value} guests, ${
-          guests.infants.value
-        } infants`
-      );
-    } else if (guests.infants.value === 0 && guests.adults.value) {
-      setResult(`${guests.adults.value + guests.children.value} guests`);
+      label += `, ${guests.infants.value} infant${guests.infants.value > 1 ? "s" : ""}`;
     }
 
-    if (guests.pets.value && guests.infants.value === 0) {
-      setResult(
-        `${guests.adults.value + guests.children.value} guests, ${
-          guests.pets.value
-        } pets`
-      );
-    } else if (guests.pets.value) {
-      setResult(
-        `${guests.adults.value + guests.children.value} guests, ${
-          guests.infants.value
-        } infants, ${guests.pets.value} pets`
-      );
+    if (guests.pets.value) {
+      label += `, ${guests.pets.value} pet${guests.pets.value > 1 ? "s" : ""}`;
     }
+
+    setResult(label || null);
   }, [guests]);
 
   return result;
