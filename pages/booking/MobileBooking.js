@@ -23,7 +23,7 @@ export default function MobileBooking({ listings, selectedButton }) {
                 <div className="p-[10px]">
                   <div className="flex flex-wrap items-center justify-between border-b-[1px] border-[#0000001a] pb-[15px] mb-[15px]">
                     <div className="flex items-center">
-                      <img
+                      <Image
                         src={item?.booking_property?.
                           property_image ? item?.booking_property?.
                             property_image[0]?.image_url : BookingImg}
