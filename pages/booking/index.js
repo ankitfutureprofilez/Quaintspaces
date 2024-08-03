@@ -20,6 +20,7 @@ export default function Index() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedButton, setSelectedButton] = useState("upcoming");
   const [listings, setListings] = useState([]);
+  console.log('listings', listings)
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState("All Dates");
   const [fetch, setFetch] = useState(false);
@@ -28,7 +29,7 @@ export default function Index() {
   const [refend, setRefend] = useState("")
   const [houseRule, SetHouseRules] = useState({})
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
-  
+
 
   const currentYear = new Date().getFullYear();
 
@@ -299,7 +300,8 @@ export default function Index() {
 
                         <td className="px-6 py-4 text-sm whitespace-nowrap">
                           <DateComponent item=
-                            {item?.check_in} /> </td>
+                            {item?.check_in} />
+                        </td>
                         <td className="px-6 py-4 text-sm whitespace-nowrap">
                           <DateComponent item=
                             {item?.check_out} />
@@ -392,7 +394,7 @@ export default function Index() {
   //   <h2 className="text-xl font-semibold text-gray-800">Net-Banking</h2>
   //   <p className="px-3 py-1 text-sm font-medium text-white bg-green-500 rounded-full">Success</p>
   // </div>
-  
+
 
   //         <div className="flex items-center justify-between mb-4">
   //           <h3 className="text-lg font-bold text-gray-900">Quaint Stay</h3>
@@ -402,7 +404,7 @@ export default function Index() {
   //         <div className="text-gray-600 mb-4 flex items-center justify-between mb-4">
   //           <p className="text-sm mb-1"> pay_OfYONyO7Pw14Uv</p>
   //           <p className="text-sm mb-1"> INR</p>
-           
+
   //         </div>
   //         <div className="flex items-center justify-between mb-4">
   //         <p className="text-sm mb-1">16 Apr 2024, 05:00PM</p>
@@ -517,7 +519,7 @@ export default function Index() {
 
         {isMobile ? (
 
-          <MobileBooking/>
+          <MobileBooking listings={listings} loading={loading} />
         ) : (
           <div className="tble-ma">
 
