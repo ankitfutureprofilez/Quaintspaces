@@ -15,6 +15,7 @@ export default function Login() {
     password: "",
   });
   const router = useRouter();
+
   const handleInputs = (e) => {
     const value = e.target.value;
     const name = e.target.name;
@@ -68,58 +69,56 @@ export default function Login() {
           content="https://example.com/images/cool-page.jpg"
         />
       </Head>
-      <div className="bg-no-repeat mainadmin bg-cover bg-center relative object-cover"
+      <div className="bg-no-repeat mainadmin bg-cover bg-center relative object-cover min-h-screen flex items-center justify-center"
         style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
       >
-        <div className="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
-          <div className="flex justify-center self-center  z-10">
-            <div className="p-12 bg-white mx-auto rounded-2xl w-100 ">
-              <div className="mb-4">
-                <h3 className="font-semibold text-2xl text-black-800">Sign In </h3>
-                <p className="text-black-500">Please sign in to your account.</p>
-              </div>
+        <div className="flex justify-center self-center z-10">
+          <div className="p-12 bg-white mx-auto rounded-2xl w-full max-w-md">
+            <div className="mb-4">
+              <h3 className="font-semibold text-2xl text-black-800">Sign In </h3>
+              <p className="text-black-500">Please sign in to your account.</p>
+            </div>
 
-              <form onSubmit={handleSubmit}>
-                <div className="space-y-5">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700 tracking-wide">Email</label>
-                    <input className="mt-1 p-4 border rounded-full w-full  w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" type="email"
-                      name="email"
-                      value={record.email}
-                      onChange={handleInputs}
-                      id="email"
-                      placeholder="your@email.com"
-                      required />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="mb-5 text-sm font-medium text-gray-700 tracking-wide">
-                      Password
-                    </label>
-                    <input className="mt-1 p-4 border rounded-full w-full w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" type="password"
-                      name="password"
-                      value={record.password}
-                      onChange={handleInputs}
-                      id="password"
-                      placeholder="Enter your password"
-                      required />
-                  </div>
-                  <div className="flex items-center justify-between mb-5" >
-                    <div className="text-sm">
-                      <Link href="/admin/forget-password" className="text-black text-l hover:text-indigo-500">
-                        Forgot your password?
-                      </Link>
-                    </div>
+            <form onSubmit={handleSubmit}>
+              <div className="space-y-5">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700 tracking-wide">Email</label>
+                  <input className="mt-1 p-4 border rounded-full w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400" type="email"
+                    name="email"
+                    value={record.email}
+                    onChange={handleInputs}
+                    id="email"
+                    placeholder="your@email.com"
+                    required />
+                </div>
+                <div className="space-y-2">
+                  <label className="mb-5 text-sm font-medium text-gray-700 tracking-wide">
+                    Password
+                  </label>
+                  <input className="mt-1 p-4 border rounded-full w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-400" type="password"
+                    name="password"
+                    value={record.password}
+                    onChange={handleInputs}
+                    id="password"
+                    placeholder="Enter your password"
+                    required />
+                </div>
+                <div className="flex items-center justify-between mb-5">
+                  <div className="text-sm">
+                    <Link href="/admin/forget-password" className="text-black text-l hover:text-indigo-500">
+                      Forgot your password?
+                    </Link>
                   </div>
                 </div>
-                <div>
-                  <button type="submit" className="w-full flex justify-center   bg-indigo-600  hover:bg-indigo-500 text-gray-100 p-3 mt-4 rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500">
-                    {loading ? "please wait.." : "Sign in"}
-                  </button>
-                </div>
-              </form>
-              <div className="pt-5 text-center text-black-400 text-xs  ">
-                Copyright © 2023-2024
               </div>
+              <div>
+                <button type="submit" className="w-full flex justify-center bg-indigo-600 hover:bg-indigo-500 text-gray-100 p-3 mt-4 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">
+                  {loading ? "Please wait..." : "Sign in"}
+                </button>
+              </div>
+            </form>
+            <div className="pt-5 text-center text-black-400 text-xs">
+              Copyright © 2024
             </div>
           </div>
         </div>

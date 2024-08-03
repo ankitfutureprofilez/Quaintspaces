@@ -12,7 +12,7 @@ export default function LoginLogic({ isPopup, color }) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-  });
+  }); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,7 +39,7 @@ export default function LoginLogic({ isPopup, color }) {
           if (isPopup) {
             setOpenLogin(false);
           } else {
-            router.back();
+            router.push("/");
           }
           setAuth(res?.data?.data || null);
           localStorage && localStorage.setItem("token", res?.data?.token);
@@ -63,10 +63,10 @@ export default function LoginLogic({ isPopup, color }) {
   return (
     <>
       <div className="right-signup-form flex justify-end">
-        <div className="signup-form w-full max-h-screen overflow-y-auto">
-          <div className="formbgcolor bg-[#0003]"></div>
+        <div className="signup-form w-full max-h-screen overflow-y-auto rounded-xl">
+          <div className="formbgcolor bg-[#0004]"></div>
           <div className="quainttay">
-            <h2 className="capitalize">Welcome to Quaintspaces Jaipur</h2>
+            <h2 className="">Welcome to Quaint Spaces Jaipur</h2>
             <h3 className={`${color}`}>
               Don't have an account?{" "}
               <button
@@ -106,7 +106,7 @@ export default function LoginLogic({ isPopup, color }) {
                 required
               />
             </div>
-            <h3 className="text-white text-md  font-medium mb-4">
+            <h3 className="text-white text-sm  font-normal mb-4 underline"  >
               <Link href="/forgot-password">Forgot Password?</Link>
             </h3>
             <button type="submit" className="submint-btn">

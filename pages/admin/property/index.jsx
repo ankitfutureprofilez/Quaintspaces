@@ -12,6 +12,8 @@ import { CgViewComfortable } from "react-icons/cg";
 import { formatMultiPrice } from "../../../hooks/ValueData";
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
+import Modal from "../hook/Modal";
+
 export default function Index() {
   const router = useRouter();
   const [record, setRecord] = useState([]);
@@ -29,7 +31,7 @@ export default function Index() {
     setSearchTerm(searchTerm);
     // fetchProperties(searchTerm);
   };
-  
+
   // { search: searchTerm }
   const fetchProperties = () => {
     const main = new Listing();
@@ -49,11 +51,11 @@ export default function Index() {
         setIsLoading(false);
       });
   };
-  
+
   useEffect(() => {
     fetchProperties();
-  }, [ router && router.pathname]);
-  
+  }, [router && router.pathname]);
+
 
   const deleteProperty = (uuid) => {
     const main = new Listing();
@@ -84,89 +86,95 @@ export default function Index() {
     router.push(`/admin/property/edit/${uuid}`);
   };
 
-  const TableView = () => {
-    return (
-      <div className="overflow-x-auto">
-        <table className="table-auto w-full">
-          <thead>
-            <tr>
-              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Property Listing</th>
-              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Status</th>
-              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Location</th>
-              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Edit</th>
-              <th className="text-[14px] text-[#222222] font-[600] text-left p-[20px_12px]">Delete</th>
+//   const TableView = () => {
+//     return (
+//       <div className="w-full">
+//       <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
+//         {record && record?.length > 0 ? (
+//           <table className="min-w-full divide-y divide-gray-200">
+//             <thead className="bg-gray-50">
+//               <tr>
+//                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+//                   S. No.
+//                 </th>
+//                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+//                   Property Name
+//                 </th>
+               
+               
+//                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+//                   Edit
+//                 </th>
+//                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+//                   Delete
+//                 </th>
 
-            </tr>
-          </thead>
-          <tbody>
-            {record && record.map((item, index) => {
-              let location = {};
-              let locationdata = {};
-              try {
-                location = JSON.parse(item.location);
-                locationdata = JSON.parse(location);
-              } catch (error) {
-                console.error('Failed to parse location:', error);
-              }
+//                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+//                   Status
+//                 </th>
+//               </tr>
+//             </thead>
+//             <tbody className="bg-white divide-y divide-gray-200">
+//               {record && record.map((item, index) =>  (
+//                   <tr key={index}>
+//                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{index + 1}</td>
+//                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+//                       <Link href={`/admin/property/edit/${item?.uuid}`}>
+//                         <div className="flex items-center space-x-4">
+//                           <img
+//                             className="w-16 h-16 object-cover rounded-md"
+//                             src={
+//                               item?.property_image[0]?.image_url
+//                                 ? item?.property_image[0]?.image_url
+//                                 : "https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg"
+//                             }
+//                             alt={item?.name}
+//                           />
+//                           <span className="text-left text-sm   ">{item?.name}</span>
+//                         </div>
+//                       </Link>
+//                     </td>
+                
+//                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
+//                       <button
+//                         className="text-sm px-3 py-1 text-white bg-black rounded hover:bg-blue-700"
+//                         onClick={() => handleEditEntireProperty(item?.uuid)}
+//                       >
+//                         <FaEdit />
+//                       </button>
+//                     </td>
+//                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
+//                       <button
+//                         className="text-sm px-3 py-1 text-white bg-red-600 rounded hover:bg-red-700"
+//                         onClick={() => {
+//                           setShowConfirmation(true);
+//                           setSelectedProperty(item?.uuid);
+//                         }}
+//                       >
+//                         <AiFillDelete />
+//                       </button>
+//                     </td>
 
-              return (
-                <tr key={index} className="hover:bg-[#f5f5f5] rounded-[10px]">
-                  <td className="text-[14px] text-[#222222] font-[600] text-left p-[12px]">
-                    <Link href={`/admin/property/edit/${item?.uuid}`}>
-                      <Link href={`/admin/property/edit/${item?.uuid}`} className="flex items-center">
-                        <img
-                          className="w-16 h-16 object-cover rounded-[5px] object-center mr-4"
-                          src={
-                            item?.property_image[0]?.image_url
-                              ? item?.property_image[0]?.image_url
-                              : "https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg"
-                          }
-                          alt={item?.name}
-                        />
-                        {item?.name}
-                      </Link>
-                    </Link>
-                  </td>
-                  <td className="text-[14px] text-[#222222] font-[600] text-left p-[12px]">
-                    {item?.status !== 1 ? (
-                      <p className="text-indigo-600">In Progress</p>
-                    ) : (
-                      <>
-                        <p className="text-green-600">Completed</p>
-                      </>
-                    )}
-                  </td>
-                  <td className="text-[14px] text-[#222222] font-[600] text-left p-[12px]">
-                    {locationdata ? (
-                      <p>{locationdata?.location}</p>
-                    ) : (
-                      <p>Location not provided</p>
-                    )}
-                  </td>
-                  <td className="p-[12px]">
-                    <button
-                      className="inline-block text-[14px] px-4 py-2  text-white rounded-[6px]  bg-black  hover:bg-blue-700"
-                      onClick={() => handleEditEntireProperty(item?.uuid)}
-                    >
-                      <FaEdit />
-                    </button>
-                  </td>
-                  <td className="p-[12px]">
-                    <button
-                      className="inline-block text-[14px] px-4 rounded-[6px] py-2 text-white   bg-red-600  hover:bg-black-700 "
-                      onClick={() => setShowConfirmation(true) || setSelectedProperty(item?.uuid)}
-                    >
-                      <AiFillDelete />
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    );
-  };
+//                     <td className="px-4 py-4 text-sm  whitespace-nowrap">
+//                       {item?.status !== 1 ? (
+//                         <p className="text-indigo-600">In Progress</p>
+//                       ) : (
+//                         <p className="text-green-600">Completed</p>
+//                       )}
+//                     </td>
+//                   </tr>
+//                 )
+//               )}
+//             </tbody>
+//           </table>
+//         ) : (
+//           <Nodata heading={"No Property"} />
+//         )}
+//       </div>
+// </div>
+
+//     );
+//   };
 
   const CardView = () => {
     return (
@@ -259,56 +267,36 @@ export default function Index() {
   return (
     <AdminLayout heading="Properties">
       {isLoading ? (
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex">
           <Loading />
         </div>
       ) : (
         <>
-          <div className="flex flex-wrap mt-[40px] justify-between">
-            <h3 className="text-[32px] font-[500] text-[#222222] capitalize  mb-[40px]">
+          <div className="flex flex-wrap mt-[40px] items-center justify-between">
+            <h3 className="text-[32px] font-[500] text-[#222222] capitalize ">
               Your listings
             </h3>
-            <div className="flex">
-              {/* <form className="group relative">
-                <svg
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  className="absolute left-3 top-[20px] -mt-2.5 text-slate-400 pointer-events-none group-focus-within:text-blue-500"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                  />
-                </svg>
-                <input
-                  className="focus:ring-0 bg-[#f7f7f7] focus:ring-blue-0 focus:outline-none appearance-none w-full text-sm leading-6 text-slate-900 placeholder-slate-400 rounded-md py-[6px] pl-10"
-                  type="text"
-                  aria-label="Filter projects"
-                  placeholder="search lisitng by name"
-                  value={searchTerm}
-                  onChange={handleSearchChange}
-
-                />
-              </form> */}
-
-              <div
+            <div className="flex items-center">
+              {/* <div
                 onClick={toggleView}
                 className="view-toggle-button hover:bg-gray-400 active:bg-gray-400 mx-2 cursor-pointer bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center"
               >
                 {view === 'table' ? <CgViewComfortable /> : <FaTableCellsLarge />}
-              </div>
-              <div className="bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer hover:bg-gray-400 active:bg-gray-400">
-                <MdAdd
-                  onClick={() => {
-                    router.push("/admin/property/become");
-                  }}
-                />
+              </div> */}
+
+              {/* <CgViewComfortable /> */}
+              <div
+                onClick={() => {
+                  router.push("/admin/property/become");
+                }}
+                className="bg-gray-3
+                00 rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer hover:bg-gray-400 active:bg-gray-400"
+              >
+                <MdAdd />
               </div>
             </div>
           </div>
+
           <div className="mt-3">
 
             {view === 'table' ? <TableView /> : <CardView />}
@@ -316,15 +304,20 @@ export default function Index() {
         </>
       )}
       {showConfirmation && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center mt-6 mb-6">
-          <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
-          <div className="bg-white px-8 rounded shadow-lg z-50 relative rounded-lg max-w-[33%]">
-            <p className="text-lg font-semibold mb-4 mt-6">
-              Are you sure you want to delete this property?
-            </p>
-            <div className="flex justify-center mb-5">
+
+        <Modal isOpen={showConfirmation} onClose={handleCancel}>
+          <div className="flex flex-col items-center">
+            <div className="p-4 bg-[#efa3a3] w-full">
+              <label
+                htmlFor="message"
+                className="mx-auto block text-lg font-medium text-[#fff] text-center"
+              >
+                Delete This Property?
+              </label>
+            </div>
+            <div className="flex justify-center mb-5 mt-4 space-x-2 md:space-x-4 w-full">
               <button
-                className="bg-red-600 text-white px-4 py-2 rounded-md mr-2 hover:bg-red-700"
+                className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
                 onClick={handleConfirmation}
               >
                 Delete
@@ -337,8 +330,10 @@ export default function Index() {
               </button>
             </div>
           </div>
-        </div>
+        </Modal>
+
       )}
+
     </AdminLayout>
   );
 }

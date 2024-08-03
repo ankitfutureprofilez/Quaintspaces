@@ -44,13 +44,16 @@ const Listing = () => {
     }
   }, [slug]);
 
+
+ 
+
   return (
     <>
       <Layout>
         <Head>
           <title>
             House rent in {record?.loading ? "" : record?.data?.name} -
-            Quaintspaces Jaipur
+            Quaint Spaces Jaipur
           </title>
         </Head>
         <SingleListingBody loading={loading} listing={record} />
@@ -63,7 +66,7 @@ const Listing = () => {
               setOverlay(false);
               setHeaderSearch(false);
             }}
-          ></div>
+          ></div> 
         )}
       </Layout>
     </>
@@ -71,15 +74,4 @@ const Listing = () => {
 };
 
 export default Listing;
-
-// export async function getServerSideProps(context) {
-//   const { listingID } = context.query;
-//   const main = new Listings();
-//   const listingData = await main.PropertyDetail(listingID);
-//   return {
-//     props: {
-//       listingData: listingData?.data?.data || null,
-//       listingID,
-//     },
-//   };
-// }
+ 

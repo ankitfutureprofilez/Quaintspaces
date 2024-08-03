@@ -12,6 +12,8 @@ import Head from "next/head";
 import { toast } from "react-hot-toast";
 import DateComponent from "../elements/DateFormat.jsx";
 import { TableLoading } from "../../components/Loading/ListingsLoading.jsx";
+import moment from "moment";
+import MobileBooking from "./MobileBooking.js";
 
 export default function Index() {
   const [loading, setLoading] = useState(false);
@@ -26,6 +28,7 @@ export default function Index() {
   const [refend, setRefend] = useState("")
   const [houseRule, SetHouseRules] = useState({})
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  
 
   const currentYear = new Date().getFullYear();
 
@@ -46,6 +49,21 @@ export default function Index() {
     setIsConfirmOpen(true);
   };
 
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth <= 767);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    // Initial check
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleSubmit = (houseBook) => {
     const main = new Listings();
@@ -146,6 +164,7 @@ export default function Index() {
         setLoading(false);
         setKey(r?.data?.request_key);
         const newdata = r?.data?.data?.data || [];
+        console.log("newdata", newdata)
         setListings((prevData) => {
           if (pg === 1) {
             return newdata;
@@ -201,6 +220,42 @@ export default function Index() {
   };
 
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isConfirmOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isConfirmOpen]);
+
+  useEffect(() => {
+    if (showConfirmation) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [showConfirmation]);
+
+
+
+
   const BookingTable = () => {
     return (
       <>
@@ -210,7 +265,7 @@ export default function Index() {
           <>
             {listings && listings.length > 0 ? (
               <div className="table-responsive">
-                <table className="table-fixed w-full booking-table">
+                <table className=" w-full booking-table">
                   <thead>
                     <tr>
                       <th>Booking Date</th>
@@ -222,45 +277,35 @@ export default function Index() {
                       <th>Price</th>
                       {(key === "upcoming") && <th>Action</th>}
                       {/* {} */}
-                      {key === "ongoing" &&
-                        <th>House details</th>}
+                      {/* {key === "ongoing" &&
+                        <th>House details</th>} */}
                     </tr>
                   </thead>
-                  {listings.map((item, index) => (
-                    <tbody key={index}>
-                      <tr>
-                        <td className="px-4 py-2">
-                          <DateComponent item=
-                            {item?.booking_date} />
-                        </td>
-                        <td className="px-2 md:px-4 py-2 align-middle">
-                          <div className="flex items-center">
-                            <div className="text ml-2">
-                              <div className="title break-all">{item?.booking_number}</div>
-                            </div>
+                  <tbody>
+                    {listings.map((item, index) => (
+                      <tr key={index}>
+                        <td className="px-6 py-4 text-sm font-normal text-gray-900 whitespace-nowrap">
+                          <DateComponent item={item?.createdAt} /> </td>
+                        <td className="px-6 py-4 text-sm whitespace-nowrap ">
+                          <div>
+                            {item?.booking_number}
                           </div>
                         </td>
-                        <td className="px-2 md:px-4 py-2 align-middle">
-                          <div className="flex items-center justify-center">
-                            <div className="text ml-2">
-                              <div className="title capitalize">
-                                <Link href={`/property/${item?.booking_property?.uuid}`}>
-                                  {item?.booking_property?.name}
-                                </Link>
-                              </div>
-                            </div>
-                          </div>
+                        <td className="px-6 py-4 text-sm  whitespace-nowrap capitalize">
+                          <Link href={`/property/${item?.booking_property?.uuid}`}>
+                            {item?.booking_property?.name}
+                          </Link>
                         </td>
 
-                        <td className="px-4  md:px-4 py-2">
+                        <td className="px-6 py-4 text-sm whitespace-nowrap">
                           <DateComponent item=
                             {item?.check_in} /> </td>
-                        <td className="px-2 py-2 md:px-4">
+                        <td className="px-6 py-4 text-sm whitespace-nowrap">
                           <DateComponent item=
                             {item?.check_out} />
                         </td>
 
-                        <td className="px-2 py-2 md:px-4 ">
+                        <td className="px-6 py-4 text-sm font-medium  whitespace-nowrap ">
                           <div
                             className={`capitalize inline-flex items-center rounded-full py-3 w-max px-4 text-xs text-white  ${item?.booking_status === "completed"
                               ? "bg-green-700"
@@ -276,7 +321,7 @@ export default function Index() {
                             {item?.booking_status}
                           </div>
                         </td>
-                        <td className="px-2 py-2 md:px-4">
+                        <td className="px-6 py-4 text-sm font-medium  whitespace-nowrap ">
                           <div>
 
                             {formatMultiPrice(item?.price)}
@@ -284,7 +329,7 @@ export default function Index() {
                         </td>
                         {key === "upcoming" &&
                           (
-                            <td className="px-2 py-2 md:px-4">
+                            <td className="px-6 py-4 text-sm font-medium  whitespace-nowrap ">
                               {
 
                                 item?.booking_status !== "cancelled" ? (
@@ -303,13 +348,13 @@ export default function Index() {
 
 
                             </td>)}
-                        {key === "ongoing" &&
+                        {/* {key === "ongoing" &&
                           <td className="px-2 py-2 md:px-4">
                             <span className="text-4xl ml-1" style={{ cursor: "pointer" }} onClick={() => handleHouseRules(item)}>🛈</span>
-                          </td>}
+                          </td>} */}
                       </tr>
-                    </tbody>
-                  ))}
+                    ))}
+                  </tbody>
                 </table>
               </div>
             ) : (
@@ -339,10 +384,44 @@ export default function Index() {
     );
   };
 
+  // const PhoneBooking = () => {
+  //   return (
+  //     <>
+  //       <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden p-6">
+  //       <div className="flex items-center justify-between mb-4">
+  //   <h2 className="text-xl font-semibold text-gray-800">Net-Banking</h2>
+  //   <p className="px-3 py-1 text-sm font-medium text-white bg-green-500 rounded-full">Success</p>
+  // </div>
+  
+
+  //         <div className="flex items-center justify-between mb-4">
+  //           <h3 className="text-lg font-bold text-gray-900">Quaint Stay</h3>
+  //           <p className="text-2xl font-bold text-gray-900">₹35,000</p>
+  //         </div>
+
+  //         <div className="text-gray-600 mb-4 flex items-center justify-between mb-4">
+  //           <p className="text-sm mb-1"> pay_OfYONyO7Pw14Uv</p>
+  //           <p className="text-sm mb-1"> INR</p>
+           
+  //         </div>
+  //         <div className="flex items-center justify-between mb-4">
+  //         <p className="text-sm mb-1">16 Apr 2024, 05:00PM</p>
+  //         <p className="text-sm">24 Apr 2024, 08:00PM </p>
+
+  //         </div>
+  //       </div>
+
+  //     </>
+
+  //   )
+
+  // }
+
+
   return (
     <AuthLayout>
       <Head>
-        <title>Bookings - Quaintspaces </title>
+        <title>Bookings - Quaint Spaces </title>
       </Head>
       <div className="container mx-auto">
         <div className=" account-btn ">
@@ -359,7 +438,7 @@ export default function Index() {
           <div className="flex overflow-x-auto mb-[20px] md:mb-0 align-items-center py-2 sm:space-x-4 space-x-1 upcomming-box">
             <Button
               design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "upcoming"
-                ? "bg-orange-300 text-white"
+                ? "bg-[#efa3a3]  text-white"
                 : "text-black"
                 }`}
               onClick={() => handleGroupChange("upcoming")}
@@ -368,14 +447,14 @@ export default function Index() {
             <Button
               text={"Completed"}
               design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "completed"
-                ? "bg-orange-300 text-white"
+                ? " bg-[#efa3a3]  text-white"
                 : "text-black"
                 } `}
               onClick={() => handleGroupChange("completed")}
             />
             <Button
               design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "cancelled"
-                ? "bg-orange-300 text-white"
+                ? " bg-[#efa3a3]  text-white"
                 : "text-black"
                 } `}
               onClick={() => handleGroupChange("cancelled")}
@@ -383,7 +462,7 @@ export default function Index() {
             />
             <Button
               design={`font-inter text-gray-400 font-medium lg:text-[16px] text-[14px] leading-tight text-center xxl:w-52 px-4 border-2 p-3 mb-2 rounded-full ${selectedButton === "ongoing"
-                ? "bg-orange-300 text-white"
+                ? "bg-[#efa3a3]  text-white"
                 : "text-black"
                 } `}
               onClick={() => handleGroupChange("ongoing")}
@@ -431,27 +510,33 @@ export default function Index() {
                   ))}
                 </div>
               </div>
-              <div className="mb-4 flex justify-center"></div>
+              <div className="sm:mb-4 flex justify-center"></div>
             </Modal>
           </div>
         </div>
 
-        <div className="tble-ma">
-          <BookingTable />
-        </div>
+        {isMobile ? (
+
+          <MobileBooking/>
+        ) : (
+          <div className="tble-ma">
+
+            <BookingTable />
+          </div>
+        )}
+
       </div>
 
       {
         showConfirmation && (
           <Modal isOpen={showConfirmation} onClose={handleCancel}>
             <p className="text-lg text-white font-semibold p-6 py-4 bg-[#efa3a3]">
-              Are you sure you want to cancel your booking?
+              Cancel your booking?
             </p>
             <p className="text-xl text-center font-semibold  py-8  capatalize">
               <div>
                 {refend === 0 ? (
                   <>
-
                     <h2>
                       Only the cleaning fee will be refunded:
 
@@ -463,7 +548,7 @@ export default function Index() {
 
                 ) : (
                   <div>
-                    Your Refunded amount is <span className="text-green-600">{formatMultiPrice(refend)}</span>
+                    Your Refunded amount will be <span className="text-green-600">{formatMultiPrice(refend)}</span>
                   </div>
                 )}
               </div>
@@ -499,20 +584,20 @@ export default function Index() {
                   <>
                     <p className="text-sm  font-normal  mb-4 ">
                       <span className="font-bold">
-                        Wifi-Username :-
+                        Wifi-Username :
                       </span>
                       {houseRule?.property_details?.property_rule?.wifi_username}
                     </p>
                     <p className="text-sm  font-normal  mb-4 capatalize">
                       <span className="font-bold">
-                        Password :-
+                        Password :
                       </span>
                       {houseRule?.property_details?.property_rule?.wifi_password}
                     </p>
 
                     <p className="text-sm  font-normal  mb-4">
                       <span className="font-bold">
-                        house manuals :-
+                        house manuals :
                       </span>
                       {houseRule?.property_details?.property_rule?.house_manuals}
                     </p>
@@ -526,13 +611,13 @@ export default function Index() {
                   <>
                     <p className="text-sm  font-normal  mb-4">
                       <span className="font-bold">
-                        Direction :-
+                        Direction :
                       </span>
                       {houseRule?.property_details?.property_rule?.direction}
                     </p>
                     <p className="text-sm  font-normal  mb-4">
                       <span className="font-bold">
-                        check-in method:-
+                        check-in method:
                       </span>
                       <span>
                         {houseRule?.property_details?.check_in_method} &nbsp;
@@ -547,7 +632,7 @@ export default function Index() {
                   <>
                     <p className="text-sm  font-normal  mb-4">
                       <span className="font-bold">
-                        Direction :-
+                        Direction :
                       </span>
                       {houseRule?.property_details?.property_rule?.direction}
                     </p>

@@ -29,6 +29,8 @@ export default function ReasonToVisit() {
   ];
 
   return (
+
+    // bg-[#F5F5DC]
     <div
       className="visit-us-sec relative bg-[#F5F5DC]"
       // style={{ backgroundImage: `url(/images/Amenitie_bg.avif)` }}

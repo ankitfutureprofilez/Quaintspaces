@@ -14,6 +14,7 @@ import "../styles/customs.css";
 import "../styles/apartment.css";
 import "../styles/ImageMover.css";
 import NotLogin from "./login/NotLogin";
+import ClearCache from "./common/ClearCache";
 // import "slick-carousel/slick/slick.css"; 
 // import "slick-carousel/slick/slick-theme.css";
 
@@ -65,6 +66,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
+    <ClearCache /> 
      <Toaster
             toastOptions={{
               position: "top-right",

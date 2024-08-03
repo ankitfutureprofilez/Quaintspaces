@@ -146,7 +146,7 @@ const ForgotPassword = () => {
   };
   setOpenLogin(false);
   return (
-    <div>
+    <div >
       {step === 1 && (
         <ForgotLayout showHeader={true}>
           <div className="right-signup-form flex justify-end">

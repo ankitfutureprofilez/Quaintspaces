@@ -19,45 +19,39 @@ export default function Menu() {
 
   return (
     <>
-      <div className="menutoggle flex items-center absolute shadow-md rounded-lg bg-gray-200 justify-center right-0">
-        <div className="w-full min-w-[250px]  p-3 divide-y divide-gray-300 profile-navbar">
-          <div aria-label="header" className="flex space-x-4 items-center p-2">
+      <div className="menutoggle flex items-center absolute rounded-lg bg-gray-100 shadow-sm justify-center right-0">
+        <div className="w-full min-w-[250px] divide-y divide-gray-300 profile-navbar">
+          <div aria-label="header" className="flex space-x-4 items-center px-3 py-3">
             <Link href="/profile">
               <div
                 aria-label="avatar"
                 className="flex mr-auto items-center space-x-4"
               >
-                <Image
-                  src={
-                    auth?.image_url
-                      ? auth?.image_url
-                      : "/images/profile-no-image.jpg"
-                  }
-                  alt="profile"
-                  width={100}
-                  height={100}
-                />
-                <div className="space-y-2 flex flex-col flex-1 truncate">
-                  <div className="font-[18px] sm:font-medium relative text-xl leading-tight text-gray-900">
-                    <span className="flex">
-                      <span className=" relative pr-8 capitalize">
+                  <Image className="w-5 h-5 min-h-5"
+                    src={
+                      auth?.image_url
+                        ? auth?.image_url
+                        : "/images/profile-no-image.jpg"
+                    }
+                    alt="profile"
+                    width={100}
+                    height={100}
+                  />
+                <div className="">
+                  <div className=" relative text-gray-900">
+                      <p className="text-[18px] relative capitalize">
                         {auth?.first_name}
-                        <span
-                          aria-label="verified"
-                          className="absolute top-1/2 -translate-y-1/2 right-0 inline-block rounded-full"
-                        ></span>
-                      </span>
-                    </span>
+                      </p>
                   </div>
                 </div>
               </div>
             </Link>
           </div>
-          <div aria-label="navigation" className="py-2">
+          <div aria-label="navigation" className="py-2 header-naves">
             <nav className="grid gap-1 px-1">
               <Link
                 href="/booking"
-                className="!flex items-center leading-6 space-x-3 py-2 sm:py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
+                className="!flex items-center leading-6 py-2 sm:py-3 px-3 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
               >
                 <svg
                   width="28"
@@ -83,7 +77,7 @@ export default function Menu() {
 
               <Link
                 href="/paymentHistory"
-                className="!flex items-center leading-6 space-x-3 py-2 sm:py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
+                className="!flex items-center leading-6 py-2 sm:py-3 px-3 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
               >
                 <svg
                   fill="#000000"
@@ -99,7 +93,7 @@ export default function Menu() {
 
               <Link
                 href="/security"
-                className="!flex items-center leading-6 space-x-3 py-2 sm:py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
+                className="!flex items-center leading-6 py-2 sm:py-3 px-3 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
               >
                 <SecurityIcon />
                 <span>Security</span>
@@ -107,7 +101,7 @@ export default function Menu() {
 
               <Link
                 href="/account"
-                className="!flex items-center leading-6 space-x-3 py-2 sm:py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
+                className="!flex items-center leading-6 py-2 sm:py-3 px-3 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -127,16 +121,12 @@ export default function Menu() {
                 </svg>
                 <span>Settings</span>
               </Link>
-            </nav>
-          </div>
 
-          <div aria-label="footer" className="pt-2">
-            <button
-              onClick={handleLogoutClick}
-              type="button"
-              className="flex items-center space-x-3 py-3 px-4 w-full leading-6 text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
-            >
-              <svg
+              <Link
+                href="/login" onClick={handleLogoutClick}
+                className="!flex items-center leading-6 py-2 sm:py-3 px-3 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
+              >
+                <svg
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
                 className="w-7 h-7"
@@ -153,8 +143,9 @@ export default function Menu() {
                 <path d="M9 12h12l-3 -3"></path>
                 <path d="M18 15l3 -3"></path>
               </svg>
-              <span>Logout</span>
-            </button>
+                <span>Logout</span>
+              </Link>
+            </nav>
           </div>
         </div>
       </div>

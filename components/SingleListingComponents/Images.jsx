@@ -5,12 +5,11 @@ import Image from "next/image";
 
 const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
   return (
-    <div className="flex flex-wrap sm:flex-nowrap gap-2 w-full h-full">
+    <div className="flex flex-wrap sm:flex-nowrap w-full h-full gap-2">
       {loading ? (
         <>
-          <div className="w-1/2 h-[calc(35vh)] min-h-[500px] bg-lightBorderColor rounded-md"></div>
-          <div className="w-1/2 h-[calc(35vh)] min-h-[500px] bg-lightBorderColor rounded-md"></div>
-        </>
+          <div className="w-full h-[calc(35vh)] min-h-[500px] opacity-[0.5] bg-gray-200 rounded-md"></div>
+        </> 
       ) : (
         <div
           className={`${
@@ -105,11 +104,12 @@ const Images = ({ setSelectedImage, listing, setImageViewer, loading }) => {
           setImageViewer(true);
           setSelectedImage(0);
         }}
-        className="flex items-center justify-center gap-2 absolute bottom-0 right-0 sm:bottom-4 sm:right-4 rounded-md font-medium border darkBorderColor bg-lightBorderColor text-blackColor px-3 py-1" >
+        className="flex items-center justify-center gap-2 absolute bottom-2 right-2 sm:bottom-4 sm:right-4 rounded-md font-medium border darkBorderColor  bg-lightBorderColor text-blackColor px-3 py-1" >
         <span>
-          <Grid />
+          <Grid className="text-[13px] sm:text-sm" />
         </span>
-        <span>Show all photos</span>
+        <span className="text-[13px] sm:text-sm">Show all photos</span>
+
       </button>
     </div>
   );

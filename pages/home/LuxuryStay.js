@@ -25,28 +25,27 @@ export default function LuxuryStay() {
 
     <>
       {isMobile ? (
-        <div className="py-[30px] lg:py-[80px]">
+        <div className="py-[30px] lg:py-[80px] ">
           <div className="container">
-            <div className="flex justify-center items-center w-full mb-4">
+            <div className="flex justify-center overflow-hidden items-center w-full mb-4">
               <div className="w-1/2 max-w-[215px] justify-center pr-4 " >
                 <Image
                   src={Luxury1}
-                  alt="Quaintspaces Jaipur"
+                  alt="Quaint Spaces Jaipur"
                   priority="true"
                   blurDataURL={`${Luxury1}?q=1`}
                   placeholder="blur"
-                  data-aos="fade-down"
-                  // data-aos-offset="300"
+                  data-aos="fade-down"            
                   className="mb-4 h-[180px] sm:h-[230px] object-cover"
                 />
                 <Image
                   src={Luxury3}
-                  alt="Quaintspaces Jaipur"
+                  alt="Quaint Spaces Jaipur"
                   priority="true"
                   blurDataURL={`${Luxury1}?q=1`}
                   placeholder="blur"
                   data-aos="fade-up"
-                  data-aos-offset="50"
+                  data-aos-offset="50" 
                   className="h-[180px] sm:h-[230px] object-cover"
                 />
               </div>
@@ -54,7 +53,7 @@ export default function LuxuryStay() {
                 <h1 className="ml-2 text-center">Opulent</h1>
                 <Image
                   src={Luxury2}
-                  alt="Quaintspaces Jaipur"
+                  alt="Quaint Spaces Jaipur"
                   priority="true"
                   blurDataURL={`${Luxury1}?q=1`}
                   placeholder="blur"
@@ -64,7 +63,7 @@ export default function LuxuryStay() {
                 <h1 className="ml-2">Escapes</h1>
               </div>
             </div>
-            <p className="leading-relaxed text-[#61554E] testimo-text text-[15px] leading-[20px] font-normal text-center">
+            <p className="leading-relaxed text-[#61554E] text-[15px] leading-[20px] font-normal text-center">
               Stay in the heart of Jaipur's pink city, our modern, well-appointed
               apartments, perfect for business or leisure. We go the extra mile to
               tailor your stay to your preferences, ensuring a memorable and unique
@@ -83,7 +82,7 @@ export default function LuxuryStay() {
                 <div className="img-box" data-aos="fade-right">
                 <Image
                   src={Luxury1}
-                  alt="Quaintspaces Jaipur"
+                  alt="Quaint Spaces Jaipur"
                   priority="true"
                   blurDataURL={`${Luxury1}?q=1`}
                   placeholder="blur"
@@ -97,7 +96,7 @@ export default function LuxuryStay() {
               >
                 <Image
                   src={Luxury2}
-                  alt="Quaintspaces Jaipur"
+                  alt="Quaint Spaces Jaipur"
                   priority="true"
                   blurDataURL={`${Luxury2}?q=1`}
                   placeholder="blur"
@@ -106,7 +105,7 @@ export default function LuxuryStay() {
               <div className="img-box" data-aos="fade-left">
                 <Image
                   src={Luxury3}
-                  alt="Quaintspaces Jaipur"
+                  alt="Quaint Spaces Jaipur"
                   priority="true"
                   blurDataURL={`${Luxury3}?q=1`}
                   placeholder="blur"

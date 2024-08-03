@@ -20,13 +20,17 @@ import useWishlist from "../../hooks/useWishlist";
 import { addDays } from "date-fns";
 import { formatMultiPrice } from "../../hooks/ValueData";
 import toast from "react-hot-toast";
+import StartRating from "../../pages/elements/StartRating";
+
 
 const SingleListingBody = ({ isAdmin, listing, loading }) => {
   const router = useRouter();
   const [selection, setSelection] = useState(null); // 'guests', 'dates', null
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageViewer, setImageViewer] = useState(false);
+  const { auth, setOpenLogin } = useContext(Context);
 
+  console.log("listing?.data?._id",listing?.data)
   // Guests max limit is selected here
   const [guests, setGuests] = useState({
     adults: {
@@ -159,21 +163,22 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
                 <span className="font-medium text-lg">
                   {formatMultiPrice(listing?.data?.price)}
                 </span>
-                <span className="text-md"> night</span>
+                <span className="text-md"> /night</span>
               </span>
               <div className="flex gap-1 items-center">
                 <span>
-                  <Star />
+                <StartRating size={15} value={parseFloat( listing?.data?.rating && listing?.data?.rating?.toFixed(2)) ?? 0} color={"#000000"}/>
                 </span>
-                <span className="text-xs font-medium">
+                {/* <span className="text-xs font-medium">
                   {listing?.data?.rating && listing?.data?.rating?.toFixed(2)}
-                </span>
-                <span> ·</span>
-                <span className="text-xs underline text-lightTextColor">
+                </span> */}
+                {/* <span> ·</span> */}
+                {/* <span className="text-[15px] underline text-lightTextColor">
                   {listing?.data?.review} reviews
-                </span>
+                </span> */}
               </div>
             </div>
+            {auth && auth?.name ? (
             <button
               className="filter mx-2 btn w-full h-11"
               onClick={() => {
@@ -182,7 +187,7 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
                   return;
                 }
                 router.push(
-                  `/book/${listing?.data?._id}?numberOfAdults=${
+                  `/book/${listing?.data?.uuid}?numberOfAdults=${
                     guests?.adults?.value || 0
                   }&numberOfChildren=${
                     guests?.children?.value || 0
@@ -196,6 +201,15 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
             >
               Book
             </button>
+            ) : (
+              <button
+              onClick={() => setOpenLogin(true)}
+              className="filter mx-2 btn w-full h-11"
+              >
+                    Book
+                  </button>
+                )}
+
           </div>
         </div>
       </header>
@@ -233,8 +247,7 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
           />
           <div
             ref={ImagesRef}
-            className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] sm:max-h-[40vh]"
-          >
+            className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] sm:max-h-[40vh]" >
             <Images
               setSelectedImage={setSelectedImage}
               listing={listing}
@@ -289,7 +302,7 @@ const ImageSlider = ({ listing }) => {
       {listing?.data?.images && (
         <Image blurDataURL={`${listing?.data?.images[0]?.url}?q=1`} placeholder="blur"
         src={listing?.data?.images[0]?.url}
-        layout="fill" objectFit="cover"
+        layout="fill" objectFit="cover" 
         className="w-full object-cover"
         alt="Property Image" 
       />

@@ -35,13 +35,13 @@ const Date_GuestsPickerCard = React.forwardRef(
           <div className="sticky top-28 left-0 min-w-[25rem] min-h-[500px] bg-lightBorderColor rounded-md"></div>
         ) : (
           <div className="sticky top-28 left-0 sm:min-w-[25rem]">
-            <div className="rounded-xl shadow border border-[#efa3a3] py-5 px-2 sm:p-5">
+            <div className="rounded-xl shadow border border-[#efa3a3] py-5 px-4 sm:p-5">
               <div className="flex items-center justify-between mb-6">
                 <h1 className="text-md font-bold">
                   <span className=" text-theme text-2xl">
                     {formatMultiPrice(listing?.price) ?? 0}
                   </span>{" "}
-                  /Night
+                  /night
                 </h1>
                 <span className="flex items-center gap-1 sm:gap-2">
                   <span className="flex items-center gap-1">
@@ -78,7 +78,7 @@ const Date_GuestsPickerCard = React.forwardRef(
               <div ref={ref}>
                 {auth && auth?.name ? (
                   <button
-                    className="filter btn w-full hover:bg-[#fff] hover:text-[#efa3a3] border-2 bg-color-[#efa3a3] border-[#efa3a3] "
+                    className=" btn w-full mt-4 hover:bg-[#efa3a3] border-2 border-[#efa3a3] hover:border-[#efa3a3] text-[#efa3a3] hover:text-[#fff]"
                     onClick={() => {
                       if (selectedDay == null || selectEnd == null) {
                         toast.error("Date not selected");
@@ -105,7 +105,7 @@ const Date_GuestsPickerCard = React.forwardRef(
                 ) : (
                   <button
                     onClick={() => setOpenLogin(true)}
-                    className=" btn w-full hover:bg-[#fff] hover:text-[#efa3a3] border-2 bg-color-[#efa3a3] hover:border-[#efa3a3]"
+                    className=" btn w-full mt-4 hover:bg-[#efa3a3] border-2 border-[#efa3a3] hover:border-[#efa3a3] text-[#efa3a3] hover:text-[#fff]"
                   >
                     {" "}
                     Check Availability

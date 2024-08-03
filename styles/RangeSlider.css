@@ -10,7 +10,7 @@
   }
   @media (max-width: 520px) {
     .slider-container {
-      width: 300px;
+      width: 250px;
     }
   }
   
@@ -80,7 +80,7 @@
   }
   @media (max-width: 520px) {
     .thumb {
-      width: 300px;
+      width: 279px;
     }
   }
   

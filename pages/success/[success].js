@@ -4,10 +4,10 @@ import { formatMultiPrice } from "../../hooks/ValueData";
 import { useRouter } from "next/router";
 import Listings from "../api/laravel/Listings";
 import toast from "react-hot-toast";
-import DateComponent from "../admin/hook/Dateformat";
+// import DateComponent from "../admin/hook/Dateformat";
 import LoadingSpinner from "../admin/hook/spinner";
 import { Link } from "iconsax-react";
-
+import SuccessDate from "./SuccessDate";
 
 function calculateTotalDays(checkInDate, checkOutDate) {
   const checkIn = new Date(checkInDate);
@@ -17,14 +17,12 @@ function calculateTotalDays(checkInDate, checkOutDate) {
   return Math?.round(days);
 }
 
-
-
 const success = () => {
   const [loading, setloading] = useState(false);
-  const [record, setRecord] = useState("")
+  const [record, setRecord] = useState("");
 
   useEffect(() => {
-    const data = localStorage.getItem('response');
+    const data = localStorage.getItem("response");
     if (data) {
       const main = new Listings();
       handleSubmit(main, data);
@@ -35,10 +33,11 @@ const success = () => {
     setloading(true);
     const parsedData = JSON.parse(data);
     const { razorpay_payment_id, razorpay_order_id } = parsedData;
-    main.user_success_payment({
-      "payment_id": razorpay_payment_id,
-      "order_id": razorpay_order_id
-    })
+    main
+      .user_success_payment({
+        payment_id: razorpay_payment_id,
+        order_id: razorpay_order_id,
+      })
       .then((res) => {
         if (res && res.data && res.data.status) {
           toast.success(res.data.message);
@@ -55,7 +54,7 @@ const success = () => {
   };
 
   const totalStay = calculateTotalDays(record?.check_in, record?.check_out);
-
+console.log("record",record)
   return (
     <AuthLayout>
       {loading ? (
@@ -80,8 +79,8 @@ const success = () => {
                   y2="38.142"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop offset="0" stop-color="#21ad64"></stop>
-                  <stop offset="1" stop-color="#088242"></stop>
+                  <stop offset="0" stop-color="#efa3a3"></stop>
+                  <stop offset="1" stop-color="#efa3a3"></stop>
                 </linearGradient>
                 <path
                   fill="url(#5zzMGVQnN_QyRYWGmJUsQa_A8xKzsTKHhzn_gr1)"
@@ -101,60 +100,103 @@ const success = () => {
                 ></path>
               </svg>
             </div>
-            <h2 className=" text-center mt-4 capitalize">
-              Your Appointment Booked Successfully!
+            <h2 className=" text-center mt-4 ">
+              Your Booking is Confirmed!
             </h2>
-            <p className="text-black-400 text-center mt-2 capitalize">
-              We have sent your booking information to your email address.
+            <p className="text-[#efa3a3] text-center mt-2">
+              We have sent your booking confirmation to your email address.
             </p>
             <div className=" pt-16 sm:text-xl text-sm   flex flex-wrap justify-center m-auto max-w-[600px]">
               <div className="w-full flex justify-between mb-4 flex-wrap  ">
-                <p className="text-black-400 font-bold  capitalize">Booking Number</p>
-                <p className="text-start text-black-400 font-bold font-semibold" >
+                <p className="text-black-400 font-bold  capitalize">
+                  Booking Number
+                </p>
+                <p className="text-start text-black-400 font-bold font-semibold">
                   {record?.booking_number}
                 </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold capitalize">Booking Date </p>
+                <p className="text-black-400 font-bold capitalize">
+                  Booking Date{" "}
+                </p>
                 <p className="text-start text-black-400 font-bold font-semibold">
                   {record?.payment_date}
                 </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold capitalize">Customer Name:</p>
-                <p className="text-start text-black-400 font-bold font-semibold">{record?.name}</p>
+                <p className="text-black-400 font-bold capitalize">
+                  Customer Name:
+                </p>
+                <p className="text-start text-black-400 font-bold font-semibold">
+                  {record?.name}
+                </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold capitalize">Property  Name:</p>
-                <p className="text-start text-black-400 font-bold font-semibold">{record?.property_name ? `${record?.property_name} / Jaipur` : <></>} </p>
+                <p className="text-black-400 font-bold capitalize">
+                  Property Name:
+                </p>
+                <p className="text-start text-black-400 font-bold font-semibold">
+                  {record?.property_name ? (
+                    `${record?.property_name} , Jaipur`
+                  ) : (
+                    <></>
+                  )}{" "}
+                </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
                 <p className="text-black-400 font-bold capitalize">Check in </p>
-                <p className="text-start text-black-400 font-bold font-semibold">{DateComponent(record?.check_in)} </p>
+                <p className="text-start text-black-400 font-bold font-semibold">
+                <SuccessDate item=
+                            {record?.check_in} />{" "}
+                  {/* {DateComponent(record?.check_in)}{" "} */}
+                </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold capitalize">Check  out </p>
-                <p className="text-start text-black-400 font-bold font-semibold">{DateComponent(record?.check_out)}</p>
+                <p className="text-black-400 font-bold capitalize">
+                  Check out{" "}
+                </p>
+                <p className="text-start text-black-400 font-bold font-semibold">
+                <SuccessDate item=
+                            {record?.check_out} />{" "}
+                  {/* {DateComponent(record?.check_out)} */}
+                </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold capitalize">Amount Paid</p>
-                <p className="text-start text-black-400 font-bold font-semibold">{formatMultiPrice(record?.price)}</p>
+                <p className="text-black-400 font-bold capitalize">
+                  Amount Paid
+                </p>
+                <p className="text-start text-black-400 font-bold font-semibold">
+                  {formatMultiPrice(record?.price)}
+                </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold capitalize">Total Members (Guests & infants)</p>
-                <p className="text-start text-black-400 font-bold font-semibold">{record?.guests} & {record?.infants} </p>
+                <p className="text-black-400 font-bold capitalize">
+                  Total Members (Guests & infants)
+                </p>
+                <p className="text-start text-black-400 font-bold font-semibold">
+                  {record?.guests} & {record?.infants}{" "}
+                </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold capitalize">Total Pets</p>
-                <p className="text-start text-black-400 font-bold font-semibold">{record?.no_of_pet}</p>
+                <p className="text-black-400 font-bold capitalize">
+                  Total Pets
+                </p>
+                <p className="text-start text-black-400 font-bold font-semibold">
+                  {record?.no_of_pet}
+                </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold capitalize">no. of nights</p>
-                <p className="text-start text-black-400 font-bold font-semibold">{totalStay} Nights</p>
+                <p className="text-black-400 font-bold capitalize">
+                  no. of nights
+                </p>
+                <p className="text-start text-black-400 font-bold font-semibold">
+                  {totalStay} Nights
+                </p>
               </div>
             </div>
           </div>
-        </div>)}
+        </div>
+      )}
     </AuthLayout>
   );
 };

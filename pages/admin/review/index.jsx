@@ -121,13 +121,13 @@ export default function Index() {
                           <tbody className="bg-white divide-y divide-gray-200">
                             {content.map((item, index) => (
                               <tr key={index}>
-                                <td className="px-4 py-4 text-sm text-gray-500">
+                                <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap overflow-hidden text-ellipsis">
                                   {index + 1}
                                 </td>
-                                <td className="px-4 py-4 text-sm whitespace-nowrap text-gray-500">
+                                <td className="px-4 py-4 text-sm  whitespace-nowrap overflow-hidden text-ellipsis text-gray-500">
                                   {item?.createdAt}
                                 </td>
-                                <td className="px-4 py-4 text-sm text-gray-500">
+                                <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap overflow-hidden text-ellipsis">
                                   <div className="flex items-center gap-x-2">
                                     <Image
                                       className="img-data object-cover w-8 h-8 rounded-full user-profile-img"
@@ -140,7 +140,7 @@ export default function Index() {
                                       height={32}
                                     />
                                     <div>
-                                      <h2 className="text-sm capitalize font-medium text-gray-800">
+                                      <h2 className="text-sm capitalize font-medium text-gray-800 ">
                                         {item?.rating_user?.name}
                                       </h2>
                                       <p className="text-xs font-normal text-gray-600">
@@ -149,7 +149,7 @@ export default function Index() {
                                     </div>
                                   </div>
                                 </td>
-                                <td className="px-4 py-4 text-sm text-gray-500">
+                                <td className="px-4 py-4 text-sm text-gray-500 ">
                                   {item?.review_text}
                                 </td>
                                 <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">

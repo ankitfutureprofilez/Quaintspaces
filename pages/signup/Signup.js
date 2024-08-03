@@ -74,9 +74,9 @@ export default function Signup() {
         className="z-[-1]"
       />
       <div className="container h-full">
-        <div className="flex items-center  h-full relative signup-tab-sec">
+        <div className="flex items-center h-full relative signup-tab-sec">
           <div className="left-logo-login w-6/12 px-3">
-            <div className="backtohome">
+            <div className="backtohome ms-2 lg:ms-0">
               <Link href="/">
                 <svg
                   width="44"
@@ -102,7 +102,11 @@ export default function Signup() {
                Homepage
               </Link>
             </div>
-            <Image src={logologin} alt="logo" />
+            <Link href="/">
+            
+            <Image src={logologin} alt="Quaint Spaces Jaipur logo" />
+            </Link>
+
             <p>
             Indulge in the finest and most charming accommodation in Jaipur!
             </p>
@@ -112,10 +116,10 @@ export default function Signup() {
             </p> */}
           </div>
           <div className="right-signup-form w-6/12 px-3 flex justify-end">
-            <div className="signup-form w-full max-h-screen overflow-y-auto">
+            <div className="signup-form w-full max-h-[90vh] overflow-y-auto">
               <div className="formbgcolor"></div>
               <div className="quainttay">
-                <h2>Welcome to Quaintspaces Jaipur </h2>
+                <h2>Welcome to Quaint Spaces Jaipur </h2>
                 <h3 className="text-[#fff]">
                   Already have an account? <Link
                     className="underline"

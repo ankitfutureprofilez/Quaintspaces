@@ -2,13 +2,14 @@ import React from 'react';
 import Moment from 'moment';
 
 const DateComponent = ({ item }) => {
-  const formattedDateTimeString = item ? Moment(item).format('D MMMM YYYY, h:mm A') : '';
+  const formattedDate = item ? Moment(item).format('D MMMM YYYY') : '';
+  const formattedTime = item ? Moment(item).format('h:mm A') : '';
 
   return (
     <div>
-      {formattedDateTimeString}
+      <div>{formattedDate}</div>
+      <div>{formattedTime}</div>
     </div>
   );
 };
-
 export default DateComponent;

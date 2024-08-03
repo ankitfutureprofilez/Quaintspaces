@@ -43,9 +43,9 @@ function List({ post }) {
                 </div>
               ) : (<> </>)}
               <Image
-              sizes={"100%"}
-              width={"100"}
-              height={"100"}
+                sizes={"100%"}
+                width={"100"}
+                height={"100"}
                 src={post?.property_image[0]?.image_url ? (post?.property_image[0]?.image_url) : ("https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg")}
                 alt="Banipark Apartment"
                 className="w-full h-full object-cover object-center"
@@ -72,29 +72,29 @@ function List({ post }) {
                 <span>{capitalizeAndReplace(post?.type)}</span> 
                 <span>{capitalizeAndReplace(post?.properties_type)}</span> 
               </div> */}
-              <div className="flex mb-[15px]">
+              <div className="flex mb-[15px] overflow-x-auto md:overflow-x-visible">
 
                 <div className=" mb-2 sm:pr-[20px] pr-[7px]">
+                  <p className="text-[#666360] font-[700] text-[18px] text-center"> {post?.bedrooms} </p>
                   <h3 className="text-[#666360] font-[400] text-[13px]">Bedrooms</h3>
-                  <p className="text-[#666360] font-[700] text-[16px]"> {post?.bedrooms} </p>
                 </div>
 
                 <div className=" mb-2 sm:pr-[20px] pr-[7px] pl-[7px] sm:ml-[20px] ml-[7px] border-l">
+                  <p className="text-[#666360] font-[700] text-[18px] text-center">{post?.beds}  </p>
                   <h3 className="text-[#666360] font-[400] text-[13px]">Bed</h3>
-                  <p className="text-[#666360] font-[700] text-[16px]">{post?.beds}  </p>
                 </div>
                 <div className=" mb-2 sm:pr-[20px] pr-[7px] pl-[7px] sm:ml-[20px] ml-[7px] border-l">
+                  <p className="text-[#666360] font-[700] text-[18px] text-center">{post?.guests} </p>
                   <h3 className="text-[#666360] font-[400] text-[13px]">Guests</h3>
-                  <p className="text-[#666360] font-[700] text-[16px]">{post?.guests} </p>
                 </div>
                 <div className=" mb-2 sm:pr-[20px] pr-[7px] pl-[7px] sm:ml-[20px] ml-[7px] border-l">
+                  <p className="text-[#666360] font-[700] text-[18px] text-center">{post?.no_of_pet_allowed} </p>
                   <h3 className="text-[#666360] font-[400] text-[13px]">Pets</h3>
-                  <p className="text-[#666360] font-[700] text-[16px]">{post?.no_of_pet_allowed} </p>
                 </div>
 
                 <div className=" mb-2 sm:pr-[20px] pr-[10px] pl-[10px] sm:ml-[20px] ml-[10px] border-l">
+                  <p className="text-[#666360] font-[700] text-[18px] text-center"> {post?.bathrooms} </p>
                   <h3 className="text-[#666360] font-[400] text-[13px]">Bathroom</h3>
-                  <p className="text-[#666360] font-[700] text-[16px]"> {post?.bathrooms} </p>
                 </div>
               </div>
 
@@ -121,13 +121,13 @@ function List({ post }) {
             <div className="w-8/12 p-6">
               <h2 className="text-[22px] font-[600] text-[#3F2A17] mb-[10px]">
                 {formatMultiPrice(post?.price) ? formatMultiPrice(post?.price) : 0}
-                /Night
+                /night
               </h2>
               <h2 className="text-[22px] font-[600] text-[#3F2A17] mb-[10px]">
                 {capitalizeFirstLetter(post?.name)}</h2>
               <p className="text-[16px] font-[400] text-[#666360] uppercase mb-[15px]"> {record?.location}</p>
 
-              <div className="flex mb-[15px]">
+              <div className="flex mb-[15px] overflow-x-auto md:overflow-x-visible">
                 <div className=" mb-2 pr-[40px]">
                   <h3 className="text-[#666360] font-[400] text-[13px]">Bedrooms</h3>
                   <p className="text-[#666360] font-[700] text-[16px]"> {post?.bedrooms} </p>

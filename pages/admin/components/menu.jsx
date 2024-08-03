@@ -27,10 +27,10 @@ export default function menu({ isOpen, record }) {
               height={35}
             />
             <div className="space-y-2 flex flex-col flex-1 truncate">
-              <div className="font-[18px] sm:font-medium relative text-xl leading-tight text-gray-900">
+              <div className="font-[16px] sm:font-normal relative  leading-tight text-gray-900">
                 <span className="flex">
                   <span className=" relative pr-8 capitalize	">
-                    {record?.name}
+                  {record?.name}
                     <span className="absolute top-1/2 -translate-y-1/2 right-0 inline-block rounded-full"></span>
                   </span>
                 </span>

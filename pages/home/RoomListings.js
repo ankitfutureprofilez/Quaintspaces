@@ -100,15 +100,15 @@ export default function RoomListings() {
                   {capitalizeFirstLetter(item?.name)}
                 </h3>
                 <p>
-                  <span className="capitalize">{capitalizeAndReplace(item?.type)}</span> &nbsp;
-                  <span className="capitalize">{capitalizeAndReplace(item?.properties_type)}</span> &nbsp;
+                  <span className="capitalize">{capitalizeAndReplace(item?.type)}  ·</span> &nbsp;
+                  <span className="capitalize">{capitalizeAndReplace(item?.properties_type)}   ·</span> &nbsp;
                   {item?.bedrooms} Bedrooms · {item?.beds} Bed · {item?.guests} Guests · {item?.no_of_pet_allowed} Pets
                 </p>
                 <h4>
                   <span className="card-price">
                     {formatMultiPrice(item?.price) || 0}
                   </span>{" "}
-                  /Night
+                  /night
                 </h4>
               </div>
               <div className="explor-btn absolute w-full left-0 bottom-0">

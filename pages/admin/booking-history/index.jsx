@@ -122,51 +122,49 @@ export default function index() {
 
   return (
     <AdminLayout heading={"Booking Management"}>
-      <div className="flex max-w-full text-md font-large relative bg-gray-100 p-2 rounded-lg mt-3">
+      <div className="flex bg-gray-100  mt-3 mb-2  text-white rounded-lg p-2 overflow-x-auto mb-5 md:mb-0 items-center  space-x-2 sm:space-x-4 upcoming-box">
         <button
           onClick={() => setActiveTab('upcoming')}
-          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "upcoming" ? "bg-amber-700  text-white" : "text-black"
-            }`}
+          className={`flex-1 px-4 py-2 rounded-lg text-center ${activeTab === 'upcoming' ? 'bg-amber-700 text-white' : 'text-black'} mb-2 sm:mb-0`}
         >
-
           Upcoming
         </button>
         <button
           onClick={() => setActiveTab('completed')}
-          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "completed" ? "bg-green-600 text-white" : "text-black"
-            }`}
+          className={`flex-1 px-4 py-2 rounded-lg text-center ${activeTab === 'completed' ? 'bg-green-600 text-white' : 'text-black'} mb-2 sm:mb-0`}
         >
-          Completed
+          Complete
         </button>
         <button
           onClick={() => setActiveTab('cancelled')}
-          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "cancelled" ? "bg-red-600 text-white" : "text-black"
-            }`}
+          className={`flex-1 px-4 py-2 rounded-lg text-center ${activeTab === 'cancelled' ? 'bg-red-600 text-white' : 'text-black'} mb-2 sm:mb-0`}
         >
           Cancelled
         </button>
         <button
           onClick={() => setActiveTab('current')}
-          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "current" ? "bg-black text-white" : "text-black"
-            }`}
+          className={`flex-1 px-4 py-2 rounded-lg text-center ${activeTab === 'current' ? 'bg-black text-white' : 'text-black'} mb-2 sm:mb-0`}
         >
           Current
         </button>
         <button
           onClick={() => setActiveTab('failed')}
-          className={`z-10 w-full px-4 py-1 rounded-lg ${activeTab === "failed" ? "bg-red-700  text-white" : "text-black"
-          }`}
+          className={`flex-1 px-2 py-2 rounded-lg text-center ${activeTab === 'failed' ? 'bg-red-700 text-white' : 'text-black'} mb-2 sm:mb-0`}
         >
           Failed
         </button>
       </div>
+
+
+
+
       {loading ? (
         <Spinner />
       ) : content && content.length > 0 ? (
         <>
 
           <div className="overflow-x-auto mt-3">
-            <div className="w-full">
+            <div className="w-full  table-responsive">
               <div className="overflow-x-auto border border-gray-200 md:rounded-lg mt-2">
                 <table className="min-w-[1200px] w-full divide-gray-200">
                   <thead className="bg-gray-50">
@@ -201,19 +199,22 @@ export default function index() {
                   <tbody className="bg-white divide-y divide-gray-200">
                     {content.map((item, index) => (
                       <tr key={index}>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                           {index + 1}
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                           {item?.booking_date}
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                           {item?.booking_number}
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
-                          {item?.check_in} & {item?.check_out}
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                          From : {item?.check_in}  
+                          <div  className="">
+                         To:  {item?.check_out}
+                          </div>
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                           <Link
                             href={`/property/${item?.booking_property?.uuid}`}
                           >
@@ -242,18 +243,17 @@ export default function index() {
                                     ? "..."
                                     : ""}
                                 </div>
-                                <div className="text-sm">
-                                  {item?.booking_property?.guests} guests ||{" "}
-                                  {item?.booking_property?.no_of_pet_allowed} pet{" "}
+                                <div className="text-[12px]">
+                                  {item?.booking_property?.guests} guests
                                 </div>
                               </div>
                             </div>
                           </Link>
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                           {formatMultiPrice(item?.price)}
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                           <div
                             style={{ cursor: "pointer" }}
                             className="flex items-center "
@@ -266,7 +266,7 @@ export default function index() {
                           </div>
                         </td>
                         {item?.booking_status === "pending" ?
-                          <td className="px-4 py-2 text-sm text-gray-500">
+                          <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                             <div
                               onClick={() =>
                                 bookingaccept(
@@ -318,7 +318,7 @@ export default function index() {
                             </div>
                           </td>
                           :
-                          <td className="px-4 py-2 text-sm text-gray-500">
+                          <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                             <td
                               className={`capitalize inline-flex items-center rounded-full py-3 w-max px-4 text-xs text-white  ${item?.booking_status === "completed"
                                 ? "bg-green-700"
@@ -365,41 +365,39 @@ export default function index() {
       {selectedBooking && (
         <Modal isOpen={isConfirmOpen} onClose={closeConfirmModal}>
           <div className="flex flex-col">
-          <div className="p-4 bg-[#efa3a3]">
-          <div className="p-4 bg-[#efa3a3]">
-            <label
-              htmlFor="message"
-              className="mx-auto block text-lg font-medium text-[#fff]"
-            >
-              Message  
-            </label>
-            </div>
+            <div className="p-4 bg-[#efa3a3]">
+              <label
+                htmlFor="message"
+                className="mx-auto block text-lg font-medium text-[#fff]"
+              >
+                Message
+              </label>
             </div>
             <div className="p-4">
-            <textarea
-              id="message"
-              name="message"
-              value={message}
-              onChange={handleChange}
-              className=" p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
-              required
-              placeholder="Please enter your reason for cancellation"
-              rows={2}
-            />
-            <div className="flex justify-center">
-            <button
-              className="btn filter mt-6 mb-4 w-2/4 mx-auto"
-              onClick={() =>
-                bookingaccept(
-                  selectedBooking.booking_user[0].id,
-                  selectedBooking.id,
-                  "cancelled"
-                )
-              }
-            >
-              {loading ? "Proceeding..." : "Proceed"}
-            </button>
-            </div>
+              <textarea
+                id="message"
+                name="message"
+                value={message}
+                onChange={handleChange}
+                className=" p-3 lg:p-4 border rounded-3xl min-h-32 lg:min-h-52 w-full"
+                required
+                placeholder="Please enter your reason for cancellation"
+                rows={2}
+              />
+              <div className="flex justify-center">
+                <button
+                  className="btn filter mt-6 mb-4 w-2/4 mx-auto"
+                  onClick={() =>
+                    bookingaccept(
+                      selectedBooking.booking_user[0].id,
+                      selectedBooking.id,
+                      "cancelled"
+                    )
+                  }
+                >
+                  {loading ? "Proceeding..." : "Proceed"}
+                </button>
+              </div>
             </div>
           </div>
         </Modal>
@@ -407,14 +405,22 @@ export default function index() {
 
       {imageOpen && (
         <Modal isOpen={openImageModal} onClose={CloseImageModal}>
-          <div className=" flex flex-col ">
-          <h3 className="bg-[#efa3a3] text-white p-4"> Document Image</h3>
-          <div className="p-4">
-            <img
+          <div className="flex flex-col">
+            <div className="p-4 bg-[#efa3a3]">
+              <label
+                htmlFor="message"
+                className="mx-auto block text-lg font-medium text-[#fff]"
+              >
+                Document Image
+              </label>
+            </div>
+            <div className="p-4">
+              <img
                 src={document}
                 alt="Document Image"
               />
-          </div>
+
+            </div>
           </div>
         </Modal>
       )}

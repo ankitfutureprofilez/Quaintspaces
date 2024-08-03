@@ -3,7 +3,6 @@ import HeroBanner from './HeroBanner';
 import Image from "next/image";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import dynamic from 'next/dynamic';
 import 'swiper/css/pagination';
 export default function HERO() {
    const images = [
@@ -25,7 +24,7 @@ export default function HERO() {
       pagination={{
         clickable: true,
       }} 
-      // navigation={true} 
+      navigation={true} 
       slidesPerView={1}
       modules={[Autoplay, Pagination]}
       className="mySwiper">
@@ -44,7 +43,7 @@ export default function HERO() {
          <SwiperSlide>
               <div key={`image-banner-1`} className="relative w-full lg:h-[670px] md:h-[550px] h-[450px]">
                   <Image
-                    src={'/images/banner/Banner1.jpg'}
+                    src={'/images/banner/Banner1.JPG'}
                     alt={`Banner 4`} className="w-full h-full"
                     layout="fill" 
                     objectFit="cover" /> 
@@ -75,7 +74,7 @@ export default function HERO() {
               </div>
           </SwiperSlide>
     </Swiper>
-      <div className="absolute z-[1] top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] w-full flex items-center justify-center">
+      <div className="w-full h-auto absolute z-[1] top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] flex items-center justify-center">
         <HeroBanner />
       </div> 
     </div>

@@ -10,10 +10,11 @@ import Listings from "../../pages/api/laravel/Listings";
 import { Context } from "../../pages/_app";
 import toast from "react-hot-toast";
 import StartRating from "../../pages/elements/StartRating";
+import { FaStar } from "react-icons/fa6";
 
 const Reviews = React.forwardRef(({ data,isAdmin }, ref ) => {
 
-  const { auth } = useContext(Context);
+  const { auth, setOpenLogin } = useContext(Context);
 
   const router = useRouter();
   const id = router.query.slug;
@@ -84,21 +85,29 @@ const Reviews = React.forwardRef(({ data,isAdmin }, ref ) => {
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isOpen]);
   return (
     <section ref={ref}
-      className="min-h-[50vh] border-y border-darkBorderColor py-8">
+      className="xl:min-h-[50vh] border-y border-darkBorderColor py-8">
       <h1 className="text-xl md:text-2xl mb-4 font-semibold flex items-center gap-1">
         <span className="flex" >
-        <p className="pe-2" >{ data?.rating !==0 ?(parseFloat(data && data?.rating && data?.rating?.toFixed(0))) :(<></>) }
-        {data?.rating>0?
-          ".0"
-        :null}
+        <p className="pe-2 flex items-center" ><FaStar size={'20'} color={"#000"} variant="Bold" />&nbsp;{ data?.rating !==0 ?(parseFloat(data && data?.rating && data?.rating?.toFixed(0))) :(<></>) }
+        {data?.rating>0?".0":null}
         </p>
         {/* <StartRating size={26} value={parseFloat(data && data?.rating && data?.rating?.toFixed(2))} />  */}
         
         </span>
-          <span>
-            {data?.review ? <> <span>{data?.review} Review</span></> : ''}
+          <span className="text-sm">
+            {data?.review ? <> (<span>{data?.review} Review</span>)</> : ''}
           </span>
       </h1>
 
@@ -238,14 +247,15 @@ const Reviews = React.forwardRef(({ data,isAdmin }, ref ) => {
         {/* Add review option */}
         {}
        
-            <button
-            className="btn-normal mt-8 capitalize"
+        <button
+          className={
+            "btn-normal mt-8 capitalize"
+          }
             onClick={() => {
               if (auth) {
                 openModal();
               } else {
-                toast.error("You are not logged in!");
-                router.push("/login");
+                setOpenLogin(true);
               }
             }}
           >

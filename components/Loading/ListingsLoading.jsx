@@ -15,16 +15,15 @@ const ListingsLoading = ({ divider = 5, css = "w-[calc(100%/2-50px)]" }) => {
 
 const AllApartmentLoading = () => {
   return (
-    <div className="w-full bg-white flex items-center justify-center z-50 h-auto gap-8">
-  <div className="bg-white rounded-lg list-gstr overflow-hidden flex animate-pulse w-full h-auto">
-    <div className="w-[350px] max-h-[300px] bg-gray-200 relative">
-    </div>
-    <div className="w-8/12 p-6">
-      <div className="h-5 bg-gray-300 rounded mb-[12px] min-w-[1050px]"></div>
-      <div className="h-5 bg-gray-300 rounded mb-[12px] min-w-[1050px]"></div>
-      <div className="flex h-8 mb-[25px] bg-gray-300 w-[500px] rounded">
+    <div className="w-full bg-white flex items-center justify-center z-50 h-auto gap-8 mb-6">
+    <div className="bg-white rounded-lg list-gstr overflow-hidden lg:flex animate-pulse w-full h-auto">
+    <div className="lg:w-[350px] h-[200px] lg:h-[300px] max-h-[300px] bg-gray-200 relative"></div>
+    <div className="lg:w-8/12 overflow-hidden p-6 ">
+      <div className="h-5 bg-gray-200 rounded mb-[12px] lg:min-w-[1050px]"></div>
+      <div className="h-5 bg-gray-200 rounded mb-[12px] lg:min-w-[1050px]"></div>
+      <div className="flex h-8 mb-[25px] bg-gray-200 w-[500px] rounded">
       </div>
-      <div className="h-16 bg-gray-300 rounded min-w-[1050px]"></div>
+      <div className="h-16 bg-gray-200 rounded lg:min-w-[1050px]"></div>
     </div>
   </div>
 </div>
@@ -38,7 +37,7 @@ const TableLoading = () => {
         <tr>
           {["Booking Date", "Booking Number", "Title", "Check In", "Check Out"].map((header, index) => (
             <th key={index} className="p-2">
-              <div className="h-10 bg-gray-300 rounded w-full animate-pulse"></div>
+              <div className="h-10 bg-gray-200 rounded w-full animate-pulse"></div>
             </th>
           ))}
         </tr>
@@ -48,7 +47,7 @@ const TableLoading = () => {
           <tr key={rowIndex}>
             {[...Array(5)].map((_, colIndex) => (
               <td key={colIndex} className="px-4 py-2">
-                <div className="h-6 bg-gray-300 rounded w-full animate-pulse"></div>
+                <div className="h-6 bg-gray-200 rounded w-full animate-pulse"></div>
               </td>
             ))}
           </tr>
