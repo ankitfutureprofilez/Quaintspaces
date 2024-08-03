@@ -9,13 +9,157 @@ import { formatMultiPrice } from "../hooks/ValueData.js";
 import Head from "next/head";
 import { TableLoading } from "../components/Loading/ListingsLoading.jsx";
 import Moment from 'moment';
+import { BsDot } from "react-icons/bs";
 
  const PhoneDesign = () => {
     return (
-      <div>Phone Design</div>
-    )
+      <div className="py-[30px]">
+        <div className="container mx-[auto]">
+          <h2 className="text-[17px] text-[#787069] font-normal uppercase tracking-[-0.06em] leading-[14.56px] mb-[15px]">
+            Today
+          </h2>
+          <div className="space-y-[10px]">
+            <div className="border-[1px] border-[#0000001a] rounded-[10px] ">
+              <div className="flex flex-wrap justify-between items-center border-b-[1px] border-[#0000001a] p-[10px]">
+                <h4 className="text-[12px] font-normal uppercase leading-[14.7px] text-[#3F2A17]">
+                  Net-Banking
+                </h4>
+                <div className="text-[11px] leading-[14px] font-normal text-[#00860D] bg-[#00860D33] border-[1px] border-[#00860D] rounded-[45px] px-[8px] py-[5px] inline-flex items-center">
+                  <BsDot className="text-[20px] w-[15px] h-[15px]" />
+                  Success
+                </div>
+              </div>
+              <div className="p-[10px]">
+                <div className="flex flex-wrap items-center justify-between border-b-[1px] border-[#0000001a] pb-[15px] mb-[15px]">
+                  <div className="flex items-center">
+                    <div className="">
+                      <h3 className="text-[15px] font-normal leading-[18.38px] text-[#3F2A17] mb-[5px]">
+                        Quaint Stay
+                      </h3>
+                      <p className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A]">
+                        BKGQSJAI_20 2400259
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-end">
+                    <h3 className="text-[15px] font-normal leading-[18.38px] text-[#3F2A17] mb-[5px]">
+                      ₹35,000
+                    </h3>
+                    <p className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A]">
+                      INR
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap">
+                  <div className="w-1/2 border-r-[1px] border-[#0000001a] flex items-center">
+                    <span className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A] leading-[22px]">
+                      16 Apr 2024, 05:00PM
+                    </span>
+                  </div>
+                  <div className="w-1/2 text-end flex justify-end items-center">
+                    <span className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A] leading-[22px]">
+                      24 Apr 2024, 08:00PM
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="border-[1px] border-[#0000001a] rounded-[10px] ">
+              <div className="flex flex-wrap justify-between items-center border-b-[1px] border-[#0000001a] p-[10px]">
+                <h4 className="text-[12px] font-normal uppercase leading-[14.7px] text-[#3F2A17]">
+                  Net-Banking
+                </h4>
+                <div className="text-[11px] leading-[14px] font-normal text-[#00860D] bg-[#00860D33] border-[1px] border-[#00860D] rounded-[45px] px-[8px] py-[5px] inline-flex items-center">
+                  <BsDot className="text-[20px] w-[15px] h-[15px]" />
+                  Success
+                </div>
+              </div>
+              <div className="p-[10px]">
+                <div className="flex flex-wrap items-center justify-between border-b-[1px] border-[#0000001a] pb-[15px] mb-[15px]">
+                  <div className="flex items-center">
+                    <div className="">
+                      <h3 className="text-[15px] font-normal leading-[18.38px] text-[#3F2A17] mb-[5px]">
+                        Quaint Stay
+                      </h3>
+                      <p className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A]">
+                        BKGQSJAI_20 2400259
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-end">
+                    <h3 className="text-[15px] font-normal leading-[18.38px] text-[#3F2A17] mb-[5px]">
+                      ₹35,000
+                    </h3>
+                    <p className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A]">
+                      INR
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap">
+                  <div className="w-1/2 border-r-[1px] border-[#0000001a] flex items-center">
+                    <span className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A] leading-[22px]">
+                      16 Apr 2024, 05:00PM
+                    </span>
+                  </div>
+                  <div className="w-1/2 text-end flex justify-end items-center">
+                    <span className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A] leading-[22px]">
+                      24 Apr 2024, 08:00PM
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="border-[1px] border-[#0000001a] rounded-[10px] ">
+              <div className="flex flex-wrap justify-between items-center border-b-[1px] border-[#0000001a] p-[10px]">
+                <h4 className="text-[12px] font-normal uppercase leading-[14.7px] text-[#3F2A17]">
+                  Net-Banking
+                </h4>
+                <div className="text-[11px] leading-[14px] font-normal text-[#00860D] bg-[#00860D33] border-[1px] border-[#00860D] rounded-[45px] px-[8px] py-[5px] inline-flex items-center">
+                  <BsDot className="text-[20px] w-[15px] h-[15px]" />
+                  Success
+                </div>
+              </div>
+              <div className="p-[10px]">
+                <div className="flex flex-wrap items-center justify-between border-b-[1px] border-[#0000001a] pb-[15px] mb-[15px]">
+                  <div className="flex items-center">
+                    <div className="">
+                      <h3 className="text-[15px] font-normal leading-[18.38px] text-[#3F2A17] mb-[5px]">
+                        Quaint Stay
+                      </h3>
+                      <p className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A]">
+                        BKGQSJAI_20 2400259
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-end">
+                    <h3 className="text-[15px] font-normal leading-[18.38px] text-[#3F2A17] mb-[5px]">
+                      ₹35,000
+                    </h3>
+                    <p className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A]">
+                      INR
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap">
+                  <div className="w-1/2 border-r-[1px] border-[#0000001a] flex items-center">
+                    <span className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A] leading-[22px]">
+                      16 Apr 2024, 05:00PM
+                    </span>
+                  </div>
+                  <div className="w-1/2 text-end flex justify-end items-center">
+                    <span className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A] leading-[22px]">
+                      24 Apr 2024, 08:00PM
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
 
-  }
+  } 
 
 export default function paymentHistory() {
   const [loading, setLoading] = useState(false);
