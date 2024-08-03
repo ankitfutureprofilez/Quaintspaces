@@ -10,12 +10,28 @@ import Head from "next/head";
 import { TableLoading } from "../components/Loading/ListingsLoading.jsx";
 import Moment from 'moment';
 
+ const PhoneDesign = () => {
+    return (
+      <div>Phone Design</div>
+    )
+
+  }
+
 export default function paymentHistory() {
   const [loading, setLoading] = useState(false);
   const [listings, setListings] = useState([]);
   const router = useRouter();
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const fetching = async (pg) => {
     setLoading(true);
@@ -153,6 +169,8 @@ export default function paymentHistory() {
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <title>Payment History - Quaint Spaces Jaipur</title>
       </Head>
+      {isMobile ?<PhoneDesign/> 
+      :
       <div className="container mx-auto">
         <div className="account-btn">
           <div className="pt-4 sm:pt-8 md:pt-12 pb-3 sm:pb-6 md:pb-10">
@@ -173,6 +191,7 @@ export default function paymentHistory() {
           )}
         </div>
       </div>
+      }
     </AuthLayout>
   );
 }
