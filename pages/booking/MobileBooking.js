@@ -4,6 +4,7 @@ import { formatMultiPrice } from '../../hooks/ValueData';
 import Link from "next/link";
 import NoData from '../elements/NoData.js';
 import SuccessDate from '../success/SuccessDate.jsx';
+import DateComponent from '../elements/DateFormat.jsx';
 export default function MobileBooking({ listings, selectedButton }) {
   console.log("listings", listings)
   return (
@@ -50,13 +51,13 @@ Today
                     <div className="w-1/2 border-r-[1px] border-[#0000001a] flex items-center">
                       <span className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A] leading-[22px]">
   
-                        <SuccessDate item=
+                        <DateComponent item=
                           {item?.check_in} />
                       </span>
                     </div>
                     <div className="w-1/2 text-end flex justify-end items-center">
                       <span className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A] leading-[22px]">
-                        <SuccessDate item=
+                        <DateComponent item=
                           {item?.check_out} />
   
                       </span>
