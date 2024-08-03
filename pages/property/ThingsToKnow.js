@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Modal from "../elements/Modal";
 
 export default function ThingsToKnow({ record, isAdmin, content }) {
-  console.log("record", record);
   const [isOpen, setIsOpen] = useState(false);
   const [formattedAdditionalData, setFormattedAdditionalData] = useState("");
 
@@ -26,6 +25,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
     return words.slice(0, wordLimit).join(' ') + '...';
   };
 
+  console.log("record?.data?.property_rule?.additional_rules",record?.data?.property_rule?.additional_rules);
   useEffect(() => {
     const handleAdditionalData = (record) => {
       let additionalData;
@@ -34,7 +34,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
   
       try {
         // Parse additional_rules JSON if available
-        additionalData = record?.data?.property_rule?.additional_rules ? JSON.parse(record?.data?.property_rule?.additional_rules) : null;
+        additionalData = record?.data?.property_rule?.additional_rules ? record?.data?.property_rule?.additional_rules?.split('\r\n') : null;
         console.log("additionalData", additionalData);
       } catch (e) {
         console.error('Error parsing additional_rules JSON:', e);
@@ -75,7 +75,11 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
           <p className="mb-2 text-gray-500">Check in:  {record?.data?.check_in}</p>
           {/* <p className="mb-2 text-gray-500">Flexible/check-in ends after {record?.data?.flexible_check_in}</p> */}
           <p className="mb-2 text-gray-500">Check out: {record?.data?.check_out}</p>
-          {/* <p className="mb-2 text-gray-500">{record?.data?.guests} Guests Maximum</p> */}
+          {/* Note added here */}
+          <p className="mb-2 text-gray-500">
+          <span className="font-semibold text-black">Note:&nbsp;</span>
+            The price is subjective to changes based on the number of guests. A maximum of {record?.data?.guests} guests are allowed to stay at the property.
+            </p>
         </div>
         <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
           <h2 className="font-semibold mb-2">Safety & Property</h2>
@@ -130,11 +134,11 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
           </Modal>
         </div>
       </div>
-      <div className="mb-[30px] mt-[7px] flex">
+      {/* <div className="mb-[30px] mt-[7px] flex">
       <p className="font-semibold">Note:&nbsp;
         <span className="text-gray-500 sm:ml-2 font-normal">The price is subjective to changes based on the number of guests. A maximum of {record?.data?.guests} guests are allowed to stay at the property.</span>
         </p>
-      </div>
+      </div> */}
 
       {isAdmin && (
         <>
