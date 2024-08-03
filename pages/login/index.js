@@ -26,8 +26,9 @@ export default function Login() {
           objectFit="cover"
           className="fixed top-0 left-0 !w-full !h-full object-cover"
         />
+        
         <div className="container h-full sm:flex items-center">
-          <div className=" h-full sm:flex items-center">
+          <div className=" h-full sm:flex items-center m-auto">
             <div className="relative z-[1]">
               <div className="backtohome ms-2 lg:ms-0 ">
                 <Link href="/">
