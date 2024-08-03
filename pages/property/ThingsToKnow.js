@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Modal from "../elements/Modal";
 
 export default function ThingsToKnow({ record, isAdmin, content }) {
-  console.log("record", record);
   const [isOpen, setIsOpen] = useState(false);
   const [formattedAdditionalData, setFormattedAdditionalData] = useState("");
 
@@ -35,7 +34,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
   
       try {
         // Parse additional_rules JSON if available
-        additionalData = record?.data?.property_rule?.additional_rules ? JSON.parse(JSON.parse(record?.data?.property_rule?.additional_rules)) : null;
+        additionalData = record?.data?.property_rule?.additional_rules ? record?.data?.property_rule?.additional_rules?.split('\r\n') : null;
         console.log("additionalData", additionalData);
       } catch (e) {
         console.error('Error parsing additional_rules JSON:', e);
