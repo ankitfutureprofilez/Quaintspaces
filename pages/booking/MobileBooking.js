@@ -8,7 +8,7 @@ import NoData from '../elements/NoData.js';
 
 
 
-export default function MobileBooking({ listings }) {
+export default function MobileBooking({ listings, selectedButton }) {
   console.log("listings", listings)
   return (
     <>

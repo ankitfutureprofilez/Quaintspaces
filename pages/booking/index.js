@@ -519,7 +519,7 @@ export default function Index() {
 
         {isMobile ? (
 
-          <MobileBooking listings={listings} loading={loading} />
+          <MobileBooking listings={listings} loading={loading} selectedButton={selectedButton} />
         ) : (
           <div className="tble-ma">
 
