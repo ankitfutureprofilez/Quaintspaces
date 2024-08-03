@@ -11,7 +11,10 @@ export default function MobileBooking({ listings }) {
   console.log("listings", listings)
   return (
     <>
-      {listings?.map((item, index) => (
+      {
+      
+      
+      listings?.map((item, index) => (
         <div className="pb-[30px]">
           {/* <h2 className="text-[17px] text-[#787069] font-normal uppercase tracking-[-0.06em] leading-[14.56px] mb-[15px]">
             <DateComponent item={item?.createdAt} />
