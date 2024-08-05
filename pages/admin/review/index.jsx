@@ -76,7 +76,9 @@ export default function Index() {
         console.error("Error updating review status:", error);
       });
   };
-
+  const truncateEmail = (email, length = 13) => {
+    return email.length > length ? email.substring(0, length) + "..." : email;
+};
   return (
     <>
       <AdminLayout heading={"Review "}>
@@ -143,18 +145,14 @@ export default function Index() {
                                       <h2 className="text-sm capitalize font-medium text-gray-800 ">
                                         {item?.rating_user?.name}
                                       </h2>
-                                      <p className="text-xs font-normal text-gray-600">
+                                      <p className="text-xs font-normal text-gray-600" title= {item?.rating_user?.email}>
                                         {item?.rating_user?.email}
                                       </p>
                                     </div>
                                   </div>
                                 </td>
-                                <td className="relative px-4 py-4 text-sm text-gray-500 truncate-messgae">
+                                <td className="relative px-4 py-4 text-sm text-gray-500 truncate-text ">
                                   {item?.review_text}
-                                  <div className="full-text-tooltip">
-                                    {item?.review_text}
-                                  </div>
-
                                 </td>
                                 <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
                                   <div className="flex items-center gap-x-2">

@@ -188,7 +188,7 @@ export default function Index() {
                       >
                         {item.status === 0 ? (
                           <div className="flex items-center gap-2 border rounded-full p-2">
-                            <p className="text-xs">Deactivate</p>{" "}
+                            <p className="text-xs">disable</p>{" "}
                             <svg
                               className="text-gray-400"
                               xmlns="http://www.w3.org/2000/svg"
@@ -209,7 +209,7 @@ export default function Index() {
                           </div>
                         ) : (
                           <div className="flex items-center gap-1 border rounded-full p-1">
-                            <p className="text-xs">Activate</p>{" "}
+                            <p className="text-xs">Enable</p>{" "}
                             <svg
                               className="text-emerald-500"
                               xmlns="http://www.w3.org/2000/svg"
@@ -306,7 +306,7 @@ export default function Index() {
                               >
                                 {item.status === 0 ? (
                                   <div className="flex items-center gap-2 border rounded-full p-2">
-                                    <p className="text-xs">Deactivate</p>{" "}
+                                    <p className="text-xs">Diable</p>{" "}
                                     <svg
                                       class="text-gray-400"
                                       xmlns="http://www.w3.org/2000/svg"
@@ -327,7 +327,7 @@ export default function Index() {
                                   </div>
                                 ) : (
                                   <div className="flex items-center gap-1">
-                                    <p className="text-xs">Activate</p>{" "}
+                                    <p className="text-xs">Enable</p>{" "}
                                     <svg
                                       className="text-emerald-500"
                                       xmlns="http://www.w3.org/2000/svg"
