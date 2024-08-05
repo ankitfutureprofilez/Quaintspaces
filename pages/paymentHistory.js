@@ -145,13 +145,7 @@ export default function paymentHistory() {
           </table>
         </div>
 
-        {hasMore && (
-          <div className="load-more mt-5 text-center">
-            <button className="btn btn-outline-success cursor-pointer" onClick={loadMore}>
-              Load More
-            </button>
-          </div>
-        )}
+        
       </>
     );
   };
@@ -159,10 +153,7 @@ console.log("listings",listings);
   const PhoneDesign = () => {
     return (
       <div className="pb-[30px] pt-[10px]">
-        <div className="container mx-[auto]">
-          {/* <h2 className="text-[17px] text-[#787069] font-normal uppercase tracking-[-0.06em] leading-[14.56px] mb-[15px]">
-            Today
-          </h2> */}
+        <div className="mx-[auto] w-full">
           <div className="space-y-[10px]">
             {listings && listings?.map((item,index)=>(  
             <div key={index} className="border-[1px] border-[#0000001a] rounded-[10px] ">
@@ -232,19 +223,30 @@ console.log("listings",listings);
             <Heading text={"Payment History"} handleClick={() => router.back()} />
           </div>
         </div>
-        {isMobile ?<PhoneDesign/> 
+        {isMobile ? <PhoneDesign/> 
       :
         <div className="tble-ma">
-          {loading ? (
-            <TableLoading />
-          ) : listings && listings.length > 0 ? (
+          {listings && listings.length > 0 ? (
             <BookingTable />
           ) : (
-            <NoData
+            <>
+            {!loading ? <NoData
               url={"/apartments"}
               Heading={"No Data Found"}
               content={"You have not done any payment yet. Click below to go to the page"}
-            />
+            /> : ''}
+            </>
+          )}
+          {loading ? (
+            <TableLoading />
+          ) : ""}
+
+          {!loading && hasMore && (
+            <div className="load-more mt-5 text-center">
+              <button className="btn btn-outline-success cursor-pointer" onClick={loadMore}>
+                Load More
+              </button>
+            </div>
           )}
         </div>
       }
