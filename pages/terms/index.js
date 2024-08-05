@@ -19,7 +19,8 @@ function index() {
         font-size:18px;
       }
       `}</style>
-      <div className="terms bg-gray-100 min-h-screen">
+      <div className="container mx-auto bg-gray-100">
+      <div className="min-h-screen">
         <div className="max-w-4xl mx-auto py-12 px-4">
           <h1 className="text-4xl font-bold">Terms and Conditions</h1>
           <div className="prose">
@@ -1771,6 +1772,7 @@ function index() {
             </p>
           </div>
         </div>
+      </div>
       </div>
     </Layout>
   );

@@ -73,7 +73,7 @@ const Book = () => {
     adults: {
       value: +infos.adults || 0,
       max: 10,
-      min: 0,
+      min: 1,
     },
     children: {
       value: +infos.children || 0,
@@ -331,7 +331,6 @@ const Book = () => {
       .finally(() => setLoading(false));
   };
 
-
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
     setIsOpen(true);
@@ -403,10 +402,12 @@ const Book = () => {
               <div className="flex items-center justify-between w-full py-2">
                 <div>
                   <h3 className="text-lg  font-medium item-heading ">Dates</h3>
-                  <p className="text-md item-paragraph">{`${infos?.checkin && format(new Date(infos.checkin), "dd")
-                    } - ${infos?.checkout &&
+                  <p className="text-md item-paragraph">{`${
+                    infos?.checkin && format(new Date(infos.checkin), "dd")
+                  } - ${
+                    infos?.checkout &&
                     format(new Date(infos.checkout), "dd  MMM")
-                    }`}</p>
+                  }`}</p>
                 </div>
                 <button
                   onClick={() => setDateModel(true)}
@@ -415,7 +416,7 @@ const Book = () => {
                       ? "underline text-md font-medium edit-color overflow-hidden"
                       : "underline text-md font-medium edit-color"
                   }
-                // className="underline text-md font-medium edit-color"
+                  // className="underline text-md font-medium edit-color"
                 >
                   EDIT
                 </button>
@@ -423,15 +424,24 @@ const Book = () => {
               <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
                 <div>
                   <h5 className="text-lg font-medium item-heading">Guests</h5>
-                  <p className="text-md item-paragrapg">
-                    {`${+guests?.adults?.value + +guests?.children?.value
-                      } guests ${+infos.numberOfInfants
-                        ? ", " + infos.numberOfInfants + " infants"
+                  <p className="text-md item-paragrapgh">
+                    {`${+guests?.adults?.value + +guests?.children?.value} ${
+                      +guests?.adults?.value + +guests?.children?.value > 1
+                        ? "guests"
+                        : "guest"
+                    }${
+                      +infos.numberOfInfants
+                        ? `, ${infos.numberOfInfants} ${
+                            +infos.numberOfInfants > 1 ? "infants" : "infant"
+                          }`
                         : ""
-                      } ${+guests?.pets?.value
-                        ? ", " + guests?.pets?.value + " pets"
+                    }${
+                      +guests?.pets?.value
+                        ? `, ${guests?.pets?.value} ${
+                            +guests?.pets?.value > 1 ? "pets" : "pet"
+                          }`
                         : ""
-                      }`}
+                    }`}
                   </p>
                 </div>
                 <button
@@ -444,7 +454,7 @@ const Book = () => {
               <h3 className="text-2xl mb-4 font-medium mt-10 heading-data">
                 Upload ID
               </h3>
-              
+
               <div className=" border-b border-borderColor pb-4 md:pb-11">
                 <form>
                   <div className="mb-4">
@@ -568,7 +578,8 @@ const Book = () => {
               <div className="flex sm:flex-col md:flex-row gap-3 pb-4 border-b border-borderColor image-data">
                 <Image
                   src={
-                    listing?.property_image && listing?.property_image?.length > 0
+                    listing?.property_image &&
+                    listing?.property_image?.length > 0
                       ? listing.property_image[0].image_url
                       : "/fallback_image_url"
                   }
@@ -633,20 +644,20 @@ const Book = () => {
                               <div className="text-lg text-green-800 font-bold">
                                 {formatMultiPrice(
                                   discountedPrice *
-                                  differenceInDays(
-                                    new Date(infos.checkout),
-                                    new Date(infos.checkin)
-                                  )
+                                    differenceInDays(
+                                      new Date(infos.checkout),
+                                      new Date(infos.checkin)
+                                    )
                                 )}
                               </div>
 
                               <p className="text-red-700 text-sm line-through mt-1">
                                 {formatMultiPrice(
                                   originalPrice *
-                                  differenceInDays(
-                                    new Date(infos.checkout),
-                                    new Date(infos.checkin)
-                                  )
+                                    differenceInDays(
+                                      new Date(infos.checkout),
+                                      new Date(infos.checkin)
+                                    )
                                 )}
                               </p>
                               {discountPercentage && (
@@ -681,10 +692,10 @@ const Book = () => {
                               <div className="  mt-1">
                                 {formatMultiPrice(
                                   originalPrice *
-                                  differenceInDays(
-                                    new Date(infos.checkout),
-                                    new Date(infos.checkin)
-                                  )
+                                    differenceInDays(
+                                      new Date(infos.checkout),
+                                      new Date(infos.checkin)
+                                    )
                                 )}
                               </div>
                             </div>
@@ -713,16 +724,16 @@ const Book = () => {
                     <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex justify-end">
                       {formatMultiPrice(
                         listing?.cleaning_fee *
-                        differenceInDays(
-                          new Date(infos.checkout),
-                          new Date(infos.checkin)
-                        )
+                          differenceInDays(
+                            new Date(infos.checkout),
+                            new Date(infos.checkin)
+                          )
                       )}
                     </span>
                   </div>
                 </div>
                 {listing?.guests <
-                  guests?.adults?.value + guests?.children?.value ? (
+                guests?.adults?.value + guests?.children?.value ? (
                   <div className="flex gap-3 mt-2 border-b pb-2">
                     <div className="flex items-center justify-between w-full">
                       <div className="flex flex-col">
@@ -742,7 +753,7 @@ const Book = () => {
                           (guests?.adults?.value +
                             guests?.children?.value -
                             listing?.guests) *
-                          listing?.extra_guest_fee
+                            listing?.extra_guest_fee
                         )}
                       </span>
                     </div>
@@ -822,7 +833,7 @@ const Book = () => {
                         {cancelpolicy?.date
                           ? ""
                           : <Dateformat item={formattedCheckIn} /> &&
-                          "No Refund"}
+                            "No Refund"}
                       </h6>
                     </div>
                   </div>
@@ -871,8 +882,15 @@ const Book = () => {
                       </div>
                     </div>
                   } */}
-                  <p className="font-normal capitalize" >Cleaning fees are refunded if you cancel before check-in. </p>
-                  <p className="underline mt-2 font-bold cursor-pointer  text-[#efa3a3]" >Learn more about <Link href="/terms" target="_blank">cancellation policies</Link></p>
+                  <p className="font-normal capitalize">
+                    Cleaning fees are refunded if you cancel before check-in.{" "}
+                  </p>
+                  <p className="underline mt-2 font-bold cursor-pointer  text-[#efa3a3]">
+                    Learn more about{" "}
+                    <Link href="/terms" target="_blank">
+                      cancellation policies
+                    </Link>
+                  </p>
                 </div>
                 <div className="mb-4 flex justify-center"></div>
               </Modal>
