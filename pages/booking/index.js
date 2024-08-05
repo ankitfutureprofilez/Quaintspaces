@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Button from "../elements/Button";
+import Button from "../elements/Button.js";
 import Heading from "../elements/Heading.js";
 import { useRouter } from "next/router";
-import Listings from "../api/laravel/Listings";
+import Listings from "../api/laravel/Listings.js";
 import Link from "next/link";
 import AuthLayout from "../layout/AuthLayout.js";
 import Modal from "../elements/Modal.js";

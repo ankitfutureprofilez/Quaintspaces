@@ -1,6 +1,6 @@
 import React from 'react';
 import BookingImg from "../../public/images/booking_list_img.png";
-import { formatMultiPrice } from '../../hooks/ValueData';
+import { formatMultiPrice } from '../../hooks/ValueData.js';
 import Link from "next/link";
 import NoData from '../elements/NoData.js';
 import SuccessDate from '../success/SuccessDate.jsx';
