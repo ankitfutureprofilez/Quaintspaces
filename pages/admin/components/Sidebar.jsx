@@ -316,18 +316,18 @@ function Sidebar() {
               Security
             </Link>
 
-            <div className="pt-2">
+            {/* <div className="pt-2">
             <div
               onClick={handleLogoutClick}
               className="flex items-center space-x-3 py-2 px-2 w-full leading-3 text-lg text-gray-600 hover:bg-red-500 hover:text-white focus:outline-none hover:bg-gray-100 rounded-md"
             >
               <span>Logout</span>
             </div>
-          </div>
+          </div> */}
           </div>
           <div>
             <hr className="bg-gray-400 mx-2 my-2" />
-            
+
             {auth ? (
               <div
                 className="flex pb-28 justify-between px-1 p-2 md:px-2 items-center cursor-pointer hover:pr-3 duration-200"
