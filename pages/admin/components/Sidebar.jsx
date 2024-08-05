@@ -327,6 +327,7 @@ function Sidebar() {
           </div>
           <div>
             <hr className="bg-gray-400 mx-2 my-2" />
+            
             {auth ? (
               <div
                 className="flex pb-28 justify-between px-1 p-2 md:px-2 items-center cursor-pointer hover:pr-3 duration-200"
