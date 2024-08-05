@@ -98,7 +98,7 @@ function Sidebar() {
         </div>
         <hr className="bg-gray-400 mx-2" />
         <div className="flex flex-col min-h-screen justify-between">
-          <div className="pt-2 text-gray-500 font-medium space-y-2 md:px-1  text-normal">
+          <div className="pt-2 text-gray-500 font-medium space-y-2 md:px-1 text-normal max-h-[90vh] overflow-auto">
             <Link
               href={"/admin"}
               className={`flex ${pathname === "/admin"
