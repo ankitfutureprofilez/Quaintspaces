@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Listing from "../api/Listing";
-import Image from "next/image";
 import Nodata from "../hook/NoRecord";
-import Spinner from "../hook/spinner";
 import { formatMultiPrice } from "../../../hooks/ValueData";
-
+import Modal from "../hook/Modal";
 
 export default function Booking(props) {
   const { record } = props;
 
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
+  const [imageOpen, setimageOpen] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -27,6 +26,17 @@ export default function Booking(props) {
       });
   }, [record]);
 
+  const [document, setDocument] = useState();
+
+  const openImageModal = (image) => {
+    setDocument(image);
+    setimageOpen(true);
+  };
+
+  const CloseImageModal = () => {
+    setimageOpen(false);
+  };
+
   return (
     <>
       {loading ? (
@@ -35,11 +45,8 @@ export default function Booking(props) {
             <div className="text-lg">Loading...</div>
           </div>
         </div>
-
-
       ) : content && content.length > 0 ? (
-
-        <div className="mt-5 overflow-x-auto">
+        <div className="mt-5 ">
           <div className="inline-block align-middle w-full">
             <table className="min-w-[1200px] w-full table-auto break-all divide-y divide-gray-200">
               <thead className="bg-gray-50">
@@ -70,7 +77,7 @@ export default function Booking(props) {
                   content.map((item, index) => (
                     <tr className="" key={index}>
                       <td className="px-4 py-4 text-sm text-gray-500">
-                        {item?.booking_date} 
+                        {item?.booking_date}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-500">
                         {item?.booking_number}
@@ -81,7 +88,7 @@ export default function Booking(props) {
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500">
-                        { formatMultiPrice(
+                        {formatMultiPrice(
                           item?.price
                         )}
                       </td>
@@ -91,27 +98,51 @@ export default function Booking(props) {
                         </div>
                       </td>
                       <td className="img-data px-4 py-4 text-sm text-gray-500">
-                        <Image
-                          width={40}
-                          height={40}
-                          alt="Document"
-                          className="inline-flex items-center rounded-full user-profile-img mr-3"
-                          src={item?.front_url}
-                        />
-                        <div className="capitalize gap-3 inline-flex items-center rounded-full">
-                          {item?.doc_type}
+                        <div
+                          style={{ cursor: "pointer" }}
+                          className="flex items-center "
+                          onClick={() => openImageModal(item?.front_url)}
+                        >
+                          <div className="capitalize inline-flex items-center rounded-full ml-2">
+                            {item?.doc_type}
+                            <span className="text-base ml-1">🛈</span>
+                          </div>
                         </div>
                       </td>
                     </tr>
                   ))}
               </tbody>
             </table>
+
+
           </div>
         </div>
 
       ) : (
         <Nodata heading={"Booking Not Found "} />
       )}
+      {imageOpen && (
+        <Modal isOpen={openImageModal} onClose={CloseImageModal}>
+          <div className="flex flex-col">
+            <div className="p-4 bg-[#efa3a3]">
+              <label
+                htmlFor="message"
+                className="mx-auto block text-lg font-medium text-[#fff]"
+              >
+                Document Image
+              </label>
+            </div>
+            <div className="p-4">
+              <img
+                src={document}
+                alt="Document Image"
+              />
+
+            </div>
+          </div>
+        </Modal>
+      )}
+
     </>
   );
 }

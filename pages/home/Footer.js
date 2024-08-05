@@ -53,7 +53,7 @@ export default function Footer() {
                       <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px]  ml-2">
                         : +91 9521410122
                       </span>
-                    </Link>{" "}
+                    </Link>
                     &nbsp;/
                     <Link
                       className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] "
@@ -126,7 +126,6 @@ export default function Footer() {
           </div>
         </div>
       ) : (
-
         <div className="w-full  flex flex-col justify-between bg-[#f2f2f2]">
           <div className="container mx-auto">
             {/* Logo and Brand */}
@@ -171,7 +170,6 @@ export default function Footer() {
                 {/* <p><Link href="tel:9314022666">9314022666</Link></p> */}
               </div>
               <div className="w-full lg:w-1/3 mb-3 mb:mb-0 text-center xl:text-start">
-
                 {/* <div className="w-[80px] h-[2px] mx-auto xl:mx-[0] bg-[#efa3a3] mb-[15px]"></div> */}
                 <div className="flex flex-col">
                   <Link href="/terms">

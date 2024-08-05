@@ -13,6 +13,7 @@ export default function payment({ record }) {
   const [content, setContent] = useState([]);
 
   const [loading, setLoading] = useState(false);
+  
   useEffect(() => {
     setLoading(true);
     const main = new Listing();
@@ -22,7 +23,7 @@ export default function payment({ record }) {
         setLoading(false);
         setContent(res?.data?.data?.user_payment_history);
       })
-      
+
       .catch((error) => {
         setLoading(false);
         console.log("error", error);
@@ -41,9 +42,9 @@ export default function payment({ record }) {
 
         <div className=" mt-3">
           <div className="w-full">
-            <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
+            <div className=" border border-gray-200 md:rounded-lg">
               {content && content.length > 0 ? (
-                <table className="min-w-[1200px] w-full break-all divide-gray-200">
+                <table className="min-w-[1200px] w-full divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr >
                       <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Invoice </td>
@@ -90,14 +91,13 @@ export default function payment({ record }) {
                               />
                               <div>
                                 <div className="text-gray-800 font-medium capitalize ">{item?.booking_history?.booking_property?.name}</div>
-                                <div className="text-sm capitalize">{item?.booking_history?.booking_property?.properties_type?.replace("_"," ")}</div>
+                                <div className="text-sm capitalize">{item?.booking_history?.booking_property?.properties_type?.replace("_", " ")}</div>
                               </div>
                             </div>
                           </Link>
                         </td>
                         <td className="px-4 py-4 text-sm text-gray-500 capitalize  ">{item?.method}</td>
                         <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-500 sm:px-6 table-cell">
-
                           <td
                             className={` capitalize inline-flex items-center rounded-full py-2 px-3 text-xs text-white ${item?.payment_status === "success"
                               ? "bg-green-600"
@@ -111,24 +111,16 @@ export default function payment({ record }) {
                           >
                             {item?.payment_status}
                           </td>
-
-
                         </td>
-
-                        <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-500 sm:px-6 table-cell">{
-                        formatMultiPrice(item?.price)
-                        }</td>
-
+                        <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-500 sm:px-6 table-cell">
+                          {formatMultiPrice(item?.price)}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               ) : (
-
                 <Nodata heading={"No Payment History"} />
               )}
-
-
             </div>
           </div>
         </div>

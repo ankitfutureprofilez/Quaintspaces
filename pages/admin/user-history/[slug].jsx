@@ -33,7 +33,7 @@ function index() {
 
   return (
     <AdminLayout heading={"User Details"}>
-      <div className="w-full ">
+      <div className="w-full">
         <div className="antialiased mt-16">
           <div className="container mx-auto profile-payment">
             <div className="h-60 w-full profile-cover">
@@ -104,7 +104,7 @@ function index() {
           <div className="flex text-xl font-medium relative  rounded-lg py-0 mt-4">
             <button
               onClick={() => setActiveTab("Booking")}
-              className={`z-10 w-32 px-4 py-2  ${activeTab === "overview" ? "" : ""
+              className={`z-10 w-32 px-4 py-2  ${activeTab === "Booking" ? "" : ""
                 }`}
             >
               Booking
@@ -130,14 +130,10 @@ function index() {
           </div>
           <div className=" ">
             {activeTab === "Booking" && (
-              <div className=" ">
                 <Booking record={record?.id} />
-              </div>
             )}
             {activeTab === "payment" && (
-              <div>
                 <Payment record={record?.id} />
-              </div>
             )}
           </div>
         </div>
