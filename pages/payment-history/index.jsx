@@ -218,10 +218,8 @@ export default function index() {
     const MobileLoading = () => { 
         return <>
           <div role="status" class="w-full animate-pulse mt-4 border border-gray-300 rounded-xl p-4">
-            <div className='flex justify-between items-center'>
-              <div class="h-[80px] w-[25%] bg-gray-200 rounded-xl mb-2 p-4"></div>
-              <div class="h-[80px] w-[70%] bg-gray-200 rounded-xl mb-2 p-4"></div>
-            </div>
+            <div class="h-[20px] w-full bg-gray-200 rounded-xl mb-2 p-4"></div>
+            <div class="h-[40px] w-full bg-gray-200 rounded-xl mb-2 p-4"></div>
             <div className='grid grid-cols-2 gap-2'>
               <div class="h-[70px] w-[100%] bg-gray-200 rounded-xl p-4"></div>
               <div class="h-[70px] w-[100%] bg-gray-200 rounded-xl p-4"></div>
@@ -245,11 +243,6 @@ export default function index() {
                 </div>
                     
                     <div className="tble-ma">
-                        {!loading ? 
-                        <> {isMobile ? <MobileLoading /> : <TableLoading /> } </>
-                        : ""}
-
-
                         {listings && listings.length > 0 ? (
                             isMobile ? <PhoneDesign />: <BookingTable />
                         ) : (
@@ -262,9 +255,17 @@ export default function index() {
                             </>
                         )}
 
-                       
+                        {loading ? 
+                        <> {isMobile ? 
+                            <>
+                            <MobileLoading /> 
+                            <MobileLoading /> 
+                            <MobileLoading /> 
+                            </>
+                        : <TableLoading /> } </>
+                        : ""}
 
-                        {!loading && hasMore && (
+                        {!loading && listings && listings.length > 0 && hasMore && (
                             <div className="load-more mt-5 text-center">
                                 <button className="btn btn-outline-success cursor-pointer" onClick={loadMore}>
                                     Load More
