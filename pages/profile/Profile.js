@@ -137,13 +137,12 @@ export default function Profile() {
       <Head>
         <title>Profile - Quaint Spaces Jaipur</title>
       </Head>
-      <div className="container mx-auto  ">
+     
+      <div className="container mx-auto perso-form">
+        <div className="lg:w-9/12 md:w-10/12 w-full m-auto  md:rounded-3xl rounded-2xl md:my-6 my-4">
         <div className="py-6 sm:py-12">
           <Heading text={"My Profile"} handleClick={() => router.back()} />
         </div>
-      </div>
-      <div className="container mx-auto mt-5">
-        {/* Image Upload */}
         <div className="flex items-center profile-border">
           <div className="relative">
             <div className="shrink-0">
@@ -193,10 +192,6 @@ export default function Profile() {
           </div>
           <div className="border-b-2 border-soild border-zinc-300 "> </div>
         </div>
-      </div>
-      <div className="container mx-auto mt-5 perso-form">
-
-        <div className="lg:w-9/12 md:w-10/12 w-full m-auto md:p-12 sm:p-8 p-6 md:rounded-3xl rounded-2xl md:my-6 my-4">
           <div className="pers-info ">
             <h3>Personal Information</h3>
             <p>Update your personal information here </p>
@@ -279,11 +274,11 @@ export default function Profile() {
                 </div>
                 
               </div>
-              <div className="flex justify-center mt-4 ">
+              <div className="flex justify-start mt-3 pb-4 ">
                 <Button
                   text={loading ? "Updating..." : "Update Details"}
                   design={
-                    "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-[#efa3a3] sm:p-4 p-3 rounded-full"
+                    "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-normal leading-tight text-center text-white w-full sm:w-96 bg-[#efa3a3] sm:p-4 p-3 rounded-full"
                   }
                 />
               </div>

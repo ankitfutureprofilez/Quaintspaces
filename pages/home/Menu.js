@@ -76,7 +76,7 @@ export default function Menu() {
               </Link>
 
               <Link
-                href="/paymentHistory"
+                href="/payment-history"
                 className="!flex items-center leading-6 py-2 sm:py-3 px-3 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
               >
                 <svg

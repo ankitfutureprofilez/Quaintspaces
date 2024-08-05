@@ -11,8 +11,8 @@ export const formatMultiPrice = (amount) => {
 
 const Valuedata = () => {
   return (
-    <div>
-    </div>
+    <>
+    </>
   );
 }
 

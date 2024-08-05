@@ -4,24 +4,19 @@ import Head from "next/head";
 
 function index() {
   return (
+    <div className="  bg-gray-100">
     <Layout>
       <Head>
         <title>Terms & Conditions - Quaint Spaces Jaipur</title>
       </Head>
       <style>{`
-      .terms p, .terms li { 
-        color:#828282; line-height: 27px;
-      }
-      .terms li, .terms ul { 
-        margin-bottom:7px;
-      }
-      .terms h2 { 
-        font-size:18px;
-      }
+      .terms p,.terms li{color:#828282;line-height:27px;}
+      .terms li,.terms ul{margin-bottom:7px;}
+      .terms h2{font-size:18px;} 
       `}</style>
-      <div className="container mx-auto bg-gray-100">
+      <div className="terms container mx-auto ">
       <div className="min-h-screen">
-        <div className="max-w-4xl mx-auto py-12 px-4">
+        <div className="lg:max-w-4xl mx-auto py-12 ">
           <h1 className="text-4xl font-bold">Terms and Conditions</h1>
           <div className="prose">
             <h1 className="text-2xl font-bold mt-8 mb-3">
@@ -1775,6 +1770,7 @@ function index() {
       </div>
       </div>
     </Layout>
+      </div>
   );
 }
 

@@ -97,12 +97,10 @@ export default function index() {
       </Head>
       <div>
         <div className="container mx-auto">
-          <div className="pt-3 sm:pt-6 md:pt-12">
+        <div className="md:w-9/12 m-auto md:rounded-3xl rounded-2xl md:mt-6 mt-4">
+          <div className="pt-3 sm:pt-6 md:pt-12 pb-6">
             <Heading text={"Security "} handleClick={() => router.back()} />
           </div>
-        </div>
-        <div className="container mx-auto">
-        <div className="md:w-9/12 m-auto md:p-12 sm:p-8 p-6  md:rounded-3xl rounded-2xl md:mt-6 mt-4">
           <div className="mb-6 profile-text">
             <h1>Update Password</h1>
             <p className="security-text">
@@ -164,14 +162,14 @@ export default function index() {
                     required
                   />
                 </div>
-<div className="flex justify-center">
-<Button
+                <div className="flex justify-start">
+                <Button
                   text={loading ? "Updating..." : "Update Password"}
                   design={
-                    "font-inter hover:bg-[#efa3a3] border-2 border-[#efa3a3] hover:border-[#efa3a3] text-[#efa3a3] hover:text-[#fff] font-lg leading-tight text-center w-full sm:w-96  sm:p-4 p-3 rounded-full mb-6 mt-6"
+                    "font-inter hover:bg-[#efa3a3] border-2 border-[#efa3a3] hover:border-[#efa3a3] text-[#efa3a3] hover:text-[#fff] font-normal leading-tight text-center w-full sm:w-96  sm:p-4 p-3 rounded-full mb-8 mt-4"
                   }
                 />
-</div>
+                </div>
               </form>
               <div className="border-b-2 border-solid border-zinc-300"></div>
               <div className="mt-6 profile-text mb-6 ">

@@ -12,18 +12,13 @@ export default function MobileBooking({ listings, selectedButton }) {
      {listings && listings.length > 0 ? (
         listings?.map((item, index) => (
           <div className="pb-[30px]">
-            {/* <h2 className="text-[17px] text-[#787069] font-normal uppercase tracking-[-0.06em] leading-[14.56px] mb-[15px]">
-Today
-</h2> */}
             <div className="space-y-[10px]">
               <div className="border-[1px] border-[#0000001a] rounded-[10px] ">
                 <div className="p-[10px]">
                   <div className="flex flex-wrap items-center justify-between border-b-[1px] border-[#0000001a] pb-[15px] mb-[15px]">
                     <div className="flex items-center">
                       <img
-                        src={item?.booking_property?.
-                          property_image ? item?.booking_property?.
-                            property_image[0]?.image_url : BookingImg}
+                        src={item?.booking_property?.property_image ? item?.booking_property?.property_image[0]?.image_url : BookingImg}
                         alt="BookingImg"
                         className="w-[56px] h-[56px] object-cover rounded-[6px] mr-[10px]"
                       />
@@ -50,7 +45,6 @@ Today
                   <div className="flex flex-wrap">
                     <div className="w-1/2 border-r-[1px] border-[#0000001a] flex items-center">
                       <span className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A] leading-[22px]">
-  
                         <DateComponent item=
                           {item?.check_in} />
                       </span>
@@ -59,13 +53,11 @@ Today
                       <span className="text-[13px] uppercase font-normal leading-[15.77px] text-[#80746A] leading-[22px]">
                         <DateComponent item=
                           {item?.check_out} />
-  
                       </span>
                     </div>
                   </div>
                 </div>
               </div>
-  
             </div>
           </div>
         )
@@ -73,16 +65,9 @@ Today
       <NoData
       url={"/apartments"}
       Heading={"Booking History Not Found"}
-      content={
-        selectedButton === "cancelled" ? (
-          "You have not cancelled any booking yet."
-        ) : (
-          "You have not made any bookings yet. Please click the link below to visit the apartment page."
-        )}
-
-    />
+      content={selectedButton === "cancelled" ? ("You have not cancelled any booking yet.") : ("You have not made any bookings yet. Please click the link below to visit the apartment page.")}
+      />
      )
-
     }
     </>
   );
