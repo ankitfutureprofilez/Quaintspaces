@@ -71,17 +71,17 @@ export default function Index() {
                       S. No.
                     </td>
                     <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-                      Payment Id
+                      Payment Id & Method
                     </td>
                     <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
                       Customer
                     </td>
                     <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-                      Purchase
+                      Property Name
                     </td>
-                    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+                    {/* <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
                       Method
-                    </td>
+                    </td> */}
                     <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
                       Status
                     </td>
@@ -94,36 +94,41 @@ export default function Index() {
                   {content.map((item, index) => (
                     <tr key={index}>
                       <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">{index + 1}</td>
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">{item?.payment_id}</td>
+                      <td className="px-4 py-4 text-sm text-gray-500">
+                        <div className="flex flex-col">
+                          <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis"> {item?.payment_id}</span>
+                          <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">{item?.method}</span>
+                        </div>
+                      </td>
+
                       <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                         <Link href={`/admin/user-history/${item?.booking_history?.booking_user[0]?.id}`}>
                           <div className="flex flex-row items-center gap-2 sm:flex-row sm:items-start text-sm">
                             <Image
                               width={50}
                               height={50}
-                              className="rounded-full border border-gray-300 flex-shrink-0"
-                              src={item?.booking_history?.booking_user[0]?.image_url || userprofile}
+                              className="w-12 h-12 rounded-full flex-shrink-0 object-cover"
+                              src={item?.booking_history?.booking_user[0]?.image_url ? item?.booking_history?.booking_user[0]?.image_url : userprofile}
                               alt="User Image"
                             />
                             <div className="p-2">
                               <div className="text-gray-800 font-medium capitalize text-center">
                                 {item?.booking_history?.booking_user[0]?.name}
                               </div>
-                              {/* <div className="text-gray-800 font-medium capitalize">{item?.booking_history?.booking_user[0]?.name}</div> */}
                             </div>
                           </div>
-
                         </Link>
+
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
                         <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
-                        <div className="flex flex-row items-center gap-2 sm:flex-row sm:items-start text-sm">
+                          <div className="flex flex-row items-center gap-2 sm:flex-row sm:items-start text-sm">
 
                             <Image
                               width={50}
                               height={50}
-                              className="rounded-full border border-gray-300 flex-shrink-0"
+                              className="w-12 h-12 rounded-full flex-shrink-0 object-cover"
                               src={item?.booking_history?.booking_property?.property_image[0]?.image_url}
                               alt="Property"
                             />
@@ -133,7 +138,7 @@ export default function Index() {
                           </div>
                         </Link>
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">{item?.method}</td>
+                      {/* <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize"></td> */}
                       <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
                         <span
                           className={`inline-flex w-max items-center rounded-full py-2 px-3 text-xs text-white ${item?.payment_status === "success"
@@ -173,9 +178,9 @@ export default function Index() {
 
       )}
       {content?.length > 0 && !loading && hasmore && (
-        <div className="flex justify-center">
+        <div className="flex justify-center mb-5">
           <div
-            className="cursor-pointer mt-4 py-2 px-5 rounded-full text-[#efa3a3] hover:bg-[#efa3a3] hover:text-[#fff] border-2 bg-color-[#efa3a3] border-[#efa3a3] "
+            className="cursor-pointer mt-4 py-2 px-5  rounded-full text-[#efa3a3] hover:bg-[#efa3a3] hover:text-[#fff] border-2 bg-color-[#efa3a3] border-[#efa3a3] "
             onClick={loadMore}
           >
             {loadingButton ? "Loading..." : "Load More"}

@@ -126,7 +126,7 @@ export default function Index() {
 
   return (
     <AdminLayout heading={"User List"}>
-      <div className="w-full ">
+      <div className="w-full table-responsive">
         <table className="w-full text-sm rounded-md">
           <thead>
             <tr className="bg-gray-100 rounded-lg items-center bg-indigo-600 text-white justify-between text-gray-500">
@@ -405,7 +405,7 @@ export default function Index() {
       </div>
 
       {record?.length > 0 && !loading && hasmore && (
-        <div className="flex justify-center" style={{ cursor: "pointer" }}>
+        <div className="flex justify-center p-2" style={{ cursor: "pointer" }}>
           <div
             className="cursor-pointer mt-4 py-2 px-5 rounded-full text-[#efa3a3] hover:bg-[#efa3a3] hover:text-[#fff] border-2 bg-color-[#efa3a3] border-[#efa3a3]"
             onClick={loadMore}
