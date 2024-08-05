@@ -1,5 +1,6 @@
 
 import React, { useContext, useState, useEffect } from "react";
+import RoundLogo from "../../../public/images/RoundLogo.jpeg"
 import Listing from "../api/Listing";
 import Image from "next/image";
 import { CiLogout } from "react-icons/ci";
@@ -85,10 +86,21 @@ function Sidebar() {
           className="p-4 md:p-6 flex cursor-pointer group items-center gap-2 z-10 h-24"
           onClick={toggleSidebar}
         >
-          <div className="h-10 outline outline-indigo-300 w-10 flex items-center bg-indigo-600 justify-center rounded-full from-indigo-500 to-indigo-400 text-white">
+          <Image
+  width="25%" // Set the width to 25% of the container
+  height="25%"
+  layout="responsive"
+  // className="25vh"
+  src={RoundLogo}
+  blurDataURL={`${RoundLogo}?q=1`}
+  placeholder="blur"
+  alt="Quaint Spaces Logo"
+/>
+{/* <img src={RoundLogo} className="w-full" alt="Round Logo" /> */}
+          {/* <div className="h-10 outline outline-indigo-300 w-10 flex items-center bg-indigo-600 justify-center rounded-full from-indigo-500 to-indigo-400 text-white">
 
             QS
-          </div>
+          </div> */}
           <div>
             <h1 className="text-sm font-bold text-gray-800">Admin</h1>
             <p className="text-xs text-gray-500 font-medium">
@@ -102,7 +114,7 @@ function Sidebar() {
             <Link
               href={"/admin"}
               className={`flex ${pathname === "/admin"
-                ? "text-primary font-bold"
+                ? "text-black bg-gray-100"
                 : "text-gray-500"
                 } hover:px-1 duration-200 rounded-md w-full py-1 px-1 items-center gap-2 focus:text-indigo-400`}
             >
@@ -112,7 +124,7 @@ function Sidebar() {
             <Link
               href={"/admin/property/add"}
               className={`flex ${pathname === "/admin/property/add"
-                ? "text-primary font-bold"
+                ? "text-black bg-gray-100"
                 : "text-gray-500"
                 } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
             >
@@ -122,8 +134,8 @@ function Sidebar() {
             <Link
               href={"/admin/property"}
               className={`flex ${pathname === "/admin/property"
-                ? "text-primary font-bold text-gray-500 "
-                : "text-gray-600"
+                ? "text-black bg-gray-100"
+                : "text-gray-500"
                 } hover:px-1  duration-200 px-1  py-1  items-center gap-2 focus:text-indigo-400`}
             >
               <svg
@@ -145,7 +157,7 @@ function Sidebar() {
             <Link
               href={"/admin/payment-history"}
               className={`flex ${pathname === "/admin/payment-history"
-                ? "text-primary font-bold"
+                ? "text-black bg-gray-100"
                 : "text-gray-500"
                 } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
             >
@@ -186,7 +198,7 @@ function Sidebar() {
             <Link
               href={"/admin/booking-history"}
               className={`flex ${pathname === "/admin/booking-history"
-                ? "text-primary font-bold"
+                ? "text-black bg-gray-100"
                 : "text-gray-500"
                 } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
             >
@@ -204,7 +216,7 @@ function Sidebar() {
             <Link
               href={"/admin/user-history"}
               className={`flex ${pathname === "/admin/user-history"
-                ? "text-primary font-bold"
+                ? "text-black bg-gray-100"
                 : "text-gray-500"
                 } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
             >
@@ -230,7 +242,7 @@ function Sidebar() {
             <Link
               href={"/admin/review"}
               className={`flex ${pathname === "/admin/review"
-                ? "text-primary font-bold"
+                ? "text-black bg-gray-100"
                 : "text-gray-500"
                 } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
             >
@@ -251,7 +263,7 @@ function Sidebar() {
             <Link
               href={"/admin/enquiry"}
               className={`flex ${pathname === "/admin/enquiry"
-                ? "text-primary font-bold"
+                ? "text-black bg-gray-100"
                 : "text-gray-500"
                 } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
             >
@@ -270,7 +282,7 @@ function Sidebar() {
             <Link
               href={"/admin/profile"}
               className={`flex ${pathname === "/admin/profile"
-                ? "text-primary font-bold"
+                ? "text-black bg-gray-100"
                 : "text-gray-500"
                 } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
             >
@@ -295,7 +307,7 @@ function Sidebar() {
             <Link
               href={"/admin/security"}
               className={`flex ${pathname === "/admin/security"
-                ? "text-primary font-bold"
+                ? "text-black bg-gray-100"
                 : "text-gray-500"
                 } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
             >
