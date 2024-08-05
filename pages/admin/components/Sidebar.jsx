@@ -74,11 +74,9 @@ function Sidebar() {
 
   return (
     <div
-      className={`shrink-0 md:block h-screen sticky top-0 overflow-hidden ${isSidebarOpen ? "!fixed" : "hidden"
-        }`}
-    >
+      className={`shrink-0 md:block h-screen sticky top-0 overflow-hidden ${isSidebarOpen ? "open" : "closed" }`}>
       <div
-        className={`w-60 h-full bg-white border-r ${isMobileSidebarOpen ? "block" : "hidden md:block"
+        className={` h-full bg-white border-r ${isMobileSidebarOpen ? "block" : "hidden md:block"
           }`}
       >
         <div
@@ -86,7 +84,6 @@ function Sidebar() {
           onClick={toggleSidebar}
         >
           <div className="h-10 outline outline-indigo-300 w-10 flex items-center bg-indigo-600 justify-center rounded-full from-indigo-500 to-indigo-400 text-white">
-
             QS
           </div>
           <div>

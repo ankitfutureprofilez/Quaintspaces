@@ -56,11 +56,11 @@ const AdminLayout = ({ children, heading }) => {
 
             </AnimatePresence>
 
-            <div className='grid md:grid-cols-[240px_1fr]'>
-                <div className='hidden md:block'>
+            <div className='admin-layout flex'>
+                <div className='sidebar hidden md:block'>
                     <Sidebar />
                 </div>
-                <div className='w-full '>
+                <div className='content-bar w-full '>
                     <Navbar heading={heading} />
                     <div className="pt-20 md:pt-24 px-4 " >{children}</div>
                 </div>
