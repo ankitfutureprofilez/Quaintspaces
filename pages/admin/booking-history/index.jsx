@@ -125,7 +125,7 @@ export default function index() {
 
   return (
     <AdminLayout heading={"Booking Management"}>
-      <div className="flex flex-wrap bg-gray-100 mt-3 mb-3 p-2  text-white rounded-lg  md:mb-0 items-center space-y-2 sm:space-y-0 sm:space-x-4 upcoming-box">
+      <div className="flex bg-gray-100 mt-3 mb-3 p-2  text-white rounded-lg  md:mb-0 items-center sm:space-y-0 sm:space-x-4 upcoming-box">
         <button
           onClick={() => setActiveTab('upcoming')}
           className={`w-full sm:flex-1 px-4 py-2 rounded-lg text-center ${activeTab === 'upcoming' ? 'bg-amber-700 text-white' : 'text-black'} mb-2 sm:mb-0`}
@@ -164,32 +164,32 @@ export default function index() {
         </div>
       ) : content && content.length > 0 ? (
         <>
-           <div className="table-responsive p-5">
-           <table className=" w-full ">
+           <div className="mytable table-responsive">
+              <table className="">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-2 py-2 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
+                    <th className="px-2 py-2 capitalize text-sm font-normal  bg-indigo-600 text-left rtl:text-right text-white">
                       S.No.
                     </th>
                     <th className="px-2 py-2 capitalize text-sm font-normal bg-indigo-600 text-left rtl:text-right text-white">
-                      Booking Date
+                      Date
                     </th>
                     <th className="px-2 py-2 capitalize text-sm font-normal bg-indigo-600 text-left rtl:text-right text-white">
                       Booking Number
                     </th>
                     <th className="px-2 py-2 capitalize text-sm font-normal bg-indigo-600 text-left rtl:text-right text-white">
-                      Check in & check  Out
+                      Check in / check Out
                     </th>
-                    <th className="px-2 py-2 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
+                    <th className="px-2 py-2 capitalize text-sm font-normal  bg-indigo-600 text-left rtl:text-right text-white">
                       Stay
                     </th>
-                    <th className="px-2 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
+                    <th className="px-2 py-4 capitalize text-sm font-normal  bg-indigo-600 text-left rtl:text-right text-white">
                       Amount
                     </th>
                     <th className="px-2 py-2 capitalize text-sm font-normal  bg-indigo-600 text-left rtl:text-right text-white">
-                      Document & its Type
+                      Document 
                     </th>
-                    <th className="px-2 py-2 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
+                    <th className="px-2 py-2 capitalize text-sm font-normal  bg-indigo-600 text-left rtl:text-right text-white">
                       Action
                     </th>
                   </tr>
@@ -198,17 +198,17 @@ export default function index() {
                 <tbody className="bg-white divide-y divide-gray-200">
                   {content.map((item, index) => (
                     <tr key={index}>
-                      <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                      <td className="px-2 py-2 text-sm text-gray-500  overflow-hidden text-ellipsis">
                         {index + 1}
                       </td>
-                      <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap capitalize  overflow-hidden text-ellipsis">
+                      <td className="px-2 py-2 text-sm text-gray-500  capitalize  overflow-hidden text-ellipsis">
                         <DateComponent item={item?.booking_date} />
                       </td>
-                      <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                      <td className="px-2 py-2 text-sm text-gray-500  overflow-hidden text-ellipsis">
                         {item?.booking_number}
                       </td>
 
-                      <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                      <td className="px-2 py-2 text-sm text-gray-500  overflow-hidden text-ellipsis">
                         From : {item?.check_in}
                         <div>
                           To:  {item?.check_out}
@@ -216,16 +216,16 @@ export default function index() {
                       </td>
                       <td className="px-2 py-2 text-sm text-gray-500 ">
                         <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
-                          <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">
+                          <span className=" capitalize  text-sm overflow-hidden text-ellipsis">
                             {item?.booking_property?.name}
                           </span>
                         </Link>
                       </td>
 
-                      <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                      <td className="px-2 py-2 text-sm text-gray-500  overflow-hidden text-ellipsis">
                         {formatMultiPrice(item?.price)}
                       </td>
-                      <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                      <td className="px-2 py-2 text-sm text-gray-500  overflow-hidden text-ellipsis">
                         <div
                           style={{ cursor: "pointer" }}
                           className="flex items-center "
@@ -240,7 +240,7 @@ export default function index() {
                         </div>
                       </td>
                       {item?.booking_status === "pending" ?
-                        <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                        <td className="px-2 py-2 text-sm text-gray-500  overflow-hidden text-ellipsis">
                           <div
                             onClick={() =>
                               bookingaccept(
@@ -292,7 +292,7 @@ export default function index() {
                           </div>
                         </td>
                         :
-                        <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                        <td className="px-2 py-2 text-sm text-gray-500  overflow-hidden text-ellipsis">
                           <div
                             className={`capitalize inline-flex items-center rounded-full py-2 w-max px-2 text-sm text-white  ${item?.booking_status === "completed"
                               ? "bg-green-700"

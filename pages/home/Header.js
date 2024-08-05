@@ -97,8 +97,7 @@ export default function Header() {
               <>
                 <div
                   className="profile-image relative pointer-events-none lg:pointer-events-auto"
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                >
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)} >
                   <div
                     className="profile-image-container items-center"
                     style={{ cursor: "pointer" }} >
@@ -115,9 +114,7 @@ export default function Header() {
                       <nav className="grid gap-1">
                         <Link
                           href="/profile"
-                          className="mb-3 block link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg"
-                        >
-                          <span>My Profile</span>
+                          className="mb-3 block link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg" > <span>My Profile</span>
                         </Link>
                         <Link
                           href="/booking-history"

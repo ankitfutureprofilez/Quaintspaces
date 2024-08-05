@@ -72,13 +72,12 @@ export default function Login() {
       <div className="bg-no-repeat mainadmin bg-cover bg-center relative object-cover min-h-screen flex items-center justify-center"
         style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
       >
-        <div className="flex justify-center self-center z-10">
+        <div className="flex justify-center self-center z-10 px-4">
           <div className="p-12 bg-white mx-auto rounded-2xl w-full max-w-md">
             <div className="mb-4">
               <h3 className="font-semibold text-2xl text-black-800">Sign In </h3>
               <p className="text-black-500">Please sign in to your account.</p>
             </div>
-
             <form onSubmit={handleSubmit}>
               <div className="space-y-5">
                 <div className="space-y-2">

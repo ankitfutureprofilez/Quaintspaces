@@ -157,7 +157,7 @@ export default function index() {
     };
     const PhoneDesign = () => {
         return (
-            <div className="pb-[30px] pt-[10px]">
+            <div className="pb-[10px] pt-[10px]">
                 <div className="mx-[auto] w-full">
                     <div className="space-y-[10px]">
                         {listings && listings?.map((item, index) => (
@@ -215,6 +215,19 @@ export default function index() {
     }
 
 
+    const MobileLoading = () => { 
+        return <>
+          <div role="status" class="w-full animate-pulse mt-4 border border-gray-300 rounded-xl p-4">
+            <div class="h-[20px] w-full bg-gray-200 rounded-xl mb-2 p-4"></div>
+            <div class="h-[40px] w-full bg-gray-200 rounded-xl mb-2 p-4"></div>
+            <div className='grid grid-cols-2 gap-2'>
+              <div class="h-[70px] w-[100%] bg-gray-200 rounded-xl p-4"></div>
+              <div class="h-[70px] w-[100%] bg-gray-200 rounded-xl p-4"></div>
+            </div>
+          </div>
+      </>
+      }
+
     return (
         <AuthLayout>
             <Head>
@@ -228,11 +241,10 @@ export default function index() {
                         <Heading text={"Payment History"} handleClick={() => router.back()} />
                     </div>
                 </div>
-                {isMobile ? <PhoneDesign />
-                    :
+                    
                     <div className="tble-ma">
                         {listings && listings.length > 0 ? (
-                            <BookingTable />
+                            isMobile ? <PhoneDesign />: <BookingTable />
                         ) : (
                             <>
                                 {!loading ? <NoData
@@ -242,19 +254,26 @@ export default function index() {
                                 /> : ''}
                             </>
                         )}
-                        {loading ? (
-                            <TableLoading />
-                        ) : ""}
 
-                        {!loading && hasMore && (
+                        {loading ? 
+                        <> {isMobile ? 
+                            <>
+                            <MobileLoading /> 
+                            <MobileLoading /> 
+                            <MobileLoading /> 
+                            </>
+                        : <TableLoading /> } </>
+                        : ""}
+
+                        {!loading && listings && listings.length > 0 && hasMore && (
                             <div className="load-more mt-5 text-center">
                                 <button className="btn btn-outline-success cursor-pointer" onClick={loadMore}>
                                     Load More
                                 </button>
                             </div>
                         )}
+
                     </div>
-                }
             </div>
         </AuthLayout>
     );

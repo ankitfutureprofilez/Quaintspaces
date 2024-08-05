@@ -5,9 +5,33 @@ import Link from "next/link";
 import NoData from '../elements/NoData.js';
 import SuccessDate from '../success/SuccessDate.jsx';
 import DateComponent from '../elements/DateFormat.jsx';
-export default function MobileBooking({ listings, selectedButton }) {
+export default function MobileBooking({ listings, selectedButton, loading }) {
   console.log("listings", listings)
+
+
+
+  const Loading = () => { 
+    return <>
+      <div role="status" class="w-full animate-pulse mb-4 border border-gray-300 rounded-xl p-4">
+        <div className='flex justify-between items-center'>
+          <div class="h-[80px] w-[25%] bg-gray-200 rounded-xl mb-2 p-4"></div>
+          <div class="h-[80px] w-[70%] bg-gray-200 rounded-xl mb-2 p-4"></div>
+        </div>
+        <div className='grid grid-cols-2 gap-2'>
+          <div class="h-[70px] w-[100%] bg-gray-200 rounded-xl p-4"></div>
+          <div class="h-[70px] w-[100%] bg-gray-200 rounded-xl p-4"></div>
+        </div>
+      </div>
+  </>
+  }
   return (
+    <>
+    {loading ?  
+      <>
+    <Loading />
+    <Loading />
+      </>
+    : 
     <>
      {listings && listings.length > 0 ? (
         listings?.map((item, index) => (
@@ -63,12 +87,12 @@ export default function MobileBooking({ listings, selectedButton }) {
         )
      )):(
       <NoData
-      url={"/apartments"}
-      Heading={"Booking History Not Found"}
-      content={selectedButton === "cancelled" ? ("You have not cancelled any booking yet.") : ("You have not made any bookings yet. Please click the link below to visit the apartment page.")}
+        url={"/apartments"}
+        Heading={"Booking History Not Found"}
+        content={selectedButton === "cancelled" ? ("You have not cancelled any booking yet.") : ("You have not made any bookings yet. Please click the link below to visit the apartment page.")}
       />
-     )
-    }
+     )}
+    </> }
     </>
   );
 }
