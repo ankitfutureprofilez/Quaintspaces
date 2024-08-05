@@ -72,7 +72,7 @@ export default function paymentHistory() {
     return (
       <div>
         <div className="whitespace-nowrap overflow-hidden text-ellipsis">{date}</div>
-        <div className="text-center whitespace-nowrap overflow-hidden text-ellipsis">{time}</div>
+        <div className="text-start whitespace-nowrap overflow-hidden text-ellipsis">{time}</div>
       </div>
     );
   };

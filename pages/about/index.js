@@ -73,9 +73,9 @@ export default function index() {
       <div className="bg-cover bg-no-repeat bg-center contact-about" style={{ backgroundImage: `url(/images/banner/Banner1.JPG)` }} >
         <div className="py-[95px] px-[13px] bg-[#00000087]">
           {/* 10015 */}
-          <div className="">
+          <div className="m-auto w-full">
             <h1 className="">Discover the Art of Luxurious Living</h1>
-            <p className="mt-[0px] sm:mt-4 max-w-[800px] m-auto text-[16px] text-[#fff]">
+            <p className="mt-[0px] sm:mt-4 max-w-[900px] m-auto text-[16px] text-[#fff] px-6">
               Experience exceptional stays curated for your comfort and style,
               where every detail is crafted to perfection.
             </p>
@@ -135,7 +135,7 @@ export default function index() {
                   {/* <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"></path>
                   </svg> */}
-                  <MdOutlinePhone className="inline-block align-middle" size={20} color={"#3F2A17"} />
+                  <MdOutlinePhone className="inline-block align-middle" size={18} color={"#3F2A17"} />
                   <p className="ps-2">9521410122</p>
                   
                 </p>

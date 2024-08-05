@@ -12,12 +12,8 @@ export default function Footer() {
     function handleResize() {
       setIsMobile(window.innerWidth <= 767);
     }
-
     window.addEventListener("resize", handleResize);
-
-    // Initial check
     handleResize();
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   return (
@@ -34,7 +30,7 @@ export default function Footer() {
                 </h3>
                 <div className="w-[80px] h-[2px] mx-auto xl:mx-[0] bg-[#efa3a3] mb-[15px]"></div>
                 <div className="flex flex-col">
-                  <Link
+                  <a
                     className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] flex justify-center xl:justify-start"
                     href="mailto:quaintspaces@gmail.com"
                     target="_blank"
@@ -43,9 +39,9 @@ export default function Footer() {
                     <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px]  ml-2">
                       : quaintspaces@gmail.com
                     </span>
-                  </Link>
+                  </a>
                   <div className="flex mt-2 justify-center xl:justify-start">
-                    <Link
+                    <a
                       className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] flex justify-center md:justify-start"
                       href="tel:+919521410122"
                     >
@@ -53,16 +49,16 @@ export default function Footer() {
                       <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px]  ml-2">
                         : +91 9521410122
                       </span>
-                    </Link>{" "}
+                    </a>{" "}
                     &nbsp;/
-                    <Link
+                    <a
                       className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] "
                       href="tel:+919314022666"
                     >
                       <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px]  ml-2">
                         +91 9314022666
                       </span>
-                    </Link>
+                    </a>
                   </div>
                 </div>
                 {/* <p><Link href="tel:9314022666">9314022666</Link></p> */}
@@ -74,7 +70,7 @@ export default function Footer() {
                 </h3>
                 <div className="w-[80px] h-[2px] mx-auto xl:mx-[0] bg-[#efa3a3] mb-[15px]"></div>
                 <div className="">
-                  <Link
+                  <a
                     href="https://www.facebook.com/share/64gvciqN2UNPMx6V/?mibextid=LQQJ4d"
                     target="_blank"
                   >
@@ -84,10 +80,10 @@ export default function Footer() {
                         : Quaint Spaces
                       </span>
                     </div>
-                  </Link>
+                  </a>
                 </div>
                 <div className="mt-2">
-                  <Link
+                  <a
                     href="https://www.instagram.com/Quaint Spacesjaipur"
                     target="_blank"
                   >
@@ -97,7 +93,7 @@ export default function Footer() {
                         : @quaintspacesjaipur
                       </span>
                     </div>
-                  </Link>
+                  </a>
                 </div>
               </div>
               <div className="w-full lg:w-1/3 mb-3 mt-1  mb:mb-0 text-center xl:text-start">
@@ -137,35 +133,34 @@ export default function Footer() {
                 </h3>
                 <div className="w-[80px] h-[2px] mx-auto xl:mx-[0] bg-[#efa3a3] mb-[15px]"></div>
                 <div className="flex flex-col">
-                  <Link
-                    className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] flex justify-center xl:justify-start"
+                  <a
                     href="mailto:quaintspaces@gmail.com"
-                    target="_blank"
+                    target="_blank" 
+                    className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] flex justify-center xl:justify-start"
                   >
-                    <TfiEmail size={22} color={"#3F2A17"} />
+                    <TfiEmail size={18} color={"#3F2A17"} className="mt-1" />
                     <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px]  ml-2">
-                      : quaintspaces@gmail.com
+                      : quaintspaces@gmail.com 
                     </span>
-                  </Link>
+                  </a>
                   <div className="flex mt-2 justify-center xl:justify-start">
-                    <Link
+                    <a
                       className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] flex justify-center md:justify-start"
                       href="tel:+919521410122"
                     >
-                      <MdOutlinePhone size={24} color={"#3F2A17"} />
+                      <MdOutlinePhone size={20} color={"#3F2A17"} className="mt-1" />
                       <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px]  ml-2">
                         : +91 9521410122
                       </span>
-                    </Link>{" "}
-                    &nbsp;/
-                    <Link
+                    </a> &nbsp;/
+                    <a
                       className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] "
                       href="tel:+919314022666"
                     >
                       <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px]  ml-2">
                         +91 9314022666
                       </span>
-                    </Link>
+                    </a>
                   </div>
                 </div>
                 {/* <p><Link href="tel:9314022666">9314022666</Link></p> */}

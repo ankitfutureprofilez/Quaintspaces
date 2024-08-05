@@ -774,11 +774,11 @@ button.submint-btn {
   font-family: Inter, sans-serif;
   font-size: 14px;
   line-height: 22px;
-  letter-spacing: 0;
+  letter-spacing: 0; text-align: start;
 }
 
 .booking-table thead tr th {
-  font-weight: 500;
+  font-weight: 500; text-align: start;
   color: #47311d8f;
 }
 
@@ -981,17 +981,13 @@ button.submint-btn {
   font-family: "Baskervville", serif;
   font-size: 60px;
   font-weight: 400;
-  line-height: 60px;
+  line-height: 56px;
   text-align: center;
   color: #fff;
   margin-bottom: 5px;
 }
 
 .contact-about p {
-  font-family: Gotham;
-  /* font-size: 18px; */
-  font-weight: 350;
-  line-height: 28.8px;
   letter-spacing: -0.03em;
   text-align: center;
   color: #ffffff;
@@ -1092,6 +1088,7 @@ button.submint-btn {
 
   .contact-about h1 {
     font-size: 46px;
+    line-height:40px;
   }
 
   /* .contact-about p {
@@ -1508,7 +1505,7 @@ button.submint-btn {
 
   .contact-about h1 {
     font-size: 36px;
-    line-height: 44px;
+    line-height: 40px;
     margin-bottom: 16px;
   }
 

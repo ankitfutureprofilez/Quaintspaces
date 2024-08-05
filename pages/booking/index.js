@@ -269,7 +269,7 @@ export default function Index() {
                 <table className=" w-full booking-table">
                   <thead>
                     <tr>
-                      <th>Booking Date</th>
+                      <th>Booking Details</th>
                       <th>Booking Number</th>
                       <th>Property Name</th>
                       <th>Check In</th>
@@ -277,9 +277,6 @@ export default function Index() {
                       <th>Status</th>
                       <th>Price</th>
                       {(key === "upcoming") && <th>Action</th>}
-                      {/* {} */}
-                      {/* {key === "ongoing" &&
-                        <th>House details</th>} */}
                     </tr>
                   </thead>
                   <tbody>
@@ -362,7 +359,7 @@ export default function Index() {
             ) : (
               <NoData
                 url={"/apartments"}
-                Heading={"Booking History Not Found"}
+                Heading={"Booking not found !!"}
                 content={
                   selectedButton === "cancelled" ? (
                     "You have not cancelled any booking yet."
@@ -518,11 +515,9 @@ export default function Index() {
         </div>
 
         {isMobile ? (
-
           <MobileBooking listings={listings} loading={loading} selectedButton={selectedButton} />
         ) : (
           <div className="tble-ma">
-
             <BookingTable />
           </div>
         )}
