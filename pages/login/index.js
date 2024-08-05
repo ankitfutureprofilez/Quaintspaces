@@ -13,10 +13,10 @@ export default function Login() {
         <title>Login - Quaint Spaces Jaipur</title>
       </Head>
       <CheckAuth />
-      <div className="h-screen sm:min-h-screen  bg-cover  overflow-auto sm:max-h-[100vh]">
+      <div className="h-screen sm:min-h-screen bg-cover overflow-auto sm:max-h-[100vh]">
         <Image
           src="/images/banner/login_img.JPG"
-          placeholder="blur"
+          placeholder="blur" 
           priority={true}
           blurDataURL="/images/banner/login_img.JPG?q=0.5"
           alt="Login Background"
