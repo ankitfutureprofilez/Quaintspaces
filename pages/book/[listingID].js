@@ -42,8 +42,8 @@ const Book = () => {
   });
 
   const [cancelpolicy, setCancelpolicy] = useState([]);
-  console.log("cancelpolicy",cancelpolicy)
-  console.log("cancelpolicy?.date2",cancelpolicy?.date2)
+  console.log("cancelpolicy", cancelpolicy)
+  console.log("cancelpolicy?.date2", cancelpolicy?.date2)
   const formattedCheckIn = `${infos?.checkin} ${listing?.check_in} `;
   const handleCancelPolicy = () => {
     const main = new Listings();
@@ -93,9 +93,9 @@ const Book = () => {
       min: 0,
     },
   });
-  const [detailsLoading, setDtLoading ] = useState(true);
+  const [detailsLoading, setDtLoading] = useState(true);
   const url = router.query;
-  const fetchDetails = () => { 
+  const fetchDetails = () => {
     setDtLoading(true);
     setInfos(url);
     const main = new Listings();
@@ -135,7 +135,7 @@ const Book = () => {
   }
 
   useEffect(() => {
-    if(url?.listingID){
+    if (url?.listingID) {
       fetchDetails();
     }
   }, [url?.listingID]);
@@ -392,534 +392,527 @@ const Book = () => {
           <title>Confirm & Pay - Quaint Spaces Jaipur</title>
         </Head>
 
-        {detailsLoading ? 
-        <>
-        <div className=" w-full flex items-center justify-content-center pt-[100px] pt-[30vh] pb-[40vh]" >
-          <div role="status" className="text-center m-auto table">
-              <svg aria-hidden="true" class="w-12 h-12 text-gray-200 animate-spin fill-blue-600 m-auto table" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-                  <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
-              </svg>
-              <p className="mt-4 text-xl text-black" >LOADING....</p>
-          </div>
-          </div>
-          </> :
-        <main
-          className={
-            dateModel
-              ? "max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12 overflow-hidden"
-              : "max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12"
-          }
-        >
-          <div className="ml-2">
-            <Heading
-              text={loading ? "Processing..." : "Confirm & Pay"}
-              handleClick={() => router.back()}
-            />
-          </div>
-          <div className="flex flex-col lg:flex-row mt-3 sm:mt-8 md:mt-14  gap-10 your-trip-sec">
-            <div className="w-full lg:w-8/12">
-              <h3 className="text-2xl mb-4 font-medium heading-data">
-                Your Trip
-              </h3>
-              <div className="flex items-center justify-between w-full py-2">
-                <div>
-                  <h3 className="text-lg  font-medium item-heading ">Dates</h3>
-                  <p className="text-md item-paragraph">{`${
-                    infos?.checkin && format(new Date(infos.checkin), "dd")
-                  } - ${
-                    infos?.checkout &&
-                    format(new Date(infos.checkout), "dd  MMM")
-                  }`}</p>
-                </div>
-                <button
-                  onClick={() => setDateModel(true)}
-                  className={
-                    dateModel
-                      ? "underline text-md font-medium edit-color overflow-hidden"
-                      : "underline text-md font-medium edit-color"
-                  }
-                  // className="underline text-md font-medium edit-color"
-                >
-                  EDIT
-                </button>
-              </div>
-              <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
-                <div>
-                  <h5 className="text-lg font-medium item-heading">Guests</h5>
-                  <p className="text-md item-paragrapgh">
-                    {`${+guests?.adults?.value + +guests?.children?.value} ${
-                      +guests?.adults?.value + +guests?.children?.value > 1
-                        ? "guests"
-                        : "guest"
-                    }${
-                      +infos.numberOfInfants
-                        ? `, ${infos.numberOfInfants} ${
-                            +infos.numberOfInfants > 1 ? "infants" : "infant"
-                          }`
-                        : ""
-                    }${
-                      +guests?.pets?.value
-                        ? `, ${guests?.pets?.value} ${
-                            +guests?.pets?.value > 1 ? "pets" : "pet"
-                          }`
-                        : ""
-                    }`}
-                  </p>
-                </div>
-                <button
-                  onClick={() => setGuestsModel(true)}
-                  className="underline text-md font-medium  edit-color"
-                >
-                  EDIT
-                </button>
-              </div>
-              <h3 className="text-2xl mb-4 font-medium mt-10 heading-data">
-                Upload ID
-              </h3>
-
-              <div className=" border-b border-borderColor pb-4 md:pb-11">
-                <form>
-                  <div className="mb-4">
-                    <div className="w-ful mt-1 pr-4 border rounded-full ">
-                      <select
-                        id="selectOption"
-                        name="selectOption"
-                        value={formData.selectOption}
-                        onChange={handleChange}
-                        className="p-4 w-full rounded-full outline-none"
-                        required
-                      >
-                        <option value="">Choose...</option>
-                        <option value="aadhar">Aadhar Card</option>
-                        <option value="pan">PAN Card</option>
-                        <option value="voterid">Voter ID</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="mb-4">
-                    <input
-                      type="file"
-                      id="fileUpload"
-                      name="fornt"
-                      accept=".jpg, .jpeg, .png, .gif, .bmp, .tif, .tiff, .svg, .webp, .avif"
-                      onChange={handleFileChange}
-                      className="mt-1 p-4 border rounded-full w-full"
-                      required
-                    />
-                  </div>
-                </form>
-              </div>
-              <h3 className="text-2xl mb-4 font-medium mt-10 heading-data capitalize">
-                Required for your trip
-              </h3>
-              <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
-                <div className=" ">
-                  <h1 className="text-lg  mb-2  font-medium item-heading">
-                    Number <span className="text-red-700">*</span>
-                  </h1>
-                  <div className="flex flex-wrap justify-between">
-                    <p className="item-pargraph">
-                      Add and confirm your phone number to get trip updates.
-                    </p>
-                  </div>
-                  <div className="mt-2 mb-2 sm:mb-4 flex">
-                    <input
-                      type="number"
-                      id="phone"
-                      name="phone"
-                      maxLength="10"
-                      value={formData?.phone}
-                      onChange={handleChange}
-                      className="mt-1 mr-1 p-4 border rounded-full w-full"
-                      placeholder="Enter your mobile number"
-                      required
-                    />
-                  </div>
-
-                  <h3 className="  text-lg  mb-2  font-medium item-heading">
-                    Message the host
-                  </h3>
-                  <div className="flex flex-wrap justify-between mb-5">
-                    <p className="item-pargraph">
-                      {" "}
-                      Share why you're travelling, who's coming with you and
-                      what you love about the space.
-                    </p>
-                  </div>
-                  <div className="mt-2 mb-2 sm:mb-4 flex">
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData?.message}
-                      onChange={handleChange}
-                      className="mt-1 mr-1 p-2 sm:p-4 border rounded w-full"
-                      placeholder="Enter a message for your host"
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
-                <div className="mt-4 w-full">
-                  <h3 className="text-2xl mb-4 font-medium sm:mt-10 heading-data capitalize">
-                    Cancellation policy
-                  </h3>
-                  <div className="flex flex-wrap justify-between">
-                    <p className="item-pargraph text-[15px] mb-[10px]">
-                      {cancelpolicy?.text}
-                    </p>
-                    <p
-                      className="underline edit-color font-bold"
-                      style={{ cursor: "pointer" }}
-                      onClick={openModal}
-                    >
-                      Learn More
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-11">
-                {payloading ? (
-                  <Button
-                    text={"Loading .."}
-                    design={
-                      "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-[#efa3a3] sm:p-4 p-3 rounded-full"
-                    }
-                  />
-                ) : (
-                  <Button
-                    text={loading ? "Processing..." : "Confirm & Pay"}
-                    design={
-                      "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-[#efa3a3] sm:p-4 p-3 rounded-full"
-                    }
-                    onClick={handleSubmit}
-                  />
-                )}
+        {detailsLoading ?
+          <>
+            <div className=" w-full flex items-center justify-content-center pt-[100px] pt-[30vh] pb-[40vh]" >
+              <div role="status" className="text-center m-auto table">
+                <svg aria-hidden="true" class="w-12 h-12 text-gray-200 animate-spin fill-blue-600 m-auto table" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
+                  <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" />
+                </svg>
+                <p className="mt-4 text-xl text-black" >LOADING....</p>
               </div>
             </div>
-            <div className="w-full lg:w-4/12 rounded-xl shadow py-8 px-5 h-fit golden-border sticky top-4">
-              <div className="flex sm:flex-col md:flex-row gap-3 pb-4 border-b border-borderColor image-data">
-                <Image
-                  src={
-                    listing?.property_image &&
-                    listing?.property_image?.length > 0
-                      ? listing.property_image[0].image_url
-                      : "/fallback_image_url"
-                  }
-                  alt="Apartment"
-                  width={200}
-                  height={200}
-                  className="object-cover"
-                />
-                <div>
-                  <h4 className="text-2xl mb-1 capitalize">{listing?.name}</h4>
-                  <h3 className=" text-lg capitalize">
-                    {listing?.type?.replace("_", " ")}
-                  </h3>
-                  <span className="flex text-sm items-center gap-1">
-                    <span>
-                      <StartRating
-                        size={15}
-                        value={listing?.rating}
-                        color={"#000000"}
+          </> :
+          <main
+            className={
+              dateModel
+                ? "max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12 overflow-hidden"
+                : "max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12"
+            }
+          >
+            <div className="ml-2">
+              <Heading
+                text={loading ? "Processing..." : "Confirm & Pay"}
+                handleClick={() => router.back()}
+              />
+            </div>
+            <div className="flex flex-col lg:flex-row mt-3 sm:mt-8 md:mt-14  gap-10 your-trip-sec">
+              <div className="w-full lg:w-8/12">
+                <h3 className="text-2xl mb-4 font-medium heading-data">
+                  Your Trip
+                </h3>
+                <div className="flex items-center justify-between w-full py-2">
+                  <div>
+                    <h3 className="text-lg  font-medium item-heading ">Dates</h3>
+                    <p className="text-md item-paragraph">{`${infos?.checkin && format(new Date(infos.checkin), "dd")
+                      } - ${infos?.checkout &&
+                      format(new Date(infos.checkout), "dd  MMM")
+                      }`}</p>
+                  </div>
+                  <button
+                    onClick={() => setDateModel(true)}
+                    className={
+                      dateModel
+                        ? "underline text-md font-medium edit-color overflow-hidden"
+                        : "underline text-md font-medium edit-color"
+                    }
+                  // className="underline text-md font-medium edit-color"
+                  >
+                    EDIT
+                  </button>
+                </div>
+                <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
+                  <div>
+                    <h5 className="text-lg font-medium item-heading">Guests</h5>
+                    <p className="text-md item-paragrapgh">
+                      {`${+guests?.adults?.value + +guests?.children?.value} ${+guests?.adults?.value + +guests?.children?.value > 1
+                          ? "guests"
+                          : "guest"
+                        }${+infos.numberOfInfants
+                          ? `, ${infos.numberOfInfants} ${+infos.numberOfInfants > 1 ? "infants" : "infant"
+                          }`
+                          : ""
+                        }${+guests?.pets?.value
+                          ? `, ${guests?.pets?.value} ${+guests?.pets?.value > 1 ? "pets" : "pet"
+                          }`
+                          : ""
+                        }`}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setGuestsModel(true)}
+                    className="underline text-md font-medium  edit-color"
+                  >
+                    EDIT
+                  </button>
+                </div>
+                <h3 className="text-2xl mb-4 font-medium mt-10 heading-data">
+                  Upload ID
+                </h3>
+
+                <div className=" border-b border-borderColor pb-4 md:pb-11">
+                  <form>
+                    <div className="mb-4">
+                      <div className="w-ful mt-1 pr-4 border rounded-full ">
+                        <select
+                          id="selectOption"
+                          name="selectOption"
+                          value={formData.selectOption}
+                          onChange={handleChange}
+                          className="p-4 w-full rounded-full outline-none"
+                          required
+                        >
+                          <option value="">Choose...</option>
+                          <option value="aadhar">Aadhar Card</option>
+                          <option value="pan">PAN Card</option>
+                          <option value="voterid">Voter ID</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="mb-4">
+                      <input
+                        type="file"
+                        id="fileUpload"
+                        name="fornt"
+                        accept=".jpg, .jpeg, .png, .gif, .bmp, .tif, .tiff, .svg, .webp, .avif"
+                        onChange={handleFileChange}
+                        className="mt-1 p-4 border rounded-full w-full"
+                        required
                       />
-                    </span>
-                  </span>
-                  <span className="flex text-sm items-center gap-2 mt-2">
-                    <span>
-                      {listing?.review ? listing?.review + " reviews" : ""}
-                    </span>
-                  </span>
+                    </div>
+                  </form>
+                </div>
+                <h3 className="text-2xl mb-4 font-medium mt-10 heading-data capitalize">
+                  Required for your trip
+                </h3>
+                <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
+                  <div className=" ">
+                    <h1 className="text-lg  mb-2  font-medium item-heading">
+                      Number <span className="text-red-700">*</span>
+                    </h1>
+                    <div className="flex flex-wrap justify-between">
+                      <p className="item-pargraph">
+                        Add and confirm your phone number to get trip updates.
+                      </p>
+                    </div>
+                    <div className="mt-2 mb-2 sm:mb-4 flex">
+                      <input
+                        type="number"
+                        id="phone"
+                        name="phone"
+                        maxLength="10"
+                        value={formData?.phone}
+                        onChange={handleChange}
+                        className="mt-1 mr-1 p-4 border rounded-full w-full"
+                        placeholder="Enter your mobile number"
+                        required
+                      />
+                    </div>
+
+                    <h3 className="  text-lg  mb-2  font-medium item-heading">
+                      Message the host
+                    </h3>
+                    <div className="flex flex-wrap justify-between mb-5">
+                      <p className="item-pargraph">
+                        {" "}
+                        Share why you're travelling, who's coming with you and
+                        what you love about the space.
+                      </p>
+                    </div>
+                    <div className="mt-2 mb-2 sm:mb-4 flex">
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData?.message}
+                        onChange={handleChange}
+                        className="mt-1 mr-1 p-2 sm:p-4 border rounded w-full"
+                        placeholder="Enter a message for your host"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between w-full py-2 pb-4 border-b border-borderColor">
+                  <div className="mt-4 w-full">
+                    <h3 className="text-2xl mb-4 font-medium sm:mt-10 heading-data capitalize">
+                      Cancellation policy
+                    </h3>
+                    <div className="flex flex-wrap justify-between">
+                      <p className="item-pargraph text-[15px] mb-[10px]">
+                        {cancelpolicy?.text}
+                      </p>
+                      <p
+                        className="underline edit-color font-bold"
+                        style={{ cursor: "pointer" }}
+                        onClick={openModal}
+                      >
+                        Learn More
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-11">
+                  {payloading ? (
+                    <Button
+                      text={"Loading .."}
+                      design={
+                        "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-[#efa3a3] sm:p-4 p-3 rounded-full"
+                      }
+                    />
+                  ) : (
+                    <Button
+                      text={loading ? "Processing..." : "Confirm & Pay"}
+                      design={
+                        "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full sm:w-96 bg-[#efa3a3] sm:p-4 p-3 rounded-full"
+                      }
+                      onClick={handleSubmit}
+                    />
+                  )}
                 </div>
               </div>
-              <div className="py-4 confirm-details">
-                <h1 className="">Price Details</h1>{" "}
-                <div className="flex gap-3 mt-2 border-b pb-2">
-                  <div className="flex items-center justify-between w-full">
-                    <span className="block text-blackColor">Nights</span>
-                    <span className="block text-blackColor font-medium">
-                      {infos.checkout &&
-                        infos.checkin &&
-                        differenceInDays(
-                          new Date(infos.checkout),
-                          new Date(infos.checkin)
-                        )}
+              <div className="w-full lg:w-4/12 rounded-xl shadow py-8 px-5 h-fit golden-border sticky top-4">
+                <div className="flex sm:flex-col md:flex-row gap-3 pb-4 border-b border-borderColor image-data">
+                  <Image
+                    src={
+                      listing?.property_image &&
+                        listing?.property_image?.length > 0
+                        ? listing.property_image[0].image_url
+                        : "/fallback_image_url"
+                    }
+                    alt="Apartment"
+                    width={200}
+                    height={200}
+                    className="object-cover"
+                  />
+                  <div>
+                    <h4 className="text-2xl mb-1 capitalize">{listing?.name}</h4>
+                    <h3 className=" text-lg capitalize">
+                      {listing?.type?.replace("_", " ")}
+                    </h3>
+                    <span className="flex text-sm items-center gap-1">
+                      <span>
+                        <StartRating
+                          size={15}
+                          value={listing?.rating}
+                          color={"#000000"}
+                        />
+                      </span>
+                    </span>
+                    <span className="flex text-sm items-center gap-2 mt-2">
+                      <span>
+                        {listing?.review ? listing?.review + " reviews" : ""}
+                      </span>
                     </span>
                   </div>
                 </div>
-                {discountPercentage !== 0 ? (
+                <div className="py-4 confirm-details">
+                  <h1 className="">Price Details</h1>{" "}
                   <div className="flex gap-3 mt-2 border-b pb-2">
                     <div className="flex items-center justify-between w-full">
-                      <span className="block text-blackColor">
-                        Charges Per Nights ({formatMultiPrice(originalPrice)} *{" "}
+                      <span className="block text-blackColor">Nights</span>
+                      <span className="block text-blackColor font-medium">
                         {infos.checkout &&
                           infos.checkin &&
                           differenceInDays(
                             new Date(infos.checkout),
                             new Date(infos.checkin)
-                          )}{" "}
+                          )}
+                      </span>
+                    </div>
+                  </div>
+                  {discountPercentage !== 0 ? (
+                    <div className="flex gap-3 mt-2 border-b pb-2">
+                      <div className="flex items-center justify-between w-full">
+                        <span className="block text-blackColor">
+                          Charges Per Nights ({formatMultiPrice(originalPrice)} *{" "}
+                          {infos.checkout &&
+                            infos.checkin &&
+                            differenceInDays(
+                              new Date(infos.checkout),
+                              new Date(infos.checkin)
+                            )}{" "}
+                          )
+                        </span>
+                        <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex justify-end">
+                          <div className="flex justify-center">
+                            <>
+                              <div className="flex flex-col items-end">
+                                <div className="text-lg text-green-800 font-bold">
+                                  {formatMultiPrice(
+                                    discountedPrice *
+                                    differenceInDays(
+                                      new Date(infos.checkout),
+                                      new Date(infos.checkin)
+                                    )
+                                  )}
+                                </div>
+
+                                <p className="text-red-700 text-sm line-through mt-1">
+                                  {formatMultiPrice(
+                                    originalPrice *
+                                    differenceInDays(
+                                      new Date(infos.checkout),
+                                      new Date(infos.checkin)
+                                    )
+                                  )}
+                                </p>
+                                {discountPercentage && (
+                                  <p className="text-green-700  mt-1">
+                                    {`( ${discountPercentage}% off )`}
+                                  </p>
+                                )}
+                              </div>
+                            </>
+                          </div>
+                        </span>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex gap-3 mt-2 border-b pb-2">
+                      <div className="flex items-center justify-between w-full">
+                        <span className="block text-blackColor">
+                          Charges Per Nights ({formatMultiPrice(originalPrice)} *{" "}
+                          {infos.checkout &&
+                            infos.checkin &&
+                            differenceInDays(
+                              new Date(infos.checkout),
+                              new Date(infos.checkin)
+                            )}{" "}
+                          )
+                        </span>
+                        <span className="block text-blackColor font-medium confirm-price">
+                          <div className="flex justify-center">
+                            <>
+                              <div className="flex flex-col items-center items-end">
+                                <div className="text-lg font-bold"></div>
+                                <div className="  mt-1">
+                                  {formatMultiPrice(
+                                    originalPrice *
+                                    differenceInDays(
+                                      new Date(infos.checkout),
+                                      new Date(infos.checkin)
+                                    )
+                                  )}
+                                </div>
+                              </div>
+                            </>
+                          </div>
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                  <div className="pt-4 flex items-center border-b pb-2 justify-between confirm-total">
+                    <span className="font-bold text-center ">Extra Charges </span>
+                  </div>
+                  <div className="flex gap-3 mt-2 border-b pb-2">
+                    <div className="flex items-center justify-between w-full">
+                      <span className="block text-blackColor">
+                        Cleaning Fees Per Nights (
+                        {formatMultiPrice(listing?.cleaning_fee || 0)} *{" "}
+                        {infos.checkout &&
+                          infos.checkin &&
+                          differenceInDays(
+                            new Date(infos.checkout),
+                            new Date(infos.checkin)
+                          )}
                         )
                       </span>
                       <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex justify-end">
-                        <div className="flex justify-center">
-                          <>
-                            <div className="flex flex-col items-end">
-                              <div className="text-lg text-green-800 font-bold">
-                                {formatMultiPrice(
-                                  discountedPrice *
-                                    differenceInDays(
-                                      new Date(infos.checkout),
-                                      new Date(infos.checkin)
-                                    )
-                                )}
-                              </div>
-
-                              <p className="text-red-700 text-sm line-through mt-1">
-                                {formatMultiPrice(
-                                  originalPrice *
-                                    differenceInDays(
-                                      new Date(infos.checkout),
-                                      new Date(infos.checkin)
-                                    )
-                                )}
-                              </p>
-                              {discountPercentage && (
-                                <p className="text-green-700  mt-1">
-                                  {`( ${discountPercentage}% off )`}
-                                </p>
-                              )}
-                            </div>
-                          </>
-                        </div>
-                      </span>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex gap-3 mt-2 border-b pb-2">
-                    <div className="flex items-center justify-between w-full">
-                      <span className="block text-blackColor">
-                        Charges Per Nights ({formatMultiPrice(originalPrice)} *{" "}
-                        {infos.checkout &&
-                          infos.checkin &&
-                          differenceInDays(
-                            new Date(infos.checkout),
-                            new Date(infos.checkin)
-                          )}{" "}
-                        )
-                      </span>
-                      <span className="block text-blackColor font-medium confirm-price">
-                        <div className="flex justify-center">
-                          <>
-                            <div className="flex flex-col items-center items-end">
-                              <div className="text-lg font-bold"></div>
-                              <div className="  mt-1">
-                                {formatMultiPrice(
-                                  originalPrice *
-                                    differenceInDays(
-                                      new Date(infos.checkout),
-                                      new Date(infos.checkin)
-                                    )
-                                )}
-                              </div>
-                            </div>
-                          </>
-                        </div>
-                      </span>
-                    </div>
-                  </div>
-                )}
-                <div className="pt-4 flex items-center border-b pb-2 justify-between confirm-total">
-                  <span className="font-bold text-center ">Extra Charges </span>
-                </div>
-                <div className="flex gap-3 mt-2 border-b pb-2">
-                  <div className="flex items-center justify-between w-full">
-                    <span className="block text-blackColor">
-                      Cleaning Fees Per Nights (
-                      {formatMultiPrice(listing?.cleaning_fee || 0)} *{" "}
-                      {infos.checkout &&
-                        infos.checkin &&
-                        differenceInDays(
-                          new Date(infos.checkout),
-                          new Date(infos.checkin)
-                        )}
-                      )
-                    </span>
-                    <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex justify-end">
-                      {formatMultiPrice(
-                        listing?.cleaning_fee *
+                        {formatMultiPrice(
+                          listing?.cleaning_fee *
                           differenceInDays(
                             new Date(infos.checkout),
                             new Date(infos.checkin)
                           )
-                      )}
-                    </span>
+                        )}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                {listing?.guests <
-                guests?.adults?.value + guests?.children?.value ? (
-                  <div className="flex gap-3 mt-2 border-b pb-2">
-                    <div className="flex items-center justify-between w-full">
-                      <div className="flex flex-col">
-                        <span className="block text-blackColor text-sm">
-                          Extra Guest Fees
-                        </span>
-                        <span className="block !text-[15px] text-blackColor text-sm">
-                          {guests?.adults?.value +
-                            guests?.children?.value -
-                            listing?.guests}
-                          {" x "}
-                          {formatMultiPrice(listing?.extra_guest_fee)}
-                        </span>
-                      </div>
-                      <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
-                        {formatMultiPrice(
-                          (guests?.adults?.value +
-                            guests?.children?.value -
-                            listing?.guests) *
+                  {listing?.guests <
+                    guests?.adults?.value + guests?.children?.value ? (
+                    <div className="flex gap-3 mt-2 border-b pb-2">
+                      <div className="flex items-center justify-between w-full">
+                        <div className="flex flex-col">
+                          <span className="block text-blackColor text-sm">
+                            Extra Guest Fees
+                          </span>
+                          <span className="block !text-[15px] text-blackColor text-sm">
+                            {guests?.adults?.value +
+                              guests?.children?.value -
+                              listing?.guests}
+                            {" x "}
+                            {formatMultiPrice(listing?.extra_guest_fee)}
+                          </span>
+                        </div>
+                        <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
+                          {formatMultiPrice(
+                            (guests?.adults?.value +
+                              guests?.children?.value -
+                              listing?.guests) *
                             listing?.extra_guest_fee
-                        )}
-                      </span>
-                    </div>
-                  </div>
-                ) : null}
-                {guests?.pets?.value > 0 ? (
-                  <div className="flex gap-3 mt-2 border-b pb-2">
-                    <div className="flex items-center justify-between w-full">
-                      <div className="flex flex-col">
-                        <span className="block text-blackColor text-sm">
-                          Pet Fees
-                        </span>
-                        <span className="block !text-[15px] text-blackColor text-sm">
-                          {guests?.pets?.value}
-                          {" x "}
-                          {formatMultiPrice(listing?.pet_fee)}
+                          )}
                         </span>
                       </div>
-                      <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
-                        {formatMultiPrice(
-                          guests?.pets?.value * listing?.pet_fee
-                        )}
-                      </span>
                     </div>
-                  </div>
-                ) : null}
-              </div>
-              <div className="pt-4 flex items-center justify-between confirm-total">
-                <span className="font-bold">Total(INR)</span>
-                <span className="text-md font-medium">
-                  {formatMultiPrice(pricerate)}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {guestsModel && (
-            <GuestsModel
-              infos={infos}
-              setGuestsModel={setGuestsModel}
-              guests={guests}
-              setGuests={setGuests}
-            />
-          )}
-          {dateModel && (
-            <DatesModel infos={infos} setDateModel={setDateModel} />
-          )}
-          {isOpen && (
-            <div className="max-w-3xl mx-auto">
-              <Modal width="md" isOpen={isOpen} onClose={closeModal}>
-                <p className="text-lg text-white font-semibold p-7 py-4 bg-[#efa3a3] capitalize">
-                  Cancellation policy
-                </p>
-                <div className="py-4 px-6">
-                  <div className="flex ">
-                    <div className="w-[45%] ">
-                      <h6 className="mb-2 text-[18px] font-semibold cancel-policy">
-                        {cancelpolicy?.date &&
-                          (cancelpolicy?.date === new Date()
-                            ? "After"
-                            : "Before")}
-                      </h6>
-                      <h6 className="mb-2 text-2xl font-semibold cancel-policy">
-                        {cancelpolicy?.date
-                          ? ""
-                          : <Dateformat item={formattedCheckIn} /> && "After"}
-                      </h6>
-                    </div>
-                    <div className="w-[45%] border-l">
-                      <h6 className="mb-2 text-[18px] font-semibold cancel-policy">
-                        {cancelpolicy?.date &&
-                          (cancelpolicy?.date === new Date()
-                            ? ""
-                            : "Full Refund")}
-                      </h6>
-
-                      <h6 className="mb-2">
-                        {cancelpolicy?.date
-                          ? ""
-                          : <Dateformat item={formattedCheckIn} /> &&
-                            "No Refund"}
-                      </h6>
-                    </div>
-                  </div>
-                  <div className="flex border-bv border-b mb-4 ">
-                    <div className="w-[45%]">
-                      <p className="mb-4">
-                        {cancelpolicy?.date ? (
-                          <Dateformat item={cancelpolicy?.date} />
-                        ) : (
-                          <Dateformat item={cancelpolicy} />
-                        )}
-                      </p>
-                    </div>
-                    <div className="w-[55%] pl-3 border-l">
-                      <p className="mb-4">{cancelpolicy?.text}</p>
-                    </div>
-                  </div>
-                   {cancelpolicy?.date2 &&
-                    <div>
-                      <div className="flex ">
-                        <div className="w-1/2">
-                          <h6 className="mb-1 font-bold ">
-                            {cancelpolicy?.date2 === new Date()
-                              ? "After"
-                              : "Before"}
-                          </h6>
+                  ) : null}
+                  {guests?.pets?.value > 0 ? (
+                    <div className="flex gap-3 mt-2 border-b pb-2">
+                      <div className="flex items-center justify-between w-full">
+                        <div className="flex flex-col">
+                          <span className="block text-blackColor text-sm">
+                            Pet Fees
+                          </span>
+                          <span className="block !text-[15px] text-blackColor text-sm">
+                            {guests?.pets?.value}
+                            {" x "}
+                            {formatMultiPrice(listing?.pet_fee)}
+                          </span>
                         </div>
-                        <div className="w-1/2">
-                          <h6 className="mb-1 font-bold">
-                            {cancelpolicy?.date === new Date()
-                              ? ""
-                              : "Full Refund"}
-                          </h6>
-                        </div>
-                      </div>
-                      <div className="flex border-bv border-b mb-4">
-                        <div className="w-1/2">
-                          <p className="mb-1 font-normal w-1/2">
-                            <Dateformat item={cancelpolicy?.date2} />
-                          </p>
-                        </div>
-                         <div className="w-[55%] pl-3 border-l">
-                      <p className="mb-4">{cancelpolicy?.text2}</p>
-                    </div>
+                        <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
+                          {formatMultiPrice(
+                            guests?.pets?.value * listing?.pet_fee
+                          )}
+                        </span>
                       </div>
                     </div>
-                  } 
-                  <p className="font-normal capitalize">
-                    Cleaning fees are refunded if you cancel before check-in.{" "}
-                  </p>
-                  <p className="underline mt-2 font-bold cursor-pointer  text-[#efa3a3]">
-                    Learn more about{" "}
-                    <Link href="/terms" target="_blank">
-                      cancellation policies
-                    </Link>
-                  </p>
+                  ) : null}
                 </div>
-                <div className="mb-4 flex justify-center"></div>
-              </Modal>
+                <div className="pt-4 flex items-center justify-between confirm-total">
+                  <span className="font-bold">Total(INR)</span>
+                  <span className="text-md font-medium">
+                    {formatMultiPrice(pricerate)}
+                  </span>
+                </div>
+              </div>
             </div>
-          )}
-        </main>
+
+            {guestsModel && (
+              <GuestsModel
+                infos={infos}
+                setGuestsModel={setGuestsModel}
+                guests={guests}
+                setGuests={setGuests}
+              />
+            )}
+            {dateModel && (
+              <DatesModel infos={infos} setDateModel={setDateModel} />
+            )}
+            {isOpen && (
+              <div className="max-w-3xl mx-auto">
+                <Modal width="md" isOpen={isOpen} onClose={closeModal}>
+                  <p className="text-lg text-white font-semibold p-7 py-4 bg-[#efa3a3] capitalize">
+                    Cancellation policy
+                  </p>
+                  <div className="py-4 px-6">
+                    <div className="flex ">
+                      <div className="w-[45%] ">
+                        <h6 className="mb-2 text-[18px] font-semibold cancel-policy">
+                          {cancelpolicy?.date &&
+                            (cancelpolicy?.date === new Date()
+                              ? "After"
+                              : "Before")}
+                        </h6>
+                        <h6 className="mb-2 text-2xl font-semibold cancel-policy">
+                          {cancelpolicy?.date
+                            ? ""
+                            : <Dateformat item={formattedCheckIn} /> && "After"}
+                        </h6>
+                      </div>
+                      <div className="w-[45%] border-l">
+                        <h6 className="mb-2 text-[18px] ml-2 font-semibold cancel-policy">
+                          {cancelpolicy?.date &&
+                            (cancelpolicy?.date === new Date()
+                              ? ""
+                              : "Full Refund")}
+                        </h6>
+
+                        <h6 className="mb-2">
+                          {cancelpolicy?.date
+                            ? ""
+                            : <Dateformat item={formattedCheckIn} /> &&
+                            "No Refund"}
+                        </h6>
+                      </div>
+                    </div>
+                    <div className="flex border-bv border-b mb-4 ">
+                      <div className="w-[45%]">
+                        <p className="mb-4">
+                          {cancelpolicy?.date ? (
+                            <Dateformat item={cancelpolicy?.date} />
+                          ) : (
+                            <Dateformat item={cancelpolicy} />
+                          )}
+                        </p>
+                      </div>
+                      <div className="w-[55%] pl-3 border-l">
+                        <p className="mb-4">{cancelpolicy?.text}</p>
+                      </div>
+                    </div>
+                    {cancelpolicy?.date2 &&
+                      <div>
+                        <div className="flex ">
+                          <div className="w-1/2">
+                            <h6 className="mb-1 font-bold ">
+                              {cancelpolicy?.date2 === new Date()
+                                ? "After"
+                                : "Before"}
+                            </h6>
+                          </div>
+                          <div className="w-1/2">
+                            <h6 className="mb-1 font-bold">
+                              {cancelpolicy?.date === new Date()
+                                ? ""
+                                : "Full Refund"}
+                            </h6>
+                          </div>
+                        </div>
+                        <div className="flex border-bv border-b mb-4">
+                          <div className="w-1/2">
+                            <p className="mb-1 ">
+                              <Dateformat item={cancelpolicy?.date2} />
+                            </p>
+                          </div>
+                          <div className="w-[55%] pl-3 border-l">
+                            <p className="mb-4">{cancelpolicy?.text2}</p>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                    <p className="font-normal capitalize">
+                      Cleaning fees are refunded if you cancel before check-in.{" "}
+                    </p>
+                    <p className="underline mt-2 font-bold cursor-pointer  text-[#efa3a3]">
+                      Learn more about{" "}
+                      <Link href="/terms" target="_blank">
+                        cancellation policies
+                      </Link>
+                    </p>
+                  </div>
+                  <div className="mb-4 flex justify-center"></div>
+                </Modal>
+              </div>
+            )}
+          </main>
         }
       </div>
     </AuthLayout>

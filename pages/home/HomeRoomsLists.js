@@ -16,8 +16,19 @@ export default function Card() {
           Stylish Apartments for Your Dream Vacation
         </h2>
         <RoomListings />
-        <div className="load-more-btn w-full flex justify-center lg:mt-6">
+        {/* <div className="load-more-btn w-full flex justify-center lg:mt-6">
           <Link href="/apartments" className="block">Show All</Link>
+        </div> */}
+
+        <div className="flex justify-center mt-6">
+          <Link
+            target='_blank'
+            href="/apartments"
+            className="bg-[#efa3a3] text-[#fff] text-[13px] md:text-[16px] border border-[#efa3a3] px-[30px] py-[12px] flex rounded-full hover:text-[#efa3a3] hover:bg-[#ffffff00]"
+          >
+            <span className="font-base uppercase"> Show All </span>
+            {/* <GoArrowRight size={20} /> */}
+          </Link>
         </div>
       </div>
     </div>
