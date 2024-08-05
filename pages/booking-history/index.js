@@ -12,7 +12,6 @@ import Head from "next/head";
 import { toast } from "react-hot-toast";
 import DateComponent from "../elements/DateFormat.jsx";
 import { TableLoading } from "../../components/Loading/ListingsLoading.jsx";
-import moment from "moment";
 import MobileBooking from "./MobileBooking.js";
 
 export default function Index() {

@@ -50,7 +50,7 @@ export default function Menu() {
           <div aria-label="navigation" className="py-2 header-naves">
             <nav className="grid gap-1 px-1">
               <Link
-                href="/booking"
+                href="/booking-history"
                 className="!flex items-center leading-6 py-2 sm:py-3 px-3 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
               >
                 <svg
