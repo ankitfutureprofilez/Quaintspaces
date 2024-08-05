@@ -38,6 +38,8 @@ const propertyTypes = [
 ];
 export default function Property(props) {
   const { isEdit, p, fetchProperties, stepdata, useExistingImages } = props;
+
+  console.log("isEdit",isEdit)
   const {
     uuid,
     type,
@@ -109,16 +111,12 @@ export default function Property(props) {
   const [images, setImages] = useState([]);
   const [dragId, setDragId] = useState("");
   const [typeHere, setTypeHere] = useState(type || "entire_place");
-  const [checkinStart, setCheckinStart] = useState(check_in || "00:00");
-  const [checkinquet, setCheckinquiet] = useState(
-    property_rule?.quite_hours_in_time || "00:00"
-  );
-  const [checkoutquet, setCheckoutquiet] = useState(
-    property_rule?.quite_hours_out_time || "00:00"
-  );
+  const [checkinquet, setCheckinquiet] = useState(property_rule?.quite_hours_in_time || "00:00");
+  const [checkoutquet, setCheckoutquiet] = useState( property_rule?.quite_hours_out_time || "00:00");
+  const [checkinStart, setCheckinStart] = useState(check_in || "00:00:00");
+  const [checkout, setCheckout] = useState(check_out || "00:00:00");
   const [selectedOption, setSelectedOption] = useState(status || 0);
   const [checkinEnd, setCheckinEnd] = useState(flexible_check_in || "flexible");
-  const [checkout, setCheckout] = useState(check_out || "00:00");
   const [Guests, setGuests] = useState(guests || 1);
   const [Beds, setBeds] = useState(beds || 1);
   const [Bedrooms, setBedrooms] = useState(bedrooms || 1);
@@ -260,6 +258,7 @@ export default function Property(props) {
     setAddress({ ...address, [name]: value });
   };
 
+  let addtionaldata=  JSON?.parse(property_rule?.additional_rules);
   const [item, setItem] = useState({
     name: name || "",
     about: description || "",
@@ -273,14 +272,12 @@ export default function Property(props) {
     Direction: property_rule?.direction || "",
     housemanual: property_rule?.house_manuals || "",
     wifi: property_rule?.wifi_username || "",
-    additonalrule: property_rule?.additional_rules || "",
+    additonalrule:addtionaldata|| "",
     wifiPassword: property_rule?.wifi_password || "",
     discount: discount_offer || "",
     customLink: custom_link || "",
   });
 
-  console.log("property_rule?.additional_rules", property_rule?.additional_rules)
-  console.log("item", item)
   const copyToClipboard = () => {
     const textToCopy = `${baseurl}${item?.customLink}`;
     navigator.clipboard
@@ -676,26 +673,19 @@ export default function Property(props) {
     formData.append("quite_hours_out_time", checkoutquet);
     formData.append("check_in_description", checkdescrtion);
     formData.append("check_in_method", selectedMethod);
-    formData.append(
-      "check_out_instruction",
-      JSON.stringify(checkoutInstructions)
-    );
+    formData.append("check_out_instruction",  JSON.stringify(checkoutInstructions));
     formData.append("discount_offer", item?.discount);
-
-    images.forEach((image, index) => {
-      formData.append("property_image[]", image);
-    });
+    images.forEach((image, index) => { formData.append("property_image[]", image);});
     const response =
-      isEdit && !stepdata
-        ? main.propertyedit(uuid, formData)
-        : main.addproperty(formData);
+      isEdit && !stepdata   ? main.propertyedit(uuid, formData) : main.addproperty(formData);
     response
       .then((res) => {
         if (res?.data?.status) {
-          if (isEdit && !stepdata) {
+          if (isEdit && !stepdata ) {
             toast.success(res.data.message);
             router.push("/admin/property");
-            // fetchProperties && fetchProperties();
+            fetchProperties && fetchProperties();
+            isEdit(false);
           } else {
             router.push("/admin/property");
             toast.success(res.data.message);
