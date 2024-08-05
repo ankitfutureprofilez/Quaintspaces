@@ -27,21 +27,21 @@ export default function Menu() {
                 aria-label="avatar"
                 className="flex mr-auto items-center space-x-4"
               >
-                  <Image className="w-5 h-5 min-h-5"
-                    src={
-                      auth?.image_url
-                        ? auth?.image_url
-                        : "/images/profile-no-image.jpg"
-                    }
-                    alt="profile"
-                    width={100}
-                    height={100}
-                  />
+                <Image className="w-5 h-5 min-h-5"
+                  src={
+                    auth?.image_url
+                      ? auth?.image_url
+                      : "/images/profile-no-image.jpg"
+                  }
+                  alt="profile"
+                  width={100}
+                  height={100}
+                />
                 <div className="">
                   <div className=" relative text-gray-900">
-                      <p className="text-[18px] relative capitalize">
-                        {auth?.first_name}
-                      </p>
+                    <p className="text-[18px] relative capitalize">
+                      {auth?.first_name}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -127,22 +127,22 @@ export default function Menu() {
                 className="!flex items-center leading-6 py-2 sm:py-3 px-3 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
               >
                 <svg
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                className="w-7 h-7"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                fill="none"
-                strokeLinejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
-                <path d="M9 12h12l-3 -3"></path>
-                <path d="M18 15l3 -3"></path>
-              </svg>
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  className="w-7 h-7"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                  stroke="currentColor"
+                  fill="none"
+                  strokeLinejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
+                  <path d="M9 12h12l-3 -3"></path>
+                  <path d="M18 15l3 -3"></path>
+                </svg>
                 <span>Logout</span>
               </Link>
             </nav>

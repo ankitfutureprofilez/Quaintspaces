@@ -130,14 +130,14 @@ export default function Header() {
                           <span>My Profile</span>
                         </Link>
                         <Link
-                          href="/booking"
+                          href="/booking-history"
                           className="mb-3 block link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg"
                         >
                           <span>Bookings History</span>
                         </Link>
 
                         <Link
-                          href="/paymentHistory"
+                          href="/payment-history"
                           className="mb-3 block link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg"
                         >
                           <span>Payment History</span>
