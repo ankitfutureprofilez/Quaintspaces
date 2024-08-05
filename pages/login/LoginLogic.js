@@ -62,7 +62,7 @@ export default function LoginLogic({ isPopup, color }) {
   };
   return (
     <>
-      <div className="right-signup-form flex justify-end">
+      <div className="autofill right-signup-form flex justify-end">
         <div className="signup-form w-full max-h-screen overflow-y-auto rounded-xl">
           <div className="formbgcolor bg-[#0004]"></div>
           <div className="quainttay">

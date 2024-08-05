@@ -355,7 +355,8 @@ export default function Index() {
                   </tbody>
                 </table>
               </div>
-            ) : (
+            ) 
+            : (
               <NoData
                 url={"/apartments"}
                 Heading={"Booking not found !!"}
@@ -364,8 +365,7 @@ export default function Index() {
                     "You have not cancelled any booking yet."
                   ) : (
                     "You have not made any bookings yet. Please click the link below to visit the apartment page."
-                  )}
-
+              )}
               />
             )}
           </>
@@ -382,44 +382,10 @@ export default function Index() {
     );
   };
 
-  // const PhoneBooking = () => {
-  //   return (
-  //     <>
-  //       <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden p-6">
-  //       <div className="flex items-center justify-between mb-4">
-  //   <h2 className="text-xl font-semibold text-gray-800">Net-Banking</h2>
-  //   <p className="px-3 py-1 text-sm font-medium text-white bg-green-500 rounded-full">Success</p>
-  // </div>
-
-
-  //         <div className="flex items-center justify-between mb-4">
-  //           <h3 className="text-lg font-bold text-gray-900">Quaint Stay</h3>
-  //           <p className="text-2xl font-bold text-gray-900">₹35,000</p>
-  //         </div>
-
-  //         <div className="text-gray-600 mb-4 flex items-center justify-between mb-4">
-  //           <p className="text-sm mb-1"> pay_OfYONyO7Pw14Uv</p>
-  //           <p className="text-sm mb-1"> INR</p>
-
-  //         </div>
-  //         <div className="flex items-center justify-between mb-4">
-  //         <p className="text-sm mb-1">16 Apr 2024, 05:00PM</p>
-  //         <p className="text-sm">24 Apr 2024, 08:00PM </p>
-
-  //         </div>
-  //       </div>
-
-  //     </>
-
-  //   )
-
-  // }
-
-
   return (
     <AuthLayout>
       <Head>
-        <title>Bookings - Quaint Spaces </title>
+        <title>My Booking - Quaint Spaces </title>
       </Head>
       <div className="container mx-auto min-h-screen">
         <div className=" account-btn ">

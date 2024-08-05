@@ -59,7 +59,7 @@ export default function Signup() {
   };
   return (
     <div
-      className="h-screen tab-mob-height bg-cover "
+      className="autofill h-screen tab-mob-height bg-cover "
       // style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
 
     >
