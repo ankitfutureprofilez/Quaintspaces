@@ -63,20 +63,22 @@ function Sidebar() {
     if (webtoken) {
       getAuth();
     }
-  }, [webtoken]);
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
-    getAuth();
+    getAuth(signal);
     return () => controller.abort();
   }, []);
 
   return (
     <div
-      className={`shrink-0 md:block h-screen sticky top-0 overflow-hidden ${isSidebarOpen ? "open" : "closed" }`}>
+      className={`shrink-0 md:block h-screen sticky top-0 overflow-hidden ${isSidebarOpen ? "!fixed" : "hidden"
+        }`}
+    >
       <div
-        className={` h-full bg-white border-r ${isMobileSidebarOpen ? "block" : "hidden md:block"
+        className={`w-60 h-full bg-white border-r ${isMobileSidebarOpen ? "block" : "hidden md:block"
           }`}
       >
         <div
@@ -84,6 +86,7 @@ function Sidebar() {
           onClick={toggleSidebar}
         >
           <div className="h-10 outline outline-indigo-300 w-10 flex items-center bg-indigo-600 justify-center rounded-full from-indigo-500 to-indigo-400 text-white">
+
             QS
           </div>
           <div>
@@ -337,7 +340,7 @@ function Sidebar() {
           <div>
             <hr className="bg-gray-400 mx-2 my-2" />
 
-            {/* {auth ? (
+            {auth ? (
               <div
                 className="flex pb-28 justify-between px-1 p-2 md:px-2 items-center cursor-pointer hover:pr-3 duration-200"
                 onClick={() => (profilemanagement())}
@@ -385,7 +388,7 @@ function Sidebar() {
                   <ArrowRight2 size={24} color="#4B0082" />
                 </button>
               </div>
-            )} */}
+            )}
           </div>
         </div>
       </div>

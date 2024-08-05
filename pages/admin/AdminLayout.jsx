@@ -11,7 +11,6 @@ const AdminLayout = ({ children, heading }) => {
 
     const router = useRouter();
     const [content, setContent] = useState([]);
-
     // const fetchData = () => {
     //     const main = new Listing();
     //     const response = main.Adminprofile();
@@ -29,9 +28,14 @@ const AdminLayout = ({ children, heading }) => {
     // }
 
     // useEffect(() => {
+    //     fetchData()
+    // }, []);
+
+
+    // useEffect(() => {
     //     const controller = new AbortController();
     //     const { signal } = controller;
-    //     fetchData();
+    //     fetchData(signal);
     //     return () => controller.abort();
     // }, []);
 
@@ -51,11 +55,11 @@ const AdminLayout = ({ children, heading }) => {
 
             </AnimatePresence>
 
-            <div className='admin-layout flex'>
-                <div className='sidebar hidden md:block'>
+            <div className='grid md:grid-cols-[240px_1fr]'>
+                <div className='hidden md:block'>
                     <Sidebar />
                 </div>
-                <div className='content-bar w-full '>
+                <div className='w-full '>
                     <Navbar heading={heading} />
                     <div className="pt-20 md:pt-24 px-4 " >{children}</div>
                 </div>
