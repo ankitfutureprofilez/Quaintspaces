@@ -258,7 +258,6 @@ export default function Property(props) {
     setAddress({ ...address, [name]: value });
   };
 
-  let addtionaldata=  JSON?.parse(property_rule?.additional_rules);
   const [item, setItem] = useState({
     name: name || "",
     about: description || "",
@@ -272,7 +271,7 @@ export default function Property(props) {
     Direction: property_rule?.direction || "",
     housemanual: property_rule?.house_manuals || "",
     wifi: property_rule?.wifi_username || "",
-    additonalrule:addtionaldata|| "",
+    additonalrule:property_rule?.additional_rules|| "",
     wifiPassword: property_rule?.wifi_password || "",
     discount: discount_offer || "",
     customLink: custom_link || "",
