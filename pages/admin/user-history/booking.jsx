@@ -22,7 +22,7 @@ export default function Booking(props) {
         setContent(res?.data?.data?.user_booking_history);
       })
       .catch((error) => {
-        setLoaidng(false);
+        setLoading(false);
         console.log("error", error);
       });
   }, [record]);
@@ -30,7 +30,7 @@ export default function Booking(props) {
   return (
     <>
       {loading ? (
-        <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 min-w-1200px">
+        <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 ">
           <div className="flex justify-center items-center space-x-1 text-gray-700">
             <div className="text-lg">Loading...</div>
           </div>

@@ -22,7 +22,7 @@ export default function Index() {
 
   const fetchData = async (pg) => {
     try {
-      if(pg==1){setLoading(true);}
+      if (pg == 1) { setLoading(true); }
       setLoadingButton(true);
       const main = new Listing();
       const response = await main.userListing(pg);
@@ -125,235 +125,235 @@ export default function Index() {
   };
 
   return (
-    <AdminLayout heading={"User List "}>
-        <div className="w-full ">
-          <table className="w-full text-sm rounded-md">
-            <thead>
-              <tr className="bg-gray-100 rounded-lg items-center bg-indigo-600 text-white justify-between text-gray-500">
-                <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
-                  <p>S.No.</p>
-                </th>
-                <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
-                  <p>Name</p>
-                </th>
-                <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
-                  <p>Phone Number</p>
-                </th>
-                <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
-                  <p>Status</p>
-                </th>
-                <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
-                  <p>Details</p>
-                </th>
-              </tr>
-            </thead>
+    <AdminLayout heading={"User List"}>
+      <div className="w-full ">
+        <table className="w-full text-sm rounded-md">
+          <thead>
+            <tr className="bg-gray-100 rounded-lg items-center bg-indigo-600 text-white justify-between text-gray-500">
+              <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
+                <p>S.No.</p>
+              </th>
+              <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
+                <p>Name</p>
+              </th>
+              <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
+                <p>Phone Number</p>
+              </th>
+              <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
+                <p>Status</p>
+              </th>
+              <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
+                <p>Details</p>
+              </th>
+            </tr>
+          </thead>
 
-            <tbody className="bg-white divide-y divide-gray-200">
-              {record.map((item, index) => (
-                <tr
-                  key={index}
-                  className="hover:bg-gray-100  items-center justify-between duration-150 text-gray-700 !mt-0"
-                >
-                  <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
-                    {index + 1}
-                  </td>
-                  <td className="flex gap-2 py-4 img-data items-center text-sm px-2 whitespace-nowrap">
-                    <Image
-                      width={35}
-                      height={35}
-                      className="top-2 right-2 p-1 rounded-full"
-                      src={
-                        item.image_url
-                          ? item.image_url
-                          : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"
+          <tbody className="bg-white divide-y divide-gray-200">
+            {record.map((item, index) => (
+              <tr
+                key={index}
+                className="hover:bg-gray-100  items-center justify-between duration-150 text-gray-700 !mt-0"
+              >
+                <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
+                  {index + 1}
+                </td>
+                <td className="flex gap-2 py-4 img-data items-center text-sm px-2 whitespace-nowrap">
+                  <Image
+                    width={35}
+                    height={35}
+                    className="top-2 right-2 p-1 rounded-full"
+                    src={
+                      item.image_url
+                        ? item.image_url
+                        : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"
+                    }
+                    alt={item.index ? item.index : "0"}
+                  />
+                  <div>
+                    <div className="text-gray-800 font-medium">
+                      {item.name}
+                    </div>
+                    <div className="text-sm">{item.email}</div>
+                  </div>
+                </td>
+                <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
+                  {item.phone_no ? item.phone_no : "-"}
+                </td>
+                <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
+                  <div className="flex items-center gap-1 p-1">
+                    <button
+                      onClick={() =>
+                        statusUpdate(item.id, item.status === 0 ? 1 : 0)
                       }
-                      alt={item.index ? item.index : "0"}
-                    />
-                    <div>
-                      <div className="text-gray-800 font-medium">
-                        {item.name}
-                      </div>
-                      <div className="text-sm">{item.email}</div>
-                    </div>
-                  </td>
-                  <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
-                    {item.phone_no ? item.phone_no : "-"}
-                  </td>
-                  <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
-                    <div className="flex items-center gap-1 p-1">
-                      <button
-                        onClick={() =>
-                          statusUpdate(item.id, item.status === 0 ? 1 : 0)
-                        }
+                    >
+                      {item.status === 0 ? (
+                        <div className="flex items-center gap-2 border rounded-full p-2">
+                          <p className="text-xs">disable</p>{" "}
+                          <svg
+                            className="text-gray-400"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <path
+                              d="m19.53 5.53-14 14c-.02.02-.03.03-.05.04-.38-.32-.73-.67-1.05-1.05A9.903 9.903 0 0 1 2 12C2 6.48 6.48 2 12 2c2.49 0 4.77.91 6.52 2.43.38.32.73.67 1.05 1.05-.01.02-.02.03-.04.05ZM22 12c0 5.49-4.51 10-10 10-1.5 0-2.92-.33-4.2-.93-.62-.29-.74-1.12-.26-1.61L19.46 7.54c.48-.48 1.32-.36 1.61.26.6 1.27.93 2.7.93 4.2Z"
+                              fill="currentColor"
+                            ></path>
+                            <path
+                              d="M21.77 2.229c-.3-.3-.79-.3-1.09 0L2.23 20.689c-.3.3-.3.79 0 1.09a.758.758 0 0 0 1.08-.01l18.46-18.46c.31-.3.31-.78 0-1.08Z"
+                              fill="currentColor"
+                            ></path>
+                          </svg>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-1 border rounded-full p-1">
+                          <p className="text-xs">Enable</p>{" "}
+                          <svg
+                            className="text-emerald-500"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <path
+                              d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z"
+                              fill="currentColor"
+                            ></path>
+                          </svg>
+                        </div>
+                      )}
+                    </button>
+                  </div>
+                </td>
+                <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+                  <div className="relative">
+                    <div
+                      onClick={() => handleRowClick(item.id)}
+                      className="cursor-pointer w-12 rounded p-2 hover:bg-gray-200"
+                    >
+                      <svg
+                        width="32px"
+                        height="32px"
+                        viewBox="0 0 24 24"
+                        id="three-dots"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        {item.status === 0 ? (
-                          <div className="flex items-center gap-2 border rounded-full p-2">
-                            <p className="text-xs">disable</p>{" "}
-                            <svg
-                              className="text-gray-400"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                            >
-                              <path
-                                d="m19.53 5.53-14 14c-.02.02-.03.03-.05.04-.38-.32-.73-.67-1.05-1.05A9.903 9.903 0 0 1 2 12C2 6.48 6.48 2 12 2c2.49 0 4.77.91 6.52 2.43.38.32.73.67 1.05 1.05-.01.02-.02.03-.04.05ZM22 12c0 5.49-4.51 10-10 10-1.5 0-2.92-.33-4.2-.93-.62-.29-.74-1.12-.26-1.61L19.46 7.54c.48-.48 1.32-.36 1.61.26.6 1.27.93 2.7.93 4.2Z"
-                                fill="currentColor"
-                              ></path>
-                              <path
-                                d="M21.77 2.229c-.3-.3-.79-.3-1.09 0L2.23 20.689c-.3.3-.3.79 0 1.09a.758.758 0 0 0 1.08-.01l18.46-18.46c.31-.3.31-.78 0-1.08Z"
-                                fill="currentColor"
-                              ></path>
-                            </svg>
-                          </div>
-                        ) : (
-                          <div className="flex items-center gap-1 border rounded-full p-1">
-                            <p className="text-xs">Enable</p>{" "}
-                            <svg
-                              className="text-emerald-500"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                            >
-                              <path
-                                d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z"
-                                fill="currentColor"
-                              ></path>
-                            </svg>
-                          </div>
-                        )}
-                      </button>
-                    </div>
-                  </td>
-                  <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
-                    <div className="relative">
-                      <div
-                        onClick={() => handleRowClick(item.id)}
-                        className="cursor-pointer w-12 rounded p-2 hover:bg-gray-200"
-                      >
-                        <svg
-                          width="32px"
-                          height="32px"
-                          viewBox="0 0 24 24"
-                          id="three-dots"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <g
+                          id="_20x20_three-dots--grey"
+                          data-name="20x20/three-dots--grey"
+                          transform="translate(24) rotate(90)"
                         >
-                          <g
-                            id="_20x20_three-dots--grey"
-                            data-name="20x20/three-dots--grey"
-                            transform="translate(24) rotate(90)"
-                          >
-                            <rect
-                              id="Rectangle"
-                              width="24"
-                              height="24"
-                              fill="none"
-                            />
-                            <circle
-                              id="Oval"
-                              cx="1"
-                              cy="1"
-                              r="1"
-                              transform="translate(5 11)"
-                              stroke="#000000"
-                              strokeMiterlimit="10"
-                              strokeWidth="0.5"
-                            />
-                            <circle
-                              id="Oval-2"
-                              data-name="Oval"
-                              cx="1"
-                              cy="1"
-                              r="1"
-                              transform="translate(11 11)"
-                              stroke="#000000"
-                              strokeMiterlimit="10"
-                              strokeWidth="0.5"
-                            />
-                            <circle
-                              id="Oval-3"
-                              data-name="Oval"
-                              cx="1"
-                              cy="1"
-                              r="1"
-                              transform="translate(17 11)"
-                              stroke="#000000"
-                              strokeMiterlimit="10"
-                              strokeWidth="0.5"
-                            />
-                          </g>
-                        </svg>
-                      </div>
+                          <rect
+                            id="Rectangle"
+                            width="24"
+                            height="24"
+                            fill="none"
+                          />
+                          <circle
+                            id="Oval"
+                            cx="1"
+                            cy="1"
+                            r="1"
+                            transform="translate(5 11)"
+                            stroke="#000000"
+                            strokeMiterlimit="10"
+                            strokeWidth="0.5"
+                          />
+                          <circle
+                            id="Oval-2"
+                            data-name="Oval"
+                            cx="1"
+                            cy="1"
+                            r="1"
+                            transform="translate(11 11)"
+                            stroke="#000000"
+                            strokeMiterlimit="10"
+                            strokeWidth="0.5"
+                          />
+                          <circle
+                            id="Oval-3"
+                            data-name="Oval"
+                            cx="1"
+                            cy="1"
+                            r="1"
+                            transform="translate(17 11)"
+                            stroke="#000000"
+                            strokeMiterlimit="10"
+                            strokeWidth="0.5"
+                          />
+                        </g>
+                      </svg>
+                    </div>
 
-                      {/* Dropdown menu */}
-                      {popupOpen === item.id && selectedRowData && (
-                        <div className="z-10 absolute top-full right-0 mt-1 w-44 bg-white divide-y divide-gray-100 rounded-lg shadow">
-                          <ul
-                            className="py-2 text-sm text-gray-700"
-                            aria-labelledby="dropdownDefaultButton"
-                          >
-                            <li className="block px-4 py-2 hover:bg-gray-100">
-                              <button
-                                onClick={() =>
-                                  statusUpdate(
-                                    item.id,
-                                    item.status === 0 ? 1 : 0
-                                  )
-                                }
-                              >
-                                {item.status === 0 ? (
-                                  <div className="flex items-center gap-2 border rounded-full p-2">
-                                    <p className="text-xs">Diable</p>{" "}
-                                    <svg
-                                      class="text-gray-400"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      width="16"
-                                      height="16"
-                                      viewBox="0 0 24 24"
-                                      fill="none"
-                                    >
-                                      <path
-                                        d="m19.53 5.53-14 14c-.02.02-.03.03-.05.04-.38-.32-.73-.67-1.05-1.05A9.903 9.903 0 0 1 2 12C2 6.48 6.48 2 12 2c2.49 0 4.77.91 6.52 2.43.38.32.73.67 1.05 1.05-.01.02-.02.03-.04.05ZM22 12c0 5.49-4.51 10-10 10-1.5 0-2.92-.33-4.2-.93-.62-.29-.74-1.12-.26-1.61L19.46 7.54c.48-.48 1.32-.36 1.61.26.6 1.27.93 2.7.93 4.2Z"
-                                        fill="currentColor"
-                                      ></path>
-                                      <path
-                                        d="M21.77 2.229c-.3-.3-.79-.3-1.09 0L2.23 20.689c-.3.3-.3.79 0 1.09a.758.758 0 0 0 1.08-.01l18.46-18.46c.31-.3.31-.78 0-1.08Z"
-                                        fill="currentColor"
-                                      ></path>
-                                    </svg>
-                                  </div>
-                                ) : (
-                                  <div className="flex items-center gap-1">
-                                    <p className="text-xs">Enable</p>{" "}
-                                    <svg
-                                      className="text-emerald-500"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      width="16"
-                                      height="16"
-                                      viewBox="0 0 24 24"
-                                      fill="none"
-                                    >
-                                      <path
-                                        d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z"
-                                        fill="currentColor"
-                                      ></path>
-                                    </svg>
-                                  </div>
-                                )}
-                              </button>
-                            </li>
-                            <li>
-                              <Link
-                                href={`user-history/${item.id}`}
-                                className="block px-4 py-2 hover:bg-gray-100"
-                              >
-                                User Detail{" "}
-                              </Link>
-                            </li>
-                            {/* <li>
+                    {/* Dropdown menu */}
+                    {popupOpen === item.id && selectedRowData && (
+                      <div className="z-10 absolute top-full right-0 mt-1 w-44 bg-white divide-y divide-gray-100 rounded-lg shadow">
+                        <ul
+                          className="py-2 text-sm text-gray-700"
+                          aria-labelledby="dropdownDefaultButton"
+                        >
+                          <li className="block px-4 py-2 hover:bg-gray-100">
+                            <button
+                              onClick={() =>
+                                statusUpdate(
+                                  item.id,
+                                  item.status === 0 ? 1 : 0
+                                )
+                              }
+                            >
+                              {item.status === 0 ? (
+                                <div className="flex items-center gap-2 border rounded-full p-2">
+                                  <p className="text-xs">Diable</p>{" "}
+                                  <svg
+                                    class="text-gray-400"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                  >
+                                    <path
+                                      d="m19.53 5.53-14 14c-.02.02-.03.03-.05.04-.38-.32-.73-.67-1.05-1.05A9.903 9.903 0 0 1 2 12C2 6.48 6.48 2 12 2c2.49 0 4.77.91 6.52 2.43.38.32.73.67 1.05 1.05-.01.02-.02.03-.04.05ZM22 12c0 5.49-4.51 10-10 10-1.5 0-2.92-.33-4.2-.93-.62-.29-.74-1.12-.26-1.61L19.46 7.54c.48-.48 1.32-.36 1.61.26.6 1.27.93 2.7.93 4.2Z"
+                                      fill="currentColor"
+                                    ></path>
+                                    <path
+                                      d="M21.77 2.229c-.3-.3-.79-.3-1.09 0L2.23 20.689c-.3.3-.3.79 0 1.09a.758.758 0 0 0 1.08-.01l18.46-18.46c.31-.3.31-.78 0-1.08Z"
+                                      fill="currentColor"
+                                    ></path>
+                                  </svg>
+                                </div>
+                              ) : (
+                                <div className="flex items-center gap-1">
+                                  <p className="text-xs">Enable</p>{" "}
+                                  <svg
+                                    className="text-emerald-500"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                  >
+                                    <path
+                                      d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z"
+                                      fill="currentColor"
+                                    ></path>
+                                  </svg>
+                                </div>
+                              )}
+                            </button>
+                          </li>
+                          <li>
+                            <Link
+                              href={`user-history/${item.id}`}
+                              className="block px-4 py-2 hover:bg-gray-100"
+                            >
+                              User Detail{" "}
+                            </Link>
+                          </li>
+                          {/* <li>
                               <button
                                 className="block px-4 py-2 hover:bg-gray-100"
                                 onClick={() => openModal(item?.id)}
@@ -378,53 +378,53 @@ export default function Index() {
                                 </div>
                               </button>
                             </li> */}
-                            <li>
-                              <button
-                                 onClick={() => openModal(item?.id)}
-                                className="block px-4 py-2 hover:bg-gray-100"
-                              >
-                                Delete Account{" "}
-                              </button>
-                            </li>
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {loading ? (
-            <div className="flex flex-wrap justify-center ">
-              <Spinner />
-            </div>
-          ) : (
-            <> </>
-          )}
-        </div>
+                          <li>
+                            <button
+                              onClick={() => openModal(item?.id)}
+                              className="block px-4 py-2 hover:bg-gray-100"
+                            >
+                              Delete Account{" "}
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {loading ? (
+          <div className="flex flex-wrap justify-center ">
+            <Spinner />
+          </div>
+        ) : (
+          <> </>
+        )}
+      </div>
 
       {record?.length > 0 && !loading && hasmore && (
-            <div className="flex justify-center" style={{cursor:"pointer"}}>
-              <div
-                className="cursor-pointer mt-4 py-2 px-5 rounded-full text-[#efa3a3] hover:bg-[#efa3a3] hover:text-[#fff] border-2 bg-color-[#efa3a3] border-[#efa3a3]"
-                onClick={loadMore}
-              >
-                {loadingButton ? "Loading...": "Load More"}
-              </div>
-            </div>
-          )}
-        
+        <div className="flex justify-center" style={{ cursor: "pointer" }}>
+          <div
+            className="cursor-pointer mt-4 py-2 px-5 rounded-full text-[#efa3a3] hover:bg-[#efa3a3] hover:text-[#fff] border-2 bg-color-[#efa3a3] border-[#efa3a3]"
+            onClick={loadMore}
+          >
+            {loadingButton ? "Loading..." : "Load More"}
+          </div>
+        </div>
+      )}
+
       {isOpen && (
         <Modal isOpen={openModal} onClose={closeModal}>
           <div className="flex flex-col">
-          <div className="p-4 bg-[#efa3a3]">
-            <label
-              htmlFor="message"
-              className="mx-auto  block text-lg font-medium text-[#fff]"
-            >
-              Message 
-            </label>
+            <div className="p-4 bg-[#efa3a3]">
+              <label
+                htmlFor="message"
+                className="mx-auto  block text-lg font-medium text-[#fff]"
+              >
+                Message
+              </label>
             </div>
             <div className="p-4">
               <textarea
