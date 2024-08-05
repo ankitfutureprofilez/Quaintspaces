@@ -101,22 +101,12 @@ export default function Header() {
                 >
                   <div
                     className="profile-image-container items-center"
-                    style={{ cursor: "pointer" }}
-                  >
-                    <Image
-                      src={
-                        auth?.image_url
-                          ? auth?.image_url
-                          : "/images/profile-no-image.jpg"
-                      }
-                      alt="profile"
-                      width={100}
-                      height={100}
-                    />
+                    style={{ cursor: "pointer" }} >
+                    <Image alt="profile" width={100} height={100} 
+                    src={ auth?.image_url ? auth?.image_url : "/images/profile-no-image.jpg" } /> 
                     <span className="ml-[5px]">{auth?.first_name}</span>
                   </div>
                   {isDropdownOpen && <Menu />}
-
                 </div>
                 <div className="lg:hidden mt-[30px] w-full static">
                   <h3 className="text-[19px] text-gray-500 mb-2 border-t border-gray-200 pt-4">Account Settings</h3>
