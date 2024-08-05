@@ -2,6 +2,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import Listing from "../api/Listing";
 import Image from "next/image";
+import { CiLogout } from "react-icons/ci";
 import Link from "next/link";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import {
@@ -314,6 +315,17 @@ function Sidebar() {
                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
               </svg>
               Security
+            </Link>
+
+            <Link
+              href={"/admin/login"}
+             onClick={handleLogoutClick}
+              className="flex text-primary 
+                hover:px-1 hover:font-bold  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400 "
+            >
+              <CiLogout size={16}/>
+           
+              Logout
             </Link>
 
             {/* <div className="pt-2">
