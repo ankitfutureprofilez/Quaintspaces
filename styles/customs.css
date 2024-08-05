@@ -800,7 +800,6 @@ button.submint-btn {
 }
 
 
-
 .proerty-img img {
   object-position: top;
   object-fit: cover;
@@ -978,7 +977,7 @@ button.submint-btn {
 }
 
 .contact-about h1 {
-  font-family: Baskerville Old Face;
+  font-family: "Baskervville", serif;
   font-size: 60px;
   font-weight: 400;
   line-height: 60px;

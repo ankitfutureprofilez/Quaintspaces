@@ -266,7 +266,7 @@ export default function Index() {
 
   return (
     <AdminLayout heading="Properties">
-      {isLoading ? (
+      {!isLoading ? (
         <div className="flex">
           <Loading />
         </div>

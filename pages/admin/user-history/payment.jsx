@@ -39,11 +39,10 @@ export default function payment({ record }) {
         </div>
       ) : (
 
-        <div className="overflow-x-auto mt-3">
+        <div className=" mt-3">
           <div className="w-full">
             <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
               {content && content.length > 0 ? (
-
                 <table className="min-w-[1200px] w-full break-all divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr >

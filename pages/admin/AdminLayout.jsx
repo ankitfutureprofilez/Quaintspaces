@@ -60,7 +60,7 @@ const AdminLayout = ({ children, heading }) => {
                 <div className='hidden md:block'>
                     <Sidebar />
                 </div>
-                <div className='w-full overflow-x-auto '>
+                <div className='w-full '>
                     <Navbar heading={heading} />
                     <div className="pt-20 md:pt-24 px-4 " >{children}</div>
                 </div>

@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import Listing from "../api/Listing";
 import Image from "next/image";
 import Link from "next/link";
+import { RiLogoutCircleRLine } from "react-icons/ri";
 import {
   ArrowRight2,
   Element3,
@@ -17,9 +18,9 @@ import { useRouter } from "next/router";
 function Sidebar() {
   const { auth, setAuth } = useContext(Context);
   const pathname = usePathname();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true); 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const webtoken = LocalToken("Admintoken");
   const router = useRouter();
 
@@ -28,9 +29,18 @@ function Sidebar() {
     setIsSidebarOpen((prevState) => !prevState);
   };
 
+  const profilemanagement = () => {
+    router.push("/admin/profile");
+  };
   const toggleMobileSidebar = () => {
     setIsMobileSidebarOpen((prevState) => !prevState);
   };
+
+  const handleLogoutClick = () => {
+    localStorage && localStorage.removeItem("Admintoken");
+    router.push("/admin/login");
+  };
+
 
   async function getAuth() {
     const main = new Listing();
@@ -59,25 +69,23 @@ function Sidebar() {
     const { signal } = controller;
     getAuth(signal);
     return () => controller.abort();
-}, []);
+  }, []);
 
   return (
     <div
-      className={` shrink-0 md:block h-screen sticky top-0 overflow-hidden ${
-        isSidebarOpen ? "!fixed" : "hidden"
-      }`}
+      className={`shrink-0 md:block h-screen sticky top-0 overflow-hidden ${isSidebarOpen ? "!fixed" : "hidden"
+        }`}
     >
       <div
-        className={`w-60 h-full bg-white border-r ${
-          isMobileSidebarOpen ? "block" : "hidden md:block"
-        }`}
+        className={`w-60 h-full bg-white border-r ${isMobileSidebarOpen ? "block" : "hidden md:block"
+          }`}
       >
         <div
           className="p-4 md:p-6 flex cursor-pointer group items-center gap-2 z-10 h-24"
           onClick={toggleSidebar}
         >
           <div className="h-10 outline outline-indigo-300 w-10 flex items-center bg-indigo-600 justify-center rounded-full from-indigo-500 to-indigo-400 text-white">
-         
+
             QS
           </div>
           <div>
@@ -88,37 +96,34 @@ function Sidebar() {
           </div>
         </div>
         <hr className="bg-gray-400 mx-2" />
-        <div className="flex flex-col h-full justify-between">
-          <div className="pt-6 text-gray-500 font-medium space-y-2 md:px-2 text-normal">
+        <div className="flex flex-col min-h-screen justify-between">
+          <div className="pt-2 text-gray-500 font-medium space-y-2 md:px-1  text-normal">
             <Link
               href={"/admin"}
-              className={`flex ${
-                pathname === "/admin"
-                  ? "text-primary font-bold"
-                  : "text-gray-500"
-              } hover:px-8 duration-200 rounded-md w-full py-2 px-6 items-center gap-2 focus:text-indigo-400`}
+              className={`flex ${pathname === "/admin"
+                ? "text-primary font-bold"
+                : "text-gray-500"
+                } hover:px-1 duration-200 rounded-md w-full py-1 px-1 items-center gap-2 focus:text-indigo-400`}
             >
               <Element3 variant="Outline" size={16} />
               Dashboard
             </Link>
             <Link
               href={"/admin/property/add"}
-              className={`flex ${
-                pathname === "/admin/property/add"
-                  ? "text-primary font-bold"
-                  : "text-gray-500"
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
+              className={`flex ${pathname === "/admin/property/add"
+                ? "text-primary font-bold"
+                : "text-gray-500"
+                } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
             >
               <Add color="#080341" size={16} />
               Add Property
             </Link>
             <Link
               href={"/admin/property"}
-              className={`flex ${
-                pathname === "/admin/property"
-                  ? "text-primary font-bold text-gray-500 "
-                  : "text-gray-600"
-              } hover:px-8 duration-200 px-6 py-2  items-center gap-2 focus:text-indigo-400`}
+              className={`flex ${pathname === "/admin/property"
+                ? "text-primary font-bold text-gray-500 "
+                : "text-gray-600"
+                } hover:px-1  duration-200 px-1  py-1  items-center gap-2 focus:text-indigo-400`}
             >
               <svg
                 width="16px"
@@ -138,11 +143,10 @@ function Sidebar() {
             </Link>
             <Link
               href={"/admin/payment-history"}
-              className={`flex ${
-                pathname === "/admin/payment-history"
-                  ? "text-primary font-bold"
-                  : "text-gray-500"
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
+              className={`flex ${pathname === "/admin/payment-history"
+                ? "text-primary font-bold"
+                : "text-gray-500"
+                } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
             >
               <svg
                 width="16px"
@@ -177,14 +181,13 @@ function Sidebar() {
               Payment History
             </Link>
 
-            
+
             <Link
               href={"/admin/booking-history"}
-              className={`flex ${
-                pathname === "/admin/booking-history"
-                  ? "text-primary font-bold"
-                  : "text-gray-500"
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
+              className={`flex ${pathname === "/admin/booking-history"
+                ? "text-primary font-bold"
+                : "text-gray-500"
+                } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
             >
               <svg
                 fill="#080341"
@@ -199,11 +202,10 @@ function Sidebar() {
             </Link>
             <Link
               href={"/admin/user-history"}
-              className={`flex ${
-                pathname === "/admin/user-history"
-                  ? "text-primary font-bold"
-                  : "text-gray-500"
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
+              className={`flex ${pathname === "/admin/user-history"
+                ? "text-primary font-bold"
+                : "text-gray-500"
+                } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
             >
               <svg
                 width="16px"
@@ -226,11 +228,10 @@ function Sidebar() {
             </Link>
             <Link
               href={"/admin/review"}
-              className={`flex ${
-                pathname === "/admin/review"
-                  ? "text-primary font-bold"
-                  : "text-gray-500"
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
+              className={`flex ${pathname === "/admin/review"
+                ? "text-primary font-bold"
+                : "text-gray-500"
+                } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
             >
               <svg
                 width="16px"
@@ -248,11 +249,10 @@ function Sidebar() {
             </Link>
             <Link
               href={"/admin/enquiry"}
-              className={`flex ${
-                pathname === "/admin/enquiry"
-                  ? "text-primary font-bold"
-                  : "text-gray-500"
-              } hover:px-8 duration-200 px-6 py-2 items-center gap-2 focus:text-indigo-400`}
+              className={`flex ${pathname === "/admin/enquiry"
+                ? "text-primary font-bold"
+                : "text-gray-500"
+                } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
             >
               <svg
                 fill="#080341"
@@ -265,13 +265,72 @@ function Sidebar() {
               </svg>
               Enquiry
             </Link>
+
+            <Link
+              href={"/admin/profile"}
+              className={`flex ${pathname === "/admin/profile"
+                ? "text-primary font-bold"
+                : "text-gray-500"
+                } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                fill="none"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+              </svg>
+              Profile
+            </Link>
+
+            <Link
+              href={"/admin/security"}
+              className={`flex ${pathname === "/admin/security"
+                ? "text-primary font-bold"
+                : "text-gray-500"
+                } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                fill="none"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+              </svg>
+              Security
+            </Link>
+
+            <div className="pt-2">
+            <div
+              onClick={handleLogoutClick}
+              className="flex items-center space-x-3 py-2 px-2 w-full leading-3 text-lg text-gray-600 hover:bg-red-500 hover:text-white focus:outline-none hover:bg-gray-100 rounded-md"
+            >
+              <span>Logout</span>
+            </div>
+          </div>
           </div>
           <div>
-            <hr className="bg-gray-400 mx-2 my-4" />
+            <hr className="bg-gray-400 mx-2 my-2" />
             {auth ? (
               <div
-                className="flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200"
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex pb-28 justify-between px-1 p-2 md:px-2 items-center cursor-pointer hover:pr-3 duration-200"
+                onClick={() => (profilemanagement())}
               >
                 <div className="flex items-center gap-2">
                   <Image
@@ -290,12 +349,9 @@ function Sidebar() {
                     </p>
                   </div>
                 </div>
-                <button className="text-gray-500" aria-label="button">
-                  <Menu isOpen={isDropdownOpen} record={auth} />
-                </button>
               </div>
             ) : (
-              <div className="flex pb-28 justify-between px-4 md:px-6 items-center cursor-pointer hover:pr-5 duration-200">
+              <div className="flex pb-28 justify-between px-1  md:px-4 items-center cursor-pointer hover:pr-3 duration-200">
                 <div className="flex items-center gap-2">
                   <Image
                     src={

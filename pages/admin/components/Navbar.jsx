@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { useRouter } from 'next/router';
 import { useContext } from "react";
 import { Context } from "../../_app"
-import ProfileImage from '../components/assets/profile.png'
 import { Add, SearchNormal1, SidebarLeft } from 'iconsax-react'
 
 function Navbar({ isOpen, sidebarChange, heading }) {
