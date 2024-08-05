@@ -2,6 +2,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import Listing from "../api/Listing";
 import Image from "next/image";
+import { CiLogout } from "react-icons/ci";
 import Link from "next/link";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import {
@@ -97,7 +98,7 @@ function Sidebar() {
         </div>
         <hr className="bg-gray-400 mx-2" />
         <div className="flex flex-col min-h-screen justify-between">
-          <div className="pt-2 text-gray-500 font-medium space-y-2 md:px-1  text-normal">
+          <div className="pt-2 text-gray-500 font-medium space-y-2 md:px-1 text-normal max-h-[90vh] overflow-auto">
             <Link
               href={"/admin"}
               className={`flex ${pathname === "/admin"
@@ -316,18 +317,29 @@ function Sidebar() {
               Security
             </Link>
 
-            <div className="pt-2">
+            <Link
+              href={"/admin/login"}
+             onClick={handleLogoutClick}
+              className="flex text-primary 
+                hover:px-1 hover:font-bold  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400 "
+            >
+              <CiLogout size={16}/>
+           
+              Logout
+            </Link>
+
+            {/* <div className="pt-2">
             <div
               onClick={handleLogoutClick}
               className="flex items-center space-x-3 py-2 px-2 w-full leading-3 text-lg text-gray-600 hover:bg-red-500 hover:text-white focus:outline-none hover:bg-gray-100 rounded-md"
             >
               <span>Logout</span>
             </div>
-          </div>
+          </div> */}
           </div>
           <div>
             <hr className="bg-gray-400 mx-2 my-2" />
-            
+
             {auth ? (
               <div
                 className="flex pb-28 justify-between px-1 p-2 md:px-2 items-center cursor-pointer hover:pr-3 duration-200"

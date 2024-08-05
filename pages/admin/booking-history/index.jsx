@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 import Modal from "../hook/Modal";
 import Link from "next/link";
 import { formatMultiPrice } from "../../../hooks/ValueData"
+import { IoIosInformationCircleOutline } from "react-icons/io";
+
 
 export default function index() {
   const [content, setContent] = useState([]);
@@ -214,18 +216,6 @@ export default function index() {
                       <td className="px-4 py-4 text-sm text-gray-500 ">
                         <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
                           <div className="flex flex-row items-center gap-2 sm:flex-row sm:items-center text-sm">
-                            <Image
-                              width={30}
-                              height={30}
-                              className="w-8 h-8 rounded-full flex-shrink-0 object-cover"
-                              src={
-                                item?.booking_property?.property_image[0]
-                                  ?.image_url
-                              }
-                              alt={
-                                item?.booking_property?.name
-                              }
-                            />
                             <div className="p-2">
                               <div className="text-gray-800 font-medium capitalize">
                                 {item?.booking_property?.name}
@@ -237,6 +227,9 @@ export default function index() {
                               </div>
                             </div>
                           </div>
+
+                          <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">                         {item?.booking_date}
+                          </span>
                         </Link>
                       </td>
 
@@ -251,7 +244,9 @@ export default function index() {
                         >
                           <div className="uppercase inline-flex items-center rounded-full ml-2">
                             {item?.doc_type}
-                            <span className="text-base ml-1">🛈</span>
+                            <span className="text-base ml-1">
+                            <IoIosInformationCircleOutline size={16} />
+                            </span>
                           </div>
                         </div>
                       </td>

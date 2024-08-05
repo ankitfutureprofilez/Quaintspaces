@@ -143,6 +143,7 @@ export default function Header() {
                         >
                           <span>Settings</span>
                         </Link>
+                        
                         <Link onClick={handleLogoutClick}
                           href="/login"
                           className="link block mb-3 rounded-lg !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800">

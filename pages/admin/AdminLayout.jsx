@@ -41,8 +41,8 @@ const AdminLayout = ({ children, heading }) => {
     }, []);
 
     return (
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-
+        // <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+        <>
             <AnimatePresence>
 
                 <motion.div
@@ -65,7 +65,8 @@ const AdminLayout = ({ children, heading }) => {
                     <div className="pt-20 md:pt-24 px-4 " >{children}</div>
                 </div>
             </div>
-        </motion.div>
+            </>
+        // </motion.div>
     );
 };
 
