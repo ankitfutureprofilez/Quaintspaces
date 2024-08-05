@@ -84,6 +84,10 @@ const Date_GuestsPickerCard = React.forwardRef(
                         toast.error("Date not selected");
                         return;
                       }
+                      if (guests?.adults?.value == null || guests?.adults?.value == 0) {
+                        toast.error("Adults can't be 0");
+                        return;
+                      }
                       router.push(
                         `/book/${encodeURIComponent(
                           listing?.uuid

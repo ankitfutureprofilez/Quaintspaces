@@ -425,7 +425,7 @@ export default function Index() {
       <Head>
         <title>Bookings - Quaint Spaces </title>
       </Head>
-      <div className="container mx-auto">
+      <div className="container mx-auto min-h-screen">
         <div className=" account-btn ">
           <div className=" pt-4 sm:pt-8 md:pt-12 pb-3 sm:pb-6 md:pb-10">
             <Heading
