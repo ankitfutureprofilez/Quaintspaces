@@ -9,6 +9,7 @@ import Modal from "../hook/Modal";
 import Link from "next/link";
 import { formatMultiPrice } from "../../../hooks/ValueData"
 import { IoIosInformationCircleOutline } from "react-icons/io";
+import DateComponent from "../../elements/DateFormat";
 
 
 export default function index() {
@@ -124,7 +125,7 @@ export default function index() {
 
   return (
     <AdminLayout heading={"Booking Management"}>
-      <div className="flex flex-wrap bg-gray-100 mt-3 mb-2 text-white rounded-lg p-2 md:mb-0 items-center space-y-2 sm:space-y-0 sm:space-x-4 upcoming-box">
+      <div className="flex flex-wrap bg-gray-100 mt-3 mb-3 p-2  text-white rounded-lg  md:mb-0 items-center space-y-2 sm:space-y-0 sm:space-x-4 upcoming-box">
         <button
           onClick={() => setActiveTab('upcoming')}
           className={`w-full sm:flex-1 px-4 py-2 rounded-lg text-center ${activeTab === 'upcoming' ? 'bg-amber-700 text-white' : 'text-black'} mb-2 sm:mb-0`}
@@ -163,30 +164,32 @@ export default function index() {
         </div>
       ) : content && content.length > 0 ? (
         <>
-          <div className="w-full p-2">
-            <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-200">
+           <div className="table-responsive p-5">
+           <table className=" w-full ">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
+                    <th className="px-2 py-2 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
                       S.No.
                     </th>
-                    <th className="px-4 py-4 capitalize text-sm font-normal bg-indigo-600 text-left rtl:text-right text-white">
-                      Booking Date & Number
+                    <th className="px-2 py-2 capitalize text-sm font-normal bg-indigo-600 text-left rtl:text-right text-white">
+                      Booking Date
                     </th>
-                    <th className="px-4 py-4 capitalize text-sm font-normal bg-indigo-600 text-left rtl:text-right text-white">
+                    <th className="px-2 py-2 capitalize text-sm font-normal bg-indigo-600 text-left rtl:text-right text-white">
+                      Booking Number
+                    </th>
+                    <th className="px-2 py-2 capitalize text-sm font-normal bg-indigo-600 text-left rtl:text-right text-white">
                       Check in & check  Out
                     </th>
-                    <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
+                    <th className="px-2 py-2 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
                       Stay
                     </th>
                     <th className="px-2 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
                       Amount
                     </th>
-                    <th className="px-4 py-4 capitalize text-sm font-normal  bg-indigo-600 text-left rtl:text-right text-white">
+                    <th className="px-2 py-2 capitalize text-sm font-normal  bg-indigo-600 text-left rtl:text-right text-white">
                       Document & its Type
                     </th>
-                    <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
+                    <th className="px-2 py-2 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
                       Action
                     </th>
                   </tr>
@@ -195,48 +198,34 @@ export default function index() {
                 <tbody className="bg-white divide-y divide-gray-200">
                   {content.map((item, index) => (
                     <tr key={index}>
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                      <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                         {index + 1}
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500">
-                        <div className="flex flex-col">
-                          <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">                         {item?.booking_date}
-                          </span>
-                          <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">                        {item?.booking_number}
-                          </span>
-                        </div>
+                      <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap capitalize  overflow-hidden text-ellipsis">
+                        <DateComponent item={item?.booking_date} />
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                      <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                        {item?.booking_number}
+                      </td>
+
+                      <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                         From : {item?.check_in}
-                        <div className="">
+                        <div>
                           To:  {item?.check_out}
                         </div>
                       </td>
-
-                      <td className="px-4 py-4 text-sm text-gray-500 ">
+                      <td className="px-2 py-2 text-sm text-gray-500 ">
                         <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
-                          <div className="flex flex-row items-center gap-2 sm:flex-row sm:items-center text-sm">
-                            <div className="p-2">
-                              <div className="text-gray-800 font-medium capitalize">
-                                {item?.booking_property?.name}
-
-                                {/* <span className="whitespace-nowrap  overflow-hidden text-ellipsis">
-                                  {item?.booking_property?.guests} guests
-                                </span> */}
-
-                              </div>
-                            </div>
-                          </div>
-
-                          <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">                         {item?.booking_date}
+                          <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">
+                            {item?.booking_property?.name}
                           </span>
                         </Link>
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                      <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                         {formatMultiPrice(item?.price)}
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                      <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                         <div
                           style={{ cursor: "pointer" }}
                           className="flex items-center "
@@ -245,13 +234,13 @@ export default function index() {
                           <div className="uppercase inline-flex items-center rounded-full ml-2">
                             {item?.doc_type}
                             <span className="text-base ml-1">
-                            <IoIosInformationCircleOutline size={16} />
+                              <IoIosInformationCircleOutline size={12} />
                             </span>
                           </div>
                         </div>
                       </td>
                       {item?.booking_status === "pending" ?
-                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                        <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                           <div
                             onClick={() =>
                               bookingaccept(
@@ -303,7 +292,7 @@ export default function index() {
                           </div>
                         </td>
                         :
-                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                        <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                           <div
                             className={`capitalize inline-flex items-center rounded-full py-2 w-max px-2 text-sm text-white  ${item?.booking_status === "completed"
                               ? "bg-green-700"
@@ -325,8 +314,7 @@ export default function index() {
                 </tbody>
               </table>
             </div>
-          </div>
-          {/* {content?.length > 0 && !loading && hasmore && (
+          {content?.length > 0 && !loading && hasmore && (
             <div className="flex justify-center">
               <div
                 className="font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 !p-4 rounded-full mt-10 mb-12 text-white cursor-pointer hover:bg-[#000]  filter btn"
@@ -335,7 +323,7 @@ export default function index() {
                 {loadingButton ? "Loading..." : "Load More"}
               </div>
             </div>
-          )} */}
+          )}
         </>
       ) : (
         <div className="mt-5 ">
