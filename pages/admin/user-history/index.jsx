@@ -126,8 +126,8 @@ export default function Index() {
 
   return (
     <AdminLayout heading={"User List"}>
-      <div className="w-full table-responsive">
-        <table className="w-full text-sm rounded-md">
+      <div className="mytable table-responsive">
+      <table className="">
           <thead>
             <tr className="bg-gray-100 rounded-lg items-center bg-indigo-600 text-white justify-between text-gray-500">
               <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">

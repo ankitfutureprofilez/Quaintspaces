@@ -60,8 +60,7 @@ export default function Index() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="w-full p-5">
-          <div className="  border border-gray-200 md:rounded-lg table-responsive">
+        <div className="mytable table-responsive">
             {content && content.length > 0 ? (
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
@@ -172,9 +171,6 @@ export default function Index() {
               <Nodata heading={"No Payment History"} />
             )}
           </div>
-        </div>
-
-
       )}
       {content?.length > 0 && !loading && hasmore && (
         <div className="flex justify-center mb-5">
