@@ -440,8 +440,7 @@ export default function Index() {
               <div className="flex justify-center">
                 <button
                   className="btn filter mt-6 mb-4 w-2/4 mx-auto"
-                  onClick={() => deleteAccount(id)}
-                >
+                  onClick={() => deleteAccount(id)}   >
                   {loading ? "Processing..." : "Proceed"}
                 </button>
               </div>
