@@ -23,16 +23,31 @@ function Home() {
 
   const [record, setRecord] = useState([]);
 
-  useEffect(() => {
+
+
+  const fetchData = (signal) => {
     const main = new Listing();
-    const response = main.statistics();
-    response
-      .then((res) => {
-        setRecord(res?.data);
+    main
+      .statistics()
+      .then((r) => {
+        setRecord(r?.data);
+        setLoading(false);
+
       })
       .catch((error) => {
-        console.log("error", error);
+        if (signal.aborted) {
+          console.log("Fetch aborted");
+        } else {
+          console.log("Error fetching data:", error);
+        }
       });
+  };
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+    fetchData(signal);
+    return () => controller.abort();
   }, []);
 
   return (
@@ -74,7 +89,7 @@ function Home() {
             <div className="w-full ">
               <div className="py-4 md:p-6 space-y-4 columns-1 xl:columns-3 lg:columns-2">
                 <div className="break-inside-avoid-column space-y-4">
-                  <TopProperty property_count={record?.property}/>
+                  <TopProperty property_count={record?.property} />
                 </div>
                 <div className="break-inside-avoid-column space-y-4">
                   <CurrentProject />
@@ -83,9 +98,9 @@ function Home() {
                   <Bookings />
                 </div>
                 <div className="break-inside-avoid-column space-y-4">
-                  <UserList totaluser={record?.user?.total_user}/>
+                  <UserList totaluser={record?.user?.total_user} />
                 </div>
-             
+
                 <div className="break-inside-avoid-column space-y-4">
                   <Reviews />
                 </div>

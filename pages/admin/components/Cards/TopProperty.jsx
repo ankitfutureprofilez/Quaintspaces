@@ -10,21 +10,34 @@ import { formatMultiPrice } from "../../../../hooks/ValueData";
 import DashboardNoData from "../../hook/DashboardNoData";
 
 function StatusTracker() {
-  const [propertylist, setPropertylist] = useState([]);
-  const [proerty_count, setPropertyCount] = useState("");
+
+  const [propertyList, setPropertyList] = useState([]);
+  const [propertyCount, setPropertyCount] = useState(0);
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
+
+  const fetchData = (signal) => {
     const main = new Listing();
     const response = main.Top3Properties();
     response
       .then((res) => {
-        setPropertylist(res?.data?.data);
+        setPropertyList(res?.data?.data);
         setPropertyCount(res?.data?.property_count);
         setLoading(false);
       })
       .catch((error) => {
-        console.log("error", error);
+        if (signal.aborted) {
+          console.log("Fetch aborted");
+        } else {
+          console.log("Error fetching data:", error);
+        }
       });
+  };
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+    fetchData(signal);
+    return () => controller.abort();
   }, []);
   return (
     <>
@@ -44,17 +57,17 @@ function StatusTracker() {
               href="/admin/property"
               className="border px-2 py-1 rounded-lg text-xs"
             >
-              See all ({proerty_count})
+              See all ({propertyCount})
             </Link>
           </div>
           <hr className="bg-gray-400 my-4" />
           <div className="space-y-3">
-            {propertylist && propertylist?.length > 0 ? (
-              propertylist.map((item) => (
+            {propertyList && propertyList?.length > 0 ? (
+              propertyList.map((item) => (
                 <div className="space-y-3 !mt-0 border-b py-2 last:border-0" key={item.uuid}>
                   <div className="flex items-center justify-between ">
                     <div className="flex items-center gap-2 img-book ">
-                    
+
                       <img
                         src={
                           item?.image
@@ -85,7 +98,7 @@ function StatusTracker() {
         </div>
       )}
     </>
-    
+
   );
 }
 

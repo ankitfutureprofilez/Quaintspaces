@@ -20,7 +20,6 @@ export default function Profileindex() {
   const fetchData = async () => {
     try {
       setLoading(true);
-
       const main = new Listing();
       const response = await main.Adminprofile();
       const profiledata = response?.data?.data;
@@ -95,6 +94,7 @@ export default function Profileindex() {
     fetchData(signal);
     return () => controller.abort();
   }, []);
+  
   return (
     <>
       <AdminLayout heading={"Profile Management"}>

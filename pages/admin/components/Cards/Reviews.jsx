@@ -9,7 +9,7 @@ function Reviews() {
   const [ratingCount, SetRatingCount] = useState("");
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const fetchData = (signal) => {
     const main = new Listing();
     main
       .Top3rating()
@@ -18,9 +18,20 @@ function Reviews() {
         SetRatingCount(r?.data?.rating_count);
         setLoading(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        if (signal.aborted) {
+          console.log("Fetch aborted");
+        } else {
+          console.log("Error fetching data:", error);
+        }
       });
+  };
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+    fetchData(signal);
+    return () => controller.abort();
   }, []);
 
   const getLocation = (locationStr) => {

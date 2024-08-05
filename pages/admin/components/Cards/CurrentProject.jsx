@@ -21,7 +21,8 @@ function CurrentProject() {
   const [record, setRecord] = useState();
   const [loading, setLoading] = useState(true);
   const [toppayemnt, settoppayment] = useState()
-  useEffect(() => {
+
+  const fetchData = (signal) => {
     const main = new Listing();
     main
       .Top3Payments()
@@ -30,9 +31,20 @@ function CurrentProject() {
         settoppayment(r?.data?.total_payment_count);
         setLoading(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        if (signal.aborted) {
+          console.log("Fetch aborted");
+        } else {
+          console.log("Error fetching data:", error);
+        }
       });
+  };
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+    fetchData(signal);
+    return () => controller.abort();
   }, []);
 
   return (

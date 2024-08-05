@@ -13,7 +13,8 @@ function UserList({totaluser}) {
   const [record, setRecord] = useState("");
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+
+  const fetchData = (signal) => {
     const main = new Listing();
     main
       .Top3Users()
@@ -21,9 +22,20 @@ function UserList({totaluser}) {
         setRecord(r?.data?.data);
         setLoading(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        if (signal.aborted) {
+          console.log("Fetch aborted");
+        } else {
+          console.log("Error fetching data:", error);
+        }
       });
+  };
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+    fetchData(signal);
+    return () => controller.abort();
   }, []);
 
   return (

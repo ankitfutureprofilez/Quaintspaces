@@ -63,12 +63,12 @@ function Sidebar() {
     if (webtoken) {
       getAuth();
     }
-  }, []);
+  }, [webtoken]);
 
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
-    getAuth(signal);
+    getAuth();
     return () => controller.abort();
   }, []);
 
@@ -340,7 +340,7 @@ function Sidebar() {
           <div>
             <hr className="bg-gray-400 mx-2 my-2" />
 
-            {auth ? (
+            {/* {auth ? (
               <div
                 className="flex pb-28 justify-between px-1 p-2 md:px-2 items-center cursor-pointer hover:pr-3 duration-200"
                 onClick={() => (profilemanagement())}
@@ -388,7 +388,7 @@ function Sidebar() {
                   <ArrowRight2 size={24} color="#4B0082" />
                 </button>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
