@@ -122,7 +122,7 @@ export default function index() {
 
   return (
     <AdminLayout heading={"Booking Management"}>
-      <div className="flex bg-gray-100  mt-3 mb-2  text-white rounded-lg p-2 overflow-x-auto mb-5 md:mb-0 items-center  space-x-2 sm:space-x-4 upcoming-box">
+      <div className="flex bg-gray-100  mt-3 mb-2  text-white rounded-lg p-2 mb-5 md:mb-0 items-center  space-x-2 sm:space-x-4 upcoming-box">
         <button
           onClick={() => setActiveTab('upcoming')}
           className={`flex-1 px-4 py-2 rounded-lg text-center ${activeTab === 'upcoming' ? 'bg-amber-700 text-white' : 'text-black'} mb-2 sm:mb-0`}
@@ -154,19 +154,13 @@ export default function index() {
           Failed
         </button>
       </div>
-
-
-
-
       {loading ? (
         <Spinner />
       ) : content && content.length > 0 ? (
         <>
-
-          <div className="overflow-x-auto mt-3">
-            <div className="w-full  table-responsive">
-              <div className="overflow-x-auto border border-gray-200 md:rounded-lg mt-2">
-                <table className="min-w-[1200px] w-full divide-gray-200">
+            <div className="w-full p-5">
+            <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
                       <th className="px-4 py-4 capitalize text-sm font-normal whitespace-nowrap bg-indigo-600 text-left rtl:text-right text-white">
@@ -352,12 +346,9 @@ export default function index() {
                 </div>
               </div>
             )}
-          </div>
         </>
-
       ) : (
         <div className="mt-5 ">
-
           <Nodata heading={"No Booking"} />
         </div>
       )}

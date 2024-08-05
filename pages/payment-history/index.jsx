@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
-import Heading from "./elements/Heading.js";
 import { useRouter } from "next/router";
-import Listings from "./api/laravel/Listings.js";
-import AuthLayout from "./layout/AuthLayout.js";
-import NoData from "./elements/NoData.js";
+// import Listings from "./api/laravel/Listings.js";
+// import AuthLayout from "./layout/AuthLayout.js";s
+// import NoData from "./elements/NoData.js";
 import Link from "next/link";
-import { formatMultiPrice } from "../hooks/ValueData.js";
+// import { formatMultiPrice } from "../hooks/ValueData.js";
 import Head from "next/head";
-import { TableLoading } from "../components/Loading/ListingsLoading.jsx";
+// ../components/Loading/ListingsLoading.jsx
+import { TableLoading } from "../../components/Loading/ListingsLoading.jsx";
+import NoData from "../elements/NoData.js";
 import Moment from 'moment';
 import { BsDot } from "react-icons/bs";
+import Heading from "../elements/Heading.js";
+import Listings from "../api/laravel/Listings.js";
+import AuthLayout from "../layout/AuthLayout.js";
+import { formatMultiPrice } from "../../hooks/ValueData.js";
 
-export default function paymentHistory() {
+export default function index() {
   const [loading, setLoading] = useState(false);
   const [listings, setListings] = useState([]);
   const router = useRouter();
@@ -136,6 +141,7 @@ export default function paymentHistory() {
                   </td>
                   <td className="px-2 md:px-4 py-2">
                     <div>
+                    {/* formatMultiPrice */}
                       {formatMultiPrice(item?.price)}
                     </div>
                   </td>

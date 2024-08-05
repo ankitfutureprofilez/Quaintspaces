@@ -60,7 +60,8 @@ export default function Index() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="w-full">
+
+        <div className="w-full p-5">
           <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
             {content && content.length > 0 ? (
               <table className="min-w-full divide-y divide-gray-200">

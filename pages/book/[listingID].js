@@ -42,6 +42,8 @@ const Book = () => {
   });
 
   const [cancelpolicy, setCancelpolicy] = useState([]);
+  console.log("cancelpolicy",cancelpolicy)
+  console.log("cancelpolicy?.date2",cancelpolicy?.date2)
   const formattedCheckIn = `${infos?.checkin} ${listing?.check_in} `;
   const handleCancelPolicy = () => {
     const main = new Listings();
@@ -843,13 +845,14 @@ const Book = () => {
                           : <Dateformat item={formattedCheckIn} /> && "After"}
                       </h6>
                     </div>
-                    <div className="w-[55%] pl-3 border-l">
-                      <h6 className="mb-2 text-[18px] font-semibold">
+                    <div className="w-[45%] border-l">
+                      <h6 className="mb-2 text-[18px] font-semibold cancel-policy">
                         {cancelpolicy?.date &&
                           (cancelpolicy?.date === new Date()
                             ? ""
                             : "Full Refund")}
                       </h6>
+
                       <h6 className="mb-2">
                         {cancelpolicy?.date
                           ? ""
@@ -858,7 +861,6 @@ const Book = () => {
                       </h6>
                     </div>
                   </div>
-
                   <div className="flex border-bv border-b mb-4 ">
                     <div className="w-[45%]">
                       <p className="mb-4">
@@ -873,9 +875,9 @@ const Book = () => {
                       <p className="mb-4">{cancelpolicy?.text}</p>
                     </div>
                   </div>
-                  {/* {cancelpolicy?.date2 &&
-                    <div className="mt-5 border-t-2  border-[#efa3a3]  p-4 ">
-                      <div className="flex justify-between mb-3 border-b">
+                   {cancelpolicy?.date2 &&
+                    <div>
+                      <div className="flex ">
                         <div className="w-1/2">
                           <h6 className="mb-1 font-bold ">
                             {cancelpolicy?.date2 === new Date()
@@ -891,7 +893,7 @@ const Book = () => {
                           </h6>
                         </div>
                       </div>
-                      <div className="flex  justify-between mb-3">
+                      <div className="flex border-bv border-b mb-4">
                         <div className="w-1/2">
                           <p className="mb-1 font-normal w-1/2">
                             <Dateformat item={cancelpolicy?.date2} />
@@ -902,7 +904,7 @@ const Book = () => {
                     </div>
                       </div>
                     </div>
-                  } */}
+                  } 
                   <p className="font-normal capitalize">
                     Cleaning fees are refunded if you cancel before check-in.{" "}
                   </p>
