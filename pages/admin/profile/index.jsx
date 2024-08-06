@@ -23,7 +23,7 @@ export default function Profileindex() {
       const main = new Listing();
       const response = await main.Adminprofile({ signal });
       const profiledata = response?.data?.data;
-  
+
       setAuth(profiledata);
       setRecord({
         name: profiledata.name,
@@ -42,7 +42,7 @@ export default function Profileindex() {
     }
   };
 
-  
+
 
   useEffect(() => {
     const controller = new AbortController();
@@ -112,7 +112,7 @@ export default function Profileindex() {
     fetchData(signal);
     return () => controller.abort();
   }, []);
-  
+
   return (
     <>
       <AdminLayout heading={"Profile Management"}>
@@ -131,21 +131,21 @@ export default function Profileindex() {
                 </div>
               </div>
               <div className="container mx-auto mt-5 perso-form">
-                <div className="w-full md:w-9/12">
+                <div className="w-full">
                   <div className="grid grid-cols-1 gap-4 justify-center">
-                    <div className="mb-2 sm:mb-4">
+                    <div className="mb-2 sm:mb-2">
                       <div className="block text-lg font-medium text-gray-700">
                         <div className="w-24 h-5 bg-gray-200 rounded"></div>
                       </div>
                       <div className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 h-10 bg-gray-200"></div>
                     </div>
-                    <div className="mb-2 sm:mb-4">
+                    <div className="mb-2 sm:mb-2">
                       <div className="block text-lg font-medium text-gray-700">
                         <div className="w-24 h-5 bg-gray-200 rounded"></div>
                       </div>
                       <div className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 h-10 bg-gray-200"></div>
                     </div>
-                    <div className="mb-2 sm:mb-4">
+                    <div className="mb-2 sm:mb-2">
                       <div className="block text-lg font-medium text-gray-700">
                         <div className="w-24 h-5 bg-gray-200 rounded"></div>
                       </div>
@@ -206,7 +206,7 @@ export default function Profileindex() {
             <div className="container mx-auto mt-2 perso-form">
               <div className="w-full  ">
                 <form className="grid  grid-cols-1 gap-4 justify-center">
-                  <div className="mb-2 sm:mb-4 w-full">
+                  <div className="mb-2 sm:mb-2 w-full">
                     <label
                       htmlFor="name"
                       className="block text-lg font-medium text-gray-700"
@@ -224,7 +224,7 @@ export default function Profileindex() {
                       required
                     />
                   </div>
-                  <div className="mb-2 sm:mb-4">
+                  <div className="mb-2 sm:mb-2">
                     <label
                       htmlFor="email"
                       className="block text-lg font-medium text-gray-700"
@@ -242,7 +242,7 @@ export default function Profileindex() {
                       required
                     />
                   </div>
-                  <div className="mb-2 sm:mb-4">
+                  <div className="mb-2 sm:mb-2">
                     <label
                       htmlFor="phone"
                       className="block text-lg font-medium text-gray-700"
