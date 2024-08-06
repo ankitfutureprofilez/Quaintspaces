@@ -154,7 +154,7 @@ export default function Index() {
                       {/* <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize"></td> */}
                       <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
                         <span
-                          className={`inline-flex w-max items-center rounded-full py-2 px-3 text-[17px]  ${item?.payment_status === "success"
+                          className={`inline-flex w-max items-center rounded-full py-2 px-3 text-sm  ${item?.payment_status === "success"
                             ? "text-green-600"
                             : item?.payment_status === "cancelled"
                               ? "text-red-600"
