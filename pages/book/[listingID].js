@@ -535,7 +535,7 @@ const Book = () => {
                         <input
                           type="number"
                           id="phone"
-                          name="phone" maxlength="10" min='1'
+                          name="phone" max="10" min='1'
                           value={formData?.phone}
                           onChange={handleChange}
                           className="mt-1 mr-1 p-4 h-[50px] border rounded-full w-full !ps-[50px]"
