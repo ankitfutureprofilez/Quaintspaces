@@ -182,7 +182,7 @@ export default function index() {
         </div>
       ) : content && content.length > 0 ? (
         <>
-          <div className="mytable table-responsive">
+          <div className="mytable table-responsive mt-5">
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
@@ -199,7 +199,7 @@ export default function index() {
                     Check in / check Out
                   </th>
                   <th className="px-2 py-2 capitalize text-sm font-normal  bg-indigo-600 text-left rtl:text-right text-white">
-                    Stay
+                    Property Name
                   </th>
                   <th className="px-2 py-4 capitalize text-sm font-normal  bg-indigo-600 text-left rtl:text-right text-white">
                     Amount

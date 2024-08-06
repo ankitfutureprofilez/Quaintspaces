@@ -53,11 +53,11 @@ export default function Booking(props) {
                 <tr className="">
                   <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
                     {" "}
-                    booking Date
+                    booking Date & Number
                   </td>
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
+                  {/* <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
                     booking Number{" "}
-                  </td>
+                  </td> */}
                   <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
                     Check In & Checkout Time{" "}
                   </td>
@@ -76,18 +76,19 @@ export default function Booking(props) {
                 {content &&
                   content.map((item, index) => (
                     <tr className="" key={index}>
-                      <td className="px-4 py-4 text-sm text-gray-500">
+                      <td className="px-4 py-4 text-sm text-gray-500 capitalize  overflow-hidden text-ellipsis">
+                       <div className="flex">
+
                         {item?.booking_date}
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500">
                         {item?.booking_number}
+                       </div>
+                      </td>
+                      <td className="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6 capitalize  overflow-hidden text-ellipsis">
+                        From :{item?.check_in}
+                        To: {item?.check_out}
                       </td>
 
-                      <td className="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6">
-                        {item?.check_in} & {item?.check_out}
-                      </td>
-
-                      <td className="px-4 py-4 text-sm text-gray-500">
+                      <td className="px-4 py-4 text-sm text-gray-500   overflow-hidden text-ellipsis">
                         {formatMultiPrice(
                           item?.price
                         )}
