@@ -14,7 +14,7 @@ import DateComponent from "../../elements/DateFormat";
 
 export default function index() {
   const [content, setContent] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [loadingButton, setLoadingButton] = useState(false);
   const [message, setMessage] = useState("");
@@ -177,7 +177,7 @@ export default function index() {
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center h-screen">
+        <div className="flex items-center justify-center">
           <Spinner />
         </div>
       ) : content && content.length > 0 ? (
@@ -344,9 +344,11 @@ export default function index() {
           )}
         </>
       ) : (
-        <div className="mt-5 ">
+        <>
+        {!loading ? <div className="mt-5 ">
           <Nodata heading={"No Booking"} />
-        </div>
+        </div> : ""}
+        </>
       )}
 
       {selectedBooking && (

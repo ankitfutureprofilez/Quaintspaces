@@ -17,11 +17,10 @@ import { usePathname } from "next/navigation";
 import Menu from "./menu";
 import { useRouter } from "next/router";
 
-function Sidebar() {
+function Sidebar({isMobileSidebarOpen}) {
   const { auth, setAuth } = useContext(Context);
   const pathname = usePathname();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const webtoken = LocalToken("Admintoken");
   const router = useRouter();
@@ -34,9 +33,8 @@ function Sidebar() {
   const profilemanagement = () => {
     router.push("/admin/profile");
   };
-  const toggleMobileSidebar = () => {
-    setIsMobileSidebarOpen((prevState) => !prevState);
-  };
+
+  
 
   const handleLogoutClick = () => {
     localStorage && localStorage.removeItem("Admintoken");
@@ -75,32 +73,20 @@ function Sidebar() {
 
   return (
     <div
-      className={`shrink-0 md:block h-screen sticky top-0 overflow-hidden ${isSidebarOpen ? "!fixed" : "hidden"
-        }`}
-    >
-      <div
-        className={`w-60 h-full bg-white border-r ${isMobileSidebarOpen ? "block" : "hidden md:block"
-          }`}
-      >
+      className={`menubar shrink-0 h-screen w-full overflow-hidden`}>
+      <div className={`h-full bg-white border-r `} >
         <div
-          className="p-4 md:p-6 flex cursor-pointer group items-center gap-2 z-10 h-24"
-          onClick={toggleSidebar}
-        >
+          className="px-4 md:px-6 py-3 flex cursor-pointer group items-center gap-2 z-10"
+          onClick={toggleSidebar} >
           <Image
-  width="25%" // Set the width to 25% of the container
-  height="25%"
-  layout="responsive"
-  // className="25vh"
-  src={RoundLogo}
-  blurDataURL={`${RoundLogo}?q=1`}
-  placeholder="blur"
-  alt="Quaint Spaces Logo"
-/>
-{/* <img src={RoundLogo} className="w-full" alt="Round Logo" /> */}
-          {/* <div className="h-10 outline outline-indigo-300 w-10 flex items-center bg-indigo-600 justify-center rounded-full from-indigo-500 to-indigo-400 text-white">
-
-            QS
-          </div> */}
+            width="40" 
+            height="40"
+            layout="fixed"
+            src={RoundLogo}
+            blurDataURL={`${RoundLogo}?q=1`}
+            placeholder="blur"
+            alt="Quaint Spaces Logo"
+          />
           <div>
             <h1 className="text-sm font-bold text-gray-800">Admin</h1>
             <p className="text-xs text-gray-500 font-medium">
@@ -110,14 +96,13 @@ function Sidebar() {
         </div>
         <hr className="bg-gray-400 mx-2" />
         <div className="flex flex-col min-h-screen justify-between">
-          <div className="pt-2 text-gray-500 font-medium space-y-2 md:px-1 text-normal max-h-[90vh] overflow-auto">
+          <div className="sidebarlists  p-6 text-gray-500 font-medium text-normal max-h-[90vh] overflow-auto">
             <Link
               href={"/admin"}
               className={`flex ${pathname === "/admin"
                 ? "text-black bg-gray-100"
                 : "text-gray-500"
-                } hover:px-1 duration-200 rounded-md w-full py-1 px-1 items-center gap-2 focus:text-indigo-400`}
-            >
+                } hover:px-1 duration-200 rounded-md w-full py-1 px-1 items-center gap-2 focus:text-indigo-400`}>
               <Element3 variant="Outline" size={16} />
               Dashboard
             </Link>
@@ -214,8 +199,8 @@ function Sidebar() {
               Booking History
             </Link>
             <Link
-              href={"/admin/user-history"}
-              className={`flex ${pathname === "/admin/user-history"
+              href={"/admin/users"}
+              className={`flex ${pathname === "/admin/users"
                 ? "text-black bg-gray-100"
                 : "text-gray-500"
                 } hover:px-1  duration-200 px-1  py-1 items-center gap-2 focus:text-indigo-400`}
@@ -237,7 +222,7 @@ function Sidebar() {
                   />
                 </g>
               </svg>
-              User History
+              Users
             </Link>
             <Link
               href={"/admin/review"}
@@ -363,82 +348,11 @@ function Sidebar() {
           </div> */}
           </div>
           <div>
-            <hr className="bg-gray-400 mx-2 my-2" />
-
-            {auth ? (
-              <div
-                className="flex pb-28 justify-between px-1 p-2 md:px-2 items-center cursor-pointer hover:pr-3 duration-200"
-                onClick={() => (profilemanagement())}
-              >
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={auth?.image_url}
-                    alt="User"
-                    width={36}
-                    height={36}
-                    className="rounded-full user-img"
-                  />
-                  <div className="">
-                    <p className="text-sm font-semibold text-gray-800 capitalize	">
-                      {auth?.name}
-                    </p>
-                    <p className="text-xs font-medium text-gray-500">
-                      {auth?.email}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="flex pb-28 justify-between px-1  md:px-4 items-center cursor-pointer hover:pr-3 duration-200">
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={
-                      "https://th.bing.com/th/id/OIP.aPrAXebVFheO1nA-8qU47gHaJA?rs=1&pid=ImgDetMain"
-                    }
-                    alt="User"
-                    width={36}
-                    height={36}
-                    className="rounded-full user-img"
-                  />
-                  <div className="">
-                    <p className="text-sm font-semibold text-gray-800">
-                      Steve Jobs
-                    </p>
-                    <p className="text-xs font-medium text-gray-500">
-                      steve@adminle.com
-                    </p>
-                  </div>
-                </div>
-                <button className="text-gray-500" aria-label="ss">
-                  <ArrowRight2 size={24} color="#4B0082" />
-                </button>
-              </div>
-            )}
           </div>
         </div>
       </div>
 
-      <div className="md:hidden fixed top-[10px] left-0 z-50 p-4">
-        <button onClick={toggleMobileSidebar}>
-          {isMobileSidebarOpen ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            ></svg>
-          ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path d="M21 19H3v-2h18v2zm0-7H3v-2h18v2zm0-7H3V3h18v2z" />
-            </svg>
-          )}
-        </button>
-      </div>
+      
     </div>
   );
 }

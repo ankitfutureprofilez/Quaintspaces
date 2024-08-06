@@ -273,40 +273,14 @@ export default function Index() {
   };
 
   return (
-    <AdminLayout heading="Properties">
+    <AdminLayout heading="Your listings">
       {isLoading ? (
         <div className="flex">
           <Loading />
         </div>
       ) : (
         <>
-          <div className="flex flex-wrap mt-[40px] items-center justify-between">
-            <h3 className="text-[32px] font-[500] text-[#222222] capitalize ">
-              Your listings
-            </h3>
-            <div className="flex items-center">
-              {/* <div
-                onClick={toggleView}
-                className="view-toggle-button hover:bg-gray-400 active:bg-gray-400 mx-2 cursor-pointer bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center"
-              >
-                {view === 'table' ? <CgViewComfortable /> : <FaTableCellsLarge />}
-              </div> */}
-
-              {/* <CgViewComfortable /> */}
-              <div
-                onClick={() => {
-                  router.push("/admin/property/become");
-                }}
-                className="bg-gray-3
-                00 rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer hover:bg-gray-400 active:bg-gray-400"
-              >
-                <MdAdd />
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-3">
-
+          <div className="">
             {view === 'table' ? <TableView /> : <CardView />}
           </div >
         </>

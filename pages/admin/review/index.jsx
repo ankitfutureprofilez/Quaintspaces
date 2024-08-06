@@ -16,11 +16,7 @@ export default function Index() {
   const [hasmore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
 
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const toggleExpanded = () => {
-    setIsExpanded(!isExpanded);
-  };
+  
 
   console.log("content", content)
   const fetchData = async (pg) => {
@@ -87,6 +83,31 @@ export default function Index() {
   const truncateEmail = (email, length = 13) => {
     return email.length > length ? email.substring(0, length) + "..." : email;
   };
+
+
+  const ShowToolTip = ({text}) => { 
+    const [isExpanded, setIsExpanded] = useState(false);
+    const toggleExpanded = () => {
+      setIsExpanded(!isExpanded);
+    };
+
+    return (
+      <>
+      <div className={`tooltip-text ${isExpanded ? "open" : "closed"}`}>
+        <h2 className="mb-3 text-black">Message</h2>
+        {text}
+        <button className="close-tooltip text-black text-3xl absolute top-4 right-4" onClick={toggleExpanded}>
+          &times;
+        </button>
+      </div>
+      <button
+        onClick={toggleExpanded}
+        className="text-blue-500 underline ml-2" >
+        View Message
+      </button>
+    </>
+    );
+  }
   return (
     <>
       <style jsx>{`
@@ -109,7 +130,7 @@ export default function Index() {
                 {content && content?.length > 0 ? (
 
                   <div className="">
-                    <table className=" w-full table-responsive  ">
+                    <table className="mytable w-full table-responsive  ">
                       <thead className="bg-indigo-600">
                         <tr>
                           <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
@@ -168,17 +189,7 @@ export default function Index() {
                               </div>
                             </td>
                             <td className="relative px-4 py-4 text-sm text-gray-500 break-all">
-                              <div className={isExpanded ? "" : "truncate-text"}>
-                                {/* {reviewText} */}
-                                {item?.review_text}
-                              </div>
-                              <button
-                                onClick={toggleExpanded}
-                                className="text-blue-500 underline ml-2"
-                              >
-                                {isExpanded ? "See Less" : "See All"}
-                              </button>
-
+                              <ShowToolTip text={item?.review_text} />
                             </td>
                             <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
                               <div className="flex items-center gap-x-2">

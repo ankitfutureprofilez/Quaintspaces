@@ -124,7 +124,7 @@ export default function Index() {
               </div>
             ) : (
                 <div className="w-full overflow-x-auto">
-                <div className="border border-gray-200 md:rounded-lg">
+                <div className="table-responsive mytable">
                   <table className="min-w-[1200px] overflow-x-auto table-auto divide-y divide-gray-200">
                     <thead className="bg-indigo-600">
                       <tr>

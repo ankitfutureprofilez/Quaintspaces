@@ -277,13 +277,3 @@
 
 
 
-
-/* Admin css */
-.admin-layout .sidebar {
-  width: 100%; 
-  background: #fff; 
-  max-width: 300px !important;
-}
-.admin-layout  .content-bar {
-  max-width: calc(100% - 300px) !important;
-}
