@@ -40,7 +40,7 @@ export default function ReasonToVisit() {
         <div className="smart-box">
           {reasons.map((reason, index) => (
             <div
-              className="iteam sm:w-[200px] w-[33.33%] mb-[6px] sm:mb-3 "
+              className="iteam sm:w-[200px] w-[33.33%] mb-[6px] sm:mb-3"
               key={index}
             >
               <div className="flex flex-col gap-2 p-[5px] sm:p-0">
