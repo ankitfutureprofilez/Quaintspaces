@@ -70,7 +70,7 @@ function Bookings() {
       case "confirm":
         return "bg-green-600  text-white capitalize";
       case "pending":
-        return "bg-yellow-500  text-white  capitalize";
+        return "bg-indigo-600  text-white  capitalize";
       case "cancelled":
         return "bg-red-600 text-white capitalize";
       case "upcoming":
