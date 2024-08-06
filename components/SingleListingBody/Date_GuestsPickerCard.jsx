@@ -46,18 +46,11 @@ const Date_GuestsPickerCard = React.forwardRef(
                 <span className="flex items-center gap-1 sm:gap-2">
                   <span className="flex items-center gap-1">
                   <StartRating size={15} value={parseFloat( listing?.rating && listing?.rating?.toFixed(2)) ?? 0} color={"#000000"}/>
-                    {/* <Star />
-                    {parseFloat( listing?.rating && listing?.rating?.toFixed(2)) ?? 0} */}
                   </span>
-                  {/* <span>·</span>
-                  <span className="underline">
-                    {listing?.review || 0} reviews
-                  </span> */}
                 </span>
               </div>
-
-                <div className="rounded-lg border border-[#efa3a3] mb-6 relative">
-                <Dates
+              <div className="rounded-lg border border-[#efa3a3] mb-6 relative">
+                <Dates 
                   selection={selection}
                   setSelection={setSelection}
                   selectedDay={selectedDay}
@@ -65,7 +58,7 @@ const Date_GuestsPickerCard = React.forwardRef(
                   setSelectedDay={setSelectedDay}
                   setSelectEnd={setSelectEnd}
                   position={`calendar`}
-                />
+                /> 
                 <Guests
                   selection={selection}
                   setSelection={setSelection}
@@ -85,7 +78,7 @@ const Date_GuestsPickerCard = React.forwardRef(
                         return;
                       }
                       if (guests?.adults?.value == null || guests?.adults?.value == 0) {
-                        toast.error("Adults can't be 0");
+                        toast.error("Please choose alteast one adult.");
                         return;
                       }
                       router.push(
@@ -109,9 +102,7 @@ const Date_GuestsPickerCard = React.forwardRef(
                 ) : (
                   <button
                     onClick={() => setOpenLogin(true)}
-                    className=" btn w-full mt-4 hover:bg-[#efa3a3] border-2 border-[#efa3a3] hover:border-[#efa3a3] text-[#efa3a3] hover:text-[#fff]"
-                  >
-                    {" "}
+                    className=" btn w-full mt-4 hover:bg-[#efa3a3] border-2 border-[#efa3a3] hover:border-[#efa3a3] text-[#efa3a3] hover:text-[#fff]">
                     Check Availability
                   </button>
                 )}
@@ -120,8 +111,7 @@ const Date_GuestsPickerCard = React.forwardRef(
                   className=" btn w-full mt-4 hover:bg-[#efa3a3] border-2 border-[#efa3a3] hover:border-[#efa3a3] text-[#efa3a3] hover:text-[#fff]"
                   onClick={() => {
                     router.push(`/about`);
-                  }}
-                >
+                  }} >
                   Contact
                 </button>
               </div>

@@ -157,31 +157,31 @@ export default function index() {
       <div className="flex bg-gray-100 mt-3 mb-5 p-2  text-white rounded-lg  md:mb-0 items-center sm:space-y-0 sm:space-x-4 upcoming-box">
         <button
           onClick={() => setActiveTab('upcoming')}
-          className={`w-full sm:flex-1 px-4 py-2 rounded-lg text-center ${activeTab === 'upcoming' ? 'bg-amber-700 text-white' : 'text-black'} mb-2 sm:mb-0`}
+          className={`w-full px-2 py-2 text-sm rounded-lg text-center ${activeTab === 'upcoming' ? 'bg-black text-white' : 'text-black'} mb-2 sm:mb-0`}
         >
           Upcoming
         </button>
         <button
           onClick={() => setActiveTab('completed')}
-          className={`w-full sm:flex-1 px-4 py-2 rounded-lg text-center ${activeTab === 'completed' ? 'bg-green-600 text-white' : 'text-black'} mb-2 sm:mb-0`}
+          className={`w-full px-2 py-2 text-sm rounded-lg text-center ${activeTab === 'completed' ? 'bg-black text-white' : 'text-black'} mb-2 sm:mb-0`}
         >
           Complete
         </button>
         <button
           onClick={() => setActiveTab('cancelled')}
-          className={`w-full sm:flex-1 px-4 py-2 rounded-lg text-center ${activeTab === 'cancelled' ? 'bg-red-600 text-white' : 'text-black'} mb-2 sm:mb-0`}
+          className={`w-full px-2 py-2 text-sm rounded-lg text-center ${activeTab === 'cancelled' ? 'bg-black text-white' : 'text-black'} mb-2 sm:mb-0`}
         >
           Cancelled
         </button>
         <button
           onClick={() => setActiveTab('current')}
-          className={`w-full sm:flex-1 px-4 py-2 rounded-lg text-center ${activeTab === 'current' ? 'bg-black text-white' : 'text-black'} mb-2 sm:mb-0`}
+          className={`w-full px-2 py-2 text-sm rounded-lg text-center ${activeTab === 'current' ? 'bg-black text-white' : 'text-black'} mb-2 sm:mb-0`}
         >
           Current
         </button>
         <button
           onClick={() => setActiveTab('failed')}
-          className={`w-full sm:flex-1 px-2 py-2 rounded-lg text-center ${activeTab === 'failed' ? 'bg-red-700 text-white' : 'text-black'} mb-2 sm:mb-0`}
+          className={`w-full  px-2 py-2 text-sm rounded-lg text-center ${activeTab === 'failed' ? 'bg-black text-white' : 'text-black'} mb-2 sm:mb-0`}
         >
           Failed
         </button>
@@ -323,7 +323,7 @@ export default function index() {
                       :
                       <td className="px-2 py-2 text-sm text-gray-500  overflow-hidden text-ellipsis">
                         <div
-                          className={`capitalize inline-flex items-center rounded-full py-2 w-max px-2 text-sm text-white  ${item?.booking_status === "completed"
+                          className={`capitalize inline-flex items-center rounded-full py-1 w-max px-2 text-sm text-white  ${item?.booking_status === "completed"
                             ? "bg-green-700"
                             : item?.booking_status === "cancelled"
                               ? "bg-red-600"

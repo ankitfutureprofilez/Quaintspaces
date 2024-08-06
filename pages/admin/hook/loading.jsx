@@ -1,6 +1,6 @@
 const ListingsLoading = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-4 w-full px-4 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 w-full">
       {[...Array(3)].map((_, index) => (
         <div key={index} className="relative p-4 w-full bg-white rounded-lg overflow-hidden shadow hover:shadow-md">
           <div className="animate-pulse flex flex-col">

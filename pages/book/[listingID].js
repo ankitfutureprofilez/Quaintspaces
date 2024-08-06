@@ -42,8 +42,6 @@ const Book = () => {
   });
 
   const [cancelpolicy, setCancelpolicy] = useState([]);
-  console.log("cancelpolicy", cancelpolicy)
-  console.log("cancelpolicy?.date2", cancelpolicy?.date2)
   const formattedCheckIn = `${infos?.checkin} ${listing?.check_in} `;
   const handleCancelPolicy = () => {
     if(listingID && formattedCheckIn){
@@ -97,6 +95,11 @@ const Book = () => {
   });
   const [detailsLoading, setDtLoading] = useState(true);
   const url = router.query;
+
+  useEffect(() => {
+    setInfos(url);
+  }, [url]);
+
   const fetchDetails = () => {
     if(url?.listingID){
     setDtLoading(true);
@@ -440,7 +443,6 @@ const Book = () => {
                         ? "underline text-md font-medium edit-color overflow-hidden"
                         : "underline text-md font-medium edit-color"
                     }
-                  // className="underline text-md font-medium edit-color"
                   >
                     EDIT
                   </button>
@@ -818,7 +820,9 @@ const Book = () => {
               />
             )}
             {dateModel && (
-              <DatesModel infos={infos} setDateModel={setDateModel} />
+              <>
+              <DatesModel infos={infos} setInfos={setInfos} setDateModel={setDateModel} />
+              </>
             )}
             {isOpen && (
               <div className="max-w-3xl mx-auto">

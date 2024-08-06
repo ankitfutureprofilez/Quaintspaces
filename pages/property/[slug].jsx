@@ -44,16 +44,12 @@ const Listing = () => {
     }
   }, [slug]);
 
-
- 
-
   return (
     <>
       <Layout>
         <Head>
           <title>
-            House rent in {record?.loading ? "" : record?.data?.name || ""} -
-            Quaint Spaces Jaipur
+            House rent in {record?.data?.name || ""} | Quaint Spaces Jaipur
           </title>
         </Head>
         <SingleListingBody loading={loading} listing={record} />

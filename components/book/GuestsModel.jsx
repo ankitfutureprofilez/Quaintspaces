@@ -90,7 +90,6 @@ const GuestsModel = ({ infos, guests, setGuests, setGuestsModel }) => {
       const checkoutDate = new Date(`${infos.checkout}T00:00:00`);
       const formattedCheckin = format(checkinDate, "yyyy-MM-dd");
       const formattedCheckout = format(checkoutDate, "yyyy-MM-dd");
-      
       router.push(
         `/book/${router.query.listingID}?numberOfAdults=${guests.adults.value}&numberOfChildren=${guests.children.value}&numberOfInfants=${guests.infants.value}&numberOfPets=${guests.pets.value}&checkin=${formattedCheckin}&checkout=${formattedCheckout}`
       );

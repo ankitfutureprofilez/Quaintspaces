@@ -4,10 +4,7 @@ import GuestCard from "../GuestPickerCard";
 const GuestsPicker = ({ css, guests, setGuests }) => {
   return (
     <div
-      className={`${
-        css ||
-        "w-full rounded-3xl bg-white relative z-10 px-8 py-2 shadow border border-borderColor"
-      }`}
+      className={`${ css || "w-full rounded-3xl bg-white relative z-10 px-8 py-2 shadow border border-borderColor"}`}
     >
       <div className="flex items-center justify-between mb-6 mt-2">
         <div>
