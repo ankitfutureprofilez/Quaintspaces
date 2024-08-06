@@ -152,7 +152,12 @@ export default function Index() {
                               {item?.createdAt}
                             </td>
                             <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                            <Link
+                                  href={`/admin/users//${item?.rating_user?.id}`}
+                                  className="flex items-center gap-x-2"
+                                >
                               <div className="flex flex-row items-center gap-2 sm:flex-row sm:items-start text-sm">
+                              
                                 <Image
                                   width={50}
                                   height={50}
@@ -169,6 +174,7 @@ export default function Index() {
                                   </div>
                                 </div>
                               </div>
+                              </Link>
                             </td>
                             <td className="relative px-2 py-2 text-sm text-gray-500">
                             <ShowToolTip text={item?.review_text} />
@@ -220,7 +226,7 @@ export default function Index() {
                                   className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-1 flex justify-center w-22"
                                 >
                                   Reject
-                                  <svg
+                                  {/* <svg
                                     className="text-red-400"
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="16"
@@ -232,7 +238,7 @@ export default function Index() {
                                       d="m19.53 5.53-14 14c-.02.02-.03.03-.05.04-.38-.32-.73-.67-1.05-1.05A9.903 9.903 0 0 1 2 12C2 6.48 6.48 2 12 2c2.49 0 4.77.91 6.52 2.43.38.32.73.67 1.05 1.05-.01.02-.02.03-.04.05ZM22 12c0 5.49-4.51 10-10 10-1.5 0-2.92-.33-4.2-.93-.62-.29-.74-1.12-.26-1.61L19.46 7.54c.48-.48 1.32-.36 1.61.26.6 1.27.93 2.7.93 4.2ZM7.29 3.7c-.48-.48-.36-1.32.26-1.61A9.953 9.953 0 0 1 12 2c1.5 0 2.92.33 4.2.93.62.29.74 1.12.26 1.61L4.54 16.46c-.48.48-1.32.36-1.61-.26C2.33 14.73 2 13.3 2 12c0-2.65 1.05-5.05 2.76-6.76.29-.29.74-.29 1.04 0L7.3 3.7Z"
                                       fill="currentColor"
                                     ></path>
-                                  </svg>
+                                  </svg> */}
                                 </div>
                               ) : (
                                 <div
@@ -246,7 +252,7 @@ export default function Index() {
                                   className="cursor-pointer text-green-500 flex items-center gap-2 border rounded-full p-1 flex justify-center w-22"
                                 >
                                   Accept
-                                  <svg
+                                  {/* <svg
                                     className="text-green-400"
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="16"
@@ -258,7 +264,7 @@ export default function Index() {
                                       d="M12 2C6.48 2 2 6.48 2 12c0 1.5.33 2.92.93 4.2.29.62 1.12.74 1.61.26L16.46 4.54c.48-.48.36-1.32-.26-1.61A9.953 9.953 0 0 0 12 2Zm7.77 3.24c.48.38.73.67 1.05 1.05.02.02.03.03.04.05-.32.38-.67.73-1.05 1.05L6.24 19.77c-.48.48-1.32.36-1.61-.26A9.903 9.903 0 0 1 2 12c0-5.49 4.51-10 10-10 2.49 0 4.77.91 6.52 2.43ZM12 22c5.52 0 10-4.48 10-10 0-1.3-.33-2.73-.93-4.2-.29-.62-1.12-.74-1.61-.26L7.54 19.46c-.48.48-.36 1.32.26 1.61 1.28.6 2.7.93 4.2.93Z"
                                       fill="currentColor"
                                     ></path>
-                                  </svg>
+                                  </svg> */}
                                 </div>
                               )}
                             </td>

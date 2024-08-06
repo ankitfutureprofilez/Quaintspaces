@@ -57,6 +57,31 @@ export default function Index() {
     };
   }, [page]);
 
+  const ShowToolTip = ({text}) => { 
+    const [isExpanded, setIsExpanded] = useState(false);
+    const toggleExpanded = () => {
+      setIsExpanded(!isExpanded);
+    };
+
+    return (
+      <>
+      <div className={`tooltip-text ${isExpanded ? "open" : "closed"}`}>
+        <h2 className="mb-3 text-black">Message</h2>
+        {text}
+        <button className="close-tooltip text-black text-3xl absolute top-4 right-4" onClick={toggleExpanded}>
+          &times;
+        </button>
+      </div>
+      <button
+        onClick={toggleExpanded}
+        className="text-blue-500 underline ml-2" >
+        View Message
+      </button>
+    </>
+    );
+  }
+
+
   // Function to handle loading more data
   const loadMore = () => {
     if (!loading && hasMore) {
@@ -178,7 +203,9 @@ export default function Index() {
                               <div className="text-sm">{item?.email}</div>
                             </td>
                             <td className="px-4 py-4 text-sm text-gray-500">
-                              {item?.message}
+                            <ShowToolTip text={item?.message} />
+
+                              {/* {item?.message} */}
                             </td>
                             {item?.reply_message !== "N/A" ? (
                               <td className="px-4 py-4 text-sm text-gray-500">
