@@ -46,6 +46,7 @@ export default function index() {
             email: "",
             message: "",
           });
+          setLoading(false);
         } else {
           toast.error(res?.data?.message);
           setLoading(false);
