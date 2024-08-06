@@ -767,7 +767,7 @@ const Book = () => {
                             {formatMultiPrice(listing?.extra_guest_fee)}
                           </span>
                         </div>
-                        <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
+                        <span className="block text-blackColor font-medium confirm-price ml-2 inline-flex">
                           {formatMultiPrice(
                             (guests?.adults?.value +
                               guests?.children?.value -
@@ -842,7 +842,7 @@ const Book = () => {
                         </h6>
                       </div>
                       <div className="w-[45%] border-l">
-                        <h6 className="mb-2 text-[18px] ml-2 font-semibold cancel-policy">
+                        <h6 className="mb-2 text-[18px] ml-3 font-semibold cancel-policy">
                           {cancelpolicy?.date &&
                             (cancelpolicy?.date === new Date()
                               ? ""
