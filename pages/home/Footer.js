@@ -35,7 +35,7 @@ export default function Footer() {
                     href="mailto:quaintspaces@gmail.com"
                     target="_blank"
                   >
-                    <TfiEmail size={22} color={"#3F2A17"} />
+                    <TfiEmail size={16} className="mt-[2px]" color={"#3F2A17"} />
                     <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px]  ml-2">
                       : quaintspaces@gmail.com
                     </span>
@@ -45,17 +45,15 @@ export default function Footer() {
                       className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] flex justify-center md:justify-start"
                       href="tel:+919521410122"
                     >
-                      <MdOutlinePhone size={24} color={"#3F2A17"} />
-                      <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px]  ml-2">
+                      <MdOutlinePhone className="mt-[2px]" size={18} color={"#3F2A17"} />
+                      <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] ">
                         : +91 9521410122
                       </span>
-                    </a>{" "}
-                    &nbsp;/
+                    </a>&nbsp;/&nbsp;
                     <a
                       className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] "
-                      href="tel:+919314022666"
-                    >
-                      <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px]  ml-2">
+                      href="tel:+919314022666">
+                      <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px]">
                         +91 9314022666
                       </span>
                     </a>

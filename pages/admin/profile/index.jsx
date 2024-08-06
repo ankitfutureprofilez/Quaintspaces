@@ -5,6 +5,8 @@ import Listing from "../api/Listing";
 import AdminLayout from "../AdminLayout";
 import { Context } from "../../_app";
 import Image from 'next/image';
+import { Spinner } from "@nextui-org/react";
+import LoadingSpinner from "../hook/spinner";
 
 export default function Profileindex() {
   const { auth, setAuth } = useContext(Context);
@@ -118,50 +120,13 @@ export default function Profileindex() {
       <AdminLayout heading={"Profile Management"}>
         {Loading ? (
           <>
-            <div className="container mx-auto mt-5">
-              <div className="flex items-center profile-border">
-                <div className="relative mt-5">
-                  <div className="shrink-0">
-                    <div className="h-16 w-16 bg-gray-200 rounded-full"></div>
-                  </div>
-                  <label className="block">
-                    <div className="sr-only">Choose profile photo</div>
-                    <div className="absolute top-0 right-0 p-1 bg-gray-200 rounded-full h-6 w-6"></div>
-                  </label>
-                </div>
-              </div>
-              <div className="container mx-auto mt-5 perso-form">
-                <div className="w-full">
-                  <div className="grid grid-cols-1 gap-4 justify-center">
-                    <div className="mb-2 sm:mb-2">
-                      <div className="block text-lg font-medium text-gray-700">
-                        <div className="w-24 h-5 bg-gray-200 rounded"></div>
-                      </div>
-                      <div className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 h-10 bg-gray-200"></div>
-                    </div>
-                    <div className="mb-2 sm:mb-2">
-                      <div className="block text-lg font-medium text-gray-700">
-                        <div className="w-24 h-5 bg-gray-200 rounded"></div>
-                      </div>
-                      <div className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 h-10 bg-gray-200"></div>
-                    </div>
-                    <div className="mb-2 sm:mb-2">
-                      <div className="block text-lg font-medium text-gray-700">
-                        <div className="w-24 h-5 bg-gray-200 rounded"></div>
-                      </div>
-                      <div className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 h-10 bg-gray-200"></div>
-                    </div>
-                  </div>
-                  <div className="w-full text-white bg-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center h-10 mt-4"></div>
-                </div>
-              </div>
-            </div>
+            <LoadingSpinner />
           </>
         ) : (
-          <>
+          <div className=" max-w-[600px] m-auto">
             <div className="container mx-auto mt-5">
-              <div className="flex items-center profile-border">
-                <div className="relative mt-2">
+              <div className="flex items-center profile-border mb-4">
+                <div className="relative mt-4 mb-4">
                   <div className="shrink-0  ">
                     <Image
                       id="preview_img"
@@ -204,22 +169,15 @@ export default function Profileindex() {
               </div>
             </div>
             <div className="container mx-auto mt-2 perso-form">
-              <div className="w-full  ">
-                <form className="grid  grid-cols-1 gap-4 justify-center">
+              <div className="w-full">
+                <form className="grid grid-cols-1 gap-4 justify-center">
                   <div className="mb-2 sm:mb-2 w-full">
-                    <label
-                      htmlFor="name"
-                      className="block text-lg font-medium text-gray-700"
-                    >
+                    <label htmlFor="name" className="block text-normal mb-1 font-medium text-gray-700" >
                       Full Name
                     </label>
                     <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={record.name}
-                      onChange={handleChange}
-                      onKeyDown={handleKeyDown}
+                      type="text" id="name" name="name" value={record.name}
+                      onChange={handleChange} onKeyDown={handleKeyDown}
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                       required
                     />
@@ -227,8 +185,7 @@ export default function Profileindex() {
                   <div className="mb-2 sm:mb-2">
                     <label
                       htmlFor="email"
-                      className="block text-lg font-medium text-gray-700"
-                    >
+                      className="block text-normal mb-1 font-medium text-gray-700" >
                       Email
                     </label>
                     <input
@@ -245,7 +202,7 @@ export default function Profileindex() {
                   <div className="mb-2 sm:mb-2">
                     <label
                       htmlFor="phone"
-                      className="block text-lg font-medium text-gray-700"
+                      className="block text-normal mb-1 font-medium text-gray-700"
                     >
                       Phone
                     </label>
@@ -264,13 +221,13 @@ export default function Profileindex() {
                 </form>
                 <button
                   onClick={handleSubmit}
-                  className="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                  className="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-xl text-sm px-4 py-3 text-center max-w-[200px] m-auto table mt-4"
                 >
                   {Loading ? "Updating..." : "Update Details"}
                 </button>
               </div>
             </div>
-          </>
+          </div>
         )}
 
       </AdminLayout>
