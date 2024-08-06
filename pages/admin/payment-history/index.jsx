@@ -114,7 +114,7 @@ export default function Index() {
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
-                        <Link href={`/admin/user-history/${item?.booking_history?.booking_user[0]?.id}`}>
+                        <Link href={`/admin/users/${item?.booking_history?.booking_user[0]?.id}`}>
                           <div className="flex flex-row items-center gap-2 sm:flex-row sm:items-start text-sm">
                             <Image
                               width={50}

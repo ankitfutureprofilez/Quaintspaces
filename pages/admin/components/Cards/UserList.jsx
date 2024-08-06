@@ -51,7 +51,7 @@ function UserList({totaluser}) {
           <p className="text-gray-800 font-medium">Most  Booking Users </p>
         </div>
         <Link
-          href="/admin/user-history"
+          href="/admin/users"
           className="border flex items-center gap-1 px-2 py-1 rounded-lg text-xs"
         >
           <Send2 size={14} />
@@ -94,7 +94,7 @@ function UserList({totaluser}) {
 
         {/* comment button */}
         {/* <Link
-          href="/admin/user-history"
+          href="/admin/users"
           className="border flex items-center justify-center w-full gap-2 p-2 text-gray-600 font-medium rounded-lg text-xs"
         >
           <Edit2 size={14} />

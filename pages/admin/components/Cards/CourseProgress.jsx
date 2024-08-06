@@ -59,7 +59,7 @@ function CourseProgress() {
               <p className="text-gray-800 font-medium">Active Users Month </p>
             </div>
             <Link
-              href="/admin/user-history"
+              href="/admin/users"
               className="border px-2 py-1 rounded-lg text-xs"
             >
               See all
@@ -79,7 +79,7 @@ function CourseProgress() {
                 </p>
                 <p className="text-xs  text-black">Active Users for this month</p>
                 <Link
-                  href="/admin/user-history"
+                  href="/admin/users"
                   className="text-xs  text-black text-primary underline font-semibold underline-offset-2"
                 >
                   View All
