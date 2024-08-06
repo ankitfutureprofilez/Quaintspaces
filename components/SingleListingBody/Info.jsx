@@ -6,8 +6,8 @@ import Image from "next/image";
 import StartRating from "../../pages/elements/StartRating";
 
 const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
+  
   const [amenitiesModal, setAmenitiesModal] = useState(false);
-
   function capitalizeAndReplace(inputString) {
     let words = inputString && inputString?.split("_");
     for (let i = 0; i < words?.length; i++) {
@@ -33,15 +33,18 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
     <div className="w-full">
       <div className="flex items-start sm:items-center justify-between flex-col sm:flex-row gap-4 pb-6">
         <div className="flex-1 h-full">
+
           {loading ? (
-            <div className="h-7 mb-2 rounded-md bg-lightBorderColor w-7/12"></div>
+            <div className="h-7 mb-2 animate-pulse rounded-md bg-gray-200 w-7/12"></div>
           ) : (
             <h1 className="text-lg md:text-2xl mb-2 font-semibold">
               {listing?.data?.lt}
             </h1>
           )}
+
+
           {loading ? (
-            <div className="h-7 mb-2 rounded-md bg-lightBorderColor w-4/12"></div>
+            <div className="h-7 mb-2 animate-pulse rounded-md bg-lightBorderColor w-4/12"></div>
           ) : (
             <>
               <div className="flex items-center gap-1 text-md">
@@ -65,9 +68,7 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                   <span>
                   <StartRating size={15} value={listing?.data?.rating?.toFixed(2)} color={"#000000"}/>
                   </span>
-                  {/* { listing?.data?.rating !==0  ?(parseFloat(
-                    listing?.data?.rating && listing?.data?.rating?.toFixed(2)
-                  )) : "4.1" } */}
+                   
                 </span>
                 <div className="hidden">·</div>
                 <span
@@ -85,7 +86,7 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
       </div>
       <div className="py-8 border-y border-darkBorderColor">
         {loading ? (
-          <div className="w-full h-7  bg-lightBorderColor rounded-md"></div>
+          <div className="w-full h-7 animate-pulse bg-lightBorderColor rounded-md"></div>
         ) : (
           <p className="text-[15px] lg:text-[16px] text-lightTextColor  ">
             {listing?.data?.description}
@@ -94,11 +95,22 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
       </div>
       <div className="py-8" ref={ref}>
         <h1 className="text-[18px] md:text-2xl mb-4 font-semibold">What this place offers?</h1>
-        {/* <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
-          <div className="flex">
-            01
-            </div>
-        </div> */}
+         
+
+
+      { loading ? 
+        <div class="grid animate-pulse grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
+          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
+          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
+          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
+          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
+          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
+          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
+          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
+          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
+          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
+        </div>
+        :
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
           {listing?.data?.amenities &&
             listing?.data?.amenities
@@ -140,6 +152,10 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                 </div>
               ))}
         </div>
+      }
+
+      { loading ? 
+      <div className="bg-gray-200 w-60 p-6 animate-pulse rounded-xl mt-3" ></div> : 
         <button
           className="btn-normal mt-8 capitalize"
           onClick={() => setAmenitiesModal(true)}
@@ -155,6 +171,7 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
           {" "}
           amenities
         </button>
+      }
 
         {amenitiesModal && (
           <AmenitiesModal
