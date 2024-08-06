@@ -111,13 +111,13 @@ export default function Login() {
                 </div>
               </div>
               <div>
-                <button type="submit" className="w-full flex justify-center bg-indigo-600 hover:bg-indigo-500 text-gray-100 p-3 mt-4 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">
+                <button type="submit" className="w-full flex justify-center bg-[#efa3a3] border-2 border-[#efa3a3] text-[#fff] p-3 mt-4 rounded-full tracking-wide font-semibold shadow-lg cursor-pointer transition ease-in duration-500">
                   {loading ? "Please wait..." : "Sign in"}
                 </button>
               </div>
             </form>
             <div className="pt-5 text-center text-black-400 text-xs">
-              Copyright © 2024
+            &copy; Quaint Spaces Jaipur, 2024
             </div>
           </div>
         </div>
