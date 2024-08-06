@@ -54,7 +54,7 @@ const success = () => {
   };
 
   const totalStay = calculateTotalDays(record?.check_in, record?.check_out);
-console.log("record",record)
+  console.log("record", record)
   return (
     <AuthLayout>
       {loading ? (
@@ -146,8 +146,8 @@ console.log("record",record)
               <div className="w-full flex justify-between mb-4 flex-wrap ">
                 <p className="text-black-400 font-bold capitalize">Check in </p>
                 <p className="text-start text-black-400 font-bold font-semibold">
-                <SuccessDate item=
-                            {record?.check_in} />{" "}
+                  <SuccessDate item=
+                    {record?.check_in} />{" "}
                   {/* {DateComponent(record?.check_in)}{" "} */}
                 </p>
               </div>
@@ -156,12 +156,12 @@ console.log("record",record)
                   Check out{" "}
                 </p>
                 <p className="text-start text-black-400 font-bold font-semibold">
-                <SuccessDate item=
-                            {record?.check_out} />{" "}
+                  <SuccessDate item=
+                    {record?.check_out} />{" "}
                   {/* {DateComponent(record?.check_out)} */}
                 </p>
               </div>
-              
+
               <div className="w-full flex justify-between mb-4 flex-wrap ">
                 <p className="text-black-400 font-bold capitalize">
                   Amount Paid
