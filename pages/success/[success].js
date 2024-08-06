@@ -137,7 +137,7 @@ const success = () => {
                 </p>
                 <p className="text-start text-black-400 font-bold font-semibold">
                   {record?.property_name ? (
-                    `${record?.property_name} , Jaipur`
+                    `${record?.property_name}, Jaipur`
                   ) : (
                     <></>
                   )}{" "}

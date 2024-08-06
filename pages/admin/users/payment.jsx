@@ -58,6 +58,7 @@ export default function payment({ record }) {
                     {content && content.map((item, index) => (
                       <tr key={index}>
                         <td className="px-4 py-4 text-sm text-gray-500">{item?.payment_id}</td>
+
                         <td className="px-4 py-4 text-sm text-gray-500">
                           <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
 

@@ -67,7 +67,9 @@ const Book = () => {
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
-    handleCancelPolicy(signal);
+    if(formattedCheckIn && listingID ){
+      handleCancelPolicy(signal);
+    }
     return () => controller.abort();
   }, [infos?.checkin, listing?.check_in]);
 
@@ -227,11 +229,11 @@ const Book = () => {
       return false;
     }
     if (formData.phone.length === 0) {
-      toast.error("Phone Number is required");
+      toast.error("Phone number is required");
       return false;
     }
     if (formData.phone.length !== 10) {
-      toast.error("Invalid Phone Number");
+      toast.error("Invalid phone number");
       return false;
     }
     if (guests?.adults?.value > listing?.adults) {
@@ -528,16 +530,20 @@ const Book = () => {
                       </p>
                     </div>
                     <div className="mt-2 mb-2 sm:mb-4 flex">
-                      <input
-                        type="number"
-                        id="phone"
-                        name="phone" maxlength="10" min='1'
-                        value={formData?.phone}
-                        onChange={handleChange}
-                        className="mt-1 mr-1 p-4 border rounded-full w-full"
-                        placeholder="Enter your mobile number"
-                        required
-                      />
+                      <div className="relative w-full" >
+                        <span className="absolute top-[16px] left-2 flex items-center px-2 text-normal text-gray-800">+91</span>
+                        <input
+                          type="number"
+                          id="phone"
+                          name="phone" maxlength="10" min='1'
+                          value={formData?.phone}
+                          onChange={handleChange}
+                          className="mt-1 mr-1 p-4 h-[50px] border rounded-full w-full !ps-[50px]"
+                          placeholder="Enter your mobile number"
+                          required
+                        />
+
+                      </div>
                     </div>
 
                     <h3 className="  text-lg  mb-2  font-medium item-heading">
@@ -611,7 +617,7 @@ const Book = () => {
                     alt="Apartment"
                     width={200}
                     height={200}
-                    className="object-cover"
+                    className="object-cover rounded-xl"
                   />
                   <div>
                     <h4 className="text-2xl mb-1 capitalize">{listing?.name}</h4>
