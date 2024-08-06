@@ -161,7 +161,7 @@ export default function Profileindex() {
           <>
             <div className="container mx-auto mt-5">
               <div className="flex items-center profile-border">
-                <div className="relative mt-5">
+                <div className="relative mt-2">
                   <div className="shrink-0  ">
                     <Image
                       id="preview_img"
@@ -203,10 +203,10 @@ export default function Profileindex() {
                 </div>
               </div>
             </div>
-            <div className="container mx-auto mt-5 perso-form">
-              <div className="w-full md:w-9/12 ">
+            <div className="container mx-auto mt-2 perso-form">
+              <div className="w-full  ">
                 <form className="grid  grid-cols-1 gap-4 justify-center">
-                  <div className="mb-2 sm:mb-4">
+                  <div className="mb-2 sm:mb-4 w-full">
                     <label
                       htmlFor="name"
                       className="block text-lg font-medium text-gray-700"

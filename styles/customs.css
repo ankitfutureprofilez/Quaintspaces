@@ -916,9 +916,9 @@ button.submint-btn {
 }
 
 .profile-border {
-  padding-bottom: 50px;
+  padding-bottom: 30px;
   border-bottom: 1px solid #ebebeb;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .pers-info {
@@ -1690,8 +1690,8 @@ button.submint-btn {
   }
 
   .profile-border {
-    padding-bottom: 25px !important;
-    margin-bottom: 25px !important;
+    padding-bottom: 15px !important;
+    margin-bottom: 15px !important;
   }
 
   .footer-menu nav a {
