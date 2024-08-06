@@ -1972,12 +1972,6 @@ h2.text-center.mt-4 {}
   padding-bottom: 100px;
 }
 
-.menutoggle svg path { 
-  fill:#000;
-}
-
-
-
 .mytable th {
   background: #efa3a3 !important;
   color: #000 !important;

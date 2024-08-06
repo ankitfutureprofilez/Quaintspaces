@@ -26,7 +26,7 @@ function Navbar({ isOpen, toggleMobileSidebar, heading }) {
                 </div>
 
                 <div className="absolute top-[0px] right-0 z-50 p-4">
-                    <button className='menutoggle' onClick={toggleMobileSidebar}>
+                    <button className='menutoggle menytoggle' onClick={toggleMobileSidebar}>
                         <RxHamburgerMenu size={28} />
                     </button>
                 </div>
