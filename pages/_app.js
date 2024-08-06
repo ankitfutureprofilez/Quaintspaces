@@ -17,6 +17,7 @@ import NotLogin from "./login/NotLogin";
 import ClearCache from "./common/ClearCache";
 // import "slick-carousel/slick/slick.css"; 
 // import "slick-carousel/slick/slick-theme.css";
+import NextNProgress from 'nextjs-progressbar';
 
 export const Context = React.createContext();
 
@@ -66,6 +67,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
+      <NextNProgress color="#e55500" />
     <ClearCache /> 
      <Toaster
             toastOptions={{
