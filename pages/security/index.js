@@ -95,10 +95,10 @@ export default function index() {
       <Head>
         <title>Security - Quaint Spaces Jaipur</title>
       </Head>
-      <div>
+      <div className="py-4 sm:py-8 md:py-12">
         <div className="container mx-auto">
-        <div className="md:w-9/12 m-auto md:rounded-3xl rounded-2xl md:mt-6 mt-4">
-          <div className="pt-3 sm:pt-6 md:pt-12 pb-6">
+        <div className="w-full m-auto md:rounded-3xl rounded-2xl md:mt-6 mt-4">
+          <div className="mb-6">
             <Heading text={"Security "} handleClick={() => router.back()} />
           </div>
           <div className="mb-6 profile-text">

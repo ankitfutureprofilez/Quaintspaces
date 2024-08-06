@@ -133,18 +133,18 @@ export default function Profile() {
   // Image Uploader
 
   return (
-    <>
+    <div className="py-4 sm:py-8 md:py-12">
       <Head>
         <title>Profile - Quaint Spaces Jaipur</title>
       </Head>
      
-      <div className="container mx-auto perso-form">
-        <div className="lg:w-9/12 md:w-10/12 w-full m-auto  md:rounded-3xl rounded-2xl md:my-6 my-4">
-        <div className="py-6 sm:py-12">
+      <div className="container mx-auto perso-form ">
+        <div className=" w-full m-auto  md:rounded-3xl rounded-2xl md:my-6 my-4">
+        <div className="pb-6">
           <Heading text={"My Profile"} handleClick={() => router.back()} />
         </div>
-        <div className="flex items-center profile-border">
-          <div className="relative">
+        <div className="flex items-center profile-border  mb-8">
+          <div className="relative ">
             <div className="shrink-0">
               <Image
                 id="preview_img"
@@ -274,7 +274,7 @@ export default function Profile() {
                 </div>
                 
               </div>
-              <div className="flex justify-start mt-3 pb-4 ">
+              <div className="flex justify-start mt-3">
                 <Button
                   text={loading ? "Updating..." : "Update Details"}
                   design={
@@ -284,9 +284,8 @@ export default function Profile() {
               </div>
             </form>
           </div>
-
         </div>
       </div>
-    </>
+    </div>
   );
 }

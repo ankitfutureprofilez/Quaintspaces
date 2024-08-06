@@ -387,9 +387,10 @@ export default function Index() {
       <Head>
         <title>My Booking - Quaint Spaces </title>
       </Head>
+      <div className="pt-4 sm:pt-8 md:pt-12   pb-0 sm:pb-4 md:pb-8">
       <div className="container mx-auto min-h-screen">
         <div className=" account-btn ">
-          <div className=" pt-4 sm:pt-8 md:pt-12 pb-3 sm:pb-6 md:pb-10">
+          <div className="mb-5">
             <Heading
               text={"My Booking "}
               value={"/account"}
@@ -487,6 +488,7 @@ export default function Index() {
           </div>
         )}
 
+      </div>
       </div>
 
       {

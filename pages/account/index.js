@@ -25,7 +25,7 @@ export default function Index() {
         <title>My Account - Quaint Spaces Jaipur</title>
       </Head>
 
-      <div className="container mx-auto account-btn">
+      <div className="container mx-auto account-btn ">
         <div className="flex justify-between items-center pt-12">
           <div className="flex sm:pe-3 flex-wrap items-center">
             <div className="flex items-center ">
@@ -65,10 +65,9 @@ export default function Index() {
           />
         </div>
       </div>
-
       <div className="container mx-auto mb-6">
         {[
-          { title: "My Booking", description: "Manage all your bookings here", href: "/booking" },
+          { title: "My Booking", description: "Manage all your bookings here", href: "/booking-history" },
           { title: "My Profile", description: "Manage your profile here", href: "/profile" },
           { title: "Security", description: "Manage your passwords here", href: "/security" },
         ].map((item, index) => (
