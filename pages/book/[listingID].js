@@ -821,7 +821,6 @@ const Book = () => {
               <DatesModel infos={infos} setInfos={setInfos} setDateModel={setDateModel} />
               </>
             )}
-            {JSON.stringify(infos)}
             {isOpen && (
               <div className="max-w-3xl mx-auto">
                 <Modal width="md" isOpen={isOpen} onClose={closeModal}>
