@@ -441,7 +441,7 @@ export default function Index() {
               <p className="text-lg text-white font-semibold p-6 py-4 bg-[#efa3a3]">
                 Filter By Booking Date
               </p>
-              <div className=" ">
+              <div className="mt-2">
                 {["All Dates", "Last 30 Days", "Last 3 Months", "Last 1 Year"].map((option) => (
                   <div key={option} className="px-6 py-2">
                     <input
@@ -474,7 +474,7 @@ export default function Index() {
                   ))}
                 </div>
               </div>
-              <div className="sm:mb-4 flex justify-center"></div>
+              {/* <div className="sm:mb-4 flex justify-center"></div> */}
             </Modal>
           </div>
         </div>

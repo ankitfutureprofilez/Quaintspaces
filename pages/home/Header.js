@@ -62,7 +62,7 @@ export default function Header() {
   }
 
   return (
-    <nav className="navbar">
+    <nav className="bg-white navbar">
       <div className="container flex items-center justify-between">
         <div className="logo">
           <Link href="/">

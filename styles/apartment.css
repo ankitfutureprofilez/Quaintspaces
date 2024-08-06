@@ -87,8 +87,8 @@ html {
   scroll-behavior: smooth;
 }
 .filter-calendar-position {
-  top: 131px;
-  right: 113px;
+  top: 45px;
+  right: 31px;
 }
 @media (max-width: 768px) {
   .filter-calendar-position {
