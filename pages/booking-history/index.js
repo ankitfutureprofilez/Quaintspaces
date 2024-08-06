@@ -392,10 +392,9 @@ export default function Index() {
         <div className=" account-btn ">
           <div className="mb-5">
             <Heading
-              text={"My Booking "}
-              value={"/account"}
-              handleClick={() => router.back()}
-            />
+            text={"My Booking "}
+            value={"/account"}
+            handleClick={() => router.back()} />
           </div>
         </div>
 
