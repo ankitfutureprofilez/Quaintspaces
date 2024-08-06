@@ -31,7 +31,7 @@ export default function Index() {
         <span className="rounded-md shadow-sm">
           <button
             type="button"
-            className="sort w-full btn flex items-center justify-center sm:justify-start mr-2 hover:bg-[#efa3a3] hover:border-[#efa3a3] hover:text-[#fff]"
+            className=" whitespace-nowrap sort w-full btn flex items-center justify-center sm:justify-start mr-2 hover:bg-[#efa3a3] hover:border-[#efa3a3] hover:text-[#fff]"
             id="options-menu"
             aria-haspopup="true"
             aria-expanded="true"

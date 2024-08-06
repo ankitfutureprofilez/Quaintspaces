@@ -22,14 +22,8 @@ const Title = ({ isSaved, listing, loading, isAdmin }) => {
 
   return (
     <>
-      {loading ? (
-        <>
-          <div className="w-7/12 h-7 mb-2 rounded-md bg-lightBorderColor"></div>
-          <div className="w-4/12 h-5 mb-2 rounded-md bg-lightBorderColor"></div>
-        </>
-      ) : (
-        <>
-          <div className=" flex justify-between flex-wrap ">
+      
+          <div className="mt-2 flex justify-between flex-wrap ">
             <div className="flex flex-wrap items-center mt-4 sm:mt-0 mb-2">
               <div className="backtag"></div>
               <Back />
@@ -46,8 +40,6 @@ const Title = ({ isSaved, listing, loading, isAdmin }) => {
           ) : null }
           </div>
         </>
-      )}
-    </>
   );
 };
 

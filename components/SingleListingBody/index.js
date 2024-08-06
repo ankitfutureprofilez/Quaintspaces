@@ -169,13 +169,7 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
                 <span>
                 <StartRating size={15} value={parseFloat( listing?.data?.rating && listing?.data?.rating?.toFixed(2)) ?? 0} color={"#000000"}/>
                 </span>
-                {/* <span className="text-xs font-medium">
-                  {listing?.data?.rating && listing?.data?.rating?.toFixed(2)}
-                </span> */}
-                {/* <span> ·</span> */}
-                {/* <span className="text-[15px] underline text-lightTextColor">
-                  {listing?.data?.review} reviews
-                </span> */}
+                
               </div>
             </div>
             {auth && auth?.name ? (
@@ -239,12 +233,22 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
 
       <section className="w-full sm:px-4">
         <div className="container mx-auto !py-4 sm:py-8">
-          <Title
+        {loading? 
+            <div className="animate-pulse mt-2 p-6 w-[300px] h-[30px] bg-gray-200 rounded-2xl"></div>
+            :
+            <Title
             isSaved={isSaved}
             listing={listing}
             addWishlist={changeWishlist}
             isAdmin={isAdmin}
           />
+        }
+
+          {loading? 
+            <div className="w-full h-full grid grid-cols-2 gap-4 mt-8 mb-4">
+            <div className="animate-pulse p-6 w-full h-[40vh] bg-gray-200 rounded-2xl"></div>
+            <div className="animate-pulse p-6 w-full h-[40vh] rounded-2xl  bg-gray-200"></div>
+            </div>:
           <div
             ref={ImagesRef}
             className="block h-screen rounded-2xl overflow-hidden sm:my-8 my-3 relative min-h-[20vh] sm:max-h-[40vh]" >
@@ -255,6 +259,7 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
               // isAdmin={isAdmin}
             />
           </div>
+          }
 
           <div className="flex flex-col gap-4 sm:gap-16 relative mb-8 mt-8 lg:mt-0 lg:flex-row">
             <Info
@@ -284,15 +289,49 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
             </div>
           </div>
 
-          <div id="reviews">
+          
+          
+          
+          {loading ? 
+              <div className="mb-2 animate-pulse rounded-md h-full w-full">
+              <hr></hr>
+              <div className="mt-4 bg-gray-200 p-5 w-20 mb-3 rounded-xl"></div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 " >
+                <div>
+                  <div className="bg-gray-200 p-3 w-full mb-3 rounded-xl h-[10px]"></div>
+                  <div className="bg-gray-200 p-3 w-full mb-3 rounded-xl h-[10px]"></div>
+                  <div className="bg-gray-200 p-3 w-full mb-3 rounded-xl h-[10px]"></div>
+                  <div className="bg-gray-200 p-3 w-full mb-3 rounded-xl h-[10px]"></div>
+                </div>
+                <div>
+                  <div className="bg-gray-200 p-3 w-full mb-3 rounded-xl h-[10px]"></div>
+                  <div className="bg-gray-200 p-3 w-full mb-3 rounded-xl h-[10px]"></div>
+                  <div className="bg-gray-200 p-3 w-full mb-3 rounded-xl h-[10px]"></div>
+                  <div className="bg-gray-200 p-3 w-full mb-3 rounded-xl h-[10px]"></div>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" >
+                <div className="bg-gray-200 p-3 w-full mb-3 rounded-xl h-[200px]"></div>
+                <div className="bg-gray-200 p-3 w-full mb-3 rounded-xl h-[200px]"></div>
+              </div>
+          </div>
+       : 
+           <div id="reviews">
             <Reviews data={listing?.data} ref={ReviewsRef} isAdmin={true} />
           </div>
+          }
           <Location listing={listing?.data} ref={LocationRef} />
         </div>
       </section>
     </>
   );
 };
+
+
+
+
+<div className="bg-gray-200 animate-pulse mt-4" ></div>
+
 
 export default SingleListingBody;
 

@@ -32,7 +32,7 @@ const Date_GuestsPickerCard = React.forwardRef(
     return (
       <>
         {loading ? (
-          <div className="sticky top-28 left-0 min-w-[25rem] min-h-[500px] bg-lightBorderColor rounded-md"></div>
+          <div className="sticky animate-pulse top-28 left-0 min-w-[25rem] min-h-[500px] bg-gray-200 rounded-md"></div>
         ) : (
           <div className="sticky top-28 left-0 sm:min-w-[25rem]">
             <div className="rounded-xl shadow border border-[#efa3a3] py-5 px-4 sm:p-5">
