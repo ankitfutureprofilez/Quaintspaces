@@ -15,6 +15,14 @@ export default function Index() {
   const [content, setContent] = useState();
   const [hasmore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpanded = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  console.log("content", content)
   const fetchData = async (pg) => {
     if (pg == 1) { setLoading(true); }
     setLoadingButton(true);
@@ -81,6 +89,14 @@ export default function Index() {
   };
   return (
     <>
+      <style jsx>{`
+        .truncate-text {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
       <AdminLayout heading={"Review "}>
         <section className=" p-4 ">
           <div className="flex flex-col">
@@ -92,8 +108,8 @@ export default function Index() {
               <div>
                 {content && content?.length > 0 ? (
 
-<div className="inline-block align-middle">
-            <table className="min-w-[1200px] w-full table-responsive  divide-y divide-gray-200">
+                  <div className="">
+                    <table className=" w-full table-responsive  ">
                       <thead className="bg-indigo-600">
                         <tr>
                           <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
@@ -109,7 +125,7 @@ export default function Index() {
                             Message
                           </th>
                           <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
-                            Property
+                            Property Name
                           </th>
                           <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                             Status
@@ -119,7 +135,7 @@ export default function Index() {
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="bg-white divide-y divide-gray-200">
+                      <tbody className="bg-white ">
                         {content.map((item, index) => (
                           <tr key={index}>
                             <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap overflow-hidden text-ellipsis">
@@ -135,8 +151,7 @@ export default function Index() {
                                   height={50}
                                   className="w-12 h-12 rounded-full flex-shrink-0 object-cover"
                                   src={
-                                    item?.rating_user?.image_url ? item?.rating_user?.image_url : userprofile
-
+                                    item?.rating_user?.image_url 
                                   }
                                   alt="User Image"
                                 />
@@ -152,8 +167,18 @@ export default function Index() {
                                 </div>
                               </div>
                             </td>
-                            <td className="relative px-4 py-4 text-sm text-gray-500 truncate-text ">
-                              {item?.review_text}
+                            <td className="relative px-4 py-4 text-sm text-gray-500 break-all">
+                              <div className={isExpanded ? "" : "truncate-text"}>
+                                {/* {reviewText} */}
+                                {item?.review_text}
+                              </div>
+                              <button
+                                onClick={toggleExpanded}
+                                className="text-blue-500 underline ml-2"
+                              >
+                                {isExpanded ? "See Less" : "See All"}
+                              </button>
+
                             </td>
                             <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
                               <div className="flex items-center gap-x-2">
@@ -161,18 +186,18 @@ export default function Index() {
                                   href={`/property/${item?.get_property_review?.uuid}`}
                                   className="flex items-center gap-x-2"
                                 >
-                                  <Image
+                                  {/* <Image
                                     className="object-cover img-data w-8 h-8 rounded-full"
                                     src={
                                       item?.get_property_review
                                         ?.property_image[0]?.image_url
                                     }
                                     alt={item?.get_property_review?.name}
-                                    width={32}
-                                    height={32}
-                                  />
+                                    width={30}
+                                    height={30}
+                                  /> */}
                                   <div>
-                                    <h2 className="capitalize capitalize text-sm font-medium text-gray-800">
+                                    <h2 className="capitalize text-sm font-medium text-gray-800">
                                       {item?.get_property_review?.name}
                                     </h2>
                                     <p className="text-xs font-normal text-gray-600">

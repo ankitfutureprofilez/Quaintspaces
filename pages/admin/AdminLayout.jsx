@@ -11,21 +11,21 @@ const AdminLayout = ({ children, heading }) => {
 
     const router = useRouter();
     const [content, setContent] = useState([]);
-    const fetchData = () => {
-        const main = new Listing();
-        const response = main.Adminprofile();
-        response
-            .then((res) => {
-                if (res.data.status) {
-                    setContent(res.data.data);
-                } else {
-                }
-            }).catch((error) => {
-                console.log("error", error);
-                router.push("/admin/login");
-                toast.error("Please log in first.");
-            });
-    }
+    // const fetchData = () => {
+    //     const main = new Listing();
+    //     const response = main.Adminprofile();
+    //     response
+    //         .then((res) => {
+    //             if (res.data.status) {
+    //                 setContent(res.data.data);
+    //             } else {
+    //             }
+    //         }).catch((error) => {
+    //             console.log("error", error);
+    //             router.push("/admin/login");
+    //             toast.error("Please log in first.");
+    //         });
+    // }
 
     // useEffect(() => {
     //     fetchData()
