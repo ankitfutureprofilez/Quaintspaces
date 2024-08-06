@@ -4,16 +4,12 @@ import Plus from "../public/_svgs/Plus";
 const GuestCard = ({ guestsHandler, operation, type, guests, setGuests }) => {
   const getDisabledGuest = () => {
     let total = 0;
-
     Object.entries(guests).forEach((guest) => {
       if (type === "children" || type === "adults") {
         total += guest[1].value;
       }
     });
-
-    // if (total >= 16 && operation === "add") {
-    //   return true;
-    // } else {
+    if(guests[type].max > 1){
       if (operation === "add") {
         if (guests[type].value <= guests[type].max - 1) {
           return false;
@@ -27,7 +23,7 @@ const GuestCard = ({ guestsHandler, operation, type, guests, setGuests }) => {
           return true;
         }
       }
-    // }
+    }
   };
 
   return (
@@ -39,8 +35,8 @@ const GuestCard = ({ guestsHandler, operation, type, guests, setGuests }) => {
       onClick={() => guestsHandler(operation, type, guests, setGuests)}
       disabled={getDisabledGuest()}
     >
-      {operation === "add" ? <Plus /> : <Minus />}
-    </button>
+      {operation === "add" ? <Plus /> : <Minus />} 
+    </button> 
   );
 };
 

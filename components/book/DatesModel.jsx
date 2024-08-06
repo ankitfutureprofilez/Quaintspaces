@@ -5,9 +5,11 @@ import DatePicker from "../Pickers/DatePicker";
 import Times2 from "../../public/_svgs/Times2";
 import { format } from "date-fns";
 
-const DatesModel = ({ infos, setDateModel }) => {
+const DatesModel = ({ infos, setDateModel, setInfos }) => {
   const router = useRouter();
 
+
+  // setInfos
   const [selectedDay, setSelectedDay] = useState(() => {
     if (!infos.checkin) return null;
     const date = new Date(infos.checkin);
@@ -21,6 +23,10 @@ const DatesModel = ({ infos, setDateModel }) => {
     date.setHours(0, 0, 0, 0);
     return date;
   });
+
+
+  useEffect(() => {
+  }, [selectedDay, selectEnd]);
 
   const sectionRef = useRef(null);
   const overlayRef = useRef(null);
@@ -82,15 +88,9 @@ const DatesModel = ({ infos, setDateModel }) => {
 
   const changeUrlData = () => {
     setDateModel(false);
+    console.log("DATES",selectedDay, selectEnd);
     router.push(
-      `/book/${router.query.listingID}?numberOfAdults=${
-        infos.numberOfAdults
-      }&numberOfChildren=${infos.numberOfChildren}&numberOfInfants=${
-        infos.numberOfInfants
-      }&numberOfPets=${infos.numberOfPets}&checkin=${selectedDay ? format(
-        selectedDay,
-        "yyyy-MM-dd"
-      ) : ""}&checkout=${selectEnd ? format(selectEnd, "yyyy-MM-dd") : ""}`
+      `/book/${router.query.listingID}?numberOfAdults=${infos.numberOfAdults}&numberOfChildren=${infos.numberOfChildren}&numberOfInfants=${infos.numberOfInfants}&numberOfPets=${infos.numberOfPets}&checkin=${selectedDay ? format(selectedDay,"yyyy-MM-dd") : ""}&checkout=${selectEnd ? format(selectEnd, "yyyy-MM-dd") : ""}`
     );
   };
 
@@ -103,15 +103,13 @@ const DatesModel = ({ infos, setDateModel }) => {
       ></div>
       <div
         ref={sectionRef}
-        className="rounded-lg custom-shadow bg-white relative z-40 p-6 max-w-[850px] translate-y-[120px] opacity-0"
-      >
+        className="rounded-lg custom-shadow bg-white relative z-40 p-6 max-w-[850px] translate-y-[120px] opacity-0" >
         <button
           onClick={removeDateModel}
-          className="rounded-full hover:bg-borderColor p-3"
-        >
+          className="rounded-full hover:bg-borderColor p-3" >
           <Times2 />
         </button>
-        <DatePicker
+        <DatePicker  
           selectedDay={selectedDay}
           setSelectedDay={setSelectedDay}
           selectEnd={selectEnd}

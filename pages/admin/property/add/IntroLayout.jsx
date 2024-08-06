@@ -1,12 +1,11 @@
-function IntroLayout() {
+function IntroLayout({content}) {
     return (<>
-
-        <div className="introdution h-[calc(100vh-11rem)]">
+        <div className="introdution">
             <div className="flex items-center">
                 <div className="" style={{ transition: "opacity 0.6s" }}>
                     <div className="">
                         <span style={{ fontSize: 0 }}></span>
-                        <div className="flex flex-wrap items-center lg:p-[30px] xl:p-[50px]">
+                        <div className="flex flex-wrap items-center lg:p-[30px] xl:p-[50px] max-h-[80vh]">
                             <div className="w-full lg:w-1/2">
                                 <h1 className="mt-3 mb-3 xl:mt-0 xl:mb-0 text-3xl lg:text-4xl xl:text-[50px] lg:leading-[50px] xl:leading-[70px] font-[500] text-[#222222] " >
                                     It’s easy to get started on quaint spaces

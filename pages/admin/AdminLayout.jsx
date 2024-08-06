@@ -7,7 +7,7 @@ import Listing from "./api/Listing";
 import toast, { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar';
 
-const AdminLayout = ({ children, heading }) => {
+const AdminLayout = ({ children, heading, text }) => {
 
     const router = useRouter();
     const [content, setContent] = useState([]);
@@ -51,9 +51,10 @@ const AdminLayout = ({ children, heading }) => {
                 <div className={`sidebar mainsidebar ${isMobileSidebarOpen ? "opened-sidebar" : "closed-sidebar"}`}>
                     <Sidebar isMobileSidebarOpen={isMobileSidebarOpen} />
                 </div>
-                <div className='w-full content-bar max-h-[100vh] overflow-auto pb-6 '>
+                <div className='w-full relative content-bar max-h-[100vh] overflow-auto pb-6 '>
                     <Navbar toggleMobileSidebar={toggleMobileSidebar} heading={heading} />
                     <div className="pt-20 md:pt-20 px-4 " >{children}</div>
+                    {text}
                 </div>
             </div>
             </>
