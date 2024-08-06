@@ -48,9 +48,16 @@ const Listing = () => {
     <>
       <Layout>
         <Head>
-          <title>
+          {record?.data?.name ? 
+            <title>
             House rent in {record?.data?.name || ""} | Quaint Spaces Jaipur
           </title>
+          :
+          <title>
+            House rent Quaint Spaces Jaipur
+          </title>
+          }
+          
         </Head>
         <SingleListingBody loading={loading} listing={record} />
         <ThingsToKnow record={record} />

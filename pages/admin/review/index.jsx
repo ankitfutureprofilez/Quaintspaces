@@ -77,6 +77,30 @@ export default function Index() {
       });
   };
 
+  const ShowToolTip = ({text}) => { 
+    const [isExpanded, setIsExpanded] = useState(false);
+    const toggleExpanded = () => {
+      setIsExpanded(!isExpanded);
+    };
+
+    return (
+      <>
+      <div className={`tooltip-text ${isExpanded ? "open" : "closed"}`}>
+        <h2 className="mb-3 text-black">Message</h2>
+        {text}
+        <button className="close-tooltip text-black text-3xl absolute top-4 right-4" onClick={toggleExpanded}>
+          &times;
+        </button>
+      </div>
+      <button
+        onClick={toggleExpanded}
+        className="text-blue-500 underline ml-2" >
+        View Message
+      </button>
+    </>
+    );
+  }
+
   return (
     <>
       <style jsx>{`
@@ -97,7 +121,7 @@ export default function Index() {
             ) : (
               <div>
                 {content && content.length > 0 ? (
-                  <div className="">
+                  <div className="mytable">
                     <table className="w-full table-responsive">
                       <thead className="bg-indigo-600">
                         <tr>
@@ -147,23 +171,7 @@ export default function Index() {
                               </div>
                             </td>
                             <td className="relative px-2 py-2 text-sm text-gray-500">
-                              <div
-                                className={
-                                  expandedReviews.includes(index)
-                                    ? ""
-                                    : "truncate-text"
-                                }
-                              >
-                                {item?.review_text}
-                              </div>
-                              <button
-                                onClick={() => toggleExpanded(index)}
-                                className="text-blue-500 underline ml-2"
-                              >
-                                {expandedReviews.includes(index)
-                                  ? "See Less"
-                                  : "See All"}
-                              </button>
+                            <ShowToolTip text={item?.review_text} />
                             </td>
                             <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                               <div className="flex items-center gap-x-2">

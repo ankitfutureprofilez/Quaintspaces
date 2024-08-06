@@ -18,7 +18,7 @@ export default function Index() {
   const router = useRouter();
   const [record, setRecord] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [view, setView] = useState('card'); // Initial view is 'card'
+  const [view, setView] = useState('card');
 
   const toggleView = () => {
     setView(view === 'card' ? 'table' : 'card');
@@ -60,11 +60,9 @@ export default function Index() {
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
-
     fetchProperties(signal);
-
     return () => {
-      controller.abort(); // Clean up: abort any ongoing requests
+      controller.abort();
     };
   }, [router.pathname]);
   const deleteProperty = (uuid) => {
@@ -95,96 +93,6 @@ export default function Index() {
   const handleEditEntireProperty = (uuid) => {
     router.push(`/admin/property/edit/${uuid}`);
   };
-
-  //   const TableView = () => {
-  //     return (
-  //       <div className="w-full">
-  //       <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
-  //         {record && record?.length > 0 ? (
-  //           <table className="min-w-full divide-y divide-gray-200">
-  //             <thead className="bg-gray-50">
-  //               <tr>
-  //                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-  //                   S. No.
-  //                 </th>
-  //                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-  //                   Property Name
-  //                 </th>
-
-
-  //                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-  //                   Edit
-  //                 </th>
-  //                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-  //                   Delete
-  //                 </th>
-
-  //                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-  //                   Status
-  //                 </th>
-  //               </tr>
-  //             </thead>
-  //             <tbody className="bg-white divide-y divide-gray-200">
-  //               {record && record.map((item, index) =>  (
-  //                   <tr key={index}>
-  //                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{index + 1}</td>
-  //                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
-  //                       <Link href={`/admin/property/edit/${item?.uuid}`}>
-  //                         <div className="flex items-center space-x-4">
-  //                           <img
-  //                             className="w-16 h-16 object-cover rounded-md"
-  //                             src={
-  //                               item?.property_image[0]?.image_url
-  //                                 ? item?.property_image[0]?.image_url
-  //                                 : "https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg"
-  //                             }
-  //                             alt={item?.name}
-  //                           />
-  //                           <span className="text-left text-sm   ">{item?.name}</span>
-  //                         </div>
-  //                       </Link>
-  //                     </td>
-
-  //                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
-  //                       <button
-  //                         className="text-sm px-3 py-1 text-white bg-black rounded hover:bg-blue-700"
-  //                         onClick={() => handleEditEntireProperty(item?.uuid)}
-  //                       >
-  //                         <FaEdit />
-  //                       </button>
-  //                     </td>
-  //                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
-  //                       <button
-  //                         className="text-sm px-3 py-1 text-white bg-red-600 rounded hover:bg-red-700"
-  //                         onClick={() => {
-  //                           setShowConfirmation(true);
-  //                           setSelectedProperty(item?.uuid);
-  //                         }}
-  //                       >
-  //                         <AiFillDelete />
-  //                       </button>
-  //                     </td>
-
-  //                     <td className="px-4 py-4 text-sm  whitespace-nowrap">
-  //                       {item?.status !== 1 ? (
-  //                         <p className="text-indigo-600">In Progress</p>
-  //                       ) : (
-  //                         <p className="text-green-600">Completed</p>
-  //                       )}
-  //                     </td>
-  //                   </tr>
-  //                 )
-  //               )}
-  //             </tbody>
-  //           </table>
-  //         ) : (
-  //           <Nodata heading={"No Property"} />
-  //         )}
-  //       </div>
-  // </div>
-
-  //     );
-  //   };
 
   const CardView = () => {
     return (
@@ -273,40 +181,14 @@ export default function Index() {
   };
 
   return (
-    <AdminLayout heading="Properties">
+    <AdminLayout heading="Your listings">
       {isLoading ? (
         <div className="flex">
           <Loading />
         </div>
       ) : (
         <>
-          <div className="flex flex-wrap mt-[40px] items-center justify-between">
-            <h3 className="text-[32px] font-[500] text-[#222222] capitalize ">
-              Your listings
-            </h3>
-            <div className="flex items-center">
-              {/* <div
-                onClick={toggleView}
-                className="view-toggle-button hover:bg-gray-400 active:bg-gray-400 mx-2 cursor-pointer bg-[#f7f7f7] rounded-3xl w-9 h-9 flex justify-center items-center"
-              >
-                {view === 'table' ? <CgViewComfortable /> : <FaTableCellsLarge />}
-              </div> */}
-
-              {/* <CgViewComfortable /> */}
-              <div
-                onClick={() => {
-                  router.push("/admin/property/become");
-                }}
-                className="bg-gray-300
-                 rounded-3xl w-9 h-9 flex justify-center items-center cursor-pointer hover:bg-gray-400 active:bg-gray-400"
-              >
-                <MdAdd />
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-3">
-
+          <div className="">
             {view === 'table' ? <TableView /> : <CardView />}
           </div >
         </>
