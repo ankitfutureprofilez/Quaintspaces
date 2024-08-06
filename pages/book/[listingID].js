@@ -1,6 +1,6 @@
 import { differenceInDays, format } from "date-fns";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Star from "../../public/_svgs/star";
 import Link from "next/link";
 import DatesModel from "../../components/book/DatesModel";
@@ -214,22 +214,25 @@ const Book = () => {
     }
   }, [infos.checkout, infos.checkin, listing, guests]);
 
+  const doc = useRef();
+    
   const handleSubmit = () => {
     if (!formData.selectOption) {
       toast.error("Document type is required");
-      return;
+      doc.current.focus();
+      return false;
     }
     if (!formData.fornt) {
       toast.error("Document is required");
-      return;
+      return false;
     }
     if (formData.phone.length === 0) {
       toast.error("Phone Number is required");
-      return;
+      return false;
     }
     if (formData.phone.length !== 10) {
       toast.error("Invalid Phone Number");
-      return;
+      return false;
     }
     if (guests?.adults?.value > listing?.adults) {
       toast.error(
@@ -306,8 +309,11 @@ const Book = () => {
       .finally(() => setLoading(false));
   };
   const [payloading, setpayloading] = useState(false);
-  const paymentsubmit = (orderId) => {
-    setpayloading(true);
+
+ 
+    const paymentsubmit = (orderId) => {
+      
+      setpayloading(true);
     const main = new Listings();
     const record = new FormData();
     record.append("property_uid", listingID);
@@ -496,13 +502,13 @@ const Book = () => {
                       </div>
                     </div>
                     <div className="mb-4">
-                      <input
+                      <input ref={doc}
                         type="file"
                         id="fileUpload"
                         name="fornt"
                         accept=".jpg, .jpeg, .png, .gif, .bmp, .tif, .tiff, .svg, .webp, .avif"
                         onChange={handleFileChange}
-                        className="mt-1 p-4 border rounded-full w-full"
+                        className="mt-1 p-4 rounded-full w-full border-2 focus:border-blue-500"
                         required
                       />
                     </div>
@@ -525,8 +531,7 @@ const Book = () => {
                       <input
                         type="number"
                         id="phone"
-                        name="phone"
-                        maxLength="10"
+                        name="phone" maxlength="10" min='1'
                         value={formData?.phone}
                         onChange={handleChange}
                         className="mt-1 mr-1 p-4 border rounded-full w-full"
@@ -540,7 +545,6 @@ const Book = () => {
                     </h3>
                     <div className="flex flex-wrap justify-between mb-5">
                       <p className="item-pargraph">
-                        {" "}
                         Share why you're travelling, who's coming with you and
                         what you love about the space.
                       </p>
