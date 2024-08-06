@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import AdminLayout from "../AdminLayout";
 import Listing from "../api/Listing";
@@ -5,34 +6,36 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import Loading from "../hook/spinner";
 import Nodata from "../hook/NoRecord";
-import userprofile from "../../../public/admin/userprofile.png";
 import Image from "next/image";
 import { formatMultiPrice } from "../../../hooks/ValueData";
 
 export default function Index() {
   const [loading, setLoading] = useState(true);
   const [loadingButton, setLoadingButton] = useState(false);
-  const [content, setContent] = useState();
+  const [content, setContent] = useState([]);
   const [hasmore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+  const [expandedReviews, setExpandedReviews] = useState([]);
 
-  
+  const toggleExpanded = (index) => {
+    setExpandedReviews((prevExpandedReviews) => {
+      const isExpanded = prevExpandedReviews.includes(index);
+      if (isExpanded) {
+        return prevExpandedReviews.filter((i) => i !== index);
+      } else {
+        return [...prevExpandedReviews, index];
+      }
+    });
+  };
 
-  console.log("content", content)
   const fetchData = async (pg) => {
-    if (pg == 1) { setLoading(true); }
+    if (pg === 1) setLoading(true);
     setLoadingButton(true);
     try {
       const Main = new Listing();
       const response = await Main.getrating(pg);
       const newdata = response?.data?.data?.data || [];
-      setContent((prevData) => {
-        if (pg === 1) {
-          return newdata;
-        } else {
-          return [...prevData, ...newdata];
-        }
-      });
+      setContent((prevData) => (pg === 1 ? newdata : [...prevData, ...newdata]));
       setHasMore(response?.data?.current_page < response?.data?.last_page);
       setPage(response?.data?.current_page);
       setLoading(false);
@@ -49,9 +52,7 @@ export default function Index() {
   }, []);
 
   const loadMore = () => {
-    if (!loading && page) {
-      fetchData(page + 1);
-    }
+    if (!loading && page) fetchData(page + 1);
   };
 
   const acceptReview = (uuid, id, newStatus) => {
@@ -59,15 +60,10 @@ export default function Index() {
     main
       .reviewaccept(uuid, id, newStatus)
       .then((response) => {
-        if (response && response.data && response?.data?.status === true) {
+        if (response?.data?.status === true) {
           setContent((prevContent) =>
             prevContent.map((item) =>
-              item.id === id
-                ? {
-                  ...item,
-                  status: newStatus,
-                }
-                : item
+              item.id === id ? { ...item, status: newStatus } : item
             )
           );
           toast.success(response.data.message);
@@ -80,34 +76,7 @@ export default function Index() {
         console.error("Error updating review status:", error);
       });
   };
-  const truncateEmail = (email, length = 13) => {
-    return email.length > length ? email.substring(0, length) + "..." : email;
-  };
 
-
-  const ShowToolTip = ({text}) => { 
-    const [isExpanded, setIsExpanded] = useState(false);
-    const toggleExpanded = () => {
-      setIsExpanded(!isExpanded);
-    };
-
-    return (
-      <>
-      <div className={`tooltip-text ${isExpanded ? "open" : "closed"}`}>
-        <h2 className="mb-3 text-black">Message</h2>
-        {text}
-        <button className="close-tooltip text-black text-3xl absolute top-4 right-4" onClick={toggleExpanded}>
-          &times;
-        </button>
-      </div>
-      <button
-        onClick={toggleExpanded}
-        className="text-blue-500 underline ml-2" >
-        View Message
-      </button>
-    </>
-    );
-  }
   return (
     <>
       <style jsx>{`
@@ -119,7 +88,7 @@ export default function Index() {
         }
       `}</style>
       <AdminLayout heading={"Review "}>
-        <section className=" p-4 ">
+        <section className="p-4">
           <div className="flex flex-col">
             {loading ? (
               <div className="flex flex-wrap justify-center">
@@ -127,86 +96,81 @@ export default function Index() {
               </div>
             ) : (
               <div>
-                {content && content?.length > 0 ? (
-
+                {content && content.length > 0 ? (
                   <div className="">
-                    <table className="mytable w-full table-responsive  ">
+                    <table className="w-full table-responsive">
                       <thead className="bg-indigo-600">
                         <tr>
-                          <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
-                            S.No.
-                          </th>
-                          <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
+                          <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                             Date
                           </th>
-                          <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
+                          <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                             Customer
                           </th>
-                          <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
+                          <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                             Message
                           </th>
-                          <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
+                          <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                             Property Name
                           </th>
-                          <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
+                          <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                             Status
                           </th>
-                          <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
+                          <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                             Actions
                           </th>
                         </tr>
                       </thead>
-                      <tbody className="bg-white ">
+                      <tbody className="bg-white">
                         {content.map((item, index) => (
                           <tr key={index}>
-                            <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap overflow-hidden text-ellipsis">
-                              {index + 1}
-                            </td>
-                            <td className="px-4 py-4 text-sm  whitespace-nowrap overflow-hidden text-ellipsis text-gray-500">
+                            <td className="px-2 py-2 text-sm whitespace-nowrap overflow-hidden text-ellipsis text-gray-500">
                               {item?.createdAt}
                             </td>
-                            <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                            <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                               <div className="flex flex-row items-center gap-2 sm:flex-row sm:items-start text-sm">
                                 <Image
                                   width={50}
                                   height={50}
                                   className="w-12 h-12 rounded-full flex-shrink-0 object-cover"
-                                  src={
-                                    item?.rating_user?.image_url 
-                                  }
+                                  src={item?.rating_user?.image_url}
                                   alt="User Image"
                                 />
-                                <div className="p-2">
-                                  <div className="text-gray-800 font-normal ">
+                                <div className="p-1">
+                                  <div className="text-gray-800 font-normal">
                                     {item?.rating_user?.name}
-
                                   </div>
-                                  <div className="text-gray-800 font-medium  max-w-[13ch] overflow-hidden whitespace-nowrap text-ellipsis">
+                                  <div className="text-gray-800 font-normal max-w-[13ch] overflow-hidden whitespace-nowrap text-ellipsis">
                                     {item?.rating_user?.email}
                                   </div>
-
                                 </div>
                               </div>
                             </td>
-                            <td className="relative px-4 py-4 text-sm text-gray-500 break-all">
-                              <ShowToolTip text={item?.review_text} />
+                            <td className="relative px-2 py-2 text-sm text-gray-500">
+                              <div
+                                className={
+                                  expandedReviews.includes(index)
+                                    ? ""
+                                    : "truncate-text"
+                                }
+                              >
+                                {item?.review_text}
+                              </div>
+                              <button
+                                onClick={() => toggleExpanded(index)}
+                                className="text-blue-500 underline ml-2"
+                              >
+                                {expandedReviews.includes(index)
+                                  ? "See Less"
+                                  : "See All"}
+                              </button>
                             </td>
-                            <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+                            <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                               <div className="flex items-center gap-x-2">
                                 <Link
                                   href={`/property/${item?.get_property_review?.uuid}`}
                                   className="flex items-center gap-x-2"
                                 >
-                                  {/* <Image
-                                    className="object-cover img-data w-8 h-8 rounded-full"
-                                    src={
-                                      item?.get_property_review
-                                        ?.property_image[0]?.image_url
-                                    }
-                                    alt={item?.get_property_review?.name}
-                                    width={30}
-                                    height={30}
-                                  /> */}
                                   <div>
                                     <h2 className="capitalize text-sm font-medium text-gray-800">
                                       {item?.get_property_review?.name}
@@ -220,79 +184,32 @@ export default function Index() {
                                 </Link>
                               </div>
                             </td>
-                            <td className="px-4 py-4 text-sm text-gray-500">
+                            <td className="px-2 py-2 text-sm text-gray-500">
                               {item?.status === 1 ? (
                                 <div className="flex items-center gap-x-2">
-                                  <svg
-                                    className="text-emerald-500"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                  >
-                                    <path
-                                      d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z"
-                                      fill="currentColor"
-                                    ></path>
-                                  </svg>
-                                  <p>Accepted</p>
+                                  <p className="text-green-600">Accepted</p>
                                 </div>
                               ) : item?.status === 0 ? (
                                 <div className="flex items-center gap-x-2">
-                                  <p>Rejected</p>
-                                  <svg
-                                    className="text-red-400"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                  >
-                                    <path
-                                      d="m19.53 5.53-14 14c-.02.02-.03.03-.05.04-.38-.32-.73-.67-1.05-1.05A9.903 9.903 0 0 1 2 12C2 6.48 6.48 2 12 2c2.49 0 4.77.91 6.52 2.43.38.32.73.67 1.05 1.05-.01.02-.02.03-.04.05ZM22 12c0 5.49-4.51 10-10 10-1.5 0-2.92-.33-4.2-.93-.62-.29-.74-1.12-.26-1.61L19.46 7.54c.48-.48 1.32-.36 1.61.26.6 1.27.93 2.7.93 4.2Z"
-                                      fill="currentColor"
-                                    ></path>
-                                    <path
-                                      d="M21.77 2.229c-.3-.3-.79-.3-1.09 0L2.23 20.689c-.3.3-.3.79 0 1.09a.758.758 0 0 0 1.08-.01l18.46-18.46c.31-.3.31-.78 0-1.08Z"
-                                      fill="currentColor"
-                                    ></path>
-                                  </svg>
+                                  <p className="text-red-600">Rejected</p>
                                 </div>
                               ) : (
                                 <div className="flex items-center gap-x-2">
-                                  <p>Pending</p>
-                                  <svg
-                                    className="text-yellow-400"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                  >
-                                    <path
-                                      d="m19.53 5.53-14 14c-.02.02-.03.03-.05.04-.38-.32-.73-.67-1.05-1.05A9.903 9.903 0 0 1 2 12C2 6.48 6.48 2 12 2c2.49 0 4.77.91 6.52 2.43.38.32.73.67 1.05 1.05-.01.02-.02.03-.04.05ZM22 12c0 5.49-4.51 10-10 10-1.5 0-2.92-.33-4.2-.93-.62-.29-.74-1.12-.26-1.61L19.46 7.54c.48-.48 1.32-.36 1.61.26.6 1.27.93 2.7.93 4.2Z"
-                                      fill="currentColor"
-                                    ></path>
-                                    <path
-                                      d="M21.77 2.229c-.3-.3-.79-.3-1.09 0L2.23 20.689c-.3.3-.3.79 0 1.09a.758.758 0 0 0 1.08-.01l18.46-18.46c.31-.3.31-.78 0-1.08Z"
-                                      fill="currentColor"
-                                    ></path>
-                                  </svg>
+                                  <p className="text-indigo-600">Pending</p>
                                 </div>
                               )}
                             </td>
-                            <td className="px-4 py-4 text-sm text-gray-500">
+                            <td className="px-2 py-2 text-sm text-gray-500">
                               {item?.status === 1 ? (
                                 <div
                                   onClick={() =>
                                     acceptReview(
                                       item?.user_id,
                                       item?.properties_id,
-                                      item.status === 1 ? 0 : ""
+                                      0
                                     )
                                   }
-                                  className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-2 flex justify-center w-28"
+                                  className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-1 flex justify-center w-22"
                                 >
                                   Reject
                                   <svg
@@ -304,29 +221,25 @@ export default function Index() {
                                     fill="none"
                                   >
                                     <path
-                                      d="m19.53 5.53-14 14c-.02.02-.03.03-.05.04-.38-.32-.73-.67-1.05-1.05A9.903 9.903 0 0 1 2 12C2 6.48 6.48 2 12 2c2.49 0 4.77.91 6.52 2.43.38.32.73.67 1.05 1.05-.01.02-.02.03-.04.05ZM22 12c0 5.49-4.51 10-10 10-1.5 0-2.92-.33-4.2-.93-.62-.29-.74-1.12-.26-1.61L19.46 7.54c.48-.48 1.32-.36 1.61.26.6 1.27.93 2.7.93 4.2Z"
-                                      fill="currentColor"
-                                    ></path>
-                                    <path
-                                      d="M21.77 2.229c-.3-.3-.79-.3-1.09 0L2.23 20.689c-.3.3-.3.79 0 1.09a.758.758 0 0 0 1.08-.01l18.46-18.46c.31-.3.31-.78 0-1.08Z"
+                                      d="m19.53 5.53-14 14c-.02.02-.03.03-.05.04-.38-.32-.73-.67-1.05-1.05A9.903 9.903 0 0 1 2 12C2 6.48 6.48 2 12 2c2.49 0 4.77.91 6.52 2.43.38.32.73.67 1.05 1.05-.01.02-.02.03-.04.05ZM22 12c0 5.49-4.51 10-10 10-1.5 0-2.92-.33-4.2-.93-.62-.29-.74-1.12-.26-1.61L19.46 7.54c.48-.48 1.32-.36 1.61.26.6 1.27.93 2.7.93 4.2ZM7.29 3.7c-.48-.48-.36-1.32.26-1.61A9.953 9.953 0 0 1 12 2c1.5 0 2.92.33 4.2.93.62.29.74 1.12.26 1.61L4.54 16.46c-.48.48-1.32.36-1.61-.26C2.33 14.73 2 13.3 2 12c0-2.65 1.05-5.05 2.76-6.76.29-.29.74-.29 1.04 0L7.3 3.7Z"
                                       fill="currentColor"
                                     ></path>
                                   </svg>
                                 </div>
-                              ) : item?.status === 0 ? (
+                              ) : (
                                 <div
                                   onClick={() =>
                                     acceptReview(
                                       item?.user_id,
                                       item?.properties_id,
-                                      item.status === 0 ? 1 : ""
+                                      1
                                     )
                                   }
-                                  className="cursor-pointer text-green-500 flex items-center gap-2 w-28 border rounded-full p-2 mb-2 flex justify-center"
+                                  className="cursor-pointer text-green-500 flex items-center gap-2 border rounded-full p-1 flex justify-center w-22"
                                 >
                                   Accept
                                   <svg
-                                    className="text-emerald-500"
+                                    className="text-green-400"
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="16"
                                     height="16"
@@ -334,92 +247,35 @@ export default function Index() {
                                     fill="none"
                                   >
                                     <path
-                                      d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z"
+                                      d="M12 2C6.48 2 2 6.48 2 12c0 1.5.33 2.92.93 4.2.29.62 1.12.74 1.61.26L16.46 4.54c.48-.48.36-1.32-.26-1.61A9.953 9.953 0 0 0 12 2Zm7.77 3.24c.48.38.73.67 1.05 1.05.02.02.03.03.04.05-.32.38-.67.73-1.05 1.05L6.24 19.77c-.48.48-1.32.36-1.61-.26A9.903 9.903 0 0 1 2 12c0-5.49 4.51-10 10-10 2.49 0 4.77.91 6.52 2.43ZM12 22c5.52 0 10-4.48 10-10 0-1.3-.33-2.73-.93-4.2-.29-.62-1.12-.74-1.61-.26L7.54 19.46c-.48.48-.36 1.32.26 1.61 1.28.6 2.7.93 4.2.93Z"
                                       fill="currentColor"
                                     ></path>
                                   </svg>
                                 </div>
-                              ) :
-                                <>
-                                  <div
-                                    onClick={() =>
-                                      acceptReview(
-                                        item?.user_id,
-                                        item?.properties_id,
-                                        item.status === 2 ? 1 : 1
-                                      )
-                                    }
-                                    className="cursor-pointer text-green-500 flex items-center gap-2 w-28 border rounded-full p-2 mb-2 flex justify-center"
-                                  >
-                                    Accept
-                                    <svg
-                                      className="text-emerald-500"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      width="16"
-                                      height="16"
-                                      viewBox="0 0 24 24"
-                                      fill="none"
-                                    >
-                                      <path
-                                        d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z"
-                                        fill="currentColor"
-                                      ></path>
-                                    </svg>
-                                  </div>
-                                  <div
-                                    onClick={() =>
-                                      acceptReview(
-                                        item?.user_id,
-                                        item?.properties_id,
-                                        item.status === 2 ? 0 : 0
-                                      )
-                                    }
-                                    className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-2 flex justify-center w-28"
-                                  >
-                                    Reject
-                                    <svg
-                                      className="text-red-400"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      width="16"
-                                      height="16"
-                                      viewBox="0 0 24 24"
-                                      fill="none"
-                                    >
-                                      <path
-                                        d="m19.53 5.53-14 14c-.02.02-.03.03-.05.04-.38-.32-.73-.67-1.05-1.05A9.903 9.903 0 0 1 2 12C2 6.48 6.48 2 12 2c2.49 0 4.77.91 6.52 2.43.38.32.73.67 1.05 1.05-.01.02-.02.03-.04.05ZM22 12c0 5.49-4.51 10-10 10-1.5 0-2.92-.33-4.2-.93-.62-.29-.74-1.12-.26-1.61L19.46 7.54c.48-.48 1.32-.36 1.61.26.6 1.27.93 2.7.93 4.2Z"
-                                        fill="currentColor"
-                                      ></path>
-                                      <path
-                                        d="M21.77 2.229c-.3-.3-.79-.3-1.09 0L2.23 20.689c-.3.3-.3.79 0 1.09a.758.758 0 0 0 1.08-.01l18.46-18.46c.31-.3.31-.78 0-1.08Z"
-                                        fill="currentColor"
-                                      ></path>
-                                    </svg>
-                                  </div>
-                                </>
-                              }
+                              )}
                             </td>
                           </tr>
                         ))}
                       </tbody>
                     </table>
+                    {hasmore && (
+                      <div className="py-2 flex justify-center">
+                        <button
+                          className="bg-indigo-600 text-white p-2 rounded-md"
+                          onClick={loadMore}
+                          disabled={loadingButton}
+                        >
+                          {loadingButton ? "Loading..." : "Load More"}
+                        </button>
+                      </div>
+                    )}
                   </div>
                 ) : (
-                  <Nodata heading={"NO Reviews"} />
+                  <Nodata />
                 )}
               </div>
             )}
           </div>
-          {content?.length > 0 && !loading && hasmore && (
-            <div className="flex justify-center">
-              <div
-                className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white cursor-pointer"
-                onClick={loadMore}
-              >
-                {loadingButton ? "Loading..." : "Load More"}
-              </div>
-            </div>
-          )}
-
         </section>
       </AdminLayout>
     </>

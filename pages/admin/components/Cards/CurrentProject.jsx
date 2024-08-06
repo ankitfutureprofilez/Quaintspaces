@@ -87,7 +87,7 @@ function CurrentProject() {
                               {item?.userName}
                             </p>
                           </div>
-                          <p className="text-xs text-gray-600">
+                          <p className="text-xs text-gray-600 capitalize">
                             {item?.propertyName}{" "}
                           </p>
 

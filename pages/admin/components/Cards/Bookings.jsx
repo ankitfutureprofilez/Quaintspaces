@@ -21,7 +21,7 @@ function Bookings() {
     if (nameParts[0] == "Bye" && nameParts[1] == "Player") { return data; }
     const firstName = nameParts[0];
     const lastName = nameParts[1];
-    const abbreviatedLastName = lastName?.length > 3 ? lastName?.substring(0, 3) + "..." : lastName;
+    const abbreviatedLastName = lastName?.length > 3 ? lastName?.substring(0, 6) + "..." : lastName;
     return firstName + " " + abbreviatedLastName;
   }
 
@@ -68,9 +68,9 @@ function Bookings() {
       case "completed":
         return "bg-green-600 text-white  capitalize";
       case "confirm":
-        return "bg-indigo-600  text-white capitalize";
+        return "bg-green-600  text-white capitalize";
       case "pending":
-        return "bg-yellow-500  text-white  capitalize";
+        return "bg-indigo-600  text-white  capitalize";
       case "cancelled":
         return "bg-red-600 text-white capitalize";
       case "upcoming":
@@ -157,13 +157,20 @@ function Bookings() {
                           />
                         </Link>
                         <div className="font-medium">
+<<<<<<< HEAD
                           <Link href={`/admin/users/${item.user_id}`} className="text-sm ">
                             {Name(item?.userName)}
+=======
+                          <Link href={`/admin/user-history/${item.user_id}`} className="text-sm ">
+                            {/* {Name(item?.userName)} */}
+                            {(item?.userName)}
+
+>>>>>>> e4fa335df39df53af299d4342b751068f3202f3f
                           </Link>
                           <p className={`text-[12px] absolute top-2 right-2 px-3 rounded-full ${getStatusClasses(item?.booking_status)}`}>
                             {item?.booking_status === "confirm" ? ("confirmed") : (item?.booking_status)}
                           </p>
-                          <p className="text-xs text-gray line-limit !pb-0 leading-relaxed">
+                          <p className="text-xs text-gray line-limit !pb-0 leading-relaxed capitalize">
                             {item?.propertyName}
                             <span className="ml-4">
                               {formatMultiPrice(item?.price)}

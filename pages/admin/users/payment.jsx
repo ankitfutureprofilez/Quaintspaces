@@ -13,7 +13,7 @@ export default function payment({ record }) {
   const [content, setContent] = useState([]);
 
   const [loading, setLoading] = useState(false);
-  
+
   useEffect(() => {
     setLoading(true);
     const main = new Listing();
@@ -41,14 +41,13 @@ export default function payment({ record }) {
       ) : (
 
         <div className=" mt-3">
-          <div className="w-full">
-            <div className=" border border-gray-200 md:rounded-lg">
+          <div className="">
+            <div className="mytable table-responsive w-full">
               {content && content.length > 0 ? (
-                <table className="min-w-[1200px] w-full divide-gray-200">
+                <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr >
                       <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Invoice </td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Customer</td>
                       <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Purchase</td>
                       <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Method</td>
                       <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Status</td>
@@ -59,6 +58,7 @@ export default function payment({ record }) {
                     {content && content.map((item, index) => (
                       <tr key={index}>
                         <td className="px-4 py-4 text-sm text-gray-500">{item?.payment_id}</td>
+<<<<<<< HEAD
                         <td className="px-4 py-4 text-sm text-gray-500">
                           <Link href={`/admin/users/${item?.booking_history?.booking_user[0]?.id}`}>
 
@@ -77,6 +77,8 @@ export default function payment({ record }) {
                             </div>
                           </Link>
                         </td>
+=======
+>>>>>>> e4fa335df39df53af299d4342b751068f3202f3f
 
                         <td className="px-4 py-4 text-sm text-gray-500">
                           <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
@@ -91,7 +93,6 @@ export default function payment({ record }) {
                               />
                               <div>
                                 <div className="text-gray-800 font-medium capitalize ">{item?.booking_history?.booking_property?.name}</div>
-                                <div className="text-sm capitalize">{item?.booking_history?.booking_property?.properties_type?.replace("_", " ")}</div>
                               </div>
                             </div>
                           </Link>

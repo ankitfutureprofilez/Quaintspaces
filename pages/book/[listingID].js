@@ -44,6 +44,7 @@ const Book = () => {
   const [cancelpolicy, setCancelpolicy] = useState([]);
   const formattedCheckIn = `${infos?.checkin} ${listing?.check_in} `;
   const handleCancelPolicy = () => {
+    if(listingID && formattedCheckIn){
     const main = new Listings();
     const formData = new FormData();
     formData.append("uuid", listingID);
@@ -60,6 +61,7 @@ const Book = () => {
       .catch((error) => {
         console.log("error", error);
       });
+    }
   };
 
   useEffect(() => {
@@ -101,6 +103,7 @@ const Book = () => {
   }, [url]);
 
   const fetchDetails = () => {
+    if(url?.listingID){
     setDtLoading(true);
     setInfos(url);
     const main = new Listings();
@@ -119,7 +122,7 @@ const Book = () => {
       adults: {
         value: +url.numberOfAdults || 0,
         max: listing?.adults || 10,
-        min: 0,
+        min: 1,
       },
       infants: {
         value: +url.numberOfInfants || 0,
@@ -137,6 +140,7 @@ const Book = () => {
         min: 0,
       },
     });
+  }
   }
 
   useEffect(() => {
@@ -372,7 +376,6 @@ const Book = () => {
     };
   }, [isOpen]);
 
-  console.log("o", guestsModel);
   useEffect(() => {
     if (guestsModel) {
       document.body.classList.add("overflow-hidden");
@@ -422,7 +425,7 @@ const Book = () => {
                 : "max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12"
             }
           >
-            <div className="ml-2">
+            <div className="">
               <Heading
                 text={loading ? "Processing..." : "Confirm & Pay"}
                 handleClick={() => router.back()}
@@ -459,8 +462,8 @@ const Book = () => {
                       {`${+guests?.adults?.value + +guests?.children?.value} ${+guests?.adults?.value + +guests?.children?.value > 1
                           ? "guests"
                           : "guest"
-                        }${+infos.numberOfInfants
-                          ? `, ${infos.numberOfInfants} ${+infos.numberOfInfants > 1 ? "infants" : "infant"
+                        }${+guests?.infants?.value
+                          ? `, ${guests?.infants?.value} ${+guests?.infants?.value > 1 ? "infants" : "infant"
                           }`
                           : ""
                         }${+guests?.pets?.value
@@ -729,8 +732,8 @@ const Book = () => {
                       </div>
                     </div>
                   )}
-                  <div className="pt-4 flex items-center border-b pb-2 justify-between confirm-total">
-                    <span className="font-bold text-center ">Extra Charges </span>
+                  <div className="pt-4 flex items-center justify-between confirm-total">
+                    <span className="font-bold text-center !text-black">Extra Charges </span>
                   </div>
                   <div className="flex gap-3 mt-2 border-b pb-2">
                     <div className="flex items-center justify-between w-full">
@@ -772,7 +775,7 @@ const Book = () => {
                             {formatMultiPrice(listing?.extra_guest_fee)}
                           </span>
                         </div>
-                        <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
+                        <span className="block text-blackColor font-medium confirm-price ml-2 inline-flex">
                           {formatMultiPrice(
                             (guests?.adults?.value +
                               guests?.children?.value -
@@ -849,7 +852,7 @@ const Book = () => {
                         </h6>
                       </div>
                       <div className="w-[45%] border-l">
-                        <h6 className="mb-2 text-[18px] ml-2 font-semibold cancel-policy">
+                        <h6 className="mb-2 text-[18px] ml-3 font-semibold cancel-policy">
                           {cancelpolicy?.date &&
                             (cancelpolicy?.date === new Date()
                               ? ""

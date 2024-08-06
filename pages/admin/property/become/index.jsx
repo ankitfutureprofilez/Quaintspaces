@@ -93,6 +93,7 @@ function Index() {
     fetchProperty(id);
   };
 
+
   return (
     <AdminLayout heading="Properties List">
       {isLoading || openAddPage ? (
@@ -121,7 +122,7 @@ function Index() {
                     style={{ cursor: "pointer" }}
                     onClick={() => handleEditEntireProperty(item?.uuid)}
                   >
-                    {item?.property_image[0]?.image_url ? (
+                    {item?.property_image && item?.property_image[0]?.image_url ? (
                       <div className="w-[43px] h-[43px] object-cover">
                         <Image
                           width={100}
@@ -139,7 +140,7 @@ function Index() {
                       <FaHouse />
                     )}
                     <h2 className="text-[17px] sm:text-lg font-medium ml-4 heading-property">
-                      {item.name || "please name "}
+                      {item.name || "Property Name "}
                     </h2>
                   </div>
                 ))}

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import Listing from "../api/Listing";
 import Image from "next/image";
@@ -74,32 +75,32 @@ export default function Index() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="mytable table-responsive">
+        <div className="mytable table-responsive mt-5">
             {content && content.length > 0 ? (
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+                    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
                       S. No.
-                    </th>
-                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+                    </td>
+                    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
                       Payment Id & Method
-                    </th>
-                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+                    </td>
+                    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
                       Customer
-                    </th>
-                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+                    </td>
+                    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
                       Property Name
-                    </th>
-                    {/* <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+                    </td>
+                    {/* <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
                       Method
-                    </th> */}
-                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+                    </td> */}
+                    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
                       Status
-                    </th>
-                    <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+                    </td>
+                    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
                       Amount
-                    </th>
+                    </td>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -153,7 +154,7 @@ export default function Index() {
                       {/* <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize"></td> */}
                       <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
                         <span
-                          className={`inline-flex w-max items-center rounded-full py-2 px-3 text-[17px]  ${item?.payment_status === "success"
+                          className={`inline-flex w-max items-center rounded-full py-2 px-3 text-sm  ${item?.payment_status === "success"
                             ? "text-green-600"
                             : item?.payment_status === "cancelled"
                               ? "text-red-600"
