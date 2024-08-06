@@ -154,7 +154,7 @@ export default function index() {
 
   return (
     <AdminLayout heading={"Booking Management"}>
-      <div className="flex bg-gray-100 mt-3 mb-5 p-2  text-white rounded-lg  md:mb-0 items-center sm:space-y-0 sm:space-x-4 upcoming-box">
+      <div className="flex bg-gray-100 mt-3 mb-5 p-2 overflow-x-auto text-white rounded-lg  md:mb-0 items-center sm:space-y-0 sm:space-x-4 upcoming-box">
         <button
           onClick={() => setActiveTab('upcoming')}
           className={`w-full px-2 py-2 text-sm rounded-lg text-center ${activeTab === 'upcoming' ? 'bg-black text-white' : 'text-black'} mb-2 sm:mb-0`}
