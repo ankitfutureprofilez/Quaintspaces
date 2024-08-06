@@ -319,7 +319,7 @@ export default function Index() {
                               {item.status === 0 ? (
                                   <p className="text-normal">Enable User</p>
                               ) : 
-                                  <p className="text-normal">Suspand User</p> 
+                                  <p className="text-normal">Suspend User</p> 
                               }
                             </button>
                           </li>
@@ -328,7 +328,7 @@ export default function Index() {
                               href={`user-history/${item.id}`}
                               className="block px-4 py-2 hover:bg-gray-100"
                             >
-                              User Detail{" "}
+                             User Details{" "}
                             </Link>
                           </li>
                           {/* <li>
