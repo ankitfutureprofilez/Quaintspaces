@@ -87,27 +87,35 @@ function Home() {
 
           <div className="flex">
             <div className="w-full ">
-              <div className="py-4 md:p-6 space-y-4 columns-1 xl:columns-3 lg:columns-2">
-                <div className="break-inside-avoid-column space-y-4">
-                  <TopProperty property_count={record?.property} />
+              <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4">
+                <div>
+                  <div className="break-inside-avoid-column mb-4">
+                    <CourseProgress />
+                  </div>
+                  <div className="break-inside-avoid-column mb-4">
+                    <TopProperty property_count={record?.property} />
+                  </div>
+                  <div className="break-inside-avoid-column mb-4">
+                    <CurrentProject />
+                  </div>
+                  <div className="break-inside-avoid-column mb-4">
+                    <Bookings />
+                  </div>
                 </div>
-                <div className="break-inside-avoid-column space-y-4">
-                  <CurrentProject />
-                </div>
-                <div className="break-inside-avoid-column space-y-4">
-                  <Bookings />
-                </div>
-                <div className="break-inside-avoid-column space-y-4">
+                <div>
+                  <div className="break-inside-avoid-column mb-4">
+                    <Reviews />
+                  </div>
+                  <div className="break-inside-avoid-column mb-4">
                   <UserList totaluser={record?.user?.total_user} />
                 </div>
-
-                <div className="break-inside-avoid-column space-y-4">
-                  <Reviews />
                 </div>
+                
+                
 
-                <div className="break-inside-avoid-column space-y-4">
-                  <CourseProgress />
-                </div>
+               
+
+                
               </div>
             </div>
           </div>
