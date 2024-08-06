@@ -88,9 +88,9 @@ export default function Booking(props) {
                           </span>
                         </div>
                       </td>
-                      <td className=" py-4  px-4 text-sm  text-gray-900 sm:px-6 ">
-                          Form:  <SingleDate item={item?.check_in} />
-                          To: <SingleDate item={item?.check_out} />
+                      <td className=" py-4  px-4 text-sm  text-gray-900 font-normal sm:px-6 ">
+                        <SingleDate item={item?.check_in} />
+                        <SingleDate item={item?.check_out} />
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500   overflow-hidden text-ellipsis">

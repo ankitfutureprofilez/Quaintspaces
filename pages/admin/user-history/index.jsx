@@ -24,10 +24,10 @@ export default function Index() {
     try {
       if (pg === 1) { setLoading(true); }
       setLoadingButton(true);
-  
+
       const main = new Listing();
       const response = await main.userListing(pg, { signal }); // Pass signal to API method
-  
+
       if (response?.data?.data) {
         const newData = response?.data?.data?.data || [];
         setRecord((prevData) => {
@@ -52,7 +52,7 @@ export default function Index() {
     }
   };
 
-  
+
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
@@ -62,7 +62,7 @@ export default function Index() {
     return () => {
       controller.abort(); // Cancel the request if the component unmounts
     };
-  }, [page]); 
+  }, [page]);
 
   const handleChange = (e) => {
     setMessage(e?.target?.value);
@@ -115,8 +115,10 @@ export default function Index() {
         if (res && res?.data && res?.data?.status) {
           toast.success(res?.data?.message);
           setIsOpen(false);
+          setMessage("")
         } else {
           toast.error(res?.data?.message);
+          setMessage("")
         }
       })
       .catch((error) => {
@@ -143,7 +145,7 @@ export default function Index() {
   return (
     <AdminLayout heading={"User List"}>
       <div className="mytable w-full table-responsive">
-      <table className="w-full">
+        <table className="w-full">
           <thead>
             <tr className="bg-gray-100 rounded-lg items-center bg-indigo-600 text-white justify-between text-gray-500">
               <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">

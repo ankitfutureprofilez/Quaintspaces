@@ -13,7 +13,7 @@ export default function payment({ record }) {
   const [content, setContent] = useState([]);
 
   const [loading, setLoading] = useState(false);
-  
+
   useEffect(() => {
     setLoading(true);
     const main = new Listing();
@@ -72,7 +72,6 @@ export default function payment({ record }) {
                               />
                               <div>
                                 <div className="text-gray-800 font-medium capitalize ">{item?.booking_history?.booking_property?.name}</div>
-                                <div className="text-sm capitalize">{item?.booking_history?.booking_property?.properties_type?.replace("_", " ")}</div>
                               </div>
                             </div>
                           </Link>
