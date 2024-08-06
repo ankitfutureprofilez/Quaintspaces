@@ -169,8 +169,8 @@ const Book = () => {
       "avif",
     ];
     const formData = e.target.files[0];
-    const type = formData.type?.split("/");
-    if (imageFormats.includes(type[1])) {
+    const type = formData?.type?.split("/");
+    if (imageFormats?.includes(type[1])) {
       setFormData((prevState) => ({
         ...prevState,
         fornt: formData,
