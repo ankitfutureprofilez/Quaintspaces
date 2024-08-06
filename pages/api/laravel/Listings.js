@@ -77,6 +77,7 @@ class Listings extends Component {
   async user_success_payment(data) {
     return Api.post("/user-success-payment",data);
   }
+  
   async user_house_rule(data) {
     return Api.post("/user-house-rule-detail",data);
   }
