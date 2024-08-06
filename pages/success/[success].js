@@ -161,6 +161,7 @@ console.log("record",record)
                   {/* {DateComponent(record?.check_out)} */}
                 </p>
               </div>
+              
               <div className="w-full flex justify-between mb-4 flex-wrap ">
                 <p className="text-black-400 font-bold capitalize">
                   Amount Paid
