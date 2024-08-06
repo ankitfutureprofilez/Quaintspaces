@@ -65,7 +65,9 @@ const Book = () => {
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
-    handleCancelPolicy(signal);
+    if(formattedCheckIn && listingID ){
+      handleCancelPolicy(signal);
+    }
     return () => controller.abort();
   }, [infos?.checkin, listing?.check_in]);
 
@@ -223,11 +225,11 @@ const Book = () => {
       return false;
     }
     if (formData.phone.length === 0) {
-      toast.error("Phone Number is required");
+      toast.error("Phone number is required");
       return false;
     }
     if (formData.phone.length !== 10) {
-      toast.error("Invalid Phone Number");
+      toast.error("Invalid phone number");
       return false;
     }
     if (guests?.adults?.value > listing?.adults) {
@@ -608,7 +610,7 @@ const Book = () => {
                     alt="Apartment"
                     width={200}
                     height={200}
-                    className="object-cover"
+                    className="object-cover rounded-xl"
                   />
                   <div>
                     <h4 className="text-2xl mb-1 capitalize">{listing?.name}</h4>

@@ -1973,7 +1973,7 @@ h2.text-center.mt-4 {}
 
 .mytable th {
   background: #efa3a3 !important;
-  color: #000 !important;
+  color: #fff !important;
   padding: 16px 10px !important;
   white-space: nowrap;
 }
