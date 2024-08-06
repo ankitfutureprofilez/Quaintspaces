@@ -312,7 +312,7 @@ export default function index() {
                       :
                       <td className="px-2 py-2 text-sm text-gray-500  overflow-hidden text-ellipsis">
                         <div
-                          className={`capitalize inline-flex items-center rounded-full py-2 w-max px-2 text-sm text-white  ${item?.booking_status === "completed"
+                          className={`capitalize inline-flex items-center rounded-full py-1 w-max px-2 text-sm text-white  ${item?.booking_status === "completed"
                             ? "bg-green-700"
                             : item?.booking_status === "cancelled"
                               ? "bg-red-600"
