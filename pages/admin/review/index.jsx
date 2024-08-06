@@ -16,10 +16,11 @@ export default function Index() {
   const [hasmore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
 
-  const [isExpanded, setIsExpanded] = useState(false);
 
-  const toggleExpanded = () => {
-    setIsExpanded(!isExpanded);
+  const [expandedReview, setExpandedReview] = useState(null);
+
+  const toggleExpanded = (index) => {
+    setExpandedReview(expandedReview === index ? null : index);
   };
 
   console.log("content", content)
@@ -107,30 +108,26 @@ export default function Index() {
             ) : (
               <div>
                 {content && content?.length > 0 ? (
-
                   <div className="">
                     <table className=" w-full table-responsive  ">
                       <thead className="bg-indigo-600">
                         <tr>
-                          <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
-                            S.No.
-                          </th>
-                          <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
+                          <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                             Date
                           </th>
-                          <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
+                          <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                             Customer
                           </th>
-                          <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
+                          <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                             Message
                           </th>
-                          <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
+                          <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                             Property Name
                           </th>
-                          <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
+                          <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                             Status
                           </th>
-                          <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
+                          <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                             Actions
                           </th>
                         </tr>
@@ -138,64 +135,48 @@ export default function Index() {
                       <tbody className="bg-white ">
                         {content.map((item, index) => (
                           <tr key={index}>
-                            <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap overflow-hidden text-ellipsis">
-                              {index + 1}
-                            </td>
-                            <td className="px-4 py-4 text-sm  whitespace-nowrap overflow-hidden text-ellipsis text-gray-500">
+                            <td className="px-2 py-2 text-sm  whitespace-nowrap overflow-hidden text-ellipsis text-gray-500">
                               {item?.createdAt}
                             </td>
-                            <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                            <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                               <div className="flex flex-row items-center gap-2 sm:flex-row sm:items-start text-sm">
                                 <Image
                                   width={50}
                                   height={50}
                                   className="w-12 h-12 rounded-full flex-shrink-0 object-cover"
                                   src={
-                                    item?.rating_user?.image_url 
+                                    item?.rating_user?.image_url
                                   }
                                   alt="User Image"
                                 />
-                                <div className="p-2">
+                                <div className="p-1">
                                   <div className="text-gray-800 font-normal ">
                                     {item?.rating_user?.name}
-
                                   </div>
-                                  <div className="text-gray-800 font-medium  max-w-[13ch] overflow-hidden whitespace-nowrap text-ellipsis">
+                                  <div className="text-gray-800 font-normal  max-w-[13ch] overflow-hidden whitespace-nowrap text-ellipsis">
                                     {item?.rating_user?.email}
                                   </div>
 
                                 </div>
                               </div>
                             </td>
-                            <td className="relative px-4 py-4 text-sm text-gray-500 break-all">
-                              <div className={isExpanded ? "" : "truncate-text"}>
-                                {/* {reviewText} */}
+                            <td className="relative px-2 py-2 text-sm text-gray-500">
+                              <div className={expandedReview === index ? "" : "truncate-text"}>
                                 {item?.review_text}
                               </div>
                               <button
-                                onClick={toggleExpanded}
+                                onClick={() => toggleExpanded(index)}
                                 className="text-blue-500 underline ml-2"
                               >
-                                {isExpanded ? "See Less" : "See All"}
+                                {expandedReview === index ? "See Less" : "See All"}
                               </button>
-
                             </td>
-                            <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+                            <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis ">
                               <div className="flex items-center gap-x-2">
                                 <Link
                                   href={`/property/${item?.get_property_review?.uuid}`}
                                   className="flex items-center gap-x-2"
                                 >
-                                  {/* <Image
-                                    className="object-cover img-data w-8 h-8 rounded-full"
-                                    src={
-                                      item?.get_property_review
-                                        ?.property_image[0]?.image_url
-                                    }
-                                    alt={item?.get_property_review?.name}
-                                    width={30}
-                                    height={30}
-                                  /> */}
                                   <div>
                                     <h2 className="capitalize text-sm font-medium text-gray-800">
                                       {item?.get_property_review?.name}
@@ -209,10 +190,10 @@ export default function Index() {
                                 </Link>
                               </div>
                             </td>
-                            <td className="px-4 py-4 text-sm text-gray-500">
+                            <td className="px-2 py-2 text-sm text-gray-500">
                               {item?.status === 1 ? (
                                 <div className="flex items-center gap-x-2">
-                                  <svg
+                                  {/* <svg
                                     className="text-emerald-500"
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="16"
@@ -224,13 +205,13 @@ export default function Index() {
                                       d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z"
                                       fill="currentColor"
                                     ></path>
-                                  </svg>
-                                  <p>Accepted</p>
+                                  </svg> */}
+                                  <p className="text-green-600">Accepted</p>
                                 </div>
                               ) : item?.status === 0 ? (
                                 <div className="flex items-center gap-x-2">
-                                  <p>Rejected</p>
-                                  <svg
+                                  <p className="text-red-600">Rejected</p>
+                                  {/* <svg
                                     className="text-red-400"
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="16"
@@ -246,12 +227,12 @@ export default function Index() {
                                       d="M21.77 2.229c-.3-.3-.79-.3-1.09 0L2.23 20.689c-.3.3-.3.79 0 1.09a.758.758 0 0 0 1.08-.01l18.46-18.46c.31-.3.31-.78 0-1.08Z"
                                       fill="currentColor"
                                     ></path>
-                                  </svg>
+                                  </svg> */}
                                 </div>
                               ) : (
                                 <div className="flex items-center gap-x-2">
-                                  <p>Pending</p>
-                                  <svg
+                                  <p className="text-indigo-600">Pending</p>
+                                  {/* <svg
                                     className="text-yellow-400"
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="16"
@@ -267,11 +248,11 @@ export default function Index() {
                                       d="M21.77 2.229c-.3-.3-.79-.3-1.09 0L2.23 20.689c-.3.3-.3.79 0 1.09a.758.758 0 0 0 1.08-.01l18.46-18.46c.31-.3.31-.78 0-1.08Z"
                                       fill="currentColor"
                                     ></path>
-                                  </svg>
+                                  </svg> */}
                                 </div>
                               )}
                             </td>
-                            <td className="px-4 py-4 text-sm text-gray-500">
+                            <td className="px-2 py-2 text-sm text-gray-500">
                               {item?.status === 1 ? (
                                 <div
                                   onClick={() =>
@@ -311,7 +292,7 @@ export default function Index() {
                                       item.status === 0 ? 1 : ""
                                     )
                                   }
-                                  className="cursor-pointer text-green-500 flex items-center gap-2 w-28 border rounded-full p-2 mb-2 flex justify-center"
+                                  className="cursor-pointer text-green-500 flex items-center gap-2 w-22 border rounded-full p-2 mb-2 flex justify-center"
                                 >
                                   Accept
                                   <svg
@@ -338,7 +319,7 @@ export default function Index() {
                                         item.status === 2 ? 1 : 1
                                       )
                                     }
-                                    className="cursor-pointer text-green-500 flex items-center gap-2 w-28 border rounded-full p-2 mb-2 flex justify-center"
+                                    className="cursor-pointer text-green-500 flex items-center gap-2 w-22 border rounded-full p-2 mb-2 flex justify-center"
                                   >
                                     Accept
                                     <svg
@@ -363,7 +344,7 @@ export default function Index() {
                                         item.status === 2 ? 0 : 0
                                       )
                                     }
-                                    className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-2 flex justify-center w-28"
+                                    className="cursor-pointer text-red-500 flex items-center gap-2 border rounded-full p-2 flex justify-center w-22"
                                   >
                                     Reject
                                     <svg

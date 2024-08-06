@@ -41,14 +41,13 @@ export default function payment({ record }) {
       ) : (
 
         <div className=" mt-3">
-          <div className="w-full">
-            <div className=" border border-gray-200 md:rounded-lg">
+          <div className="">
+            <div className="mytable table-responsive w-full">
               {content && content.length > 0 ? (
-                <table className="min-w-[1200px] w-full divide-gray-200">
+                <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr >
                       <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Invoice </td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Customer</td>
                       <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Purchase</td>
                       <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Method</td>
                       <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Status</td>
@@ -59,24 +58,6 @@ export default function payment({ record }) {
                     {content && content.map((item, index) => (
                       <tr key={index}>
                         <td className="px-4 py-4 text-sm text-gray-500">{item?.payment_id}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">
-                          <Link href={`/admin/user-history/${item?.booking_history?.booking_user[0]?.id}`}>
-
-                            <div className="flex gap-2 img-data  items-center  text-sm p-2 ">
-                              <Image
-                                width={35}
-                                height={35}
-                                className="top-2 right-2 p-1 rounded-full"
-                                src={item?.booking_history?.booking_user[0]?.image_url || userprofile}
-                                alt="User Image"
-                              />
-                              <div>
-                                <div className="text-gray-800 font-medium">{item?.booking_history?.booking_user[0]?.name}</div>
-                                <div className="text-sm">{item?.booking_history?.booking_user[0]?.email}</div>
-                              </div>
-                            </div>
-                          </Link>
-                        </td>
 
                         <td className="px-4 py-4 text-sm text-gray-500">
                           <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>

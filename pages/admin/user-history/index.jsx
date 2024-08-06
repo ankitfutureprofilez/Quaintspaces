@@ -204,7 +204,7 @@ export default function Index() {
                     >
                       {item.status === 0 ? (
                         <div className="flex items-center gap-2 border rounded-full p-2">
-                          <p className="text-xs">disable</p>{" "}
+                          <p className="text-xs">Disable</p>{" "}
                           <svg
                             className="text-gray-400"
                             xmlns="http://www.w3.org/2000/svg"

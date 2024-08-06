@@ -74,7 +74,7 @@ export default function Index() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="mytable table-responsive">
+        <div className="mytable table-responsive mt-5">
             {content && content.length > 0 ? (
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">

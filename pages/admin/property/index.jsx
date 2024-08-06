@@ -36,9 +36,10 @@ export default function Index() {
   const fetchProperties = async (signal) => {
     const main = new Listing();
     try {
+      setIsLoading(true);
       const response = await main.Adminproperty({ signal });
       let properties = response?.data?.data;
-  
+
       if (properties) {
         setRecord(properties);
       } else {
@@ -50,6 +51,7 @@ export default function Index() {
       } else {
         console.error("Error fetching properties:", error);
       }
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }
@@ -94,100 +96,100 @@ export default function Index() {
     router.push(`/admin/property/edit/${uuid}`);
   };
 
-//   const TableView = () => {
-//     return (
-//       <div className="w-full">
-//       <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
-//         {record && record?.length > 0 ? (
-//           <table className="min-w-full divide-y divide-gray-200">
-//             <thead className="bg-gray-50">
-//               <tr>
-//                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-//                   S. No.
-//                 </th>
-//                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-//                   Property Name
-//                 </th>
-               
-               
-//                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-//                   Edit
-//                 </th>
-//                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-//                   Delete
-//                 </th>
+  //   const TableView = () => {
+  //     return (
+  //       <div className="w-full">
+  //       <div className="overflow-x-auto border border-gray-200 md:rounded-lg">
+  //         {record && record?.length > 0 ? (
+  //           <table className="min-w-full divide-y divide-gray-200">
+  //             <thead className="bg-gray-50">
+  //               <tr>
+  //                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+  //                   S. No.
+  //                 </th>
+  //                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+  //                   Property Name
+  //                 </th>
 
-//                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-//                   Status
-//                 </th>
-//               </tr>
-//             </thead>
-//             <tbody className="bg-white divide-y divide-gray-200">
-//               {record && record.map((item, index) =>  (
-//                   <tr key={index}>
-//                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{index + 1}</td>
-//                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
-//                       <Link href={`/admin/property/edit/${item?.uuid}`}>
-//                         <div className="flex items-center space-x-4">
-//                           <img
-//                             className="w-16 h-16 object-cover rounded-md"
-//                             src={
-//                               item?.property_image[0]?.image_url
-//                                 ? item?.property_image[0]?.image_url
-//                                 : "https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg"
-//                             }
-//                             alt={item?.name}
-//                           />
-//                           <span className="text-left text-sm   ">{item?.name}</span>
-//                         </div>
-//                       </Link>
-//                     </td>
-                
-//                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
-//                       <button
-//                         className="text-sm px-3 py-1 text-white bg-black rounded hover:bg-blue-700"
-//                         onClick={() => handleEditEntireProperty(item?.uuid)}
-//                       >
-//                         <FaEdit />
-//                       </button>
-//                     </td>
-//                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
-//                       <button
-//                         className="text-sm px-3 py-1 text-white bg-red-600 rounded hover:bg-red-700"
-//                         onClick={() => {
-//                           setShowConfirmation(true);
-//                           setSelectedProperty(item?.uuid);
-//                         }}
-//                       >
-//                         <AiFillDelete />
-//                       </button>
-//                     </td>
 
-//                     <td className="px-4 py-4 text-sm  whitespace-nowrap">
-//                       {item?.status !== 1 ? (
-//                         <p className="text-indigo-600">In Progress</p>
-//                       ) : (
-//                         <p className="text-green-600">Completed</p>
-//                       )}
-//                     </td>
-//                   </tr>
-//                 )
-//               )}
-//             </tbody>
-//           </table>
-//         ) : (
-//           <Nodata heading={"No Property"} />
-//         )}
-//       </div>
-// </div>
+  //                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+  //                   Edit
+  //                 </th>
+  //                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+  //                   Delete
+  //                 </th>
 
-//     );
-//   };
+  //                 <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
+  //                   Status
+  //                 </th>
+  //               </tr>
+  //             </thead>
+  //             <tbody className="bg-white divide-y divide-gray-200">
+  //               {record && record.map((item, index) =>  (
+  //                   <tr key={index}>
+  //                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{index + 1}</td>
+  //                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
+  //                       <Link href={`/admin/property/edit/${item?.uuid}`}>
+  //                         <div className="flex items-center space-x-4">
+  //                           <img
+  //                             className="w-16 h-16 object-cover rounded-md"
+  //                             src={
+  //                               item?.property_image[0]?.image_url
+  //                                 ? item?.property_image[0]?.image_url
+  //                                 : "https://agoldbergphoto.com/wp-content/uploads/residential/Residential-13-2000x1333.jpg"
+  //                             }
+  //                             alt={item?.name}
+  //                           />
+  //                           <span className="text-left text-sm   ">{item?.name}</span>
+  //                         </div>
+  //                       </Link>
+  //                     </td>
+
+  //                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
+  //                       <button
+  //                         className="text-sm px-3 py-1 text-white bg-black rounded hover:bg-blue-700"
+  //                         onClick={() => handleEditEntireProperty(item?.uuid)}
+  //                       >
+  //                         <FaEdit />
+  //                       </button>
+  //                     </td>
+  //                     <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
+  //                       <button
+  //                         className="text-sm px-3 py-1 text-white bg-red-600 rounded hover:bg-red-700"
+  //                         onClick={() => {
+  //                           setShowConfirmation(true);
+  //                           setSelectedProperty(item?.uuid);
+  //                         }}
+  //                       >
+  //                         <AiFillDelete />
+  //                       </button>
+  //                     </td>
+
+  //                     <td className="px-4 py-4 text-sm  whitespace-nowrap">
+  //                       {item?.status !== 1 ? (
+  //                         <p className="text-indigo-600">In Progress</p>
+  //                       ) : (
+  //                         <p className="text-green-600">Completed</p>
+  //                       )}
+  //                     </td>
+  //                   </tr>
+  //                 )
+  //               )}
+  //             </tbody>
+  //           </table>
+  //         ) : (
+  //           <Nodata heading={"No Property"} />
+  //         )}
+  //       </div>
+  // </div>
+
+  //     );
+  //   };
 
   const CardView = () => {
     return (
       <div className="flex flex-wrap py-5 pt-0">
-        {record?.length ? (
+        {record &&
           record.map((item, index) => (
             <div
               className="w-full sm:w-1/1 lg:w-1/2 xl:w-1/3 sm:px-3 mt-4"
@@ -265,9 +267,7 @@ export default function Index() {
               </div>
             </div>
           ))
-        ) : (
-          <NoRecord heading={"No Record Found !!"} />
-        )}
+        }
       </div>
     );
   };

@@ -1827,7 +1827,7 @@ export default function Property(props) {
       {isEdit && !stepdata ? (
         <> </>
       ) : (
-        <div className="max-w-4xl w-full px-2 m-auto flex justify-center">
+        <div className="max-w-3xl w-full px-2 m-auto flex justify-center p-5">
           <button
             onClick={handleSubmit}
             className="inline-flex mx-2 justify-center py-2 px-8 border-2 border-[#c48b58] shadow-sm text-lg font-medium rounded-full text-white bg-[#c48b58] hover:bg-[#fff] hover:text-[#c48b58]"

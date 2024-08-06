@@ -140,7 +140,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
         </p>
       </div> */}
 
-      {isAdmin && (
+      {/* {isAdmin && (
         <>
           <div className="flex justify-between house-rule-text">
             <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
@@ -187,7 +187,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
             </div>
           </div>
         </>
-      )}
+      )} */}
     </div>
   );
 }

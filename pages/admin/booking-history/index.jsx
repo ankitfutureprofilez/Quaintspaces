@@ -24,7 +24,7 @@ export default function index() {
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [imageOpen, setimageOpen] = useState(false);
   const [hasmore, setHasMore] = useState(true);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const openConfirmModal = (booking) => {
     setSelectedBooking(booking);
     setIsConfirmOpen(true);
@@ -56,7 +56,6 @@ export default function index() {
       setLoading(true);
     }
     setLoadingButton(true);
-
     try {
       const main = new Listing();
       const response = await main.bookinghistory(activeTab, pg, { signal });
@@ -72,18 +71,30 @@ export default function index() {
 
       setHasMore(response?.data?.current_page < response?.data?.last_page);
       setPage(response?.data?.current_page);
-
+      setLoading(false);
     } catch (error) {
-      if (error.name === 'AbortError') {
-        console.log('Fetch aborted');
+      if (error.name === "AbortError") {
+        console.log("Fetch aborted");
       } else {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
+      setLoading(false);
     } finally {
       setLoading(false);
       setLoadingButton(false);
     }
   }
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    fetchData(page, signal);
+
+    return () => {
+      controller.abort(); // Abort fetch on component unmount or page change
+    };
+  }, [page, activeTab]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -180,7 +191,7 @@ export default function index() {
         <div className="flex items-center justify-center h-screen">
           <Spinner />
         </div>
-      ) : content && content.length > 0 ? (
+      ) :
         <>
           <div className="mytable table-responsive mt-5">
             <table className="w-full">
@@ -320,7 +331,7 @@ export default function index() {
                                 ? "bg-green-500"
                                 : item?.booking_status === "pending"
                                   ? "bg-slate-600"
-                                  : "bg-blue-600"
+                                  : item?.booking_status === "failed" ? "bg-red-600" : "bg-indigo-600"
                             }`}
                         >
                           {item?.booking_status}
@@ -343,11 +354,13 @@ export default function index() {
             </div>
           )}
         </>
-      ) : (
-        <div className="mt-5 ">
-          <Nodata heading={"No Booking"} />
-        </div>
-      )}
+      }
+
+      {/* // : (
+      //   <div className="mt-5 ">
+      //     <Nodata heading={"No Booking"} />
+      //   </div>
+      // ) */}
 
       {selectedBooking && (
         <Modal isOpen={isConfirmOpen} onClose={closeConfirmModal}>
