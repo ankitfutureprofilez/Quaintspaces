@@ -33,30 +33,38 @@ export default function Index() {
   };
 
   // { search: searchTerm }
-  const fetchProperties = () => {
+  const fetchProperties = async (signal) => {
     const main = new Listing();
-    main
-      .Adminproperty()
-      .then((res) => {
-        let properties = res?.data?.data;
-        if (properties) {
-          setRecord(properties);
-        } else {
-          toast.error("No properties found");
-        }
-        setIsLoading(false);
-      })
-      .catch((error) => {
+    try {
+      const response = await main.Adminproperty({ signal });
+      let properties = response?.data?.data;
+  
+      if (properties) {
+        setRecord(properties);
+      } else {
+        toast.error("No properties found");
+      }
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        console.log('Fetch aborted');
+      } else {
         console.error("Error fetching properties:", error);
-        setIsLoading(false);
-      });
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
-    fetchProperties();
-  }, [router && router.pathname]);
+    const controller = new AbortController();
+    const { signal } = controller;
 
+    fetchProperties(signal);
 
+    return () => {
+      controller.abort(); // Clean up: abort any ongoing requests
+    };
+  }, [router.pathname]);
   const deleteProperty = (uuid) => {
     const main = new Listing();
     main

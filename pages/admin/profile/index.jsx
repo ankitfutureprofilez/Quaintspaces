@@ -17,25 +17,43 @@ export default function Profileindex() {
   });
   const [previewImgSrc, setPreviewImgSrc] = useState("");
 
-  const fetchData = async () => {
+  const fetchData = async (signal) => {
     try {
       setLoading(true);
       const main = new Listing();
-      const response = await main.Adminprofile();
+      const response = await main.Adminprofile({ signal });
       const profiledata = response?.data?.data;
-      setAuth(response?.data?.data);
+  
+      setAuth(profiledata);
       setRecord({
         name: profiledata.name,
         phone: profiledata.phone_no,
         email: profiledata.email,
       });
       setPreviewImgSrc(profiledata.image_url);
-      setLoading(false);
     } catch (error) {
+      if (error.name === 'AbortError') {
+        console.log('Fetch aborted');
+      } else {
+        console.error("Error fetching profile data:", error);
+      }
+    } finally {
       setLoading(false);
-      console.error("Error fetching profile data:", error);
     }
   };
+
+  
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    fetchData(signal);
+
+    return () => {
+      controller.abort(); // Clean up: abort any ongoing requests
+    };
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

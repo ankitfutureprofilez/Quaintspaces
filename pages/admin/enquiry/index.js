@@ -17,12 +17,12 @@ export default function Index() {
   const [message, setMessage] = useState("");
 
   // Function to fetch data from server
-  const fetchData = async (pg) => {
-    if(pg==1){setLoading(true);}
+  const fetchData = async (pg, signal) => {
+    if (pg === 1) { setLoading(true); }
     setLoadingButton(true);
     try {
       const main = new Listing();
-      const response = await main.UserMessages(pg);
+      const response = await main.UserMessages(pg, { signal }); // Pass the signal to API
       const newData = response?.data?.data?.data || [];
       setContent((prevData) => {
         if (pg === 1) {
@@ -33,19 +33,29 @@ export default function Index() {
       });
       setHasMore(response?.data?.current_page < response?.data?.last_page);
       setPage(response?.data?.current_page);
-      setLoadingButton(false);
-      setLoading(false);
     } catch (error) {
+      if (error.name !== 'AbortError') { // Only handle abort errors in a special way
+        console.error("Error fetching data:", error);
+      }
+    } finally {
       setLoadingButton(false);
       setLoading(false);
-      console.error("Error fetching data:", error);
     }
   };
+  // useEffect(() => {
+  //   fetchData(1);
+  // }, []);
 
-  // Use effect to fetch initial data
   useEffect(() => {
-    fetchData(page + 1);
-  }, []);
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    fetchData(page, signal);
+
+    return () => {
+      controller.abort(); // Cancel the request if the component unmounts
+    };
+  }, [page]);
 
   // Function to handle loading more data
   const loadMore = () => {

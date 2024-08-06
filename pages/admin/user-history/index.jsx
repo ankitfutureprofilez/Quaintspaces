@@ -20,33 +20,49 @@ export default function Index() {
   const [message, setMessage] = useState();
   const [id, setid] = useState();
 
-  const fetchData = async (pg) => {
+  const fetchData = async (pg, signal) => {
     try {
-      if (pg == 1) { setLoading(true); }
+      if (pg === 1) { setLoading(true); }
       setLoadingButton(true);
+  
       const main = new Listing();
-      const response = await main.userListing(pg);
+      const response = await main.userListing(pg, { signal }); // Pass signal to API method
+  
       if (response?.data?.data) {
-        const newdata = response?.data?.data?.data || [];
+        const newData = response?.data?.data?.data || [];
         setRecord((prevData) => {
           if (pg === 1) {
-            return newdata;
+            return newData;
           } else {
-            return [...prevData, ...newdata];
+            return [...prevData, ...newData];
           }
         });
-        setPage(response?.data && response?.data?.current_page);
+        setPage(response?.data?.current_page);
         setHasMore(response?.data?.current_page < response?.data?.last_page);
       } else {
         setRecord([]);
       }
     } catch (error) {
-      console.log("error", error);
+      if (error.name !== 'AbortError') {
+        console.log("Error fetching data:", error);
+      }
     } finally {
       setLoadingButton(false);
       setLoading(false);
     }
   };
+
+  
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    fetchData(page, signal);
+
+    return () => {
+      controller.abort(); // Cancel the request if the component unmounts
+    };
+  }, [page]); 
 
   const handleChange = (e) => {
     setMessage(e?.target?.value);
@@ -60,9 +76,9 @@ export default function Index() {
     setIsOpen(false);
   };
 
-  useEffect(() => {
-    fetchData(1);
-  }, []);
+  // useEffect(() => {
+  //   fetchData(1);
+  // }, []);
 
   const statusUpdate = async (id, newStatus) => {
     const main = new Listing();
@@ -126,8 +142,8 @@ export default function Index() {
 
   return (
     <AdminLayout heading={"User List"}>
-      <div className="mytable table-responsive">
-      <table className="">
+      <div className="mytable w-full table-responsive">
+      <table className="w-full">
           <thead>
             <tr className="bg-gray-100 rounded-lg items-center bg-indigo-600 text-white justify-between text-gray-500">
               <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">

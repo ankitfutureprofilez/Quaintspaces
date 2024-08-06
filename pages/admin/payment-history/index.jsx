@@ -13,38 +13,52 @@ export default function Index() {
   const [content, setContent] = useState([]);
   const [page, setPage] = useState(1);
   const [hasmore, setHasMore] = useState(true);
-  function fetchData(pg) {
-    if (pg == 1) { setLoading(true); }
+  async function fetchData(pg, signal) {
+    if (pg === 1) {
+      setLoading(true);
+    }
     setLoadingButton(true);
-    const main = new Listing();
-    const response = main.all_user_payment_history(pg);
-    response
-      .then((res) => {
-        const newdata = res?.data?.data?.data || [];
-        setContent((prevData) => {
-          if (pg === 1) {
-            return newdata;
-          } else {
-            return [...prevData, ...newdata];
-          }
-        });
-        setHasMore(res?.data?.current_page < res?.data?.last_page);
-        setPage(pg);
-        setLoadingButton(false);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log("error", error);
-        setLoadingButton(false);
-        setLoading(false);
+  
+    try {
+      const main = new Listing();
+      const response = await main.all_user_payment_history(pg, { signal });
+      const newData = response?.data?.data?.data || [];
+  
+      setContent((prevData) => {
+        if (pg === 1) {
+          return newData;
+        } else {
+          return [...prevData, ...newData];
+        }
       });
+  
+      setHasMore(response?.data?.current_page < response?.data?.last_page);
+      setPage(pg);
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        console.log('Fetch aborted');
+      } else {
+        console.error('Error fetching data:', error);
+      }
+    } finally {
+      setLoadingButton(false);
+      setLoading(false);
+    }
   }
+  
 
   useEffect(() => {
-    if (content && content?.length < 1) {
-      fetchData(page);
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    if (content.length < 1) {
+      fetchData(page, signal);
     }
-  }, []);
+
+    return () => {
+      controller.abort(); // Abort fetch on component unmount or page change
+    };
+  }, [page, content]);
 
   const loadMore = () => {
     if (!loading) {

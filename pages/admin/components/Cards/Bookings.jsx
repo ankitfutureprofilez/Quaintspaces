@@ -14,16 +14,16 @@ import DashboardNoData from "../../hook/DashboardNoData";
 function Bookings() {
 
   function Name(data) {
-      const nameParts = data?.split(" ");
-      if (nameParts?.length < 2) {
-          return data;
-      }
-      if(nameParts[0]=="Bye" && nameParts[1]=="Player"){return data;}
-      const firstName = nameParts[0];
-      const lastName = nameParts[1];
-      const abbreviatedLastName = lastName?.length > 3 ? lastName?.substring(0, 3) + "..." : lastName;
-      return firstName + " " + abbreviatedLastName;
-}
+    const nameParts = data?.split(" ");
+    if (nameParts?.length < 2) {
+      return data;
+    }
+    if (nameParts[0] == "Bye" && nameParts[1] == "Player") { return data; }
+    const firstName = nameParts[0];
+    const lastName = nameParts[1];
+    const abbreviatedLastName = lastName?.length > 3 ? lastName?.substring(0, 3) + "..." : lastName;
+    return firstName + " " + abbreviatedLastName;
+  }
 
 
   const [activeTab, setActiveTab] = useState("upcoming");
@@ -32,9 +32,11 @@ function Bookings() {
   const [loading, setLoading] = useState(true);
   const [dataLoading, setDataLoading] = useState(false);
 
-  
-  useEffect(() => {
-    setDataLoading(true);
+
+
+
+
+  const fetchData = (signal) => {
     const main = new Listing();
     const response = main.Top3Bookings(activeTab);
     response
@@ -45,11 +47,21 @@ function Bookings() {
         setDataLoading(false);
       })
       .catch((error) => {
-        console.log("error", error);
-        setLoading(false);
-        setDataLoading(false);
+        if (signal.aborted) {
+          console.log("Fetch aborted");
+        } else {
+          console.log("Error fetching data:", error);
+        }
       });
+  };
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+    fetchData(signal);
+    return () => controller.abort();
   }, [activeTab]);
+
 
   const getStatusClasses = (status) => {
     switch (status) {
@@ -135,21 +147,21 @@ function Bookings() {
                     <div className="flex items-center justify-between w-full select-none cursor-pointer p-2 relative ">
                       <div className="flex items-center gap-2 img-book">
                         <Link href={`/admin/property/${item?.propertyUuid}`}>
-                        <img
-                          src={
-                            item?.propertyImage ||
-                            "/images/profile-no-image.jpg"
-                          }
-                          alt="user"
-                          className="rounded-full"
-                        />
+                          <img
+                            src={
+                              item?.propertyImage ||
+                              "/images/profile-no-image.jpg"
+                            }
+                            alt="user"
+                            className="rounded-full"
+                          />
                         </Link>
                         <div className="font-medium">
                           <Link href={`/admin/user-history/${item.user_id}`} className="text-sm ">
                             {Name(item?.userName)}
                           </Link>
                           <p className={`text-[12px] absolute top-2 right-2 px-3 rounded-full ${getStatusClasses(item?.booking_status)}`}>
-                            {item?.booking_status === "confirm" ? ("confirmed") :(item?.booking_status) }
+                            {item?.booking_status === "confirm" ? ("confirmed") : (item?.booking_status)}
                           </p>
                           <p className="text-xs text-gray line-limit !pb-0 leading-relaxed">
                             {item?.propertyName}
@@ -165,7 +177,7 @@ function Bookings() {
                         </div>
                       </div>
                     </div>
-                  
+
                   </div>
                 ))
               ) : (
