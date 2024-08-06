@@ -92,8 +92,8 @@ export default function Index() {
               <div>
                 {content && content?.length > 0 ? (
 
-                  <div className="mytable table-responsive">
-                    <table className="">
+<div className="inline-block align-middle">
+            <table className="min-w-[1200px] w-full table-responsive  divide-y divide-gray-200">
                       <thead className="bg-indigo-600">
                         <tr>
                           <th className="px-4 py-4 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
@@ -128,25 +128,27 @@ export default function Index() {
                             <td className="px-4 py-4 text-sm  whitespace-nowrap overflow-hidden text-ellipsis text-gray-500">
                               {item?.createdAt}
                             </td>
-                            <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap overflow-hidden text-ellipsis">
-                              <div className="flex items-center gap-x-2">
+                            <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                              <div className="flex flex-row items-center gap-2 sm:flex-row sm:items-start text-sm">
                                 <Image
-                                  className="img-data object-cover w-8 h-8 rounded-full user-profile-img"
+                                  width={50}
+                                  height={50}
+                                  className="w-12 h-12 rounded-full flex-shrink-0 object-cover"
                                   src={
-                                    item?.rating_user?.image_url ||
-                                    userprofile
+                                    item?.rating_user?.image_url ? item?.rating_user?.image_url : userprofile
+
                                   }
-                                  alt=""
-                                  width={32}
-                                  height={32}
+                                  alt="User Image"
                                 />
-                                <div>
-                                  <h2 className="text-sm capitalize font-medium text-gray-800 ">
+                                <div className="p-2">
+                                  <div className="text-gray-800 font-normal ">
                                     {item?.rating_user?.name}
-                                  </h2>
-                                  <p className="text-xs font-normal text-gray-600 word-clamp-5" title={item?.rating_user?.email}>
+
+                                  </div>
+                                  <div className="text-gray-800 font-medium  max-w-[13ch] overflow-hidden whitespace-nowrap text-ellipsis">
                                     {item?.rating_user?.email}
-                                  </p>
+                                  </div>
+
                                 </div>
                               </div>
                             </td>
