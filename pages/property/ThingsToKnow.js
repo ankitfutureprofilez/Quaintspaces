@@ -155,6 +155,8 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
         </p>
       </div> */}
 
+      
+
       {/* {isAdmin && (
         <>
           <div className="flex justify-between house-rule-text">
