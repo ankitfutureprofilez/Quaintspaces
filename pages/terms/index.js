@@ -16,10 +16,10 @@ function index() {
       `}</style>
       <div className="terms container mx-auto ">
       <div className="min-h-screen">
-        <div className="lg:max-w-4xl mx-auto py-12 ">
-          <h1 className="text-4xl font-bold">Terms and Conditions</h1>
+        <div className="lg:max-w-4xl mx-auto py-6 md:py-8 lg:py-12 ">
+          <h1 className="text-2xl md:text-4xl font-bold">Terms and Conditions</h1>
           <div className="prose">
-            <h1 className="text-2xl font-bold mt-8 mb-3">
+            <h1 className="text-xl md:text-2xl font-bold mt-8 mb-3">
               1. Searching and Booking on Quaint Spaces.
             </h1>
             <div className="mb-2">
