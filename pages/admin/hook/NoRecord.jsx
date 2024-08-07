@@ -16,8 +16,8 @@ const NoRecord = ({heading, content}) => {
             height={100}
           />
         </div>
-        <div className="empty-state__message">
-          {heading} available. Please try again later.
+        <div className="!text-xl mb-2  mt-2 uppercase">
+          Result not found !! 
         </div>
         <button onClick={() => { router.back()}} className="mt-2 sm:w-full lg:w-auto my-2 filter btn">
           Take me there!

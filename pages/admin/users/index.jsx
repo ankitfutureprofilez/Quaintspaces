@@ -150,6 +150,9 @@ export default function Index() {
                 <p>S.No.</p>
               </th>
               <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
+                <p>Avatar</p>
+              </th>
+              <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
                 <p>Name</p>
               </th>
               <th className="px-4 py-4 text-sm font-normal text-left whitespace-nowrap rtl:text-right bg-indigo-600 text-white capitalize">
@@ -168,29 +171,21 @@ export default function Index() {
             {record.map((item, index) => (
               <tr
                 key={index}
-                className="hover:bg-gray-100  items-center justify-between duration-150 text-gray-700 !mt-0"
-              >
+                className="hover:bg-gray-100  items-center justify-between duration-150 text-gray-700 !mt-0">
                 <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
                   {index + 1}
                 </td>
-                <td className="flex gap-2 py-4 img-data items-center text-sm px-2 whitespace-nowrap">
+                <td className="img-data items-center text-sm px-2 whitespace-nowrap">
                   <Image
                     width={35}
                     height={35}
                     className="top-2 right-2 p-1 rounded-full"
-                    src={
-                      item.image_url
-                        ? item.image_url
-                        : "https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"
-                    }
-                    alt={item.index ? item.index : "0"}
+                    src={item.image_url ? item.image_url:"https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"} alt={item.index ? item.index : "0"}
                   />
-                  <div>
-                    <div className="text-gray-800 font-medium">
-                      {item.name}
-                    </div>
+                </td>
+                <td className="img-data items-center text-sm px-2 whitespace-nowrap">
+                    <div className="text-gray-800 font-medium">{item.name}</div>
                     <div className="text-sm">{item.email}</div>
-                  </div>
                 </td>
                 <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
                   {item.phone_no ? item.phone_no : "-"}

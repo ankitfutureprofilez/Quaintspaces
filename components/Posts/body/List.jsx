@@ -54,7 +54,7 @@ function List({ post }) {
             <div className="w-full lg:w-9/12 p-3 sm:p-6">
               <div className="flex flex-wrap justify-between">
                 <div className="w-full sm:w-8/12">
-                  <h2 className="text-[22px] font-[600] text-[#3F2A17] mb-[10px]">  {capitalizeFirstLetter(post?.name)}</h2>
+                  <h2 className="text-[22px] font-[600] text-[#3F2A17] mb-[5px]">  {capitalizeFirstLetter(post?.name)}</h2>
 
                   <p className="text-[16px] font-[400] text-[#666360] uppercase sm:mb-[15px] mb-[8px]"> {record?.location}</p>
                 </div>

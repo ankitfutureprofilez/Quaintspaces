@@ -87,7 +87,7 @@ export default function Index() {
                       Payment Id & Method
                     </th>
                     <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-                      Customer
+                      Name/Email
                     </th>
                     <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
                       Property Name
@@ -117,18 +117,16 @@ export default function Index() {
                       <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
                         <Link href={`/admin/users/${item?.booking_history?.booking_user[0]?.id}`}>
                           <div className="flex flex-row items-center gap-2 sm:flex-row sm:items-start text-sm">
-                            <Image
+                            {/* <Image
                               width={50}
                               height={50}
                               className="w-12 h-12 rounded-full flex-shrink-0 object-cover"
                               src={item?.booking_history?.booking_user[0]?.image_url ? item?.booking_history?.booking_user[0]?.image_url : userprofile}
                               alt="User Image"
-                            />
-                            <div className="p-2">
+                            /> */}
                               <div className="text-gray-800 font-medium capitalize text-center">
                                 {item?.booking_history?.booking_user[0]?.name}
                               </div>
-                            </div>
                           </div>
                         </Link>
 
@@ -137,17 +135,14 @@ export default function Index() {
                       <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
                         <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
                           <div className="flex flex-row items-center gap-2 sm:flex-row sm:items-start text-sm">
-
-                            <Image
+                            {/* <Image
                               width={50}
                               height={50}
                               className="w-12 h-12 rounded-full flex-shrink-0 object-cover"
                               src={item?.booking_history?.booking_property?.property_image[0]?.image_url}
                               alt="Property"
-                            />
-                            <div className="p-2">
+                            /> */}
                               <div className="text-gray-800 font-medium capitalize">{item?.booking_history?.booking_property?.name}</div>
-                            </div>
                           </div>
                         </Link>
                       </td>
@@ -185,7 +180,7 @@ export default function Index() {
             ) : (
               <Nodata heading={"No Payment History"} />
             )}
-          </div>
+        </div>
       )}
       {content?.length > 0 && !loading && hasmore && (
         <div className="flex justify-center mb-5">
