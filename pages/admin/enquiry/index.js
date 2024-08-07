@@ -207,7 +207,9 @@ export default function Index() {
                             </td>
                             {item?.reply_message !== "N/A" ? (
                               <td className="px-4 py-4 text-sm text-gray-500">
-                                {item?.reply_message}
+                              <ShowToolTip text={item?.reply_message} />
+
+                                {/* {item?.reply_message} */}
                               </td>
                             ) : (
                               <td className="px-4 py-2 text-sm text-gray-500">
