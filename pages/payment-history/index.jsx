@@ -82,7 +82,7 @@ export default function index() {
         );
     };
 
-
+console.log("listings",listings)
 
     const BookingTable = () => {
         return (
@@ -155,6 +155,7 @@ export default function index() {
             </>
         );
     };
+
     const PhoneDesign = () => {
         return (
             <div className="pb-[10px] pt-[10px]">
@@ -166,9 +167,11 @@ export default function index() {
                                     <h4 className="text-[12px] font-normal uppercase leading-[14.7px] text-[#3F2A17]">
                                         {item?.method}
                                     </h4>
-                                    <div className="text-[11px] leading-[14px] font-normal text-[#00860D] bg-[#00860D33] border-[1px] border-[#00860D] rounded-[45px] px-[8px] py-[5px] inline-flex items-center">
+
+
+                                    <div className={`text-[11px] leading-[14px] font-normal ${item?.payment_status === "success" ? 'text-green-600 bg-[#00860D33] border-[#00860D]' : 'text-red-600 bg-[#FF000033] border-[#FF0000]'} border-[1px] rounded-[45px] px-[8px] py-[5px] inline-flex items-center`}>
                                         <BsDot className="text-[20px] w-[15px] h-[15px]" />
-                                        Success
+                                        {item?.payment_status }
                                     </div>
                                 </div>
                                 <div className="p-[10px]">
@@ -215,18 +218,18 @@ export default function index() {
     }
 
 
-    const MobileLoading = () => { 
+    const MobileLoading = () => {
         return <>
-          <div role="status" class="w-full animate-pulse mt-4 border border-gray-300 rounded-xl p-4">
-            <div class="h-[20px] w-full bg-gray-200 rounded-xl mb-2 p-4"></div>
-            <div class="h-[40px] w-full bg-gray-200 rounded-xl mb-2 p-4"></div>
-            <div className='grid grid-cols-2 gap-2'>
-              <div class="h-[70px] w-[100%] bg-gray-200 rounded-xl p-4"></div>
-              <div class="h-[70px] w-[100%] bg-gray-200 rounded-xl p-4"></div>
+            <div role="status" class="w-full animate-pulse mt-4 border border-gray-300 rounded-xl p-4">
+                <div class="h-[20px] w-full bg-gray-200 rounded-xl mb-2 p-4"></div>
+                <div class="h-[40px] w-full bg-gray-200 rounded-xl mb-2 p-4"></div>
+                <div className='grid grid-cols-2 gap-2'>
+                    <div class="h-[70px] w-[100%] bg-gray-200 rounded-xl p-4"></div>
+                    <div class="h-[70px] w-[100%] bg-gray-200 rounded-xl p-4"></div>
+                </div>
             </div>
-          </div>
-      </>
-      }
+        </>
+    }
 
     return (
         <AuthLayout>
@@ -241,39 +244,39 @@ export default function index() {
                         <Heading text={"Payment History"} handleClick={() => router.back()} />
                     </div>
                 </div>
-                    
-                    <div className="tble-ma">
-                        {listings && listings.length > 0 ? (
-                            isMobile ? <PhoneDesign />: <BookingTable />
-                        ) : (
-                            <>
-                                {!loading ? <NoData
-                                    url={"/apartments"}
-                                    Heading={"No Data Found"}
-                                    content={"You have not done any payment yet. Click below to go to the page"}
-                                /> : ''}
-                            </>
-                        )}
 
-                        {loading ? 
-                        <> {isMobile ? 
+                <div className="tble-ma">
+                    {listings && listings.length > 0 ? (
+                        isMobile ? <PhoneDesign /> : <BookingTable />
+                    ) : (
+                        <>
+                            {!loading ? <NoData
+                                url={"/apartments"}
+                                Heading={"No Data Found"}
+                                content={"You have not done any payment yet. Click below to go to the page"}
+                            /> : ''}
+                        </>
+                    )}
+
+                    {loading ?
+                        <> {isMobile ?
                             <>
-                            <MobileLoading /> 
-                            <MobileLoading /> 
-                            <MobileLoading /> 
+                                <MobileLoading />
+                                <MobileLoading />
+                                <MobileLoading />
                             </>
-                        : <TableLoading /> } </>
+                            : <TableLoading />} </>
                         : ""}
 
-                        {!loading && listings && listings.length > 0 && hasMore && (
-                            <div className="load-more mt-5 text-center">
-                                <button className="btn btn-outline-success cursor-pointer" onClick={loadMore}>
-                                    Load More
-                                </button>
-                            </div>
-                        )}
+                    {!loading && listings && listings.length > 0 && hasMore && (
+                        <div className="flex justify-center mt-6">
+                            <button className="bg-[#efa3a3] text-[#fff] text-[13px] md:text-[16px] border border-[#efa3a3] px-[30px] py-[12px] flex rounded-full hover:text-[#efa3a3] hover:bg-[#ffffff00]" onClick={loadMore}>
+                                Load More
+                            </button>
+                        </div>
+                    )}
 
-                    </div>
+                </div>
             </div>
         </AuthLayout>
     );

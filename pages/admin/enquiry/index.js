@@ -57,6 +57,31 @@ export default function Index() {
     };
   }, [page]);
 
+  const ShowToolTip = ({ text }) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const toggleExpanded = () => {
+      setIsExpanded(!isExpanded);
+    };
+
+    return (
+      <>
+        <div className={`tooltip-text ${isExpanded ? "open" : "closed"}`}>
+          <h2 className="mb-3 text-black">Message</h2>
+          {text}
+          <button className="close-tooltip text-black text-3xl absolute top-4 right-4" onClick={toggleExpanded}>
+            &times;
+          </button>
+        </div>
+        <button
+          onClick={toggleExpanded}
+          className="text-blue-500 underline ml-2" >
+          View Message
+        </button>
+      </>
+    );
+  }
+
+
   // Function to handle loading more data
   const loadMore = () => {
     if (!loading && hasMore) {
@@ -123,7 +148,7 @@ export default function Index() {
                 <Loading />
               </div>
             ) : (
-                <div className="w-full overflow-x-auto">
+              <div className="w-full overflow-x-auto">
                 <div className="table-responsive mytable">
                   <table className="min-w-[1200px] overflow-x-auto table-auto divide-y divide-gray-200">
                     <thead className="bg-indigo-600">
@@ -168,7 +193,7 @@ export default function Index() {
                               {index + 1}
                             </td>
                             <td
-                             className="px-4 py-4 text-sm whitespace-nowrap text-gray-500">
+                              className="px-4 py-4 text-sm whitespace-nowrap text-gray-500">
                               {item?.createdAt}
                             </td>
                             <td className="px-4 py-4 text-sm text-gray-500">
@@ -178,7 +203,7 @@ export default function Index() {
                               <div className="text-sm">{item?.email}</div>
                             </td>
                             <td className="px-4 py-4 text-sm text-gray-500">
-                              {item?.message}
+                              <ShowToolTip text={item?.message} />
                             </td>
                             {item?.reply_message !== "N/A" ? (
                               <td className="px-4 py-4 text-sm text-gray-500">
@@ -203,7 +228,7 @@ export default function Index() {
                   </table>
                 </div>
               </div>
-              
+
             )}
           </div>
           {hasMore && !loading && (
@@ -212,7 +237,7 @@ export default function Index() {
                 className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white cursor-pointer"
                 onClick={loadMore}
               >
-                {loadingButton ? "Loading...": "Load More"}
+                {loadingButton ? "Loading..." : "Load More"}
               </button>
             </div>
           )}
@@ -229,33 +254,33 @@ export default function Index() {
       {selectedEnquiry && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
           <div className=" flex flex-col ">
-          <div className="p-4 bg-[#efa3a3]">
-            <label
-              htmlFor="message"
-              className="mx-auto block text-lg font-medium text-[#fff]"
-            >
-              Message
-            </label>
+            <div className="p-4 bg-[#efa3a3]">
+              <label
+                htmlFor="message"
+                className="mx-auto block text-lg font-medium text-[#fff]"
+              >
+                Message
+              </label>
             </div>
             <div className="p-4">
-            <textarea
-              id="message"
-              name="message"
-              value={message}
-              onChange={handleChange}
-              className="mt-3 p-3 lg:p-4 border rounded-2xl min-h-32 lg:min-h-52 w-full"
-              required
-              placeholder="Type your response here"
-              rows={2}
-            />
-            <div className="flex justify-center">
-              <button
-                className="btn filter mt-6 mb-4 w-2/4 mx-auto"
-                onClick={() => handleInquiryAcceptance(selectedEnquiry)}
-              >
-                {loading ? "Loading..." : "Proceed"}
-              </button>
-            </div>
+              <textarea
+                id="message"
+                name="message"
+                value={message}
+                onChange={handleChange}
+                className="mt-3 p-3 lg:p-4 border rounded-2xl min-h-32 lg:min-h-52 w-full"
+                required
+                placeholder="Type your response here"
+                rows={2}
+              />
+              <div className="flex justify-center">
+                <button
+                  className="btn filter mt-6 mb-4 w-2/4 mx-auto"
+                  onClick={() => handleInquiryAcceptance(selectedEnquiry)}
+                >
+                  {loading ? "Loading..." : "Proceed"}
+                </button>
+              </div>
             </div>
           </div>
         </Modal>

@@ -6,9 +6,7 @@ const SingleDate = ({ item }) => {
     const formattedTime = item ? Moment(item).format('h:mm A') : '';
 
     return (
-        <div>
             <div>{formattedDate}, {formattedTime}</div>
-        </div>
     );
 };
 export default SingleDate;

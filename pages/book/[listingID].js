@@ -171,8 +171,8 @@ const Book = () => {
       "avif",
     ];
     const formData = e.target.files[0];
-    const type = formData.type?.split("/");
-    if (imageFormats.includes(type[1])) {
+    const type = formData?.type?.split("/");
+    if (imageFormats?.includes(type[1])) {
       setFormData((prevState) => ({
         ...prevState,
         fornt: formData,
@@ -535,7 +535,7 @@ const Book = () => {
                         <input
                           type="number"
                           id="phone"
-                          name="phone" maxlength="10" min='1'
+                          name="phone" max="10" min='1'
                           value={formData?.phone}
                           onChange={handleChange}
                           className="mt-1 mr-1 p-4 h-[50px] border rounded-full w-full !ps-[50px]"

@@ -1569,7 +1569,7 @@ export default function Property(props) {
                     rows={5}
                     className="shadow-sm p-4 py-2 w-4/5 mt-1 block w-full sm:text-sm border rounded-xl"
                     placeholder="Enter directions here..."
-                    value={item?.additonalrule}
+                    value={(item?.additonalrule)}
                     onChange={handleInputChange}
                   />
                 </div>

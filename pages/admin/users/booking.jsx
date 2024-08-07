@@ -7,6 +7,7 @@ import { IoIosInformationCircleOutline } from "react-icons/io";
 import Modal from "../hook/Modal";
 import DateComponent from "../../elements/DateFormat";
 import SingleDate from "../../elements/SingleDate";
+import LoadingSpinner from "../hook/spinner";
 
 export default function Booking(props) {
   const { record } = props;
@@ -44,10 +45,8 @@ export default function Booking(props) {
   return (
     <>
       {loading ? (
-        <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 ">
-          <div className="flex justify-center items-center space-x-1 text-gray-700">
-            <div className="text-lg">Loading...</div>
-          </div>
+        <div className="flex items-center justify-center w-full h-full relative top-0 left-0 z-10 min-w-1200px">
+          <LoadingSpinner />
         </div>
       ) : content && content.length > 0 ? (
         <div className="mt-5 ">
@@ -57,7 +56,7 @@ export default function Booking(props) {
                 <tr className="">
                   <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
                     {" "}
-                    booking Date & Number
+                    Booking Date & Number
                   </td>
                   {/* <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
                     booking Number{" "}
@@ -88,7 +87,7 @@ export default function Booking(props) {
                           </span>
                         </div>
                       </td>
-                      <td className=" py-4  px-4 text-sm  text-gray-900 font-normal sm:px-6 ">
+                      <td className=" py-4  px-4 text-sm  text-gray-900 font-normal sm:px-6  ">
                         <SingleDate item={item?.check_in} />
                         <SingleDate item={item?.check_out} />
                       </td>

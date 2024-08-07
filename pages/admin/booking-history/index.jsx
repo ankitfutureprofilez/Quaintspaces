@@ -280,7 +280,7 @@ export default function index() {
                           }
                           className="capitalize  cursor-pointer text-green-500 flex items-center gap-2 border w-max rounded-full p-1 px-2 mb-2"
                         >
-                          <svg
+                          {/* <svg
                             className="text-emerald-500"
                             xmlns="http://www.w3.org/2000/svg"
                             width="14"
@@ -292,7 +292,7 @@ export default function index() {
                               d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2Zm4.78 7.7-5.67 5.67a.75.75 0 0 1-1.06 0l-2.83-2.83a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l2.3 2.3 5.14-5.14c.29-.29.77-.29 1.06 0 .29.29.29.76 0 1.06Z"
                               fill="currentColor"
                             ></path>
-                          </svg>
+                          </svg> */}
                           {loading ? "loading.." : "confirm"}
                         </div>
 
@@ -300,7 +300,7 @@ export default function index() {
                           onClick={() => openConfirmModal(item)}
                           className="capitalize cursor-pointer text-red-500 flex items-center w-fit gap-2 border rounded-full p-1 px-2"
                         >
-                          <svg
+                          {/* <svg
                             className="text-red-400"
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"
@@ -316,7 +316,7 @@ export default function index() {
                               d="M21.77 2.229c-.3-.3-.79-.3-1.09 0L2.23 20.689c-.3.3-.3.79 0 1.09a.758.758 0 0 0 1.08-.01l18.46-18.46c.31-.3.31-.78 0-1.08Z"
                               fill="currentColor"
                             ></path>
-                          </svg>
+                          </svg> */}
                           {loading ? "loading.." : "Cancel"}
                         </div>
                       </td>
