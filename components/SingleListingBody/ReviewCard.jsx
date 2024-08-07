@@ -45,7 +45,8 @@ const ReviewCard = ({ data }) => {
       </header>
       <div className="mt-4">
         <p className="text-blackColor text-md leading-7">
-          {textResizer(data?.review_text, 210)}
+          {/* {textResizer(data?.review_text, 210)} */}
+          {data?.review_text}
         </p>
       <p className="text-sm text-lightTextColor flex">
             <StartRating size={15} value={data?.rating} />
