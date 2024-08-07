@@ -55,7 +55,7 @@ const success = () => {
   };
 
   const totalStay = calculateTotalDays(record?.check_in, record?.check_out);
-  console.log("record", record)
+  console.log("record", record);
   return (
     <AuthLayout>
       {loading ? (
@@ -101,9 +101,7 @@ const success = () => {
                 ></path>
               </svg>
             </div>
-            <h2 className=" text-center mt-4 ">
-              Your Booking is Confirmed!
-            </h2>
+            <h2 className=" text-center mt-4 ">Your Booking is Confirmed!</h2>
             <p className="text-[#efa3a3] text-center mt-2">
               We have sent your booking confirmation to your email address.
             </p>
@@ -147,8 +145,7 @@ const success = () => {
               <div className="w-full flex justify-between mb-4 flex-wrap ">
                 <p className="text-black-400 font-bold capitalize">Check in </p>
                 <p className="text-start text-black-400 font-bold font-semibold">
-                  <SuccessDate item=
-                    {record?.check_in} />{" "}
+                  <SuccessDate item={record?.check_in} />{" "}
                   {/* {DateComponent(record?.check_in)}{" "} */}
                 </p>
               </div>
@@ -157,8 +154,7 @@ const success = () => {
                   Check out{" "}
                 </p>
                 <p className="text-start text-black-400 font-bold font-semibold">
-                  <SuccessDate item=
-                    {record?.check_out} />{" "}
+                  <SuccessDate item={record?.check_out} />{" "}
                   {/* {DateComponent(record?.check_out)} */}
                 </p>
               </div>
@@ -168,7 +164,8 @@ const success = () => {
                   Amount Paid
                 </p>
                 <p className="text-start items-center flex whitespace-nowrap text-black-400 font-bold font-semibold">
-                  <MdOutlineCurrencyRupee size='15' />{record?.price}.00
+                  <MdOutlineCurrencyRupee size="15" />
+                  {record?.price}.00
                 </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
@@ -192,7 +189,7 @@ const success = () => {
                   no. of nights
                 </p>
                 <p className="text-start text-black-400 font-bold font-semibold">
-                  {totalStay} Nights
+                  {totalStay} {totalStay === 1 ? "Night" : "Nights"}
                 </p>
               </div>
             </div>
