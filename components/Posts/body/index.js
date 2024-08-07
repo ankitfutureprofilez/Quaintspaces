@@ -53,6 +53,7 @@ const PostBody = ({ listings, loading }) => {
             content={
               "Sorry for the inconvenience. Click below to go to the home page"
             }
+            url={"/"}
           />
         </div>
       )}

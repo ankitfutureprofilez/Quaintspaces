@@ -142,7 +142,8 @@ const Book = () => {
     });
   }
   }
-
+  // const [checkinYear, checkinMonth, checkinDay] = infos?.checkin.split("-");
+  // const [checkoutYear, checkoutMonth, checkoutDay] = infos?.checkout.split("-");
   useEffect(() => {
     if (url?.listingID) {
       fetchDetails();
@@ -439,7 +440,27 @@ const Book = () => {
                 <div className="flex items-center justify-between w-full py-2">
                   <div>
                     <h3 className="text-lg  font-medium item-heading ">Dates</h3>
-                    <p className="text-md item-paragraph">{`${infos?.checkin && format(new Date(infos.checkin), "dd")
+                    {/* {checkinYear !== checkoutYear ?
+                    <p className="text-md item-paragraph">
+                      {`${infos?.checkin && format(new Date(infos.checkin), "dd MMM YY")
+                      } - ${infos?.checkout &&
+                      format(new Date(infos.checkout), "dd MMM YY")
+                      }`}</p> 
+                    : checkinMonth !== checkoutMonth?
+                     <p className="text-md item-paragraph">
+                      {`${infos?.checkin && format(new Date(infos.checkin), "dd MMM")
+                      } - ${infos?.checkout &&
+                      format(new Date(infos.checkout), "dd  MMM")
+                      }`}</p>
+                      :
+                      <p className="text-md item-paragraph">
+                      {`${infos?.checkin && format(new Date(infos.checkin), "dd")
+                      } - ${infos?.checkout &&
+                      format(new Date(infos.checkout), "dd  MMM")
+                      }`}</p>
+                    } */}
+                    <p className="text-md item-paragraph">
+                      {`${infos?.checkin && format(new Date(infos.checkin), "dd MMM")
                       } - ${infos?.checkout &&
                       format(new Date(infos.checkout), "dd  MMM")
                       }`}</p>
@@ -803,7 +824,7 @@ const Book = () => {
                             {formatMultiPrice(listing?.pet_fee)}
                           </span>
                         </div>
-                        <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex">
+                        <span className="block text-blackColor font-medium confirm-price ml-2 inline-flex">
                           {formatMultiPrice(
                             guests?.pets?.value * listing?.pet_fee
                           )}
