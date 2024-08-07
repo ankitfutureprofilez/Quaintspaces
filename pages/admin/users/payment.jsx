@@ -61,7 +61,7 @@ export default function payment({ record }) {
                         <td className="px-4 py-4 text-sm text-gray-500">
                           <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
 
-                            <div className="items-center img-data flex gap-2 text-sm p-2 ">
+                            <div className="items-center img-data flex gap-2 text-sm  ">
                               <Image
                                 width={35}
                                 height={35}
@@ -75,7 +75,7 @@ export default function payment({ record }) {
                             </div>
                           </Link>
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-500 capitalize  ">{item?.method}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 capitalize whitespace-no-wrap  ">{item?.method}</td>
                         <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-500 sm:px-6 table-cell">
                           <div
                             className={` capitalize  ${item?.payment_status === "success"
