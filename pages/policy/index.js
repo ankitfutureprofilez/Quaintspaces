@@ -21,14 +21,12 @@ function index() {
         }
       `}</style>
       <div className="terms bg-gray-100 min-h-screen">
-        <div className="max-w-4xl mx-auto py-12 px-4">
+        <div className="max-w-4xl lg:max-w-4xl mx-auto py-6 md:py-8 lg:py-12 px-4">
            
           <div className="max-w-4xl mx-auto p-6">
             <h1 className="text-3xl font-bold my-2">Privacy Policy</h1>
             <div className="prose">
-              
-              
-              <p  >
+              <p>
                 Quaint Spaces exists to help build connections between people and make the world more open and inclusive. In short—to build a world where anyone can belong anywhere. We are a community built on trust. A fundamental part of earning that trust means being clear about how we use your information and protecting your human right to privacy.
               </p>
               <div>
