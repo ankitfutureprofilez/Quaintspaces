@@ -136,7 +136,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
                 }
                 <div className="text-[15px] text-[#61554E] leading-[24px]">
                   <ul>
-                    {formattedRules?.map((rule, index) => (
+                    {formattedRules && formattedRules?.map((rule, index) => (
                       <li key={index}>
                         {rule}
                       </li>
