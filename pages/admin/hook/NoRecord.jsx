@@ -17,7 +17,7 @@ const NoRecord = ({heading, content}) => {
           />
         </div>
         <div className="!text-xl mb-2  mt-2 uppercase">
-          Result not found !! 
+          Results not found !! 
         </div>
         <button onClick={() => { router.back()}} className="mt-2 sm:w-full lg:w-auto my-2 filter btn">
           Take me there!
