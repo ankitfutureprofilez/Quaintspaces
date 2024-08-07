@@ -164,18 +164,14 @@ const success = () => {
               </div>
 
               <div className="w-full flex justify-between mb-4 flex-wrap ">
-                <p className="text-black-400 font-bold capitalize">
-                  Amount Paid
-                </p>
-                <p className="text-start items-center flex whitespace-nowrap text-black-400 font-bold font-semibold">
-                  <MdOutlineCurrencyRupee size='15' />{record?.price}.00
-                </p>
+                <p className="text-black-400 font-bold capitalize">Amount Paid</p>
+                <p className="text-start items-center flex whitespace-nowrap text-black-400 font-bold font-semibold"><MdOutlineCurrencyRupee size='15' />{record?.price}.00</p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
                 <p className="text-black-400 font-bold capitalize">
                   Total Members (Guests & infants)
                 </p>
-                <p className="text-start text-black-400 font-bold font-semibold">
+                <p className="text-start text-black-400 font-semibold">
                   {record?.guests} & {record?.infants}{" "}
                 </p>
               </div>
