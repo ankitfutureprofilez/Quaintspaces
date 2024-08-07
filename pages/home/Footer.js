@@ -199,7 +199,7 @@ export default function Footer() {
                 </div>
                 <div className="mt-2">
                   <Link
-                    href="https://www.instagram.com/Quaint Spacesjaipur"
+                  href="https://www.instagram.com/quaintspacesjaipur?igsh=NG1ncHYyemh2cmZu"
                     target="_blank"
                   >
                     <div className="flex justify-center xl:justify-start">
