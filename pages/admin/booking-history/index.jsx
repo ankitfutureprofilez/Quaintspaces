@@ -124,34 +124,31 @@ export default function index() {
 
   return (
     <AdminLayout heading={"Booking Management"}>
-      <div className="flex bg-gray-100 mt-3 mb-5 p-2 overflow-x-auto text-white rounded-lg  md:mb-0 items-center sm:space-y-0 sm:space-x-4 upcoming-box">
-        <button
+      <div className="flex bg-gray-100 mb-5 p-2 overflow-x-auto text-white rounded-lg  md:mb-0 items-center sm:space-y-0 sm:space-x-4 upcoming-box">
+        <button 
           onClick={() => setActiveTab('upcoming')}
-          className={`w-full px-2 py-2 text-sm rounded-lg text-center ${activeTab === 'upcoming' ? 'bg-black text-white' : 'text-black'} mb-2 sm:mb-0`}
-        >
+          className={`w-full px-3 py-2 text-sm rounded-lg text-center ${activeTab === 'upcoming' ? 'bg-black text-white' : 'text-black'} me-2 sm:mb-0`}>
           Upcoming
         </button>
         <button
           onClick={() => setActiveTab('completed')}
-          className={`w-full px-2 py-2 text-sm rounded-lg text-center ${activeTab === 'completed' ? 'bg-black text-white' : 'text-black'} mb-2 sm:mb-0`}
-        >
+          className={`w-full px-3 py-2 text-sm rounded-lg text-center ${activeTab === 'completed' ? 'bg-black text-white' : 'text-black'} me-2 sm:mb-0`}>
           Complete
         </button>
         <button
           onClick={() => setActiveTab('cancelled')}
-          className={`w-full px-2 py-2 text-sm rounded-lg text-center ${activeTab === 'cancelled' ? 'bg-black text-white' : 'text-black'} mb-2 sm:mb-0`}
-        >
+          className={`w-full px-3 py-2 text-sm rounded-lg text-center ${activeTab === 'cancelled' ? 'bg-black text-white' : 'text-black'} me-2 sm:mb-0`}>
           Cancelled
         </button>
         <button
           onClick={() => setActiveTab('current')}
-          className={`w-full px-2 py-2 text-sm rounded-lg text-center ${activeTab === 'current' ? 'bg-black text-white' : 'text-black'} mb-2 sm:mb-0`}
+          className={`w-full px-3 py-2 text-sm rounded-lg text-center ${activeTab === 'current' ? 'bg-black text-white' : 'text-black'} me-2 sm:mb-0`}
         >
           Current
         </button>
         <button
           onClick={() => setActiveTab('failed')}
-          className={`w-full  px-2 py-2 text-sm rounded-lg text-center ${activeTab === 'failed' ? 'bg-black text-white' : 'text-black'} mb-2 sm:mb-0`}
+          className={`w-full  px-2 py-2 text-sm rounded-lg text-center ${activeTab === 'failed' ? 'bg-black text-white' : 'text-black'} sm:mb-0`}
         >
           Failed
         </button>

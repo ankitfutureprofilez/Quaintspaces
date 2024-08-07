@@ -234,7 +234,7 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
       <section className="w-full sm:px-4">
         <div className="container mx-auto !py-4 sm:py-8">
         {loading? 
-            <div className="animate-pulse mt-2 p-6 w-[300px] h-[30px] bg-gray-200 rounded-2xl"></div>
+            <div className="animate-pulse mt-4 lg:mt-2 p-6 w-[300px] h-[30px] bg-gray-200 rounded-2xl"></div>
             :
             <Title
             isSaved={isSaved}
@@ -245,9 +245,9 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
         }
 
           {loading? 
-            <div className="w-full h-full grid grid-cols-2 gap-4 mt-8 mb-4">
-            <div className="animate-pulse p-6 w-full h-[40vh] bg-gray-200 rounded-2xl"></div>
-            <div className="animate-pulse p-6 w-full h-[40vh] rounded-2xl  bg-gray-200"></div>
+            <div className="w-full lg:h-full grid grid-cols-1 md:grid-cols-2 lg:gap-4 mt-8 mb-4">
+            <div className="animate-pulse p-6 w-full h-[40vh] bg-gray-200 mb-2 lg:mb-0 rounded-2xl"></div>
+            <div className="animate-pulse p-6 w-full h-[20vh] lg:h-[40vh] rounded-2xl  bg-gray-200"></div>
             </div>:
           <div
             ref={ImagesRef}

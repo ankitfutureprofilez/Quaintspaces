@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import LoadingSpinner from "../admin/hook/spinner";
 import { Link } from "iconsax-react";
 import SuccessDate from "./SuccessDate";
+import { MdOutlineCurrencyRupee } from "react-icons/md";
 
 function calculateTotalDays(checkInDate, checkOutDate) {
   const checkIn = new Date(checkInDate);
@@ -166,8 +167,8 @@ const success = () => {
                 <p className="text-black-400 font-bold capitalize">
                   Amount Paid
                 </p>
-                <p className="text-start text-black-400 font-bold font-semibold">
-                  {formatMultiPrice(record?.price)}
+                <p className="text-start items-center flex whitespace-nowrap text-black-400 font-bold font-semibold">
+                  <MdOutlineCurrencyRupee size='15' />{record?.price}.00
                 </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
