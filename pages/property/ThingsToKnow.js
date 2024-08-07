@@ -131,10 +131,12 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
                     {record?.data?.property_rule?.events_allowed === 1 ? "Event is allowed." : "Event is not allowed."}
                   </li>
                 </ol>
+                {formattedRules && 
                 <h2 className="text-[18px] mb-2">Additional Rules</h2>
+                }
                 <div className="text-[15px] text-[#61554E] leading-[24px]">
                   <ul>
-                    {formattedRules.map((rule, index) => (
+                    {formattedRules?.map((rule, index) => (
                       <li key={index}>
                         {rule}
                       </li>
