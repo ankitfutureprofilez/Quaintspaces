@@ -73,7 +73,7 @@ export default function index() {
 
     const formatDateTime = (datetime) => {
         const date = Moment(datetime).format('D MMMM YYYY');
-        const time = Moment(datetime).format('h:mm A');
+        const time = Moment(datetime).format('h:mmA');
         return (
             <div>
                 <div className="whitespace-nowrap overflow-hidden text-ellipsis">{date}</div>
@@ -82,7 +82,6 @@ export default function index() {
         );
     };
 
-console.log("listings",listings)
 
     const BookingTable = () => {
         return (

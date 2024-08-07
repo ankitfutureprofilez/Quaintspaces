@@ -3,7 +3,7 @@ import Moment from 'moment';
 
 const DateComponent = ({ item }) => {
   const formattedDate = item ? Moment(item).format('D MMMM YYYY') : '';
-  const formattedTime = item ? Moment(item).format('h:mm A') : '';
+  const formattedTime = item ? Moment(item).format('h:mmA') : '';
 
   return (
     <div>
