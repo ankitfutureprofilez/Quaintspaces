@@ -73,7 +73,7 @@ function Sidebar({isMobileSidebarOpen}) {
 
   return (
     <div
-      className={`menubar shrink-0 h-screen w-full overflow-hidden`}>
+      className={`menubar shrink-0 h-screen w-full max-h-screen overflow-auto`}>
       <div className={`h-full bg-white border-r `} >
         <div
           className="px-4 md:px-6 py-3 flex cursor-pointer group items-center gap-2 z-10"
@@ -96,7 +96,7 @@ function Sidebar({isMobileSidebarOpen}) {
         </div>
         <hr className="bg-gray-400 mx-2" />
         <div className="flex flex-col min-h-screen justify-between">
-          <div className="sidebarlists  p-6 text-gray-500 font-medium text-normal max-h-[90vh] overflow-auto">
+          <div className="sidebarlists  p-6 text-gray-500 font-medium text-normal ">
             <Link
               href={"/admin"}
               className={`flex ${pathname === "/admin"

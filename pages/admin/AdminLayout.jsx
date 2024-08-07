@@ -11,33 +11,35 @@ const AdminLayout = ({ children, heading, text }) => {
 
     const router = useRouter();
     const [content, setContent] = useState([]);
-    // const fetchData = () => {
-    //     const main = new Listing();
-    //     const response = main.Adminprofile();
-    //     response
-    //         .then((res) => {
-    //             if (res.data.status) {
-    //                 setContent(res.data.data);
-    //             } else {
-    //             }
-    //         }).catch((error) => {
-    //             console.log("error", error);
-    //             router.push("/admin/login");
-    //             toast.error("Please log in first.");
-    //         });
-    // }
+    const fetchData = () => {
+        const main = new Listing();
+        const response = main.Adminprofile();
+        response
+            .then((res) => {
+                if (res.data.status) {
+                    setContent(res.data.data);
+                } else {
+                }
+            }).catch((error) => {
+                console.log("error", error);
+                localStorage && localStorage.removeItem("Admintoken");
+                localStorage && localStorage.removeItem("admintoken");
+                router.push("/admin/login");
+                toast.error("Please log in first.");
+            });
+    }
 
-    // useEffect(() => {
-    //     fetchData()
-    // }, []);
+    useEffect(() => {
+        fetchData()
+    }, []);
 
 
-    // useEffect(() => {
-    //     const controller = new AbortController();
-    //     const { signal } = controller;
-    //     fetchData(signal);
-    //     return () => controller.abort();
-    // }, []);
+    useEffect(() => {
+        const controller = new AbortController();
+        const { signal } = controller;
+        fetchData(signal);
+        return () => controller.abort();
+    }, []);
 
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
     const toggleMobileSidebar = () => {
