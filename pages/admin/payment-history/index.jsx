@@ -70,6 +70,7 @@ export default function Index() {
     fetchData(1);
   }, []);
 
+  console.log("content",content);
   return (
     <AdminLayout heading={"Payment History"}>
       {loading ? (
@@ -84,7 +85,7 @@ export default function Index() {
                       S. No.
                     </th>
                     <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-                      Payment Id & Method
+                      Payment Id & Date
                     </th>
                     <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
                       Name/Email
@@ -99,7 +100,7 @@ export default function Index() {
                       Status
                     </th>
                     <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-                      Amount
+                      Amount & Method
                     </th>
                   </tr>
                 </thead>
@@ -110,7 +111,7 @@ export default function Index() {
                       <td className="px-4 py-4 text-sm text-gray-500">
                         <div className="flex flex-col">
                           <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis"> {item?.payment_id}</span>
-                          <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">{item?.method}</span>
+                          <span className="whitespace-nowrap capitalize  text-[13px] overflow-hidden text-ellipsis">{item?.payment_date}</span>
                         </div>
                       </td>
 
@@ -148,20 +149,22 @@ export default function Index() {
                       </td>
                       {/* <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize"></td> */}
                       <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
+                        <div className="flex flex-col">
                         <span
                           className={`inline-flex w-max items-center rounded-full py-2 px-3 text-sm  ${item?.payment_status === "success"
                             ? "text-green-600"
                             : item?.payment_status === "cancelled"
-                              ? "text-red-600"
-                              : item?.payment_status === "confirm"
-                                ? "text-green-600"
-                                : "text-blue-600"
-                            }`}
-                        >
+                            ? "text-red-600"
+                            : item?.payment_status === "confirm"
+                            ? "text-green-600"
+                            : "text-blue-600"
+                          }`}
+                          >
                           {item?.payment_status}
                         </span>
+                          </div>
                       </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
+                      <td className=" flex flex-col px-4 py-4 text-sm text-gray-500 whitespace-nowrap capitalize">
                         <span
                           className={`${item?.payment_status === "success" || item?.payment_status === "confirm"
                             ? "text-green-600"
@@ -172,6 +175,7 @@ export default function Index() {
                             ? ` + ${formatMultiPrice(item?.price)}`
                             : ` - ${formatMultiPrice(item?.price)}`}
                         </span>
+                        <span className={`whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis`}>{item?.method}</span>
                       </td>
                     </tr>
                   ))}
