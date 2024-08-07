@@ -129,6 +129,9 @@ export default function Index() {
                             Date
                           </th>
                           <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
+                            Avatar
+                          </th>
+                          <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                             Customer
                           </th>
                           <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
@@ -156,8 +159,6 @@ export default function Index() {
                                   href={`/admin/users//${item?.rating_user?.id}`}
                                   className="flex items-center gap-x-2"
                                 >
-                              <div className="flex flex-row items-center gap-2 sm:flex-row sm:items-start text-sm">
-                              
                                 <Image
                                   width={50}
                                   height={50}
@@ -165,15 +166,21 @@ export default function Index() {
                                   src={item?.rating_user?.image_url}
                                   alt="User Image"
                                 />
-                                <div className="p-1">
+                              </Link>
+                            </td>
+                            <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                            <Link
+                                  href={`/admin/users//${item?.rating_user?.id}`}
+                                  className="flex items-center gap-x-2"
+                                >
+                                <div className="">
                                   <div className="text-gray-800 font-normal">
                                     {item?.rating_user?.name}
                                   </div>
-                                  <div className="text-gray-800 font-normal max-w-[13ch] overflow-hidden whitespace-nowrap text-ellipsis">
+                                  <div className="text-gray-800 font-normal sm:max-w-[250px] overflow-hidden whitespace-nowrap text-ellipsis">
                                     {item?.rating_user?.email}
                                   </div>
                                 </div>
-                              </div>
                               </Link>
                             </td>
                             <td className="relative px-2 py-2 text-sm text-gray-500">
@@ -277,8 +284,7 @@ export default function Index() {
                         <button
                           className="bg-indigo-600 text-white p-2 rounded-md"
                           onClick={loadMore}
-                          disabled={loadingButton}
-                        >
+                          disabled={loadingButton}>
                           {loadingButton ? "Loading..." : "Load More"}
                         </button>
                       </div>

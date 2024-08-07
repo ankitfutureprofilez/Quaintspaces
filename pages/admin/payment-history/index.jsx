@@ -87,7 +87,7 @@ export default function Index() {
                       Payment Id & Method
                     </th>
                     <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
-                      Customer
+                      Name/Email
                     </th>
                     <th className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white whitespace-nowrap capitalize">
                       Property Name
@@ -180,7 +180,7 @@ export default function Index() {
             ) : (
               <Nodata heading={"No Payment History"} />
             )}
-          </div>
+        </div>
       )}
       {content?.length > 0 && !loading && hasmore && (
         <div className="flex justify-center mb-5">
