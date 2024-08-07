@@ -40,7 +40,6 @@ export default function payment({ record }) {
       ) : (
 
         <div className=" mt-3">
-          <div className="">
             <div className="mytable table-responsive w-full">
               {content && content.length > 0 ? (
                 <table className="min-w-full divide-y divide-gray-200">
@@ -65,13 +64,13 @@ export default function payment({ record }) {
                               <Image
                                 width={35}
                                 height={35}
-                                className="top-2 right-2 p-1 rounded-full user-profile-img"
+                                className="hidden md:block top-2 right-2 p-1 rounded-full user-profile-img"
                                 src={item?.booking_history?.booking_property?.property_image[0]?.image_url}
                                 alt="Property"
                               />
-                              
+
                               <div>
-                                <div className="text-gray-800 font-medium capitalize ">{item?.booking_history?.booking_property?.name}</div>
+                                <div className="text-gray-800 text-sm font-normal capitalize ">{item?.booking_history?.booking_property?.name}</div>
                               </div>
                             </div>
                           </Link>
@@ -102,7 +101,6 @@ export default function payment({ record }) {
                 <Nodata heading={"No Payment History"} />
               )}
             </div>
-          </div>
         </div>
       )}
     </>
