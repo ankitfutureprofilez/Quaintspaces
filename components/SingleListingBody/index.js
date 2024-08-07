@@ -245,9 +245,9 @@ const SingleListingBody = ({ isAdmin, listing, loading }) => {
         }
 
           {loading? 
-            <div className="w-full h-full grid grid-cols-1  md:grid-cols-2 gap-4 mt-8 mb-4">
-            <div className="animate-pulse p-6 w-full h-[40vh] bg-gray-200 rounded-2xl"></div>
-            <div className="animate-pulse p-6 w-full h-[40vh] rounded-2xl  bg-gray-200"></div>
+            <div className="w-full lg:h-full grid grid-cols-1 md:grid-cols-2 lg:gap-4 mt-8 mb-4">
+            <div className="animate-pulse p-6 w-full h-[40vh] bg-gray-200 mb-2 lg:mb-0 rounded-2xl"></div>
+            <div className="animate-pulse p-6 w-full h-[20vh] lg:h-[40vh] rounded-2xl  bg-gray-200"></div>
             </div>:
           <div
             ref={ImagesRef}
