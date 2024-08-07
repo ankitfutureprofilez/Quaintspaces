@@ -100,6 +100,7 @@ export default function payment({ record }) {
               ) : (
                 <Nodata heading={"No Payment History"} />
               )}
+              
             </div>
         </div>
       )}
