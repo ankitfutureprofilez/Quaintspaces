@@ -277,6 +277,7 @@ export default function Property(props) {
     customLink: custom_link || "",
   });
 
+  
   const copyToClipboard = () => {
     const textToCopy = `${baseurl}${item?.customLink}`;
     navigator.clipboard
