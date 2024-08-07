@@ -422,8 +422,8 @@ const Book = () => {
           <main
             className={
               dateModel
-                ? "max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12 overflow-hidden"
-                : "max-w-[1150px] min-h-screen py-[3.6rem] mx-auto pt-12"
+                ? "max-w-[1150px] min-h-screen mx-auto py-5 md:py-12 overflow-hidden"
+                : "max-w-[1150px] min-h-screen mx-auto py-5 md:py-12"
             }
           >
             <div className="">
@@ -432,7 +432,7 @@ const Book = () => {
                 handleClick={() => router.back()}
               />
             </div>
-            <div className="flex flex-col lg:flex-row mt-3 sm:mt-8 md:mt-14  gap-10 your-trip-sec">
+            <div className="flex flex-col lg:flex-row mt-3 sm:mt-8 md:mt-14 lg:gap-10 your-trip-sec">
               <div className="w-full lg:w-8/12">
                 <h3 className="text-2xl mb-4 font-medium heading-data">
                   Your Trip
@@ -607,7 +607,7 @@ const Book = () => {
                     </div>
                   </div>
                 </div>
-                <div className="mt-11">
+                <div className="mt-11 hidden lg:block">
                   {payloading ? (
                     <Button
                       text={"Loading .."}
@@ -626,7 +626,8 @@ const Book = () => {
                   )}
                 </div>
               </div>
-              <div className="w-full lg:w-4/12 rounded-xl shadow py-8 px-5 h-fit golden-border sticky top-4">
+
+              <div className="w-full lg:w-4/12 rounded-xl shadow py-8 px-5 h-fit golden-border lg:sticky top-4">
                 <div className="flex sm:flex-col md:flex-row gap-3 pb-4 border-b border-borderColor image-data">
                   <Image
                     src={
@@ -661,6 +662,7 @@ const Book = () => {
                     </span>
                   </div>
                 </div>
+
                 <div className="py-4 confirm-details">
                   <h1 className="">Price Details</h1>{" "}
                   <div className="flex gap-3 mt-2 border-b pb-2">
@@ -679,8 +681,10 @@ const Book = () => {
                   {discountPercentage !== 0 ? (
                     <div className="flex gap-3 mt-2 border-b pb-2">
                       <div className="flex items-center justify-between w-full">
-                        <span className="block text-blackColor">
-                          Charges Per Nights ({formatMultiPrice(originalPrice)} *{" "}
+                        <span className=" text-blackColo pe-3">
+                          Charges Per Nights 
+                          <span className="block w-full">
+                          ({formatMultiPrice(originalPrice)} *{" "}
                           {infos.checkout &&
                             infos.checkin &&
                             differenceInDays(
@@ -688,8 +692,9 @@ const Book = () => {
                               new Date(infos.checkin)
                             )}{" "}
                           )
+                          </span>
                         </span>
-                        <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex justify-end">
+                        <span className=" text-blackColor font-medium confirm-price ml-2 inline-flex ">
                           <div className="flex justify-center">
                             <>
                               <div className="flex flex-col items-end">
@@ -727,7 +732,9 @@ const Book = () => {
                     <div className="flex gap-3 mt-2 border-b pb-2">
                       <div className="flex items-center justify-between w-full">
                         <span className="block text-blackColor">
-                          Charges Per Nights ({formatMultiPrice(originalPrice)} *{" "}
+                          Charges per nights 
+                          <span className="block w-full">
+                          ({formatMultiPrice(originalPrice)} *{" "}
                           {infos.checkout &&
                             infos.checkin &&
                             differenceInDays(
@@ -735,6 +742,7 @@ const Book = () => {
                               new Date(infos.checkin)
                             )}{" "}
                           )
+                          </span>
                         </span>
                         <span className="block text-blackColor font-medium confirm-price">
                           <div className="flex justify-center">
@@ -758,12 +766,14 @@ const Book = () => {
                     </div>
                   )}
                   <div className="pt-4 flex items-center justify-between confirm-total">
-                    <span className="font-bold text-center !text-black">Extra Charges </span>
+                    <span className="font-bold text-center !text-black">Extra charges </span>
                   </div>
                   <div className="flex gap-3 mt-2 border-b pb-2">
                     <div className="flex items-center justify-between w-full">
                       <span className="block text-blackColor">
-                        Cleaning Fees Per Nights (
+                        Cleaning fees per night
+                        <span className="w-full block" >
+                        (
                         {formatMultiPrice(listing?.cleaning_fee || 0)} *{" "}
                         {infos.checkout &&
                           infos.checkin &&
@@ -772,6 +782,7 @@ const Book = () => {
                             new Date(infos.checkin)
                           )}
                         )
+                        </span>
                       </span>
                       <span className="block text-blackColor font-medium confirm-price min-w-[100px] ml-2 inline-flex justify-end">
                         {formatMultiPrice(
@@ -833,6 +844,9 @@ const Book = () => {
                     </div>
                   ) : null}
                 </div>
+
+                
+
                 <div className="pt-4 flex items-center justify-between confirm-total">
                   <span className="font-bold">Total(INR)</span>
                   <span className="text-md font-medium">
@@ -840,6 +854,26 @@ const Book = () => {
                   </span>
                 </div>
               </div>
+
+              <div className="pt-4 block lg:hidden">
+                  {payloading ? (
+                    <Button
+                      text={"Loading .."}
+                      design={
+                        "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full bg-[#efa3a3] sm:p-4 p-3 rounded-full"
+                      }
+                    />
+                  ) : (
+                    <Button
+                      text={loading ? "Processing..." : "Confirm & Pay"}
+                      design={
+                        "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-lg leading-tight text-center text-white w-full bg-[#efa3a3] sm:p-4 p-3 rounded-full"
+                      }
+                      onClick={handleSubmit}
+                    />
+                  )}
+                </div>
+              
             </div>
 
             {guestsModel && (
