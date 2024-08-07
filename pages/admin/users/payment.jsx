@@ -69,6 +69,7 @@ export default function payment({ record }) {
                                 src={item?.booking_history?.booking_property?.property_image[0]?.image_url}
                                 alt="Property"
                               />
+                              
                               <div>
                                 <div className="text-gray-800 font-medium capitalize ">{item?.booking_history?.booking_property?.name}</div>
                               </div>
