@@ -1,6 +1,6 @@
-function IntroLayout({content}) {
+function IntroLayout({text}) {
     return (<>
-        <div className="introdution">
+        <div className="introdution px-2 lg:px-6">
             <div className="flex items-center">
                 <div className="" style={{ transition: "opacity 0.6s" }}>
                     <div className="">
@@ -13,10 +13,10 @@ function IntroLayout({content}) {
                             </div>
                             <div className="w-full lg:w-1/2">
                                 <div>
-                                    <div className="flex flex-wrap  justify-between border-b px-3 py-3 lg:px-4 lg:py-4 xl:p-[25px]">
+                                    <div className="flex flex-wrap  justify-between border-b lg:px-3 py-3 lg:px-4 lg:py-4 xl:p-[25px]">
                                         <div className="w-8/12 lg:w-9/12">
                                             <h2 className="text-[18px] lg:text-[20px] text-[#222222] mb-[8px] font-[600]"><span className="mr-3">1</span> Tell us about your place</h2>
-                                            <p className="text-[14px] lg:text-[16px] text-[#222222]  ml-[28px]">
+                                            <p className="text-[14px] lg:text-[16px] text-[#222222]  lg:ml-[28px]">
                                                 Share some basic info, such as where it is and how many
                                                 guests can stay.
                                             </p>
@@ -54,10 +54,10 @@ function IntroLayout({content}) {
                                                 ></div>
                                         </div>
                                     </div>
-                                    <div className="flex flex-wrap  justify-between border-b px-3 py-3 lg:px-4 lg:py-4 xl:p-[25px]">
+                                    <div className="flex flex-wrap  justify-between border-b lg:px-3 py-3 lg:px-4 lg:py-4 xl:p-[25px]">
                                         <div className="w-8/12 lg:w-9/12">
                                             <h2 className="text-[18px] lg:text-[20px] text-[#222222] mb-[8px] font-[600]"><span className="mr-3">2</span>Make it stand out</h2>
-                                            <p className="text-[14px] lg:text-[16px] text-[#222222]  ml-[28px]">
+                                            <p className="text-[14px] lg:text-[16px] text-[#222222]  lg:ml-[28px]">
                                                 Add 5 or more photos plus a title and description –
                                                 we’ll help you out.
                                             </p>
@@ -95,10 +95,10 @@ function IntroLayout({content}) {
                                                 ></div>
                                         </div>
                                     </div>
-                                    <div className="flex flex-wrap  justify-between border-b px-3 py-3 lg:px-4 lg:py-4 xl:p-[25px]">
+                                    <div className="flex flex-wrap  justify-between  lg:px-3 py-3 lg:px-4 lg:py-4 xl:p-[25px]">
                                         <div className="w-8/12 lg:w-9/12">
                                             <h2 className="text-[18px] lg:text-[20px] text-[#222222] mb-[8px] font-[600]"><span className="mr-3">3</span>Finish up and publish</h2>
-                                            <p className="text-[14px] lg:text-[16px] text-[#222222]  ml-[28px]">
+                                            <p className="text-[14px] lg:text-[16px] text-[#222222]  lg:ml-[28px]">
                                                 Choose if you'd like to start with an experienced guest,
                                                 set a starting price and publish your listing.
                                             </p>
@@ -138,6 +138,7 @@ function IntroLayout({content}) {
                             </div>
                         </div>
                     </div>
+                    {text}
                 </div>
             </div>
         </div>

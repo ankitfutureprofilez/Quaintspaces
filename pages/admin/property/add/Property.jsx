@@ -277,6 +277,7 @@ export default function Property(props) {
     customLink: custom_link || "",
   });
 
+  
   const copyToClipboard = () => {
     const textToCopy = `${baseurl}${item?.customLink}`;
     navigator.clipboard
@@ -776,11 +777,11 @@ export default function Property(props) {
       <div
         className={`w-full overflow-hidden	 flex items-center justify-center py-4 md:py-8 `}
       >
-        <div className="max-w-4xl w-full space-y-8 w-full px-2">
+        <div className="max-w-4xl w-full space-y-8 lg:px-2">
           <div
             className={`pages-wrapper  ${uuid ? " max-w-[100%]" : ""} m-auto `}
           >
-            <div className="p-3 sm:p-4 md:p-8 rounded-2xl border ">
+            <div className=" lg:p-8 rounded-2xl lg:border ">
               <div
                 className={`${step === 0 ? "" : "display-none"
                   } max-w-[100%] m-auto mb-8 table w-full`}
@@ -807,14 +808,14 @@ export default function Property(props) {
                 <h2 className="text-xl md:text-2xl capitalize lg:text-3xl text-center mt-4 font-bold md:mb-8 mb-4">
                   Which of these best describes your place?
                 </h2>
-                <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
+                <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-2 gap-2 lg:gap-4">
                   {propertyTypes &&
                     propertyTypes.map((p, i) => (
                       <div key={i} className="">
                         <div
                           onClick={() => setPType(p?.value)}
-                          className={`property-type-wrap cursor-pointer p-4 border rounded-xl ${p?.value === PType
-                            ? "bg-slate-100 border-slate-700 text-slate-700"
+                          className={`property-type-wrap cursor-pointer p-4 border rounded-xl h-full ${p?.value === PType
+                            ? "bg-slate-100 border-slate-700 text-slate-700 h-full"
                             : ""
                             }`}
                         >

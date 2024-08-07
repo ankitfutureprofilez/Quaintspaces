@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "../elements/Modal";
 
 export default function ThingsToKnow({ record, isAdmin, content }) {
-  console.log("record", record);
+  console.log("record", record)
   const [isOpen, setIsOpen] = useState(false);
   const [formattedAdditionalData, setFormattedAdditionalData] = useState("");
 
@@ -26,56 +26,64 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
     return words.slice(0, wordLimit).join(' ') + '...';
   };
 
-  useEffect(() => {
-    const handleAdditionalData = (record) => {
-      let additionalData;
-      let ruleData;
-      let formattedData = "";
-  
-      try {
-        // Parse additional_rules JSON if available
-        additionalData = record?.data?.property_rule?.additional_rules ? JSON.parse(record?.data?.property_rule?.additional_rules) : null;
-        console.log("additionalData", additionalData);
-      } catch (e) {
-        console.error('Error parsing additional_rules JSON:', e);
-      }
-  
-      // Check if additionalData exists and is valid
-      if (additionalData) {
-        try {
-          if (isAdmin) {
-            // Format additionalData by replacing newline characters with <br /> for admin
-            formattedData = additionalData.replace(/\r\n/g, '<br />');
-          } else {
-            // Parse and format ruleData for non-admin
-            ruleData = JSON.parse(additionalData);
-            formattedData = ruleData.replace(/\r\n/g, '<br />');
-          }
-          console.log("formattedAdditionalData", formattedData);
-        } catch (e) {
-          console.error('Error formatting data:', e);
-        }
-      }
-  
-      setFormattedAdditionalData(formattedData);
-    };
-  
-    handleAdditionalData(record);
-  }, [record, isAdmin]);
-  
+  console.log("record?.data?.property_rule?.additional_rules", record?.data?.property_rule?.additional_rules);
+  // useEffect(() => {
+  //   const handleAdditionalData = (record) => {
+  //     let additionalData;
+  //     let ruleData;
+  //     let formattedData = "";
 
-  console.log("formattedAdditionalData",formattedAdditionalData)
+  //     try {
+  //       // Parse additional_rules JSON if available
+  //       additionalData = record?.data?.property_rule?.additional_rules ? record?.data?.property_rule?.additional_rules?.split('\r\n') : null;
+  //       console.log("additionalData", additionalData);
+  //     } catch (e) {
+  //       console.error('Error parsing additional_rules JSON:', e);
+  //     }
+
+  //     // Check if additionalData exists and is valid
+  //     if (additionalData) {
+  //       try {
+  //         if (isAdmin) {
+  //           // Format additionalData by replacing newline characters with <br /> for admin
+  //           formattedData = additionalData.replace(/\r\n/g, '<br />');
+  //         } else {
+  //           // Parse and format ruleData for non-admin
+  //           ruleData = (additionalData);
+  //           formattedData = ruleData.replace(/\r\n/g, '<br />');
+  //         }
+  //         console.log("formattedAdditionalData", formattedData);
+  //       } catch (e) {
+  //         console.error('Error formatting data:', e);
+  //       }
+  //     }
+
+  //     setFormattedAdditionalData(formattedData);
+  //   };
+
+  //   handleAdditionalData(record);
+  // }, [record, isAdmin]);
+
+
+  // console.log("formattedAdditionalData",formattedAdditionalData)
+
+  const formattedRules = record?.data?.property_rule?.additional_rules?.split('\n')?.filter(rule => rule.trim() !== '');
+
 
   return (
-    <div className="container mx-auto">
-      <h1 className="listing-heading text-left !mb-[10px]">Things to know</h1>
+    <div className="container mx-auto pb-4">
+      <h1 className="listing-heading text-left !mb-[10px] ">Things to know</h1>
       <div className="flex justify-between house-rule-text">
-        <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full ">
+        <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full pe-4">
           <h2 className="font-semibold mb-2">Timings </h2>
           <p className="mb-2 text-gray-500">Check in:  {record?.data?.check_in}</p>
           {/* <p className="mb-2 text-gray-500">Flexible/check-in ends after {record?.data?.flexible_check_in}</p> */}
           <p className="mb-2 text-gray-500">Check out: {record?.data?.check_out}</p>
-          {/* <p className="mb-2 text-gray-500">{record?.data?.guests} Guests Maximum</p> */}
+          {/* Note added here */}
+          <p className="mb-2 text-gray-500">
+            <span className="font-semibold text-black">Note:&nbsp;</span>
+            The price is subjective to changes based on the number of guests. A maximum of {record?.data?.guests} guests are allowed to stay at the property.
+          </p>
         </div>
         <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
           <h2 className="font-semibold mb-2">Safety & Property</h2>
@@ -123,20 +131,33 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
                     {record?.data?.property_rule?.events_allowed === 1 ? "Event is allowed." : "Event is not allowed."}
                   </li>
                 </ol>
+                {formattedRules && 
                 <h2 className="text-[18px] mb-2">Additional Rules</h2>
+                }
+                <div className="text-[15px] text-[#61554E] leading-[24px]">
+                  <ul>
+                    {formattedRules && formattedRules?.map((rule, index) => (
+                      <li key={index}>
+                        {rule}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
                 <div className="text-[15px] text-[#61554E] leading-[24px]" dangerouslySetInnerHTML={{ __html: formattedAdditionalData }} />
               </div>
             </div>
           </Modal>
         </div>
       </div>
-      <div className="mb-[30px] mt-[7px] flex">
+      {/* <div className="mb-[30px] mt-[7px] flex">
       <p className="font-semibold">Note:&nbsp;
         <span className="text-gray-500 sm:ml-2 font-normal">The price is subjective to changes based on the number of guests. A maximum of {record?.data?.guests} guests are allowed to stay at the property.</span>
         </p>
-      </div>
+      </div> */}
 
-      {isAdmin && (
+      
+
+      {/* {isAdmin && (
         <>
           <div className="flex justify-between house-rule-text">
             <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
@@ -183,7 +204,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
             </div>
           </div>
         </>
-      )}
+      )} */}
     </div>
   );
 }
