@@ -253,7 +253,7 @@ export default function Index() {
     };
   }, [showConfirmation]);
 
-
+console.log("listings",listings)
 
 
   const BookingTable = () => {
