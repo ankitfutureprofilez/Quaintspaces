@@ -110,7 +110,7 @@ const success = () => {
                 <p className="text-black-400 font-bold  capitalize">
                   Booking Number
                 </p>
-                <p className="text-start text-black-400 font-semibold">
+                <p className="text-start text-black-400 font-bold font-semibold">
                   {record?.booking_number}
                 </p>
               </div>
@@ -144,7 +144,7 @@ const success = () => {
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
                 <p className="text-black-400 font-bold capitalize">Check in </p>
-                <p className="text-start text-black-400 font-bold font-semibold">
+                <p className="text-start text-black-400  font-bold font-semibold">
                   <SuccessDate item={record?.check_in} />{" "}
                   {/* {DateComponent(record?.check_in)}{" "} */}
                 </p>
@@ -161,13 +161,13 @@ const success = () => {
 
               <div className="w-full flex justify-between mb-4 flex-wrap ">
                 <p className="text-black-400 font-bold capitalize">Amount Paid</p>
-                <p className="text-start items-center flex whitespace-nowrap text-black-400 font-bold font-semibold"><MdOutlineCurrencyRupee size='15' />{record?.price}.00</p>
+                <p className="text-start items-center flex whitespace-nowrap text-black-400 font-bold font-semibold "><MdOutlineCurrencyRupee size='15' />{record?.price}.00</p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">
                 <p className="text-black-400 font-bold capitalize">
                   Total Members (Guests & infants)
                 </p>
-                <p className="text-start text-black-400 font-semibold">
+                <p className="text-start font-bold font-semibold text-black-400">
                   {record?.guests} & {record?.infants}{" "}
                 </p>
               </div>
@@ -175,7 +175,7 @@ const success = () => {
                 <p className="text-black-400 font-bold capitalize">
                   Total Pets
                 </p>
-                <p className="text-start text-black-400 font-bold font-semibold">
+                <p className="text-start text-black-400 font-bold font-semibold ">
                   {record?.no_of_pet}
                 </p>
               </div>
@@ -183,7 +183,7 @@ const success = () => {
                 <p className="text-black-400 font-bold capitalize">
                   no. of nights
                 </p>
-                <p className="text-start text-black-400 font-bold font-semibold">
+                <p className="text-start text-black-400 font-bold font-semibold ">
                   {totalStay === 1 ? (`${totalStay} Night`) :  (`${totalStay} Nights`)}
                 </p>
               </div>

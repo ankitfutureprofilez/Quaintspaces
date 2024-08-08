@@ -1,6 +1,7 @@
-import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "../elements/Modal";
+import Moment from 'moment';
+
 
 export default function ThingsToKnow({ record, isAdmin, content }) {
   console.log("record", record)
@@ -19,53 +20,6 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
   const jsonString = record?.data?.check_out_instruction; // Fetch the JSON string from your data
   const instructions = jsonString ? JSON.parse(jsonString) : []; // Parse JSON string to JavaScript object
 
-  const truncateText = (text, wordLimit) => {
-    if (!text) return '';
-    const words = text.split(' ');
-    if (words.length <= wordLimit) return text;
-    return words.slice(0, wordLimit).join(' ') + '...';
-  };
-
-  console.log("record?.data?.property_rule?.additional_rules", record?.data?.property_rule?.additional_rules);
-  // useEffect(() => {
-  //   const handleAdditionalData = (record) => {
-  //     let additionalData;
-  //     let ruleData;
-  //     let formattedData = "";
-
-  //     try {
-  //       // Parse additional_rules JSON if available
-  //       additionalData = record?.data?.property_rule?.additional_rules ? record?.data?.property_rule?.additional_rules?.split('\r\n') : null;
-  //       console.log("additionalData", additionalData);
-  //     } catch (e) {
-  //       console.error('Error parsing additional_rules JSON:', e);
-  //     }
-
-  //     // Check if additionalData exists and is valid
-  //     if (additionalData) {
-  //       try {
-  //         if (isAdmin) {
-  //           // Format additionalData by replacing newline characters with <br /> for admin
-  //           formattedData = additionalData.replace(/\r\n/g, '<br />');
-  //         } else {
-  //           // Parse and format ruleData for non-admin
-  //           ruleData = (additionalData);
-  //           formattedData = ruleData.replace(/\r\n/g, '<br />');
-  //         }
-  //         console.log("formattedAdditionalData", formattedData);
-  //       } catch (e) {
-  //         console.error('Error formatting data:', e);
-  //       }
-  //     }
-
-  //     setFormattedAdditionalData(formattedData);
-  //   };
-
-  //   handleAdditionalData(record);
-  // }, [record, isAdmin]);
-
-
-  // console.log("formattedAdditionalData",formattedAdditionalData)
 
   const formattedRules = record?.data?.property_rule?.additional_rules?.split('\n')?.filter(rule => rule.trim() !== '');
 
@@ -85,14 +39,22 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
             The price is subjective to changes based on the number of guests. A maximum of {record?.data?.guests} guests are allowed to stay at the property.
           </p>
         </div>
-        <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
+        {safetyAmenities && <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
           <h2 className="font-semibold mb-2">Safety & Property</h2>
           {safetyAmenities?.map((amenity, index) => (
             <p key={index} className="mb-2 text-gray-500 capitalize">
               {amenity?.replaceAll("_", " ") || "Carbon monoxide alarm"}
             </p>
           ))}
-        </div>
+        </div>}
+        {/* <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
+          <h2 className="font-semibold mb-2">Safety & Property</h2>
+          {safetyAmenities?.map((amenity, index) => (
+            <p key={index} className="mb-2 text-gray-500 capitalize">
+              {amenity?.replaceAll("_", " ") || "Carbon monoxide alarm"}
+            </p>
+          ))}
+        </div> */}
 
         <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
           <h2 className="font-semibold mb-2">House Rules</h2>
@@ -121,18 +83,34 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
                   <li className="mb-1 capitalize text-[15px]">
                     {record?.data?.property_rule?.photography_allowed === 1 ? "Photography is allowed." : "Photography is not allowed."}
                   </li>
-                  <li className="mb-1 capitalize text-[15px]">
-                    {record?.data?.property_rule?.quiet_hours_allowed === 1 ? "Quiet hours are allowed." : "Quiet hours are not allowed."}
-                  </li>
+
                   <li className="mb-1 capitalize text-[15px]">
                     {record?.data?.property_rule?.smoking_allowed === 1 ? "Smoking is allowed." : "Smoking is not allowed."}
                   </li>
                   <li className="mb-1 capitalize text-[15px]">
                     {record?.data?.property_rule?.events_allowed === 1 ? "Event is allowed." : "Event is not allowed."}
                   </li>
+                  <li className="mb-1 capitalize text-[15px]">
+                    {record?.data?.property_rule?.quiet_hours_allowed === 1 ? "Quiet hours are allowed." : "Quiet hours are not allowed."}
+                  </li>
+
+
+
                 </ol>
-                {formattedRules && 
-                <h2 className="text-[18px] mb-2">Additional Rules</h2>
+                {record?.data.property_rule?.quite_hours_in_time &&
+
+                  (
+                    <>
+                      <h2 className="text-[18px] mb-2">Quiet Hours Timing </h2>
+                      <p className=" capitalize text-[15px]  mb-2 text-gray-500">
+                        Quiet Hours Form  {Moment(record?.data.property_rule?.quite_hours_in_time, "HH:mm").format('h:mma')} To {Moment(record?.data.property_rule?.quite_hours_out_time, "HH:mm").format('h:mma')}
+                      </p>
+                    </>
+                  )}
+
+
+                {formattedRules &&
+                  <h2 className="text-[18px] mb-2">Additional Rules</h2>
                 }
                 <div className="text-[15px] text-[#61554E] leading-[24px]">
                   <ul>
@@ -155,7 +133,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
         </p>
       </div> */}
 
-      
+
 
       {/* {isAdmin && (
         <>
