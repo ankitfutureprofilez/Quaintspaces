@@ -98,6 +98,7 @@ export default function Index() {
               <div className="mt-4 sm:mt-0 flex-shrink-0 self-end sm:self-start">
                 <Link href={item.href} className="flex items-center border-b-2 border-[#efa3a3] text-sm text-[#efa3a3] hover:text-[#d17575]">
                   <p className="mr-2">View More</p>
+                  
                   <svg
                     width="8"
                     height="13"
