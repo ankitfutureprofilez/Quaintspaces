@@ -184,7 +184,7 @@ const success = () => {
                   no. of nights
                 </p>
                 <p className="text-start text-black-400 font-bold font-semibold">
-                  {totalStay} {totalStay === 1 ? "Night" : "Nights"}
+                  {totalStay === 1 ? (`${totalStay} Night`) :  (`${totalStay} Nights`)}
                 </p>
               </div>
             </div>

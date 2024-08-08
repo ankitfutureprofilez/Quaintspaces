@@ -10,6 +10,19 @@ import Menu from "./Menu";
 import Listings from "../api/laravel/Listings";
 import { IoMdMenu } from "react-icons/io";
 import SecurityIcon from "../../public/icons/SecurityIcon";
+import { CgProfile } from "react-icons/cg";
+import { MdOutlineLogout } from "react-icons/md";
+import { MdOutlinePayment } from "react-icons/md";
+import { IoTimerOutline } from "react-icons/io5";
+import { IoMdSettings } from "react-icons/io";
+import { MdOutlineSettings } from "react-icons/md";
+import { MdOutlineAvTimer } from "react-icons/md";
+
+import { MdOutlineSecurity } from "react-icons/md";
+
+
+
+
 
 export default function Header() {
   const router = useRouter();
@@ -101,8 +114,8 @@ export default function Header() {
                   <div
                     className="profile-image-container items-center"
                     style={{ cursor: "pointer" }} >
-                    <Image alt="profile" width={100} height={100} 
-                    src={ auth?.image_url ? auth?.image_url : "/images/profile-no-image.jpg" } /> 
+                    <Image alt="profile" width={100} height={100}
+                      src={auth?.image_url ? auth?.image_url : "/images/profile-no-image.jpg"} />
                     <span className="ml-[5px]">{auth?.first_name}</span>
                   </div>
                   {isDropdownOpen && <Menu />}
@@ -114,12 +127,16 @@ export default function Header() {
                       <nav className="grid gap-1">
                         <Link
                           href="/profile"
-                          className="mb-3 block link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg" > <span>My Profile</span>
+                          className="mb-3 block link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg" >
+                          <CgProfile size={24} />
+                          <span>My Profile</span>
                         </Link>
                         <Link
                           href="/booking-history"
                           className="mb-3 block link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg"
                         >
+
+                          <MdOutlineAvTimer size={24} />
                           <span>Bookings History</span>
                         </Link>
 
@@ -127,6 +144,8 @@ export default function Header() {
                           href="/payment-history"
                           className="mb-3 block link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg"
                         >
+
+                          <MdOutlinePayment size={24} />
                           <span>Payment History</span>
                         </Link>
 
@@ -134,6 +153,7 @@ export default function Header() {
                           href="/security"
                           className="mb-3 block link !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800 border-b rounded-lg"
                         >
+                          <MdOutlineSecurity size={24} />
                           <span>Security</span>
                         </Link>
 
@@ -141,12 +161,14 @@ export default function Header() {
                           href="/account"
                           className="link block mb-3  rounded-lg !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800"
                         >
+                          <MdOutlineSettings size={24} />
                           <span>Settings</span>
                         </Link>
-                        
+
                         <Link onClick={handleLogoutClick}
                           href="/login"
                           className="link block mb-3 rounded-lg !flex items-center leading-6 space-x-3 w-full text-lg text-gray-600 focus:outline-none hover:text-gray-800">
+                          <MdOutlineLogout size={24} />
                           <span>Logout</span>
                         </Link>
                       </nav>
