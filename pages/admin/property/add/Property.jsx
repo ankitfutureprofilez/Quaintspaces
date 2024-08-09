@@ -73,6 +73,7 @@ export default function Property(props) {
     custom_link,
   } = p ? p : {};
 
+  console.log("p",p)
 
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
   const [pets, setPets] = useState(no_of_pet_allowed || 1);
