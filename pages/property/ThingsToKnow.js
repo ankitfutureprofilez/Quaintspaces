@@ -65,7 +65,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
             {record?.data?.property_rule?.photography_allowed === 1 ? "Photography is allowed." : "Photography is not allowed."}
           </p>
           <p className="mb-2 text-gray-500 ">
-            {record?.data?.property_rule?.quiet_hours_allowed === 1 ? "Quiet hours are allowed." : "Quiet hours are not allowed."}
+          {record?.data?.property_rule?.smoking_allowed === 1 ? "Smoking is allowed." : "Smoking is not allowed."}
           </p>
           <button className="mb-2 text-blue-400 underline text-left" onClick={openModal}>
             See All
@@ -90,16 +90,16 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
                   <li className="mb-1 capitalize text-[15px]">
                     {record?.data?.property_rule?.events_allowed === 1 ? "Event is allowed." : "Event is not allowed."}
                   </li>
-                  <li className="mb-1 capitalize text-[15px]">
+                  {/* <li className="mb-1 capitalize text-[15px]">
                     {record?.data?.property_rule?.quiet_hours_allowed === 1 ? "Quiet hours are allowed." : "Quiet hours are not allowed."}
-                  </li>
+                  </li> */}
                 </ol>
                 {record?.data.property_rule?.quite_hours_in_time &&
                   (
                     <>
                       <h2 className="text-[18px] mb-2">Quiet Hours Timing </h2>
                       <p className=" capitalize text-[15px]  mb-2 text-gray-500">
-                        Quiet Hours Form  {Moment(record?.data.property_rule?.quite_hours_in_time, "HH:mm").format('h:mma')} To {Moment(record?.data.property_rule?.quite_hours_out_time, "HH:mm").format('h:mma')}
+                        From  {Moment(record?.data.property_rule?.quite_hours_in_time, "HH:mm").format('h:mma')} To {Moment(record?.data.property_rule?.quite_hours_out_time, "HH:mm").format('h:mma')}
                       </p>
                     </>
                   )}
