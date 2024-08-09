@@ -41,88 +41,108 @@ export default function RoomListings() {
   };
 
   return (
-    <div className=" ">
-      <div className="swiperdiv">
-      <Swiper   
-      spaceBetween={0} 
-      // autoplay={{ 
-      //   delay: 2000, 
-      //   disableOnInteraction: false,
-      // }}
-      // loop={true}
-      pagination={{
-        clickable: true,
-      }} 
-      // navigation={true} 
-      breakpoints={{
-        640: {
-          slidesPerView: 1,
-          spaceBetween:0,
-        },
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 0,
-        },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 0,
-        },
-      }}
-      modules={[Pagination]}
-      className="mySwiper pb-10 lg:pb-0 ">
-        <div className="slider-container">
-          {listings?.map((item, index) => (
-            <SwiperSlide className="p-2 sm:p-3">
-              <Link key={index} className="bg-white w-full banipark-box rounded-lg block relative overflow-hidden pb-[85px] h-full" href={`/property/${item?.uuid}`}>
-              {item?.discount_offer ? (
-                <div className="absolute bg-[#efa3a3] -rotate-45 text-white px-2 py-1 w-32 text-center -left-[32px] top-[18px] shadow-[0_0_17px_-5px_#3c3c3c;]">
-                  {item?.discount_offer}% off
-                </div>
-              ) : null}
-              <Image
-                width={100}
-                height={300}
-                layout="responsive"
-                src={item?.property_image[0]?.image_url}
-                blurDataURL={`${item?.property_image[0]?.image_url}?q=1`}
-                placeholder="blur"
-                alt="Property cover image"
-                className="!rounded-[7px_7px_0px_0px]"
-              />
-              <div className="flat-info p-3 lg:p-6">
-                <h2 className="line-clamp-1 !pb-[5px]">
-                  {
-                    parseLocation(item?.location)
-
-                }
-                </h2>
-                <h3 className="line-limit capitalize" style={{ WebkitLineClamp: 1 }}>
-                  {capitalizeFirstLetter(item?.name)}
-                </h3>
-                <p>
-                  <span className="capitalize">{capitalizeAndReplace(item?.type)}  ·</span> &nbsp;
-                  <span className="capitalize">{capitalizeAndReplace(item?.properties_type)}   ·</span> &nbsp;
-                  {item?.bedrooms} Bedrooms · {item?.beds} Bed · {item?.guests} Guests · {item?.no_of_pet_allowed} Pets
-                </p>
-                <h4>
-                  <span className="card-price">
-                    {formatMultiPrice(item?.price) || 0}
-                  </span>{" "}
-                  /night
-                </h4>
-              </div>
-              <div className="explor-btn absolute w-full left-0 bottom-0">
-                Explore
-              </div>
-              </Link>
-            </SwiperSlide>
-          ))}
+    <div>
+      {loading ? (
+        <div className="flex gap-4">
+        {[1, 2, 3].map((item, index) => (
+          <div key={index} className="bg-white w-1/3 banipark-box rounded-lg block relative overflow-hidden pb-[85px] h-full animate-pulse">
+            <div className="absolute bg-gray-300 rounded-full h-5 w-32 text-center -left-[32px] top-[18px]">
+              {/* Skeleton for Discount */}
+            </div>
+            <div className="relative w-full h-0 pb-[85%] bg-gray-300">
+              {/* Skeleton for Image */}
+            </div>
+            <div className="flat-info p-3 lg:p-6">
+              <div className="h-4 bg-gray-300 rounded mb-2 w-3/4"></div>
+              <div className="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
+              <div className="h-4 bg-gray-300 rounded mb-2 w-full"></div>
+              <div className="h-4 bg-gray-300 rounded mb-2 w-2/3"></div>
+            </div>
+            <div className="explor-btn absolute w-full left-0 bottom-0">
+              <div className="h-10 bg-gray-300"></div>
+            </div>
+          </div>
+        ))}
         </div>
-      </Swiper>
-      </div>
+      ) : (
+        <div className="swiperdiv">
+          <Swiper
+            spaceBetween={0}
+            pagination={{
+              clickable: true,
+            }}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+                spaceBetween: 0,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 0,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 0,
+              },
+            }}
+            modules={[Pagination]}
+            className="mySwiper pb-10 lg:pb-0"
+          >
+            <div className="slider-container">
+              {listings?.map((item, index) => (
+                <SwiperSlide key={index} className="p-2 sm:p-3">
+                  <Link
+                    key={index}
+                    className="bg-white w-full banipark-box rounded-lg block relative overflow-hidden pb-[85px] h-full"
+                    href={`/property/${item?.uuid}`}
+                  >
+                    {item?.discount_offer ? (
+                      <div className="absolute bg-[#efa3a3] -rotate-45 text-white px-2 py-1 w-32 text-center -left-[32px] top-[18px] shadow-[0_0_17px_-5px_#3c3c3c;]">
+                        {item?.discount_offer}% off
+                      </div>
+                    ) : null}
+                    <Image
+                      width={100}
+                      height={300}
+                      layout="responsive"
+                      src={item?.property_image[0]?.image_url}
+                      blurDataURL={`${item?.property_image[0]?.image_url}?q=1`}
+                      placeholder="blur"
+                      alt="Property cover image"
+                      className="!rounded-[7px_7px_0px_0px]"
+                    />
+                    <div className="flat-info p-3 lg:p-6">
+                      <h2 className="line-clamp-1 !pb-[5px]">
+                        {parseLocation(item?.location)}
+                      </h2>
+                      <h3 className="line-limit capitalize" style={{ WebkitLineClamp: 1 }}>
+                        {capitalizeFirstLetter(item?.name)}
+                      </h3>
+                      <p>
+                        <span className="capitalize">{capitalizeAndReplace(item?.type)}  ·</span> &nbsp;
+                        <span className="capitalize">{capitalizeAndReplace(item?.properties_type)}   ·</span> &nbsp;
+                        {item?.bedrooms} Bedrooms · {item?.beds} Bed · {item?.guests} Guests · {item?.no_of_pet_allowed} Pets
+                      </p>
+                      <h4>
+                        <span className="card-price">
+                          {formatMultiPrice(item?.price) || 0}
+                        </span>{" "}
+                        /night
+                      </h4>
+                    </div>
+                    <div className="explor-btn absolute w-full left-0 bottom-0">
+                      Explore
+                    </div>
+                  </Link>
+                </SwiperSlide>
+              ))}
+            </div>
+          </Swiper>
+        </div>
+      )}
     </div>
   );
-}
+};
 
 function capitalizeFirstLetter(string) {
   return string?.charAt(0).toUpperCase() + string?.slice(1);

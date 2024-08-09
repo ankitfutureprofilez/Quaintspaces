@@ -847,7 +847,7 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
             <div key={i} className="p-1">
               <div
                 onClick={() => toggleSelectedAmenity(amenity?.value)}
-                className={`property-type-wrap cursor-pointer p-4 hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px]  ${selectedAmenity?.includes(amenity.value) ? "bg-[#efefef] shadow-[0_0px_0px_1px_#efefef] text-slate-700 " : ""
+                className={`property-type-wrap cursor-pointer p-4 h-full hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px]  ${selectedAmenity?.includes(amenity.value) ? "bg-[#efefef] shadow-[0_0px_0px_1px_#efefef] text-slate-700 " : ""
                   }`}
               >
                 {amenity?.icons}
@@ -874,7 +874,7 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
             <div key={i} className="p-1">
               <div
                 onClick={() => togglestandoutAmenity(amenity.value)}
-                className={`property-type-wrap cursor-pointer p-4 hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px] ${standoutAmenity?.includes(amenity.value) ? "bg-[#efefef] shadow-[0_0px_0px_1px_#efefef] text-slate-700" : ""
+                className={`property-type-wrap cursor-pointer p-4 h-full hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px] ${standoutAmenity?.includes(amenity.value) ? "bg-[#efefef] shadow-[0_0px_0px_1px_#efefef] text-slate-700" : ""
                   }`}
               >
                 {amenity.icons}
@@ -901,7 +901,7 @@ export default function Amenities({ selectedAmenity, setSelectedAmenity, standou
             <div key={i} className="p-1">
               <div
                 onClick={() => toggleAmenity(amenity.value)}
-                className={`property-type-wrap cursor-pointer p-4 hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px]  ${Amenity?.includes(amenity.value) ? "bg-[#efefef] shadow-[0_0px_0px_1px_#efefef] text-slate-700 " : ""
+                className={`property-type-wrap cursor-pointer p-4 h-full hover:shadow-[0_0px_0px_1.5px_#222] shadow-[0_0px_0px_1px_#ccc] rounded-[8px]  ${Amenity?.includes(amenity.value) ? "bg-[#efefef] shadow-[0_0px_0px_1px_#efefef] text-slate-700 " : ""
                   }`}
               >
                 {amenity.icons}

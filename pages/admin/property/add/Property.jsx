@@ -815,7 +815,7 @@ export default function Property(props) {
                       <div key={i} className="">
                         <div
                           onClick={() => setPType(p?.value)}
-                          className={`property-type-wrap cursor-pointer p-4 border rounded-xl h-full ${p?.value === PType
+                          className={`property-type-wrap cursor-pointer p-4 h-full border rounded-xl h-full ${p?.value === PType
                             ? "bg-slate-100 border-slate-700 text-slate-700 h-full"
                             : ""
                             }`}
@@ -1104,6 +1104,9 @@ export default function Property(props) {
                         </p>
                         <p className="text-normal text-gray-500 px-2 text-gray-400">
                           (jpg, jpeg, png, gif, bmp, tif, tiff, svg, webp, avif)
+                        </p>
+                        <p className="text-normal text-gray-500 px-2 text-gray-400">
+                          Maximum combined size of all images must be less than 5 MB.
                         </p>
                       </div>
                       <input
