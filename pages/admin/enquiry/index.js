@@ -15,6 +15,7 @@ export default function Index() {
   const [selectedEnquiry, setSelectedEnquiry] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [expandedMessageId, setExpandedMessageId] = useState(null);
 
   // Function to fetch data from server
   const fetchData = async (pg, signal) => {
@@ -42,9 +43,6 @@ export default function Index() {
       setLoading(false);
     }
   };
-  // useEffect(() => {
-  //   fetchData(1);
-  // }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -57,10 +55,15 @@ export default function Index() {
     };
   }, [page]);
 
-  const ShowToolTip = ({ text }) => {
-    const [isExpanded, setIsExpanded] = useState(false);
+  const ShowToolTip = ({ text, messageId }) => {
+    const isExpanded = expandedMessageId === messageId;
+
     const toggleExpanded = () => {
-      setIsExpanded(!isExpanded);
+      if (isExpanded) {
+        setExpandedMessageId(null); // Close the currently open message
+      } else {
+        setExpandedMessageId(messageId); // Open the new message
+      }
     };
 
     return (
@@ -80,7 +83,6 @@ export default function Index() {
       </>
     );
   }
-
 
   // Function to handle loading more data
   const loadMore = () => {
@@ -203,13 +205,11 @@ export default function Index() {
                               <div className="text-sm">{item?.email}</div>
                             </td>
                             <td className="px-4 py-4 text-sm text-gray-500">
-                              <ShowToolTip text={item?.message} />
+                              <ShowToolTip text={item?.message} messageId={item?.id} />
                             </td>
                             {item?.reply_message !== "N/A" ? (
                               <td className="px-4 py-4 text-sm text-gray-500">
-                              <ShowToolTip text={item?.reply_message} />
-
-                                {/* {item?.reply_message} */}
+                                <ShowToolTip text={item?.reply_message} messageId={item?.id} />
                               </td>
                             ) : (
                               <td className="px-4 py-2 text-sm text-gray-500">
@@ -230,7 +230,6 @@ export default function Index() {
                   </table>
                 </div>
               </div>
-
             )}
           </div>
           {hasMore && !loading && (
@@ -243,13 +242,6 @@ export default function Index() {
               </button>
             </div>
           )}
-          {/* {!hasMore && !loading && (
-            <div className="flex justify-center">
-              <button className="font-inter font-lg leading-tight bg-indigo-600 text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 p-4 rounded-full mt-10 mb-12 text-white">
-                No More Data
-              </button>
-            </div>
-          )} */}
         </section>
       </AdminLayout>
 

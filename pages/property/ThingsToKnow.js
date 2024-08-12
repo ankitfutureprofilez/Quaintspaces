@@ -72,7 +72,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
           </button>
           <Modal width="md" isOpen={isOpen} onClose={closeModal}>
             <div className="flex flex-col align-center w-full">
-              <h2 className="w-full p-4 bg-[#c48b58] text-[#fff] align-center text-lg text-base font-medium bg-[#efa3a3]">
+              <h2 className="w-full p-4 text-[#fff] align-center text-lg text-base font-medium bg-[#efa3a3]">
                 House Rules
               </h2>
               <div className="p-4">
