@@ -7,16 +7,27 @@ import Button from "../elements/Button.js";
 import toast from "react-hot-toast";
 import Listings from "../api/laravel/Listings.js";
 import Head from "next/head";
+import HCaptcha from '@hcaptcha/react-hcaptcha';
+
 import { MdOutlinePhone } from "react-icons/md";
 export default function index() {
   const router = useRouter();
+  console.log("process.env.HCAPTCHA_KEY", process.env.NEXT_PUBLIC_HCAPTCHA_KEY)
+  const CAPUTRE_KEY = process.env.NEXT_PUBLIC_HCAPTCHA_KEY
+  const [hCaptchaToken, setHCaptchaToken] = useState(null);
+
+
+  const onVerify = (token) => {
+    setHCaptchaToken(token);
+  };
+
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
- 
+
   const handleChange = (e) => {
     const { name, value } = e?.target;
     setFormData({
@@ -26,6 +37,11 @@ export default function index() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!hCaptchaToken) {
+      toast.error("Please complete the hCaptcha verification first.");
+      return;
+    }
+
     if (loading == true) {
       return;
     }
@@ -88,7 +104,7 @@ export default function index() {
         <div className="container mx-auto">
           <h2 className="sm:mb-4 mb-2 text-[26px] sm:text-[30px] md:text-[40px] text[#3F2A17] text-center font-[400] font-['Baskervville']"> Get In Touch</h2>
           <div className="grid md:grid-cols-3 gap-4">
-            <div className="h-[250px] md:h-[398px] rounded-[10px]" style={{ backgroundImage: `url(/images/About1.webp)` ,backgroundPosition: 'center'  }} >
+            <div className="h-[250px] md:h-[398px] rounded-[10px]" style={{ backgroundImage: `url(/images/About1.webp)`, backgroundPosition: 'center' }} >
               <div className="bg-[#00000073] rounded-[10px] h-full py-[20px] xxl:py-[50px] px-[20px] xxl:px-[40px] flex flex-col items-center md:items-start justify-center md:justify-start text-center md:text-start">
                 <h3 className="text-[20px] lg:text-[24px] text-[#fff] mb-[8px] mb-[10px] xxl:mb-[15px]">Unmatched Quality</h3>
                 <p className="text-[14px] lg:text-[16px] text-[#fff]">Each property is meticulously selected to ensure the highest standards of luxury and comfort.</p>
@@ -138,14 +154,14 @@ export default function index() {
                   </svg> */}
                   <MdOutlinePhone className="inline-block align-middle" size={18} color={"#3F2A17"} />
                   <p className="ps-2">9521410122</p>
-                  
+
                 </p>
                 <p className="text-[16px] items-start flex text-[#000000] mb-[10px] max-w-xs">
                   <svg width="20" height="20" className="w-9 h-5 inline-block mt-[2px] align-middle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                   </svg>
                   <p className="ps-2">
-                  D-105, Golden Oak II, Devi Marg, Near Station Road, Bani Park, Jaipur 302019
+                    D-105, Golden Oak II, Devi Marg, Near Station Road, Bani Park, Jaipur 302019
                   </p>
                 </p>
               </div>
@@ -240,13 +256,18 @@ export default function index() {
                     rows={4} // Set the number of rows as needed
                   />
                 </div>
+                {formData?.message.length > 10 &&
+                  <div className="flex items-center justify-center h-full mb-5">
+                    <div className="hcapture" >
+                      <HCaptcha sitekey={CAPUTRE_KEY} data-theme="light" data-size="compact" onVerify={onVerify} required />
+                    </div>
+                  </div>
+                }
                 <div className="flex items-center justify-center h-full">
-                  <button className="hover:bg-[#fff] border border-[#efa3a3] bg-[#efa3a3] text-[#fff] hover:text-[#efa3a3] btn w-7/12 !py-2 lg:!py-3">
+                  <button className="hover:bg-[#fff] border border-[#efa3a3] bg-[#efa3a3] text-[#fff] hover:text-[#efa3a3] btn w-7/12 !py-2 lg:!py-3" disabled={loading}>
                     {loading ? "Submitting..." : "Submit"}
                   </button>
                 </div>
-
-
               </form>
             </div>
           </div>

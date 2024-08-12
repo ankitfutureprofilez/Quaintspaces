@@ -39,7 +39,7 @@ const propertyTypes = [
 export default function Property(props) {
   const { isEdit, p, fetchProperties, stepdata, useExistingImages } = props;
 
-  console.log("isEdit",isEdit)
+  console.log("isEdit", isEdit)
   const {
     uuid,
     type,
@@ -73,7 +73,7 @@ export default function Property(props) {
     custom_link,
   } = p ? p : {};
 
-  console.log("p",p)
+  console.log("p", p)
 
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
   const [pets, setPets] = useState(no_of_pet_allowed || 1);
@@ -113,7 +113,7 @@ export default function Property(props) {
   const [dragId, setDragId] = useState("");
   const [typeHere, setTypeHere] = useState(type || "entire_place");
   const [checkinquet, setCheckinquiet] = useState(property_rule?.quite_hours_in_time || "00:00");
-  const [checkoutquet, setCheckoutquiet] = useState( property_rule?.quite_hours_out_time || "00:00");
+  const [checkoutquet, setCheckoutquiet] = useState(property_rule?.quite_hours_out_time || "00:00");
   const [checkinStart, setCheckinStart] = useState(check_in || "00:00:00");
   const [checkout, setCheckout] = useState(check_out || "00:00:00");
   const [selectedOption, setSelectedOption] = useState(status || 0);
@@ -272,13 +272,13 @@ export default function Property(props) {
     Direction: property_rule?.direction || "",
     housemanual: property_rule?.house_manuals || "",
     wifi: property_rule?.wifi_username || "",
-    additonalrule:property_rule?.additional_rules|| "",
+    additonalrule: property_rule?.additional_rules || "",
     wifiPassword: property_rule?.wifi_password || "",
     discount: discount_offer || "",
     customLink: custom_link || "",
   });
 
-  
+
   const copyToClipboard = () => {
     const textToCopy = `${baseurl}${item?.customLink}`;
     navigator.clipboard
@@ -586,12 +586,12 @@ export default function Property(props) {
       toast.error(`All fields are required.`);
       return false;
     }
-    if (step === 7 && longTermPolicy === null && selectedPolicy === null) {
-      toast.error(`At least one field is required.`);
-      return false;
-    }
+    // if (step === 7 && longTermPolicy === null && selectedPolicy === null) {
+    //   toast.error(`At least one field is required.`);
+    //   return false;
+    // }
     if (
-      step === 8 &&
+      step === 7 &&
       (item?.additonalrule === "" ||
         petsAllowed === " " ||
         smokingAllowed === " " ||
@@ -603,7 +603,7 @@ export default function Property(props) {
       return false;
     }
     if (
-      step === 9 &&
+      step === 8 &&
       (item?.Direction === "" ||
         item?.wifi === " " ||
         item?.wifiPassword === " " ||
@@ -614,7 +614,7 @@ export default function Property(props) {
     }
 
     if (
-      step === 10 &&
+      step === 9 &&
       (item?.customLink === "" ||
         item?.selectedInstruction === " " ||
         selectedMethod === " ")
@@ -628,7 +628,7 @@ export default function Property(props) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (step === 11 && checkoutInstructions === "") {
+    if (step === 10 && checkoutInstructions === "") {
       toast.error(`All fields are required.`);
       return false;
     }
@@ -674,15 +674,15 @@ export default function Property(props) {
     formData.append("quite_hours_out_time", checkoutquet);
     formData.append("check_in_description", checkdescrtion);
     formData.append("check_in_method", selectedMethod);
-    formData.append("check_out_instruction",  JSON.stringify(checkoutInstructions));
+    formData.append("check_out_instruction", JSON.stringify(checkoutInstructions));
     formData.append("discount_offer", item?.discount);
-    images.forEach((image, index) => { formData.append("property_image[]", image);});
+    images.forEach((image, index) => { formData.append("property_image[]", image); });
     const response =
-      isEdit && !stepdata   ? main.propertyedit(uuid, formData) : main.addproperty(formData);
+      isEdit && !stepdata ? main.propertyedit(uuid, formData) : main.addproperty(formData);
     response
       .then((res) => {
         if (res?.data?.status) {
-          if (isEdit && !stepdata ) {
+          if (isEdit && !stepdata) {
             toast.success(res.data.message);
             router.push("/admin/property");
             fetchProperties && fetchProperties();
@@ -1527,19 +1527,8 @@ export default function Property(props) {
                   </div>
                 </div>
               </div>
+
               <div className={`${step === 7 ? "" : "display-none"}`}>
-                <CancelPolicy
-                  showFirm={showFirm}
-                  setShowFirm={setShowFirm}
-                  setShowFlexible={setShowFlexible}
-                  selectedPolicy={selectedPolicy}
-                  setSelectedPolicy={setSelectedPolicy}
-                  showFlexible={showFlexible}
-                  longTermPolicy={longTermPolicy}
-                  setLongTermPolicy={setLongTermPolicy}
-                />
-              </div>
-              <div className={`${step === 8 ? "" : "display-none"}`}>
                 <HouseRules
                   petsAllowed={petsAllowed}
                   setPetsAllowed={setPetsAllowed}
@@ -1577,7 +1566,7 @@ export default function Property(props) {
                 </div>
               </div>
               <div
-                className={`${step === 9 ? "" : "display-none"
+                className={`${step === 8 ? "" : "display-none"
                   } max-w-[100%] m-auto  w-full `}
               >
                 <div className="flex flex-col mb-4">
@@ -1668,7 +1657,7 @@ export default function Property(props) {
               </div>
 
               <div
-                className={`${step === 10 ? "" : "display-none"
+                className={`${step === 9 ? "" : "display-none"
                   } max-w-[100%] m-auto w-full `}
               >
 
@@ -1768,7 +1757,7 @@ export default function Property(props) {
               </div>
 
               <div
-                className={`${step === 11 ? "" : "display-none"
+                className={`${step === 10 ? "" : "display-none"
                   } max-w-[100%] m-auto w-full `}
               >
                 <div className="flex  flex-col mb-2">
@@ -1804,7 +1793,7 @@ export default function Property(props) {
                   </button>
                 )}
 
-                {step < 11 ? (
+                {step < 10 ? (
                   <button
                     type="button"
                     onClick={nextStep}
@@ -1842,3 +1831,20 @@ export default function Property(props) {
     </>
   );
 }
+
+
+
+
+
+//  <div className={`${step === 7 ? "" : "display-none"}`}>
+//             // <CancelPolicy
+//             //   showFirm={showFirm}
+//             //   setShowFirm={setShowFirm}
+//             //   setShowFlexible={setShowFlexible}
+//             //   selectedPolicy={selectedPolicy}
+//             //   setSelectedPolicy={setSelectedPolicy}
+//             //   showFlexible={showFlexible}
+//             //   longTermPolicy={longTermPolicy}
+//             //   setLongTermPolicy={setLongTermPolicy}
+//             // />
+//           </div>

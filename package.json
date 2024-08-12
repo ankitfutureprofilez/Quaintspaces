@@ -13,6 +13,7 @@
     "sitemap": "next-sitemap --config next-sitemap.config.js"
   },
   "dependencies": {
+    "@hcaptcha/react-hcaptcha": "^1.10.3",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "v1",
     "@nextui-org/react": "^2.2.10",
