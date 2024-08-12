@@ -26,6 +26,7 @@ export default function Index() {
   const [SelectBooking, SetSelectBooking] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [refend, setRefend] = useState("")
+  console.log("refund_amount",refend);
   const [houseRule, SetHouseRules] = useState({})
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
@@ -87,6 +88,7 @@ export default function Index() {
 
 
   const handleCanceled = (uuid) => {
+    console.log("uuid",uuid)
     SetSelectBooking(uuid);
     setAmount()
     setShowConfirmation(true);
@@ -500,13 +502,16 @@ console.log("listings",listings)
               <div>
                 {refend === 0 ? (
                   <>
-                    <h2>
+                   <div>
+                    Your Refunded amount will be <span className="text-green-600">{formatMultiPrice(refend)}</span>
+                  </div>
+                    {/* <h2>
                       Only the cleaning fee will be refunded:
 
                     </h2>
                     <span className="text-green-600">
                       {formatMultiPrice(SelectBooking?.booking_property?.cleaning_fee * SelectBooking?.days_difference)}
-                    </span>.
+                    </span>. */}
                   </>
 
                 ) : (
