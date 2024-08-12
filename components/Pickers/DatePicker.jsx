@@ -92,7 +92,7 @@ const DatePicker = ({
         "date-picker w-full relative z-10 mx-auto shadow border border-gray-300 bg-white rounded-3xl px-8 py-8"
         }`}
     >
-      <div className="flex gap-6">
+      <div className="flex gap-6 p-2">
         <div className="sm:block hidden w-full">
           <div className="flex items-center">
             <h2 className="flex-auto font-semibold text-gray-900 text-center">
@@ -178,7 +178,7 @@ const DatePicker = ({
         </div>
       </div>
       {footer && typeof datePickerFunction === "function" && (
-        <div className="flex justify-end gap-6 mt-4">
+        <div className="flex justify-end gap-6 mt-3 mb-2 mr-2 ">
           <button
             onClick={(e) => {
               e.preventDefault();

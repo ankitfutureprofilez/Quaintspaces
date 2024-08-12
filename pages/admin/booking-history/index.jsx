@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
-import Listing from "../api/Listing";
 import Image from "next/image";
+import Listing from "../api/Listing";
 import AdminLayout from "../AdminLayout";
 import Nodata from "../hook/NoRecord";
 import Spinner from "../hook/spinner";
 import toast from "react-hot-toast";
 import Modal from "../hook/Modal";
 import Link from "next/link";
-import { formatMultiPrice } from "../../../hooks/ValueData"
+import { formatMultiPrice } from "../../../hooks/ValueData";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import DateComponent from "../../elements/DateFormat";
-
 
 export default function index() {
   const [content, setContent] = useState([]);
@@ -35,8 +34,6 @@ export default function index() {
     setMessage("");
   };
 
-
-
   const openImageModal = (image) => {
     setDocument(image);
     setimageOpen(true);
@@ -49,14 +46,13 @@ export default function index() {
     setMessage(e?.target?.value);
   };
 
-
-
   function fetchData(pg, signal) {
     setLoading(true);
     setLoadingButton(true);
     const main = new Listing();
-    main.bookinghistory(activeTab, pg, { signal })
-      .then(response => {
+    main
+      .bookinghistory(activeTab, pg, { signal })
+      .then((response) => {
         const newData = response?.data?.data?.data || [];
         setContent((prevData) => {
           if (pg === 1) {
@@ -69,7 +65,7 @@ export default function index() {
         setPage(response?.data?.current_page);
         setLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         if (error.name === "AbortError") {
           console.log("Fetch aborted");
         } else {
@@ -78,7 +74,6 @@ export default function index() {
         setLoading(false);
       });
   }
-  
 
   useEffect(() => {
     const controller = new AbortController();
@@ -125,30 +120,43 @@ export default function index() {
   return (
     <AdminLayout heading={"Booking Management"}>
       <div className="flex bg-gray-100 mb-5 p-2 overflow-x-auto text-white rounded-lg  md:mb-0 items-center sm:space-y-0 sm:space-x-4 upcoming-box">
-        <button 
-          onClick={() => setActiveTab('upcoming')}
-          className={`w-full px-3 py-2 text-sm rounded-lg text-center ${activeTab === 'upcoming' ? 'bg-black text-white' : 'text-black'} me-2 sm:mb-0`}>
+        <button
+          onClick={() => setActiveTab("upcoming")}
+          className={`w-full px-3 py-2 text-sm rounded-lg text-center ${
+            activeTab === "upcoming" ? "bg-black text-white" : "text-black"
+          } me-2 sm:mb-0`}
+        >
           Upcoming
         </button>
         <button
-          onClick={() => setActiveTab('completed')}
-          className={`w-full px-3 py-2 text-sm rounded-lg text-center ${activeTab === 'completed' ? 'bg-black text-white' : 'text-black'} me-2 sm:mb-0`}>
+          onClick={() => setActiveTab("completed")}
+          className={`w-full px-3 py-2 text-sm rounded-lg text-center ${
+            activeTab === "completed" ? "bg-black text-white" : "text-black"
+          } me-2 sm:mb-0`}
+        >
           Complete
         </button>
         <button
-          onClick={() => setActiveTab('cancelled')}
-          className={`w-full px-3 py-2 text-sm rounded-lg text-center ${activeTab === 'cancelled' ? 'bg-black text-white' : 'text-black'} me-2 sm:mb-0`}>
+          onClick={() => setActiveTab("cancelled")}
+          className={`w-full px-3 py-2 text-sm rounded-lg text-center ${
+            activeTab === "cancelled" ? "bg-black text-white" : "text-black"
+          } me-2 sm:mb-0`}
+        >
           Cancelled
         </button>
         <button
-          onClick={() => setActiveTab('current')}
-          className={`w-full px-3 py-2 text-sm rounded-lg text-center ${activeTab === 'current' ? 'bg-black text-white' : 'text-black'} me-2 sm:mb-0`}
+          onClick={() => setActiveTab("current")}
+          className={`w-full px-3 py-2 text-sm rounded-lg text-center ${
+            activeTab === "current" ? "bg-black text-white" : "text-black"
+          } me-2 sm:mb-0`}
         >
           Current
         </button>
         <button
-          onClick={() => setActiveTab('failed')}
-          className={`w-full  px-2 py-2 text-sm rounded-lg text-center ${activeTab === 'failed' ? 'bg-black text-white' : 'text-black'} sm:mb-0`}
+          onClick={() => setActiveTab("failed")}
+          className={`w-full  px-2 py-2 text-sm rounded-lg text-center ${
+            activeTab === "failed" ? "bg-black text-white" : "text-black"
+          } sm:mb-0`}
         >
           Failed
         </button>
@@ -158,9 +166,9 @@ export default function index() {
         <div className="flex items-center justify-center h-screen">
           <Spinner />
         </div>
-      ) :
+      ) : (
         <>
-          {content?.length > 0 ? 
+          {content?.length > 0 ? (
             <div className="mytable table-responsive mt-5">
               <table className="w-full">
                 <thead className="bg-gray-50">
@@ -207,12 +215,12 @@ export default function index() {
 
                       <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap  overflow-hidden text-ellipsis">
                         From : {item?.check_in}
-                        <div>
-                          To:  {item?.check_out}
-                        </div>
+                        <div>To: {item?.check_out}</div>
                       </td>
                       <td className="px-2 py-2 text-sm text-gray-500 ">
-                        <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
+                        <Link
+                          href={`/property/${item?.booking_history?.booking_property?.uuid}`}
+                        >
                           <span className=" capitalize  text-sm overflow-hidden text-ellipsis">
                             {item?.booking_property?.name}
                           </span>
@@ -236,7 +244,7 @@ export default function index() {
                           </div>
                         </div>
                       </td>
-                      {item?.booking_status === "pending" ?
+                      {item?.booking_status === "pending" ? (
                         <td className="px-2 py-2 text-sm text-gray-500  overflow-hidden text-ellipsis">
                           <div
                             onClick={() =>
@@ -288,35 +296,40 @@ export default function index() {
                             {loading ? "loading.." : "Cancel"}
                           </div>
                         </td>
-                        :
+                      ) : (
                         <td className="px-2 py-2 text-sm text-gray-500  overflow-hidden text-ellipsis">
                           <div
-                            className={`capitalize inline-flex items-center rounded-full py-1 w-max px-2 text-sm text-white  ${item?.booking_status === "completed"
-                              ? "bg-green-700"
-                              : item?.booking_status === "cancelled"
+                            className={`capitalize inline-flex items-center rounded-full py-1 w-max px-2 text-sm text-white  ${
+                              item?.booking_status === "completed"
+                                ? "bg-green-700"
+                                : item?.booking_status === "cancelled"
                                 ? "bg-red-600"
                                 : item?.booking_status === "confirmed"
-                                  ? "bg-green-500"
-                                  : item?.booking_status === "pending"
-                                    ? "bg-slate-600"
-                                    : item?.booking_status === "failed" ? "bg-red-600" : "bg-indigo-600"
-                              }`}
+                                ? "bg-green-500"
+                                : item?.booking_status === "pending"
+                                ? "bg-slate-600"
+                                : item?.booking_status === "failed"
+                                ? "bg-red-600"
+                                : "bg-indigo-600"
+                            }`}
                           >
                             {item?.booking_status}
                           </div>
                         </td>
-                      }
+                      )}
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-          :
-          !loading && <div className="mt-5 ">
-            <Nodata heading={"No Booking"} />
-          </div>
-          }
-          
+          ) : (
+            !loading && (
+              <div className="mt-5 ">
+                <Nodata heading={"No Booking"} />
+              </div>
+            )
+          )}
+
           {content?.length > 0 && !loading && hasmore && (
             <div className="flex justify-center">
               <div
@@ -328,8 +341,7 @@ export default function index() {
             </div>
           )}
         </>
-      }
- 
+      )}
 
       {selectedBooking && (
         <Modal isOpen={isConfirmOpen} onClose={closeConfirmModal}>
@@ -384,11 +396,16 @@ export default function index() {
               </label>
             </div>
             <div className="p-4">
-              <img
+              <Image
+                blurDataURL={`${document}?q=1`}
+                placeholder="blur"
                 src={document}
                 alt="Document Image"
+                layout="responsive"
+                width={100}
+                height={75}
+                loading="lazy"
               />
-
             </div>
           </div>
         </Modal>

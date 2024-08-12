@@ -1,6 +1,7 @@
 import { differenceInDays, format } from "date-fns";
 import DatePicker from "../Pickers/DatePicker";
 import CheckinCheckOut from "./CheckinCheckout";
+import { useEffect, useRef } from "react";
 
 const Dates = ({
   selection,
@@ -11,6 +12,24 @@ const Dates = ({
   setSelectEnd,
   position,
 }) => {
+  const popupRef = useRef(null); // Create a ref for the popup
+
+  // Close the popup if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        setSelection(null); // Close the popup
+      }
+    };
+
+    if (selection === "date") {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [selection]);
 
   return (
     
@@ -23,7 +42,9 @@ const Dates = ({
       />
 
       {selection === "date" && (
-        <div className={`absolute z-20 ${position} w-[24rem] shadow-2xl sm:w-[48rem] z-10 bg-white p-6 rounded-xl border-main pt-32`}>
+        <div
+        ref={popupRef}  
+        className={`absolute z-20 ${position} w-[24rem] shadow-2xl sm:w-[48rem] z-10 bg-white p-6 rounded-xl border-main pt-32`}>
           <div className="flex flex-col sm:absolute sm:top-8 sm:right-8 rounded-lg border border-b-0 border-[#efa3a3] flex w-[22.1rem]">
             <CheckinCheckOut
               setSelection={setSelection}
