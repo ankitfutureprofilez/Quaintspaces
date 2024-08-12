@@ -1796,6 +1796,8 @@ export default function Property(props) {
                   </button>
                 )}
 
+                
+
                 {step < 10 ? (
                   <button
                     type="button"
