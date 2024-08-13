@@ -25,6 +25,7 @@ import {
 } from "react-icons/fa";
 import Guest from "./Guest";
 import Checkout from "./Checkout";
+import PolicyNew from "./PolicyNew";
 const propertyTypes = [
   { value: "flat", label: "Flat & Apartment" },
   { value: "house", label: "House" },
@@ -39,7 +40,6 @@ const propertyTypes = [
 export default function Property(props) {
   const { isEdit, p, fetchProperties, stepdata, useExistingImages } = props;
 
-  console.log("isEdit", isEdit)
   const {
     uuid,
     type,
@@ -80,6 +80,7 @@ export default function Property(props) {
   const [selectedAmenity, setSelectedAmenity] = useState(
     amenities ? stringToArray(amenities) : []
   );
+  const [is_refundable, setIsRefundable] = useState(1);
   const [Amenity, setAmenity] = useState(
     safety_amenity ? stringToArray(safety_amenity) : []
   );
@@ -139,6 +140,9 @@ export default function Property(props) {
 
   const handlecheckChange = (e) => {
     setcheckdescrtion(e.target.value);
+  };
+  const handlePolicyChanges = (refundable) => {
+    setIsRefundable(refundable);
   };
 
   const options = [
@@ -712,6 +716,7 @@ export default function Property(props) {
       handleAction(action, index);
       setIsOpen(false);
     };
+    console.log("is_refundable", is_refundable)
 
     return (
       <div className="relative">
@@ -1531,16 +1536,11 @@ export default function Property(props) {
               </div>
 
           <div className={`${step === 7 ? "" : "display-none"}`}>
- <CancelPolicy
-              showFirm={showFirm}
-              setShowFirm={setShowFirm}
-              setShowFlexible={setShowFlexible}
-              selectedPolicy={selectedPolicy}
-              setSelectedPolicy={setSelectedPolicy}
-              showFlexible={showFlexible}
-              longTermPolicy={longTermPolicy}
-              setLongTermPolicy={setLongTermPolicy}
-            />
+ <PolicyNew
+ is_refundable={is_refundable}
+  setIsRefundable={setIsRefundable}
+  handlePolicyChanges={handlePolicyChanges}
+ />
           </div>
 
               <div className={`${step === 8 ? "" : "display-none"}`}>
