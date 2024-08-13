@@ -1830,6 +1830,7 @@ export default function Property(props) {
               </div>
             </div>
           </div>
+          
         </div>
       </div>
       {isEdit && !stepdata ? (
