@@ -679,15 +679,16 @@ export default function Property(props) {
     formData.append("check_out_instruction", JSON.stringify(checkoutInstructions));
     formData.append("discount_offer", item?.discount);
     images.forEach((image, index) => { formData.append("property_image[]", image); });
-    // && !stepdata 
+    // 
     const response =
-      isEdit ? main.propertyedit(uuid, formData) : main.addproperty(formData);
+      isEdit && !stepdata  ? main.propertyedit(uuid, formData) : main.addproperty(formData);
     response
       .then((res) => {
         if (res?.data?.status) {
-          // && !stepdata
-          if (isEdit) {
+          // 
+          if (isEdit && !stepdata) {
             toast.success(res.data.message);
+            fetchProperties();
           } else {
             toast.success(res.data.message);
           }
