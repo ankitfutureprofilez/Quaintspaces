@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Layout from "../layout/Layout.js";
 import Heading from "../elements/Heading.js";
 import Image from "next/image";
@@ -17,8 +17,11 @@ export default function index() {
   const [hCaptchaToken, setHCaptchaToken] = useState(null);
 
 
-  const onVerify = (token) => {
-    setHCaptchaToken(token);
+  const hcaptchaRef = useRef(null);
+  
+  const executeCaptcha = (e) => {
+    e.preventDefault();
+    hcaptchaRef.current.execute();
   };
 
   const [loading, setLoading] = useState(false);
@@ -36,12 +39,6 @@ export default function index() {
     });
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!hCaptchaToken) {
-      toast.error("Please complete the hCaptcha verification first.");
-      return;
-    }
-
     if (loading == true) {
       return;
     }
@@ -72,6 +69,11 @@ export default function index() {
         toast.error(error?.response?.data);
         setLoading(false);
       });
+  };
+
+  const onVerify = (token) => {
+    setHCaptchaToken(token);
+    handleSubmit();
   };
 
   const compantdetails = [
@@ -204,7 +206,7 @@ export default function index() {
               Write to Us
             </h2>
             <div className="w-full security-box-form">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={executeCaptcha}>
                 <div className="mb-3 lg:mb-6">
                   <label
                     htmlFor="name"
@@ -242,8 +244,7 @@ export default function index() {
                 <div className="mb-3 lg:mb-6">
                   <label
                     htmlFor="message"
-                    className="capitalize text-[15px] text-[#7A746E] sm:mb-[10px] mb-[8px]"
-                  >
+                    className="capitalize text-[15px] text-[#7A746E] sm:mb-[10px] mb-[8px]">
                     Message
                   </label>
                   <textarea
@@ -251,18 +252,14 @@ export default function index() {
                     name="message"
                     value={formData?.message}
                     onChange={handleChange}
-                    className="sm:p-[16px] p-[12px]  mt-[10px] rounded-3xl min-h-32 lg:min-h-52  w-full"
+                    className="sm:p-[16px] p-[12px] mt-[10px] rounded-3xl min-h-15 w-full"
                     required
-                    rows={4} // Set the number of rows as needed
+                    rows={4} 
                   />
                 </div>
-                {formData?.message.length > 1 &&
-                  <div className="flex items-center justify-center h-full mb-5">
-                    <div className="hcapture" >
-                      <HCaptcha sitekey={CAPUTRE_KEY} data-theme="light" data-size="compact" onVerify={onVerify} required />
-                    </div>
-                  </div>
-                }
+                {/* {formData?.message.length > 1 && */}
+                      <HCaptcha ref={hcaptchaRef} sitekey={CAPUTRE_KEY} data-theme="light" size="invisible" onVerify={onVerify} required />
+
                 <div className="flex items-center justify-center h-full">
                   <button className="hover:bg-[#fff] border border-[#efa3a3] bg-[#efa3a3] text-[#fff] hover:text-[#efa3a3] btn w-7/12 !py-2 lg:!py-3" disabled={loading}>
                     {loading ? "Submitting..." : "Submit"}

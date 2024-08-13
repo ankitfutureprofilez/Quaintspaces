@@ -95,7 +95,7 @@ export default function Header() {
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M20.795 1.205C21.0057 1.41594 21.124 1.70187 21.124 2C21.124 2.29813 21.0057 2.58406 20.795 2.795L2.795 20.795C2.58174 20.9937 2.29967 21.1019 2.00822 21.0968C1.71676 21.0916 1.43869 20.9736 1.23257 20.7674C1.02645 20.5613 0.90838 20.2832 0.903238 19.9918C0.898096 19.7003 1.00628 19.4183 1.205 19.205L19.205 1.205C19.4159 0.994324 19.7019 0.87599 20 0.87599C20.2981 0.87599 20.5841 0.994324 20.795 1.205Z" fill="black" />
               </svg>
             </button>
-            <div className=" lg:flex items-center">
+            <div className=" lg:flex items-center pt-2">
               <Link href="/apartments" className=" link mb-3 block lg:mb-0 border-b md:me-6 lg:border-0">
                 <p>Properties</p>
               </Link>

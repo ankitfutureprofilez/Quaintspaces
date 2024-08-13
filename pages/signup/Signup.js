@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import logologin from "../../public/images/Login_Logo.png";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import Listings from './../api/laravel/Listings';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 export default function Signup() {
   const router = useRouter();
+  const CAPUTRE_KEY = process.env.NEXT_PUBLIC_HCAPTCHA_KEY
+  const hcaptchaRef = useRef(null);
+
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
@@ -24,8 +28,16 @@ export default function Signup() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const executeCaptcha = (e) => {
     e.preventDefault();
+    hcaptchaRef.current.execute();
+  };
+
+  const onVerify = (token) => {
+    handleSubmit();
+  };
+
+  const handleSubmit = (e) => {
     if (loading == true) { return; }
     setLoading(true);
     const main = new Listings();
@@ -60,8 +72,6 @@ export default function Signup() {
   return (
     <div
       className="autofill h-screen tab-mob-height bg-cover "
-      // style={{ backgroundImage: `url(/images/banner/login_img.JPG)` }}
-
     >
       <Image
         src="/images/banner/login_img.JPG"
@@ -120,14 +130,14 @@ export default function Signup() {
               <div className="formbgcolor bg-[#0003] h-[100%]"></div>
               <div className="max-h-[90vh]  overflow-y-auto">
                 <div className="quainttay">
-                  <h2>Welcome to Quaintspaces Jaipur </h2>
+                  <h2>Welcome to Quaint Spaces Jaipur </h2>
                   <h3 className="text-[#fff]">
                     Already have an account? <Link
                       className="underline"
                       href="/login">Login</Link>
                   </h3>
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={executeCaptcha}>
                   <div className="mb-6">
                     <label htmlFor="fullName">Full Name</label>
                     <input
@@ -176,6 +186,7 @@ export default function Signup() {
                       required
                     />
                   </div>
+                  <HCaptcha ref={hcaptchaRef} sitekey={CAPUTRE_KEY} data-theme="light" size="invisible" onVerify={onVerify} required />
                   <button type="submit" className="submint-btn">
                     {loading ? "Submitting..." : "Submit"}
                   </button>
