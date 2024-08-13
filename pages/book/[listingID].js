@@ -399,6 +399,7 @@ const Book = () => {
       document.body.classList.remove("overflow-hidden");
     };
   }, [dateModel]);
+  console.log("cancelpolicy",cancelpolicy);
 
   return (
     <AuthLayout>
@@ -595,7 +596,15 @@ const Book = () => {
                     </h3>
                     <div className="flex flex-wrap justify-between">
                       <p className="item-pargraph text-[15px] mb-[10px]">
-                        {cancelpolicy?.text}
+                      {listing?.is_refundable == 1?
+                      <>Bookings are refundable if you cancel at least 5 days before check-in.{" "}</>
+                      : 
+                      <>
+                      Booking is completely non-refundable. No amount will be refunded under any circumstance.{" "} 
+                      </> }
+                      </p>                      
+                      <p className="item-pargraph text-[15px] mb-[10px]">
+                        {cancelpolicy?.text}{"."}
                       </p>
                       <p
                         className="underline edit-color font-bold"
@@ -971,7 +980,12 @@ const Book = () => {
                       </div>
                     } */}
                     <p className="font-normal">
-                      Bookings are refundable if you cancel at least 5 days before check-in.{" "}
+                      {listing?.is_refundable == 1?
+                      <>Bookings are refundable if you cancel at least 5 days before check-in.{" "}</>
+                      : 
+                      <>
+                      Booking is completely non-refundable. No amount will be refunded under any circumstance.{" "} 
+                      </> }
                     </p>
                     {/* <p className="font-normal capitalize">
                       Cleaning fees are refunded if you cancel before check-in.{" "}
