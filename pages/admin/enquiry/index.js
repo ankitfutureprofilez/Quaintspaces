@@ -150,10 +150,9 @@ export default function Index() {
                 <Loading />
               </div>
             ) : (
-              <div className="w-full overflow-x-auto">
-                <div className="table-responsive mytable">
-                  <table className="min-w-[1200px] overflow-x-auto table-auto divide-y divide-gray-200">
-                    <thead className="bg-indigo-600">
+              <div className="mytable">
+                    <table className="w-full table-responsive">
+                      <thead className="bg-indigo-600">
                       <tr>
                         <th
                           scope="col"
@@ -229,7 +228,6 @@ export default function Index() {
                     </tbody>
                   </table>
                 </div>
-              </div>
             )}
           </div>
           {hasMore && !loading && (
