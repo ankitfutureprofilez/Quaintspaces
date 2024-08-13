@@ -6,7 +6,6 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import Amenities from "./Amenities";
 import HouseRules from "./HouseRules";
-import CancelPolicy from "./CancelPolicy";
 import { House, Add } from "iconsax-react";
 import { MdPhonelinkLock } from "react-icons/md";
 import { MdOutlineKeyboardAlt } from "react-icons/md";
@@ -39,7 +38,6 @@ const propertyTypes = [
 ];
 export default function Property(props) {
   const { isEdit, p, fetchProperties, stepdata, useExistingImages } = props;
-
   const {
     uuid,
     type,
@@ -52,6 +50,7 @@ export default function Property(props) {
     price,
     description,
     bedrooms,
+    is_refundable,
     beds,
     safety_amenity,
     standout_amenity,
@@ -73,14 +72,13 @@ export default function Property(props) {
     custom_link,
   } = p ? p : {};
 
-  console.log("p", p)
 
   const [Bathrooms, setBathrooms] = useState(bathrooms || 0.5);
   const [pets, setPets] = useState(no_of_pet_allowed || 1);
   const [selectedAmenity, setSelectedAmenity] = useState(
     amenities ? stringToArray(amenities) : []
   );
-  const [is_refundable, setIsRefundable] = useState(1);
+  const [refundable, setIsRefundable] = useState(is_refundable || 1);
   const [Amenity, setAmenity] = useState(
     safety_amenity ? stringToArray(safety_amenity) : []
   );
@@ -281,7 +279,6 @@ export default function Property(props) {
     discount: discount_offer || "",
     customLink: custom_link || "",
   });
-
 
   const copyToClipboard = () => {
     const textToCopy = `${baseurl}${item?.customLink}`;
@@ -590,12 +587,12 @@ export default function Property(props) {
       toast.error(`All fields are required.`);
       return false;
     }
-    // if (step === 7 && longTermPolicy === null && selectedPolicy === null) {
-    //   toast.error(`At least one field is required.`);
-    //   return false;
-    // }
+    if (step === 7 && refundable === null ) {
+      toast.error(`At least one field is required.`);
+      return false;
+    }
     if (
-      step === 7 &&
+      step === 8 &&
       (item?.additonalrule === "" ||
         petsAllowed === " " ||
         smokingAllowed === " " ||
@@ -607,7 +604,7 @@ export default function Property(props) {
       return false;
     }
     if (
-      step === 8 &&
+      step === 9 &&
       (item?.Direction === "" ||
         item?.wifi === " " ||
         item?.wifiPassword === " " ||
@@ -618,7 +615,7 @@ export default function Property(props) {
     }
 
     if (
-      step === 9 &&
+      step === 10 &&
       (item?.customLink === "" ||
         item?.selectedInstruction === " " ||
         selectedMethod === " ")
@@ -632,7 +629,7 @@ export default function Property(props) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (step === 10 && checkoutInstructions === "") {
+    if (step === 11 && checkoutInstructions === "") {
       toast.error(`All fields are required.`);
       return false;
     }
@@ -641,6 +638,7 @@ export default function Property(props) {
     const formData = new FormData();
     formData.append("type", typeHere);
     formData.append("properties_type", PType);
+    formData.append("is_refundable", refundable)
     formData.append("name", item?.name);
     formData.append("no_of_pet_allowed", pets);
     formData.append("description", item?.about);
@@ -681,19 +679,19 @@ export default function Property(props) {
     formData.append("check_out_instruction", JSON.stringify(checkoutInstructions));
     formData.append("discount_offer", item?.discount);
     images.forEach((image, index) => { formData.append("property_image[]", image); });
+    // && !stepdata 
     const response =
-      isEdit && !stepdata ? main.propertyedit(uuid, formData) : main.addproperty(formData);
+      isEdit ? main.propertyedit(uuid, formData) : main.addproperty(formData);
     response
       .then((res) => {
         if (res?.data?.status) {
-          if (isEdit && !stepdata) {
+          // && !stepdata
+          if (isEdit) {
             toast.success(res.data.message);
-            router.push("/admin/property");
-            fetchProperties && fetchProperties();
           } else {
-            router.push("/admin/property");
             toast.success(res.data.message);
           }
+          router.push("/admin/property");
         } else {
           toast.error(res.data.message);
         }
@@ -716,7 +714,6 @@ export default function Property(props) {
       handleAction(action, index);
       setIsOpen(false);
     };
-    console.log("is_refundable", is_refundable)
 
     return (
       <div className="relative">
@@ -1535,13 +1532,65 @@ export default function Property(props) {
                 </div>
               </div>
 
-          <div className={`${step === 7 ? "" : "display-none"}`}>
- <PolicyNew
- is_refundable={is_refundable}
-  setIsRefundable={setIsRefundable}
-  handlePolicyChanges={handlePolicyChanges}
- />
-          </div>
+              <div className={`${step === 7 ? "" : "display-none"}`}>
+                <div className="flex flex-wrap mb-4">
+                  <div className="w-full md:w-2/3 mx-auto pr-2">
+                    <h2 className="text-center font-bold text-2xl text-slate-900 mt-3 md:mb-4 capitalize">Cancellation policy</h2>
+                    <div className="p-4">
+                      <p className="text-gray-500 mb-4">
+                        To understand the full policies, visit the{" "}
+                        <span className="underline font-semibold cursor-pointer">
+                          Help Centre
+                        </span>.
+                      </p>
+                      <div>
+                        <div
+                          className={`flex justify-center mb-4 p-4 relative items-center border-2 cursor-pointer ${refundable === 1 ? "border-indigo-600" : "border-gray-200"}`}
+                          onClick={() => handlePolicyChanges(1)}
+                        >
+                          <div className="flex flex-col">
+                            <label className="flex items-center cursor-pointer mx-auto text-center text-lg mb-2">
+                              Refundable
+                            </label>
+                            <p className="text-gray-500">
+                              Amount is refundable if the user cancels his/her booking at least 5 days before check-in.
+                            </p>
+                          </div>
+                          <input
+                            type="radio"
+                            name="cancellationPolicy"
+                            value="1"
+                            checked={refundable === 1}
+                            onChange={() => handlePolicyChanges(1)}
+                            className="ml-2 w-4 h-4 cursor-pointer absolute top-2 right-2"
+                          />
+                        </div>
+                        <div
+                          className={`flex justify-center p-4 mb-4 relative items-center border-2 cursor-pointer ${refundable === 0 ? "border-indigo-600" : "border-gray-200"}`}
+                          onClick={() => handlePolicyChanges(0)}
+                        >
+                          <div className="flex flex-col">
+                            <label className="flex items-center cursor-pointer mx-auto text-center text-lg mb-2">
+                              Not Refundable
+                            </label>
+                            <p className="text-gray-500 ml-4">
+                              Amount is not refundable under any circumstances. Once a property is booked no refund would be provided to the user on cancellation.
+                            </p>
+                          </div>
+                          <input
+                            type="radio"
+                            name="cancellationPolicy"
+                            value="0"
+                            checked={refundable === 0}
+                            onChange={() => handlePolicyChanges(0)}
+                            className="mr-2 w-4 h-4 cursor-pointer absolute top-2 right-2"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <div className={`${step === 8 ? "" : "display-none"}`}>
                 <HouseRules
@@ -1808,7 +1857,7 @@ export default function Property(props) {
                   </button>
                 )}
 
-                
+
 
                 {step < 11 ? (
                   <button
@@ -1830,7 +1879,7 @@ export default function Property(props) {
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
       {isEdit && !stepdata ? (
