@@ -1530,7 +1530,20 @@ export default function Property(props) {
                 </div>
               </div>
 
-              <div className={`${step === 7 ? "" : "display-none"}`}>
+          <div className={`${step === 7 ? "" : "display-none"}`}>
+ <CancelPolicy
+              showFirm={showFirm}
+              setShowFirm={setShowFirm}
+              setShowFlexible={setShowFlexible}
+              selectedPolicy={selectedPolicy}
+              setSelectedPolicy={setSelectedPolicy}
+              showFlexible={showFlexible}
+              longTermPolicy={longTermPolicy}
+              setLongTermPolicy={setLongTermPolicy}
+            />
+          </div>
+
+              <div className={`${step === 8 ? "" : "display-none"}`}>
                 <HouseRules
                   petsAllowed={petsAllowed}
                   setPetsAllowed={setPetsAllowed}
@@ -1568,7 +1581,7 @@ export default function Property(props) {
                 </div>
               </div>
               <div
-                className={`${step === 8 ? "" : "display-none"
+                className={`${step === 9 ? "" : "display-none"
                   } max-w-[100%] m-auto  w-full `}
               >
                 <div className="flex flex-col mb-4">
@@ -1659,7 +1672,7 @@ export default function Property(props) {
               </div>
 
               <div
-                className={`${step === 9 ? "" : "display-none"
+                className={`${step === 10 ? "" : "display-none"
                   } max-w-[100%] m-auto w-full `}
               >
 
@@ -1759,7 +1772,7 @@ export default function Property(props) {
               </div>
 
               <div
-                className={`${step === 10 ? "" : "display-none"
+                className={`${step === 11 ? "" : "display-none"
                   } max-w-[100%] m-auto w-full `}
               >
                 <div className="flex  flex-col mb-2">
@@ -1797,7 +1810,7 @@ export default function Property(props) {
 
                 
 
-                {step < 10 ? (
+                {step < 11 ? (
                   <button
                     type="button"
                     onClick={nextStep}
@@ -1840,15 +1853,3 @@ export default function Property(props) {
 
 
 
-//  <div className={`${step === 7 ? "" : "display-none"}`}>
-//             // <CancelPolicy
-//             //   showFirm={showFirm}
-//             //   setShowFirm={setShowFirm}
-//             //   setShowFlexible={setShowFlexible}
-//             //   selectedPolicy={selectedPolicy}
-//             //   setSelectedPolicy={setSelectedPolicy}
-//             //   showFlexible={showFlexible}
-//             //   longTermPolicy={longTermPolicy}
-//             //   setLongTermPolicy={setLongTermPolicy}
-//             // />
-//           </div>
