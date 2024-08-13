@@ -256,7 +256,7 @@ export default function index() {
                     rows={4} // Set the number of rows as needed
                   />
                 </div>
-                {formData?.message.length > 10 &&
+                {formData?.message.length > 1 &&
                   <div className="flex items-center justify-center h-full mb-5">
                     <div className="hcapture" >
                       <HCaptcha sitekey={CAPUTRE_KEY} data-theme="light" data-size="compact" onVerify={onVerify} required />
