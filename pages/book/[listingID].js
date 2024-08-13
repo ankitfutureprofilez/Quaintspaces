@@ -978,7 +978,7 @@ const Book = () => {
                     </p> */}
                     <p className="underline mt-2 font-bold cursor-pointer  text-[#efa3a3]">
                       Learn more about{" "}
-                      <Link href="/terms" target="_blank">
+                      <Link href="/terms/#cancel_rules" target="_blank">
                         cancellation policies
                       </Link>
                     </p>

@@ -91,7 +91,7 @@ function index() {
             </div>
           </div>
           <div className="prose">
-            <h1 className="text-2xl font-bold mt-8 mb-3">
+            <h1 className="text-2xl font-bold mt-8 mb-3" id="cancel_rules">
               2. Cancellations, Reservation Issues, Refunds and Booking
               Modifications.
             </h1>
