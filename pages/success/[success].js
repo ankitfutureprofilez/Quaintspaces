@@ -168,7 +168,7 @@ const success = () => {
                   Total Members (Guests & infants)
                 </p>
                 <p className="text-start font-bold font-semibold text-black-400">
-                  {record?.guests} & {record?.infants}{" "}
+                  {record?.guests > 1 ? `${record?.guests} Guests`: `${record?.guests} Guest` } {record?.infants > 1 ? `${record?.infants} Infants`: `${record?.infants} Infant` } 
                 </p>
               </div>
               <div className="w-full flex justify-between mb-4 flex-wrap ">

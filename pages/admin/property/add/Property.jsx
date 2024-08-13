@@ -686,7 +686,6 @@ export default function Property(props) {
             toast.success(res.data.message);
             router.push("/admin/property");
             fetchProperties && fetchProperties();
-            isEdit(false);
           } else {
             router.push("/admin/property");
             toast.success(res.data.message);
