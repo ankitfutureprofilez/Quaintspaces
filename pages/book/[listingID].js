@@ -896,7 +896,7 @@ const Book = () => {
                     Cancellation policy
                   </p>
                   <div className="py-4 px-6">
-                    <div className="flex ">
+                    {/* <div className="flex ">
                       <div className="w-[45%] ">
                         <h6 className="mb-2 text-[18px] font-semibold cancel-policy">
                           {cancelpolicy?.date &&
@@ -939,8 +939,8 @@ const Book = () => {
                       <div className="w-[55%] pl-3 border-l">
                         <p className="mb-4">{cancelpolicy?.text}</p>
                       </div>
-                    </div>
-                    {cancelpolicy?.date2 &&
+                    </div> */}
+                    {/* {cancelpolicy?.date2 &&
                       <div>
                         <div className="flex ">
                           <div className="w-1/2">
@@ -969,10 +969,13 @@ const Book = () => {
                           </div>
                         </div>
                       </div>
-                    }
-                    <p className="font-normal capitalize">
-                      Cleaning fees are refunded if you cancel before check-in.{" "}
+                    } */}
+                    <p className="font-normal">
+                      Bookings are refundable if you cancel at least 5 days before check-in.{" "}
                     </p>
+                    {/* <p className="font-normal capitalize">
+                      Cleaning fees are refunded if you cancel before check-in.{" "}
+                    </p> */}
                     <p className="underline mt-2 font-bold cursor-pointer  text-[#efa3a3]">
                       Learn more about{" "}
                       <Link href="/terms" target="_blank">
@@ -980,7 +983,7 @@ const Book = () => {
                       </Link>
                     </p>
                   </div>
-                  <div className="mb-4 flex justify-center"></div>
+                  {/* <div className="mb-4 flex justify-center"></div> */}
                 </Modal>
               </div>
             )}
