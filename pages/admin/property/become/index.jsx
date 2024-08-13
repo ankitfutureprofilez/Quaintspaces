@@ -95,6 +95,8 @@ function Index() {
 
 
   return (
+
+    
     <AdminLayout heading="Properties List">
       {isLoading || openAddPage ? (
         openAddPage ? (
