@@ -151,9 +151,11 @@ export default function Index() {
                   </h3>
                   <p className="text-sm text-gray-600 mt-3 capitalize">
                     {item?.type ? `${item?.type?.replace("_", " ")} .` : ""}
-                    {item.bedrooms} Bedrooms. {item.beds} Beds.{" "}
-                    {item.guests} guests. {item.bathrooms} Bathrooms.{" "}
-                    {item.no_of_pet_allowed} Pets
+                    {item?.bedrooms} Bedroom{item?.bedrooms > 1 ? "s" : ""}{" "}
+                        ·{item?.beds} Bed{item?.beds > 1 ? "s" : ""} ·
+                        {item?.guests} Guest{item?.guests > 1 ? "s" : ""} ·
+                        {item?.no_of_pet_allowed} Pet
+                        {item?.no_of_pet_allowed > 1 ? "s" : ""}
                   </p>
                   <p className="text-sm text-gray-600 mt-3 font-bold">
                     {formatMultiPrice(item?.price)} Night
@@ -181,7 +183,7 @@ export default function Index() {
   };
 
   return (
-    <AdminLayout heading="Your listings">
+    <AdminLayout heading="Your Listings">
       {isLoading ? (
         <div className="flex">
           <Loading />

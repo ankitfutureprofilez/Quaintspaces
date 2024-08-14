@@ -12,7 +12,7 @@ export default function Card() {
   return (
     <div className="tip-top-sec" id="places">
       <div className="container">
-        <h2 className="listing-heading text-center mb-14">
+        <h2 className="listing-heading text-center mb-4 sm:mb-14">
           Stylish Apartments for Your Dream Vacation
         </h2>
         <RoomListings />
