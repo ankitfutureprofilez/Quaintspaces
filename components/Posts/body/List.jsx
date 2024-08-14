@@ -76,25 +76,25 @@ function List({ post }) {
 
                 <div className=" mb-2 sm:pr-[20px] pr-[7px]">
                   <p className="text-[#666360] font-[700] text-[18px] text-center"> {post?.bedrooms} </p>
-                  <h3 className="text-[#666360] font-[400] text-[13px]">Bedrooms</h3>
+                  <h3 className="text-[#666360] font-[400] text-[13px]">Bedroom{post?.bedrooms>1 ? "s": null}</h3>
                 </div>
 
                 <div className=" mb-2 sm:pr-[20px] pr-[7px] pl-[7px] sm:ml-[20px] ml-[7px] border-l">
                   <p className="text-[#666360] font-[700] text-[18px] text-center">{post?.beds}  </p>
-                  <h3 className="text-[#666360] font-[400] text-[13px]">Bed</h3>
+                  <h3 className="text-[#666360] font-[400] text-[13px]">Bed{post?.beds>1 ? "s": null}</h3>
                 </div>
                 <div className=" mb-2 sm:pr-[20px] pr-[7px] pl-[7px] sm:ml-[20px] ml-[7px] border-l">
                   <p className="text-[#666360] font-[700] text-[18px] text-center">{post?.guests} </p>
-                  <h3 className="text-[#666360] font-[400] text-[13px]">Guests</h3>
+                  <h3 className="text-[#666360] font-[400] text-[13px]">Guest{post?.guests>1 ? "s": null}</h3>
                 </div>
                 <div className=" mb-2 sm:pr-[20px] pr-[7px] pl-[7px] sm:ml-[20px] ml-[7px] border-l">
                   <p className="text-[#666360] font-[700] text-[18px] text-center">{post?.no_of_pet_allowed} </p>
-                  <h3 className="text-[#666360] font-[400] text-[13px]">Pets</h3>
+                  <h3 className="text-[#666360] font-[400] text-[13px]">Pet{post?.no_of_pet_allowed>1 ? "s": null}</h3>
                 </div>
 
                 <div className=" mb-2 sm:pr-[20px] pr-[10px] pl-[10px] sm:ml-[20px] ml-[10px] border-l">
                   <p className="text-[#666360] font-[700] text-[18px] text-center"> {post?.bathrooms} </p>
-                  <h3 className="text-[#666360] font-[400] text-[13px]">Bathroom</h3>
+                  <h3 className="text-[#666360] font-[400] text-[13px]">Bathroom{post?.bathrooms>1 ? "s": null}</h3>
                 </div>
               </div>
 

@@ -6,7 +6,6 @@ import Image from "next/image";
 import StartRating from "../../pages/elements/StartRating";
 
 const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
-  
   const [amenitiesModal, setAmenitiesModal] = useState(false);
   function capitalizeAndReplace(inputString) {
     let words = inputString && inputString?.split("_");
@@ -33,7 +32,6 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
     <div className="w-full">
       <div className="flex items-start sm:items-center justify-between flex-col sm:flex-row gap-4 pb-6">
         <div className="flex-1 h-full">
-
           {loading ? (
             <div className="h-7 mb-2 animate-pulse rounded-md bg-gray-200 w-7/12"></div>
           ) : (
@@ -41,7 +39,6 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
               {listing?.data?.lt}
             </h1>
           )}
-
 
           {loading ? (
             <div className="h-7 mb-2 animate-pulse rounded-md bg-lightBorderColor w-4/12"></div>
@@ -52,23 +49,36 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
                 {" · "}
                 {capitalizeAndReplace(listing?.data?.properties_type)}
                 {" · "}
-                {listing?.data?.guests > 0 && `${listing?.data?.guests} Guests`}
+                {listing?.data?.guests > 0 &&
+                  `${listing?.data?.guests} Guest${
+                    listing?.data?.guests > 1 ? "s" : ""
+                  }`}
                 {" · "}
                 {listing?.data?.no_of_pet_allowed > 0 &&
-                  `${listing?.data?.no_of_pet_allowed} Pets`}
+                  `${listing?.data?.no_of_pet_allowed} Pet${
+                    listing?.data?.no_of_pet_allowed > 1 ? "s" : ""
+                  }`}
                 {" · "}
                 {listing?.data?.bedrooms > 0 &&
-                  `${listing?.data?.bedrooms} Bedrooms`}
+                  `${listing?.data?.bedrooms} Bedroom${
+                    listing?.data?.bedrooms > 1 ? "s" : ""
+                  }`}
                 {" · "}
-                {listing?.data?.beds > 0 && `${listing?.data?.beds} Beds`}
+                {listing?.data?.beds > 0 &&
+                  `${listing?.data?.beds} Bed${
+                    listing?.data?.beds > 1 ? "s" : ""
+                  }`}
               </div>
 
               <div className="flex items-center gap-2 text-md">
                 <span className="flex gap-1 items-center text-md font-medium">
                   <span>
-                  <StartRating size={15} value={listing?.data?.rating?.toFixed(2)} color={"#000000"}/>
+                    <StartRating
+                      size={15}
+                      value={listing?.data?.rating?.toFixed(2)}
+                      color={"#000000"}
+                    />
                   </span>
-                   
                 </span>
                 <div className="hidden">·</div>
                 <span
@@ -94,84 +104,97 @@ const Info = React.forwardRef(({ listing, loading, handleClick }, ref) => {
         )}
       </div>
       <div className="py-8" ref={ref}>
-        <h1 className="text-[18px] md:text-2xl mb-4 font-semibold">What this place offers?</h1>
-         
+        <h1 className="text-[18px] md:text-2xl mb-4 font-semibold">
+          What this place offers?
+        </h1>
 
+        {loading ? (
+          <div class="grid animate-pulse grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
+            <div className="bg-gray-200 p-5 rounded-xl mb-3"></div>
+            <div className="bg-gray-200 p-5 rounded-xl mb-3"></div>
+            <div className="bg-gray-200 p-5 rounded-xl mb-3"></div>
+            <div className="bg-gray-200 p-5 rounded-xl mb-3"></div>
+            <div className="bg-gray-200 p-5 rounded-xl mb-3"></div>
+            <div className="bg-gray-200 p-5 rounded-xl mb-3"></div>
+            <div className="bg-gray-200 p-5 rounded-xl mb-3"></div>
+            <div className="bg-gray-200 p-5 rounded-xl mb-3"></div>
+            <div className="bg-gray-200 p-5 rounded-xl mb-3"></div>
+          </div>
+        ) : (
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
+            {listing?.data?.amenities &&
+              listing?.data?.amenities
+                ?.split(",")
+                ?.slice(0, 6) // Limit to first 6 elements
+                ?.map((amenity) => (
+                  <div
+                    className="flex items-center mt-2 md:mt-4"
+                    key={amenity?.trim()}
+                  >
+                    <Image
+                      src={`/icons/${amenity
+                        ?.toLowerCase()
+                        ?.trim()
+                        ?.replaceAll(" ", "_")}.png`}
+                      alt="amenity icon"
+                      width={24}
+                      height={24}
+                      className="w-6 h-6"
+                    />
+                    <span className="ms-1 text-[15px] md:text-[16px]">
+                      {formatAmenities(amenity)}
+                    </span>
+                  </div>
+                ))}
 
-      { loading ? 
-        <div class="grid animate-pulse grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
-          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
-          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
-          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
-          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
-          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
-          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
-          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
-          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
-          <div className="bg-gray-200 p-5 rounded-xl mb-3" ></div>
-        </div>
-        :
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
-          {listing?.data?.amenities &&
-            listing?.data?.amenities
-              ?.split(",")
-              ?.slice(0, 6) // Limit to first 6 elements
-              ?.map((amenity) => (
-                <div className="flex items-center mt-2 md:mt-4" key={amenity?.trim()}>
-                  <Image
-                    src={`/icons/${amenity
-                      ?.toLowerCase()
-                      ?.trim()
-                      ?.replaceAll(" ", "_")}.png`}
-                    alt="amenity icon"
-                    width={24}
-                    height={24}
-                    className="w-6 h-6"
-                  />
-                  <span className="ms-1 text-[15px] md:text-[16px]">{formatAmenities(amenity)}</span>
-                </div>
-              ))}
+            {listing?.data?.standout_amenity &&
+              listing?.data?.standout_amenity
+                ?.split(",")
+                ?.slice(0, 6) // Limit to first 6 elements
+                ?.map((amenity) => (
+                  <div
+                    className="flex items-center mt-2 md:mt-4"
+                    key={amenity?.trim()}
+                  >
+                    <Image
+                      src={`/icons/${amenity
+                        ?.toLowerCase()
+                        ?.trim()
+                        ?.replaceAll(" ", "_")}.png`}
+                      alt="amenity icon"
+                      width={24}
+                      height={24}
+                      className="w-6 h-6"
+                    />
+                    <span className="ms-1 text-[15px] md:text-[16px]">
+                      {formatAmenities(amenity)}
+                    </span>
+                  </div>
+                ))}
+          </div>
+        )}
 
-          {listing?.data?.standout_amenity &&
-            listing?.data?.standout_amenity
-              ?.split(",")
-              ?.slice(0, 6) // Limit to first 6 elements
-              ?.map((amenity) => (
-                <div className="flex items-center mt-2 md:mt-4" key={amenity?.trim()}>
-                  <Image
-                    src={`/icons/${amenity
-                      ?.toLowerCase()
-                      ?.trim()
-                      ?.replaceAll(" ", "_")}.png`}
-                    alt="amenity icon"
-                    width={24}
-                    height={24}
-                    className="w-6 h-6"
-                  />
-                  <span className="ms-1 text-[15px] md:text-[16px]">{formatAmenities(amenity)}</span>
-                </div>
-              ))}
-        </div>
-      }
-
-      { loading ? 
-      <div className="bg-gray-200 w-60 p-6 animate-pulse rounded-xl mt-3" ></div> : 
-        <button
-          className="btn-normal mt-8 capitalize"
-          onClick={() => setAmenitiesModal(true)}
-        >
-          See all{" "}
-          {
-            (() => {
-              const amenitiesLength = stringToArray((listing && listing?.data && listing?.data?.amenities) || "").length;
-              const standoutAmenityLength = stringToArray((listing && listing?.data && listing?.data?.standout_amenity) || "").length;
+        {loading ? (
+          <div className="bg-gray-200 w-60 p-6 animate-pulse rounded-xl mt-3"></div>
+        ) : (
+          <button
+            className="btn-normal mt-8 capitalize"
+            onClick={() => setAmenitiesModal(true)}
+          >
+            See all{" "}
+            {(() => {
+              const amenitiesLength = stringToArray(
+                (listing && listing?.data && listing?.data?.amenities) || ""
+              ).length;
+              const standoutAmenityLength = stringToArray(
+                (listing && listing?.data && listing?.data?.standout_amenity) ||
+                  ""
+              ).length;
               return amenitiesLength + standoutAmenityLength;
-            })()
-          }
-          {" "}
-          amenities
-        </button>
-      }
+            })()}{" "}
+            amenities
+          </button>
+        )}
 
         {amenitiesModal && (
           <AmenitiesModal
@@ -210,7 +233,8 @@ const AmenitiesModal = ({ amenities, setAmenitiesModal, standout_amenity }) => {
         <header className="flex items-center py-6 px-4">
           <button
             className="absolute right-[23px] top-[20px]"
-            onClick={() => setAmenitiesModal(false)}>
+            onClick={() => setAmenitiesModal(false)}
+          >
             <Times />
           </button>
         </header>

@@ -1,10 +1,9 @@
-
 import React, { useEffect, useState } from "react";
-import Listings from './../api/laravel/Listings';
+import Listings from "./../api/laravel/Listings";
 import Link from "next/link";
-import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 export default function RoomListings() {
   const [loading, setLoading] = useState(false);
   const [listings, setListings] = useState([]);
@@ -12,27 +11,30 @@ export default function RoomListings() {
   useEffect(() => {
     setLoading(true);
     const main = new Listings();
-    main.TopPropertyListing().then((r) => {
-      setLoading(false);
-      const data = r?.data?.data;
-      let filteredListings = [];
+    main
+      .TopPropertyListing()
+      .then((r) => {
+        setLoading(false);
+        const data = r?.data?.data;
+        let filteredListings = [];
 
-      if (Array.isArray(data)) {
-        filteredListings = data.filter(item => item?.status === 1);
-      }
+        if (Array.isArray(data)) {
+          filteredListings = data.filter((item) => item?.status === 1);
+        }
 
-      if (filteredListings.length > 0) {
-        setListings(filteredListings);
-      }
-    }).catch((err) => {
-      setLoading(false);
-      console.log(err);
-    });
+        if (filteredListings.length > 0) {
+          setListings(filteredListings);
+        }
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+      });
   }, []);
   const parseLocation = (location) => {
     try {
-      const record  = JSON.parse(location);
-    const data = JSON.parse(record)
+      const record = JSON.parse(location);
+      const data = JSON.parse(record);
       return data?.location;
     } catch (error) {
       console.error("Error parsing JSON:", error);
@@ -44,25 +46,28 @@ export default function RoomListings() {
     <div>
       {loading ? (
         <div className="flex flex-col sm:flex-row gap-4">
-        {[1, 2, 3].map((item, index) => (
-          <div key={index} className="bg-white w-full sm:w-1/3 banipark-box rounded-lg block relative overflow-hidden pb-[85px] h-full animate-pulse">
-            <div className="absolute bg-gray-300 rounded-full h-5 w-32 text-center -left-[32px] top-[18px]">
-              {/* Skeleton for Discount */}
+          {[1, 2, 3].map((item, index) => (
+            <div
+              key={index}
+              className="bg-white w-full sm:w-1/3 banipark-box rounded-lg block relative overflow-hidden pb-[85px] h-full animate-pulse"
+            >
+              <div className="absolute bg-gray-300 rounded-full h-5 w-32 text-center -left-[32px] top-[18px]">
+                {/* Skeleton for Discount */}
+              </div>
+              <div className="relative w-full h-0 pb-[85%] bg-gray-300">
+                {/* Skeleton for Image */}
+              </div>
+              <div className="flat-info p-3 lg:p-6">
+                <div className="h-4 bg-gray-300 rounded mb-2 w-3/4"></div>
+                <div className="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
+                <div className="h-4 bg-gray-300 rounded mb-2 w-full"></div>
+                <div className="h-4 bg-gray-300 rounded mb-2 w-2/3"></div>
+              </div>
+              <div className="explor-btn absolute w-full left-0 bottom-0">
+                <div className="h-10 bg-gray-300"></div>
+              </div>
             </div>
-            <div className="relative w-full h-0 pb-[85%] bg-gray-300">
-              {/* Skeleton for Image */}
-            </div>
-            <div className="flat-info p-3 lg:p-6">
-              <div className="h-4 bg-gray-300 rounded mb-2 w-3/4"></div>
-              <div className="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
-              <div className="h-4 bg-gray-300 rounded mb-2 w-full"></div>
-              <div className="h-4 bg-gray-300 rounded mb-2 w-2/3"></div>
-            </div>
-            <div className="explor-btn absolute w-full left-0 bottom-0">
-              <div className="h-10 bg-gray-300"></div>
-            </div>
-          </div>
-        ))}
+          ))}
         </div>
       ) : (
         <div className="swiperdiv">
@@ -115,13 +120,26 @@ export default function RoomListings() {
                       <h2 className="line-clamp-1 !pb-[5px]">
                         {parseLocation(item?.location)}
                       </h2>
-                      <h3 className="line-limit capitalize" style={{ WebkitLineClamp: 1 }}>
+                      <h3
+                        className="line-limit capitalize"
+                        style={{ WebkitLineClamp: 1 }}
+                      >
                         {capitalizeFirstLetter(item?.name)}
                       </h3>
                       <p>
-                        <span className="capitalize">{capitalizeAndReplace(item?.type)}  ·</span> &nbsp;
-                        <span className="capitalize">{capitalizeAndReplace(item?.properties_type)}   ·</span> &nbsp;
-                        {item?.bedrooms} Bedrooms · {item?.beds} Bed · {item?.guests} Guests · {item?.no_of_pet_allowed} Pets
+                        <span className="capitalize">
+                          {capitalizeAndReplace(item?.type)} ·
+                        </span>{" "}
+                        &nbsp;
+                        <span className="capitalize">
+                          {capitalizeAndReplace(item?.properties_type)} ·
+                        </span>{" "}
+                        &nbsp;
+                        {item?.bedrooms} Bedroom{item?.bedrooms > 1 ? "s" : ""}{" "}
+                        ·{item?.beds} Bed{item?.beds > 1 ? "s" : ""} ·
+                        {item?.guests} Guest{item?.guests > 1 ? "s" : ""} ·
+                        {item?.no_of_pet_allowed} Pet
+                        {item?.no_of_pet_allowed > 1 ? "s" : ""}
                       </p>
                       <h4>
                         <span className="card-price">
@@ -142,19 +160,19 @@ export default function RoomListings() {
       )}
     </div>
   );
-};
+}
 
 function capitalizeFirstLetter(string) {
   return string?.charAt(0).toUpperCase() + string?.slice(1);
 }
 
 function capitalizeAndReplace(string) {
-  return string?.replace(/_/g, ' ')?.toLowerCase();
+  return string?.replace(/_/g, " ")?.toLowerCase();
 }
 
 function formatMultiPrice(price) {
-  return price?.toLocaleString('en-IN', {
-    style: 'currency',
-    currency: 'INR'
+  return price?.toLocaleString("en-IN", {
+    style: "currency",
+    currency: "INR",
   });
 }
