@@ -30,9 +30,17 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
       <div className="flex justify-between house-rule-text">
         <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full pe-4">
           <h2 className="font-semibold mb-2">Timings </h2>
+          {isAdmin ? 
+          <p className="mb-2 text-gray-500">Check in:  {Moment(record?.data?.check_in, "HH:mm").format('h:mma')}</p>
+          :
           <p className="mb-2 text-gray-500">Check in:  {record?.data?.check_in}</p>
+          }
           {/* <p className="mb-2 text-gray-500">Flexible/check-in ends after {record?.data?.flexible_check_in}</p> */}
+          {isAdmin ?
+           <p className="mb-2 text-gray-500">Check in:  {Moment(record?.data?.check_out, "HH:mm").format('h:mma')}</p>
+          :
           <p className="mb-2 text-gray-500">Check out: {record?.data?.check_out}</p>
+          }
           {/* Note added here */}
           <p className="mb-2 text-gray-500">
             <span className="font-semibold text-black">Note:&nbsp;</span>
