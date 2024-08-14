@@ -43,9 +43,9 @@ export default function RoomListings() {
   return (
     <div>
       {loading ? (
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
         {[1, 2, 3].map((item, index) => (
-          <div key={index} className="bg-white w-1/3 banipark-box rounded-lg block relative overflow-hidden pb-[85px] h-full animate-pulse">
+          <div key={index} className="bg-white w-full sm:w-1/3 banipark-box rounded-lg block relative overflow-hidden pb-[85px] h-full animate-pulse">
             <div className="absolute bg-gray-300 rounded-full h-5 w-32 text-center -left-[32px] top-[18px]">
               {/* Skeleton for Discount */}
             </div>
