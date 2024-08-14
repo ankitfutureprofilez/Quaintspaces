@@ -171,7 +171,7 @@ export default function index() {
                 />
                 </div>
               </form>
-              <div className="border-b-2 border-solid border-zinc-300"></div>
+              {/* <div className="border-b-2 border-solid border-zinc-300"></div>
               <div className="mt-6 profile-text mb-6 ">
                 <h1 className="text-lg ">Deactivate Account</h1>
                 <div className="flex flex-wrap justify-between">
@@ -180,7 +180,7 @@ export default function index() {
                     Deactivate
                   </button>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
