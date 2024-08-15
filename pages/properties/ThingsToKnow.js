@@ -11,6 +11,8 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
     setIsOpen(true);
   };
 
+  
+
   const closeModal = () => {
     setIsOpen(false);
   };

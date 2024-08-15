@@ -173,6 +173,7 @@ export default function Edit() {
     pet: "",
     extra_guest: ""
   });
+  
   console.log("location",record?.data?.location )
   const lstring = record?.data?.location ? JSON.parse(record?.data?.location?.replace('/\\/g', '"')) : null;
   console.log("lstring",lstring)
