@@ -87,9 +87,15 @@ export default function Booking(props) {
                           </span>
                         </div>
                       </td>
-                      <td className=" py-4  px-4 text-sm  text-gray-900 font-normal sm:px-6  ">
-                        <SingleDate item={item?.check_in} />
-                        <SingleDate item={item?.check_out} />
+                      <td className=" py-4 flex flex-col px-4 text-sm  text-gray-900 font-normal sm:px-6  ">
+                      <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">
+                      {item?.check_in}
+                      </span>
+                      <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">
+                      {item?.check_out}
+                      </span>
+                        {/* <SingleDate item={item?.check_in} /> */}
+                        {/* <SingleDate item={item?.check_out} /> */}
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500   overflow-hidden text-ellipsis">
