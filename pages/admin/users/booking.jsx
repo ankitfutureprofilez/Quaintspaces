@@ -3,7 +3,6 @@ import Listing from "../api/Listing";
 import Nodata from "../hook/NoRecord";
 import { formatMultiPrice } from "../../../hooks/ValueData";
 import { IoIosInformationCircleOutline } from "react-icons/io";
-
 import Modal from "../hook/Modal";
 import DateComponent from "../../elements/DateFormat";
 import SingleDate from "../../elements/SingleDate";
