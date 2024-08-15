@@ -1,5 +1,6 @@
 import { classNameInit, classNames } from "../utils/datePickerUtils";
 import { format, isBefore, isEqual, isPast, isToday } from "date-fns";
+import { FaIndianRupeeSign } from "react-icons/fa6";
 
 const Button = ({
   selectedDay,
@@ -49,10 +50,14 @@ const Button = ({
 
           !isEqual(day, selectedDay) && isToday(day) && "text-black",
 
-          "flex w-[2.8rem] h-[2.8rem] mx-auto items-center hover:border hover:border-black justify-center rounded-full transition-none"
+          "flex flex-col w-[2.8rem] h-[2.8rem] mx-auto items-center hover:border hover:border-black justify-center rounded-full transition-none"
         )}
         style={{ transition: "none!important" }}
       >
+          {/* Enter your price here */}
+        {/* <span className="flex flex-row items-center text-[9px] text-red-600">
+        <FaIndianRupeeSign />{" "}500
+        </span>  */}
         <time dateTime={format(day, "yyyy-MM-dd")}>{format(day, "d")}</time>
       </button>
     </div>
