@@ -8,6 +8,7 @@ import Nodata from "../hook/NoRecord";
 import userprofile from "../../../public/admin/userprofile.png";
 import Link from "next/link";
 import { formatMultiPrice } from "../../../hooks/ValueData";
+import SuccessDate from "../../success/SuccessDate";
 export default function Index() {
   const [loading, setLoading] = useState(false);
   const [loadingButton, setLoadingButton] = useState(false);
@@ -111,7 +112,10 @@ export default function Index() {
                       <td className="px-4 py-4 text-sm text-gray-500">
                         <div className="flex flex-col">
                           <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis"> {item?.payment_id}</span>
-                          <span className="whitespace-nowrap capitalize  text-[13px] overflow-hidden text-ellipsis">{item?.payment_date}</span>
+                          <span className="whitespace-nowrap capitalize  text-[13px] overflow-hidden text-ellipsis">
+                          <SuccessDate item={item?.payment_date} />
+                            {/* {item?.payment_date} */}
+                            </span>
                         </div>
                       </td>
 

@@ -47,7 +47,9 @@ export default function index() {
   };
 
   function fetchData(pg, signal) {
-    setLoading(true);
+    if(pg==1){
+      setLoading(true);
+    }
     setLoadingButton(true);
     const main = new Listing();
     main
@@ -64,6 +66,7 @@ export default function index() {
         setHasMore(response?.data?.current_page < response?.data?.last_page);
         setPage(response?.data?.current_page);
         setLoading(false);
+    setLoadingButton(false);
       })
       .catch((error) => {
         if (error.name === "AbortError") {
@@ -72,6 +75,7 @@ export default function index() {
           console.error("Error fetching data:", error);
         }
         setLoading(false);
+    setLoadingButton(false);
       });
   }
 
@@ -333,7 +337,7 @@ export default function index() {
           {content?.length > 0 && !loading && hasmore && (
             <div className="flex justify-center">
               <div
-                className="font-inter font-lg leading-tight text-center text-black-400 w-full sm:w-96 bg-indigo-500 border-0 !p-4 rounded-full mt-10 mb-12 text-white cursor-pointer hover:bg-[#000]  filter btn"
+                className="cursor-pointer mt-4 py-2 px-5  rounded-full text-[#efa3a3] hover:bg-[#efa3a3] hover:text-[#fff] border-2 bg-color-[#efa3a3] border-[#efa3a3] "
                 onClick={loadMore}
               >
                 {loadingButton ? "Loading..." : "Load More"}
