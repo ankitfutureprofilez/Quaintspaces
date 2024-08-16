@@ -53,21 +53,21 @@ export default function Booking(props) {
             <table className="w-full">
               <thead className="bg-[#efa3a3]">
                 <tr className="bg-gray-100 rounded-lg items-center bg-[#efa3a3]  text-white justify-between text-gray-500">
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white">
+                  <td className="px-2 py-2text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white">
                     {" "}
                     Booking Date & Number
                   </td>
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white">
+                  <td className="px-2 py-2 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white">
                     Check In & Checkout Time{" "}
                   </td>
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3] text-white">
+                  <td className="px-2 py-2 text-sm font-normal text-left rtl:text-right bg-[#efa3a3] text-white">
                     Amount
                   </td>
 
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right  bg-[#efa3a3]  text-white">
+                  <td className="px-2 py-2 text-sm font-normal text-left rtl:text-right  bg-[#efa3a3]  text-white">
                     Status
                   </td>
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white">
+                  <td className="px-2 py-2 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white">
                     Document
                   </td>
                 </tr>
@@ -76,7 +76,7 @@ export default function Booking(props) {
                 {content &&
                   content.map((item, index) => (
                     <tr className="" key={index}>
-                      <td className="px-4 py-4 text-sm text-gray-500 capitalize  overflow-hidden text-ellipsis">
+                      <td className="px-2 py-2 text-sm text-gray-500 capitalize  overflow-hidden text-ellipsis">
                         <div className="flex flex-col">
                           <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">                         {item?.booking_date}
                           </span>
@@ -84,7 +84,7 @@ export default function Booking(props) {
                           </span>
                         </div>
                       </td>
-                      <td className=" py-4 flex flex-col px-4 text-sm  text-gray-900 font-normal sm:px-6  ">
+                      <td className=" py-2   flex flex-col px-2   text-sm  text-gray-900 font-normal  sm:px-4  ">
                         <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">
                           {item?.check_in}
                         </span>
@@ -95,12 +95,12 @@ export default function Booking(props) {
                         {/* <SingleDate item={item?.check_out} /> */}
                       </td>
 
-                      <td className="px-4 py-4 text-sm text-gray-500   overflow-hidden text-ellipsis">
+                      <td className="px-2 py-2text-sm text-gray-500   overflow-hidden text-ellipsis">
                         {formatMultiPrice(
                           item?.price
                         )}
                       </td>
-                      <td className="px-2 py-2 text-sm text-gray-500  overflow-hidden text-ellipsis">
+                      <td className="px-2 py-2  text-sm text-gray-500  overflow-hidden text-ellipsis">
                         <div
                           className={`capitalize inline-flex items-center rounded-full py-2 w-max px-2 text-[15px]   ${item?.booking_status === "completed"
                             ? "text-green-700"
@@ -116,7 +116,7 @@ export default function Booking(props) {
                           {item?.booking_status}
                         </div>
                       </td>
-                      <td className="img-data px-4 py-4 text-sm text-gray-500">
+                      <td className="img-data px-2 py-2 text-sm text-gray-500">
                         <div
                           style={{ cursor: "pointer" }}
                           className="flex items-center "
