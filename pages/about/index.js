@@ -47,6 +47,7 @@ export default function index() {
       email: formData?.email,
       message: formData?.message,
     });
+    
     response
       .then((res) => {
         if (res && res?.data && res?.data?.status) {
