@@ -8,11 +8,9 @@ import toast from "react-hot-toast";
 import Listings from "../api/laravel/Listings.js";
 import Head from "next/head";
 import HCaptcha from '@hcaptcha/react-hcaptcha';
-
 import { MdOutlinePhone } from "react-icons/md";
 export default function index() {
   const router = useRouter();
-  console.log("process.env.HCAPTCHA_KEY", process.env.NEXT_PUBLIC_HCAPTCHA_KEY)
   const CAPUTRE_KEY = process.env.NEXT_PUBLIC_HCAPTCHA_KEY
   const [hCaptchaToken, setHCaptchaToken] = useState(null);
 
@@ -75,13 +73,6 @@ export default function index() {
     setHCaptchaToken(token);
     handleSubmit();
   };
-
-  const compantdetails = [
-    { key: 'phone', value: ' 9521410122' },
-    { key: 'address', value: 'D-105, Golden Oak II, Devi Marg, Near Station Road, Bani Park, Jaipur-302019' },
-    // { key: 'services', value: 'Management Services' }
-  ]
-
 
   return (
     <Layout>
