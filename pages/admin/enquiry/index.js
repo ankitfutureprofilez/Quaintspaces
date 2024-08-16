@@ -77,7 +77,7 @@ export default function Index() {
         </div>
         <button
           onClick={toggleExpanded}
-          className="text-blue-500 underline ml-2" >
+          className="text-blue-500 underline" >
           View Message
         </button>
       </>
