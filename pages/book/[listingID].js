@@ -604,10 +604,14 @@ const Book = () => {
                       <>
                       Booking is completely non-refundable. No amount will be refunded under any circumstance.{" "} 
                       </> }
-                      </p>                      
+                      </p>
+                      {listing?.is_refundable == 1?
                       <p className="item-pargraph text-[15px] mb-[10px]">
                         {cancelpolicy?.text}{"."}
                       </p>
+                        :
+                        null
+                        }                      
                       <p
                         className="underline edit-color font-bold"
                         style={{ cursor: "pointer" }}
