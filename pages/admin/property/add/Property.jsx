@@ -587,7 +587,7 @@ export default function Property(props) {
       toast.error(`All fields are required.`);
       return false;
     }
-    if (step === 7 && refundable === null ) {
+    if (step === 7 && refundable === null) {
       toast.error(`At least one field is required.`);
       return false;
     }
@@ -681,7 +681,7 @@ export default function Property(props) {
     images.forEach((image, index) => { formData.append("property_image[]", image); });
     // 
     const response =
-      isEdit && !stepdata  ? main.propertyedit(uuid, formData) : main.addproperty(formData);
+      isEdit && !stepdata ? main.propertyedit(uuid, formData) : main.addproperty(formData);
     response
       .then((res) => {
         if (res?.data?.status) {
