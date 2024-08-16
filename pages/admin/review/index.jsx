@@ -116,7 +116,7 @@ export default function Index() {
                 {content && content.length > 0 ? (
                   <div className="mytable">
                     <table className="w-full table-responsive">
-                      <thead className="bg-indigo-600">
+                      <thead className="">
                         <tr>
                           <th className="px-2 py-2 text-sm whitespace-nowrap font-normal text-left rtl:text-right text-white">
                             Date
@@ -176,7 +176,7 @@ export default function Index() {
                                 </div>
                               </Link>
                             </td>
-                            <td className="relative px-2 py-2 text-sm text-gray-500">
+                            <td className="relative px-2 py-2 text-sm text-gray-500 ">
                             <ShowToolTip text={item?.review_text} index={index} />
                             </td>
                             <td className="px-2 py-2 text-sm text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">

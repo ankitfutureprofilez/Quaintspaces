@@ -3,10 +3,10 @@ import React, { useState } from "react";
 export default function Guest({
   Guests, setGuests, Bedrooms, setBedrooms, Bathrooms, setBathrooms, Beds, setBeds
 }) {
-  const decrement = (setter) => () => setter((prev) => Math.max(0, prev - 1));
+  const decrement = (setter) => () => setter((prev) => Math.max(1, prev - 1));
   const increment = (setter) => () => setter((prev) => prev + 1);
   const decrements = (Bathrooms) => () =>
-    setBathrooms((prev) => Math.max(0, prev - 0.5));
+    setBathrooms((prev) => Math.max(0.5, prev - 0.5));
   const increments = (Bathrooms) => () => setBathrooms((prev) => prev + 0.5);
   return (
     <div className="h-full  w-full ">

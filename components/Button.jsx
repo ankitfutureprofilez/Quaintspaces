@@ -55,9 +55,9 @@ const Button = ({
         style={{ transition: "none!important" }}
       >
           {/* Enter your price here */}
-        {/* <span className="flex flex-row items-center text-[9px] text-red-600">
+        <span className="flex flex-row items-center text-[9px] text-red-600">
         <FaIndianRupeeSign />{" "}500
-        </span>  */}
+        </span> 
         <time dateTime={format(day, "yyyy-MM-dd")}>{format(day, "d")}</time>
       </button>
     </div>
