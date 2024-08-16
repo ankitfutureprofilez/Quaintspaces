@@ -39,69 +39,71 @@ export default function payment({ record }) {
         </div>
       ) : (
 
-        <div className=" mt-3">
-            <div className="mytable table-responsive w-full">
-              {content && content.length > 0 ? (
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr >
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white capitalize ">Invoice </td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white capitalize ">Purchase</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white capitalize ">Method</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white capitalize ">Status</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white capitalize ">Amount</td>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {content && content.map((item, index) => (
-                      <tr key={index}>
-                        <td className="px-4 py-4 text-sm text-gray-500">{item?.payment_id}</td>
+        <div className="mt-5 ">
+          <div className=" mytable table-responsive w-full">
+            {content && content.length > 0 ? (
 
-                        <td className="px-4 py-4 text-sm text-gray-500">
-                          <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
+              <table className="w-full">
+                <thead className="bg-[#efa3a3]">
+                  <tr className="bg-gray-100 rounded-lg items-center bg-[#efa3a3]  text-white justify-between text-gray-500">
+                    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white capitalize ">Invoice </td>
+                    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white capitalize ">Purchase</td>
+                    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white capitalize ">Method</td>
+                    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white capitalize ">Status</td>
+                    <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white capitalize ">Amount</td>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {content && content.map((item, index) => (
+                    <tr className="hover:bg-gray-100  items-center justify-between duration-150 text-gray-700 !mt-0" key={index}>
 
-                            <div className="items-center img-data flex gap-2 text-sm  ">
-                              <Image
-                                width={35}
-                                height={35}
-                                className="hidden md:block top-2 right-2 p-1 rounded-full user-profile-img"
-                                src={item?.booking_history?.booking_property?.property_image[0]?.image_url}
-                                alt="Property"
-                              />
+                      <td className="px-4 py-4 text-sm text-gray-500">{item?.payment_id}</td>
 
-                              <div>
-                                <div className="text-gray-800 text-sm font-normal capitalize ">{item?.booking_history?.booking_property?.name}</div>
-                              </div>
+                      <td className="px-4 py-4 text-sm text-gray-500">
+                        <Link href={`/property/${item?.booking_history?.booking_property?.uuid}`}>
+
+                          <div className="items-center img-data flex gap-2 text-sm  ">
+                            <Image
+                              width={35}
+                              height={35}
+                              className="hidden md:block top-2 right-2 p-1 rounded-full user-profile-img"
+                              src={item?.booking_history?.booking_property?.property_image[0]?.image_url}
+                              alt="Property"
+                            />
+
+                            <div>
+                              <div className="text-gray-800 text-sm font-normal capitalize ">{item?.booking_history?.booking_property?.name}</div>
                             </div>
-                          </Link>
-                        </td>
-                        <td className="px-4 py-4 text-sm text-gray-500 capitalize whitespace-no-wrap  ">{item?.method}</td>
-                        <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-500 sm:px-6 table-cell">
-                          <div
-                            className={` capitalize  ${item?.payment_status === "success"
-                              ? "text-green-600"
-                              : item?.payment_status === "cancelled"
-                                ? "text-red-600"
-                                : item?.payment_status === "confirm"
-                                  ? "text-green-600"
-                                  : item?.payment_status === "refunded"
-                                    ? "text-indigo-600" : "text-blue-600"
-                              }`}
-                          >
-                            {item?.payment_status}
                           </div>
-                        </td>
-                        <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-500 sm:px-6 table-cell">
-                          {formatMultiPrice(item?.price)}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              ) : (
-                <Nodata heading={"No Payment History"} />
-              )}
-              
-            </div>
+                        </Link>
+                      </td>
+                      <td className="px-4 py-4 text-sm text-gray-500 capitalize whitespace-no-wrap  ">{item?.method}</td>
+                      <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-500 sm:px-6 table-cell">
+                        <div
+                          className={` capitalize  ${item?.payment_status === "success"
+                            ? "text-green-600"
+                            : item?.payment_status === "cancelled"
+                              ? "text-red-600"
+                              : item?.payment_status === "confirm"
+                                ? "text-green-600"
+                                : item?.payment_status === "refunded"
+                                  ? "text-indigo-600" : "text-blue-600"
+                            }`}
+                        >
+                          {item?.payment_status}
+                        </div>
+                      </td>
+                      <td className="whitespace-no-wrap py-4 text-sm font-normal text-gray-500 sm:px-6 table-cell">
+                        {formatMultiPrice(item?.price)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <Nodata heading={"No Payment History"} />
+            )}
+
+          </div>
         </div>
       )}
     </>

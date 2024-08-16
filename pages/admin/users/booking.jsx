@@ -75,7 +75,8 @@ export default function Booking(props) {
               <tbody className="lg:border-gray-300">
                 {content &&
                   content.map((item, index) => (
-                    <tr className="" key={index}>
+
+                    <tr className="hover:bg-gray-100  items-center justify-between duration-150 text-gray-700 !mt-0" key={index}>
                       <td className="px-2 py-2 text-sm text-gray-500 capitalize  overflow-hidden text-ellipsis">
                         <div className="flex flex-col">
                           <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">                         {item?.booking_date}
