@@ -45,11 +45,11 @@ export default function payment({ record }) {
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr >
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Invoice </td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Purchase</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Method</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Status</td>
-                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white capitalize ">Amount</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white capitalize ">Invoice </td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white capitalize ">Purchase</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white capitalize ">Method</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white capitalize ">Status</td>
+                      <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white capitalize ">Amount</td>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">

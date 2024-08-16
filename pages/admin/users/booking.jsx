@@ -50,26 +50,24 @@ export default function Booking(props) {
       ) : content && content.length > 0 ? (
         <div className="mt-5 ">
           <div className=" mytable table-responsive w-full">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr className="">
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
+            <table className="w-full">
+              <thead className="bg-[#efa3a3]">
+                <tr className="bg-gray-100 rounded-lg items-center bg-[#efa3a3]  text-white justify-between text-gray-500">
+                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white">
                     {" "}
                     Booking Date & Number
                   </td>
-                  {/* <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
-                    booking Number{" "}
-                  </td> */}
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
+                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white">
                     Check In & Checkout Time{" "}
                   </td>
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
+                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3] text-white">
                     Amount
                   </td>
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
+
+                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right  bg-[#efa3a3]  text-white">
                     Status
                   </td>
-                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-indigo-600 text-white">
+                  <td className="px-4 py-4 text-sm font-normal text-left rtl:text-right bg-[#efa3a3]  text-white">
                     Document
                   </td>
                 </tr>
@@ -87,12 +85,12 @@ export default function Booking(props) {
                         </div>
                       </td>
                       <td className=" py-4 flex flex-col px-4 text-sm  text-gray-900 font-normal sm:px-6  ">
-                      <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">
-                      {item?.check_in}
-                      </span>
-                      <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">
-                      {item?.check_out}
-                      </span>
+                        <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">
+                          {item?.check_in}
+                        </span>
+                        <span className="whitespace-nowrap capitalize  text-sm overflow-hidden text-ellipsis">
+                          {item?.check_out}
+                        </span>
                         {/* <SingleDate item={item?.check_in} /> */}
                         {/* <SingleDate item={item?.check_out} /> */}
                       </td>
