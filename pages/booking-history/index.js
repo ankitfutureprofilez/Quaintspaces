@@ -88,7 +88,6 @@ export default function Index() {
 
 
   const handleCanceled = (uuid) => {
-    console.log("uuid",uuid)
     SetSelectBooking(uuid);
     setAmount()
     setShowConfirmation(true);
