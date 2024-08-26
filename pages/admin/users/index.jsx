@@ -195,6 +195,7 @@ export default function Index() {
                     <button
                       onClick={() =>statusUpdate(item.id, item.status === 0 ? 1 : 0)}
                       >
+                        
                     {item.status === 0 ? (
                       <div className="flex items-center border rounded-full px-2 py-1">
                         <p className="text-xs me-1">Disable</p>
