@@ -192,9 +192,9 @@ export default function Index() {
                 </td>
                 <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap ">
                   <div className="flex items-center gap-1 p-1">
-                    {/* <button
+                    <button
                       onClick={() =>statusUpdate(item.id, item.status === 0 ? 1 : 0)}
-                      > */}
+                      >
                     {item.status === 0 ? (
                       <div className="flex items-center border rounded-full px-2 py-1">
                         <p className="text-xs me-1">Disable</p>
@@ -234,7 +234,7 @@ export default function Index() {
                         </svg>
                       </div>
                     )}
-                    {/* </button> */}
+                    </button>
                   </div>
                 </td>
                 <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
@@ -304,7 +304,7 @@ export default function Index() {
                           className="py-2 text-sm text-gray-700"
                           aria-labelledby="dropdownDefaultButton"
                         >
-                          {/* <li className="block px-4 py-2 hover:bg-gray-100">
+                          <li className="block px-4 py-2 hover:bg-gray-100">
                             <button
                               // onClick={() => {
                               //   handleRowClick(null);
@@ -318,7 +318,7 @@ export default function Index() {
                                   <p className="text-normal">Suspend User</p> 
                               }
                             </button>
-                          </li> */}
+                          </li>
                           <li>
                             <Link
                               href={`users/${item.id}`}
@@ -327,14 +327,14 @@ export default function Index() {
                               User Details{" "}
                             </Link>
                           </li>
-                          {/* <li>
+                          <li>
                             <button
                               onClick={() => openModal(item?.id)}
                               className="block px-4 py-2 hover:bg-gray-100"
                             >
                               Delete Account{" "}
                             </button>
-                          </li> */}
+                          </li>
                         </ul>
                       </div>
                     )}
