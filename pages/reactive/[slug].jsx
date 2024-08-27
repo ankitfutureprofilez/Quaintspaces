@@ -63,9 +63,8 @@ const ReActive = () => {
 
         {/* Paragraph */}
         <p className="text-base sm:text-lg lg:text-xl text-center mb-8 max-w-md sm:max-w-lg">
-          Discover unique homes, experiences, and places around the world. Join us
-          today and explore with confidence on our user-friendly platform.
-        </p>
+                    Indulge in the finest and most charming accommodation in Jaipur!
+                  </p>
         {/* Reactive Button */}
         <Button
           text={loading ? "Loading..." : "Reactivated"}
