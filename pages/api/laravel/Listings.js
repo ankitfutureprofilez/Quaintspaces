@@ -41,7 +41,9 @@ class Listings extends Component {
   async bookingpayment(data) {
     return Api.post("/payment" , data);
   }
-
+  async activateAccount(data) {
+    return Api.post("/user-account-activate",data);
+  }
   
   async DeactivateAccount() {
     return Api.get("/user-account-deactivate");
