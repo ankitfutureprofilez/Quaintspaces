@@ -68,9 +68,9 @@ const ReActive = () => {
         </p>
         {/* Reactive Button */}
         <Button
-          text={loading ? "Loading..." : "ReActive"}
+          text={loading ? "Loading..." : "Reactivated"}
           design={
-            "font-inter hover:bg-[#ffffff] border-[#efa3a3] border hover:text-[#efa3a3] font-normal leading-tight text-center text-white w-full sm:w-96 bg-[#efa3a3] sm:p-4 p-3 rounded-full"
+            "font-inter hover:bg-[#ffffff] uppercase border-[#efa3a3] border hover:text-[#efa3a3] font-normal leading-tight text-center text-white w-full sm:w-96 bg-[#efa3a3] sm:p-4 p-3 rounded-full"
           }
           onClick={handleSubmit}
         />
