@@ -57,16 +57,16 @@ const ReActive = () => {
         </div>
         {/* Heading */}
         <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 text-center">
-          Your Account Has Been Reactivated!
+        Your account has been deactivated
         </h1>
         {/* Paragraph */}
         <p className="text-base sm:text-lg lg:text-xl text-center mb-8 max-w-md sm:max-w-lg">
-          Welcome back! Your account is now reactivated. 
+        Please click on the below button to reactivate it
         </p>
 
         {/* Reactive Button */}
         <Button
-          text={loading ? "Loading..." : "Reactive"}
+          text={loading ? "Loading..." : "Reactivate"}
           design={
             "font-inter hover:bg-[#ffffff] uppercase border-[#efa3a3] border hover:text-[#efa3a3] font-normal leading-tight text-center text-white w-full sm:w-96 bg-[#efa3a3] sm:p-4 p-3 rounded-full"
           }
