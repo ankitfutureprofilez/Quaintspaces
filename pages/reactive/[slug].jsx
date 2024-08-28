@@ -14,7 +14,7 @@ const ReActive = () => {
   const { slug } = router.query;
   const [loading, setLoading] = useState(false);
 
-  console.log("slug",slug)
+  console.log("slug", slug)
   const handleSubmit = (e) => {
     e.preventDefault();
     if (loading == true) {
@@ -55,17 +55,14 @@ const ReActive = () => {
         <div className="mb-8">
           <img src={"https://quaintstays.laraveldevelopmentcompany.com/public/img/Logo1.png"} alt="Quaintspaces Jaipur logo" />
         </div>
-
         {/* Heading */}
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-center">
-  Your Account Has Been Reactivated!
-</h1>
-
-
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 text-center">
+          Your Account Has Been Reactivated!
+        </h1>
         {/* Paragraph */}
         <p className="text-base sm:text-lg lg:text-xl text-center mb-8 max-w-md sm:max-w-lg">
-  Welcome back! Your account is now reactivated. Explore unique homes, experiences, and places around the world with us. Start your journey today with confidence on our user-friendly platform.
-</p>
+          Welcome back! Your account is now reactivated. Explore unique homes, experiences, and places around the world with us. Start your journey today with confidence on our user-friendly platform.
+        </p>
 
         {/* Reactive Button */}
         <Button
