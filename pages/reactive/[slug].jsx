@@ -61,7 +61,7 @@ const ReActive = () => {
         </h1>
         {/* Paragraph */}
         <p className="text-base sm:text-lg lg:text-xl text-center mb-8 max-w-md sm:max-w-lg">
-          Welcome back! Your account is now reactivated. Explore unique homes, experiences, and places around the world with us. Start your journey today with confidence on our user-friendly platform.
+          Welcome back! Your account is now reactivated. 
         </p>
 
         {/* Reactive Button */}
