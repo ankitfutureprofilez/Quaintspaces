@@ -14,90 +14,70 @@
             <tr>
                 <td style="padding: 1.2rem 1rem; text-align: center;">
                     <a href="https://quant-stay.vercel.app/" style="text-decoration: none;">
-                        <img style="display: block; max-height: 41px; margin: 0 auto;" src="https://quaintstays.laraveldevelopmentcompany.com/public/img/Logo1.png">
+                        <img style="display: block; max-height: 41px; margin: 0 auto;"
+                            src="https://quaintstays.laraveldevelopmentcompany.com/public/img/Logo1.png">
                     </a>
                 </td>
             </tr>
             <tr>
-                <td style="background-image: url(https://quaintstays.laraveldevelopmentcompany.com/public/img/banner_inquiry.png); background-repeat: no-repeat; background-size: 100% 190px; padding: 10.6rem 1rem 1.8rem;">
+                <td
+                    style="background-image: url(https://quaintstays.laraveldevelopmentcompany.com/public/img/banner_inquiry.png); background-repeat: no-repeat; background-size: 100% 190px; padding: 10.6rem 1rem 1.8rem;">
                     <div style="background: #EFA3A3;padding: 0.7rem 1.4rem  1.5rem 1.4rem;">
-                        <p style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 1rem 0  1.3rem 0;color: #FFFFFF;">Dear @php echo ucwords($user['name'])?? 'User' @endphp,</p>
+                        <p
+                            style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 1rem 0  1.3rem 0;color: #FFFFFF;">
+                            Dear @php echo ucwords($user['name'])?? 'User' @endphp,</p>
 
-                        <p style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 1rem 0  1.3rem 0;color: #FFFFFF;">
+                        <p
+                            style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 1rem 0  1.3rem 0;color: #FFFFFF;">
                             @if ($user['status'] == 1)
-                            We’re pleased to inform you that your account with Quaint Spaces has been successfully reactivated!
+                            We’re pleased to inform you that your account with Quaint Spaces has been successfully
+                            reactivated!
                             @endif
                             @if ($user['status'] == 0)
-                            We’re writing to confirm that your account with Quaint Spaces has been deactivated as per your request.
+                            We’re writing to confirm that your account with Quaint Spaces has been deactivated as per
+                            your request.
                             @endif
                         </p>
-                        <p style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 1rem 0  1.3rem 0;color: #FFFFFF;">
+                        <p
+                            style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 1rem 0  1.3rem 0;color: #FFFFFF;">
                             @if ($user['status'] == 1)
-                                    You can now log in to make bookings and access all your account features. If you need further assistance, please email us at <a href="@php echo ucwords($adminUser['email'])?? 'N/A' @endphp" style="font-family: Arial;  color: #FFFFFF;text-decoration: none;">@php echo ucwords($adminUser['email']) ?? 'N/A' @endphp</a> or call
-                                    <a href="tel:9521410122" style="font-family: Arial;  color:#FFFFFF ; text-decoration: none; ">
-                                        {{ $adminUser['phone_no'] }}.
-                                    </a>
-                                    <p style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 1rem 0  1.3rem 0;color: #FFFFFF;">
-                                    Thank you for choosing Quaint Spaces. We look forward to hosting you!</p>
-                            @endif
-                        <p style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 1rem 0  1.3rem 0;color: #FFFFFF;">
+                            You can now log in to make bookings and access all your account features. If you need
+                            further assistance, please email us at <a href="mailto:quaintspaces@gmail.com"
+                                style="font-family: Arial;  color: #FFFFFF;text-decoration: none;">@php echo
+                                $adminUser['email'] ?? 'N/A' @endphp</a> or call <a href="tel:9521410122"
+                                style="font-family: Arial;  color:#FFFFFF ; text-decoration: none; ">{{
+                                $adminUser['phone_no'] }}.
+                            </a>
+                        <p
+                            style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 1rem 0  1.3rem 0;color: #FFFFFF;">
+                            Thank you for choosing Quaint Spaces. We look forward to hosting you!</p>
+                        @endif
+                        <p
+                            style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 1rem 0  1.3rem 0;color: #FFFFFF;">
                             @if ($user['status'] == 0)
                             If this action was taken in error or if you wish to reactivate your account,
-                            please <a href="https://quant-stay.vercel.app/about" style="color: #FFFFFF;text-decoration: none;"> click here.</a>
+                            please <br>
+                            <a href="https://quant-stay.vercel.app/reactive/<?php echo $user['id']; ?>"
+                                style="text-decoration: underline; font-family: Arial; ">click here</a>.
+
                         </p>
 
-                        <p style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 1rem 0  1.3rem 0;color: #FFFFFF;">
-                        We are sorry to see you go.
+                        <p
+                            style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 1rem 0  1.3rem 0;color: #FFFFFF;">
+                            We are sorry to see you go.
                             @endif
                         </p>
-                        <p style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 0;color: #FFFFFF;">
+                        <p
+                            style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 0;color: #FFFFFF;">
                             Best Regards,</p>
-                        <p style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 0;color: #FFFFFF;">
+                        <p
+                            style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 19px; letter-spacing: -0.01em; text-align: left;margin: 0;color: #FFFFFF;">
                             Quaint Spaces</p>
-                        <!-- <p style=" margin-top: 0rem; color: #FFFFFF; font-size: 1rem; line-height: 1.5rem;">
-                            </p> -->
+
                     </div>
                 </td>
             </tr>
 
-            <!--               
-                <tr>
-                    <td style="border-top: 1px solid rgba(0, 0, 0, .1);padding: 1.2rem 1rem 1.2rem;">
-                       <div style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 16.1px; text-align: left;color: rgba(63, 42, 23, .7);padding:0 0 10px;"><img style="margin-right:7px;vertical-align: middle;" src="https://quaintstays.laraveldevelopmentcompany.com/public/img/email_icon.png" alt="email icon"> quaintspaces@gmail.com </div>
-                       <div style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 16.1px; text-align: left;color: rgba(63, 42, 23, .7);padding:0 0 10px;"><img style="margin-right:7px;vertical-align: middle;" src="https://quaintstays.laraveldevelopmentcompany.com/public/img/phone.png" alt="email icon"> +91 9521410122 / +91 9314022666 </div>
-                       <div style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 16.1px; text-align: left;color: rgba(63, 42, 23, .7);padding:0 0 10px;"><img style="margin-right:7px;vertical-align: middle;" src="https://quaintstays.laraveldevelopmentcompany.com/public/img/location.png" alt="email icon"> Bani Park, Jaipur  </div>
-                    </td>
-                 </tr>
-                 <tr>
-                    <td style="border-top: 1px solid rgba(0, 0, 0, .1);padding: 1.2rem 1rem 1.2rem;">
-                       <div style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 16.1px; text-align: left;color: rgba(63, 42, 23, .7);padding:0 0 10px;"><img style="margin-right:7px;vertical-align: middle;" src="https://quaintstays.laraveldevelopmentcompany.com/public/img/facebook_icon.png" alt="email icon"> Quaint Spaces </div>
-                       <div style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 16.1px; text-align: left;color: rgba(63, 42, 23, .7);padding:0 0 10px;"><img style="margin-right:7px;vertical-align: middle;" src="https://quaintstays.laraveldevelopmentcompany.com/public/img/instagram_icon.png" alt="email icon"> @quaintspacesjaipur </div> 
-                    </td>
-                 </tr> -->
-            <!-- <tr>
-                <td style="padding: 0 1rem 1.2rem;">
-                    <table cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td>
-                                <div
-                                    style="font-family: Arial; font-size: 14px; font-weight: 400; line-height:22px; text-align: left;color: rgba(63, 42, 23, .7);padding:0 0 10px;">
-                                    Golden Oak 2, Devi Marg, Bani Park,<br> Jaipur, Rajasthan, 302016 </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div
-                                    style="font-family: Arial; font-size: 14px; font-weight: 400; line-height: 16.1px; text-align: left;color: rgba(63, 42, 23, .7);padding:0 0 10px;">
-                                    <a style="color: rgba(63, 42, 23, .7); text-decoration: none; font-family: Arial; "
-                                        href="tel:9521410122">+91 9521410122</a> / <a
-                                        style="font-family: Arial; color: rgba(63, 42, 23, .7); text-decoration: none;"
-                                        href="tel:9314022666">+91 9314022666</a>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr> -->
             <tr>
                 <td style="padding: 0 1rem 1.2rem; text-align: center;">
                     <a href="https://quant-stay.vercel.app/" style="text-decoration: none;">
@@ -111,7 +91,8 @@
                         <tr>
                             <!-- padding: 1rem 1rem 1rem; -->
                             <td style="text-align: center;">
-                                <div style="font-family: Arial; font-size: 13px; font-weight: 400; line-height: 16.1px; color: rgba(63, 42, 23, .7);padding:0 0 10px;">
+                                <div
+                                    style="font-family: Arial; font-size: 13px; font-weight: 400; line-height: 16.1px; color: rgba(63, 42, 23, .7);padding:0 0 10px;">
                                     <img style="width:17px;height:17px;margin-right:2px;vertical-align: middle;"
                                         src="https://quaintstays.laraveldevelopmentcompany.com/public/img/mail.png"
                                         alt="email icon">
@@ -154,10 +135,11 @@
                         </tr>
                         <tr>
                             <td style=" text-align: center;">
-                                <div style="font-family: Arial; font-size: 13px; font-weight: 400; line-height: 16.1px; color: rgba(63, 42, 23, .7);padding:0 0 10px;">
-                                   <a href="https://quant-stay.vercel.app/"> <img style="width:18px;height:18px ; margin-bottom:1px;vertical-align: middle;"
+                                <div
+                                    style="font-family: Arial; font-size: 13px; font-weight: 400; line-height: 16.1px; color: rgba(63, 42, 23, .7);padding:0 0 10px;">
+                                    <img style="width:18px;height:18px ; margin-bottom:1px;vertical-align: middle;"
                                         src="https://quaintstays.laraveldevelopmentcompany.com/public/img/mdi_location.png"
-                                        alt="location icon"> </a>
+                                        alt="location icon">
                                     : D-105, Golden Oak 2, Devi Marg,<br> Station Road, Bani Park, Jaipur, Rajasthan
                                     302016.
                                 </div>
