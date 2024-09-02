@@ -185,7 +185,7 @@ const DropReview = ({ closeModal, listing, getSelfreview }) => {
         </div>
 
         <div className="flex justify-center mt-6 pt-3">
-          <button onClick={handleSubmit} className=" filter btn w-auto w-40 hover:bg-[#fff] hover:text-[#c48b58] border-2 bg-color-[#c48b58] border-[#c48b58] ">
+          <button onClick={handleSubmit} className=" bg-[#efa3a3] text-[#fff] text-[13px] md:text-[16px] border border-[#efa3a3] px-[20px] py-[8px] flex rounded-full hover:text-[#efa3a3] hover:bg-[#ffffff00]">
             {loading ? "Submitting..." : "Submit"}
           </button>
         </div>

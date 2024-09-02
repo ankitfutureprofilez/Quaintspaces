@@ -17,7 +17,7 @@ export default function index() {
     new_password: "",
     confirm_password: "",
   });
-  const {setAuth} = useContext(Context);
+  const { setAuth } = useContext(Context);
 
   const DeleteAccount = (e) => {
     const main = new Listings();
@@ -97,18 +97,17 @@ export default function index() {
       </Head>
       <div className="py-4 sm:py-8 md:py-12">
         <div className="container mx-auto">
-        <div className="w-full m-auto md:rounded-3xl rounded-2xl md:mt-6 mt-4">
-          <div className="mb-6">
-            <Heading text={"Security "} handleClick={() => router.back()} />
-          </div>
-          <div className="mb-6 profile-text">
-            <h1>Update Password</h1>
-            <p className="security-text">
-              Increase the security of your account by updating password etc.
-            </p>
-          
-          </div>
-          
+          <div className="w-full m-auto md:rounded-3xl rounded-2xl md:mt-6 mt-4">
+            <div className="mb-6">
+              <Heading text={"Security "} handleClick={() => router.back()} />
+            </div>
+            <div className="mb-6 profile-text">
+              <h1>Update Password</h1>
+              <p className="security-text">
+                Increase the security of your account by updating password etc.
+              </p>
+            </div>
+
             <div className="w-full  security-box-form">
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
@@ -163,12 +162,12 @@ export default function index() {
                   />
                 </div>
                 <div className="flex justify-start">
-                <Button
-                  text={loading ? "Updating..." : "Update Password"}
-                  design={
-                    "font-inter hover:bg-[#efa3a3] border-2 border-[#efa3a3] hover:border-[#efa3a3] text-[#efa3a3] hover:text-[#fff] font-normal leading-tight text-center w-full sm:w-96  sm:p-4 p-3 rounded-full mb-8 mt-4"
-                  }
-                />
+                  <Button
+                    text={loading ? "Updating..." : "Update Password"}
+                    design={
+                      "font-inter hover:bg-[#efa3a3] border-2 border-[#efa3a3] hover:border-[#efa3a3] text-[#efa3a3] hover:text-[#fff] font-normal leading-tight text-center w-full sm:w-96  sm:p-4 p-3 rounded-full mb-8 mt-4"
+                    }
+                  />
                 </div>
               </form>
               <div className="border-b-2 border-solid border-zinc-300"></div>
@@ -185,26 +184,31 @@ export default function index() {
           </div>
         </div>
         <Modal isOpen={isOpen} onClose={closeModal}>
-          <div className="w-full my-5 px-4">
-            <h2 className="sm:text-2xl text-md font-medium text-bold my-2">
+          <div className="flex flex-col align-center w-full">
+            <h2 className="w-full p-4 text-[#fff] align-center text-lg text-base font-medium bg-[#efa3a3]">
               Deactivation Confirmation
             </h2>
-            <p className="security-text text-sm mb-2">Are you sure you want to deactivate your account?</p>
-            <p className="security-text text-base">
-              Please note that deactivating your account is an irreversible
-              change. Should you wish to restore your account in the future, you
-              will need to contact our technical team for assistance.
+            {/* <p className="security-text text-sm my-2 mx-4">
+              Are you sure you want to deactivate your account?
+            </p> */}
+            <p className="security-text text-base mt-4 mx-4">
+              Please note that deactivating your account is your personal
+              decision. Should you wish to restore your account in the future,
+              you can do so through the link in the deactivation email.
             </p>
-            <div className="flex justify-between mt-6">
+
+            <div className="flex justify-between mt-1 mx-2 mb-4">
               <button
                 onClick={() => {
                   closeModal();
                 }}
-                className="btn bg-green-300"
+                className="font-inter hover:bg-[#efa3a3] border-2 border-[#efa3a3] hover:border-[#efa3a3] text-[#efa3a3] hover:text-[#fff] font-normal leading-tight text-center sm:px-4 px-3 py-2 rounded-full"
               >
                 Cancel
               </button>
-              <button onClick={DeleteAccount} className="btn bg-red-500">
+              <button onClick={DeleteAccount} 
+              className="font-inter hover:bg-[#efa3a3] border-2 border-[#efa3a3] hover:border-[#efa3a3] text-[#efa3a3] hover:text-[#fff] font-normal leading-tight text-center sm:px-4 px-3 py-2 rounded-full"
+              >
                 Deactivate
               </button>
             </div>
