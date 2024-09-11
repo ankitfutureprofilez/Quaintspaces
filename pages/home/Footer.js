@@ -32,12 +32,12 @@ export default function Footer() {
                 <div className="flex flex-col">
                   <a
                     className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] flex justify-center xl:justify-start"
-                    href="mailto:quaintspaces@gmail.com"
+                    href="mailto:info@quaintspaces.in"
                     target="_blank"
                   >
                     <TfiEmail size={16} className="mt-[2px]" color={"#3F2A17"} />
                     <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px]  ml-2">
-                      : quaintspaces@gmail.com
+                      : info@quaintspaces.in
                     </span>
                   </a>
                   <div className="flex mt-2 justify-center xl:justify-start">
@@ -132,13 +132,13 @@ export default function Footer() {
                 <div className="w-[80px] h-[2px] mx-auto xl:mx-[0] bg-[#efa3a3] mb-[15px]"></div>
                 <div className="flex flex-col">
                   <a
-                    href="mailto:quaintspaces@gmail.com"
+                    href="mailto:info@quaintspaces.in"
                     target="_blank" 
                     className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] flex justify-center xl:justify-start"
                   >
                     <TfiEmail size={18} color={"#3F2A17"} className="mt-1" />
                     <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px]  ml-2">
-                      : quaintspaces@gmail.com 
+                      : info@quaintspaces.in 
                     </span>
                   </a>
                   <div className="flex mt-2 justify-center xl:justify-start">
