@@ -110,7 +110,6 @@ const Book = () => {
     main
       .PropertyDetail(url?.listingID)
       .then((r) => {
-        console.log("details", r?.data?.data)
         setListing(r?.data?.data);
         setDtLoading(false);
       })
@@ -399,7 +398,6 @@ const Book = () => {
       document.body.classList.remove("overflow-hidden");
     };
   }, [dateModel]);
-  console.log("cancelpolicy",cancelpolicy);
 
   return (
     <AuthLayout>

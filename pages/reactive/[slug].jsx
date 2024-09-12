@@ -14,7 +14,6 @@ const ReActive = () => {
   const { slug } = router.query;
   const [loading, setLoading] = useState(false);
 
-  console.log("slug", slug)
   const handleSubmit = (e) => {
     e.preventDefault();
     if (loading == true) {

@@ -4,7 +4,6 @@ import Moment from 'moment';
 
 
 export default function ThingsToKnow({ record, isAdmin, content }) {
-  console.log("record", record)
   const [isOpen, setIsOpen] = useState(false);
   const [formattedAdditionalData, setFormattedAdditionalData] = useState("");
 

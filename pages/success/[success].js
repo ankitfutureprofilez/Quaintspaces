@@ -55,7 +55,6 @@ const success = () => {
   };
 
   const totalStay = calculateTotalDays(record?.check_in, record?.check_out);
-  console.log("record", record);
   return (
     <AuthLayout>
       {loading ? (

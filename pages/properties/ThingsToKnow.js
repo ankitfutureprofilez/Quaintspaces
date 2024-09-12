@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Modal from "../elements/Modal";
 
 export default function ThingsToKnow({ record, isAdmin, content }) {
-  console.log("record", record)
   const [isOpen, setIsOpen] = useState(false);
   const [formattedAdditionalData, setFormattedAdditionalData] = useState("");
 
@@ -11,7 +10,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
     setIsOpen(true);
   };
 
-  
+
 
   const closeModal = () => {
     setIsOpen(false);
@@ -28,46 +27,6 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
     return words.slice(0, wordLimit).join(' ') + '...';
   };
 
-  console.log("record?.data?.property_rule?.additional_rules", record?.data?.property_rule?.additional_rules);
-  // useEffect(() => {
-  //   const handleAdditionalData = (record) => {
-  //     let additionalData;
-  //     let ruleData;
-  //     let formattedData = "";
-
-  //     try {
-  //       // Parse additional_rules JSON if available
-  //       additionalData = record?.data?.property_rule?.additional_rules ? record?.data?.property_rule?.additional_rules?.split('\r\n') : null;
-  //       console.log("additionalData", additionalData);
-  //     } catch (e) {
-  //       console.error('Error parsing additional_rules JSON:', e);
-  //     }
-
-  //     // Check if additionalData exists and is valid
-  //     if (additionalData) {
-  //       try {
-  //         if (isAdmin) {
-  //           // Format additionalData by replacing newline characters with <br /> for admin
-  //           formattedData = additionalData.replace(/\r\n/g, '<br />');
-  //         } else {
-  //           // Parse and format ruleData for non-admin
-  //           ruleData = (additionalData);
-  //           formattedData = ruleData.replace(/\r\n/g, '<br />');
-  //         }
-  //         console.log("formattedAdditionalData", formattedData);
-  //       } catch (e) {
-  //         console.error('Error formatting data:', e);
-  //       }
-  //     }
-
-  //     setFormattedAdditionalData(formattedData);
-  //   };
-
-  //   handleAdditionalData(record);
-  // }, [record, isAdmin]);
-
-
-  // console.log("formattedAdditionalData",formattedAdditionalData)
 
   const formattedRules = record?.data?.property_rule?.additional_rules?.split('\n')?.filter(rule => rule.trim() !== '');
 
@@ -133,8 +92,8 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
                     {record?.data?.property_rule?.events_allowed === 1 ? "Event is allowed." : "Event is not allowed."}
                   </li>
                 </ol>
-                {formattedRules && 
-                <h2 className="text-[18px] mb-2">Additional Rules</h2>
+                {formattedRules &&
+                  <h2 className="text-[18px] mb-2">Additional Rules</h2>
                 }
                 <div className="text-[15px] text-[#61554E] leading-[24px]">
                   <ul>
@@ -151,13 +110,8 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
           </Modal>
         </div>
       </div>
-      {/* <div className="mb-[30px] mt-[7px] flex">
-      <p className="font-semibold">Note:&nbsp;
-        <span className="text-gray-500 sm:ml-2 font-normal">The price is subjective to changes based on the number of guests. A maximum of {record?.data?.guests} guests are allowed to stay at the property.</span>
-        </p>
-      </div> */}
 
-      
+
 
       {/* {isAdmin && (
         <>

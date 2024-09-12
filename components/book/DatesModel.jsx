@@ -88,7 +88,6 @@ const DatesModel = ({ infos, setDateModel, setInfos }) => {
 
   const changeUrlData = () => {
     setDateModel(false);
-    console.log("DATES",selectedDay, selectEnd);
     router.push(
       `/book/${router.query.listingID}?numberOfAdults=${infos.numberOfAdults}&numberOfChildren=${infos.numberOfChildren}&numberOfInfants=${infos.numberOfInfants}&numberOfPets=${infos.numberOfPets}&checkin=${selectedDay ? format(selectedDay,"yyyy-MM-dd") : ""}&checkout=${selectEnd ? format(selectEnd, "yyyy-MM-dd") : ""}`
     );

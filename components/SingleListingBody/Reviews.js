@@ -101,7 +101,7 @@ const Reviews = React.forwardRef(({ data,isAdmin }, ref ) => {
       <h1 className="text-xl md:text-2xl mb-4 font-semibold flex items-center gap-1">
         <span className="flex" >
         <p className="pe-2 flex items-center" ><FaStar size={'20'} color={"#000"} variant="Bold" />&nbsp;{ data?.rating !==0 ?(parseFloat(data && data?.rating && data?.rating?.toFixed(0))) :(<></>) }
-        {data?.rating>0?".0":null}
+        {data?.rating>0 ? ".0" : null}
         </p>
         {/* <StartRating size={26} value={parseFloat(data && data?.rating && data?.rating?.toFixed(2))} />  */}
         

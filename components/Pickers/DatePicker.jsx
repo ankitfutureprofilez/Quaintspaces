@@ -30,7 +30,6 @@ const DatePicker = ({
     add(firstDayCurrentMonth, { months: 1 })
   );
 
-  console.log("currentMonth",currentMonth)
   let days = eachDayOfInterval({
     start: firstDayCurrentMonth,
     end: endOfMonth(firstDayCurrentMonth),

@@ -71,7 +71,6 @@ export default function Index() {
     fetchData(1);
   }, []);
 
-  console.log("content",content);
   return (
     <AdminLayout heading={"Payment History"}>
       {loading ? (

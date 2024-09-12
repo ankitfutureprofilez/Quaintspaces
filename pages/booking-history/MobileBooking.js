@@ -6,7 +6,6 @@ import NoData from '../elements/NoData.js';
 import SuccessDate from '../success/SuccessDate.jsx';
 import DateComponent from '../elements/DateFormat.jsx';
 export default function MobileBooking({ listings, selectedButton, loading }) {
-  console.log("listings", listings)
 
 
 

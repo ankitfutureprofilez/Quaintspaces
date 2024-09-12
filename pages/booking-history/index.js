@@ -19,14 +19,12 @@ export default function Index() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedButton, setSelectedButton] = useState("upcoming");
   const [listings, setListings] = useState([]);
-  console.log('listings', listings)
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState("All Dates");
   const [fetch, setFetch] = useState(false);
   const [SelectBooking, SetSelectBooking] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [refend, setRefend] = useState("")
-  console.log("refund_amount",refend);
   const [houseRule, SetHouseRules] = useState({})
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
@@ -165,7 +163,6 @@ export default function Index() {
         setLoading(false);
         setKey(r?.data?.request_key);
         const newdata = r?.data?.data?.data || [];
-        console.log("newdata", newdata)
         setListings((prevData) => {
           if (pg === 1) {
             return newdata;
@@ -254,7 +251,6 @@ export default function Index() {
     };
   }, [showConfirmation]);
 
-console.log("listings",listings)
 
 
   const BookingTable = () => {

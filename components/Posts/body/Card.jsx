@@ -13,12 +13,10 @@ const Card = ({ post }) => {
   try {
     // Check if post.location is already a parsed object
     if (typeof post?.location === 'string') {
-      console.log("Raw location string:", post?.location);
       record = JSON.parse(post.location);
     } else {
       record = post?.location;
     }
-    console.log("Parsed record location:", record?.location);
   } catch (error) {
     console.error("Error parsing JSON:", error);
   }
