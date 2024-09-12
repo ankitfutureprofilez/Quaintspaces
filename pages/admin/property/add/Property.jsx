@@ -290,8 +290,15 @@ export default function Property(props) {
       });
   };
 
+   const [error, setError] = useState('');
+  const validLinkPattern = /^[a-zA-Z0-9-_]*$/;
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    if (validLinkPattern.test(value)) {
+      setError(''); 
+    } else {
+      setError('Invalid character in the link! Only letters, numbers, hyphens, and underscores are allowed.');
+    }
     setItem({ ...item, [name]: value });
   };
 
@@ -1748,17 +1755,17 @@ export default function Property(props) {
                         {baseurl}
                       </span>
                       <div className=" flex-1">
-                        <input
-                          type="text"
-                          className="form-control py-2 px-4 border border-t-0 sm:border-t border-l-0 sm:border-l rounded-b sm:rounded-l-none sm:rounded-r text-sm md:text-base w-full"
-                          id="customLink"
-                          name="customLink"
-                          aria-describedby="basic-addon3"
-                          placeholder="Enter your custom link here"
-                          value={item.customLink}
-                          onChange={handleInputChange}
-                        />
-
+                       <input
+        type="text"
+        className="form-control py-2 px-4 border border-t-0 sm:border-t border-l-0 sm:border-l rounded-b sm:rounded-l-none sm:rounded-r text-sm md:text-base w-full"
+        id="customLink"
+        name="customLink"
+        aria-describedby="basic-addon3"
+        placeholder="Enter your custom link here"
+        value={item.customLink}
+        onChange={handleInputChange}
+      />
+         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
                       </div>
                     </div>
                     <div className="text-right text-xs md:text-sm text-gray-500 mt-1">

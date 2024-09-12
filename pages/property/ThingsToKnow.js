@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "../elements/Modal";
 import Moment from 'moment';
+import Link from "next/link";
 
 
 export default function ThingsToKnow({ record, isAdmin, content }) {
@@ -139,10 +140,10 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
 
 
 
-      {/* {isAdmin && (
+      {isAdmin && (
         <>
           <div className="flex justify-between house-rule-text">
-            <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
+            {/* <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
               <h2 className="font-semibold mb-2">Direction</h2>
               <p className="mb-2 text-gray-500">{record?.data?.property_rule?.direction}</p>
             </div>
@@ -154,7 +155,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
               <h2 className="font-semibold mb-2">Wifi Details</h2>
               <p className="mb-2 text-gray-500">{record?.data?.property_rule?.wifi_username}</p>
               <p className="mb-2 text-gray-500">{record?.data?.property_rule?.wifi_password}</p>
-            </div>
+            </div> */}
             <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
               <h2 className="font-semibold mb-2">Custom Link</h2>
               {record?.data?.custom_link && (
@@ -167,7 +168,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
             </div>
           </div>
 
-          <div className="flex justify-between house-rule-text">
+          {/* <div className="flex justify-between house-rule-text">
             <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/2 w-full">
               <h2 className="font-semibold mb-2">Checkout Instruction</h2>
               {instructions.map((item, index) => (
@@ -184,9 +185,9 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
                 {record?.data?.property_rule?.long_term_policy === null ? (record?.data?.property_rule?.long_term_policy) : (record?.data?.property_rule?.standard_policy)}
               </p>
             </div>
-          </div>
+          </div> */}
         </>
-      )} */}
+      )} 
     </div>
   );
 }
