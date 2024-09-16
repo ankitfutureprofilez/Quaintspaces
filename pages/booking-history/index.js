@@ -25,6 +25,7 @@ export default function Index() {
   const [SelectBooking, SetSelectBooking] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [refend, setRefend] = useState("")
+  console.log("refend",refend)
   const [houseRule, SetHouseRules] = useState({})
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
@@ -93,14 +94,17 @@ export default function Index() {
   };
   const [amount, setAmount] = useState(0); // Initialize with a default value
 
+  console.log("amount",amount)
   useEffect(() => {
     if (SelectBooking && SelectBooking.booking_property && SelectBooking.days_difference) {
       const calculatedAmount = SelectBooking.booking_property.cleaning_fee * SelectBooking.days_difference;
       setAmount(calculatedAmount);
     }
   }, [SelectBooking]);
+
+  console.log("amount",amount)
   const handleConfirmation = () => {
-    cancelBooking(SelectBooking?.id, amount);
+    cancelBooking(SelectBooking?.id, refend);
     setShowConfirmation(false);
   };
 
@@ -189,10 +193,10 @@ export default function Index() {
 
   // booking-cancel/42
 
-  const cancelBooking = async (id, amount) => {
+  const cancelBooking = async (id, refend) => {
     setLoading(true);
     const main = new Listings();
-    const response = main.Booking_cancel(id, amount);
+    const response = main.Booking_cancel(id, refend);
     try {
       const res = await response;
       if (res?.data?.status === true) {
@@ -500,15 +504,7 @@ export default function Index() {
                    <div>
                     Your Refunded amount will be <span className="text-green-600">{formatMultiPrice(refend)}</span>
                   </div>
-                    {/* <h2>
-                      Only the cleaning fee will be refunded:
-
-                    </h2>
-                    <span className="text-green-600">
-                      {formatMultiPrice(SelectBooking?.booking_property?.cleaning_fee * SelectBooking?.days_difference)}
-                    </span>. */}
                   </>
-
                 ) : (
                   <div>
                     Your Refunded amount will be <span className="text-green-600">{formatMultiPrice(refend)}</span>
