@@ -25,7 +25,6 @@ export default function Index() {
   const [SelectBooking, SetSelectBooking] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [refend, setRefend] = useState("")
-  console.log("refend",refend)
   const [houseRule, SetHouseRules] = useState({})
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
@@ -94,7 +93,6 @@ export default function Index() {
   };
   const [amount, setAmount] = useState(0); // Initialize with a default value
 
-  console.log("amount",amount)
   useEffect(() => {
     if (SelectBooking && SelectBooking.booking_property && SelectBooking.days_difference) {
       const calculatedAmount = SelectBooking.booking_property.cleaning_fee * SelectBooking.days_difference;
@@ -102,7 +100,6 @@ export default function Index() {
     }
   }, [SelectBooking]);
 
-  console.log("amount",amount)
   const handleConfirmation = () => {
     cancelBooking(SelectBooking?.id, refend);
     setShowConfirmation(false);
