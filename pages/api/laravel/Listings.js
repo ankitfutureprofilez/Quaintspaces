@@ -32,19 +32,19 @@ class Listings extends Component {
   async PropertyBooking(data) {
     return Api.post("/booking", data);
   }
-  async BookingHistory(page,data) {
+  async BookingHistory(page, data) {
     return Api.get(`/user-booking-history?page=${page}&` + data);
   }
-  async Booking_cancel(id,amount) {
+  async Booking_cancel(id, amount) {
     return Api.get(`/booking-cancel/${id}/${amount}`);
   }
   async bookingpayment(data) {
-    return Api.post("/payment" , data);
+    return Api.post("/payment", data);
   }
   async activateAccount(data) {
-    return Api.post("/user-account-activate",data);
+    return Api.post("/user-account-activate", data);
   }
-  
+
   async DeactivateAccount() {
     return Api.get("/user-account-deactivate");
   }
@@ -59,34 +59,34 @@ class Listings extends Component {
   }
 
   async Propertycustom(customlink) {
-    return Api.get(`/property-custom-link-details/${customlink}` );
+    return Api.get(`/property-custom-link-details/${customlink}`);
   }
 
   async cancelpolicy(data) {
-    return Api.post("/check-cancellation-policy-before-booking" ,data);
+    return Api.post("/check-cancellation-policy-before-booking", data);
   }
-  
+
   async AddRating(data) {
     return Api.post("/add-rating", data);
   }
   async GetUserReview(data) {
-    return Api.get("/rating-Review-listing/"+ data);
+    return Api.get("/rating-Review-listing/" + data);
   }
-  async AllReviews(data, page =1) {
+  async AllReviews(data, page = 1) {
     return Api.get(`/property-Rating/${data}?page=${page}`);
   }
   async PaymentHistory(page) {
     return Api.get(`/user-payment-history?page=${page}`);
   }
   async user_success_payment(data) {
-    return Api.post("/user-success-payment",data);
-  }
-  
-  async user_house_rule(data) {
-    return Api.post("/user-house-rule-detail",data);
+    return Api.post("/user-success-payment", data);
   }
 
-  
+  async user_house_rule(data) {
+    return Api.post("/user-house-rule-detail", data);
+  }
+
+
 
   render() {
     return (
