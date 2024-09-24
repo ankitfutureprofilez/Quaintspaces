@@ -29,16 +29,16 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
       <div className="flex justify-between house-rule-text">
         <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full pe-4">
           <h2 className="font-semibold mb-2">Timings </h2>
-          {isAdmin ? 
-          <p className="mb-2 text-gray-500">Check in:  {Moment(record?.data?.check_in, "HH:mm").format('h:mma')}</p>
-          :
-          <p className="mb-2 text-gray-500">Check in:  {record?.data?.check_in}</p>
+          {isAdmin ?
+            <p className="mb-2 text-gray-500">Check in:  {Moment(record?.data?.check_in, "HH:mm").format('h:mma')}</p>
+            :
+            <p className="mb-2 text-gray-500">Check in:  {record?.data?.check_in}</p>
           }
           {/* <p className="mb-2 text-gray-500">Flexible/check-in ends after {record?.data?.flexible_check_in}</p> */}
           {isAdmin ?
-           <p className="mb-2 text-gray-500">Check in:  {Moment(record?.data?.check_out, "HH:mm").format('h:mma')}</p>
-          :
-          <p className="mb-2 text-gray-500">Check out: {record?.data?.check_out}</p>
+            <p className="mb-2 text-gray-500">Check in:  {Moment(record?.data?.check_out, "HH:mm").format('h:mma')}</p>
+            :
+            <p className="mb-2 text-gray-500">Check out: {record?.data?.check_out}</p>
           }
           {/* Note added here */}
           <p className="mb-2 text-gray-500">
@@ -72,7 +72,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
             {record?.data?.property_rule?.photography_allowed === 1 ? "Photography is allowed." : "Photography is not allowed."}
           </p>
           <p className="mb-2 text-gray-500 ">
-          {record?.data?.property_rule?.smoking_allowed === 1 ? "Smoking is allowed." : "Smoking is not allowed."}
+            {record?.data?.property_rule?.smoking_allowed === 1 ? "Smoking is allowed." : "Smoking is not allowed."}
           </p>
           <button className="mb-2 text-blue-400 underline text-left" onClick={openModal}>
             See All
@@ -97,9 +97,6 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
                   <li className="mb-1 capitalize text-[15px]">
                     {record?.data?.property_rule?.events_allowed === 1 ? "Event is allowed." : "Event is not allowed."}
                   </li>
-                  {/* <li className="mb-1 capitalize text-[15px]">
-                    {record?.data?.property_rule?.quiet_hours_allowed === 1 ? "Quiet hours are allowed." : "Quiet hours are not allowed."}
-                  </li> */}
                 </ol>
                 {record?.data?.property_rule?.quite_hours_in_time &&
                   (
@@ -130,62 +127,6 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
           </Modal>
         </div>
       </div>
-      {/* <div className="mb-[30px] mt-[7px] flex">
-      <p className="font-semibold">Note:&nbsp;
-        <span className="text-gray-500 sm:ml-2 font-normal">The price is subjective to changes based on the number of guests. A maximum of {record?.data?.guests} guests are allowed to stay at the property.</span>
-        </p>
-      </div> */}
-
-
-
-      {/* {isAdmin && (
-        <>
-          <div className="flex justify-between house-rule-text">
-            <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
-              <h2 className="font-semibold mb-2">Direction</h2>
-              <p className="mb-2 text-gray-500">{record?.data?.property_rule?.direction}</p>
-            </div>
-            <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
-              <h2 className="font-semibold mb-2">House Manuals</h2>
-              <p className="mb-2 text-gray-500">{record?.data?.property_rule?.house_manuals}</p>
-            </div>
-            <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
-              <h2 className="font-semibold mb-2">Wifi Details</h2>
-              <p className="mb-2 text-gray-500">{record?.data?.property_rule?.wifi_username}</p>
-              <p className="mb-2 text-gray-500">{record?.data?.property_rule?.wifi_password}</p>
-            </div>
-            <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/3 w-full">
-              <h2 className="font-semibold mb-2">Custom Link</h2>
-              {record?.data?.custom_link && (
-                <p className="mb-2 text-gray-500">
-                  <Link target="_blank" href={`https://www.quaintspaces.in/properties/${record?.data?.custom_link}`} className="text-blue-500 hover:underline">
-                    {`https://www.quaintspaces.in/properties/${record?.data?.custom_link}`}
-                  </Link>
-                </p>
-              )}
-            </div>
-          </div>
-
-          <div className="flex justify-between house-rule-text">
-            <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/2 w-full">
-              <h2 className="font-semibold mb-2">Checkout Instruction</h2>
-              {instructions.map((item, index) => (
-                <div key={index} className="mb-4">
-                  <p className="mb-2 text-gray-500">{item?.instruction}</p>
-                  <p>{item?.details}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col mt-3 sm:mt-2 mr-4 md:w-1/2 w-full">
-              <h2 className="font-semibold mb-2">Policy</h2>
-              <p className="mb-2 text-gray-500">
-                {record?.data?.property_rule?.long_term_policy === null ? (record?.data?.property_rule?.long_term_policy) : (record?.data?.property_rule?.standard_policy)}
-              </p>
-            </div>
-          </div>
-        </>
-      )}  */}
     </div>
   );
 }

@@ -27,45 +27,6 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
     return words.slice(0, wordLimit).join(' ') + '...';
   };
 
-  // useEffect(() => {
-  //   const handleAdditionalData = (record) => {
-  //     let additionalData;
-  //     let ruleData;
-  //     let formattedData = "";
-
-  //     try {
-  //       // Parse additional_rules JSON if available
-  //       additionalData = record?.data?.property_rule?.additional_rules ? record?.data?.property_rule?.additional_rules?.split('\r\n') : null;
-  //       console.log("additionalData", additionalData);
-  //     } catch (e) {
-  //       console.error('Error parsing additional_rules JSON:', e);
-  //     }
-
-  //     // Check if additionalData exists and is valid
-  //     if (additionalData) {
-  //       try {
-  //         if (isAdmin) {
-  //           // Format additionalData by replacing newline characters with <br /> for admin
-  //           formattedData = additionalData.replace(/\r\n/g, '<br />');
-  //         } else {
-  //           // Parse and format ruleData for non-admin
-  //           ruleData = (additionalData);
-  //           formattedData = ruleData.replace(/\r\n/g, '<br />');
-  //         }
-  //         console.log("formattedAdditionalData", formattedData);
-  //       } catch (e) {
-  //         console.error('Error formatting data:', e);
-  //       }
-  //     }
-
-  //     setFormattedAdditionalData(formattedData);
-  //   };
-
-  //   handleAdditionalData(record);
-  // }, [record, isAdmin]);
-
-
-  // console.log("formattedAdditionalData",formattedAdditionalData)
 
   const formattedRules = record?.data?.property_rule?.additional_rules?.split('\n')?.filter(rule => rule.trim() !== '');
 
