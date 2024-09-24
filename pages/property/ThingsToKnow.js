@@ -101,7 +101,7 @@ export default function ThingsToKnow({ record, isAdmin, content }) {
                     {record?.data?.property_rule?.quiet_hours_allowed === 1 ? "Quiet hours are allowed." : "Quiet hours are not allowed."}
                   </li> */}
                 </ol>
-                {record?.data.property_rule?.quite_hours_in_time &&
+                {record?.data?.property_rule?.quite_hours_in_time &&
                   (
                     <>
                       <h2 className="text-[18px] mb-2">Quiet Hours Timing </h2>
