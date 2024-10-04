@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 
 function Modal({ isOpen, onClose, children, width }) {

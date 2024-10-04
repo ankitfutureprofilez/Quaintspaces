@@ -4,6 +4,7 @@ import { FaFacebook, FaInstagram } from "react-icons/fa6";
 import { MdOutlineMail } from "react-icons/md";
 import { MdOutlinePhone } from "react-icons/md";
 import { TfiEmail } from "react-icons/tfi";
+import { MdOutlineLocationOn  } from "react-icons/md";
 
 export default function Footer() {
   const [isMobile, setIsMobile] = useState(false);
@@ -58,6 +59,16 @@ export default function Footer() {
                       </span>
                     </a>
                   </div>
+                  <a
+                    href="https://www.google.com/maps?q=D-105,Golden+Oak,Devi+Marg,Bani+Park,Jaipur,Rajasthan,302016"
+                    target="_blank"
+                    className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] flex justify-center xl:justify-start"
+                  >
+                    <MdOutlineLocationOn size={24} className="mt-[2px]" color={"#3F2A17"}/>
+                    <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px]">
+                    : D-105, Golden Oak, Devi Marg, Bani Park, Jaipur, Rajasthan 302016
+                    </span>
+                  </a>
                 </div>
                 {/* <p><Link href="tel:9314022666">9314022666</Link></p> */}
               </div>
@@ -160,11 +171,21 @@ export default function Footer() {
                       </span>
                     </a>
                   </div>
+                  <a
+                    href="https://www.google.com/maps?q=D-105,Golden+Oak,Devi+Marg,Bani+Park,Jaipur,Rajasthan,302016"
+                    target="_blank"
+                    className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] flex justify-center xl:justify-start"
+                  >
+                    <MdLocationPin size={18} color={"#3F2A17"} className="mt-1" />
+                    <span className="text-[#3F2A17] text-[14px] lg:text-[14px] xl:text-[16px] ml-2">
+                      D-105, Golden Oak, Devi Marg, Bani Park, Jaipur, Rajasthan 302016
+                    </span>
+                  </a>
+
                 </div>
                 {/* <p><Link href="tel:9314022666">9314022666</Link></p> */}
               </div>
               <div className="w-full lg:w-1/3 mb-3 mb:mb-0 text-center xl:text-start">
-
                 {/* <div className="w-[80px] h-[2px] mx-auto xl:mx-[0] bg-[#efa3a3] mb-[15px]"></div> */}
                 <div className="flex flex-col">
                   <Link href="/terms">
